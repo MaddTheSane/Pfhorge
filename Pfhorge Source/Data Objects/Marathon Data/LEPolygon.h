@@ -97,7 +97,7 @@ enum	// polygon types
     short	floor_texture, ceiling_texture; // shape_descriptor - short
     short	floor_height, ceiling_height; // world_distance
     short	floor_lightsource_index, ceiling_lightsource_index;
-    id		floor_lightsource_object, ceiling_lightsource_object;
+    __unsafe_unretained id		floor_lightsource_object, ceiling_lightsource_object;
     
     long	area;		// in world distance^2
     

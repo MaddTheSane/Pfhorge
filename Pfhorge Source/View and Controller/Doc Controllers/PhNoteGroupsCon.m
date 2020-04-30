@@ -87,7 +87,9 @@
     NSArray *theArray = [self arrayFromTable:aTableView];
     
     if (theArray == nil)
+    {
         return nil;
+    }
     else // based on header!!!
     {
         NSString *theColumIdentifier = [col identifier];
@@ -98,7 +100,7 @@
         
         if (grp == nil)
         {
-			NSLog(@"theEntry in table get object value is nil For Row#: %ld", (long)rowIndex);
+            NSLog(@"theEntry in table get object value is nil For Row#: %ld", (long)rowIndex);
             return nil;
         }
         else if ([theColumIdentifier isEqualToString:@"visible"])

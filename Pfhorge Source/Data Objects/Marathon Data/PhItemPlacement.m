@@ -56,8 +56,8 @@
 #pragma mark ********* Coding/Copy Protocal Methods *********
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
+{
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
     
@@ -66,7 +66,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -92,14 +92,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-	 NSLog(@"Exporting Item Placement: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Item Placement: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -109,7 +109,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-	NSLog(@"Importing Item Placement: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Item Placement: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportUnsignedShort(flags);
     

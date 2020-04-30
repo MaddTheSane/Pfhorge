@@ -1515,13 +1515,12 @@ enum {
     
     numer = [numberTable objectEnumerator];
     
-	while ((curDrawingMap = [[numer nextObject] objectAtIndex:0]))
+    while ((curDrawingMap = [[numer nextObject] objectAtIndex:0]))
     {
         [curDrawingMap removeAllPoints];
     }
     
-    numer = [thePolys objectEnumerator];
-    while (thisPolygon = [numer nextObject])
+    for (LEPolygon *thisPolygon in thePolys)
     {
         short theCurrentVertexCount;
         //short *theVertexes;
@@ -1695,7 +1694,6 @@ enum {
             [polyDrawingMapPntr closePath];
         }
     }
-    [polyDrawingMap setCachesBezierPath:YES];
     //NSLog(@"I Caculated The Poly Map! The New Polygonal Information should not be in effect...");
     
     [self createLineMap];
@@ -1730,10 +1728,8 @@ enum {
         joinedLineDrawingMap = [[NSBezierPath alloc] init];
     
     [lineDrawingMap removeAllPoints];
-    [lineDrawingMap setCachesBezierPath:YES];
     
     [joinedLineDrawingMap removeAllPoints];
-    [joinedLineDrawingMap setCachesBezierPath:YES];                    
     
     //-(NSMutableArray *)layerPoints;
     //-(NSMutableArray *)layerLines;

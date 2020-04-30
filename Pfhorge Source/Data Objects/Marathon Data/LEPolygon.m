@@ -331,7 +331,7 @@
 #pragma mark ********* Coding/Copy Protocal Methods *********
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     int i = 0;
@@ -475,7 +475,7 @@
     
     //
     
-	 NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -491,13 +491,13 @@
 }
 
  - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
- {
+{
     //long theNumber = [index indexOfObjectIdenticalTo:self];
     //long tmpLong = 0;
     int i = 0;
     short tmpShort;
     
-	 NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     /*
     if (theNumber != NSNotFound)
@@ -1568,7 +1568,9 @@
         [theObject setPolygon_object:self];
     }
     else
+    {
         permutationObject = theObject;
+    }
     
     /*if ([theObject isKindOfClass:[PhPlatform class]])
     {
