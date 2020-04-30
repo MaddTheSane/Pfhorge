@@ -93,7 +93,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
     short thePfhorgeDataSig1 = 26743;
     short thePfhorgeDataSig2 = 34521;
-    long thePfhorgeDataSig3 = 42296737;
+    int thePfhorgeDataSig3 = 42296737;
     
     NSMutableArray *theArchivedLevels = [[NSMutableArray alloc] initWithCapacity:numberOfLevels];
     

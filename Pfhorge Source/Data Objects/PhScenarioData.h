@@ -25,7 +25,7 @@
 
 @class PhPfhorgeScenarioLevelDoc;
 
-@interface PhScenarioData : NSObject <NSCoding, NSCopying>
+@interface PhScenarioData : NSObject <NSCoding, NSCopying, NSTableViewDataSource, NSTableViewDelegate>
 {
     PhPfhorgeScenarioLevelDoc *theScenarioDocument;
     
@@ -59,6 +59,6 @@
 -(NSString *)getLevelPathForLevel:(int)levelNumber;
 -(NSString *)getLevelPathForSelected;
 
-- (int)isFileApartOfThisSceanario:(NSString *)queryingfullPath;
+- (NSInteger)isFileApartOfThisSceanario:(NSString *)queryingfullPath;
 
 @end

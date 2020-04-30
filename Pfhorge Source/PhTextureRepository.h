@@ -27,8 +27,8 @@
 
 
 @interface PhTextureRepository : NSObject {
-    NSMutableArray *waterTextures, *lavaTextures, *sewageTextures, *jjaroTextures, *pfhorTextures;
-    NSMutableArray *landscape1, *landscape2, *landscape3, *landscape4;
+    NSArray *waterTextures, *lavaTextures, *sewageTextures, *jjaroTextures, *pfhorTextures;
+    NSArray *landscape1, *landscape2, *landscape3, *landscape4;
 }
 
 // *********************** Class Methods ***********************

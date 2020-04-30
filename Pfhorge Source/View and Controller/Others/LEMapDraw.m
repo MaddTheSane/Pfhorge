@@ -1497,12 +1497,6 @@ enum {
             [theCurDrawingMap closePath];
         }
     }
-    [itemDrawingMap setCachesBezierPath:YES];
-    [soundDrawingMap setCachesBezierPath:YES];
-    [goalDrawingMap setCachesBezierPath:YES];
-    [sceaneryDrawingMap setCachesBezierPath:YES];
-    [playerDrawingMap setCachesBezierPath:YES];
-    [monsterDrawingMap setCachesBezierPath:YES];
 }
 
 - (BOOL)createSpecialDrawingMap
@@ -1521,10 +1515,9 @@ enum {
     
     numer = [numberTable objectEnumerator];
     
-    while (curDrawingMap = [[numer nextObject] objectAtIndex:0])
+	while ((curDrawingMap = [[numer nextObject] objectAtIndex:0]))
     {
         [curDrawingMap removeAllPoints];
-        [curDrawingMap setCachesBezierPath:YES];
     }
     
     numer = [thePolys objectEnumerator];

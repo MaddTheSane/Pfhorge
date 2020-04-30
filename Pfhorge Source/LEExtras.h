@@ -181,7 +181,7 @@ extern unsigned eightBytesCount;*/
 #define prefSetColor(colorKey, colorValue) 	[preferences setObject:(colorValue) forKey:(colorKey)]
 #define getArchColor(colorKey) 			unarchive(prefColor(colorKey))
 #define setArchColor(colorKey, colorValue) 	prefSetColor((colorKey), (archive(colorValue)))
-#define activateArchColor(colorKey) 		[unarchive(prefColor(colorKey)) set]
+#define activateArchColor(colorKey) 		[(NSColor*)unarchive(prefColor(colorKey)) set]
 #define archColorWithAlpha(colorKey, alpha) 	[[getArchColor(colorKey) colorWithAlphaComponent:(alpha)] set];
 
 // Undo Stuff...

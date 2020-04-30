@@ -275,7 +275,7 @@ enum {
 
 - (void)unionLevel:(LELevelData *)theLevelToImport;
 
--(int)tagIndexNumberFromTagNumber:(short)tagNumber;
+-(NSInteger)tagIndexNumberFromTagNumber:(short)tagNumber;
 
 -(Terminal *)getTerminalThatContains:(TerminalSection *)theTermSection;
 

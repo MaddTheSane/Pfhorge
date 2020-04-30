@@ -193,7 +193,7 @@
 -(NSString *)getLevelPathForLevel:(int)levelNumber { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:levelNumber] stringByAppendingString:@".lev"]]; }
 -(NSString *)getLevelPathForSelected { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:[theTable selectedRow]] stringByAppendingString:@".lev"]]; }
 
-- (int)isFileApartOfThisSceanario:(NSString *)queryingfullPath
+- (NSInteger)isFileApartOfThisSceanario:(NSString *)queryingfullPath
 {
     NSEnumerator *numer = nil;
     NSString *fullPath = nil;
@@ -217,7 +217,7 @@
 
 // *** Data Source Messages ***
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     ///NSLog(@"numberOfRowsInTableView: %d", [self levelCount]);
     return [self levelCount];
@@ -225,10 +225,10 @@
 
 -(id)tableView:(NSTableView *)aTableView
     objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(int)rowIndex 
+    row:(NSInteger)rowIndex 
 {
     if ([[aTableColumn identifier] isEqualToString:@"#"])
-        return [NSNumber numberWithInt:rowIndex];
+        return @(rowIndex);
     else
         return [self getLevelNameForLevel:rowIndex];
 }
@@ -236,7 +236,7 @@
 
 - (BOOL)tableView:(NSTableView *)aTableView
     shouldEditTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     ///NSParameterAssert(rowIndex >= 0 && rowIndex < [names count]);
     
@@ -246,7 +246,7 @@
     
     // Use rowIndex to open a level...
     
-    [theScenarioDocument openADocumentFile:[self getLevelPathForLevel:rowIndex]];
+    [theScenarioDocument openADocumentFile:[self getLevelPathForLevel:(int)rowIndex]];
     
     return NO;
 }
@@ -254,7 +254,7 @@
 - (void)tableView:(NSTableView *)aTableView
     setObjectValue:anObject
     forTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
     SEND_ERROR_MSG(@"Level List Table (Senerio) Attempted To Set Object.");
@@ -264,7 +264,7 @@
 - (void)tableView:(NSTableView *)view
     willDisplayCell:(id)cell
     forTableColumn:(NSTableColumn *)col
-    row:(int)row
+    row:(NSInteger)row
 {
     //[cell setBackgroundColor: [colors objectAtIndex:row]];
     
@@ -290,7 +290,7 @@
     return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
 { // NSDraggingInfo
     ///NSLog(@"validateDrop");
     
@@ -311,13 +311,13 @@
     return targetNodeIsValid ? NSDragOperationGeneric : NSDragOperationNone;*/
 }
 
-- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 { // NSDraggingInfo
     // draggedTerminalSection may not exsist, and may not be nil in that case. 
     //	it should not happen, but it is a possiblity.  Deal with this possibility elagently in the future...
     //Terminal *theTerm = [[theMap getCurrentLevelLoaded] getTerminalThatContains:draggedTerminalSection];
     NSMutableArray *destArray = levelFileNames;
-    int rowNumberForItem = -1;
+    NSInteger rowNumberForItem = -1;
     
     [draggedLevel retain];
     [destArray removeObject:draggedLevel];
@@ -331,9 +331,9 @@
     
     rowNumberForItem = row;//[tableView rowForItem:draggedTerminalSection];
     if (rowNumberForItem > -1)
-        [tableView selectRow:rowNumberForItem byExtendingSelection:NO];
+        [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
     else
-        [tableView selectRow:0 byExtendingSelection:NO];
+        [tableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     
     [draggedLevel release];
     

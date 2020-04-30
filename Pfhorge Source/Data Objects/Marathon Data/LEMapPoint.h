@@ -73,6 +73,7 @@
 -(short)getX;
 -(short)getY;
 
+-(void)scanAndUpdateLines;
 
 // These are methods that we probably wouldn't bother with if we weren't scriptable.
 - (NSScriptObjectSpecifier *)objectSpecifier;

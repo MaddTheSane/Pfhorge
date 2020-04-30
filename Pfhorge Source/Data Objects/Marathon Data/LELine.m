@@ -1150,7 +1150,7 @@
     //BOOL foundSelection = NO
     BOOL keepFollowingTheLines = YES;
     BOOL lastLineToTest = NO;
-    int indexOfLineFound;
+    NSInteger indexOfLineFound;
     //int dis1, dis2;
     NSMutableArray *theNewPolyLines, *theNewPolyVectors;
     NSArray *theMapPoints, *theLines;

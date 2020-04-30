@@ -8,7 +8,7 @@
 
 ///#include <stl_algobase.h>
 
-//#include <algorithm.h>
+#include <algorithm>
 
 // Get the standard namespace
 using namespace std;

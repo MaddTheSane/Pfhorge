@@ -49,6 +49,10 @@
 
 #import "LEExtras.h"
 
+@interface LELevelData (other)
+-(void)setTheNoteTypesST:(NSArray *)theNSArray;
+@end
+
 @implementation LELevelData (LevelDataUtilites)
 
 #pragma mark -
@@ -143,14 +147,14 @@
     [theLevelDocument tellDocWinControllerToUpdateLevelInfoString];
 }
 
-- (int)tagIndexNumberFromTagNumber:(short)tagNumber
+- (NSInteger)tagIndexNumberFromTagNumber:(short)tagNumber
 {
     //NSArray *theLevelTags = [self getTags]; //getPhNumber
     NSEnumerator *numer;
     id thisObj;
     NSNumber *currentTagNumber = [NSNumber numberWithShort:tagNumber];
     PhTag *theNewTag = nil;
-    int theTagNumber = 0;
+    NSInteger theTagNumber = 0;
     
     ///NSLog(@"tagIndexNumberFromTagNumber called tagNumber Geting: %d", tagNumber);
     
@@ -516,7 +520,7 @@
 
 -(void)removeNameOfPolygon:(LEPolygon *)thePoly
 {
-    int theNamedPolyOrginalIndex = [namedPolyObjects indexOfObjectIdenticalTo:thePoly];
+    NSInteger theNamedPolyOrginalIndex = [namedPolyObjects indexOfObjectIdenticalTo:thePoly];
     
     if (theNamedPolyOrginalIndex < 0 || theNamedPolyOrginalIndex == NSNotFound)
     {

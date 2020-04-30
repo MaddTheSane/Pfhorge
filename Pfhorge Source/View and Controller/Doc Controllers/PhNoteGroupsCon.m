@@ -42,10 +42,10 @@
 
 - (NSArray *)data
 {
-    return [[[mainController document] getCurrentLevelLoaded] noteTypes];
+    return [[(LEMap*)[mainController document] getCurrentLevelLoaded] noteTypes];
 }
 
-- (PhNoteGroup *)entryAtIndex:(int)index
+- (PhNoteGroup *)entryAtIndex:(NSInteger)index
 {
     return [[self data] objectAtIndex:index];
 }
@@ -69,7 +69,7 @@
     return [self data];
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     NSArray *theArray = [self arrayFromTable:aTableView];
     
@@ -81,7 +81,7 @@
 
 -(id)tableView:(NSTableView *)aTableView
     objectValueForTableColumn:(NSTableColumn *)col 
-    row:(int)rowIndex 
+    row:(NSInteger)rowIndex
 {
     NSArray *theArray = [self arrayFromTable:aTableView];
     
@@ -123,7 +123,7 @@
 
 - (BOOL)tableView:(NSTableView *)aTableView
     shouldEditTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     // Spawn a new schedule window with this day...
     
@@ -133,7 +133,7 @@
 - (void)tableView:(NSTableView *)aTableView
     setObjectValue:anObject
     forTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     NSString *theColumIdentifier = [col identifier];
     
@@ -159,7 +159,7 @@
 - (void)tableView:(NSTableView *)view
     willDisplayCell:(id)cell
     forTableColumn:(NSTableColumn *)col
-    row:(int)row
+    row:(NSInteger)row
 {
     //[cell setBackgroundColor: [colors objectAtIndex:row]];
     

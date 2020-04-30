@@ -905,17 +905,17 @@
     LEMapPoint *theExsistingPoint;
     LELine *theNewLine;
     
-    int count = [theKeys count];
+    NSInteger count = [theKeys count];
     int i;
     for (i = 0; i < count; i++)
     {
         NSNumber *theKeyNumber = [theKeys objectAtIndex:i];
         
-        if ([theKeyNumber longValue] == 'Ppgx')
+        if ([theKeyNumber unsignedIntValue] == 'Ppgx')
             xLoc = [[pointDef objectForKey:theKeyNumber] intValue];
-        else if ([theKeyNumber longValue] == 'Ppgy')
+        else if ([theKeyNumber unsignedIntValue] == 'Ppgy')
             yLoc = [[pointDef objectForKey:theKeyNumber] intValue];
-        else if ([theKeyNumber longValue] == 'usrf')
+        else if ([theKeyNumber unsignedIntValue] == 'usrf')
         {
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when useing lineToPoint where num can be from -32768 to 32768.",
                                  @"Apple Script Error");
@@ -923,9 +923,10 @@
         }
         else
         {
-            long theKeyAsLong = [theKeyNumber longValue];
-            char *theTagAsChar = (char *)&theKeyAsLong;
-            NSString *theTagAsString = [NSString stringWithCString:theTagAsChar length:4];
+            OSType theKeyAsLong = [theKeyNumber unsignedIntValue];
+			theKeyAsLong = CFSwapInt32BigToHost(theKeyAsLong);
+			NSData *dat = [NSData dataWithBytes:&theKeyAsLong length:4];
+            NSString *theTagAsString = [[[NSString alloc] initWithData:dat encoding:NSMacOSRomanStringEncoding] autorelease];
             NSLog(@"Perculer key in arguments: %@", theTagAsString);
             NSLog(@"Here is the record description sent via apple script: %@", [args description]);
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",

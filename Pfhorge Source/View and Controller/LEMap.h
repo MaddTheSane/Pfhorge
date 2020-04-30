@@ -92,7 +92,7 @@
 - (void)loadLevel:(int)levelNumber;
 
 // ***************************** Scripting Support Methods *****************************
-//#pragma mark ********* Scripting Support Methods *******
+#pragma mark ********* Scripting Support Methods *******
 -(NSArray *)points;
 -(NSArray *)lines;
 -(NSArray *)objects;

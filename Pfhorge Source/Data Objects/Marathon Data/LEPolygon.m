@@ -475,7 +475,7 @@
     
     //
     
-    NSLog(@"Exporting Polygon: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+	 NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -497,7 +497,7 @@
     int i = 0;
     short tmpShort;
     
-    NSLog(@"Importing Polygon: %d  -- Position: %d  --- Length: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+	 NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     /*
     if (theNumber != NSNotFound)
@@ -1956,7 +1956,7 @@
     //BOOL foundSelection = NO
     //BOOL keepFollowingTheLines = YES;
     BOOL lastLineToTest = NO;
-    int indexOfLineFound;
+    NSInteger indexOfLineFound;
     //int dis1, dis2;
     //NSMutableArray *theMapObjects, *thePolys;
     LEMapPoint *currentLineMainPoint, *currentLineSecondaryPoint;
@@ -2246,7 +2246,7 @@
     {
         LELine *smallestLine, *tmpLine;
         LEMapPoint *nextMainPoint;
-        int smallestLineIndex = -1, nextMainPointIndex = -1;
+        NSInteger smallestLineIndex = -1, nextMainPointIndex = -1;
         double smallestAngle = 181.0;
         LEMapPoint *theCurPoint1;
         LEMapPoint *theCurPoint2;

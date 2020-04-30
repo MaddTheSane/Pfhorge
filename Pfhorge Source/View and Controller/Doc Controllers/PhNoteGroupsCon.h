@@ -10,7 +10,7 @@
 
 @class PhNoteGroup;
 
-@interface PhNoteGroupsCon : NSObject
+@interface PhNoteGroupsCon : NSObject <NSTableViewDataSource>
 {
     IBOutlet id mainController;
     
@@ -19,6 +19,6 @@
 
 - (void)awake;
 - (NSArray *)data;
-- (PhNoteGroup *)entryAtIndex:(int)index;
+- (PhNoteGroup *)entryAtIndex:(NSInteger)index;
 
 @end

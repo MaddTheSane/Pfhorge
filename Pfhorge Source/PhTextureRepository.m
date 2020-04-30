@@ -89,37 +89,37 @@
     {
         case _water:
             NSLog(@"*** Loading Water Textures ***");
-            waterTextures = [getAllTexturesOf(17, 0, (char *)[theShapesPath cString]) retain];
+            waterTextures = [getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
         
         case _lava:
             NSLog(@"*** Loading Lava Textures ***");
-            lavaTextures = [getAllTexturesOf(18, 0, (char *)[theShapesPath cString]) retain];
+            lavaTextures = [getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
         
         case _sewage:
             NSLog(@"*** Loading Sewage Textures ***");
-            sewageTextures = [getAllTexturesOf(19, 0, (char *)[theShapesPath cString]) retain];
+            sewageTextures = [getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
         
         case _jjaro:
             NSLog(@"*** Loading Jjaro Textures ***");
-            jjaroTextures = [getAllTexturesOf(20, 0, (char *)[theShapesPath cString]) retain];
+            jjaroTextures = [getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
         
         case _pfhor:
             NSLog(@"*** Loading Pfhor Textures ***");
-            pfhorTextures = [getAllTexturesOf(21, 0, (char *)[theShapesPath cString]) retain];
+            pfhorTextures = [getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
         case 99:
             NSLog(@"*** Loading Landscapes 1 ***");
-            landscape1 = [getAllTexturesOf(27, 0, (char *)[theShapesPath cString]) retain];
+            landscape1 = [getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]) retain];
             NSLog(@"*** Loading Landscapes 2 ***");
-            landscape2 = [getAllTexturesOf(28, 0, (char *)[theShapesPath cString]) retain];
+            landscape2 = [getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]) retain];
             NSLog(@"*** Loading Landscapes 3 ***");
-            landscape3 = [getAllTexturesOf(29, 0, (char *)[theShapesPath cString]) retain];
+            landscape3 = [getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]) retain];
             NSLog(@"*** Loading Landscapes 4 ***");
-            landscape4 = [getAllTexturesOf(30, 0, (char *)[theShapesPath cString]) retain];
+            landscape4 = [getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]) retain];
             break;
     }
 }
@@ -146,24 +146,24 @@
         return;
     
     NSLog(@"*** Loading Water Textures ***");
-    waterTextures = [getAllTexturesOf(17, 0, (char *)[theShapesPath cString]) retain];
+    waterTextures = [getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Lava Textures ***");
-    lavaTextures = [getAllTexturesOf(18, 0, (char *)[theShapesPath cString]) retain];
+    lavaTextures = [getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Sewage Textures ***");
-    sewageTextures = [getAllTexturesOf(19, 0, (char *)[theShapesPath cString]) retain];
+    sewageTextures = [getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Jjaro Textures ***");
-    jjaroTextures = [getAllTexturesOf(20, 0, (char *)[theShapesPath cString]) retain];
+    jjaroTextures = [getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Pfhor Textures ***");
-    pfhorTextures = [getAllTexturesOf(21, 0, (char *)[theShapesPath cString]) retain];
+    pfhorTextures = [getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]) retain];
     
     NSLog(@"*** Loading Landscapes 1 ***");
-    landscape1 = [getAllTexturesOf(27, 0, (char *)[theShapesPath cString]) retain];
+    landscape1 = [getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Landscapes 2 ***");
-    landscape2 = [getAllTexturesOf(28, 0, (char *)[theShapesPath cString]) retain];
+    landscape2 = [getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Landscapes 3 ***");
-    landscape3 = [getAllTexturesOf(29, 0, (char *)[theShapesPath cString]) retain];
+    landscape3 = [getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]) retain];
     NSLog(@"*** Loading Landscapes 4 ***");
-    landscape4 = [getAllTexturesOf(30, 0, (char *)[theShapesPath cString]) retain];
+    landscape4 = [getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]) retain];
     
     NSLog(@"*** Done Loading Textures ***");
     ///[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:theImage forKey:[NSNumber numberWithInt:19]]];

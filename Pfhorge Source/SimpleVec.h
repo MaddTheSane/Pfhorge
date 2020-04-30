@@ -3,25 +3,7 @@
 
 #pragma once
 
-
-///#include <stl_algobase.h>
-
-template <class _Tp>
-inline const _Tp& min(const _Tp& __a, const _Tp& __b) {
-  return __b < __a ? __b : __a;
-}
-
-template <class _Tp>
-inline const _Tp& max(const _Tp& __a, const _Tp& __b) {
-  return  __a < __b ? __b : __a;
-}
-
-template <class _Tp>
-inline void swap(_Tp& __a, _Tp& __b) {
-  _Tp __tmp = __a;
-  __a = __b;
-  __b = __tmp;
-}
+#include <algorithm>
 
 // I'm defining this vector object here, because I sometimes
 // cannot get STL's allocator to work properly on some objects
@@ -70,8 +52,8 @@ public:
 	
 	// Swaps contents
 	void swap_with(simple_vector<T> &v) {
-		swap(length,v.length);
-		swap(contents,v.contents);
+		std::swap(length,v.length);
+		std::swap(contents,v.contents);
 	}
 	
 	// Fills with some value
