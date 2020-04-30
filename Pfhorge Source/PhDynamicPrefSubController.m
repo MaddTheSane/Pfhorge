@@ -297,16 +297,16 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)chooseScriptFolder:(id)scriptFolder
 {
-        NSOpenPanel *panel = [NSOpenPanel openPanel];
-	panel.allowedFileTypes = @[@"scpt"];
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowedFileTypes = @[@"scpt"];
     NSInteger returnCode = [panel runModal];
     
     if (returnCode == NSOKButton)
     {
         NSString *path = [panel filename];
         NSLog(@"The Path: %@", path);
-    	//NSString *thePath = @"Test Script.scpt";
-	createAndExecuteScriptObject( path );
+        //NSString *thePath = @"Test Script.scpt";
+        createAndExecuteScriptObject( path );
     }
 }
 
@@ -391,7 +391,7 @@ extern NSString *VMBackwardKey;
         NSString *path = [panel filename];
         NSLog(@"The Shapes Path Choosen: %@", path);
         [shapesPathTB setStringValue:path];
-        [preferences setObject:[path copy] forKey:VMShapesPath];
+        [preferences setObject:path forKey:VMShapesPath];
     }
     else
     {
@@ -565,7 +565,7 @@ extern NSString *VMBackwardKey;
                 {
                     NSString *characters;
                     
-                    unsigned int characterIndex, characterCount;
+                    NSInteger characterIndex, characterCount;
                     
                     // There could be multiple characters in the event.  Additionally, if shift is down, these characters will be upper case.
                     characters = [event charactersIgnoringModifiers];

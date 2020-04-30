@@ -25,8 +25,8 @@ typedef short int16;
 //	#pragma segment file_io
 //#endif
 
-// ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥ Below Is For Caculating the crc (checksum) ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
-#pragma mark ¥¥¥¥¥¥¥¥¥ Below Is For Caculating the crc (checksum) ¥¥¥¥¥¥¥¥¥
+// â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Below Is For Caculating the crc (checksum) â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Below Is For Caculating the crc (checksum) â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 
 /* ---------- constants */

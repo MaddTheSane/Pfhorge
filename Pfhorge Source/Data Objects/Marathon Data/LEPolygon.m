@@ -332,7 +332,7 @@
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
  {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     int i = 0;
     short tmpShort;
@@ -342,7 +342,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     

@@ -137,7 +137,7 @@
 
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     long theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
@@ -193,7 +193,7 @@
     [theData appendData:futureData];
     
     
-    NSLog(@"Exporting Line: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+    NSLog(@"Exporting Line: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -210,7 +210,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Line: %d  -- Position: %d  --- Length: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Line: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportObj(mapPoint1);
     ImportObj(mapPoint2);
@@ -1235,7 +1235,7 @@
     {
         LELine *smallestLine;
         LEMapPoint *nextMainPoint;
-        int smallestLineIndex = -1, nextMainPointIndex = -1;
+        NSInteger smallestLineIndex = -1, nextMainPointIndex = -1;
         double smallestAngle = 181.9;
         
         smallestLine = nil;

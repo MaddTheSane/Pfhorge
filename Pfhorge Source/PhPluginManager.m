@@ -42,7 +42,7 @@
 
 // ************************* Accsessor Methods *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥¥ Accsessor Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Accsessor Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (NSArray *)pluginInstanceNames { return pluginInstanceNames; }
 - (NSArray *)pluginClasses { return pluginClasses; }
@@ -50,7 +50,7 @@
  
 // ************************* Convience Methods *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥¥ Convience Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Convience Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)activatePluginIndex:(int)index
 {
@@ -60,7 +60,7 @@
 
 // ************************* Utilties *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥¥ Utilties ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Utilties â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)findPlugins
 {
@@ -108,7 +108,7 @@
 
 // ************************* Private Methods *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥¥ Private Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Private Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 //	This is called to activate each plug-in, meaning that each candidate bundle is checked,
 //	loaded if it seems to contain a valid plug-in, and the plug-in's class' initiateClass
@@ -184,7 +184,7 @@
 
 // *********************** Class Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥¥ Class Methods ¥¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Class Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 + (PhPluginManager *)sharedPhPluginManager {
 	static PhPluginManager *sharedPuginManagerController = nil;
 	

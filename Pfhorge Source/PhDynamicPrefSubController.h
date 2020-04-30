@@ -1,53 +1,55 @@
 #import <Cocoa/Cocoa.h>
 
+@class PhPrefsController;
+
 @interface PhDynamicPrefSubController : NSObject //NSWindowController
 {
-    IBOutlet id mainController;
+    IBOutlet PhPrefsController *mainController;
     
-    IBOutlet id enableGridCheckbox;
-    IBOutlet id gridSizePopupMenu;
-    IBOutlet id snapToGridCheckbox;
-    IBOutlet id gridFactor;
+    IBOutlet NSButton *enableGridCheckbox;
+    IBOutlet NSPopUpButton *gridSizePopupMenu;
+    IBOutlet NSButton *snapToGridCheckbox;
+    IBOutlet NSTextField *gridFactor;
     
-    IBOutlet id enableAntialiasingCheckbox;
-    IBOutlet id enableObjectOutlining;
+    IBOutlet NSButton *enableAntialiasingCheckbox;
+    IBOutlet NSButton *enableObjectOutlining;
     
-    IBOutlet id shapesPathTB;
-    IBOutlet id renderModePM;
-    IBOutlet id startPositionPM;
+    IBOutlet NSTextField *shapesPathTB;
+    IBOutlet NSPopUpButton *renderModePM;
+    IBOutlet NSPopUpButton *startPositionPM;
     
-    IBOutlet id showLiquids;
-    IBOutlet id showTransparent;
-    IBOutlet id showLandscapes;
-    IBOutlet id showInvalid;
-    IBOutlet id showObjects;
+    IBOutlet NSButton *showLiquids;
+    IBOutlet NSButton *showTransparent;
+    IBOutlet NSButton *showLandscapes;
+    IBOutlet NSButton *showInvalid;
+    IBOutlet NSButton *showObjects;
     
-    IBOutlet id liquidsTransparent;
-    IBOutlet id useFog;
-    IBOutlet id fogDepthSlider;
+    IBOutlet NSButton *liquidsTransparent;
+    IBOutlet NSButton *useFog;
+    IBOutlet NSSlider *fogDepthSlider;
     
-    IBOutlet id smoothRenderingCB;
+    IBOutlet NSButton *smoothRenderingCB;
     
-    IBOutlet id useLighting;
-    IBOutlet id whatLightingPM;
+    IBOutlet NSButton *useLighting;
+    IBOutlet NSPopUpButton *whatLightingPM;
     
-    IBOutlet id platformStatePM;
-    IBOutlet id visibleSidePM;
-    IBOutlet id verticalLookPM;
-    IBOutlet id fieldOfViewPM;
-    IBOutlet id visibilityModePM;
+    IBOutlet NSPopUpButton *platformStatePM;
+    IBOutlet NSPopUpButton *visibleSidePM;
+    IBOutlet NSPopUpButton *verticalLookPM;
+    IBOutlet NSPopUpButton *fieldOfViewPM;
+    IBOutlet NSPopUpButton *visibilityModePM;
     
-    IBOutlet id invertMouseCB;
-    IBOutlet id mouseSpeedSlider;
-    IBOutlet id keySpeedSlider;
-    IBOutlet id keySettings;
+    IBOutlet NSButton *invertMouseCB;
+    IBOutlet NSSlider *mouseSpeedSlider;
+    IBOutlet NSSlider *keySpeedSlider;
+    IBOutlet NSMatrix *keySettings;
     
-    IBOutlet id generalMatrixCheckboxes;
-    IBOutlet id snapToPointLengthSlider;
+    IBOutlet NSMatrix *generalMatrixCheckboxes;
+    IBOutlet NSSlider *snapToPointLengthSlider;
     
-    IBOutlet id snapFromPointLengthSlider;
+    IBOutlet NSSlider *snapFromPointLengthSlider;
     
-    IBOutlet id anglerSnapToMatrix;
+    IBOutlet NSMatrix *anglerSnapToMatrix;
 }
 
 // gridFactorChanged Action

@@ -141,7 +141,7 @@
 {
     if (position >= ((long)[theData length]))
     {
-		NSLog(@"WARNING: Position: %d   Excedded Length: %lu", position, (unsigned long)[theData length]);
+		NSLog(@"WARNING: Position: %ld   Excedded Length: %lu", position, (unsigned long)[theData length]);
         position = 0;
         return NO;
     }

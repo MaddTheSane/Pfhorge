@@ -9,6 +9,7 @@
 #import "PhNoteGroupsCon.h"
 #import "PhNoteGroup.h"
 #import "LELevelData.h"
+#import "LEMap.h"
 
 @implementation PhNoteGroupsCon
 // *********************** Table Data Source Updater Methods ***********************
@@ -97,7 +98,7 @@
         
         if (grp == nil)
         {
-            NSLog(@"theEntry in table get object value is nil For Row#: %d", rowIndex);
+			NSLog(@"theEntry in table get object value is nil For Row#: %ld", (long)rowIndex);
             return nil;
         }
         else if ([theColumIdentifier isEqualToString:@"visible"])
@@ -186,12 +187,12 @@
     return NO;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
     return NSDragOperationNone;
 }
 
-- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)operation
+- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 {
     return NO;
 }
