@@ -10,20 +10,19 @@
 #import "PluginProtocol.h"
 
 @interface PhPluginManager : NSObject {
-    @private
-        NSMutableArray *pluginClasses;
-        NSMutableArray *pluginInstances;
-        NSMutableArray *pluginInstanceNames;
+@private
+	NSMutableArray<Class> *pluginClasses;
+	NSMutableArray<id<PhLevelPluginProtocol>> *pluginInstances;
+	NSMutableArray<NSString*> *pluginInstanceNames;
 }
 
-+ (PhPluginManager *)sharedPhPluginManager;
+@property (class, readonly, retain) PhPluginManager *sharedPhPluginManager;
 - (void)findPlugins;
 
-- (NSArray *)pluginInstanceNames;
-- (NSArray *)pluginClasses;
-- (NSArray *)pluginInstances;
+- (NSArray<NSString*> *)pluginInstanceNames;
+- (NSArray<Class> *)pluginClasses;
+- (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances;
 
-- (NSArray *)pluginInstanceNames;
 - (void)activatePluginIndex:(int)index;
 
  

@@ -38,13 +38,15 @@ _______________________________________________________________________________
 #import <AppKit/AppKit.h>
 //#import "InputHelpers.h"
 
-#if 1
-#import <drivers/event_status_driver.h>
+#include <IOKit/IOKitLib.h>
+#if 0
+//#import <drivers/event_status_driver.h>
 #else
 // TJW - The definition of NXMouseScaling is not present in the public headers right now.
 //       Copied in from Darwin.   Also, event_status_driver.h imports two headers that
 //       don't exist in public builds (one of which contains this typedef).
 
+#if 0
 #define NX_MAXMOUSESCALINGS 20
 
 typedef struct evsioMouseScaling        /* Match old struct names in kernel */
@@ -53,7 +55,9 @@ typedef struct evsioMouseScaling        /* Match old struct names in kernel */
     short scaleThresholds[NX_MAXMOUSESCALINGS];
     short scaleFactors[NX_MAXMOUSESCALINGS];
 } NXMouseScaling;
+#endif
 
+extern "C" {
 typedef mach_port_t NXEventHandle;
 
 extern NXEventHandle NXOpenEventStatus(void);
@@ -66,7 +70,7 @@ extern double NXKeyRepeatInterval(NXEventHandle handle);
 extern double NXKeyRepeatThreshold(NXEventHandle handle);
 extern void NXSetKeyRepeatInterval(NXEventHandle handle, double seconds);
 extern void NXSetKeyRepeatThreshold(NXEventHandle handle, double threshold);
-
+}
 #endif
 
 
@@ -86,16 +90,16 @@ void SetMouseScalingEnabled(BOOL enabled)
     
     // Set or restore the scaling
     if (enabled) {
-        NXSetMouseScaling(eventStatus, &originalMouseScaling);
+        //NXSetMouseScaling(eventStatus, &originalMouseScaling);
     } else {
         // Save the old scaling value
-        NXGetMouseScaling(eventStatus, &originalMouseScaling);
+        //NXGetMouseScaling(eventStatus, &originalMouseScaling);
 
         // Setting a scaling curve with one factor of -1 turns off the OS scaling.  Setting it to 1 will NOT turn off the scaling.  This will make it linear, but the OS will still throw away bits of mouse movement precision
         newScaling.numScaleLevels = 1;
         newScaling.scaleThresholds[0] = 1;
         newScaling.scaleFactors[0] = -1;
-        NXSetMouseScaling(eventStatus, &newScaling);
+        //NXSetMouseScaling(eventStatus, &newScaling);
     }
 		
     NXCloseEventStatus(eventStatus);
@@ -469,8 +473,8 @@ static unsigned short SetColor(short ID, int Indx) {
     
     NSEvent *event;
     ///NSAutoreleasePool *pool;
-    CGMouseDelta deltaX, deltaY;
-    unsigned int previousFlags = 0, newFlags, changed, down;
+    double deltaX, deltaY;
+    NSEventModifierFlags previousFlags = 0, newFlags, changed, down;
     unsigned int previousMouseButtons = 0, newMouseButtons;
     	//float HorizStep, VertStep;
 	//HorizStep = VertStep = M.MP.GetMotionSpeed();
@@ -585,7 +589,7 @@ static unsigned short SetColor(short ID, int Indx) {
                 {
                     NSString *characters;
                     unichar c;
-                    unsigned int characterIndex, characterCount;
+                    NSInteger characterIndex, characterCount;
                     
                     // There could be multiple characters in the event.  Additionally, if shift is down, these characters will be upper case.
                     characters = [event charactersIgnoringModifiers];

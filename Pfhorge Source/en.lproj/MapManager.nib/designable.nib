@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PhScenarioManagerController">
+            <connections>
+                <outlet property="theLevelTable" destination="14" id="23"/>
+                <outlet property="window" destination="5" id="24"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="136" y="380" width="213" height="344"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1024" height="746"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="0.0" y="0.0" width="213" height="344"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tabView controlSize="small" id="7">
+                        <rect key="frame" x="-10" y="-13" width="233" height="322"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <tabViewItems>
+                            <tabViewItem label="Levels" identifier="1" id="8">
+                                <view key="view" id="9">
+                                    <rect key="frame" x="10" y="25" width="213" height="284"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="15">
+                                            <rect key="frame" x="0.0" y="0.0" width="213" height="284"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <clipView key="contentView" id="1g2-8K-spN">
+                                                <rect key="frame" x="1" y="0.0" width="196" height="283"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="122" floatsGroupRows="NO" id="14">
+                                                        <rect key="frame" x="0.0" y="0.0" width="196" height="258"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <size key="intercellSpacing" width="3" height="2"/>
+                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                        <tableColumns>
+                                                            <tableColumn identifier="#" width="40" minWidth="40" maxWidth="1000" id="13">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="#">
+                                                                    <font key="font" metaFont="controlContent" size="11"/>
+                                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" white="0.3333333432674408" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </tableHeaderCell>
+                                                                <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="9" id="119">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </textFieldCell>
+                                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            </tableColumn>
+                                                            <tableColumn identifier="File Name" width="150" minWidth="60.464000701904297" maxWidth="1000" id="16">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
+                                                                    <font key="font" metaFont="controlContent" size="11"/>
+                                                                    <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" white="0.3333333432674408" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </tableHeaderCell>
+                                                                <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Redwood City" id="120">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </textFieldCell>
+                                                                <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                            </tableColumn>
+                                                        </tableColumns>
+                                                        <connections>
+                                                            <outlet property="menu" destination="29" id="37"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                            </clipView>
+                                            <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="121">
+                                                <rect key="frame" x="-100" y="-100" width="196" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="123">
+                                                <rect key="frame" x="197" y="25" width="15" height="258"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <tableHeaderView key="headerView" id="122">
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </tableHeaderView>
+                                            <connections>
+                                                <outlet property="menu" destination="29" id="113"/>
+                                            </connections>
+                                        </scrollView>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
+                        </tabViewItems>
+                    </tabView>
+                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" id="46">
+                        <rect key="frame" x="15" y="314" width="184" height="26"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Scenario Options" bezelStyle="rounded" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="70" id="118">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <menu key="menu" title="OtherViews" autoenablesItems="NO" id="45">
+                                <items>
+                                    <menuItem title="Scenario Options" hidden="YES" id="70"/>
+                                    <menuItem title="Merge" id="44">
+                                        <connections>
+                                            <action selector="mergeScenarioToMap:" target="-2" id="94"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Import Marathon Map" id="114">
+                                        <connections>
+                                            <action selector="importMarathonMap:" target="-1" id="115"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Import Pathways Map" id="71">
+                                        <connections>
+                                            <action selector="importPathwaysMap:" target="-1" id="116"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Import Physics Models" id="72">
+                                        <connections>
+                                            <action selector="notDoneYet:" target="-2" id="111"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Import Terminal Files" id="73">
+                                        <connections>
+                                            <action selector="notDoneYet:" target="-2" id="112"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="74">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem title="Edit Selected Level" id="75">
+                                        <connections>
+                                            <action selector="editSelectedLevel:" target="-2" id="98"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Export Selected To Marathon Map" id="76">
+                                        <connections>
+                                            <action selector="exportSelectedToMarathonMap:" target="-2" id="99"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Delete Selected Level" id="77">
+                                        <connections>
+                                            <action selector="deleteSelectedLevel:" target="-2" id="100"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" id="93">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem title="Rescan Level Folder" id="95">
+                                        <connections>
+                                            <action selector="rescanProjectDirectory:" target="-2" id="103"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Merge Map" hidden="YES" id="47"/>
+                                    <menuItem isSeparatorItem="YES" hidden="YES" id="49">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" hidden="YES" id="50">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" hidden="YES" id="51">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem title="Note: Double Click" hidden="YES" id="43"/>
+                                    <menuItem title="Any Below Maps To Edit" hidden="YES" id="48"/>
+                                    <menuItem title="Import Marathon Map" hidden="YES" id="54"/>
+                                    <menuItem title="Merge To marathon Map" hidden="YES" id="52">
+                                        <connections>
+                                            <action selector="mergeScenarioToMap:" target="-2" id="53"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem isSeparatorItem="YES" hidden="YES" id="58">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                    <menuItem title="Export Selected To Marathon Map" hidden="YES" id="55"/>
+                                    <menuItem title="Delete Selected" hidden="YES" id="56"/>
+                                    <menuItem title="Edit Selected" hidden="YES" id="57"/>
+                                    <menuItem title="Copy" hidden="YES" id="60"/>
+                                    <menuItem title="Cut" hidden="YES" id="61"/>
+                                    <menuItem title="Paste" hidden="YES" id="62"/>
+                                    <menuItem isSeparatorItem="YES" hidden="YES" id="59">
+                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="26"/>
+                <outlet property="initialFirstResponder" destination="14" id="25"/>
+            </connections>
+        </window>
+        <menu title="Menu" autoenablesItems="NO" id="29">
+            <items>
+                <menuItem title="Edit Level" id="31">
+                    <connections>
+                        <action selector="editSelectedLevel:" target="-2" id="104"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Delete Level" id="34">
+                    <connections>
+                        <action selector="deleteSelectedLevel:" target="-2" id="105"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Export To Marathon Data" id="36">
+                    <connections>
+                        <action selector="exportSelectedToMarathonMap:" target="-2" id="106"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
+    </objects>
+</document>

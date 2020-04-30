@@ -2,6 +2,7 @@
 // 2001 Tito Dal Canton, for the AlephOne project
 #include <stdio.h>
 #include <errno.h>
+#include <stdlib.h>
 #include "shapes-structs.h"
 #include "bitmap-decode.h"
 
@@ -93,7 +94,7 @@ int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **o
 	word	flags;
 
 	if (!CollIsLoaded(coll)) {
-		if (err = LoadCollection(coll, shapes))
+		if ((err = LoadCollection(coll, shapes)))
 			return err;
 	}
 	// calculate a pointer to the RGB data for this clut
@@ -133,7 +134,7 @@ int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, short *outF
 	
 	// calculate the pointer to the wanted bitmap_definition
 	if (!CollIsLoaded(coll)) {
-		if (err = LoadCollection(coll, shapes))
+		if ((err = LoadCollection(coll, shapes)))
 			return err;
 	}
 	p = colls[coll] + 26;
@@ -224,9 +225,9 @@ word GetBEWord(unsigned char **p)
 	return v;
 }
 
-long GetBELong(unsigned char **p)
+int GetBELong(unsigned char **p)
 {
-	long	v;
+	int	v;
 
 	v = (**p) << 24;	(*p)++;
 	v |= (**p) << 16;	(*p)++;
@@ -243,15 +244,15 @@ int GetNumberOfBitmapsInCollection(int coll, int *theBitmapCount)
 	
 	// calculate the pointer to the wanted bitmap_definition
 	if (!CollIsLoaded(coll)) {
-		if (err = LoadCollection(coll, shapes))
+		if ((err = LoadCollection(coll, shapes)))
 			return err;
 	}
 	p = colls[coll] + 26;
 	bitmapCount = GET_SHORT(p);
-        
-        (*theBitmapCount) = bitmapCount;
-        
-        return 0;
+	
+	(*theBitmapCount) = bitmapCount;
+	
+	return 0;
 }
 
 

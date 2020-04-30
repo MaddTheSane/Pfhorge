@@ -274,12 +274,13 @@ NSPoint LEAddToPoint(NSPoint point1, float theSum) {
 -(void)dealloc
 {
 	[appleScriptObject release];
+	[super dealloc];
 }
 
 /*
  * sendAppleEvent:sendMode:sendPriority:timeOutInTicks:idleProc:filterProc:
  */
-- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(long)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
+- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
 {	
 	OK_Enough++;
 	/*if( OK_Enough < 2 )
@@ -308,14 +309,14 @@ void createAndExecuteScriptObject( NSString * aPath )
 	NSString			* theScriptText;
 	NDAppleScriptObject		* theScriptObject;
 	
-        NSLog(@"Excuting Script Function Begining...");
-        
+	NSLog(@"Excuting Script Function Begining...");
+	
 	if( [[aPath pathExtension] isEqualToString:@"applescript"] )
 	{
 		/*
 		 * This shows creating a script object from a string
 		 */		
-		theScriptText = [NSString stringWithContentsOfFile:aPath];
+		theScriptText = [NSString stringWithContentsOfFile:aPath usedEncoding:NULL error:NULL];
 		theScriptObject = [NDAppleScriptObject appleScriptObjectWithString:theScriptText];
 	}
 	else
@@ -323,21 +324,21 @@ void createAndExecuteScriptObject( NSString * aPath )
 		/*
 		 * This shows creating a script object from a compiled apple script file,
 		 */
-                 NSLog(@"Geting Script...");
-                theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfFile:aPath];
+		NSLog(@"Geting Script...");
+		theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfFile:aPath];
 	}
 	
 	if( theScriptObject )
 	{
 		///id			theResult;
 		///NSArray		* theNamesList;
-                SendTarget		* theSendTarget;
-                
-				/*
+		SendTarget		* theSendTarget;
+		
+		/*
 		 * set execution made flags
 		 */
 		[theScriptObject setExecutionModeFlags:kOSAModeCanInteract];
-
+		
 		theSendTarget = [SendTarget sendTargetWithAppleScriptObject:theScriptObject];
 		/*
 		 * set target object which implements the NDAppleScriptObjectSendEvent protocol,
@@ -345,22 +346,22 @@ void createAndExecuteScriptObject( NSString * aPath )
 		 * which also implements the NDAppleScriptObjectSendEvent protocol.
 		 */
 		[theScriptObject setAppleEventSendTarget:theSendTarget];
-
+		
 		/*
 		 * set target object which implements the NDAppleScriptObjectActive protocol,
 		 * it simple prints a message and then calls NDAppleScriptObject
 		 * which also implements the NDAppleScriptObjectActive protocol.
 		 */
 		[theScriptObject  setActivateTarget:theSendTarget];
-                
-                [theScriptObject setDefaultTargetAsCreator:(OSType)'PFrg'];
+		
+		[theScriptObject setDefaultTargetAsCreator:(OSType)'PFrg'];
 		//[theScriptObject setFinderAsDefaultTarget];
-                NSLog(@"Excuting Script...");
+		NSLog(@"Excuting Script...");
 		[theScriptObject execute];
-                NSLog(@"Excuting Script DONE...");
-                //[NDAppleScriptObject compileExecuteString:@"make new map at end of maps\n"];
-                [NDAppleScriptObject compileExecuteString:@"say \"Done\"\n"];
-                [NDAppleScriptObject compileExecuteString:@"display dialog \"Done\"\n"];
+		NSLog(@"Excuting Script DONE...");
+		//[NDAppleScriptObject compileExecuteString:@"make new map at end of maps\n"];
+		[NDAppleScriptObject compileExecuteString:@"say \"Done\"\n"];
+		[NDAppleScriptObject compileExecuteString:@"display dialog \"Done\"\n"];
 		if( [[aPath pathExtension] isEqualToString:@"scpt"] )
 		{
 			[theScriptObject writeToFile:aPath];
@@ -370,6 +371,6 @@ void createAndExecuteScriptObject( NSString * aPath )
 	{
 		printf("Could not create the AppleScript object... \n");
 	}
-        NSLog(@"Excuting Script END...");
+	NSLog(@"Excuting Script END...");
 }
 

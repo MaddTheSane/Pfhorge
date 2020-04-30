@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="OpenGLVisualModeController">
+            <connections>
+                <outlet property="OpenGLViewOGLV" destination="198" id="218"/>
+                <outlet property="window" destination="21" id="219"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <window title="Press &lt;Escape&gt; To Stop" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="21" userLabel="OpenGLView">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="23" y="300" width="512" height="256"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="800" height="578"/>
+            <view key="contentView" id="2">
+                <rect key="frame" x="0.0" y="0.0" width="512" height="256"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <openGLView wantsLayer="YES" useAuxiliaryDepthBufferStencil="NO" id="198" customClass="MyOpenGLView">
+                        <rect key="frame" x="0.0" y="0.0" width="512" height="256"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <connections>
+                            <outlet property="OGLwindow" destination="21" id="213"/>
+                        </connections>
+                    </openGLView>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="220"/>
+            </connections>
+        </window>
+    </objects>
+</document>

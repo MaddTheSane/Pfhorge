@@ -16,8 +16,8 @@
 #import <Foundation/Foundation.h>
 #include <stdlib.h>
 
-typedef unsigned long uint32;
-typedef long int32;
+typedef unsigned int uint32;
+typedef int int32;
 typedef unsigned short uint16;
 typedef short int16;
 
@@ -64,7 +64,7 @@ static void free_crc_table(void);
 
 unsigned long calculate_crc_for_nsdata(NSData *fileData) 
 {
-	uint32 crc;
+	uint32 crc=0;
 	unsigned char *buffer;
 
 	// Build the crc table

@@ -1,8 +1,10 @@
 #define SHAPES_STRUCTS
 
+#include <stdint.h>
+
 typedef unsigned char	byte;
 typedef unsigned short	word;
-typedef long		fixed;
+typedef int32_t		fixed;
 typedef unsigned char	pixel8;
 #define NONE	-1
 #define MAX_COLLECTIONS	32
@@ -15,7 +17,7 @@ typedef unsigned char	pixel8;
 #define PUT_BYTE(n, ptr)	*((byte *)ptr)++ = (n)
 #define PUT_WORD(n, ptr)	*((word *)ptr)++ = (n)
 #define PUT_SHORT(n, ptr)	*((short *)ptr)++ = (n)
-#define PUT_LONG(n, ptr)	*((long *)ptr)++ = (n)
+#define PUT_LONG(n, ptr)	*((int *)ptr)++ = (n)
 #define PUT_PTR(n, ptr)		*((byte **)ptr)++ = (n)
 
 #define MAX_FRAME_INDEXES_PER_SEQ			100
@@ -161,4 +163,4 @@ enum {	/* animation types */
 
 short GetBEShort(unsigned char **p);
 word GetBEWord(unsigned char **p);
-long GetBELong(unsigned char **p);
+int GetBELong(unsigned char **p);

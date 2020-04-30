@@ -55,7 +55,7 @@
  */
 + (NSAppleEventDescriptor *)appleEventDescriptorWithURL:(NSURL *)aURL
 {
-	return [self descriptorWithDescriptorType:typeFileURL data:[NSData dataWithBytes:(void *)aURL length:sizeof(NSURL)]];
+	return [self descriptorWithDescriptorType:typeFileURL data:[NSData dataWithBytes:(void *)aURL length:sizeof(void*)]];
 }
 
 /*
@@ -96,32 +96,32 @@
 // typeShortInteger
 + (NSAppleEventDescriptor *)appleEventDescriptorWithShort:(short int)aValue
 {
-	return [self descriptorWithDescriptorType:typeShortInteger data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeSInt16 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeLongInteger
 + (NSAppleEventDescriptor *)appleEventDescriptorWithLong:(long int)aValue
 {
-	return [self descriptorWithDescriptorType:typeLongInteger data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeSInt64 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeInteger
 + (NSAppleEventDescriptor *)appleEventDescriptorWithInt:(int)aValue
 {
-	return [self descriptorWithDescriptorType:typeInteger data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeSInt32 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeShortFloat
 + (NSAppleEventDescriptor *)appleEventDescriptorWithFloat:(float)aValue
 {
-	return [self descriptorWithDescriptorType:typeShortFloat data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeIEEE32BitFloatingPoint data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeLongFloat
 + (NSAppleEventDescriptor *)appleEventDescriptorWithDouble:(double)aValue
 {
-	return [self descriptorWithDescriptorType:typeLongFloat data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeIEEE64BitFloatingPoint data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeMagnitude
 + (NSAppleEventDescriptor *)appleEventDescriptorWithUnsignedInt:(unsigned int)aValue
 {
-	return [self descriptorWithDescriptorType:typeMagnitude data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
+	return [self descriptorWithDescriptorType:typeUInt32 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 
 /*

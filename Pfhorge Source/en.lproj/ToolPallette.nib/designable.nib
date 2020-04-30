@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LEPaletteController">
+            <connections>
+                <outlet property="toolPalette" destination="14" id="30"/>
+                <outlet property="window" destination="2" id="28"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Tools" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="TheToolPalletteWin" animationBehavior="default" id="2" userLabel="Palette Window" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="29" y="487" width="224" height="68"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="3">
+                <rect key="frame" x="0.0" y="0.0" width="224" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <matrix verticalHuggingPriority="750" fixedFrame="YES" drawsBackground="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14">
+                        <rect key="frame" x="0.0" y="0.0" width="224" height="64"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="0.51060628890991211" blue="0.53183424472808838" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="cellSize" width="32" height="32"/>
+                        <buttonCell key="prototype" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" borderStyle="border" tag="-1" inset="2" id="92">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system" size="10"/>
+                        </buttonCell>
+                        <cells>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="arrow-OFF" imagePosition="only" alignment="right" alternateImage="arrow-ON" state="on" inset="2" id="76">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="monsters-OFF" imagePosition="only" alignment="center" alternateImage="monsters-ON" tag="10" inset="2" id="83">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="line-OFF" imagePosition="only" alignment="center" alternateImage="line-ON" tag="1" inset="2" id="77">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="player-OFF" imagePosition="only" alignment="center" alternateImage="player-ON" tag="11" inset="2" id="84">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="paint_bucket-OFF" imagePosition="only" alignment="center" alternateImage="paint_bucket-ON" tag="2" inset="2" id="78">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="ammo-OFF" imagePosition="only" alignment="center" alternateImage="ammo-ON" tag="12" inset="2" id="85">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="type-OFF" imagePosition="only" alignment="center" alternateImage="type-ON" tag="3" inset="2" id="79">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="scenery-OFF" imagePosition="only" alignment="center" alternateImage="scenery-ON" tag="13" inset="2" id="86">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="hand-OFF" imagePosition="only" alignment="center" alternateImage="hand-ON" tag="4" inset="2" id="80">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="sound-OFF" imagePosition="only" alignment="center" alternateImage="sound-ON" tag="14" inset="2" id="87">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="zoom-OFF" imagePosition="only" alignment="center" alternateImage="zoom-ON" tag="5" inset="2" id="81">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="goal-OFF" imagePosition="only" alignment="center" alternateImage="goal-ON" tag="15" inset="2" id="88">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                            <column>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="eye_dropper-OFF" imagePosition="only" alignment="center" alternateImage="eye_dropper-ON" tag="6" inset="2" id="82">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                                <buttonCell type="square" bezelStyle="shadowlessSquare" image="paint_brush-OFF" imagePosition="only" alignment="center" alternateImage="paint_brush-ON" tag="7" inset="2" id="89">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system" size="10"/>
+                                </buttonCell>
+                            </column>
+                        </cells>
+                        <connections>
+                            <action selector="toolSelection:" target="-2" id="29"/>
+                        </connections>
+                    </matrix>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="90"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="150"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="ammo-OFF" width="32" height="32"/>
+        <image name="ammo-ON" width="32" height="32"/>
+        <image name="arrow-OFF" width="32" height="32"/>
+        <image name="arrow-ON" width="32" height="32"/>
+        <image name="eye_dropper-OFF" width="32" height="32"/>
+        <image name="eye_dropper-ON" width="32" height="32"/>
+        <image name="goal-OFF" width="32" height="32"/>
+        <image name="goal-ON" width="32" height="32"/>
+        <image name="hand-OFF" width="32" height="32"/>
+        <image name="hand-ON" width="32" height="32"/>
+        <image name="line-OFF" width="32" height="32"/>
+        <image name="line-ON" width="32" height="32"/>
+        <image name="monsters-OFF" width="32" height="32"/>
+        <image name="monsters-ON" width="32" height="32"/>
+        <image name="paint_brush-OFF" width="32" height="32"/>
+        <image name="paint_brush-ON" width="32" height="32"/>
+        <image name="paint_bucket-OFF" width="32" height="32"/>
+        <image name="paint_bucket-ON" width="32" height="32"/>
+        <image name="player-OFF" width="32" height="32"/>
+        <image name="player-ON" width="32" height="32"/>
+        <image name="scenery-OFF" width="32" height="32"/>
+        <image name="scenery-ON" width="32" height="32"/>
+        <image name="sound-OFF" width="32" height="32"/>
+        <image name="sound-ON" width="32" height="32"/>
+        <image name="type-OFF" width="32" height="32"/>
+        <image name="type-ON" width="32" height="32"/>
+        <image name="zoom-OFF" width="32" height="32"/>
+        <image name="zoom-ON" width="32" height="32"/>
+    </resources>
+</document>

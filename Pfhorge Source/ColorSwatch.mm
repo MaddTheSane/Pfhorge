@@ -7,8 +7,11 @@
 #include <Carbon/Carbon.h>
 #include <ApplicationServices/ApplicationServices.h>
 
+#warning re-write!
+
 // Needs the dialog-box ID and the UPP for the dialog box's swatch-finder
 void ColorSwatch::Setup(DialogPtr DPtr, UserItemUPP PaintSwatchUPP) {
+#if 0
 	Handle Hdl;
 	short ItemType; // Might want to check for debugging purposes
 	Rect ItemRect; // Don't want to keep these
@@ -18,12 +21,13 @@ void ColorSwatch::Setup(DialogPtr DPtr, UserItemUPP PaintSwatchUPP) {
 		(Handle *)&Hdl, &ItemRect);	
 	SetDialogItem(DPtr, ID, ItemType,
 		Handle(PaintSwatchUPP), &ItemRect);
+#endif
 }
 
 
 // Paints this swatch
 void ColorSwatch::DoPaint(DialogPtr DPtr) {
-	
+#if 0
 	// Get the swatch's current state in the dialog box
 	Handle Hdl;
 	short ItemType; // Might want to check for debugging purposes
@@ -53,6 +57,7 @@ void ColorSwatch::DoPaint(DialogPtr DPtr) {
 	SetPenState(&OldPen);
 	RGBBackColor(&OldBackColor);
 	RGBForeColor(&OldForeColor);
+#endif
 }
 
  

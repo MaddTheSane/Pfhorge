@@ -3,371 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
-/* Begin PBXApplicationTarget section */
-		2A37F4C6FDCFA73011CA2CEA /* Pfhorge */ = {
-			isa = PBXApplicationTarget;
-			buildConfigurationList = AE3C14490A041B8900FBFFCD /* Build configuration list for PBXApplicationTarget "Pfhorge" */;
-			buildPhases = (
-				2A37F4C7FDCFA73011CA2CEA /* Headers */,
-				2A37F4C9FDCFA73011CA2CEA /* Resources */,
-				2A37F4CEFDCFA73011CA2CEA /* Sources */,
-				2A37F4D1FDCFA73011CA2CEA /* Frameworks */,
-				043355CEFE303625C02AAC07 /* Rez */,
-			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			dependencies = (
-			);
-			name = Pfhorge;
-			productInstallPath = "$(HOME)/Applications";
-			productName = LevEd;
-			productReference = 1758732AFF379DA111CA2CBB /* Pfhorge.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>Marathon Map</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>sce2</string>
-			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>NSDocumentClass</key>
-			<string>LEMap</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>PID Map Document</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>maps</string>
-			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>NSDocumentClass</key>
-			<string>PathwaysDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lev</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>Pfhorge Level</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>NSDocumentClass</key>
-			<string>PhPfhorgeSingleLevelDoc</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sen</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>Pfhorge Scenario</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>NSDocumentClass</key>
-			<string>PhPfhorgeScenarioLevelDoc</string>
-		</dict>
-	</array>
-	<key>CFBundleExecutable</key>
-	<string>Pfhorge</string>
-	<key>CFBundleGetInfoString</key>
-	<string>Pfhorge 0.95 - © Joshua D. Orr 2005 All Rights Reserved</string>
-	<key>CFBundleIconFile</key>
-	<string>PhorgeAppIcon.icns</string>
-	<key>CFBundleIdentifier</key>
-	<string>Pfhorge</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Pfhorge</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.95</string>
-	<key>CFBundleSignature</key>
-	<string>PFrg</string>
-	<key>CFBundleVersion</key>
-	<string>0.95</string>
-	<key>NSAppleScriptEnabled</key>
-	<string>YES</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>PfhPathwaysConvert</key>
-	<dict>
-		<key>Lights</key>
-		<dict>
-			<key>Normal</key>
-			<integer>16</integer>
-			<key>Teleport</key>
-			<integer>0</integer>
-		</dict>
-		<key>Transfers</key>
-		<dict>
-			<key>Normal</key>
-			<integer>0</integer>
-			<key>Teleport</key>
-			<integer>4</integer>
-		</dict>
-		<key>WallTextures</key>
-		<array>
-			<dict>
-				<key>BevelWall</key>
-				<integer>8</integer>
-				<key>Ceiling</key>
-				<integer>13</integer>
-				<key>Collection</key>
-				<integer>0</integer>
-				<key>Door</key>
-				<integer>29</integer>
-				<key>DoorCeiling</key>
-				<integer>7</integer>
-				<key>DoorFloor</key>
-				<integer>17</integer>
-				<key>DoorWall</key>
-				<integer>21</integer>
-				<key>FancyWall</key>
-				<integer>9</integer>
-				<key>Floor</key>
-				<integer>6</integer>
-				<key>Teleport</key>
-				<integer>25</integer>
-				<key>Wall</key>
-				<integer>22</integer>
-			</dict>
-			<dict>
-				<key>BevelWall</key>
-				<integer>18</integer>
-				<key>Ceiling</key>
-				<integer>5</integer>
-				<key>Collection</key>
-				<integer>1</integer>
-				<key>Door</key>
-				<integer>21</integer>
-				<key>DoorCeiling</key>
-				<integer>6</integer>
-				<key>DoorFloor</key>
-				<integer>14</integer>
-				<key>DoorWall</key>
-				<integer>16</integer>
-				<key>FancyWall</key>
-				<integer>11</integer>
-				<key>Floor</key>
-				<integer>28</integer>
-				<key>Teleport</key>
-				<integer>10</integer>
-				<key>Wall</key>
-				<integer>26</integer>
-			</dict>
-			<dict>
-				<key>BevelWall</key>
-				<integer>12</integer>
-				<key>Ceiling</key>
-				<integer>18</integer>
-				<key>Collection</key>
-				<integer>2</integer>
-				<key>Door</key>
-				<integer>29</integer>
-				<key>DoorCeiling</key>
-				<integer>14</integer>
-				<key>DoorFloor</key>
-				<integer>18</integer>
-				<key>DoorWall</key>
-				<integer>5</integer>
-				<key>FancyWall</key>
-				<integer>28</integer>
-				<key>Floor</key>
-				<integer>26</integer>
-				<key>Teleport</key>
-				<integer>13</integer>
-				<key>Wall</key>
-				<integer>21</integer>
-			</dict>
-		</array>
-	</dict>
-</dict>
-</plist>
-";
-		};
-/* End PBXApplicationTarget section */
-
 /* Begin PBXBuildFile section */
-		00C98A2D010513217F000001 /* PhObjectInspectorSubController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */; };
-		00C98A2E010513217F000001 /* PhObjectInspectorSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */; };
-		00CC945D0164F60F7F000001 /* PhPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF106A00FBCC6F7F000001 /* PhPlatform.m */; };
-		00CCECF50125C7647F000001 /* PhPrefsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CCECF30125C7647F000001 /* PhPrefsController.h */; };
-		00CCECF60125C7647F000001 /* PhPrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CCECF40125C7647F000001 /* PhPrefsController.m */; };
-		00D18BC1010A18747F000001 /* PhTextureRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D18BBF010A18747F000001 /* PhTextureRepository.h */; };
-		00D18BC2010A18747F000001 /* PhTextureRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D18BC0010A18747F000001 /* PhTextureRepository.m */; };
-		00D2ACA30103C59A7F000001 /* PhLineInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */; };
-		00D2ACA40103C59A7F000001 /* PhLineInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */; };
-		00D2ACA70103D0887F000001 /* PhPolyInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */; };
-		00D2ACA80103D0887F000001 /* PhPolyInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */; };
-		00D4535C0144672D7F000001 /* PhDynamicPrefSubController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D4535A0144672D7F000001 /* PhDynamicPrefSubController.h */; };
-		00D4535D0144672D7F000001 /* PhDynamicPrefSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */; };
-		00DC1BCF013DF9C07F000001 /* Arrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 00DC1BCE013DF9C07F000001 /* Arrow.tiff */; };
-		00DC1BD1013DF9C87F000001 /* Cross.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 00DC1BD0013DF9C87F000001 /* Cross.tiff */; };
-		00DF106B00FBCC6F7F000001 /* PhPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 00DF106900FBCC6F7F000001 /* PhPlatform.h */; };
-		00DF106F00FC00527F000001 /* PhAnnotationNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 00DF106D00FC00527F000001 /* PhAnnotationNote.h */; };
-		00DF107000FC00527F000001 /* PhAnnotationNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF106E00FC00527F000001 /* PhAnnotationNote.m */; };
-		00EC50A00110FB3D7F000001 /* PhColorListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00EC509E0110FB3D7F000001 /* PhColorListController.h */; };
-		00EC50A10110FB3D7F000001 /* PhColorListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC509F0110FB3D7F000001 /* PhColorListController.m */; };
-		00ED45B00102B0FF7F000001 /* PhPlatformSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00ED45AE0102B0FF7F000001 /* PhPlatformSheetController.h */; };
-		00ED45B10102B0FF7F000001 /* PhPlatformSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00ED45AF0102B0FF7F000001 /* PhPlatformSheetController.m */; };
-		00F4A78C00F7E1DA7F000001 /* LEInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F4A78A00F7E1DA7F000001 /* LEInspectorController.h */; };
-		00F4A78D00F7E1DA7F000001 /* LEInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F4A78B00F7E1DA7F000001 /* LEInspectorController.m */; };
-		00F6628700E19BB67F000001 /* LEMapObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F6628500E19BB67F000001 /* LEMapObject.h */; };
-		00FBF3A200EABCCA7F000001 /* ToolPallette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 00FBF3A000EABCCA7F000001 /* ToolPallette.nib */; };
-		00FBF3A900EAC1717F000001 /* LEPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3A700EAC1717F000001 /* LEPaletteController.h */; };
-		00FBF3AA00EAC1717F000001 /* LEPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3A800EAC1717F000001 /* LEPaletteController.m */; };
-		00FBF3AD00EACC4F7F000001 /* LEDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3AB00EACC4F7F000001 /* LEDelegate.h */; };
-		00FBF3AE00EACC4F7F000001 /* LEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3AC00EACC4F7F000001 /* LEDelegate.m */; };
-		00FC09B700E3063A7F000001 /* LELevelData.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBE54800DBBE877F000001 /* LELevelData.h */; };
-		00FC09B800E3063A7F000001 /* LEMapDraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FCE08900DB2EFD7F000001 /* LEMapDraw.h */; };
-		00FC09B900E3063A7F000001 /* LEMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEA00D3C7827F000001 /* LEMap.h */; };
-		00FC09BA00E3063A7F000001 /* LEMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F6628600E19BB67F000001 /* LEMapObject.m */; };
-		00FC09BB00E3063A7F000001 /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; };
-		00FC09BC00E3063A7F000001 /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; };
-		00FC09BD00E3063A7F000001 /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; };
-		00FD2B8C00E806097F000001 /* LEMapStuffParent.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FD2B8A00E806097F000001 /* LEMapStuffParent.h */; };
-		00FD2B8D00E806097F000001 /* LEMapStuffParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FD2B8B00E806097F000001 /* LEMapStuffParent.m */; };
-		00FE5A1000DC52C37F000001 /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
-		00FE5A1100DC52C37F000001 /* LEMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FE5A0F00DC52C37F000001 /* LEMapPoint.m */; };
-		010314F800ED57F57F000001 /* LELevelWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010314F700ED57F57F000001 /* LELevelWindowController.h */; };
-		010314F900ED57F57F000001 /* LELevelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010314F600ED57F57F000001 /* LELevelWindowController.m */; };
-		0112096C00DEC9357F000001 /* LEPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0112096A00DEC9357F000001 /* LEPolygon.h */; };
-		0112096D00DEC9357F000001 /* LEPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0112096B00DEC9357F000001 /* LEPolygon.m */; };
-		011A1BE900D3C42E7F000001 /* MyLevel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 011A1BE700D3C42E7F000001 /* MyLevel.nib */; };
-		011A1BF000D3D8317F000001 /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
-		011C897700EA73577F000001 /* NSDocumentControllerPatchFor2571388.h in Headers */ = {isa = PBXBuildFile; fileRef = 011C897500EA73577F000001 /* NSDocumentControllerPatchFor2571388.h */; };
-		011C897800EA73577F000001 /* NSDocumentControllerPatchFor2571388.m in Sources */ = {isa = PBXBuildFile; fileRef = 011C897600EA73577F000001 /* NSDocumentControllerPatchFor2571388.m */; };
-		0121ECA900DDCD937F000001 /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
-		0121ECAA00DDCD937F000001 /* LELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0121ECA800DDCD937F000001 /* LELine.m */; };
-		01EA85FF00F96CDD7F000001 /* LESide.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA85FD00F96CDD7F000001 /* LESide.h */; };
-		01EA860000F96CDD7F000001 /* LESide.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA85FE00F96CDD7F000001 /* LESide.m */; };
-		01EA860600F96F707F000001 /* PhLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA860200F96F707F000001 /* PhLight.h */; };
-		01EA860800F96F707F000001 /* PhLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA860300F96F707F000001 /* PhLight.m */; };
-		01EA860C00F96FD57F000001 /* PhItemPlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA860A00F96FD57F000001 /* PhItemPlacement.h */; };
-		01EA860D00F96FD57F000001 /* PhItemPlacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA860B00F96FD57F000001 /* PhItemPlacement.m */; };
-		01EA861800F970667F000001 /* PhMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861200F970667F000001 /* PhMedia.h */; };
-		01EA861900F970667F000001 /* PhAmbientSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861400F970667F000001 /* PhAmbientSound.h */; };
-		01EA861A00F970667F000001 /* PhRandomSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861600F970667F000001 /* PhRandomSound.h */; };
-		01EA861B00F970667F000001 /* PhMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA861300F970667F000001 /* PhMedia.m */; };
-		01EA861C00F970667F000001 /* PhAmbientSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA861500F970667F000001 /* PhAmbientSound.m */; };
-		01EA861D00F970667F000001 /* PhRandomSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA861700F970667F000001 /* PhRandomSound.m */; };
-		035877C000E7E7C67F000001 /* LEExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 035877BE00E7E7C67F000001 /* LEExtras.h */; };
-		035877C100E7E7C67F000001 /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
-		03FE6481012FA35E7F000001 /* Inspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE647F012FA35E7F000001 /* Inspector.nib */; };
-		03FE6484012FA3667F000001 /* ColorList.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6482012FA3667F000001 /* ColorList.nib */; };
-		03FE6487012FA3757F000001 /* Prefs.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6485012FA3757F000001 /* Prefs.nib */; };
-		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		089C1661FE840EACC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		2A37F4D0FDCFA73011CA2CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		A514D73C080AC23700F94B8E /* ActionAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE230228BEF80146BBD2 /* ActionAdapter.h */; };
-		A514D740080AC23900F94B8E /* CheckBox.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE240228BEF80146BBD2 /* CheckBox.h */; };
-		A514D745080AC23B00F94B8E /* ColorSwatch.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE250228BEF80146BBD2 /* ColorSwatch.h */; };
-		A514D74A080AC23B00F94B8E /* ColorSwatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */; };
-		A514D74F080AC23B00F94B8E /* DBControl.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE270228BEF80146BBD2 /* DBControl.h */; };
-		A514D754080AC23C00F94B8E /* GetFullPathObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */; };
-		A514D759080AC23C00F94B8E /* GetFullPathObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE280228BEF90146BBD2 /* GetFullPathObject.h */; };
-		A514D763080AC23E00F94B8E /* HeaderFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */; };
-		A514D768080AC23F00F94B8E /* IndexHeapSort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */; };
-		A514D76D080AC23F00F94B8E /* IndexHeapSort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */; };
-		A514D772080AC23F00F94B8E /* IndexSort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2D0228BEF90146BBD2 /* IndexSort.h */; };
-		A514D790080AC24B00F94B8E /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE400228BEF90146BBD2 /* Renderer.mm */; };
-		A514D795080AC24C00F94B8E /* ShapesDataFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */; };
-		A514D79A080AC24C00F94B8E /* ShapesReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE420228BEF90146BBD2 /* ShapesReader.h */; };
-		A514D79F080AC24C00F94B8E /* ShapesReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE430228BEF90146BBD2 /* ShapesReader.mm */; };
-		A514D7A4080AC24D00F94B8E /* SimpleVec.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE440228BEF90146BBD2 /* SimpleVec.h */; };
-		A514D7A9080AC24D00F94B8E /* SmartPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE450228BEF90146BBD2 /* SmartPtr.h */; };
-		A514D7AE080AC24E00F94B8E /* stl_algobase.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE460228BEF90146BBD2 /* stl_algobase.h */; };
-		A514D7BB080AC25100F94B8E /* xKeyControls.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE220228BEF80146BBD2 /* xKeyControls.h */; };
-		A514D7C0080AC25100F94B8E /* ViewOptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */; };
-		A514D7C5080AC25200F94B8E /* ViewOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */; };
-		A514D7CA080AC25200F94B8E /* ViewContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */; };
-		A514D7CF080AC25200F94B8E /* ViewContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4B0228BEF90146BBD2 /* ViewContext.h */; };
-		A514D7D4080AC25300F94B8E /* Vector3D.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4A0228BEF90146BBD2 /* Vector3D.h */; };
-		A514D7D9080AC25300F94B8E /* TextureManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE490228BEF90146BBD2 /* TextureManager.mm */; };
-		A514D7DE080AC25400F94B8E /* TextureManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE480228BEF90146BBD2 /* TextureManager.h */; };
-		A514D7E3080AC25500F94B8E /* TextFieldObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE470228BEF90146BBD2 /* TextFieldObject.h */; };
-		A514D7ED080AC25900F94B8E /* MapData.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE310228BEF90146BBD2 /* MapData.h */; };
-		A514D7F2080AC25900F94B8E /* MapData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE320228BEF90146BBD2 /* MapData.mm */; };
-		A514D7F7080AC25A00F94B8E /* MapDataFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE330228BEF90146BBD2 /* MapDataFormats.h */; };
-		A514D7FC080AC25A00F94B8E /* MapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE340228BEF90146BBD2 /* MapManager.h */; };
-		A514D801080AC25A00F94B8E /* MapManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE350228BEF90146BBD2 /* MapManager.mm */; };
-		A514D806080AC25B00F94B8E /* MapReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE360228BEF90146BBD2 /* MapReader.h */; };
-		A514D808080AC25B00F94B8E /* MapReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE370228BEF90146BBD2 /* MapReader.mm */; };
-		A514D80D080AC25C00F94B8E /* MiscUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE390228BEF90146BBD2 /* MiscUtils.h */; };
-		A514D812080AC25C00F94B8E /* MoreFilesExtract.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE3A0228BEF90146BBD2 /* MoreFilesExtract.h */; };
-		A514D817080AC25C00F94B8E /* MoreFilesExtract.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */; };
-		A514D81C080AC25D00F94B8E /* MotPort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE3C0228BEF90146BBD2 /* MotPort.h */; };
-		A514D821080AC25D00F94B8E /* MotPort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE3D0228BEF90146BBD2 /* MotPort.mm */; };
-		A514D907080ACBE500F94B8E /* KeyControls.h in Headers */ = {isa = PBXBuildFile; fileRef = A514D906080ACBE500F94B8E /* KeyControls.h */; };
-		A514D90B080ACBF200F94B8E /* KeyControls.mm in Sources */ = {isa = PBXBuildFile; fileRef = A514D90A080ACBF200F94B8E /* KeyControls.mm */; };
-		A52395E0081189E500B1797E /* MyOpenGLView2.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */; };
-		A52395E7081189E800B1797E /* MyOpenGLView2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */; };
-		A52395EE081189EA00B1797E /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902CB4069F718C00B4AB92 /* Camera.mm */; };
-		A52395F5081189EC00B1797E /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902CB5069F718C00B4AB92 /* Camera.h */; };
-		A523961508118A1A00B1797E /* OpenGLVisualModeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */; };
-		A52DB02504016BFC0046BBD2 /* PhDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = A52DB02404016BFC0046BBD2 /* PhDefs.h */; };
-		A59437B604B018070046BBD2 /* PathwaysExchange.mm in Sources */ = {isa = PBXBuildFile; fileRef = A59437B504B018070046BBD2 /* PathwaysExchange.mm */; };
-		A59437BF04B01B520046BBD2 /* PathwaysMapSaveData.h in Headers */ = {isa = PBXBuildFile; fileRef = A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */; };
-		A597FC2E045763B20046BBD2 /* PhData.h in Headers */ = {isa = PBXBuildFile; fileRef = A597FC2C045763B20046BBD2 /* PhData.h */; };
-		A597FC2F045763B20046BBD2 /* PhData.m in Sources */ = {isa = PBXBuildFile; fileRef = A597FC2D045763B20046BBD2 /* PhData.m */; };
-		A59B9262054F9DED00E2A9DF /* PhNoteGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */; };
-		A59B9263054F9DED00E2A9DF /* PhNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */; };
-		A5CBB2CE04D630590046BBD2 /* trigTables.c in Sources */ = {isa = PBXBuildFile; fileRef = A5CBB2CC04D630590046BBD2 /* trigTables.c */; };
-		A5CBB2CF04D630590046BBD2 /* trigTables.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CBB2CD04D630590046BBD2 /* trigTables.h */; };
-		A5CE3C7504B265440046BBD2 /* crc.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CE3C7304B265440046BBD2 /* crc.m */; };
-		A5CE3C7604B265440046BBD2 /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CE3C7404B265440046BBD2 /* crc.h */; };
-		A5DE35590550E7DC00363F01 /* PhNoteGroupsCon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */; };
-		A5DE355A0550E7DC00363F01 /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
-		A5EBBF6B04A3A5F70046BBD2 /* PathwaysExchange.h in Headers */ = {isa = PBXBuildFile; fileRef = A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */; };
-		A5EBBF6D04A3A6030046BBD2 /* PathwaysDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */; };
-		A5EBBF6F04A3A60C0046BBD2 /* PathwaysDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */; };
-		A5EE9AB8040439D60046BBD2 /* MapManager.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.nib */; };
-		A5EE9ABA040439DC0046BBD2 /* Startup.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.nib */; };
+		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -378,7 +18,6 @@
 		AE3C14A40A04512100FBFFCD /* LEMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEA00D3C7827F000001 /* LEMap.h */; };
 		AE3C14A50A04512100FBFFCD /* LEExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 035877BE00E7E7C67F000001 /* LEExtras.h */; };
 		AE3C14A60A04512100FBFFCD /* LEMapStuffParent.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FD2B8A00E806097F000001 /* LEMapStuffParent.h */; };
-		AE3C14A70A04512100FBFFCD /* NSDocumentControllerPatchFor2571388.h in Headers */ = {isa = PBXBuildFile; fileRef = 011C897500EA73577F000001 /* NSDocumentControllerPatchFor2571388.h */; };
 		AE3C14A80A04512100FBFFCD /* LEPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3A700EAC1717F000001 /* LEPaletteController.h */; };
 		AE3C14A90A04512100FBFFCD /* LEDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3AB00EACC4F7F000001 /* LEDelegate.h */; };
 		AE3C14AA0A04512100FBFFCD /* LELevelWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010314F700ED57F57F000001 /* LELevelWindowController.h */; };
@@ -487,8 +126,6 @@
 		AE3C15120A04512100FBFFCD /* Inspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE647F012FA35E7F000001 /* Inspector.nib */; };
 		AE3C15130A04512100FBFFCD /* ColorList.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6482012FA3667F000001 /* ColorList.nib */; };
 		AE3C15140A04512100FBFFCD /* Prefs.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6485012FA3757F000001 /* Prefs.nib */; };
-		AE3C15150A04512100FBFFCD /* Arrow.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 00DC1BCE013DF9C07F000001 /* Arrow.tiff */; };
-		AE3C15160A04512100FBFFCD /* Cross.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 00DC1BD0013DF9C87F000001 /* Cross.tiff */; };
 		AE3C15170A04512100FBFFCD /* AmbientSoundEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */; };
 		AE3C15180A04512100FBFFCD /* Errors, Inc..nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */; };
 		AE3C15190A04512100FBFFCD /* LightEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */; };
@@ -499,42 +136,10 @@
 		AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */; };
 		AE3C151F0A04512100FBFFCD /* Pfhorge.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */; };
 		AE3C15200A04512100FBFFCD /* Pfhorge.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */; };
-		AE3C15210A04512100FBFFCD /* paint.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F570249302176F480146BBD2 /* paint.tiff */; };
-		AE3C15220A04512100FBFFCD /* object.tif in Resources */ = {isa = PBXBuildFile; fileRef = F57024950217825D0146BBD2 /* object.tif */; };
 		AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */; };
 		AE3C15240A04512100FBFFCD /* Startup.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.nib */; };
 		AE3C15250A04512100FBFFCD /* Exsample Script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = F59C625F021F86750146BBD2 /* Exsample Script.scpt */; };
-		AE3C15260A04512100FBFFCD /* PhorgeAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */; };
-		AE3C15270A04512100FBFFCD /* MapNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F53B5D460231B0F40146BBD2 /* MapNewIcon.icns */; };
 		AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.nib */; };
-		AE3C15290A04512100FBFFCD /* ammo-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45C024538A90146BBD2 /* ammo-OFF.tif */; };
-		AE3C152A0A04512100FBFFCD /* ammo-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45D024538A90146BBD2 /* ammo-ON.tif */; };
-		AE3C152B0A04512100FBFFCD /* arrow-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45E024538A90146BBD2 /* arrow-OFF.tif */; };
-		AE3C152C0A04512100FBFFCD /* arrow-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45F024538A90146BBD2 /* arrow-ON.tif */; };
-		AE3C152D0A04512100FBFFCD /* eye_dropper-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E460024538A90146BBD2 /* eye_dropper-OFF.tif */; };
-		AE3C152E0A04512100FBFFCD /* eye_dropper-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E461024538A90146BBD2 /* eye_dropper-ON.tif */; };
-		AE3C152F0A04512100FBFFCD /* goal-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E462024538A90146BBD2 /* goal-OFF.tif */; };
-		AE3C15300A04512100FBFFCD /* goal-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E463024538A90146BBD2 /* goal-ON.tif */; };
-		AE3C15310A04512100FBFFCD /* hand-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E464024538A90146BBD2 /* hand-OFF.tif */; };
-		AE3C15320A04512100FBFFCD /* hand-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E465024538A90146BBD2 /* hand-ON.tif */; };
-		AE3C15330A04512100FBFFCD /* line-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E466024538A90146BBD2 /* line-OFF.tif */; };
-		AE3C15340A04512100FBFFCD /* line-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E467024538A90146BBD2 /* line-ON.tif */; };
-		AE3C15350A04512100FBFFCD /* monsters-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E468024538A90146BBD2 /* monsters-OFF.tif */; };
-		AE3C15360A04512100FBFFCD /* monsters-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E469024538A90146BBD2 /* monsters-ON.tif */; };
-		AE3C15370A04512100FBFFCD /* paint_brush-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46A024538A90146BBD2 /* paint_brush-OFF.tif */; };
-		AE3C15380A04512100FBFFCD /* paint_brush-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46B024538A90146BBD2 /* paint_brush-ON.tif */; };
-		AE3C15390A04512100FBFFCD /* paint_bucket-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46C024538A90146BBD2 /* paint_bucket-OFF.tif */; };
-		AE3C153A0A04512100FBFFCD /* paint_bucket-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46D024538A90146BBD2 /* paint_bucket-ON.tif */; };
-		AE3C153B0A04512100FBFFCD /* player-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46E024538A90146BBD2 /* player-OFF.tif */; };
-		AE3C153C0A04512100FBFFCD /* player-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46F024538A90146BBD2 /* player-ON.tif */; };
-		AE3C153D0A04512100FBFFCD /* scenery-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E470024538A90146BBD2 /* scenery-OFF.tif */; };
-		AE3C153E0A04512100FBFFCD /* scenery-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E471024538A90146BBD2 /* scenery-ON.tif */; };
-		AE3C153F0A04512100FBFFCD /* sound-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E472024538A90146BBD2 /* sound-OFF.tif */; };
-		AE3C15400A04512100FBFFCD /* sound-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E473024538A90146BBD2 /* sound-ON.tif */; };
-		AE3C15410A04512100FBFFCD /* type-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E474024538A90146BBD2 /* type-OFF.tif */; };
-		AE3C15420A04512100FBFFCD /* type-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E475024538A90146BBD2 /* type-ON.tif */; };
-		AE3C15430A04512100FBFFCD /* zoom-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E476024538A90146BBD2 /* zoom-OFF.tif */; };
-		AE3C15440A04512100FBFFCD /* zoom-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E477024538A90146BBD2 /* zoom-ON.tif */; };
 		AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.nib */; };
 		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */; };
 		AE3C15480A04512100FBFFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -547,7 +152,6 @@
 		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; };
 		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
 		AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FD2B8B00E806097F000001 /* LEMapStuffParent.m */; };
-		AE3C15520A04512100FBFFCD /* NSDocumentControllerPatchFor2571388.m in Sources */ = {isa = PBXBuildFile; fileRef = 011C897600EA73577F000001 /* NSDocumentControllerPatchFor2571388.m */; };
 		AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3A800EAC1717F000001 /* LEPaletteController.m */; };
 		AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3AC00EACC4F7F000001 /* LEDelegate.m */; };
 		AE3C15550A04512100FBFFCD /* LELevelWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010314F600ED57F57F000001 /* LELevelWindowController.m */; };
@@ -645,146 +249,6 @@
 		AE3C15B20A04512100FBFFCD /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8B0228C81D0146BBD2 /* IOKit.framework */; };
 		AE3C15B30A04512100FBFFCD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */; };
 		AE3C15B40A04512100FBFFCD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F521C1C302BBE0CA0146BBD2 /* Carbon.framework */; };
-		CA84378F04BA60A500F0A839 /* PathwaysToMarathon.h in Headers */ = {isa = PBXBuildFile; fileRef = CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */; };
-		CA84379104BA61CF00F0A839 /* PathwaysToMarathon.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */; };
-		F5067F6902F4CC8F01743002 /* PhColorListControllerDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */; };
-		F5067F6A02F4CC8F01743002 /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
-		F51939C802AC7C150146BBD2 /* PhScenarioData.m in Sources */ = {isa = PBXBuildFile; fileRef = F51939C602AC7C150146BBD2 /* PhScenarioData.m */; };
-		F51939C902AC7C150146BBD2 /* PhScenarioData.h in Headers */ = {isa = PBXBuildFile; fileRef = F51939C702AC7C150146BBD2 /* PhScenarioData.h */; };
-		F519A31102AAFC0E0146BBD2 /* PhScenarioManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */; };
-		F519A31202AAFC0E0146BBD2 /* PhScenarioManagerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */; };
-		F520388B02414AD90146BBD2 /* TerminalInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.nib */; };
-		F520388E024156C20146BBD2 /* TerminalEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F520388C024156C10146BBD2 /* TerminalEditorController.h */; };
-		F520388F024156C20146BBD2 /* TerminalEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F520388D024156C10146BBD2 /* TerminalEditorController.m */; };
-		F520576B02B503430146BBD2 /* Resource.h in Headers */ = {isa = PBXBuildFile; fileRef = F520576902B503430146BBD2 /* Resource.h */; };
-		F520576C02B503430146BBD2 /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; };
-		F520D7D4023995780146BBD2 /* PhAbstractName.m in Sources */ = {isa = PBXBuildFile; fileRef = F532393101AF836201A8A806 /* PhAbstractName.m */; };
-		F520E478024538A90146BBD2 /* ammo-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45C024538A90146BBD2 /* ammo-OFF.tif */; };
-		F520E479024538A90146BBD2 /* ammo-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45D024538A90146BBD2 /* ammo-ON.tif */; };
-		F520E47A024538A90146BBD2 /* arrow-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45E024538A90146BBD2 /* arrow-OFF.tif */; };
-		F520E47B024538A90146BBD2 /* arrow-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E45F024538A90146BBD2 /* arrow-ON.tif */; };
-		F520E47C024538A90146BBD2 /* eye_dropper-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E460024538A90146BBD2 /* eye_dropper-OFF.tif */; };
-		F520E47D024538A90146BBD2 /* eye_dropper-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E461024538A90146BBD2 /* eye_dropper-ON.tif */; };
-		F520E47E024538A90146BBD2 /* goal-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E462024538A90146BBD2 /* goal-OFF.tif */; };
-		F520E47F024538A90146BBD2 /* goal-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E463024538A90146BBD2 /* goal-ON.tif */; };
-		F520E480024538A90146BBD2 /* hand-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E464024538A90146BBD2 /* hand-OFF.tif */; };
-		F520E481024538A90146BBD2 /* hand-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E465024538A90146BBD2 /* hand-ON.tif */; };
-		F520E482024538A90146BBD2 /* line-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E466024538A90146BBD2 /* line-OFF.tif */; };
-		F520E483024538A90146BBD2 /* line-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E467024538A90146BBD2 /* line-ON.tif */; };
-		F520E484024538A90146BBD2 /* monsters-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E468024538A90146BBD2 /* monsters-OFF.tif */; };
-		F520E485024538A90146BBD2 /* monsters-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E469024538A90146BBD2 /* monsters-ON.tif */; };
-		F520E486024538A90146BBD2 /* paint_brush-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46A024538A90146BBD2 /* paint_brush-OFF.tif */; };
-		F520E487024538A90146BBD2 /* paint_brush-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46B024538A90146BBD2 /* paint_brush-ON.tif */; };
-		F520E488024538A90146BBD2 /* paint_bucket-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46C024538A90146BBD2 /* paint_bucket-OFF.tif */; };
-		F520E489024538A90146BBD2 /* paint_bucket-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46D024538A90146BBD2 /* paint_bucket-ON.tif */; };
-		F520E48A024538A90146BBD2 /* player-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46E024538A90146BBD2 /* player-OFF.tif */; };
-		F520E48B024538A90146BBD2 /* player-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E46F024538A90146BBD2 /* player-ON.tif */; };
-		F520E48C024538A90146BBD2 /* scenery-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E470024538A90146BBD2 /* scenery-OFF.tif */; };
-		F520E48D024538A90146BBD2 /* scenery-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E471024538A90146BBD2 /* scenery-ON.tif */; };
-		F520E48E024538A90146BBD2 /* sound-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E472024538A90146BBD2 /* sound-OFF.tif */; };
-		F520E48F024538A90146BBD2 /* sound-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E473024538A90146BBD2 /* sound-ON.tif */; };
-		F520E490024538A90146BBD2 /* type-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E474024538A90146BBD2 /* type-OFF.tif */; };
-		F520E491024538A90146BBD2 /* type-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E475024538A90146BBD2 /* type-ON.tif */; };
-		F520E492024538A90146BBD2 /* zoom-OFF.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E476024538A90146BBD2 /* zoom-OFF.tif */; };
-		F520E493024538A90146BBD2 /* zoom-ON.tif in Resources */ = {isa = PBXBuildFile; fileRef = F520E477024538A90146BBD2 /* zoom-ON.tif */; };
-		F521C25C02BBE0CA0146BBD2 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F521C1C302BBE0CA0146BBD2 /* Carbon.framework */; };
-		F521F7CC03302AB30146BBD2 /* PluginManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F521F7CB03302AB30146BBD2 /* PluginManagerInterface.h */; };
-		F521F7CE03302BF20146BBD2 /* PluginManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */; };
-		F528403F02C13AD80146BBD2 /* ItemPlacementEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */; };
-		F528404202C13BE90146BBD2 /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
-		F528404302C13BE90146BBD2 /* PhItemPlacementEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */; };
-		F529750001C44D7B01A8A806 /* PhLevelNameManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */; };
-		F52AB18C01CA949A01A8A806 /* InfoWindowCommander.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */; };
-		F52AB18D01CA949A01A8A806 /* InfoWindowCommander.m in Sources */ = {isa = PBXBuildFile; fileRef = F52AB18B01CA949A01A8A806 /* InfoWindowCommander.m */; };
-		F52BD83001D279E80146BBD2 /* LELevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBE54900DBBE877F000001 /* LELevelData.m */; };
-		F52BE6F9023C39CC0146BBD2 /* Terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = F52BE6F7023C39CB0146BBD2 /* Terminal.h */; };
-		F52BE6FA023C39CC0146BBD2 /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; };
-		F52BE6FD023C56FA0146BBD2 /* TerminalSection.h in Headers */ = {isa = PBXBuildFile; fileRef = F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */; };
-		F52BE6FE023C56FA0146BBD2 /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; };
-		F52E215A01D03C110146BBD2 /* PhLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E215801D03C100146BBD2 /* PhLayer.h */; };
-		F52E215B01D03C110146BBD2 /* PhLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E215901D03C110146BBD2 /* PhLayer.m */; };
-		F52E216101D049A20146BBD2 /* DefaultLayerEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */; };
-		F52E216401D0500B0146BBD2 /* PhDefaultLayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */; };
-		F52E216501D0500B0146BBD2 /* PhDefaultLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */; };
-		F530626702A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h in Headers */ = {isa = PBXBuildFile; fileRef = F530626502A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h */; };
-		F530626802A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626602A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m */; };
-		F530626B02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h in Headers */ = {isa = PBXBuildFile; fileRef = F530626902A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h */; };
-		F530626C02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */; };
-		F530D717029862DA0146BBD2 /* PhStartupWinController.h in Headers */ = {isa = PBXBuildFile; fileRef = F530D715029862DA0146BBD2 /* PhStartupWinController.h */; };
-		F530D718029862DA0146BBD2 /* PhStartupWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = F530D716029862DA0146BBD2 /* PhStartupWinController.m */; };
-		F532393201AF836201A8A806 /* PhAbstractName.h in Headers */ = {isa = PBXBuildFile; fileRef = F532393001AF836201A8A806 /* PhAbstractName.h */; };
-		F532A6C1029741880146BBD2 /* extractbitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = F532A6C0029741880146BBD2 /* extractbitmap.h */; };
-		F5339DC501B0ACB801A8A806 /* PhProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = F5339DC301B0ACB801A8A806 /* PhProgress.h */; };
-		F5339DC601B0ACB801A8A806 /* PhProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = F5339DC401B0ACB801A8A806 /* PhProgress.m */; };
-		F536BD6002824AA40146BBD2 /* shapes-structs.h in Headers */ = {isa = PBXBuildFile; fileRef = F536BD5C02824AA40146BBD2 /* shapes-structs.h */; };
-		F536BD6102824AA40146BBD2 /* bitmap-decode.h in Headers */ = {isa = PBXBuildFile; fileRef = F536BD5E02824AA40146BBD2 /* bitmap-decode.h */; };
-		F536BD6202824AA40146BBD2 /* bitmap-decode.c in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5D02824AA40146BBD2 /* bitmap-decode.c */; };
-		F536BD6302824AA40146BBD2 /* extractbitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5F02824AA40146BBD2 /* extractbitmap.m */; };
-		F53B5D480231B2250146BBD2 /* Exsample Script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = F59C625F021F86750146BBD2 /* Exsample Script.scpt */; };
-		F53B5D490231B2250146BBD2 /* PhorgeAppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */; };
-		F53B5D4A0231B2250146BBD2 /* MapNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F53B5D460231B0F40146BBD2 /* MapNewIcon.icns */; };
-		F53CC3640207B6C40146BBD2 /* PhAbstractNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */; };
-		F53CC3650207B6C40146BBD2 /* PhAbstractNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */; };
-		F53CCE7E0228BF4B0146BBD2 /* OpenGLVisualMode.nib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */; };
-		F53CCE830228C0510146BBD2 /* OpenGLVisualModeController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */; };
-		F53CCE850228C79D0146BBD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */; };
-		F53CCE860228C79D0146BBD2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
-		F53CCE8D0228C81D0146BBD2 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE870228C81D0146BBD2 /* AGL.framework */; };
-		F53CCE8E0228C81D0146BBD2 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */; };
-		F53CCE8F0228C81D0146BBD2 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE890228C81D0146BBD2 /* CoreServices.framework */; };
-		F53CCE900228C81D0146BBD2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8A0228C81D0146BBD2 /* GLUT.framework */; };
-		F53CCE910228C81D0146BBD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8B0228C81D0146BBD2 /* IOKit.framework */; };
-		F53CCE920228C81D0146BBD2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */; };
-		F5441732021755920146BBD2 /* Pfhorge.scriptTerminology in Resources */ = {isa = PBXBuildFile; fileRef = F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */; };
-		F5441734021755CA0146BBD2 /* Pfhorge.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */; };
-		F54738F9021F01E90146BBD2 /* NDResourceFork.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F1021F01E90146BBD2 /* NDResourceFork.h */; };
-		F54738FA021F01E90146BBD2 /* NDAppleScriptObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F5021F01E90146BBD2 /* NDAppleScriptObject.h */; };
-		F54738FB021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F6021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h */; };
-		F54738FC021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F7021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h */; };
-		F54738FD021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F8021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h */; };
-		F54738FE021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; };
-		F54738FF021F01E90146BBD2 /* NDResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F2021F01E90146BBD2 /* NDResourceFork.m */; };
-		F5473900021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; };
-		F5473901021F01E90146BBD2 /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; };
-		F547848F02B505FB0146BBD2 /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; };
-		F547849002B505FB0146BBD2 /* ScenarioResources.h in Headers */ = {isa = PBXBuildFile; fileRef = F547848E02B505FB0146BBD2 /* ScenarioResources.h */; };
-		F54D4C4101CBF6E401A8A806 /* PhRandomSndEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C3F01CBF6E401A8A806 /* PhRandomSndEditCon.h */; };
-		F54D4C4201CBF6E401A8A806 /* PhRandomSndEditCon.m in Sources */ = {isa = PBXBuildFile; fileRef = F54D4C4001CBF6E401A8A806 /* PhRandomSndEditCon.m */; };
-		F54D4C4501CBF70101A8A806 /* PhAmbientSndEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C4301CBF70101A8A806 /* PhAmbientSndEditCon.h */; };
-		F54D4C4601CBF70101A8A806 /* PhAmbientSndEditCon.m in Sources */ = {isa = PBXBuildFile; fileRef = F54D4C4401CBF70101A8A806 /* PhAmbientSndEditCon.m */; };
-		F54D4C4901CBF77701A8A806 /* PhLiquidEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C4701CBF77601A8A806 /* PhLiquidEditCon.h */; };
-		F54D4C4A01CBF77701A8A806 /* PhLiquidEditCon.m in Sources */ = {isa = PBXBuildFile; fileRef = F54D4C4801CBF77601A8A806 /* PhLiquidEditCon.m */; };
-		F54D4C5901CBF8C701A8A806 /* AmbientSoundEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */; };
-		F54D4C5A01CBF8C701A8A806 /* Errors, Inc..nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */; };
-		F54D4C5B01CBF8C701A8A806 /* LightEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */; };
-		F54D4C5C01CBF8C701A8A806 /* LiquidInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5101CBF8C701A8A806 /* LiquidInterface.nib */; };
-		F54D4C5D01CBF8C701A8A806 /* PlatformEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5301CBF8C701A8A806 /* PlatformEditor.nib */; };
-		F54D4C5E01CBF8C701A8A806 /* RandomSoundInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.nib */; };
-		F54D4C5F01CBF8C701A8A806 /* StatusWin.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5701CBF8C701A8A806 /* StatusWin.nib */; };
-		F56B756201BC908701A8A806 /* PhLightEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F56B756001BC908701A8A806 /* PhLightEditorController.h */; };
-		F56B756301BC908701A8A806 /* PhLightEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B756101BC908701A8A806 /* PhLightEditorController.m */; };
-		F570249402176F480146BBD2 /* paint.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F570249302176F480146BBD2 /* paint.tiff */; };
-		F57024960217825D0146BBD2 /* object.tif in Resources */ = {isa = PBXBuildFile; fileRef = F57024950217825D0146BBD2 /* object.tif */; };
-		F5764AB8020E69310146BBD2 /* PhLevelNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */; };
-		F58032D203E31DD90146BBD2 /* LELevelData-Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */; };
-		F58032D503E3223A0146BBD2 /* LELevelData-Data.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D403E3223A0146BBD2 /* LELevelData-Data.m */; };
-		F58032D703E322530146BBD2 /* LELevelData-Utilites.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D603E322530146BBD2 /* LELevelData-Utilites.m */; };
-		F58032D903E322660146BBD2 /* LELevelData-Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D803E322660146BBD2 /* LELevelData-Objects.m */; };
-		F58032DB03E32D510146BBD2 /* LELevelData-Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */; };
-		F5A17F2703B231030146BBD2 /* LELine-SideCalc.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */; };
-		F5A17F2803B231030146BBD2 /* LELine-SideCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */; };
-		F5D0FE44034026B70146BBD2 /* PhTextureInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */; };
-		F5D0FE45034026B70146BBD2 /* PhTextureInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */; };
-		F5D2B795019CEB5D01A8A806 /* ErrorNotificationWinController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D2B793019CEB5D01A8A806 /* ErrorNotificationWinController.h */; settings = {ATTRIBUTES = (); }; };
-		F5D2B796019CEB5D01A8A806 /* ErrorNotificationWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D2B794019CEB5D01A8A806 /* ErrorNotificationWinController.m */; };
-		F5E1A1D6032E9D1F0146BBD2 /* PhPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E1A1D4032E9D1F0146BBD2 /* PhPluginManager.h */; };
-		F5E1A1D7032E9D1F0146BBD2 /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; };
-		F5EFE97501ADBBB801A8A806 /* PhTypesStructresEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */; };
-		F5EFE97801ADC99101A8A806 /* PhNamesController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EFE97601ADC99101A8A806 /* PhNamesController.h */; };
-		F5EFE97901ADC99101A8A806 /* PhNamesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EFE97701ADC99101A8A806 /* PhNamesController.m */; };
-		F5EFE98001ADCAEA01A8A806 /* PhTag.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EFE97E01ADCAEA01A8A806 /* PhTag.h */; };
-		F5EFE98101ADCAEA01A8A806 /* PhTag.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EFE97F01ADCAEA01A8A806 /* PhTag.m */; };
-		F5FB4BEE032D90710146BBD2 /* PluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FB4BED032D90710146BBD2 /* PluginProtocol.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -792,45 +256,13 @@
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.gcc.3_x;
 			fileType = sourcecode.c;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
 		};
 /* End PBXBuildRule section */
-
-/* Begin PBXBuildStyle section */
-		4A9504D0FFE6A4CB11CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O3";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		4A9504D1FFE6A4CB11CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		A59DEB5004AD03590046BBD2 /* GCC 3.3 Compiler */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				CC = "/usr/bin/gcc-3.3";
-				CPLUSPLUS = "/usr/bin/g++-3.3";
-				GCC_VERSION = 3.x;
-			};
-			name = "GCC 3.3 Compiler";
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXFileReference section */
 		00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhObjectInspectorSubController.h; sourceTree = "<group>"; };
@@ -845,12 +277,10 @@
 		00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhPolyInspectorController.m; sourceTree = "<group>"; };
 		00D4535A0144672D7F000001 /* PhDynamicPrefSubController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhDynamicPrefSubController.h; sourceTree = "<group>"; };
 		00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhDynamicPrefSubController.m; sourceTree = "<group>"; };
-		00DC1BCE013DF9C07F000001 /* Arrow.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Arrow.tiff; sourceTree = "<group>"; };
-		00DC1BD0013DF9C87F000001 /* Cross.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Cross.tiff; sourceTree = "<group>"; };
-		00DF106900FBCC6F7F000001 /* PhPlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhPlatform.h; sourceTree = "<group>"; };
-		00DF106A00FBCC6F7F000001 /* PhPlatform.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhPlatform.m; sourceTree = "<group>"; };
-		00DF106D00FC00527F000001 /* PhAnnotationNote.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhAnnotationNote.h; sourceTree = "<group>"; };
-		00DF106E00FC00527F000001 /* PhAnnotationNote.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhAnnotationNote.m; sourceTree = "<group>"; };
+		00DF106900FBCC6F7F000001 /* PhPlatform.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhPlatform.h; path = "Data Objects/Marathon Data/PhPlatform.h"; sourceTree = SOURCE_ROOT; };
+		00DF106A00FBCC6F7F000001 /* PhPlatform.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhPlatform.m; path = "Data Objects/Marathon Data/PhPlatform.m"; sourceTree = SOURCE_ROOT; };
+		00DF106D00FC00527F000001 /* PhAnnotationNote.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhAnnotationNote.h; path = "Data Objects/Marathon Data/PhAnnotationNote.h"; sourceTree = SOURCE_ROOT; };
+		00DF106E00FC00527F000001 /* PhAnnotationNote.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhAnnotationNote.m; path = "Data Objects/Marathon Data/PhAnnotationNote.m"; sourceTree = SOURCE_ROOT; };
 		00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhTypesStructresEnums.h; sourceTree = "<group>"; };
 		00EC509E0110FB3D7F000001 /* PhColorListController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhColorListController.h; sourceTree = "<group>"; };
 		00EC509F0110FB3D7F000001 /* PhColorListController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhColorListController.m; sourceTree = "<group>"; };
@@ -858,11 +288,10 @@
 		00ED45AF0102B0FF7F000001 /* PhPlatformSheetController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhPlatformSheetController.m; sourceTree = "<group>"; };
 		00F4A78A00F7E1DA7F000001 /* LEInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEInspectorController.h; sourceTree = "<group>"; };
 		00F4A78B00F7E1DA7F000001 /* LEInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEInspectorController.m; sourceTree = "<group>"; };
-		00F6628500E19BB67F000001 /* LEMapObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEMapObject.h; sourceTree = "<group>"; };
-		00F6628600E19BB67F000001 /* LEMapObject.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMapObject.m; sourceTree = "<group>"; };
+		00F6628500E19BB67F000001 /* LEMapObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LEMapObject.h; path = "Data Objects/Marathon Data/LEMapObject.h"; sourceTree = SOURCE_ROOT; };
+		00F6628600E19BB67F000001 /* LEMapObject.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LEMapObject.m; path = "Data Objects/Marathon Data/LEMapObject.m"; sourceTree = SOURCE_ROOT; };
 		00FBE54800DBBE877F000001 /* LELevelData.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LELevelData.h; sourceTree = "<group>"; };
 		00FBE54900DBBE877F000001 /* LELevelData.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LELevelData.m; sourceTree = "<group>"; usesTabs = 0; };
-		00FBF3A100EABCCA7F000001 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ToolPallette.nib; sourceTree = "<group>"; };
 		00FBF3A700EAC1717F000001 /* LEPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEPaletteController.h; sourceTree = "<group>"; };
 		00FBF3A800EAC1717F000001 /* LEPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEPaletteController.m; sourceTree = "<group>"; };
 		00FBF3AB00EACC4F7F000001 /* LEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEDelegate.h; sourceTree = "<group>"; };
@@ -871,47 +300,59 @@
 		00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMapDraw.m; sourceTree = "<group>"; };
 		00FD2B8A00E806097F000001 /* LEMapStuffParent.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEMapStuffParent.h; sourceTree = "<group>"; };
 		00FD2B8B00E806097F000001 /* LEMapStuffParent.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMapStuffParent.m; sourceTree = "<group>"; };
-		00FE5A0E00DC52C37F000001 /* LEMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEMapPoint.h; sourceTree = "<group>"; };
-		00FE5A0F00DC52C37F000001 /* LEMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMapPoint.m; sourceTree = "<group>"; };
+		00FE5A0E00DC52C37F000001 /* LEMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LEMapPoint.h; path = "Data Objects/Marathon Data/LEMapPoint.h"; sourceTree = SOURCE_ROOT; };
+		00FE5A0F00DC52C37F000001 /* LEMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LEMapPoint.m; path = "Data Objects/Marathon Data/LEMapPoint.m"; sourceTree = SOURCE_ROOT; };
 		0101D448015C28157F000001 /* ContolPanelRef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ContolPanelRef.cpp; sourceTree = "<group>"; };
 		010314F600ED57F57F000001 /* LELevelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LELevelWindowController.m; sourceTree = "<group>"; };
 		010314F700ED57F57F000001 /* LELevelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LELevelWindowController.h; sourceTree = "<group>"; };
-		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
-		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEPolygon.m; sourceTree = "<group>"; };
-		011A1BE800D3C42E7F000001 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyLevel.nib; sourceTree = "<group>"; };
+		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 4; lastKnownFileType = sourcecode.c.h; name = LEPolygon.h; path = "Data Objects/Marathon Data/LEPolygon.h"; sourceTree = SOURCE_ROOT; tabWidth = 8; usesTabs = 0; };
+		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LEPolygon.m; path = "Data Objects/Marathon Data/LEPolygon.m"; sourceTree = SOURCE_ROOT; };
 		011A1BEA00D3C7827F000001 /* LEMap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEMap.h; sourceTree = "<group>"; };
 		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; };
 		011A1BEE00D3D8317F000001 /* LEMapData.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEMapData.h; sourceTree = "<group>"; };
 		011A1BEF00D3D8317F000001 /* LEMapData.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEMapData.m; sourceTree = "<group>"; };
-		011C897500EA73577F000001 /* NSDocumentControllerPatchFor2571388.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSDocumentControllerPatchFor2571388.h; sourceTree = "<group>"; };
-		011C897600EA73577F000001 /* NSDocumentControllerPatchFor2571388.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSDocumentControllerPatchFor2571388.m; sourceTree = "<group>"; };
-		0121ECA700DDCD937F000001 /* LELine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LELine.h; sourceTree = "<group>"; };
-		0121ECA800DDCD937F000001 /* LELine.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LELine.m; sourceTree = "<group>"; };
-		01EA85FD00F96CDD7F000001 /* LESide.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LESide.h; sourceTree = "<group>"; };
-		01EA85FE00F96CDD7F000001 /* LESide.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LESide.m; sourceTree = "<group>"; };
-		01EA860200F96F707F000001 /* PhLight.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhLight.h; sourceTree = "<group>"; };
-		01EA860300F96F707F000001 /* PhLight.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhLight.m; sourceTree = "<group>"; };
-		01EA860A00F96FD57F000001 /* PhItemPlacement.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhItemPlacement.h; sourceTree = "<group>"; };
-		01EA860B00F96FD57F000001 /* PhItemPlacement.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhItemPlacement.m; sourceTree = "<group>"; };
-		01EA861200F970667F000001 /* PhMedia.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhMedia.h; sourceTree = "<group>"; };
-		01EA861300F970667F000001 /* PhMedia.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhMedia.m; sourceTree = "<group>"; };
-		01EA861400F970667F000001 /* PhAmbientSound.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhAmbientSound.h; sourceTree = "<group>"; };
-		01EA861500F970667F000001 /* PhAmbientSound.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhAmbientSound.m; sourceTree = "<group>"; };
-		01EA861600F970667F000001 /* PhRandomSound.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhRandomSound.h; sourceTree = "<group>"; };
-		01EA861700F970667F000001 /* PhRandomSound.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhRandomSound.m; sourceTree = "<group>"; };
+		0121ECA700DDCD937F000001 /* LELine.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LELine.h; path = "Data Objects/Marathon Data/LELine.h"; sourceTree = SOURCE_ROOT; };
+		0121ECA800DDCD937F000001 /* LELine.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LELine.m; path = "Data Objects/Marathon Data/LELine.m"; sourceTree = SOURCE_ROOT; };
+		01EA85FD00F96CDD7F000001 /* LESide.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = LESide.h; path = "Data Objects/Marathon Data/LESide.h"; sourceTree = SOURCE_ROOT; };
+		01EA85FE00F96CDD7F000001 /* LESide.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = LESide.m; path = "Data Objects/Marathon Data/LESide.m"; sourceTree = SOURCE_ROOT; };
+		01EA860200F96F707F000001 /* PhLight.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhLight.h; path = "Data Objects/Marathon Data/PhLight.h"; sourceTree = SOURCE_ROOT; };
+		01EA860300F96F707F000001 /* PhLight.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhLight.m; path = "Data Objects/Marathon Data/PhLight.m"; sourceTree = SOURCE_ROOT; };
+		01EA860A00F96FD57F000001 /* PhItemPlacement.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhItemPlacement.h; path = "Data Objects/Marathon Data/PhItemPlacement.h"; sourceTree = SOURCE_ROOT; };
+		01EA860B00F96FD57F000001 /* PhItemPlacement.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhItemPlacement.m; path = "Data Objects/Marathon Data/PhItemPlacement.m"; sourceTree = SOURCE_ROOT; };
+		01EA861200F970667F000001 /* PhMedia.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhMedia.h; path = "Data Objects/Marathon Data/PhMedia.h"; sourceTree = SOURCE_ROOT; };
+		01EA861300F970667F000001 /* PhMedia.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhMedia.m; path = "Data Objects/Marathon Data/PhMedia.m"; sourceTree = SOURCE_ROOT; };
+		01EA861400F970667F000001 /* PhAmbientSound.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhAmbientSound.h; path = "Data Objects/Marathon Data/PhAmbientSound.h"; sourceTree = SOURCE_ROOT; };
+		01EA861500F970667F000001 /* PhAmbientSound.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhAmbientSound.m; path = "Data Objects/Marathon Data/PhAmbientSound.m"; sourceTree = SOURCE_ROOT; };
+		01EA861600F970667F000001 /* PhRandomSound.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhRandomSound.h; path = "Data Objects/Marathon Data/PhRandomSound.h"; sourceTree = SOURCE_ROOT; };
+		01EA861700F970667F000001 /* PhRandomSound.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhRandomSound.m; path = "Data Objects/Marathon Data/PhRandomSound.m"; sourceTree = SOURCE_ROOT; };
 		035877BE00E7E7C67F000001 /* LEExtras.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = LEExtras.h; sourceTree = "<group>"; };
 		035877BF00E7E7C67F000001 /* LEExtras.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = LEExtras.m; sourceTree = "<group>"; };
-		03FE6480012FA35E7F000001 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Inspector.nib; sourceTree = "<group>"; };
-		03FE6483012FA3667F000001 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ColorList.nib; sourceTree = "<group>"; };
-		03FE6486012FA3757F000001 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Prefs.nib; sourceTree = "<group>"; };
-		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		1758732AFF379DA111CA2CBB /* Pfhorge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Pfhorge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = ../../../../../../../../../System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = ../../../../../../../../../System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../../../../../../System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/AmbientSoundEditor.nib; sourceTree = "<group>"; };
+		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ColorList.nib; sourceTree = "<group>"; };
+		557A9B2B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		557A9B2C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/DefaultLayerEditor.nib; sourceTree = "<group>"; };
+		557A9B2D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = "en.lproj/Errors, Inc..nib"; sourceTree = "<group>"; };
+		557A9B2E245A519200527063 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		557A9B2F245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Inspector.nib; sourceTree = "<group>"; };
+		557A9B30245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ItemPlacementEditor.nib; sourceTree = "<group>"; };
+		557A9B31245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/LightEditor.nib; sourceTree = "<group>"; };
+		557A9B32245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/LiquidInterface.nib; sourceTree = "<group>"; };
+		557A9B33245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		557A9B34245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MapManager.nib; sourceTree = "<group>"; };
+		557A9B35245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MyLevel.nib; sourceTree = "<group>"; };
+		557A9B36245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/OpenGLVisualMode.nib; sourceTree = "<group>"; };
+		557A9B37245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/PlatformEditor.nib; sourceTree = "<group>"; };
+		557A9B38245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Prefs.nib; sourceTree = "<group>"; };
+		557A9B39245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/RandomSoundInterface.nib; sourceTree = "<group>"; };
+		557A9B3A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Startup.nib; sourceTree = "<group>"; };
+		557A9B3B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/StatusWin.nib; sourceTree = "<group>"; };
+		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
+		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ToolPallette.nib; sourceTree = "<group>"; };
+		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyControls.h; sourceTree = "<group>"; };
 		A514D90A080ACBF200F94B8E /* KeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyControls.mm; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
@@ -937,7 +378,7 @@
 		A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PathwaysExchange.h; sourceTree = "<group>"; };
 		A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PathwaysDocument.h; sourceTree = "<group>"; };
 		A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PathwaysDocument.m; sourceTree = "<group>"; };
-		AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-Pfhorge__Upgraded_.plist"; sourceTree = "<group>"; };
+		AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-Pfhorge__Upgraded_.plist"; sourceTree = "<group>"; };
 		AE3C15BD0A04512200FBFFCD /* Pfhorge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pfhorge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathwaysToMarathon.h; sourceTree = "<group>"; };
 		CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PathwaysToMarathon.mm; sourceTree = "<group>"; };
@@ -945,63 +386,31 @@
 		F50087930347B9630146BBD2 /* Pfhorge Read Me.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Pfhorge Read Me.rtf"; sourceTree = SOURCE_ROOT; };
 		F50087950347B9670146BBD2 /* GPL.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = GPL.rtf; sourceTree = SOURCE_ROOT; };
 		F50087970347BA3A0146BBD2 /* Source Note.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "Source Note.txt"; sourceTree = "<group>"; };
-		F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhColorListControllerDrawer.h; sourceTree = SOURCE_ROOT; };
-		F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhColorListControllerDrawer.m; sourceTree = SOURCE_ROOT; };
+		F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhColorListControllerDrawer.h; sourceTree = "<group>"; };
+		F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhColorListControllerDrawer.m; sourceTree = "<group>"; };
 		F51939C602AC7C150146BBD2 /* PhScenarioData.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhScenarioData.m; sourceTree = "<group>"; };
 		F51939C702AC7C150146BBD2 /* PhScenarioData.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhScenarioData.h; sourceTree = "<group>"; };
-		F519A30D02AAFB9D0146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MapManager.nib; sourceTree = "<group>"; };
 		F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhScenarioManagerController.m; sourceTree = "<group>"; };
 		F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhScenarioManagerController.h; sourceTree = "<group>"; };
-		F520388A02414AD90146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
 		F520388C024156C10146BBD2 /* TerminalEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TerminalEditorController.h; sourceTree = "<group>"; };
 		F520388D024156C10146BBD2 /* TerminalEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TerminalEditorController.m; sourceTree = "<group>"; };
 		F520576902B503430146BBD2 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = SOURCE_ROOT; };
 		F520576A02B503430146BBD2 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = SOURCE_ROOT; };
-		F520E45C024538A90146BBD2 /* ammo-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "ammo-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E45D024538A90146BBD2 /* ammo-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "ammo-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E45E024538A90146BBD2 /* arrow-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "arrow-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E45F024538A90146BBD2 /* arrow-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "arrow-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E460024538A90146BBD2 /* eye_dropper-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "eye_dropper-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E461024538A90146BBD2 /* eye_dropper-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "eye_dropper-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E462024538A90146BBD2 /* goal-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "goal-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E463024538A90146BBD2 /* goal-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "goal-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E464024538A90146BBD2 /* hand-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "hand-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E465024538A90146BBD2 /* hand-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "hand-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E466024538A90146BBD2 /* line-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "line-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E467024538A90146BBD2 /* line-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "line-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E468024538A90146BBD2 /* monsters-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "monsters-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E469024538A90146BBD2 /* monsters-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "monsters-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46A024538A90146BBD2 /* paint_brush-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "paint_brush-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46B024538A90146BBD2 /* paint_brush-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "paint_brush-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46C024538A90146BBD2 /* paint_bucket-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "paint_bucket-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46D024538A90146BBD2 /* paint_bucket-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "paint_bucket-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46E024538A90146BBD2 /* player-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "player-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E46F024538A90146BBD2 /* player-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "player-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E470024538A90146BBD2 /* scenery-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "scenery-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E471024538A90146BBD2 /* scenery-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "scenery-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E472024538A90146BBD2 /* sound-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "sound-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E473024538A90146BBD2 /* sound-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "sound-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E474024538A90146BBD2 /* type-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "type-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E475024538A90146BBD2 /* type-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "type-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F520E476024538A90146BBD2 /* zoom-OFF.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "zoom-OFF.tif"; sourceTree = SOURCE_ROOT; };
-		F520E477024538A90146BBD2 /* zoom-ON.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "zoom-ON.tif"; sourceTree = SOURCE_ROOT; };
-		F521C1C302BBE0CA0146BBD2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		F521C1C302BBE0CA0146BBD2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../../../../../../System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		F521F7CB03302AB30146BBD2 /* PluginManagerInterface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PluginManagerInterface.h; sourceTree = SOURCE_ROOT; };
 		F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PluginManagerInterface.m; sourceTree = SOURCE_ROOT; };
-		F528403E02C13AD80146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ItemPlacementEditor.nib; sourceTree = "<group>"; };
 		F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhItemPlacementEditorController.m; sourceTree = SOURCE_ROOT; };
 		F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhItemPlacementEditorController.h; sourceTree = SOURCE_ROOT; };
 		F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhLevelNameManager.h; sourceTree = "<group>"; };
 		F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhLevelNameManager.m; sourceTree = "<group>"; };
 		F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InfoWindowCommander.h; sourceTree = "<group>"; };
 		F52AB18B01CA949A01A8A806 /* InfoWindowCommander.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InfoWindowCommander.m; sourceTree = "<group>"; };
-		F52BE6F7023C39CB0146BBD2 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
-		F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TerminalSection.h; sourceTree = "<group>"; };
-		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TerminalSection.m; sourceTree = "<group>"; };
+		F52BE6F7023C39CB0146BBD2 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Terminal.h; path = "Data Objects/Marathon Data/Terminal.h"; sourceTree = SOURCE_ROOT; };
+		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = Terminal.m; path = "Data Objects/Marathon Data/Terminal.m"; sourceTree = SOURCE_ROOT; };
+		F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TerminalSection.h; path = "Data Objects/Marathon Data/TerminalSection.h"; sourceTree = SOURCE_ROOT; };
+		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TerminalSection.m; path = "Data Objects/Marathon Data/TerminalSection.m"; sourceTree = SOURCE_ROOT; };
 		F52E215801D03C100146BBD2 /* PhLayer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhLayer.h; sourceTree = "<group>"; };
 		F52E215901D03C110146BBD2 /* PhLayer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhLayer.m; sourceTree = "<group>"; };
-		F52E216001D049A20146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/DefaultLayerEditor.nib; sourceTree = "<group>"; };
 		F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhDefaultLayerController.h; sourceTree = "<group>"; };
 		F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhDefaultLayerController.m; sourceTree = "<group>"; };
 		F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PhorgeAppIcon.icns; sourceTree = SOURCE_ROOT; };
@@ -1016,12 +425,10 @@
 		F532A6C0029741880146BBD2 /* extractbitmap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = extractbitmap.h; sourceTree = SOURCE_ROOT; };
 		F5339DC301B0ACB801A8A806 /* PhProgress.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhProgress.h; sourceTree = "<group>"; };
 		F5339DC401B0ACB801A8A806 /* PhProgress.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhProgress.m; sourceTree = "<group>"; };
-		F5358D3E0230C2850146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Startup.nib; sourceTree = "<group>"; };
 		F536BD5C02824AA40146BBD2 /* shapes-structs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "shapes-structs.h"; sourceTree = SOURCE_ROOT; };
 		F536BD5D02824AA40146BBD2 /* bitmap-decode.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = "bitmap-decode.c"; sourceTree = SOURCE_ROOT; };
 		F536BD5E02824AA40146BBD2 /* bitmap-decode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "bitmap-decode.h"; sourceTree = SOURCE_ROOT; };
 		F536BD5F02824AA40146BBD2 /* extractbitmap.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = extractbitmap.m; sourceTree = SOURCE_ROOT; };
-		F53B5D460231B0F40146BBD2 /* MapNewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MapNewIcon.icns; sourceTree = "<group>"; };
 		F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhAbstractNumber.h; sourceTree = "<group>"; };
 		F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhAbstractNumber.m; sourceTree = "<group>"; };
 		F53CCE220228BEF80146BBD2 /* xKeyControls.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = xKeyControls.h; sourceTree = SOURCE_ROOT; };
@@ -1069,15 +476,14 @@
 		F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewContext.mm; sourceTree = SOURCE_ROOT; };
 		F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ViewOptions.h; sourceTree = SOURCE_ROOT; };
 		F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewOptions.mm; sourceTree = SOURCE_ROOT; };
-		F53CCE7D0228BF4B0146BBD2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/OpenGLVisualMode.nib; sourceTree = "<group>"; };
 		F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = OpenGLVisualModeController.h; sourceTree = "<group>"; };
 		F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = OpenGLVisualModeController.m; sourceTree = "<group>"; };
-		F53CCE870228C81D0146BBD2 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
-		F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
-		F53CCE890228C81D0146BBD2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		F53CCE8A0228C81D0146BBD2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
-		F53CCE8B0228C81D0146BBD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		F53CCE870228C81D0146BBD2 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = ../../../../../../../../../System/Library/Frameworks/AGL.framework; sourceTree = SDKROOT; };
+		F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = ../../../../../../../../../System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		F53CCE890228C81D0146BBD2 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = ../../../../../../../../../System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		F53CCE8A0228C81D0146BBD2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../../../../../../../System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		F53CCE8B0228C81D0146BBD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = ../../../../../../../../../System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = ../../../../../../../../../System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pfhorge.scriptTerminology; sourceTree = SOURCE_ROOT; };
 		F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pfhorge.scriptSuite; sourceTree = SOURCE_ROOT; };
 		F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NDCarbonUtilities.m"; sourceTree = SOURCE_ROOT; };
@@ -1097,25 +503,16 @@
 		F54D4C4401CBF70101A8A806 /* PhAmbientSndEditCon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhAmbientSndEditCon.m; sourceTree = "<group>"; };
 		F54D4C4701CBF77601A8A806 /* PhLiquidEditCon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhLiquidEditCon.h; sourceTree = "<group>"; };
 		F54D4C4801CBF77601A8A806 /* PhLiquidEditCon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhLiquidEditCon.m; sourceTree = "<group>"; };
-		F54D4C4C01CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/AmbientSoundEditor.nib; sourceTree = "<group>"; };
-		F54D4C4E01CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = "English.lproj/Errors, Inc..nib"; sourceTree = "<group>"; };
-		F54D4C5001CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/LightEditor.nib; sourceTree = "<group>"; };
-		F54D4C5201CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/LiquidInterface.nib; sourceTree = "<group>"; };
-		F54D4C5401CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PlatformEditor.nib; sourceTree = "<group>"; };
-		F54D4C5601CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RandomSoundInterface.nib; sourceTree = "<group>"; };
-		F54D4C5801CBF8C701A8A806 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/StatusWin.nib; sourceTree = "<group>"; };
 		F56B756001BC908701A8A806 /* PhLightEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhLightEditorController.h; sourceTree = "<group>"; };
 		F56B756101BC908701A8A806 /* PhLightEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhLightEditorController.m; sourceTree = "<group>"; };
-		F570249302176F480146BBD2 /* paint.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = paint.tiff; sourceTree = SOURCE_ROOT; };
-		F57024950217825D0146BBD2 /* object.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = object.tif; sourceTree = SOURCE_ROOT; };
 		F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Settings.m"; sourceTree = "<group>"; };
 		F58032D403E3223A0146BBD2 /* LELevelData-Data.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Data.m"; sourceTree = "<group>"; };
 		F58032D603E322530146BBD2 /* LELevelData-Utilites.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Utilites.m"; sourceTree = "<group>"; };
 		F58032D803E322660146BBD2 /* LELevelData-Objects.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Objects.m"; sourceTree = "<group>"; };
 		F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Layers.m"; sourceTree = "<group>"; };
 		F59C625F021F86750146BBD2 /* Exsample Script.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Exsample Script.scpt"; sourceTree = SOURCE_ROOT; };
-		F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "LELine-SideCalc.h"; sourceTree = "<group>"; };
-		F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELine-SideCalc.m"; sourceTree = "<group>"; };
+		F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "LELine-SideCalc.h"; path = "Data Objects/Marathon Data/LELine-SideCalc.h"; sourceTree = SOURCE_ROOT; };
+		F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "LELine-SideCalc.m"; path = "Data Objects/Marathon Data/LELine-SideCalc.m"; sourceTree = SOURCE_ROOT; };
 		F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhTextureInspectorController.h; sourceTree = "<group>"; };
 		F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhTextureInspectorController.m; sourceTree = "<group>"; };
 		F5D2B793019CEB5D01A8A806 /* ErrorNotificationWinController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ErrorNotificationWinController.h; sourceTree = "<group>"; };
@@ -1124,29 +521,12 @@
 		F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhPluginManager.m; sourceTree = "<group>"; };
 		F5EFE97601ADC99101A8A806 /* PhNamesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhNamesController.h; sourceTree = "<group>"; };
 		F5EFE97701ADC99101A8A806 /* PhNamesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhNamesController.m; sourceTree = "<group>"; };
-		F5EFE97E01ADCAEA01A8A806 /* PhTag.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhTag.h; sourceTree = "<group>"; };
-		F5EFE97F01ADCAEA01A8A806 /* PhTag.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhTag.m; sourceTree = "<group>"; };
+		F5EFE97E01ADCAEA01A8A806 /* PhTag.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PhTag.h; path = "Data Objects/Marathon Data/PhTag.h"; sourceTree = SOURCE_ROOT; };
+		F5EFE97F01ADCAEA01A8A806 /* PhTag.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PhTag.m; path = "Data Objects/Marathon Data/PhTag.m"; sourceTree = SOURCE_ROOT; };
 		F5FB4BED032D90710146BBD2 /* PluginProtocol.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PluginProtocol.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2A37F4D1FDCFA73011CA2CEA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */,
-				F53CCE850228C79D0146BBD2 /* AppKit.framework in Frameworks */,
-				F53CCE860228C79D0146BBD2 /* Foundation.framework in Frameworks */,
-				F53CCE8D0228C81D0146BBD2 /* AGL.framework in Frameworks */,
-				F53CCE8E0228C81D0146BBD2 /* ApplicationServices.framework in Frameworks */,
-				F53CCE8F0228C81D0146BBD2 /* CoreServices.framework in Frameworks */,
-				F53CCE900228C81D0146BBD2 /* GLUT.framework in Frameworks */,
-				F53CCE910228C81D0146BBD2 /* IOKit.framework in Frameworks */,
-				F53CCE920228C81D0146BBD2 /* OpenGL.framework in Frameworks */,
-				F521C25C02BBE0CA0146BBD2 /* Carbon.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AE3C15AA0A04512100FBFFCD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1167,50 +547,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00D2AC9D0103C51D7F000001 /* Doc Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				010314F700ED57F57F000001 /* LELevelWindowController.h */,
-				F5EFE97601ADC99101A8A806 /* PhNamesController.h */,
-				F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */,
-			);
-			name = "Doc Controllers";
-			sourceTree = "<group>";
-		};
-		00D2AC9E0103C51D7F000001 /* Inspector */ = {
-			isa = PBXGroup;
-			children = (
-				00F4A78A00F7E1DA7F000001 /* LEInspectorController.h */,
-				00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */,
-				00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */,
-				00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */,
-				F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */,
-			);
-			name = Inspector;
-			sourceTree = "<group>";
-		};
 		00D2AC9F0103C51D7F000001 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
+				00F4A78A00F7E1DA7F000001 /* LEInspectorController.h */,
 				00F4A78B00F7E1DA7F000001 /* LEInspectorController.m */,
+				00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */,
 				00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */,
-				00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */,
+				00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */,
 				00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */,
+				00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */,
+				00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */,
+				F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */,
 				F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */,
 			);
-			name = Inspector;
+			path = Inspector;
 			sourceTree = "<group>";
 		};
 		00D2ACA00103C51D7F000001 /* Doc Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				010314F700ED57F57F000001 /* LELevelWindowController.h */,
 				010314F600ED57F57F000001 /* LELevelWindowController.m */,
+				F5EFE97601ADC99101A8A806 /* PhNamesController.h */,
 				F5EFE97701ADC99101A8A806 /* PhNamesController.m */,
-				F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */,
 				A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */,
 				A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */,
+				F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */,
+				F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */,
 			);
-			name = "Doc Controllers";
+			path = "Doc Controllers";
 			sourceTree = "<group>";
 		};
 		00D45359014465D17F000001 /* Prefs */ = {
@@ -1224,66 +590,35 @@
 			name = Prefs;
 			sourceTree = "<group>";
 		};
-		00F435D500F535E47F000001 /* Data Headers */ = {
-			isa = PBXGroup;
-			children = (
-				00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */,
-				F5EFE97B01ADCA5701A8A806 /* Marathon Data */,
-				011A1BEE00D3D8317F000001 /* LEMapData.h */,
-				00FBE54800DBBE877F000001 /* LELevelData.h */,
-				F51939C702AC7C150146BBD2 /* PhScenarioData.h */,
-				F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */,
-				00FD2B8A00E806097F000001 /* LEMapStuffParent.h */,
-				F52E215801D03C100146BBD2 /* PhLayer.h */,
-				F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */,
-				F532393001AF836201A8A806 /* PhAbstractName.h */,
-				A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */,
-				A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */,
-				CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */,
-				A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */,
-			);
-			name = "Data Headers";
-			sourceTree = "<group>";
-		};
-		00F435D600F535E47F000001 /* View and Controller Headers */ = {
-			isa = PBXGroup;
-			children = (
-				00D2AC9D0103C51D7F000001 /* Doc Controllers */,
-				00D2AC9E0103C51D7F000001 /* Inspector */,
-				F5EFE97C01ADCAB901A8A806 /* Others */,
-				011A1BEA00D3C7827F000001 /* LEMap.h */,
-				00FBF3AB00EACC4F7F000001 /* LEDelegate.h */,
-				F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */,
-				F530626502A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h */,
-				F530626902A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h */,
-				A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */,
-			);
-			name = "View and Controller Headers";
-			sourceTree = "<group>";
-		};
-		00F435D700F535E47F000001 /* --------------------- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "---------------------";
-			sourceTree = "<group>";
-		};
 		00FD589900EC04447F000001 /* Data Objects */ = {
 			isa = PBXGroup;
 			children = (
-				F5EFE97A01ADCA1A01A8A806 /* Marathon Data */,
-				F58032D303E31DF70146BBD2 /* Map\Level Code */,
-				F51939C602AC7C150146BBD2 /* PhScenarioData.m */,
+				00FBE54800DBBE877F000001 /* LELevelData.h */,
+				011A1BEE00D3D8317F000001 /* LEMapData.h */,
+				00FD2B8A00E806097F000001 /* LEMapStuffParent.h */,
 				00FD2B8B00E806097F000001 /* LEMapStuffParent.m */,
-				F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */,
-				F52E215901D03C110146BBD2 /* PhLayer.m */,
-				F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */,
-				F532393101AF836201A8A806 /* PhAbstractName.m */,
+				A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */,
 				A59437B504B018070046BBD2 /* PathwaysExchange.mm */,
+				A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */,
+				CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */,
 				CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */,
+				F532393001AF836201A8A806 /* PhAbstractName.h */,
+				F532393101AF836201A8A806 /* PhAbstractName.m */,
+				F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */,
+				F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */,
+				F52E215801D03C100146BBD2 /* PhLayer.h */,
+				F52E215901D03C110146BBD2 /* PhLayer.m */,
+				F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */,
+				F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */,
+				A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */,
 				A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */,
+				F51939C702AC7C150146BBD2 /* PhScenarioData.h */,
+				F51939C602AC7C150146BBD2 /* PhScenarioData.m */,
+				00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */,
+				F58032D303E31DF70146BBD2 /* Map\Level Code */,
+				F5EFE97A01ADCA1A01A8A806 /* Marathon Data */,
 			);
-			name = "Data Objects";
+			path = "Data Objects";
 			sourceTree = "<group>";
 		};
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
@@ -1313,7 +648,6 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1758732AFF379DA111CA2CBB /* Pfhorge.app */,
 				AE3C15BD0A04512200FBFFCD /* Pfhorge.app */,
 			);
 			name = Products;
@@ -1326,21 +660,15 @@
 				F50087930347B9630146BBD2 /* Pfhorge Read Me.rtf */,
 				F50087970347BA3A0146BBD2 /* Source Note.txt */,
 				F50087950347B9670146BBD2 /* GPL.rtf */,
-				F50087900347B9560146BBD2 /* --------------------- */,
-				00F435D500F535E47F000001 /* Data Headers */,
 				00FD589900EC04447F000001 /* Data Objects */,
-				F531483601CAFBEB01A8A806 /* --------------------- */,
-				00F435D600F535E47F000001 /* View and Controller Headers */,
 				2A37F4ABFDCFA73011CA2CEA /* View and Controller */,
 				F531483501CAFB8401A8A806 /* Edit Windows */,
-				F531483701CAFBEB01A8A806 /* --------------------- */,
 				00D45359014465D17F000001 /* Prefs */,
 				F53CCE120228BE860146BBD2 /* Visual Mode Code */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
-				F534C02D021DDA5F0146BBD2 /* Apple Script Sources */,
+				F534C02D021DDA5F0146BBD2 /* AppleScript Sources */,
 				F500878E0347B88B0146BBD2 /* Shapes Decoder */,
 				F500878F0347B8F80146BBD2 /* Plugin Files */,
-				00F435D700F535E47F000001 /* --------------------- */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
@@ -1356,28 +684,32 @@
 				00D2ACA00103C51D7F000001 /* Doc Controllers */,
 				00D2AC9F0103C51D7F000001 /* Inspector */,
 				F5EFE97D01ADCAB901A8A806 /* Others */,
-				011A1BEB00D3C7827F000001 /* LEMap.m */,
+				00FBF3AB00EACC4F7F000001 /* LEDelegate.h */,
 				00FBF3AC00EACC4F7F000001 /* LEDelegate.m */,
-				F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */,
-				F530626602A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m */,
-				F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */,
+				011A1BEA00D3C7827F000001 /* LEMap.h */,
+				011A1BEB00D3C7827F000001 /* LEMap.m */,
+				A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */,
 				A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */,
+				F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */,
+				F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */,
+				F530626902A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h */,
+				F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */,
+				F530626502A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h */,
+				F530626602A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m */,
 			);
-			name = "View and Controller";
+			path = "View and Controller";
 			sourceTree = "<group>";
 		};
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A5CE3C7304B265440046BBD2 /* crc.m */,
 				A5CE3C7404B265440046BBD2 /* crc.h */,
+				A5CE3C7304B265440046BBD2 /* crc.m */,
 				F520576902B503430146BBD2 /* Resource.h */,
 				F520576A02B503430146BBD2 /* Resource.m */,
-				F547848D02B505FB0146BBD2 /* ScenarioResources.m */,
 				F547848E02B505FB0146BBD2 /* ScenarioResources.h */,
+				F547848D02B505FB0146BBD2 /* ScenarioResources.m */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
-				011C897500EA73577F000001 /* NSDocumentControllerPatchFor2571388.h */,
-				011C897600EA73577F000001 /* NSDocumentControllerPatchFor2571388.m */,
 				035877BE00E7E7C67F000001 /* LEExtras.h */,
 				035877BF00E7E7C67F000001 /* LEExtras.m */,
 				A52DB02404016BFC0046BBD2 /* PhDefs.h */,
@@ -1385,8 +717,8 @@
 				00D18BC0010A18747F000001 /* PhTextureRepository.m */,
 				A597FC2C045763B20046BBD2 /* PhData.h */,
 				A597FC2D045763B20046BBD2 /* PhData.m */,
-				A5CBB2CC04D630590046BBD2 /* trigTables.c */,
 				A5CBB2CD04D630590046BBD2 /* trigTables.h */,
+				A5CBB2CC04D630590046BBD2 /* trigTables.c */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1394,14 +726,9 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F520E45B0245388D0146BBD2 /* Tool Icons */,
 				F59C625F021F86750146BBD2 /* Exsample Script.scpt */,
-				F53B5D460231B0F40146BBD2 /* MapNewIcon.icns */,
-				00DC1BCE013DF9C07F000001 /* Arrow.tiff */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
-				00DC1BD0013DF9C87F000001 /* Cross.tiff */,
-				F57024950217825D0146BBD2 /* object.tif */,
-				F570249302176F480146BBD2 /* paint.tiff */,
+				557A9B3E245A617B00527063 /* Media.xcassets */,
 				F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */,
 				F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
@@ -1476,48 +803,6 @@
 			name = "Plugin Files";
 			sourceTree = "<group>";
 		};
-		F50087900347B9560146BBD2 /* --------------------- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "---------------------";
-			sourceTree = "<group>";
-		};
-		F520E45B0245388D0146BBD2 /* Tool Icons */ = {
-			isa = PBXGroup;
-			children = (
-				F520E45C024538A90146BBD2 /* ammo-OFF.tif */,
-				F520E45D024538A90146BBD2 /* ammo-ON.tif */,
-				F520E45E024538A90146BBD2 /* arrow-OFF.tif */,
-				F520E45F024538A90146BBD2 /* arrow-ON.tif */,
-				F520E460024538A90146BBD2 /* eye_dropper-OFF.tif */,
-				F520E461024538A90146BBD2 /* eye_dropper-ON.tif */,
-				F520E462024538A90146BBD2 /* goal-OFF.tif */,
-				F520E463024538A90146BBD2 /* goal-ON.tif */,
-				F520E464024538A90146BBD2 /* hand-OFF.tif */,
-				F520E465024538A90146BBD2 /* hand-ON.tif */,
-				F520E466024538A90146BBD2 /* line-OFF.tif */,
-				F520E467024538A90146BBD2 /* line-ON.tif */,
-				F520E468024538A90146BBD2 /* monsters-OFF.tif */,
-				F520E469024538A90146BBD2 /* monsters-ON.tif */,
-				F520E46A024538A90146BBD2 /* paint_brush-OFF.tif */,
-				F520E46B024538A90146BBD2 /* paint_brush-ON.tif */,
-				F520E46C024538A90146BBD2 /* paint_bucket-OFF.tif */,
-				F520E46D024538A90146BBD2 /* paint_bucket-ON.tif */,
-				F520E46E024538A90146BBD2 /* player-OFF.tif */,
-				F520E46F024538A90146BBD2 /* player-ON.tif */,
-				F520E470024538A90146BBD2 /* scenery-OFF.tif */,
-				F520E471024538A90146BBD2 /* scenery-ON.tif */,
-				F520E472024538A90146BBD2 /* sound-OFF.tif */,
-				F520E473024538A90146BBD2 /* sound-ON.tif */,
-				F520E474024538A90146BBD2 /* type-OFF.tif */,
-				F520E475024538A90146BBD2 /* type-ON.tif */,
-				F520E476024538A90146BBD2 /* zoom-OFF.tif */,
-				F520E477024538A90146BBD2 /* zoom-ON.tif */,
-			);
-			name = "Tool Icons";
-			sourceTree = "<group>";
-		};
 		F531483501CAFB8401A8A806 /* Edit Windows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1541,107 +826,77 @@
 			name = "Edit Windows";
 			sourceTree = "<group>";
 		};
-		F531483601CAFBEB01A8A806 /* --------------------- */ = {
+		F534C02D021DDA5F0146BBD2 /* AppleScript Sources */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = "---------------------";
-			sourceTree = "<group>";
-		};
-		F531483701CAFBEB01A8A806 /* --------------------- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "---------------------";
-			sourceTree = "<group>";
-		};
-		F534C02D021DDA5F0146BBD2 /* Apple Script Sources */ = {
-			isa = PBXGroup;
-			children = (
-				F54738F2021F01E90146BBD2 /* NDResourceFork.m */,
-				F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */,
-				F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */,
-				F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */,
-				F54738F1021F01E90146BBD2 /* NDResourceFork.h */,
-				F54738F5021F01E90146BBD2 /* NDAppleScriptObject.h */,
-				F54738F6021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h */,
 				F54738F8021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h */,
+				F54738F5021F01E90146BBD2 /* NDAppleScriptObject.h */,
+				F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */,
+				F54738F1021F01E90146BBD2 /* NDResourceFork.h */,
+				F54738F2021F01E90146BBD2 /* NDResourceFork.m */,
 				F54738F7021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h */,
+				F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */,
+				F54738F6021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h */,
+				F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */,
 			);
-			name = "Apple Script Sources";
+			name = "AppleScript Sources";
 			sourceTree = "<group>";
 		};
 		F53CCE120228BE860146BBD2 /* Visual Mode Code */ = {
 			isa = PBXGroup;
 			children = (
-				F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */,
-				F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */,
 				A5902C88069F70DC00B4AB92 /* MyOpenGL */,
-				F53CCE7F0228BFF80146BBD2 /* --- --- --- */,
-				F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */,
-				F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */,
-				A514D90A080ACBF200F94B8E /* KeyControls.mm */,
-				F53CCE800228BFF80146BBD2 /* Headers */,
-				F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */,
-				F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */,
-				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */,
-				F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */,
-				F53CCE300228BEF90146BBD2 /* xKeyControls.mm */,
-				F53CCE320228BEF90146BBD2 /* MapData.mm */,
-				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
-				F53CCE370228BEF90146BBD2 /* MapReader.mm */,
-				F53CCE380228BEF90146BBD2 /* xMapViewerMain.mm */,
-				F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */,
-				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
-				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
-				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
-				F53CCE490228BEF90146BBD2 /* TextureManager.mm */,
-				F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */,
-				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
-			);
-			name = "Visual Mode Code";
-			sourceTree = "<group>";
-		};
-		F53CCE7F0228BFF80146BBD2 /* --- --- --- */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "--- --- ---";
-			sourceTree = "<group>";
-		};
-		F53CCE800228BFF80146BBD2 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				F53CCE220228BEF80146BBD2 /* xKeyControls.h */,
-				A514D906080ACBE500F94B8E /* KeyControls.h */,
 				F53CCE230228BEF80146BBD2 /* ActionAdapter.h */,
 				F53CCE240228BEF80146BBD2 /* CheckBox.h */,
 				F53CCE250228BEF80146BBD2 /* ColorSwatch.h */,
+				F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */,
 				F53CCE270228BEF80146BBD2 /* DBControl.h */,
 				F53CCE280228BEF90146BBD2 /* GetFullPathObject.h */,
+				F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */,
 				F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */,
 				F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */,
+				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */,
 				F53CCE2D0228BEF90146BBD2 /* IndexSort.h */,
 				F53CCE2E0228BEF90146BBD2 /* InputHelpers.h */,
+				F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */,
+				A514D906080ACBE500F94B8E /* KeyControls.h */,
+				A514D90A080ACBF200F94B8E /* KeyControls.mm */,
 				F53CCE310228BEF90146BBD2 /* MapData.h */,
+				F53CCE320228BEF90146BBD2 /* MapData.mm */,
 				F53CCE330228BEF90146BBD2 /* MapDataFormats.h */,
 				F53CCE340228BEF90146BBD2 /* MapManager.h */,
+				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
 				F53CCE360228BEF90146BBD2 /* MapReader.h */,
+				F53CCE370228BEF90146BBD2 /* MapReader.mm */,
 				F53CCE390228BEF90146BBD2 /* MiscUtils.h */,
 				F53CCE3A0228BEF90146BBD2 /* MoreFilesExtract.h */,
+				F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */,
 				F53CCE3C0228BEF90146BBD2 /* MotPort.h */,
+				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
+				F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */,
+				F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */,
+				F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */,
+				F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */,
+				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
 				F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */,
 				F53CCE420228BEF90146BBD2 /* ShapesReader.h */,
+				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
 				F53CCE440228BEF90146BBD2 /* SimpleVec.h */,
 				F53CCE450228BEF90146BBD2 /* SmartPtr.h */,
 				F53CCE460228BEF90146BBD2 /* stl_algobase.h */,
 				F53CCE470228BEF90146BBD2 /* TextFieldObject.h */,
 				F53CCE480228BEF90146BBD2 /* TextureManager.h */,
+				F53CCE490228BEF90146BBD2 /* TextureManager.mm */,
 				F53CCE4A0228BEF90146BBD2 /* Vector3D.h */,
 				F53CCE4B0228BEF90146BBD2 /* ViewContext.h */,
+				F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */,
 				F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */,
+				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
+				F53CCE220228BEF80146BBD2 /* xKeyControls.h */,
+				F53CCE300228BEF90146BBD2 /* xKeyControls.mm */,
+				F53CCE380228BEF90146BBD2 /* xMapViewerMain.mm */,
 			);
-			name = Headers;
+			name = "Visual Mode Code";
 			sourceTree = "<group>";
 		};
 		F58032D303E31DF70146BBD2 /* Map\Level Code */ = {
@@ -1656,203 +911,72 @@
 				011A1BEF00D3D8317F000001 /* LEMapData.m */,
 			);
 			name = "Map\\Level Code";
+			path = "Map-Level Code";
 			sourceTree = "<group>";
 		};
 		F5EFE97A01ADCA1A01A8A806 /* Marathon Data */ = {
 			isa = PBXGroup;
 			children = (
-				F5EFE97F01ADCAEA01A8A806 /* PhTag.m */,
-				00FE5A0F00DC52C37F000001 /* LEMapPoint.m */,
-				0121ECA800DDCD937F000001 /* LELine.m */,
+				F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */,
 				F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */,
-				01EA85FE00F96CDD7F000001 /* LESide.m */,
-				0112096B00DEC9357F000001 /* LEPolygon.m */,
+				0121ECA700DDCD937F000001 /* LELine.h */,
+				0121ECA800DDCD937F000001 /* LELine.m */,
+				00F6628500E19BB67F000001 /* LEMapObject.h */,
 				00F6628600E19BB67F000001 /* LEMapObject.m */,
-				01EA860300F96F707F000001 /* PhLight.m */,
-				00DF106E00FC00527F000001 /* PhAnnotationNote.m */,
-				01EA861300F970667F000001 /* PhMedia.m */,
+				00FE5A0E00DC52C37F000001 /* LEMapPoint.h */,
+				00FE5A0F00DC52C37F000001 /* LEMapPoint.m */,
+				0112096A00DEC9357F000001 /* LEPolygon.h */,
+				0112096B00DEC9357F000001 /* LEPolygon.m */,
+				01EA85FD00F96CDD7F000001 /* LESide.h */,
+				01EA85FE00F96CDD7F000001 /* LESide.m */,
+				01EA861400F970667F000001 /* PhAmbientSound.h */,
 				01EA861500F970667F000001 /* PhAmbientSound.m */,
-				01EA861700F970667F000001 /* PhRandomSound.m */,
+				00DF106D00FC00527F000001 /* PhAnnotationNote.h */,
+				00DF106E00FC00527F000001 /* PhAnnotationNote.m */,
+				01EA860A00F96FD57F000001 /* PhItemPlacement.h */,
 				01EA860B00F96FD57F000001 /* PhItemPlacement.m */,
+				01EA860200F96F707F000001 /* PhLight.h */,
+				01EA860300F96F707F000001 /* PhLight.m */,
+				01EA861200F970667F000001 /* PhMedia.h */,
+				01EA861300F970667F000001 /* PhMedia.m */,
+				00DF106900FBCC6F7F000001 /* PhPlatform.h */,
 				00DF106A00FBCC6F7F000001 /* PhPlatform.m */,
+				01EA861600F970667F000001 /* PhRandomSound.h */,
+				01EA861700F970667F000001 /* PhRandomSound.m */,
+				F5EFE97E01ADCAEA01A8A806 /* PhTag.h */,
+				F5EFE97F01ADCAEA01A8A806 /* PhTag.m */,
+				F52BE6F7023C39CB0146BBD2 /* Terminal.h */,
 				F52BE6F8023C39CB0146BBD2 /* Terminal.m */,
+				F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */,
 				F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */,
 			);
-			name = "Marathon Data";
-			sourceTree = "<group>";
-		};
-		F5EFE97B01ADCA5701A8A806 /* Marathon Data */ = {
-			isa = PBXGroup;
-			children = (
-				F5EFE97E01ADCAEA01A8A806 /* PhTag.h */,
-				00FE5A0E00DC52C37F000001 /* LEMapPoint.h */,
-				0121ECA700DDCD937F000001 /* LELine.h */,
-				F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */,
-				01EA85FD00F96CDD7F000001 /* LESide.h */,
-				0112096A00DEC9357F000001 /* LEPolygon.h */,
-				00F6628500E19BB67F000001 /* LEMapObject.h */,
-				01EA860200F96F707F000001 /* PhLight.h */,
-				00DF106D00FC00527F000001 /* PhAnnotationNote.h */,
-				01EA861200F970667F000001 /* PhMedia.h */,
-				01EA861400F970667F000001 /* PhAmbientSound.h */,
-				01EA861600F970667F000001 /* PhRandomSound.h */,
-				01EA860A00F96FD57F000001 /* PhItemPlacement.h */,
-				00DF106900FBCC6F7F000001 /* PhPlatform.h */,
-				F52BE6F7023C39CB0146BBD2 /* Terminal.h */,
-				F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */,
-			);
-			name = "Marathon Data";
-			sourceTree = "<group>";
-		};
-		F5EFE97C01ADCAB901A8A806 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				00FCE08900DB2EFD7F000001 /* LEMapDraw.h */,
-				00FBF3A700EAC1717F000001 /* LEPaletteController.h */,
-				F5D2B793019CEB5D01A8A806 /* ErrorNotificationWinController.h */,
-				00EC509E0110FB3D7F000001 /* PhColorListController.h */,
-				F5339DC301B0ACB801A8A806 /* PhProgress.h */,
-				F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */,
-				F530D715029862DA0146BBD2 /* PhStartupWinController.h */,
-			);
-			name = Others;
+			path = "Marathon Data";
 			sourceTree = "<group>";
 		};
 		F5EFE97D01ADCAB901A8A806 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				00FBF3A800EAC1717F000001 /* LEPaletteController.m */,
+				F5D2B793019CEB5D01A8A806 /* ErrorNotificationWinController.h */,
 				F5D2B794019CEB5D01A8A806 /* ErrorNotificationWinController.m */,
+				00FCE08900DB2EFD7F000001 /* LEMapDraw.h */,
 				00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */,
+				00FBF3A700EAC1717F000001 /* LEPaletteController.h */,
+				00FBF3A800EAC1717F000001 /* LEPaletteController.m */,
+				00EC509E0110FB3D7F000001 /* PhColorListController.h */,
 				00EC509F0110FB3D7F000001 /* PhColorListController.m */,
-				F5339DC401B0ACB801A8A806 /* PhProgress.m */,
+				F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */,
 				F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */,
+				F5339DC301B0ACB801A8A806 /* PhProgress.h */,
+				F5339DC401B0ACB801A8A806 /* PhProgress.m */,
+				F530D715029862DA0146BBD2 /* PhStartupWinController.h */,
 				F530D716029862DA0146BBD2 /* PhStartupWinController.m */,
 			);
-			name = Others;
+			path = Others;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2A37F4C7FDCFA73011CA2CEA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				011A1BF000D3D8317F000001 /* LEMapData.h in Headers */,
-				00FE5A1000DC52C37F000001 /* LEMapPoint.h in Headers */,
-				0121ECA900DDCD937F000001 /* LELine.h in Headers */,
-				0112096C00DEC9357F000001 /* LEPolygon.h in Headers */,
-				00F6628700E19BB67F000001 /* LEMapObject.h in Headers */,
-				00FC09B700E3063A7F000001 /* LELevelData.h in Headers */,
-				00FC09B800E3063A7F000001 /* LEMapDraw.h in Headers */,
-				00FC09B900E3063A7F000001 /* LEMap.h in Headers */,
-				035877C000E7E7C67F000001 /* LEExtras.h in Headers */,
-				00FD2B8C00E806097F000001 /* LEMapStuffParent.h in Headers */,
-				011C897700EA73577F000001 /* NSDocumentControllerPatchFor2571388.h in Headers */,
-				00FBF3A900EAC1717F000001 /* LEPaletteController.h in Headers */,
-				00FBF3AD00EACC4F7F000001 /* LEDelegate.h in Headers */,
-				010314F800ED57F57F000001 /* LELevelWindowController.h in Headers */,
-				00F4A78C00F7E1DA7F000001 /* LEInspectorController.h in Headers */,
-				01EA85FF00F96CDD7F000001 /* LESide.h in Headers */,
-				01EA860600F96F707F000001 /* PhLight.h in Headers */,
-				01EA860C00F96FD57F000001 /* PhItemPlacement.h in Headers */,
-				01EA861800F970667F000001 /* PhMedia.h in Headers */,
-				01EA861900F970667F000001 /* PhAmbientSound.h in Headers */,
-				01EA861A00F970667F000001 /* PhRandomSound.h in Headers */,
-				00DF106B00FBCC6F7F000001 /* PhPlatform.h in Headers */,
-				00DF106F00FC00527F000001 /* PhAnnotationNote.h in Headers */,
-				00ED45B00102B0FF7F000001 /* PhPlatformSheetController.h in Headers */,
-				00D2ACA30103C59A7F000001 /* PhLineInspectorController.h in Headers */,
-				00D2ACA70103D0887F000001 /* PhPolyInspectorController.h in Headers */,
-				00C98A2D010513217F000001 /* PhObjectInspectorSubController.h in Headers */,
-				00D18BC1010A18747F000001 /* PhTextureRepository.h in Headers */,
-				00EC50A00110FB3D7F000001 /* PhColorListController.h in Headers */,
-				00CCECF50125C7647F000001 /* PhPrefsController.h in Headers */,
-				00D4535C0144672D7F000001 /* PhDynamicPrefSubController.h in Headers */,
-				F5D2B795019CEB5D01A8A806 /* ErrorNotificationWinController.h in Headers */,
-				F5EFE97501ADBBB801A8A806 /* PhTypesStructresEnums.h in Headers */,
-				F5EFE97801ADC99101A8A806 /* PhNamesController.h in Headers */,
-				F5EFE98001ADCAEA01A8A806 /* PhTag.h in Headers */,
-				F532393201AF836201A8A806 /* PhAbstractName.h in Headers */,
-				F5339DC501B0ACB801A8A806 /* PhProgress.h in Headers */,
-				F56B756201BC908701A8A806 /* PhLightEditorController.h in Headers */,
-				F529750001C44D7B01A8A806 /* PhLevelNameManager.h in Headers */,
-				F52AB18C01CA949A01A8A806 /* InfoWindowCommander.h in Headers */,
-				F54D4C4101CBF6E401A8A806 /* PhRandomSndEditCon.h in Headers */,
-				F54D4C4501CBF70101A8A806 /* PhAmbientSndEditCon.h in Headers */,
-				F54D4C4901CBF77701A8A806 /* PhLiquidEditCon.h in Headers */,
-				F52E215A01D03C110146BBD2 /* PhLayer.h in Headers */,
-				F52E216401D0500B0146BBD2 /* PhDefaultLayerController.h in Headers */,
-				F53CC3640207B6C40146BBD2 /* PhAbstractNumber.h in Headers */,
-				F54738F9021F01E90146BBD2 /* NDResourceFork.h in Headers */,
-				F54738FA021F01E90146BBD2 /* NDAppleScriptObject.h in Headers */,
-				F54738FB021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h in Headers */,
-				F54738FC021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h in Headers */,
-				F54738FD021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h in Headers */,
-				F53CCE830228C0510146BBD2 /* OpenGLVisualModeController.h in Headers */,
-				F52BE6F9023C39CC0146BBD2 /* Terminal.h in Headers */,
-				F52BE6FD023C56FA0146BBD2 /* TerminalSection.h in Headers */,
-				F520388E024156C20146BBD2 /* TerminalEditorController.h in Headers */,
-				F536BD6002824AA40146BBD2 /* shapes-structs.h in Headers */,
-				F536BD6102824AA40146BBD2 /* bitmap-decode.h in Headers */,
-				F532A6C1029741880146BBD2 /* extractbitmap.h in Headers */,
-				F530D717029862DA0146BBD2 /* PhStartupWinController.h in Headers */,
-				F530626702A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h in Headers */,
-				F530626B02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h in Headers */,
-				F519A31202AAFC0E0146BBD2 /* PhScenarioManagerController.h in Headers */,
-				F51939C902AC7C150146BBD2 /* PhScenarioData.h in Headers */,
-				F520576B02B503430146BBD2 /* Resource.h in Headers */,
-				F547849002B505FB0146BBD2 /* ScenarioResources.h in Headers */,
-				F528404302C13BE90146BBD2 /* PhItemPlacementEditorController.h in Headers */,
-				F5067F6902F4CC8F01743002 /* PhColorListControllerDrawer.h in Headers */,
-				F5FB4BEE032D90710146BBD2 /* PluginProtocol.h in Headers */,
-				F5E1A1D6032E9D1F0146BBD2 /* PhPluginManager.h in Headers */,
-				F521F7CC03302AB30146BBD2 /* PluginManagerInterface.h in Headers */,
-				F5D0FE44034026B70146BBD2 /* PhTextureInspectorController.h in Headers */,
-				F5A17F2703B231030146BBD2 /* LELine-SideCalc.h in Headers */,
-				A52DB02504016BFC0046BBD2 /* PhDefs.h in Headers */,
-				A597FC2E045763B20046BBD2 /* PhData.h in Headers */,
-				A5EBBF6B04A3A5F70046BBD2 /* PathwaysExchange.h in Headers */,
-				A5EBBF6D04A3A6030046BBD2 /* PathwaysDocument.h in Headers */,
-				A59437BF04B01B520046BBD2 /* PathwaysMapSaveData.h in Headers */,
-				A5CE3C7604B265440046BBD2 /* crc.h in Headers */,
-				CA84378F04BA60A500F0A839 /* PathwaysToMarathon.h in Headers */,
-				A5CBB2CF04D630590046BBD2 /* trigTables.h in Headers */,
-				A59B9262054F9DED00E2A9DF /* PhNoteGroup.h in Headers */,
-				A5DE35590550E7DC00363F01 /* PhNoteGroupsCon.h in Headers */,
-				A514D73C080AC23700F94B8E /* ActionAdapter.h in Headers */,
-				A514D740080AC23900F94B8E /* CheckBox.h in Headers */,
-				A514D745080AC23B00F94B8E /* ColorSwatch.h in Headers */,
-				A514D74F080AC23B00F94B8E /* DBControl.h in Headers */,
-				A514D759080AC23C00F94B8E /* GetFullPathObject.h in Headers */,
-				A514D763080AC23E00F94B8E /* HeaderFormats.h in Headers */,
-				A514D768080AC23F00F94B8E /* IndexHeapSort.h in Headers */,
-				A514D772080AC23F00F94B8E /* IndexSort.h in Headers */,
-				A514D795080AC24C00F94B8E /* ShapesDataFormats.h in Headers */,
-				A514D79A080AC24C00F94B8E /* ShapesReader.h in Headers */,
-				A514D7A4080AC24D00F94B8E /* SimpleVec.h in Headers */,
-				A514D7A9080AC24D00F94B8E /* SmartPtr.h in Headers */,
-				A514D7AE080AC24E00F94B8E /* stl_algobase.h in Headers */,
-				A514D7BB080AC25100F94B8E /* xKeyControls.h in Headers */,
-				A514D7C5080AC25200F94B8E /* ViewOptions.h in Headers */,
-				A514D7CF080AC25200F94B8E /* ViewContext.h in Headers */,
-				A514D7D4080AC25300F94B8E /* Vector3D.h in Headers */,
-				A514D7DE080AC25400F94B8E /* TextureManager.h in Headers */,
-				A514D7E3080AC25500F94B8E /* TextFieldObject.h in Headers */,
-				A514D7ED080AC25900F94B8E /* MapData.h in Headers */,
-				A514D7F7080AC25A00F94B8E /* MapDataFormats.h in Headers */,
-				A514D7FC080AC25A00F94B8E /* MapManager.h in Headers */,
-				A514D806080AC25B00F94B8E /* MapReader.h in Headers */,
-				A514D80D080AC25C00F94B8E /* MiscUtils.h in Headers */,
-				A514D812080AC25C00F94B8E /* MoreFilesExtract.h in Headers */,
-				A514D81C080AC25D00F94B8E /* MotPort.h in Headers */,
-				A514D907080ACBE500F94B8E /* KeyControls.h in Headers */,
-				A52395E0081189E500B1797E /* MyOpenGLView2.h in Headers */,
-				A52395F5081189EC00B1797E /* Camera.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AE3C149C0A04512100FBFFCD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1867,7 +991,6 @@
 				AE3C14A40A04512100FBFFCD /* LEMap.h in Headers */,
 				AE3C14A50A04512100FBFFCD /* LEExtras.h in Headers */,
 				AE3C14A60A04512100FBFFCD /* LEMapStuffParent.h in Headers */,
-				AE3C14A70A04512100FBFFCD /* NSDocumentControllerPatchFor2571388.h in Headers */,
 				AE3C14A80A04512100FBFFCD /* LEPaletteController.h in Headers */,
 				AE3C14A90A04512100FBFFCD /* LEDelegate.h in Headers */,
 				AE3C14AA0A04512100FBFFCD /* LELevelWindowController.h in Headers */,
@@ -1974,9 +1097,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		AE3C149B0A04512100FBFFCD /* Pfhorge (Upgraded) */ = {
+		AE3C149B0A04512100FBFFCD /* Pfhorge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE3C15B60A04512100FBFFCD /* Build configuration list for PBXNativeTarget "Pfhorge (Upgraded)" */;
+			buildConfigurationList = AE3C15B60A04512100FBFFCD /* Build configuration list for PBXNativeTarget "Pfhorge" */;
 			buildPhases = (
 				AE3C149C0A04512100FBFFCD /* Headers */,
 				AE3C150C0A04512100FBFFCD /* Resources */,
@@ -1987,29 +1110,9 @@
 			buildRules = (
 				AE3C15BC0A04512200FBFFCD /* PBXBuildRule */,
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
-			name = "Pfhorge (Upgraded)";
+			name = Pfhorge;
 			productInstallPath = "$(HOME)/Applications";
 			productName = LevEd;
 			productReference = AE3C15BD0A04512200FBFFCD /* Pfhorge.app */;
@@ -2020,90 +1123,27 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */;
-			buildSettings = {
+			attributes = {
+				LastUpgradeCheck = 1130;
 			};
-			buildStyles = (
-				4A9504D0FFE6A4CB11CA0CBA /* Development */,
-				4A9504D1FFE6A4CB11CA0CBA /* Deployment */,
-				A59DEB5004AD03590046BBD2 /* GCC 3.3 Compiler */,
-			);
+			buildConfigurationList = AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				Base,
+			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* LevEd */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
-				2A37F4C6FDCFA73011CA2CEA /* Pfhorge */,
-				AE3C149B0A04512100FBFFCD /* Pfhorge (Upgraded) */,
+				AE3C149B0A04512100FBFFCD /* Pfhorge */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2A37F4C9FDCFA73011CA2CEA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */,
-				080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */,
-				089C1661FE840EACC02AAC07 /* InfoPlist.strings in Resources */,
-				011A1BE900D3C42E7F000001 /* MyLevel.nib in Resources */,
-				00FBF3A200EABCCA7F000001 /* ToolPallette.nib in Resources */,
-				03FE6481012FA35E7F000001 /* Inspector.nib in Resources */,
-				03FE6484012FA3667F000001 /* ColorList.nib in Resources */,
-				03FE6487012FA3757F000001 /* Prefs.nib in Resources */,
-				00DC1BCF013DF9C07F000001 /* Arrow.tiff in Resources */,
-				00DC1BD1013DF9C87F000001 /* Cross.tiff in Resources */,
-				F54D4C5901CBF8C701A8A806 /* AmbientSoundEditor.nib in Resources */,
-				F54D4C5A01CBF8C701A8A806 /* Errors, Inc..nib in Resources */,
-				F54D4C5B01CBF8C701A8A806 /* LightEditor.nib in Resources */,
-				F54D4C5C01CBF8C701A8A806 /* LiquidInterface.nib in Resources */,
-				F54D4C5D01CBF8C701A8A806 /* PlatformEditor.nib in Resources */,
-				F54D4C5E01CBF8C701A8A806 /* RandomSoundInterface.nib in Resources */,
-				F54D4C5F01CBF8C701A8A806 /* StatusWin.nib in Resources */,
-				F52E216101D049A20146BBD2 /* DefaultLayerEditor.nib in Resources */,
-				F5441732021755920146BBD2 /* Pfhorge.scriptTerminology in Resources */,
-				F5441734021755CA0146BBD2 /* Pfhorge.scriptSuite in Resources */,
-				F570249402176F480146BBD2 /* paint.tiff in Resources */,
-				F57024960217825D0146BBD2 /* object.tif in Resources */,
-				F53CCE7E0228BF4B0146BBD2 /* OpenGLVisualMode.nib in Resources */,
-				A5EE9ABA040439DC0046BBD2 /* Startup.nib in Resources */,
-				F53B5D480231B2250146BBD2 /* Exsample Script.scpt in Resources */,
-				F53B5D490231B2250146BBD2 /* PhorgeAppIcon.icns in Resources */,
-				F53B5D4A0231B2250146BBD2 /* MapNewIcon.icns in Resources */,
-				F520388B02414AD90146BBD2 /* TerminalInterface.nib in Resources */,
-				F520E478024538A90146BBD2 /* ammo-OFF.tif in Resources */,
-				F520E479024538A90146BBD2 /* ammo-ON.tif in Resources */,
-				F520E47A024538A90146BBD2 /* arrow-OFF.tif in Resources */,
-				F520E47B024538A90146BBD2 /* arrow-ON.tif in Resources */,
-				F520E47C024538A90146BBD2 /* eye_dropper-OFF.tif in Resources */,
-				F520E47D024538A90146BBD2 /* eye_dropper-ON.tif in Resources */,
-				F520E47E024538A90146BBD2 /* goal-OFF.tif in Resources */,
-				F520E47F024538A90146BBD2 /* goal-ON.tif in Resources */,
-				F520E480024538A90146BBD2 /* hand-OFF.tif in Resources */,
-				F520E481024538A90146BBD2 /* hand-ON.tif in Resources */,
-				F520E482024538A90146BBD2 /* line-OFF.tif in Resources */,
-				F520E483024538A90146BBD2 /* line-ON.tif in Resources */,
-				F520E484024538A90146BBD2 /* monsters-OFF.tif in Resources */,
-				F520E485024538A90146BBD2 /* monsters-ON.tif in Resources */,
-				F520E486024538A90146BBD2 /* paint_brush-OFF.tif in Resources */,
-				F520E487024538A90146BBD2 /* paint_brush-ON.tif in Resources */,
-				F520E488024538A90146BBD2 /* paint_bucket-OFF.tif in Resources */,
-				F520E489024538A90146BBD2 /* paint_bucket-ON.tif in Resources */,
-				F520E48A024538A90146BBD2 /* player-OFF.tif in Resources */,
-				F520E48B024538A90146BBD2 /* player-ON.tif in Resources */,
-				F520E48C024538A90146BBD2 /* scenery-OFF.tif in Resources */,
-				F520E48D024538A90146BBD2 /* scenery-ON.tif in Resources */,
-				F520E48E024538A90146BBD2 /* sound-OFF.tif in Resources */,
-				F520E48F024538A90146BBD2 /* sound-ON.tif in Resources */,
-				F520E490024538A90146BBD2 /* type-OFF.tif in Resources */,
-				F520E491024538A90146BBD2 /* type-ON.tif in Resources */,
-				F520E492024538A90146BBD2 /* zoom-OFF.tif in Resources */,
-				F520E493024538A90146BBD2 /* zoom-ON.tif in Resources */,
-				A5EE9AB8040439D60046BBD2 /* MapManager.nib in Resources */,
-				F528403F02C13AD80146BBD2 /* ItemPlacementEditor.nib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AE3C150C0A04512100FBFFCD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2116,8 +1156,6 @@
 				AE3C15120A04512100FBFFCD /* Inspector.nib in Resources */,
 				AE3C15130A04512100FBFFCD /* ColorList.nib in Resources */,
 				AE3C15140A04512100FBFFCD /* Prefs.nib in Resources */,
-				AE3C15150A04512100FBFFCD /* Arrow.tiff in Resources */,
-				AE3C15160A04512100FBFFCD /* Cross.tiff in Resources */,
 				AE3C15170A04512100FBFFCD /* AmbientSoundEditor.nib in Resources */,
 				AE3C15180A04512100FBFFCD /* Errors, Inc..nib in Resources */,
 				AE3C15190A04512100FBFFCD /* LightEditor.nib in Resources */,
@@ -2127,43 +1165,12 @@
 				AE3C151D0A04512100FBFFCD /* StatusWin.nib in Resources */,
 				AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.nib in Resources */,
 				AE3C151F0A04512100FBFFCD /* Pfhorge.scriptTerminology in Resources */,
+				557A9B3F245A617B00527063 /* Media.xcassets in Resources */,
 				AE3C15200A04512100FBFFCD /* Pfhorge.scriptSuite in Resources */,
-				AE3C15210A04512100FBFFCD /* paint.tiff in Resources */,
-				AE3C15220A04512100FBFFCD /* object.tif in Resources */,
 				AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */,
 				AE3C15240A04512100FBFFCD /* Startup.nib in Resources */,
 				AE3C15250A04512100FBFFCD /* Exsample Script.scpt in Resources */,
-				AE3C15260A04512100FBFFCD /* PhorgeAppIcon.icns in Resources */,
-				AE3C15270A04512100FBFFCD /* MapNewIcon.icns in Resources */,
 				AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */,
-				AE3C15290A04512100FBFFCD /* ammo-OFF.tif in Resources */,
-				AE3C152A0A04512100FBFFCD /* ammo-ON.tif in Resources */,
-				AE3C152B0A04512100FBFFCD /* arrow-OFF.tif in Resources */,
-				AE3C152C0A04512100FBFFCD /* arrow-ON.tif in Resources */,
-				AE3C152D0A04512100FBFFCD /* eye_dropper-OFF.tif in Resources */,
-				AE3C152E0A04512100FBFFCD /* eye_dropper-ON.tif in Resources */,
-				AE3C152F0A04512100FBFFCD /* goal-OFF.tif in Resources */,
-				AE3C15300A04512100FBFFCD /* goal-ON.tif in Resources */,
-				AE3C15310A04512100FBFFCD /* hand-OFF.tif in Resources */,
-				AE3C15320A04512100FBFFCD /* hand-ON.tif in Resources */,
-				AE3C15330A04512100FBFFCD /* line-OFF.tif in Resources */,
-				AE3C15340A04512100FBFFCD /* line-ON.tif in Resources */,
-				AE3C15350A04512100FBFFCD /* monsters-OFF.tif in Resources */,
-				AE3C15360A04512100FBFFCD /* monsters-ON.tif in Resources */,
-				AE3C15370A04512100FBFFCD /* paint_brush-OFF.tif in Resources */,
-				AE3C15380A04512100FBFFCD /* paint_brush-ON.tif in Resources */,
-				AE3C15390A04512100FBFFCD /* paint_bucket-OFF.tif in Resources */,
-				AE3C153A0A04512100FBFFCD /* paint_bucket-ON.tif in Resources */,
-				AE3C153B0A04512100FBFFCD /* player-OFF.tif in Resources */,
-				AE3C153C0A04512100FBFFCD /* player-ON.tif in Resources */,
-				AE3C153D0A04512100FBFFCD /* scenery-OFF.tif in Resources */,
-				AE3C153E0A04512100FBFFCD /* scenery-ON.tif in Resources */,
-				AE3C153F0A04512100FBFFCD /* sound-OFF.tif in Resources */,
-				AE3C15400A04512100FBFFCD /* sound-ON.tif in Resources */,
-				AE3C15410A04512100FBFFCD /* type-OFF.tif in Resources */,
-				AE3C15420A04512100FBFFCD /* type-ON.tif in Resources */,
-				AE3C15430A04512100FBFFCD /* zoom-OFF.tif in Resources */,
-				AE3C15440A04512100FBFFCD /* zoom-ON.tif in Resources */,
 				AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */,
 				AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */,
 			);
@@ -2172,13 +1179,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
-		043355CEFE303625C02AAC07 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AE3C15B50A04512100FBFFCD /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
@@ -2189,111 +1189,6 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2A37F4CEFDCFA73011CA2CEA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A37F4D0FDCFA73011CA2CEA /* main.m in Sources */,
-				00FE5A1100DC52C37F000001 /* LEMapPoint.m in Sources */,
-				0121ECAA00DDCD937F000001 /* LELine.m in Sources */,
-				0112096D00DEC9357F000001 /* LEPolygon.m in Sources */,
-				00FC09BA00E3063A7F000001 /* LEMapObject.m in Sources */,
-				00FC09BB00E3063A7F000001 /* LEMapData.m in Sources */,
-				00FC09BC00E3063A7F000001 /* LEMapDraw.m in Sources */,
-				00FC09BD00E3063A7F000001 /* LEMap.m in Sources */,
-				035877C100E7E7C67F000001 /* LEExtras.m in Sources */,
-				00FD2B8D00E806097F000001 /* LEMapStuffParent.m in Sources */,
-				011C897800EA73577F000001 /* NSDocumentControllerPatchFor2571388.m in Sources */,
-				00FBF3AA00EAC1717F000001 /* LEPaletteController.m in Sources */,
-				00FBF3AE00EACC4F7F000001 /* LEDelegate.m in Sources */,
-				010314F900ED57F57F000001 /* LELevelWindowController.m in Sources */,
-				00F4A78D00F7E1DA7F000001 /* LEInspectorController.m in Sources */,
-				01EA860000F96CDD7F000001 /* LESide.m in Sources */,
-				01EA860800F96F707F000001 /* PhLight.m in Sources */,
-				01EA860D00F96FD57F000001 /* PhItemPlacement.m in Sources */,
-				01EA861B00F970667F000001 /* PhMedia.m in Sources */,
-				01EA861C00F970667F000001 /* PhAmbientSound.m in Sources */,
-				01EA861D00F970667F000001 /* PhRandomSound.m in Sources */,
-				00DF107000FC00527F000001 /* PhAnnotationNote.m in Sources */,
-				00ED45B10102B0FF7F000001 /* PhPlatformSheetController.m in Sources */,
-				00D2ACA40103C59A7F000001 /* PhLineInspectorController.m in Sources */,
-				00D2ACA80103D0887F000001 /* PhPolyInspectorController.m in Sources */,
-				00C98A2E010513217F000001 /* PhObjectInspectorSubController.m in Sources */,
-				00D18BC2010A18747F000001 /* PhTextureRepository.m in Sources */,
-				00EC50A10110FB3D7F000001 /* PhColorListController.m in Sources */,
-				00CCECF60125C7647F000001 /* PhPrefsController.m in Sources */,
-				00D4535D0144672D7F000001 /* PhDynamicPrefSubController.m in Sources */,
-				00CC945D0164F60F7F000001 /* PhPlatform.m in Sources */,
-				F5D2B796019CEB5D01A8A806 /* ErrorNotificationWinController.m in Sources */,
-				F5EFE97901ADC99101A8A806 /* PhNamesController.m in Sources */,
-				F5EFE98101ADCAEA01A8A806 /* PhTag.m in Sources */,
-				F5339DC601B0ACB801A8A806 /* PhProgress.m in Sources */,
-				F56B756301BC908701A8A806 /* PhLightEditorController.m in Sources */,
-				F52AB18D01CA949A01A8A806 /* InfoWindowCommander.m in Sources */,
-				F54D4C4201CBF6E401A8A806 /* PhRandomSndEditCon.m in Sources */,
-				F54D4C4601CBF70101A8A806 /* PhAmbientSndEditCon.m in Sources */,
-				F54D4C4A01CBF77701A8A806 /* PhLiquidEditCon.m in Sources */,
-				F52E215B01D03C110146BBD2 /* PhLayer.m in Sources */,
-				F52E216501D0500B0146BBD2 /* PhDefaultLayerController.m in Sources */,
-				F52BD83001D279E80146BBD2 /* LELevelData.m in Sources */,
-				F53CC3650207B6C40146BBD2 /* PhAbstractNumber.m in Sources */,
-				F5764AB8020E69310146BBD2 /* PhLevelNameManager.m in Sources */,
-				F54738FE021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m in Sources */,
-				F54738FF021F01E90146BBD2 /* NDResourceFork.m in Sources */,
-				F5473900021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */,
-				F5473901021F01E90146BBD2 /* NDAppleScriptObject.m in Sources */,
-				F520D7D4023995780146BBD2 /* PhAbstractName.m in Sources */,
-				F52BE6FA023C39CC0146BBD2 /* Terminal.m in Sources */,
-				F52BE6FE023C56FA0146BBD2 /* TerminalSection.m in Sources */,
-				F520388F024156C20146BBD2 /* TerminalEditorController.m in Sources */,
-				F536BD6202824AA40146BBD2 /* bitmap-decode.c in Sources */,
-				F536BD6302824AA40146BBD2 /* extractbitmap.m in Sources */,
-				F530D718029862DA0146BBD2 /* PhStartupWinController.m in Sources */,
-				F530626802A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m in Sources */,
-				F530626C02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m in Sources */,
-				F519A31102AAFC0E0146BBD2 /* PhScenarioManagerController.m in Sources */,
-				F51939C802AC7C150146BBD2 /* PhScenarioData.m in Sources */,
-				F520576C02B503430146BBD2 /* Resource.m in Sources */,
-				F547848F02B505FB0146BBD2 /* ScenarioResources.m in Sources */,
-				F528404202C13BE90146BBD2 /* PhItemPlacementEditorController.m in Sources */,
-				F5067F6A02F4CC8F01743002 /* PhColorListControllerDrawer.m in Sources */,
-				F5E1A1D7032E9D1F0146BBD2 /* PhPluginManager.m in Sources */,
-				F521F7CE03302BF20146BBD2 /* PluginManagerInterface.m in Sources */,
-				F5D0FE45034026B70146BBD2 /* PhTextureInspectorController.m in Sources */,
-				F5A17F2803B231030146BBD2 /* LELine-SideCalc.m in Sources */,
-				F58032D203E31DD90146BBD2 /* LELevelData-Settings.m in Sources */,
-				F58032D503E3223A0146BBD2 /* LELevelData-Data.m in Sources */,
-				F58032D703E322530146BBD2 /* LELevelData-Utilites.m in Sources */,
-				F58032D903E322660146BBD2 /* LELevelData-Objects.m in Sources */,
-				F58032DB03E32D510146BBD2 /* LELevelData-Layers.m in Sources */,
-				A597FC2F045763B20046BBD2 /* PhData.m in Sources */,
-				A5EBBF6F04A3A60C0046BBD2 /* PathwaysDocument.m in Sources */,
-				A59437B604B018070046BBD2 /* PathwaysExchange.mm in Sources */,
-				A5CE3C7504B265440046BBD2 /* crc.m in Sources */,
-				CA84379104BA61CF00F0A839 /* PathwaysToMarathon.mm in Sources */,
-				A5CBB2CE04D630590046BBD2 /* trigTables.c in Sources */,
-				A59B9263054F9DED00E2A9DF /* PhNoteGroup.m in Sources */,
-				A5DE355A0550E7DC00363F01 /* PhNoteGroupsCon.m in Sources */,
-				A514D74A080AC23B00F94B8E /* ColorSwatch.mm in Sources */,
-				A514D754080AC23C00F94B8E /* GetFullPathObject.mm in Sources */,
-				A514D76D080AC23F00F94B8E /* IndexHeapSort.mm in Sources */,
-				A514D790080AC24B00F94B8E /* Renderer.mm in Sources */,
-				A514D79F080AC24C00F94B8E /* ShapesReader.mm in Sources */,
-				A514D7C0080AC25100F94B8E /* ViewOptions.mm in Sources */,
-				A514D7CA080AC25200F94B8E /* ViewContext.mm in Sources */,
-				A514D7D9080AC25300F94B8E /* TextureManager.mm in Sources */,
-				A514D7F2080AC25900F94B8E /* MapData.mm in Sources */,
-				A514D801080AC25A00F94B8E /* MapManager.mm in Sources */,
-				A514D808080AC25B00F94B8E /* MapReader.mm in Sources */,
-				A514D817080AC25C00F94B8E /* MoreFilesExtract.mm in Sources */,
-				A514D821080AC25D00F94B8E /* MotPort.mm in Sources */,
-				A514D90B080ACBF200F94B8E /* KeyControls.mm in Sources */,
-				A52395E7081189E800B1797E /* MyOpenGLView2.mm in Sources */,
-				A52395EE081189EA00B1797E /* Camera.mm in Sources */,
-				A523961508118A1A00B1797E /* OpenGLVisualModeController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		AE3C15470A04512100FBFFCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2308,7 +1203,6 @@
 				AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */,
 				AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */,
 				AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */,
-				AE3C15520A04512100FBFFCD /* NSDocumentControllerPatchFor2571388.m in Sources */,
 				AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */,
 				AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */,
 				AE3C15550A04512100FBFFCD /* LELevelWindowController.m in Sources */,
@@ -2405,7 +1299,7 @@
 		00FBF3A000EABCCA7F000001 /* ToolPallette.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				00FBF3A100EABCCA7F000001 /* English */,
+				557A9B3D245A519200527063 /* en */,
 			);
 			name = ToolPallette.nib;
 			sourceTree = "<group>";
@@ -2413,7 +1307,7 @@
 		011A1BE700D3C42E7F000001 /* MyLevel.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				011A1BE800D3C42E7F000001 /* English */,
+				557A9B35245A519200527063 /* en */,
 			);
 			name = MyLevel.nib;
 			sourceTree = "<group>";
@@ -2421,7 +1315,7 @@
 		03FE647F012FA35E7F000001 /* Inspector.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				03FE6480012FA35E7F000001 /* English */,
+				557A9B2F245A519200527063 /* en */,
 			);
 			name = Inspector.nib;
 			sourceTree = "<group>";
@@ -2429,7 +1323,7 @@
 		03FE6482012FA3667F000001 /* ColorList.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				03FE6483012FA3667F000001 /* English */,
+				557A9B2A245A519200527063 /* en */,
 			);
 			name = ColorList.nib;
 			sourceTree = "<group>";
@@ -2437,7 +1331,7 @@
 		03FE6485012FA3757F000001 /* Prefs.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				03FE6486012FA3757F000001 /* English */,
+				557A9B38245A519200527063 /* en */,
 			);
 			name = Prefs.nib;
 			sourceTree = "<group>";
@@ -2445,7 +1339,7 @@
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C1660FE840EACC02AAC07 /* English */,
+				557A9B2E245A519200527063 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2453,7 +1347,7 @@
 		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A37F4B7FDCFA73011CA2CEA /* English */,
+				557A9B33245A519200527063 /* en */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -2461,7 +1355,7 @@
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A37F4BAFDCFA73011CA2CEA /* English */,
+				557A9B2B245A519200527063 /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -2469,7 +1363,7 @@
 		A5EE9AB7040439D60046BBD2 /* MapManager.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F519A30D02AAFB9D0146BBD2 /* English */,
+				557A9B34245A519200527063 /* en */,
 			);
 			name = MapManager.nib;
 			sourceTree = "<group>";
@@ -2477,7 +1371,7 @@
 		A5EE9AB9040439DC0046BBD2 /* Startup.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F5358D3E0230C2850146BBD2 /* English */,
+				557A9B3A245A519200527063 /* en */,
 			);
 			name = Startup.nib;
 			sourceTree = "<group>";
@@ -2485,7 +1379,7 @@
 		F520388902414AD90146BBD2 /* TerminalInterface.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F520388A02414AD90146BBD2 /* English */,
+				557A9B3C245A519200527063 /* en */,
 			);
 			name = TerminalInterface.nib;
 			sourceTree = "<group>";
@@ -2493,7 +1387,7 @@
 		F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F528403E02C13AD80146BBD2 /* English */,
+				557A9B30245A519200527063 /* en */,
 			);
 			name = ItemPlacementEditor.nib;
 			sourceTree = "<group>";
@@ -2501,7 +1395,7 @@
 		F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F52E216001D049A20146BBD2 /* English */,
+				557A9B2C245A519200527063 /* en */,
 			);
 			name = DefaultLayerEditor.nib;
 			sourceTree = "<group>";
@@ -2509,7 +1403,7 @@
 		F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F53CCE7D0228BF4B0146BBD2 /* English */,
+				557A9B36245A519200527063 /* en */,
 			);
 			name = OpenGLVisualMode.nib;
 			sourceTree = SOURCE_ROOT;
@@ -2517,7 +1411,7 @@
 		F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C4C01CBF8C701A8A806 /* English */,
+				557A9B29245A519100527063 /* en */,
 			);
 			name = AmbientSoundEditor.nib;
 			sourceTree = "<group>";
@@ -2525,7 +1419,7 @@
 		F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C4E01CBF8C701A8A806 /* English */,
+				557A9B2D245A519200527063 /* en */,
 			);
 			name = "Errors, Inc..nib";
 			sourceTree = "<group>";
@@ -2533,7 +1427,7 @@
 		F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C5001CBF8C701A8A806 /* English */,
+				557A9B31245A519200527063 /* en */,
 			);
 			name = LightEditor.nib;
 			sourceTree = "<group>";
@@ -2541,7 +1435,7 @@
 		F54D4C5101CBF8C701A8A806 /* LiquidInterface.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C5201CBF8C701A8A806 /* English */,
+				557A9B32245A519200527063 /* en */,
 			);
 			name = LiquidInterface.nib;
 			sourceTree = "<group>";
@@ -2549,7 +1443,7 @@
 		F54D4C5301CBF8C701A8A806 /* PlatformEditor.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C5401CBF8C701A8A806 /* English */,
+				557A9B37245A519200527063 /* en */,
 			);
 			name = PlatformEditor.nib;
 			sourceTree = "<group>";
@@ -2557,7 +1451,7 @@
 		F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C5601CBF8C701A8A806 /* English */,
+				557A9B39245A519200527063 /* en */,
 			);
 			name = RandomSoundInterface.nib;
 			sourceTree = "<group>";
@@ -2565,7 +1459,7 @@
 		F54D4C5701CBF8C701A8A806 /* StatusWin.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F54D4C5801CBF8C701A8A806 /* English */,
+				557A9B3B245A519200527063 /* en */,
 			);
 			name = StatusWin.nib;
 			sourceTree = "<group>";
@@ -2573,24 +1467,99 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AE3C144A0A041B8900FBFFCD /* Development */ = {
+		AE3C144F0A041B8900FBFFCD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AE3C14500A041B8900FBFFCD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AE3C15B70A04512100FBFFCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.96;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
+				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
+				MARKETING_VERSION = 0.96;
 				OTHER_CFLAGS = (
 					"-Wno-selector",
 					"-Wno-undeclared-selector",
 					"-Wno-unused",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -2601,23 +1570,29 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		AE3C144B0A041B8900FBFFCD /* Deployment */ = {
+		AE3C15B80A04512100FBFFCD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 0.96;
 				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
+				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
+				MARKETING_VERSION = 0.96;
 				OTHER_CFLAGS = (
 					"-Wno-selector",
 					"-Wno-undeclared-selector",
 					"-Wno-unused",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -2628,290 +1603,28 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
-		};
-		AE3C144C0A041B8900FBFFCD /* GCC 3.3 Compiler */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CC = "/usr/bin/gcc-3.3";
-				CPLUSPLUS = "/usr/bin/g++-3.3";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_VERSION = 3.x;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = "GCC 3.3 Compiler";
-		};
-		AE3C144D0A041B8900FBFFCD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		AE3C144F0A041B8900FBFFCD /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Development;
-		};
-		AE3C14500A041B8900FBFFCD /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Deployment;
-		};
-		AE3C14510A041B8900FBFFCD /* GCC 3.3 Compiler */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = "GCC 3.3 Compiler";
-		};
-		AE3C14520A041B8900FBFFCD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
-		};
-		AE3C15B70A04512100FBFFCD /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		AE3C15B80A04512100FBFFCD /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		AE3C15B90A04512100FBFFCD /* GCC 3.3 Compiler */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CC = "/usr/bin/gcc-3.3";
-				CPLUSPLUS = "/usr/bin/g++-3.3";
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = "GCC 3.3 Compiler";
-		};
-		AE3C15BA0A04512100FBFFCD /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
-		AE3C15C50A0451AF00FBFFCD /* Universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OPTIMIZATION_CFLAGS = "-O3";
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Universal;
-		};
-		AE3C15C60A0451AF00FBFFCD /* Universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
-				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Universal;
-		};
-		AE3C15C70A0451AF00FBFFCD /* Universal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-			};
-			name = Universal;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE3C14490A041B8900FBFFCD /* Build configuration list for PBXApplicationTarget "Pfhorge" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AE3C144A0A041B8900FBFFCD /* Development */,
-				AE3C144B0A041B8900FBFFCD /* Deployment */,
-				AE3C144C0A041B8900FBFFCD /* GCC 3.3 Compiler */,
-				AE3C144D0A041B8900FBFFCD /* Default */,
-				AE3C15C50A0451AF00FBFFCD /* Universal */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
 		AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE3C144F0A041B8900FBFFCD /* Development */,
-				AE3C14500A041B8900FBFFCD /* Deployment */,
-				AE3C14510A041B8900FBFFCD /* GCC 3.3 Compiler */,
-				AE3C14520A041B8900FBFFCD /* Default */,
-				AE3C15C70A0451AF00FBFFCD /* Universal */,
+				AE3C144F0A041B8900FBFFCD /* Debug */,
+				AE3C14500A041B8900FBFFCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
-		AE3C15B60A04512100FBFFCD /* Build configuration list for PBXNativeTarget "Pfhorge (Upgraded)" */ = {
+		AE3C15B60A04512100FBFFCD /* Build configuration list for PBXNativeTarget "Pfhorge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE3C15B70A04512100FBFFCD /* Development */,
-				AE3C15B80A04512100FBFFCD /* Deployment */,
-				AE3C15B90A04512100FBFFCD /* GCC 3.3 Compiler */,
-				AE3C15BA0A04512100FBFFCD /* Default */,
-				AE3C15C60A0451AF00FBFFCD /* Universal */,
+				AE3C15B70A04512100FBFFCD /* Debug */,
+				AE3C15B80A04512100FBFFCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

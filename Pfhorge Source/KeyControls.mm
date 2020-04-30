@@ -1,8 +1,10 @@
 // Here is the work of the KeyControls object:
 
-#include <TextUtils.h>
+#include <Carbon/Carbon.h>
 #include "KeyControls.h"
 
+
+#warning re-write!
 
 const short KeyDialogID = 700;
 const short KeyStringsID = 700;
@@ -18,6 +20,10 @@ enum {
 	Defaults_ID
 };
 
+KeyControls::~KeyControls() {
+//	if (DPtr != 0)
+//		DisposeDialog(DPtr);
+}
 
 void KeyControls::Init() {
     /*
@@ -73,8 +79,8 @@ void KeyControls::Do() {
 
 	bool QuitFlag = true; /// <--- false
 	while(!QuitFlag) {
-		short ItemHit;
-		ModalDialog(nil,&ItemHit);
+		short ItemHit=0;
+//		ModalDialog(nil,&ItemHit);
 		
 		switch(ItemHit) {
 		case OK_ID:

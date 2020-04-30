@@ -23,11 +23,9 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 #import <Cocoa/Cocoa.h>
-#import "NSDocumentControllerPatchFor2571388.h"
 //#import "LEMarathon2Structres.h"
 
 int main(int argc, const char *argv[])
 {
-    //NSDocumentControllerPatchFor2571388InstallIfNecessary();
     return NSApplicationMain(argc, argv);
 }

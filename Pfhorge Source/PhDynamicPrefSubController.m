@@ -298,8 +298,8 @@ extern NSString *VMBackwardKey;
 -(IBAction)chooseScriptFolder:(id)scriptFolder
 {
         NSOpenPanel *panel = [NSOpenPanel openPanel];
-    int returnCode = [panel runModalForTypes:[[NSArray alloc]
-        initWithObjects: @"scpt", nil]];
+	panel.allowedFileTypes = @[@"scpt"];
+    NSInteger returnCode = [panel runModal];
     
     if (returnCode == NSOKButton)
     {
@@ -378,13 +378,13 @@ extern NSString *VMBackwardKey;
 -(IBAction)selectShapesBtnAction:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    int returnCode = 0;
+    NSModalResponse returnCode = 0;
     
     [panel setAllowsMultipleSelection:NO];
     [panel setCanChooseDirectories:NO];
     [panel setCanChooseFiles:YES];
     
-    returnCode = [panel runModalForTypes:nil];
+    returnCode = [panel runModal];
     
     if (returnCode == NSOKButton)
     {

@@ -201,15 +201,15 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     UseResFile(refNum);
     
-    [type getCString:(unsigned char *)&resType maxLength:4];
-    
+    [type getCString:(char *)&resType maxLength:4 encoding:NSMacOSRomanStringEncoding];
+	resType = CFSwapInt32BigToHost(resType);
     SetResLoad(YES);
     
     data = Get1Resource(resType, [resID unsignedShortValue]);
     
     MacLoadResource(data);
     DetachResource(data);
-    HNoPurge(data);
+    //HNoPurge(data);
     HLockHi(data);
     
     CloseResFile(refNum);

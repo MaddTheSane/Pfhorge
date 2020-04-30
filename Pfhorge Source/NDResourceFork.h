@@ -11,22 +11,22 @@
 
 @interface NDResourceFork : NSObject
 {
-	short		fileReference;
+	FSIORefNum		fileReference;
 }
 
-+ (id)resourceForkForReadingAtURL:(NSURL *)aURL;
-+ (id)resourceForkForWritingAtURL:(NSURL *)aURL;
-+ (id)resourceForkForReadingAtPath:(NSString *)aPath;
-+ (id)resourceForkForWritingAtPath:(NSString *)aPath;
++ (instancetype)resourceForkForReadingAtURL:(NSURL *)aURL;
++ (instancetype)resourceForkForWritingAtURL:(NSURL *)aURL;
++ (instancetype)resourceForkForReadingAtPath:(NSString *)aPath;
++ (instancetype)resourceForkForWritingAtPath:(NSString *)aPath;
 
-- (id)initForReadingAtURL:(NSURL *)aURL;
-- (id)initForWritingAtURL:(NSURL *)aURL;
-- (id)initForReadingAtPath:(NSString *)aPath;
-- (id)initForWritingAtPath:(NSString *)aPath;
-- (id)initForPermission:(char)aPermission AtURL:(NSURL *)aURL;
+- (instancetype)initForReadingAtURL:(NSURL *)aURL;
+- (instancetype)initForWritingAtURL:(NSURL *)aURL;
+- (instancetype)initForReadingAtPath:(NSString *)aPath;
+- (instancetype)initForWritingAtPath:(NSString *)aPath;
+- (instancetype)initForPermission:(char)aPermission AtURL:(NSURL *)aURL;
 
-- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(short)anID name:(NSString *)aName;
-- (NSData *)dataForType:(ResType)aType Id:(short)anID;
-- (BOOL)removeType:(ResType)aType Id:(short)anID;
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName;
+- (NSData *)dataForType:(ResType)aType Id:(ResID)anID;
+- (BOOL)removeType:(ResType)aType Id:(ResID)anID;
 
 @end

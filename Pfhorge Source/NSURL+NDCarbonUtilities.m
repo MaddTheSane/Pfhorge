@@ -27,7 +27,7 @@
 
 - (NSString *)fileSystemPathHFSStyle
 {
-    return [(NSString *)CFURLCopyFileSystemPath((CFURLRef)self, kCFURLHFSPathStyle) autorelease];
+    return CFBridgingRelease(CFURLCopyFileSystemPath((CFURLRef)self, kCFURLHFSPathStyle));
 }
 
 @end

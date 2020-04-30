@@ -6,23 +6,23 @@
 #import "LEExtras.h"
 
 
-#include <AppKit/AppKit.h>
-#include <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
 
-#include "extractbitmap.h"
+#import "extractbitmap.h"
 
-rgb_color_value		*ctable;
-int			color_count = 0;
-unsigned char		*pixels = NULL;
+static rgb_color_value	*ctable;
+static int				color_count = 0;
+static unsigned char	*pixels = NULL;
 
 
 NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap/*, unsigned char *pixelsOut*/);
 NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned char *pixels);
 void write_word(unsigned short w, NSMutableData *theData);
-void write_dword(unsigned long w, NSMutableData *theData);
+void write_dword(unsigned int w, NSMutableData *theData);
 void write_c(unsigned char w, NSMutableData *theData);
 
-NSArray * getAllTexturesOf(int theCollection, int theColorTable, char *theShapesPath)
+NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *theShapesPath)
 {
     NSMutableArray *theTextures;
     int i = 0;
@@ -59,7 +59,7 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, char *theShapes
     
     // load the color table...
     /// fprintf(stderr, "Loading color table %d... ", theColorTable);
-    if (err = DecodeShapesClut(theCollection, theColorTable, &color_count, &ctable))
+	if ((err = DecodeShapesClut(theCollection, theColorTable, &color_count, &ctable)))
     {
         SEND_ERROR_MSG_TITLE(@"Could not read color tables in shapes file...",
                              @"Error Reading Shapes");
@@ -70,7 +70,7 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, char *theShapes
     
     // get number of bitmaps in the collection...
     /// fprintf(stderr, "Getting number of bitmaps... ");
-    if (err = GetNumberOfBitmapsInCollection(theCollection, &theBitmapCount))
+	if ((err = GetNumberOfBitmapsInCollection(theCollection, &theBitmapCount)))
     {
         SEND_ERROR_MSG_TITLE(@"Could not read bitmap info in shapes file...",
                              @"Error Reading Shapes");
@@ -84,7 +84,7 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, char *theShapes
     for (i = 0; i < theBitmapCount; i++)
     {
         NSImage *theImage = [[NSImage alloc] initWithSize:NSMakeSize(32.0, 32.0)];
-        [theImage setScalesWhenResized:YES];
+        //[theImage setScalesWhenResized:YES];
         [theImage addRepresentation:getRawImageBits(theCollection, theColorTable, i)];
         [theTextures addObject:theImage];
         [theImage setSize:NSMakeSize(32, 32)];
@@ -200,7 +200,7 @@ void write_word(unsigned short w, NSMutableData *theData)
         //[theData appendBytes:&w length:2];
 }
 
-void write_dword(unsigned long w, NSMutableData *theData)
+void write_dword(unsigned int w, NSMutableData *theData)
 {
 	write_c(w & 0xff, theData);
 	write_c((w >> 8) & 0xff, theData);

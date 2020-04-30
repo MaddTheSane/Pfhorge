@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PhLightEditorController">
+            <connections>
+                <outlet property="becomeingActiveFunction" destination="13" id="219"/>
+                <outlet property="becomeingActiveIntesity" destination="30" id="182"/>
+                <outlet property="becomeingActiveIntesityChng" destination="31" id="183"/>
+                <outlet property="becomeingActiveIntesityChngSlider" destination="33" id="231"/>
+                <outlet property="becomeingActiveIntesitySlider" destination="32" id="232"/>
+                <outlet property="becomeingActivePeriod" destination="21" id="184"/>
+                <outlet property="becomeingActivePeriodChng" destination="20" id="185"/>
+                <outlet property="becomeingInactiveFunction" destination="174" id="220"/>
+                <outlet property="becomeingInactiveIntesity" destination="164" id="186"/>
+                <outlet property="becomeingInactiveIntesityChng" destination="159" id="187"/>
+                <outlet property="becomeingInactiveIntesityChngSlider" destination="169" id="233"/>
+                <outlet property="becomeingInactiveIntesitySlider" destination="170" id="234"/>
+                <outlet property="becomeingInactivePeriod" destination="160" id="188"/>
+                <outlet property="becomeingInactivePeriodChng" destination="167" id="189"/>
+                <outlet property="infoIT" destination="215" id="228"/>
+                <outlet property="initalyActiveCB" destination="36" id="191"/>
+                <outlet property="lightBlueNameIT" destination="217" id="221"/>
+                <outlet property="nameIT" destination="217" id="227"/>
+                <outlet property="phaseTB" destination="67" id="192"/>
+                <outlet property="primaryActiveFunction" destination="82" id="265"/>
+                <outlet property="primaryActiveIntesity" destination="76" id="193"/>
+                <outlet property="primaryActiveIntesityChng" destination="72" id="194"/>
+                <outlet property="primaryActiveIntesityChngSlider" destination="85" id="235"/>
+                <outlet property="primaryActiveIntesitySlider" destination="74" id="229"/>
+                <outlet property="primaryActivePeriod" destination="71" id="195"/>
+                <outlet property="primaryActivePeriodChng" destination="75" id="196"/>
+                <outlet property="primaryInactiveFunction" destination="153" id="223"/>
+                <outlet property="primaryInactiveIntesity" destination="151" id="197"/>
+                <outlet property="primaryInactiveIntesityChng" destination="149" id="198"/>
+                <outlet property="primaryInactiveIntesityChngSlider" destination="152" id="236"/>
+                <outlet property="primaryInactiveIntesitySlider" destination="138" id="237"/>
+                <outlet property="primaryInactivePeriod" destination="137" id="199"/>
+                <outlet property="primaryInactivePeriodChng" destination="148" id="200"/>
+                <outlet property="renameSheetMsgIT" destination="267" id="276"/>
+                <outlet property="secondaryActiveFunction" destination="97" id="224"/>
+                <outlet property="secondaryActiveIntesity" destination="103" id="201"/>
+                <outlet property="secondaryActiveIntesityChng" destination="110" id="202"/>
+                <outlet property="secondaryActiveIntesityChngSlider" destination="111" id="238"/>
+                <outlet property="secondaryActiveIntesitySlider" destination="109" id="239"/>
+                <outlet property="secondaryActivePeriod" destination="100" id="203"/>
+                <outlet property="secondaryActivePeriodChng" destination="99" id="204"/>
+                <outlet property="secondaryInactiveFunction" destination="128" id="225"/>
+                <outlet property="secondaryInactiveIntesity" destination="125" id="205"/>
+                <outlet property="secondaryInactiveIntesityChng" destination="119" id="206"/>
+                <outlet property="secondaryInactiveIntesityChngSlider" destination="123" id="240"/>
+                <outlet property="secondaryInactiveIntesitySlider" destination="122" id="241"/>
+                <outlet property="secondaryInactivePeriod" destination="129" id="207"/>
+                <outlet property="secondaryInactivePeriodChng" destination="130" id="208"/>
+                <outlet property="statelessCB" destination="36" id="209"/>
+                <outlet property="tagComboMenu" destination="243" id="247"/>
+                <outlet property="theInputBox" destination="268" id="277"/>
+                <outlet property="theSheet" destination="270" id="278"/>
+                <outlet property="window" destination="5" id="211"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Light Properties" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Light Editor">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="10" y="4" width="551" height="454"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="6">
+                <rect key="frame" x="0.0" y="0.0" width="551" height="454"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <box fixedFrame="YES" title="Becoming Active" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                        <rect key="frame" x="20" y="222" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="mV6-Cs-oEZ">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="15" id="327">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="14">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="15"/>
+                                                <menuItem title="Linear" id="16"/>
+                                                <menuItem title="Smooth" id="17"/>
+                                                <menuItem title="Flicker" id="18"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="352">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="21">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="20">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="29" id="295"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="328">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="353">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="30">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="290">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="32" id="91"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="31">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="289">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="33" id="92"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="77" id="296"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="30" id="87"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="330">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="31" id="88"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                        <connections>
+                            <outlet property="nextKeyView" destination="19" id="294"/>
+                        </connections>
+                    </box>
+                    <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35">
+                        <rect key="frame" x="422" y="390" width="111" height="38"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <size key="cellSize" width="111" height="18"/>
+                        <size key="intercellSpacing" width="4" height="2"/>
+                        <buttonCell key="prototype" type="check" title="Switch" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="-1" inset="2" id="351">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <cells>
+                            <column>
+                                <buttonCell type="check" title="Stateless" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="34">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <buttonCell type="check" title="Initially Active" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" state="on" tag="1" inset="2" id="36">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </column>
+                        </cells>
+                    </matrix>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63">
+                        <rect key="frame" x="-35" y="416" width="104" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Template:" id="309">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                        <rect key="frame" x="-35" y="389" width="104" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Copy From:" id="310">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65">
+                        <rect key="frame" x="219" y="414" width="52" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Phase:" id="311">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="67">
+                        <rect key="frame" x="272" y="412" width="122" height="19"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0" drawsBackground="YES" id="312">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="68">
+                        <rect key="frame" x="225" y="390" width="42" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Tag:" id="313">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <box fixedFrame="YES" title="Primary Active" translatesAutoresizingMaskIntoConstraints="NO" id="79">
+                        <rect key="frame" x="195" y="222" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="lgn-TD-0Ga">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="80" id="331">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="78">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="80"/>
+                                                <menuItem title="Linear" id="84"/>
+                                                <menuItem title="Smooth" id="83"/>
+                                                <menuItem title="Flicker" id="69"/>
+                                                <menuItem title="123456789 0 11 12 13 14 15" id="218"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="354">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="71">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="75">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="70" id="297"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="332">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="355">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="76">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="279">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="74" id="94"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="72">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="280">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="85" id="93"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="106" id="298"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="333">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="76" id="90"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="334">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="72" id="89"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <box fixedFrame="YES" title="Secondary Active" translatesAutoresizingMaskIntoConstraints="NO" id="106">
+                        <rect key="frame" x="370" y="222" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="LU5-Mr-WEm">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="102" id="335">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="105">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="102"/>
+                                                <menuItem title="Linear" id="98"/>
+                                                <menuItem title="Smooth" id="108"/>
+                                                <menuItem title="Flicker" id="95"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="104">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="356">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="100">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="99">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="101" id="300"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="336">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="101">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="357">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="103">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="281">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="109" id="114"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="110">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="282">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="111" id="115"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="162" id="301"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="109">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="337">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="103" id="113"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="111">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="338">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="110" id="112"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                        <connections>
+                            <outlet property="nextKeyView" destination="104" id="299"/>
+                        </connections>
+                    </box>
+                    <box fixedFrame="YES" title="Secondary Inactive" translatesAutoresizingMaskIntoConstraints="NO" id="121">
+                        <rect key="frame" x="370" y="56" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="Jcp-Xb-n7T">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="128">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="120" id="339">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="132">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="120"/>
+                                                <menuItem title="Linear" id="117"/>
+                                                <menuItem title="Smooth" id="127"/>
+                                                <menuItem title="Flicker" id="116"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="131">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="358">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="129">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="130">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="126" id="306"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="118">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="340">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="126">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="359">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="125">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="291">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="122" id="136"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="119">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="285">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="123" id="135"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="11" id="307"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="122">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="341">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="125" id="134"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="123">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="342">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="119" id="133"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <box fixedFrame="YES" title="Primary Inactive" translatesAutoresizingMaskIntoConstraints="NO" id="147">
+                        <rect key="frame" x="195" y="56" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="olW-Zc-xBG">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="153">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="139" id="343">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="146">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="139"/>
+                                                <menuItem title="Linear" id="140"/>
+                                                <menuItem title="Smooth" id="143"/>
+                                                <menuItem title="Flicker" id="144"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="145">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="360">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="137">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="148">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="142" id="304"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="141">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="344">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="142">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="361">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="151">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="283">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="138" id="155"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="149">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="284">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="152" id="157"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="131" id="305"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="345">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="151" id="156"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="152">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="346">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="149" id="154"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <box fixedFrame="YES" title="Becoming Inactive" translatesAutoresizingMaskIntoConstraints="NO" id="173">
+                        <rect key="frame" x="20" y="56" width="170" height="159"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <view key="contentView" id="abS-tk-d0T">
+                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="174">
+                                    <rect key="frame" x="57" y="108" width="109" height="22"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <popUpButtonCell key="cell" type="push" title="Constant" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="158" id="347">
+                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <menu key="menu" title="OtherViews" id="166">
+                                            <items>
+                                                <menuItem title="Constant" state="on" id="158"/>
+                                                <menuItem title="Linear" id="171"/>
+                                                <menuItem title="Smooth" id="165"/>
+                                                <menuItem title="Flicker" id="161"/>
+                                            </items>
+                                        </menu>
+                                    </popUpButtonCell>
+                                </popUpButton>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="162">
+                                    <rect key="frame" x="2" y="54" width="112" height="46"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="19"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="362">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="160">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="167">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="168" id="302"/>
+                                    </connections>
+                                </form>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="172">
+                                    <rect key="frame" x="-49" y="114" width="104" height="14"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Function:" id="348">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <form verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="168">
+                                    <rect key="frame" x="2" y="4" width="112" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="cellSize" width="112" height="17"/>
+                                    <size key="intercellSpacing" width="1" height="8"/>
+                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="363">
+                                        <font key="font" metaFont="message" size="11"/>
+                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    </formCell>
+                                    <cells>
+                                        <column>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="164">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="288">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="170" id="178"/>
+                                                </connections>
+                                            </formCell>
+                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="159">
+                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="287">
+                                                    <attributedString key="attributedStringForNil"/>
+                                                    <attributedString key="attributedStringForNotANumber">
+                                                        <fragment content="NaN"/>
+                                                    </attributedString>
+                                                    <attributedString key="attributedStringForZero">
+                                                        <fragment content="0%"/>
+                                                    </attributedString>
+                                                    <decimal key="minimum" value="0"/>
+                                                    <decimal key="maximum" value="100"/>
+                                                </numberFormatter>
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <connections>
+                                                    <action selector="takeIntValueFrom:" target="169" id="175"/>
+                                                </connections>
+                                            </formCell>
+                                        </column>
+                                    </cells>
+                                    <connections>
+                                        <outlet property="nextKeyView" destination="145" id="303"/>
+                                    </connections>
+                                </form>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="170">
+                                    <rect key="frame" x="121" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="349">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="164" id="176"/>
+                                    </connections>
+                                </slider>
+                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="169">
+                                    <rect key="frame" x="135" y="4" width="19" height="97"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="350">
+                                        <font key="font" metaFont="user"/>
+                                    </sliderCell>
+                                    <connections>
+                                        <action selector="takeIntValueFrom:" target="159" id="177"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </view>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="179">
+                        <rect key="frame" x="314" y="9" width="86" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="314">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="saveBtnAction:" target="-2" id="259"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="180">
+                        <rect key="frame" x="222" y="9" width="92" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Revert" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="315">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="revertBtnAction:" target="-2" id="260"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="214">
+                        <rect key="frame" x="400" y="9" width="137" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Save and Close" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="316">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="saveAndCloseBtnAction:" target="-2" id="258"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="215">
+                        <rect key="frame" x="6" y="438" width="537" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Light#(Insert Number) - Name: (Insert Name) - Map:(Insert Map Name)" id="317">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" red="0.083484061062335968" green="0.082436621189117432" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="216">
+                        <rect key="frame" x="14" y="9" width="126" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Rename Light" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="318">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="renameObjectAction:" target="-2" id="266"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="217">
+                        <rect key="frame" x="21" y="39" width="526" height="14"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Name: (Insert Name Of Light Here)" id="319">
+                            <font key="font" metaFont="message" size="11"/>
+                            <color key="textColor" red="0.0" green="0.34375" blue="0.029194749891757965" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="243">
+                        <rect key="frame" x="269" y="384" width="128" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="246" id="320">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="message" size="11"/>
+                            <menu key="menu" title="OtherViews" id="244">
+                                <items>
+                                    <menuItem title="Item1" state="on" id="246"/>
+                                    <menuItem title="Item2" id="242"/>
+                                    <menuItem title="Item3" id="245"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="252">
+                        <rect key="frame" x="67" y="383" width="159" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <popUpButtonCell key="cell" type="push" title="Lights Avaliable:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" enabled="NO" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="248" id="321">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="message" size="11"/>
+                            <menu key="menu" title="OtherViews" id="249">
+                                <items>
+                                    <menuItem title="Lights Avaliable:" hidden="YES" id="248"/>
+                                    <menuItem title="Item2" id="251"/>
+                                    <menuItem title="Item3" id="250"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="copyFromMenuAction:" target="-2" id="263"/>
+                        </connections>
+                    </popUpButton>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
+                        <rect key="frame" x="67" y="410" width="159" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <popUpButtonCell key="cell" type="push" title="Link With:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="254" id="322">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="message" size="11"/>
+                            <menu key="menu" title="OtherViews" id="253">
+                                <items>
+                                    <menuItem title="Link With:" state="on" id="254"/>
+                                    <menuItem title="Item2" id="255"/>
+                                    <menuItem title="Item3" id="256"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="templateAction:" target="-2" id="262"/>
+                        </connections>
+                    </popUpButton>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="292"/>
+                <outlet property="initialFirstResponder" destination="11" id="293"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="147"/>
+        </window>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="270" userLabel="RenameSheet">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="155" y="283" width="367" height="127"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="271">
+                <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="267">
+                        <rect key="frame" x="17" y="90" width="333" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For This Object:" id="323">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="268">
+                        <rect key="frame" x="20" y="60" width="327" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="324">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="269">
+                        <rect key="frame" x="272" y="12" width="81" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="325">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="renameSheetApplyAction:" target="-2" id="273"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="272">
+                        <rect key="frame" x="187" y="12" width="85" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="326">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="renameSheetCancelAction:" target="-2" id="274"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="139" y="536"/>
+        </window>
+    </objects>
+</document>

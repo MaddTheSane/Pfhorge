@@ -121,15 +121,16 @@ OSErr createResourceFork( NSURL * aURL );
 - (void)dealloc
 {
 	CloseResFile( fileReference );
+	[super dealloc];
 }
 
-- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(short)anID name:(NSString *)aName
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName
 {
 	Handle		theResHandle;
 	
 	if( [self removeType:aType Id:anID] )
 	{
-		short			thePreviousRefNum;
+		FSIORefNum		thePreviousRefNum;
 
 		thePreviousRefNum = CurResFile();	// save current resource
 		UseResFile( fileReference );    			// set this resource to be current
@@ -138,8 +139,7 @@ OSErr createResourceFork( NSURL * aURL );
 		if ( noErr == PtrToHand ( [aData bytes], &theResHandle, [aData length] ) )
 		{
 			Str255			thePName;
-			
-			CopyCStringToPascal ( [aName lossyCString], thePName );
+			CFStringGetPascalString(aName, thePName, 255, kCFStringEncodingMacRoman);
 			
 			HLock( theResHandle );
 			AddResource( theResHandle, aType, anID, thePName );
@@ -158,11 +158,11 @@ OSErr createResourceFork( NSURL * aURL );
 /*
  * dataForType:Id:
  */
-- (NSData *)dataForType:(ResType)aType Id:(short)anID
+- (NSData *)dataForType:(ResType)aType Id:(ResID)anID
 {
 	NSData		* theData = nil;
 	Handle		theResHandle;
-	short			thePreviousRefNum;
+	FSIORefNum	thePreviousRefNum;
 
 	thePreviousRefNum = CurResFile();	// save current resource
 	

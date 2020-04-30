@@ -36,6 +36,8 @@
     [pluginClasses release];
     [pluginInstances release];
     [pluginInstanceNames release];
+	
+	[super dealloc];
 }
 
 // ************************* Accsessor Methods *************************
@@ -116,9 +118,9 @@
 
 - (void)activatePlugin:(NSString*)path {
 	NSBundle* pluginBundle = [NSBundle bundleWithPath:path];
-        
-        NSLog(@"   Activating Plugin: %@", path);
-        
+	
+	NSLog(@"   Activating Plugin: %@", path);
+	
 	if (pluginBundle) {
 		NSDictionary* pluginDict = [pluginBundle infoDictionary];
 		NSString* pluginName = [pluginDict objectForKey:@"NSPrincipalClass"];
@@ -127,10 +129,10 @@
 			if (!pluginClass) {
 				pluginClass = [pluginBundle principalClass];
 				if ([pluginClass conformsToProtocol:@protocol(PhLevelPluginProtocol)] &&
-                                    [pluginClass isKindOfClass:[NSObject class]] &&
-                                    [pluginClass initializeClass:pluginBundle])
-                                {
-                                        NSLog(@"      ... Activated!");
+					[pluginClass isKindOfClass:[NSObject class]] &&
+					[pluginClass initializeClass:pluginBundle])
+				{
+					NSLog(@"      ... Activated!");
 					[pluginClasses addObject:pluginClass];
 				}
 			}
@@ -171,10 +173,10 @@
 		//[tab setLabel:[plugin theViewName]];
 		//[theTabView addTabViewItem:tab];
 		[pluginInstances addObject:plugin];
-                //[plugin showWindow:nil];
-                //NSLog(@"ShowWindow called for plugin...");
-                
-                [pluginInstanceNames addObject:[plugin name]];
+		//[plugin showWindow:nil];
+		//NSLog(@"ShowWindow called for plugin...");
+		
+		[pluginInstanceNames addObject:[plugin name]];
 	}
 }
 
@@ -184,12 +186,12 @@
 #pragma mark -
 #pragma mark ¥¥¥¥¥¥¥¥¥¥ Class Methods ¥¥¥¥¥¥¥¥¥¥
 + (PhPluginManager *)sharedPhPluginManager {
-    static PhPluginManager *sharedPuginManagerController = nil;
-    
-    if (!sharedPuginManagerController) {
-            sharedPuginManagerController = [[PhPluginManager alloc] init];
-    }
-    
-    return sharedPuginManagerController;
+	static PhPluginManager *sharedPuginManagerController = nil;
+	
+	if (!sharedPuginManagerController) {
+		sharedPuginManagerController = [[PhPluginManager alloc] init];
+	}
+	
+	return sharedPuginManagerController;
 }
 @end

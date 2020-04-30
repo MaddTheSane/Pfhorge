@@ -11,19 +11,21 @@
 #import "NDResourceFork.h"
 #import "NSAppleEventDescriptor+NDAppleScriptObject.h"
 
-const	short		kScriptResourceID = 128;
+const short		kScriptResourceID = 128;
 const OSType	kFinderCreatorCode = 'MACS';
 
 static OSASendUPP				defaultSendProc = NULL;
-static long						defaultSendProcRefCon = 0;
-static OSAActiveProcPtr		defaultActiveProcPtr = NULL;
-static long						defaultActiveProcRefCon = 0;
+static SRefCon					defaultSendProcRefCon = 0;
+static OSAActiveProcPtr			defaultActiveProcPtr = NULL;
+static SRefCon					defaultActiveProcRefCon = 0;
 
+static OSErr AppleScriptActiveProc( SRefCon aRefCon );
+static OSErr AppleEventSendProc( const AppleEvent *theAppleEvent, AppleEvent *reply, AESendMode sendMode, AESendPriority sendPriority, SInt32 timeOutInTicks, AEIdleUPP idleProc, AEFilterUPP filterProc, SRefCon refCon );
 
-@interface NDAppleScriptObject (private)
+@interface NDAppleScriptObject ()
 + (ComponentInstance)OSAComponent;
 + (id)objectForAEDesc:(const AEDesc *)aDesc;
-- (OSAID)compileString:(NSString *)aString modeFlags:(long)aModeFlags;
+- (OSAID)compileString:(NSString *)aString modeFlags:(SInt32)aModeFlags;
 - (ComponentInstance)OSAComponent;
 - (OSAID)loadData:(NSData *)aData;
 
@@ -609,7 +611,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * sendAppleEvent:sendMode:sendPriority:timeOutInTicks:idleProc:filterProc:
  */
-- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(long)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
+- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
 {
 	AppleEvent						theAppleEvent;
 	NSAppleEventDescriptor		* theReplyAppleEventDesc = nil;
@@ -710,9 +712,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	return [self writeToURL:[NSURL fileURLWithPath:aPath] Id:anID];
 }
 
-@end
-
-@implementation NDAppleScriptObject (private)
 
 /*
  * OSAComponent
@@ -753,17 +752,17 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	switch(aDesc->descriptorType)
 	{
 		case typeBoolean:						//	1-byte Boolean value
-		case typeShortInteger:				//	16-bit integer
+		case typeSInt16:				//	16-bit integer
 //		case typeSMInt:							//	16-bit integer
-		case typeLongInteger:				//	32-bit integer
+		case typeSInt32:				//	32-bit integer
 //		case typeInteger:							//	32-bit integer
-		case typeShortFloat:					//	SANE single
+		case typeIEEE32BitFloatingPoint:					//	SANE single
 //		case typeSMFloat:							//	SANE single
-		case typeFloat:						//	SANE double
+		case typeIEEE64BitFloatingPoint:						//	SANE double
 //		case typeLongFloat:						//	SANE double
 //		case typeExtended:						//	SANE extended
 //		case typeComp:							//	SANE comp
-		case typeMagnitude:					//	unsigned 32-bit integer
+		case typeUInt32:					//	unsigned 32-bit integer
 		case typeTrue:							//	TRUE Boolean value
 		case typeFalse:						//	FALSE Boolean value
 			theResult = [NSNumber numberWithAEDesc:aDesc];
@@ -803,12 +802,12 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - compileString:
  */
-- (OSAID)compileString:(NSString *)aString modeFlags:(long)aModeFlags
+- (OSAID)compileString:(NSString *)aString modeFlags:(SInt32)aModeFlags
 {
 	OSAID				theCompiledScript = kOSANullScript;
 	AEDesc			theScriptDesc = { typeNull, NULL };
 
-	if ( AECreateDesc( typeChar, [aString cString], [aString cStringLength], &theScriptDesc) == noErr )
+	if ( AECreateDesc( typeChar, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) == noErr )
 	{				
 		OSACompile([self OSAComponent], &theScriptDesc, aModeFlags, &theCompiledScript);
 		AEDisposeDesc( &theScriptDesc );
@@ -868,8 +867,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (void)setSendProc
 {
-	OSErr		AppleEventSendProc( const AppleEvent *theAppleEvent, AppleEvent *reply, AESendMode sendMode, AESendPriority sendPriority, long timeOutInTicks, AEIdleUPP idleProc, AEFilterUPP filterProc, long refCon );
-
 	NSAssert( sizeof(long) == sizeof(id), @"This method works by assuming type long is the same size as type id" );
 
 	if( defaultSendProc == NULL )
@@ -881,7 +878,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		}
 	}
 
-	if( OSASetSendProc( [self OSAComponent], AppleEventSendProc, (long)self ) != noErr )
+	if( OSASetSendProc( [self OSAComponent], AppleEventSendProc, (SRefCon)self ) != noErr )
 	{
 		NSLog(@"Could not set AppleScript send procedure");
 	}
@@ -889,7 +886,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	/*
 	 * function AppleEventSendProc
 	 */
-	OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AESendMode aSendMode, AESendPriority aSendPriority, long aTimeOutInTicks, AEIdleUPP anIdleProc, AEFilterUPP aFilterProc, long aRefCon )
+	OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AESendMode aSendMode, AESendPriority aSendPriority, SInt32 aTimeOutInTicks, AEIdleUPP anIdleProc, AEFilterUPP aFilterProc, SRefCon aRefCon )
 	{
 		NSAppleEventDescriptor		* theAppleEventDescriptor = nil,
 											* theAppleEventDescReply;
@@ -930,7 +927,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (void)setActiveProc
 {
-	OSErr		AppleScriptActiveProc( long aRefCon );
 	
 	if( activeTarget != nil )
 	{
@@ -945,7 +941,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		
 		NSAssert( sizeof(long) == sizeof(id), @"This method works by assuming type long is the same size as type id" );
 
-		if( OSASetActiveProc( [self OSAComponent], AppleScriptActiveProc , (long)activeTarget ) != noErr )
+		if( OSASetActiveProc( [self OSAComponent], AppleScriptActiveProc , (SRefCon)activeTarget ) != noErr )
 			NSLog(@"Could not set AppleScript activation procedure.");
 	}
 	else
@@ -957,7 +953,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	/*
 	* function AppleScriptActiveProc
 	*/
-	OSErr AppleScriptActiveProc( long aRefCon )
+	OSErr AppleScriptActiveProc( SRefCon aRefCon )
 	{
 		return [(id)aRefCon appleScriptActive] ? noErr : errOSASystemError;
 	}
@@ -987,7 +983,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)arrayWithAEDesc:(const AEDesc *)aDesc
 {
-	SInt32				theNumOfItems,
+	long				theNumOfItems,
 							theIndex;
 	id						theInstance = nil;
 	
@@ -1024,7 +1020,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 
 	if( AEGetNthDesc ( aDesc, 1, typeWildCard, &theAEKeyword, &theListDesc ) == noErr )
 	{
-		SInt32				theNumOfItems,
+		long				theNumOfItems,
 								theIndex;
 		AECountItems( &theListDesc, &theNumOfItems );
 		theInstance = [NSMutableDictionary dictionaryWithCapacity:theNumOfItems];
@@ -1092,7 +1088,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theInstance = [NSNumber numberWithBool:theBoolean];
 			break;
 		}
-		case typeShortInteger:				//	16-bit integer
+		case typeSInt16:				//	16-bit integer
 //		case typeSMInt:							//	16-bit integer
 		{
 			short int		theInteger;
@@ -1100,7 +1096,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theInstance = [NSNumber numberWithShort: theInteger];
 			break;
 		}
-		case typeLongInteger:				//	32-bit integer
+		case typeSInt32:				//	32-bit integer
 //		case typeInteger:							//	32-bit integer
 		{
 			int		theInteger;
@@ -1108,7 +1104,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theInstance = [NSNumber numberWithInt: theInteger];
 			break;
 		}
-		case typeShortFloat:						//	SANE single
+		case typeIEEE32BitFloatingPoint:						//	SANE single
 //		case typeSMFloat:						//	SANE single
 		{
 			float		theFloat;
@@ -1116,7 +1112,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theInstance = [NSNumber numberWithFloat: theFloat];
 			break;
 		}
-		case typeFloat:						//	SANE double
+		case typeIEEE64BitFloatingPoint:						//	SANE double
 //		case typeLongFloat:						//	SANE double
 		{
 			double theFloat;
@@ -1128,7 +1124,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 //			break;
 //		case typeComp:							//	SANE comp
 //			break;
-		case typeMagnitude:					//	unsigned 32-bit integer
+		case typeUInt32:					//	unsigned 32-bit integer
 		{
 			unsigned int		theInteger;
 			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned int)) == noErr )

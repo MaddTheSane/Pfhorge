@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int LoadShapes(FILE *f, int depth);
 int LoadCollection(int coll, FILE *f);
 void UnloadCollection(int coll);

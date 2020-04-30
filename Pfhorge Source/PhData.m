@@ -40,7 +40,7 @@
 
 - (BOOL)skipLengthLong
 {
-    long theLength = [self getLong];
+    long theLength = [self getInt];
     
     [self addP:theLength];
     
@@ -87,15 +87,20 @@
 {
     long value;
     [self checkP];
-    [theData getBytes:&value range:NSMakeRange(position, 4)];
-	value = CFSwapInt32BigToHost(value);
-    position += 4;
+    [theData getBytes:&value range:NSMakeRange(position, 8)];
+	value = CFSwapInt64BigToHost(value);
+    position += 8;
     return value;
 }
 
 - (int)getInt
 {
-    return [self getLong];
+    int value;
+    [self checkP];
+    [theData getBytes:&value range:NSMakeRange(position, 4)];
+	value = CFSwapInt32BigToHost(value);
+    position += 4;
+    return value;
 }
 
 - (unsigned short)getUnsignedShort
@@ -112,15 +117,20 @@
 {
     unsigned long value;
     [self checkP];
-    [theData getBytes:&value range:NSMakeRange(position, 4)];
-	value = CFSwapInt32HostToBig(value);
-    position += 4;
+    [theData getBytes:&value range:NSMakeRange(position, 8)];
+	value = CFSwapInt64HostToBig(value);
+    position += 8;
     return value;
 }
 
 - (unsigned int)getUnsignedInt
 {
-    return [self getUnsignedLong];
+    unsigned int value;
+    [self checkP];
+    [theData getBytes:&value range:NSMakeRange(position, 4)];
+	value = CFSwapInt32HostToBig(value);
+    position += 4;
+    return value;
 }
 
 - (long)length { return [theData length]; };
@@ -131,7 +141,7 @@
 {
     if (position >= ((long)[theData length]))
     {
-        NSLog(@"WARNING: Position: %d   Excedded Length: %d", position, [theData length]);
+		NSLog(@"WARNING: Position: %d   Excedded Length: %lu", position, (unsigned long)[theData length]);
         position = 0;
         return NO;
     }
@@ -141,7 +151,7 @@
 
 - (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr
 {
-    long indexNum = [self getLong];
+    int indexNum = [self getInt];
     
     if (indexNum == -1)
         return nil;
@@ -156,7 +166,7 @@
 
 - (id)getObjectFromIndexUsingLast:(NSArray *)theIndex
 {
-    long indexNum = [self getLong];
+    int indexNum = [self getInt];
     
     if (indexNum == -1)
         return nil;
@@ -186,12 +196,12 @@
         theChar[i] = [self getByte];
         
         // Just in case, although it should not be nessary...
-        if (theChar[i] == NULL)
+        if (theChar[i] == 0)
             break;
     }
     
     theCharConstPntr = theChar;
-    theTmpCharString = [NSString stringWithCString:theCharConstPntr]; //length:theCharAmount];
+    theTmpCharString = @(theCharConstPntr); //length:theCharAmount];
     
     return theTmpCharString;
 }

@@ -16,21 +16,21 @@
 
 @interface PhPluginManager (ForPlugins)
 
-    // Use this to get the plugin manager...
-    + (PhPluginManager *)getThePluginManager;
-    
-    // Currently Loaded Plugin Types...
-    - (NSArray *)pluginClasses;
-    
-    // Currently Instated Plugins...
-    - (NSArray *)pluginInstances;
-    
-    // Lists the LEMap documents open,
-    //    in order of front to back...
-    - (NSArray *)levelDocumentsOpen;
-    
-    // Gives the front most LEMap level document...
-    -(LEMap *)currentDocument;
+// Use this to get the plugin manager...
++ (PhPluginManager *)getThePluginManager;
+
+// Currently Loaded Plugin Types...
+- (NSArray *)pluginClasses;
+
+// Currently Instated Plugins...
+- (NSArray *)pluginInstances;
+
+// Lists the LEMap documents open,
+//    in order of front to back...
+- (NSArray *)levelDocumentsOpen;
+
+// Gives the front most LEMap level document...
+-(LEMap *)currentDocument;
 
 @end
 

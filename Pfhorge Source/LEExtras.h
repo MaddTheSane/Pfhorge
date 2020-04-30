@@ -48,7 +48,9 @@ extern unsigned eightBytesCount;*/
 #define ImportObj(objp) objp = [myData getObjectFromIndex:index objTypesArr:objTypesArr]
 #define ImportShort(v) v = [myData getShort]
 #define ImportLong(v) v = [myData getLong]
+#define ImportInt(v) v = [myData getInt]
 #define ImportUnsignedShort(v) v = [myData getUnsignedShort]
+#define ImportUnsignedInt(v) v = [myData getUnsignedInt]
 #define ImportUnsignedLong(v) v = [myData getUnsignedLong]
 
 #define SkipObj() [myData skipObj]
