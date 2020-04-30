@@ -27,7 +27,7 @@
 #import <AppKit/AppKit.h>
 
 
-@interface PhDefaultLayerController : NSWindowController
+@interface PhDefaultLayerController : NSWindowController <NSTableViewDataSource>
 {
     IBOutlet id tableView;
     

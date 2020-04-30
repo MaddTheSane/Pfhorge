@@ -1350,12 +1350,12 @@ BOOL setupPointerArraysDurringLoading = YES;
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length
 {
     const char *theStringAsCString = [v UTF8String];
-    int theStringLength = strlen(theStringAsCString);
+    size_t theStringLength = strlen(theStringAsCString);
     char nullChar = '\0';
     
     if (length < 0)
     {
-        NSLog(@"••• ERROR: Tried to saved a string of negitive length in LEMapData->saveStringAsChar:");
+        NSLog(@"••• ERROR: Tried to saved a string of negative length in LEMapData->saveStringAsChar:");
         return;
     }
     
@@ -1364,7 +1364,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     else
     {
         [mapDataToSave appendBytes:theStringAsCString length:theStringLength];
-        [self saveEmptyBytes:((length - theStringLength) - 1)];
+        [self saveEmptyBytes:(int)((length - theStringLength) - 1)];
     }
     
     [mapDataToSave appendBytes:&nullChar length:1];

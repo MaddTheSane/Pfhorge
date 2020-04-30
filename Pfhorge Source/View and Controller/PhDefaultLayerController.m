@@ -103,7 +103,7 @@
 
 -(IBAction)insertRecord:(id)sender
 {
-    int index = [tableView selectedRow];
+    NSInteger index = [tableView selectedRow];
     if (index >= 0)
     {
         [records insertObject:[self createRecord] atIndex:index];
@@ -247,7 +247,7 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-    int theSelectedRow = [tableView selectedRow];
+    NSInteger theSelectedRow = [tableView selectedRow];
     id theRecord;
     
     if (theSelectedRow < 0)
@@ -273,14 +273,14 @@
 
 // *** Data Source Messages ***
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     return [records count];
 }
 
 -(id)tableView:(NSTableView *)aTableView
     objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(int)rowIndex 
+    row:(NSInteger)rowIndex
 {
     id theRecord, theValue;
     

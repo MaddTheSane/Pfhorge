@@ -55,7 +55,7 @@
  */
 + (NSAppleEventDescriptor *)appleEventDescriptorWithURL:(NSURL *)aURL
 {
-    NSData *urlDat = CFBridgingRelease(CFURLCreateData(kCFAllocatorDefault, (CFURLRef)aURL, kCFStringEncodingUTF8, true));
+	NSData *urlDat = CFBridgingRelease(CFURLCreateData(kCFAllocatorDefault, (CFURLRef)aURL, kCFStringEncodingUTF8, true));
 	return [self descriptorWithDescriptorType:typeFileURL data:urlDat];
 }
 
@@ -66,7 +66,7 @@
 {
 	NSAppleEventDescriptor		* theAppleEventDescriptor = nil;
 
-    NSData *bookData = [aURL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+	NSData *bookData = [aURL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
 	if( bookData )
 	{
 		theAppleEventDescriptor = [self descriptorWithDescriptorType:typeBookmarkData data:bookData];
