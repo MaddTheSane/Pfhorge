@@ -15,11 +15,6 @@
 	return [(NSURL *)CFURLCreateFromFSRef( kCFAllocatorDefault, aFsRef ) autorelease];
 }
 
-- (NSURL *)URLByDeletingLastPathComponent
-{
-	return [(NSURL *)CFURLCreateCopyDeletingLastPathComponent( kCFAllocatorDefault, (CFURLRef)self) autorelease];
-}
-
 - (BOOL)getFSRef:(FSRef *)aFsRef
 {
 	return CFURLGetFSRef( (CFURLRef)self, aFsRef );

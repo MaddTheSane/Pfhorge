@@ -121,26 +121,26 @@
 		AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */; };
 		AE3C150B0A04512100FBFFCD /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902CB5069F718C00B4AB92 /* Camera.h */; };
 		AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		AE3C150E0A04512100FBFFCD /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
+		AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
 		AE3C150F0A04512100FBFFCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		AE3C15100A04512100FBFFCD /* MyLevel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 011A1BE700D3C42E7F000001 /* MyLevel.nib */; };
-		AE3C15110A04512100FBFFCD /* ToolPallette.nib in Resources */ = {isa = PBXBuildFile; fileRef = 00FBF3A000EABCCA7F000001 /* ToolPallette.nib */; };
-		AE3C15120A04512100FBFFCD /* Inspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE647F012FA35E7F000001 /* Inspector.nib */; };
-		AE3C15130A04512100FBFFCD /* ColorList.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6482012FA3667F000001 /* ColorList.nib */; };
-		AE3C15140A04512100FBFFCD /* Prefs.nib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6485012FA3757F000001 /* Prefs.nib */; };
-		AE3C15170A04512100FBFFCD /* AmbientSoundEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */; };
-		AE3C15180A04512100FBFFCD /* Errors, Inc..nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */; };
-		AE3C15190A04512100FBFFCD /* LightEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */; };
-		AE3C151A0A04512100FBFFCD /* LiquidInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5101CBF8C701A8A806 /* LiquidInterface.nib */; };
-		AE3C151B0A04512100FBFFCD /* PlatformEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5301CBF8C701A8A806 /* PlatformEditor.nib */; };
-		AE3C151C0A04512100FBFFCD /* RandomSoundInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.nib */; };
-		AE3C151D0A04512100FBFFCD /* StatusWin.nib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5701CBF8C701A8A806 /* StatusWin.nib */; };
-		AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */; };
-		AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */; };
-		AE3C15240A04512100FBFFCD /* Startup.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.nib */; };
+		AE3C15100A04512100FBFFCD /* MyLevel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011A1BE700D3C42E7F000001 /* MyLevel.xib */; };
+		AE3C15110A04512100FBFFCD /* ToolPallette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FBF3A000EABCCA7F000001 /* ToolPallette.xib */; };
+		AE3C15120A04512100FBFFCD /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE647F012FA35E7F000001 /* Inspector.xib */; };
+		AE3C15130A04512100FBFFCD /* ColorList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6482012FA3667F000001 /* ColorList.xib */; };
+		AE3C15140A04512100FBFFCD /* Prefs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE6485012FA3757F000001 /* Prefs.xib */; };
+		AE3C15170A04512100FBFFCD /* AmbientSoundEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.xib */; };
+		AE3C15180A04512100FBFFCD /* Errors, Inc..xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4D01CBF8C701A8A806 /* Errors, Inc..xib */; };
+		AE3C15190A04512100FBFFCD /* LightEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C4F01CBF8C701A8A806 /* LightEditor.xib */; };
+		AE3C151A0A04512100FBFFCD /* LiquidInterface.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5101CBF8C701A8A806 /* LiquidInterface.xib */; };
+		AE3C151B0A04512100FBFFCD /* PlatformEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5301CBF8C701A8A806 /* PlatformEditor.xib */; };
+		AE3C151C0A04512100FBFFCD /* RandomSoundInterface.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.xib */; };
+		AE3C151D0A04512100FBFFCD /* StatusWin.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D4C5701CBF8C701A8A806 /* StatusWin.xib */; };
+		AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */; };
+		AE3C15230A04512100FBFFCD /* OpenGLVisualMode.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */; };
+		AE3C15240A04512100FBFFCD /* Startup.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.xib */; };
 		AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.nib */; };
-		AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.nib */; };
-		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */; };
+		AE3C15450A04512100FBFFCD /* MapManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.xib */; };
+		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */; };
 		AE3C15480A04512100FBFFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		AE3C15490A04512100FBFFCD /* LEMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FE5A0F00DC52C37F000001 /* LEMapPoint.m */; };
 		AE3C154A0A04512100FBFFCD /* LELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0121ECA800DDCD937F000001 /* LELine.m */; };
@@ -317,27 +317,27 @@
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/AmbientSoundEditor.nib; sourceTree = "<group>"; };
-		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ColorList.nib; sourceTree = "<group>"; };
+		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AmbientSoundEditor.xib; sourceTree = "<group>"; };
+		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorList.xib; sourceTree = "<group>"; };
 		557A9B2B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		557A9B2C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/DefaultLayerEditor.nib; sourceTree = "<group>"; };
-		557A9B2D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = "en.lproj/Errors, Inc..nib"; sourceTree = "<group>"; };
+		557A9B2C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DefaultLayerEditor.xib; sourceTree = "<group>"; };
+		557A9B2D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/Errors, Inc..xib"; sourceTree = "<group>"; };
 		557A9B2E245A519200527063 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		557A9B2F245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Inspector.nib; sourceTree = "<group>"; };
-		557A9B30245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ItemPlacementEditor.nib; sourceTree = "<group>"; };
-		557A9B31245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/LightEditor.nib; sourceTree = "<group>"; };
-		557A9B32245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/LiquidInterface.nib; sourceTree = "<group>"; };
-		557A9B33245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		557A9B34245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MapManager.nib; sourceTree = "<group>"; };
-		557A9B35245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MyLevel.nib; sourceTree = "<group>"; };
-		557A9B36245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/OpenGLVisualMode.nib; sourceTree = "<group>"; };
-		557A9B37245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/PlatformEditor.nib; sourceTree = "<group>"; };
-		557A9B38245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Prefs.nib; sourceTree = "<group>"; };
-		557A9B39245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/RandomSoundInterface.nib; sourceTree = "<group>"; };
-		557A9B3A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Startup.nib; sourceTree = "<group>"; };
-		557A9B3B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/StatusWin.nib; sourceTree = "<group>"; };
+		557A9B2F245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Inspector.xib; sourceTree = "<group>"; };
+		557A9B30245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ItemPlacementEditor.xib; sourceTree = "<group>"; };
+		557A9B31245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LightEditor.xib; sourceTree = "<group>"; };
+		557A9B32245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LiquidInterface.xib; sourceTree = "<group>"; };
+		557A9B33245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		557A9B34245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapManager.xib; sourceTree = "<group>"; };
+		557A9B35245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyLevel.xib; sourceTree = "<group>"; };
+		557A9B36245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpenGLVisualMode.xib; sourceTree = "<group>"; };
+		557A9B37245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PlatformEditor.xib; sourceTree = "<group>"; };
+		557A9B38245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Prefs.xib; sourceTree = "<group>"; };
+		557A9B39245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RandomSoundInterface.xib; sourceTree = "<group>"; };
+		557A9B3A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Startup.xib; sourceTree = "<group>"; };
+		557A9B3B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatusWin.xib; sourceTree = "<group>"; };
 		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
-		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ToolPallette.nib; sourceTree = "<group>"; };
+		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ToolPallette.xib; sourceTree = "<group>"; };
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557A9B40245A922A00527063 /* Exsample Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Exsample Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
@@ -721,26 +721,26 @@
 				F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */,
 				F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
-				A5EE9AB9040439DC0046BBD2 /* Startup.nib */,
+				2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */,
+				A5EE9AB9040439DC0046BBD2 /* Startup.xib */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
-				03FE647F012FA35E7F000001 /* Inspector.nib */,
-				011A1BE700D3C42E7F000001 /* MyLevel.nib */,
-				00FBF3A000EABCCA7F000001 /* ToolPallette.nib */,
-				03FE6482012FA3667F000001 /* ColorList.nib */,
-				03FE6485012FA3757F000001 /* Prefs.nib */,
-				F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */,
-				F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */,
-				F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */,
-				F54D4C5101CBF8C701A8A806 /* LiquidInterface.nib */,
-				F54D4C5301CBF8C701A8A806 /* PlatformEditor.nib */,
-				F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.nib */,
-				F54D4C5701CBF8C701A8A806 /* StatusWin.nib */,
-				F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */,
-				F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */,
+				03FE647F012FA35E7F000001 /* Inspector.xib */,
+				011A1BE700D3C42E7F000001 /* MyLevel.xib */,
+				00FBF3A000EABCCA7F000001 /* ToolPallette.xib */,
+				03FE6482012FA3667F000001 /* ColorList.xib */,
+				03FE6485012FA3757F000001 /* Prefs.xib */,
+				F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.xib */,
+				F54D4C4D01CBF8C701A8A806 /* Errors, Inc..xib */,
+				F54D4C4F01CBF8C701A8A806 /* LightEditor.xib */,
+				F54D4C5101CBF8C701A8A806 /* LiquidInterface.xib */,
+				F54D4C5301CBF8C701A8A806 /* PlatformEditor.xib */,
+				F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.xib */,
+				F54D4C5701CBF8C701A8A806 /* StatusWin.xib */,
+				F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */,
+				F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */,
 				F520388902414AD90146BBD2 /* TerminalInterface.nib */,
-				A5EE9AB7040439D60046BBD2 /* MapManager.nib */,
-				F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */,
+				A5EE9AB7040439D60046BBD2 /* MapManager.xib */,
+				F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1137,28 +1137,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */,
-				AE3C150E0A04512100FBFFCD /* MainMenu.nib in Resources */,
+				AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */,
 				AE3C150F0A04512100FBFFCD /* InfoPlist.strings in Resources */,
-				AE3C15100A04512100FBFFCD /* MyLevel.nib in Resources */,
-				AE3C15110A04512100FBFFCD /* ToolPallette.nib in Resources */,
-				AE3C15120A04512100FBFFCD /* Inspector.nib in Resources */,
-				AE3C15130A04512100FBFFCD /* ColorList.nib in Resources */,
-				AE3C15140A04512100FBFFCD /* Prefs.nib in Resources */,
-				AE3C15170A04512100FBFFCD /* AmbientSoundEditor.nib in Resources */,
-				AE3C15180A04512100FBFFCD /* Errors, Inc..nib in Resources */,
+				AE3C15100A04512100FBFFCD /* MyLevel.xib in Resources */,
+				AE3C15110A04512100FBFFCD /* ToolPallette.xib in Resources */,
+				AE3C15120A04512100FBFFCD /* Inspector.xib in Resources */,
+				AE3C15130A04512100FBFFCD /* ColorList.xib in Resources */,
+				AE3C15140A04512100FBFFCD /* Prefs.xib in Resources */,
+				AE3C15170A04512100FBFFCD /* AmbientSoundEditor.xib in Resources */,
+				AE3C15180A04512100FBFFCD /* Errors, Inc..xib in Resources */,
 				557A9B43245A924700527063 /* Pfhorge.sdef in Resources */,
-				AE3C15190A04512100FBFFCD /* LightEditor.nib in Resources */,
-				AE3C151A0A04512100FBFFCD /* LiquidInterface.nib in Resources */,
-				AE3C151B0A04512100FBFFCD /* PlatformEditor.nib in Resources */,
-				AE3C151C0A04512100FBFFCD /* RandomSoundInterface.nib in Resources */,
-				AE3C151D0A04512100FBFFCD /* StatusWin.nib in Resources */,
-				AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.nib in Resources */,
+				AE3C15190A04512100FBFFCD /* LightEditor.xib in Resources */,
+				AE3C151A0A04512100FBFFCD /* LiquidInterface.xib in Resources */,
+				AE3C151B0A04512100FBFFCD /* PlatformEditor.xib in Resources */,
+				AE3C151C0A04512100FBFFCD /* RandomSoundInterface.xib in Resources */,
+				AE3C151D0A04512100FBFFCD /* StatusWin.xib in Resources */,
+				AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.xib in Resources */,
 				557A9B3F245A617B00527063 /* Media.xcassets in Resources */,
-				AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */,
-				AE3C15240A04512100FBFFCD /* Startup.nib in Resources */,
+				AE3C15230A04512100FBFFCD /* OpenGLVisualMode.xib in Resources */,
+				AE3C15240A04512100FBFFCD /* Startup.xib in Resources */,
 				AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */,
-				AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */,
-				AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */,
+				AE3C15450A04512100FBFFCD /* MapManager.xib in Resources */,
+				AE3C15460A04512100FBFFCD /* ItemPlacementEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,44 +1283,44 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		00FBF3A000EABCCA7F000001 /* ToolPallette.nib */ = {
+		00FBF3A000EABCCA7F000001 /* ToolPallette.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B3D245A519200527063 /* en */,
 			);
-			name = ToolPallette.nib;
+			name = ToolPallette.xib;
 			sourceTree = "<group>";
 		};
-		011A1BE700D3C42E7F000001 /* MyLevel.nib */ = {
+		011A1BE700D3C42E7F000001 /* MyLevel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B35245A519200527063 /* en */,
 			);
-			name = MyLevel.nib;
+			name = MyLevel.xib;
 			sourceTree = "<group>";
 		};
-		03FE647F012FA35E7F000001 /* Inspector.nib */ = {
+		03FE647F012FA35E7F000001 /* Inspector.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B2F245A519200527063 /* en */,
 			);
-			name = Inspector.nib;
+			name = Inspector.xib;
 			sourceTree = "<group>";
 		};
-		03FE6482012FA3667F000001 /* ColorList.nib */ = {
+		03FE6482012FA3667F000001 /* ColorList.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B2A245A519200527063 /* en */,
 			);
-			name = ColorList.nib;
+			name = ColorList.xib;
 			sourceTree = "<group>";
 		};
-		03FE6485012FA3757F000001 /* Prefs.nib */ = {
+		03FE6485012FA3757F000001 /* Prefs.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B38245A519200527063 /* en */,
 			);
-			name = Prefs.nib;
+			name = Prefs.xib;
 			sourceTree = "<group>";
 		};
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -1331,12 +1331,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
+		2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B33245A519200527063 /* en */,
 			);
-			name = MainMenu.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
@@ -1347,20 +1347,20 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		A5EE9AB7040439D60046BBD2 /* MapManager.nib */ = {
+		A5EE9AB7040439D60046BBD2 /* MapManager.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B34245A519200527063 /* en */,
 			);
-			name = MapManager.nib;
+			name = MapManager.xib;
 			sourceTree = "<group>";
 		};
-		A5EE9AB9040439DC0046BBD2 /* Startup.nib */ = {
+		A5EE9AB9040439DC0046BBD2 /* Startup.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B3A245A519200527063 /* en */,
 			);
-			name = Startup.nib;
+			name = Startup.xib;
 			sourceTree = "<group>";
 		};
 		F520388902414AD90146BBD2 /* TerminalInterface.nib */ = {
@@ -1371,84 +1371,84 @@
 			name = TerminalInterface.nib;
 			sourceTree = "<group>";
 		};
-		F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */ = {
+		F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B30245A519200527063 /* en */,
 			);
-			name = ItemPlacementEditor.nib;
+			name = ItemPlacementEditor.xib;
 			sourceTree = "<group>";
 		};
-		F52E215F01D049A20146BBD2 /* DefaultLayerEditor.nib */ = {
+		F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B2C245A519200527063 /* en */,
 			);
-			name = DefaultLayerEditor.nib;
+			name = DefaultLayerEditor.xib;
 			sourceTree = "<group>";
 		};
-		F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */ = {
+		F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B36245A519200527063 /* en */,
 			);
-			name = OpenGLVisualMode.nib;
+			name = OpenGLVisualMode.xib;
 			sourceTree = SOURCE_ROOT;
 		};
-		F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.nib */ = {
+		F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B29245A519100527063 /* en */,
 			);
-			name = AmbientSoundEditor.nib;
+			name = AmbientSoundEditor.xib;
 			sourceTree = "<group>";
 		};
-		F54D4C4D01CBF8C701A8A806 /* Errors, Inc..nib */ = {
+		F54D4C4D01CBF8C701A8A806 /* Errors, Inc..xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B2D245A519200527063 /* en */,
 			);
-			name = "Errors, Inc..nib";
+			name = "Errors, Inc..xib";
 			sourceTree = "<group>";
 		};
-		F54D4C4F01CBF8C701A8A806 /* LightEditor.nib */ = {
+		F54D4C4F01CBF8C701A8A806 /* LightEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B31245A519200527063 /* en */,
 			);
-			name = LightEditor.nib;
+			name = LightEditor.xib;
 			sourceTree = "<group>";
 		};
-		F54D4C5101CBF8C701A8A806 /* LiquidInterface.nib */ = {
+		F54D4C5101CBF8C701A8A806 /* LiquidInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B32245A519200527063 /* en */,
 			);
-			name = LiquidInterface.nib;
+			name = LiquidInterface.xib;
 			sourceTree = "<group>";
 		};
-		F54D4C5301CBF8C701A8A806 /* PlatformEditor.nib */ = {
+		F54D4C5301CBF8C701A8A806 /* PlatformEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B37245A519200527063 /* en */,
 			);
-			name = PlatformEditor.nib;
+			name = PlatformEditor.xib;
 			sourceTree = "<group>";
 		};
-		F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.nib */ = {
+		F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B39245A519200527063 /* en */,
 			);
-			name = RandomSoundInterface.nib;
+			name = RandomSoundInterface.xib;
 			sourceTree = "<group>";
 		};
-		F54D4C5701CBF8C701A8A806 /* StatusWin.nib */ = {
+		F54D4C5701CBF8C701A8A806 /* StatusWin.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B3B245A519200527063 /* en */,
 			);
-			name = StatusWin.nib;
+			name = StatusWin.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1541,7 +1541,6 @@
 				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
 				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
 				MARKETING_VERSION = 0.96;
 				OTHER_CFLAGS = (
 					"-Wno-selector",
@@ -1574,7 +1573,6 @@
 				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
 				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.1;
 				MARKETING_VERSION = 0.96;
 				OTHER_CFLAGS = (
 					"-Wno-selector",

@@ -11,7 +11,6 @@
 
 @interface NSURL (NDCarbonUtilities)
 + (NSURL *)URLWithFSRef:(const FSRef *)aFsRef;
-- (NSURL *)URLByDeletingLastPathComponent;
 - (BOOL)getFSRef:(FSRef *)aFsRef;
 - (NSString *)fileSystemPathHFSStyle;
 @end
