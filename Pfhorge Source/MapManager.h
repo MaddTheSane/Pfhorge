@@ -6,8 +6,6 @@
 #include <Carbon/Carbon.h>
 #include <ApplicationServices/ApplicationServices.h>
 
-#include <AGL/AGL.h>
-
 #include <GLUT/glut.h>
 
 #import <OpenGL/OpenGL.h>
