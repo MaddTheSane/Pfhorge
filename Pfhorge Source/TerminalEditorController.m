@@ -122,7 +122,7 @@
 - (void)selectionChanged:(NSNotification *)aNotification
 {
     id theSelectedObj;
-    int theSelectedRow = [theTeriminalTableView selectedRow];
+    NSInteger theSelectedRow = [theTeriminalTableView selectedRow];
     
     if (theSelectedRow > -1)
         theSelectedObj = [theTeriminalTableView itemAtRow:theSelectedRow];
@@ -146,7 +146,7 @@
 
 // *** Data ***
     
-- (int)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
     if (item == nil)
         return [theTerminals count];
@@ -178,7 +178,7 @@
     }
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
     if (item == nil)
         return [theTerminals objectAtIndex:index];
@@ -228,7 +228,7 @@
         return NO;
 }
 
-- (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id)info proposedItem:(id)item proposedChildIndex:(int)index
+- (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
 { // NSDraggingInfo
     ///NSLog(@"validateDrop");
     
@@ -244,13 +244,13 @@
     return targetNodeIsValid ? NSDragOperationGeneric : NSDragOperationNone;
 }
 
-- (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id)info item:(id)item childIndex:(int)index
+- (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
 { // NSDraggingInfo
     // draggedTerminalSection may not exsist, and may not be nil in that case. 
     //	it should not happen, but it is a possiblity.  Deal with this possibility elagently in the future...
     Terminal *theTerm = [theLevel getTerminalThatContains:draggedTerminalSection];
     NSMutableArray *destArray = [item theSections];
-    int rowNumberForItem = -1;
+    NSInteger rowNumberForItem = -1;
     
     [draggedTerminalSection retain];
     [[theTerm theSections] removeObject:draggedTerminalSection];
@@ -264,9 +264,9 @@
     
     rowNumberForItem = [outlineView rowForItem:draggedTerminalSection];
     if (rowNumberForItem > -1)
-        [outlineView selectRow:rowNumberForItem byExtendingSelection:NO];
+        [outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
     else
-        [outlineView selectRow:0 byExtendingSelection:NO];
+        [outlineView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     
     //[theTeriminalTableView selectItems:[NSArray arrayWithObjects:draggedTerminalSection, nil] byExtendingSelection: NO];
     
@@ -287,9 +287,9 @@
 
 - (IBAction)addANewSectionAction:(id)sender
 {
-    int selectedRowNumber = [theTeriminalTableView selectedRow];
+    NSInteger selectedRowNumber = [theTeriminalTableView selectedRow];
     id theSelectedObj = nil;
-    int rowNumberForItem = -1;
+    NSInteger rowNumberForItem = -1;
     TerminalSection *theNewSection = [[TerminalSection alloc] init];
     
     if (selectedRowNumber >= 0)
@@ -303,7 +303,7 @@
     {
         Terminal *theTerm = [theLevel getTerminalThatContains:theSelectedObj];
         NSMutableArray *destArray;
-        int theSelectedItemsIndex;
+        NSInteger theSelectedItemsIndex;
         
         if (theTerm == nil)
         {
@@ -336,9 +336,9 @@
     
     rowNumberForItem = [theTeriminalTableView rowForItem:theNewSection];
     if (rowNumberForItem > -1)
-        [theTeriminalTableView selectRow:rowNumberForItem byExtendingSelection:NO];
+        [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
     else
-        [theTeriminalTableView selectRow:0 byExtendingSelection:NO];
+        [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     
     [theNewSection release];
     
@@ -346,9 +346,9 @@
 
 - (IBAction)addANewTerminalAction:(id)sender
 {
-    int selectedRowNumber = [theTeriminalTableView selectedRow];
+    NSInteger selectedRowNumber = [theTeriminalTableView selectedRow];
     id theSelectedObj = nil;
-    int rowNumberForItem = -1;
+    NSInteger rowNumberForItem = -1;
     NSMutableArray *terminals = [theLevel getTerminals];
     Terminal *theNewTerminal = [[Terminal alloc] init];
     
@@ -374,15 +374,15 @@
     else
         [terminals insertObject:theNewTerminal atIndex:rowNumberForItem];
     
-    [theNewTerminal setPhName:[NSString stringWithFormat:@"Terminal %d", ([terminals count] - 1)]];
+    [theNewTerminal setPhName:[NSString stringWithFormat:@"Terminal %lu", ([terminals count] - 1)]];
     
     [theTeriminalTableView reloadData];
     
     rowNumberForItem = [theTeriminalTableView rowForItem:theNewTerminal];
     if (rowNumberForItem > -1)
-        [theTeriminalTableView selectRow:rowNumberForItem byExtendingSelection:NO];
+        [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
     else
-        [theTeriminalTableView selectRow:0 byExtendingSelection:NO];
+        [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     
     [theNewTerminal release];
     [theLevel recompileTerminalNamesCache];
@@ -390,7 +390,7 @@
 
 - (IBAction)deleteSelectedAction:(id)sender
 {
-    int selectedRowNumber = [theTeriminalTableView selectedRow];
+    NSInteger selectedRowNumber = [theTeriminalTableView selectedRow];
     id theSelectedObj = nil;
     //int rowNumberForItem = -1;
     //NSMutableArray *terminals = [theLevel getTerminals];
@@ -418,7 +418,7 @@
         theLastObjectEdited = nil;
         [theTeriminalTableView reloadData];
     
-        [theTeriminalTableView selectRow:0 byExtendingSelection:NO];
+        [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
         [theLevel recompileTerminalNamesCache];
     }
     else
@@ -427,7 +427,7 @@
 
 - (IBAction)deleteTerminalConfirmation:(id)sender
 {
-    int oldIndexRowForTerminal = 0;
+    NSInteger oldIndexRowForTerminal = 0;
     
     if ([[sender title] isEqualToString:@"Cancel"] || poposedTerminalToDelete == nil)
     {
@@ -453,7 +453,7 @@
     
     [theTeriminalTableView reloadData];
     
-    [theTeriminalTableView selectRow:0 byExtendingSelection:NO];
+    [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     [theLevel recompileTerminalNamesCache];
 }
 
@@ -630,7 +630,7 @@
     NSColor *theTextColor;
     NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
-    int theCellTagClickedOn = -1;
+    NSInteger theCellTagClickedOn = -1;
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
@@ -674,7 +674,7 @@
     
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                 
-                [NSNumber numberWithInt:theCellTagClickedOn],
+                @(theCellTagClickedOn),
                 @"PhColorTerminalAttribute",
                 
                 theTextColor,
@@ -709,7 +709,7 @@
             @"NO",
             @"PhBoldTerminalAttribute",
             
-            [NSNumber numberWithInt:0],
+            @0,
             NSUnderlineStyleAttributeName, nil]
             
         range:[[self getTheCurrentTextView] selectedRange]];
@@ -785,7 +785,7 @@
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
     
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:1],
+            @1,
             NSUnderlineStyleAttributeName, nil]
         range:[[self getTheCurrentTextView] selectedRange]];
         

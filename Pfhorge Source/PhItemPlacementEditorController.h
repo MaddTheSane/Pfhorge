@@ -30,15 +30,15 @@
 @interface PhItemPlacementEditorController : NSWindowController
 {
     IBOutlet NSTableView *theTableView;
-    IBOutlet id initalCountTB;
-    IBOutlet id maxCountTB;
-    IBOutlet id minCountTB;
-    IBOutlet id totalCountTB;
+    IBOutlet NSFormCell *initalCountTB;
+    IBOutlet NSFormCell *maxCountTB;
+    IBOutlet NSFormCell *minCountTB;
+    IBOutlet NSFormCell *totalCountTB;
     
-    IBOutlet id appearenceTB;
-    IBOutlet id appearenceSlider;
+    IBOutlet NSFormCell *appearenceTB;
+    IBOutlet NSSlider *appearenceSlider;
     
-    IBOutlet id randomCB;
+    IBOutlet NSButton *randomCB;
     
     LEMap *theMap;
     LELevelData *theLevel;

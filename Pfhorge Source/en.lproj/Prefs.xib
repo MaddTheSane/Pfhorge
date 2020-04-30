@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
-                                <view key="view" id="82">
+                                <view key="view" ambiguous="YES" id="82">
                                     <rect key="frame" x="10" y="29" width="373" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -553,7 +553,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="General" id="312">
-                                <view key="view" ambiguous="YES" id="313">
+                                <view key="view" id="313">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -988,8 +988,8 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                             <tabViewItems>
                                                 <tabViewItem label="Environment" identifier="1" id="595">
-                                                    <view key="view" id="596">
-                                                        <rect key="frame" x="10" y="25" width="374" height="358"/>
+                                                    <view key="view" ambiguous="YES" id="596">
+                                                        <rect key="frame" x="10" y="29" width="374" height="354"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <box fixedFrame="YES" title="Other Colors:" translatesAutoresizingMaskIntoConstraints="NO" id="601">
@@ -1246,7 +1246,7 @@ DQ
                                                     </view>
                                                 </tabViewItem>
                                                 <tabViewItem label="Visibility" identifier="2" id="598">
-                                                    <view key="view" ambiguous="YES" id="594">
+                                                    <view key="view" id="594">
                                                         <rect key="frame" x="10" y="25" width="374" height="358"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>

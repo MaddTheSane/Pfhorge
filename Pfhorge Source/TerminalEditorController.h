@@ -27,7 +27,7 @@
 #import "TerminalSection.h"
 @class LELevelData, LEMap, TerminalSection, Terminal;
 
-@interface TerminalEditorController : NSWindowController
+@interface TerminalEditorController : NSWindowController <NSOutlineViewDelegate, NSOutlineViewDataSource>
 {
     IBOutlet NSOutlineView *theTeriminalTableView;
     IBOutlet id terminalTabView;
@@ -98,8 +98,5 @@
 - (IBAction)indexPopMAction:(id)sender;
 
 - (IBAction)changedIndexMenuAction:(id)sender;
-
-- (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id)info proposedItem:(id)item proposedChildIndex:(int)index;
-- (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id)info item:(id)item childIndex:(int)index;
 
 @end

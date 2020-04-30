@@ -137,30 +137,27 @@
             <rect key="contentRect" x="155" y="283" width="367" height="127"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="47">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50">
-                        <rect key="frame" x="17" y="90" width="333" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="50">
+                        <rect key="frame" x="18" y="78" width="231" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For This Object:" id="73">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="48">
-                        <rect key="frame" x="20" y="60" width="327" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="48">
+                        <rect key="frame" x="20" y="49" width="327" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="71">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51">
-                        <rect key="frame" x="272" y="12" width="81" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51">
+                        <rect key="frame" x="271" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="74">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -172,9 +169,8 @@ DQ
                             <action selector="renameSheetApplyAction:" target="-2" id="53"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49">
-                        <rect key="frame" x="187" y="12" width="85" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="49">
+                        <rect key="frame" x="189" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="72">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -187,6 +183,21 @@ Gw
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="51" secondAttribute="trailing" constant="20" symbolic="YES" id="65f-NO-KpA"/>
+                    <constraint firstItem="49" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="47" secondAttribute="leading" constant="20" symbolic="YES" id="G7E-wK-G7D"/>
+                    <constraint firstAttribute="bottom" secondItem="51" secondAttribute="bottom" constant="20" symbolic="YES" id="N3l-MX-hlX"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="50" secondAttribute="trailing" constant="20" symbolic="YES" id="YZL-Rc-gX3"/>
+                    <constraint firstItem="48" firstAttribute="centerX" secondItem="47" secondAttribute="centerX" id="fAm-AK-HWS"/>
+                    <constraint firstItem="51" firstAttribute="width" secondItem="49" secondAttribute="width" id="jbA-gA-Ebb"/>
+                    <constraint firstItem="51" firstAttribute="top" secondItem="48" secondAttribute="bottom" constant="8" symbolic="YES" id="jjE-m8-Sjs"/>
+                    <constraint firstItem="48" firstAttribute="top" secondItem="50" secondAttribute="bottom" constant="8" symbolic="YES" id="orT-Fs-UFe"/>
+                    <constraint firstItem="50" firstAttribute="top" secondItem="47" secondAttribute="top" constant="20" symbolic="YES" id="ov3-2B-W4W"/>
+                    <constraint firstItem="51" firstAttribute="leading" secondItem="49" secondAttribute="trailing" constant="12" symbolic="YES" id="rDy-9z-VrE"/>
+                    <constraint firstItem="50" firstAttribute="leading" secondItem="47" secondAttribute="leading" constant="20" symbolic="YES" id="sDb-0p-bJK"/>
+                    <constraint firstItem="48" firstAttribute="leading" secondItem="47" secondAttribute="leading" constant="20" symbolic="YES" id="wGn-hn-0Gq"/>
+                    <constraint firstItem="51" firstAttribute="firstBaseline" secondItem="49" secondAttribute="firstBaseline" id="wTa-Ey-Q08"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="139" y="368"/>
         </window>

@@ -255,8 +255,8 @@ DQ
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="155" y="283" width="367" height="127"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="54">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
+            <view key="contentView" misplaced="YES" id="54">
+                <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
