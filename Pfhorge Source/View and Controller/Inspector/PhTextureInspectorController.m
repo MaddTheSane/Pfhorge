@@ -745,7 +745,7 @@
 
 // ************************* Actions - Side *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Actions - Side ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Actions - Side â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (IBAction)primaryTextureMenuAction:(id)sender
 {
@@ -923,7 +923,7 @@
 
 #pragma mark -
 // ********** Side Lights **********
-#pragma mark ¥¥¥¥¥¥¥¥¥ Side Lights ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Side Lights â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (IBAction)primaryLightAction:(id)sender
 {
@@ -943,7 +943,7 @@
 
 // ************************* Actions - Polygon *************************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Actions - Polygon ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Actions - Polygon â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 
 // The Enviroment Codes and Wall Collection Numbers...

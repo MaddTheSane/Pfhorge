@@ -35,7 +35,7 @@
 
 
 
-// ¥¥¥ ¥¥¥ ¥¥¥ Platform Types and Constents ¥¥¥ ¥¥¥ ¥¥¥
+// â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢ Platform Types and Constents â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢
 
 
 
@@ -75,7 +75,7 @@ enum	// platform delays
 
 
 
-// ¥¥¥ ¥¥¥ ¥¥¥ Platform Flags ¥¥¥ ¥¥¥ ¥¥¥
+// â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢ Platform Flags â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢
 
 
 
@@ -131,7 +131,7 @@ enum /* dynamic platform flags */
 
 
 
-// ¥¥¥ ¥¥¥ ¥¥¥ Platform Structres ¥¥¥ ¥¥¥ ¥¥¥
+// â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢ Platform Structres â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢
 
 
 
@@ -170,7 +170,7 @@ struct platform_data2 /* 140 bytes */
 
 	unsigned short dynamic_flags;
 	short floor_height, ceiling_height;
-	short ticks_until_restart; /* if weÕre not moving but are active, this is our delay until we move again */
+	short ticks_until_restart; /* if weâ€™re not moving but are active, this is our delay until we move again */
 
 	struct endpoint_owner_data endpoint_owners[/*MAXIMUM_VERTICES_PER_POLYGON*/ 8 ];
 
@@ -184,7 +184,7 @@ struct platform_data2 /* 140 bytes */
 
 
 
-// ¥¥¥ ¥¥¥ ¥¥¥ Objective-C Stuff ¥¥¥ ¥¥¥ ¥¥¥
+// â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢ Objective-C Stuff â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢
 
 @class PhTag;
 

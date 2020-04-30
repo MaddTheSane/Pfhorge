@@ -57,7 +57,7 @@
 
 // *********************** Overridden Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Overridden Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Overridden Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (id)init
 {
@@ -147,7 +147,7 @@
 
 // *********************** Class Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Class Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Class Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 + (id)sharedInspectorController {
     static LEInspectorController *sharedInspectorController = nil;
@@ -161,7 +161,7 @@
 
 // *********************** Other Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Other Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Other Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)setMainWindow:(NSWindow *)mainWindow {
     NSWindowController *controller = [mainWindow windowController];
@@ -189,7 +189,7 @@
 
 // *********************** Notifcations ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Notifcations ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Notifcations â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)levelDeallocating:(NSNotification *)notification
 {
@@ -366,7 +366,7 @@
 
 // *********************** Updater Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Updater Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Updater Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)reset
 {
@@ -422,7 +422,7 @@
 
 // *********************** Utilites ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Utilites ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Utilites â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 -(void)setTabMenusTo:(int)tabViewIndex
 {
@@ -436,7 +436,7 @@
 
 // *********************** Actions ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Actions ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Actions â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 -(IBAction)polySectionChanged:(id)sender
 { // Need to add action and set it up in IB!!!
@@ -481,7 +481,7 @@
 
 // *********************** Accsessors ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Accsessors ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Accsessors â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 -(id)getTheCurrentSelection { return theCurrentSelection; }
 -(LELevelData *)getTheCurrentLevel { return currentLevel; }

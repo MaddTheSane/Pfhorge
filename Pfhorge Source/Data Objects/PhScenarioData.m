@@ -213,7 +213,7 @@
 
 // *********************** Table Data Source Updater Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Table Data Source Updater Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Table Data Source Updater Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 // *** Data Source Messages ***
 

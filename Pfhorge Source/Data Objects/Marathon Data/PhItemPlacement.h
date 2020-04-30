@@ -41,7 +41,7 @@ enum // flags for object_frequency_definition
 	
 	short initial_count;   // number that initially appear. can be greater than maximum_count
 	short minimum_count;   // this number of objects will be maintained.
-	short maximum_count;   // canÍt exceed this, except at the beginning of the level.
+	short maximum_count;   // canâ€™t exceed this, except at the beginning of the level.
 	
 	short random_count;    // maximum random occurences of the object
 	unsigned short random_chance;    // in (0, 65535]

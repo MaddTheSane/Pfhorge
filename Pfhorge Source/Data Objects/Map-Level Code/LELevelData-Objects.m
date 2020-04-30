@@ -639,7 +639,7 @@
 }
 
 #pragma mark -
-#pragma mark ¥¥¥ Move This To Utility Functions ¥¥¥
+#pragma mark â€¢â€¢â€¢ Move This To Utility Functions â€¢â€¢â€¢
 
     // ### Move following method to Pfhorge Independit Utility Functions ###
 -(int)whatIsDirectionalRelationshipForLine:(LELine *)theLine relitiveTo:(NSArray *)lineArray
@@ -1024,7 +1024,7 @@
     id thisObj = nil;
     ///id tmpObj = nil;
     
-    // ********* ÁALERT!: Make sure to delete poly platform if it has one!!! :!ALERTÁ *********
+    // ********* Â¡ALERT!: Make sure to delete poly platform if it has one!!! :!ALERTÂ¡ *********
     #ifdef showDebugDeletionsAndAddtions
     NSLog(@"Deleteing Polygon: %d", [thePolyToRemove getIndex]);
     #endif

@@ -106,7 +106,7 @@
 
 // *********************** Updater Methods ***********************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ First Bar ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ First Bar â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 -(void)setInformationalText:(NSString *)theInfo
 {
@@ -162,7 +162,7 @@
 }
 
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Second Bar ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Second Bar â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 -(void)setSecondStatusText:(NSString *)theStatus
 {

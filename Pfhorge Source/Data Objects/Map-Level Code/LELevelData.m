@@ -238,7 +238,7 @@
 */
 
 #pragma mark -
-#pragma mark ¥ Only called after loading marathon formated map... ¥
+#pragma mark â€¢ Only called after loading marathon formated map... â€¢
  // CALLED: after loading a marathon formated map, to set thePhName of lights, etc.
  //		and to put those names in the name manager cache.
 -(void)compileAndSetNameArraysFromLevel
@@ -526,7 +526,7 @@
 
 
 #pragma mark -
-#pragma mark ¥ Only called after loading pfhorge formated map... ¥
+#pragma mark â€¢ Only called after loading pfhorge formated map... â€¢
  // CALLED: after loading a Pfhorge formated map, to get thePhName of lights, etc.
  //		and to put those names in the name manager cache.
 -(void)setUpArrayNamesForEveryObject

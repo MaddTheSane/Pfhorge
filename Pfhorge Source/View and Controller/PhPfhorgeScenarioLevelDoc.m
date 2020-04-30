@@ -345,7 +345,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 // ****************** Document Overidden Methods ******************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Document Overidden Methods ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Document Overidden Methods â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (void)makeWindowControllers
 {
@@ -408,7 +408,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 // ****************** Utilites ******************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Utilites ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Utilites â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 - (void)exportLevelToMarathonMap:(NSString *)fullPath
 {
     NSString *fileName = [scenarioData getLevelPathForSelected];
@@ -425,7 +425,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         contents:tempData
         attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
-                    [NSNumber numberWithLong:'26.°'],
+                    [NSNumber numberWithLong:'26.âˆž'],
                     NSFileHFSCreatorCode,
                     
                     [NSNumber numberWithLong:'sce2'],
@@ -494,7 +494,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         contents:mergedMap
         attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
-                    [NSNumber numberWithLong:'26.°'],
+                    [NSNumber numberWithLong:'26.âˆž'],
                     NSFileHFSCreatorCode,
                     
                     [NSNumber numberWithLong:'sce2'],
@@ -546,7 +546,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 // ****************** Information ******************
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ Information ¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ Information â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 - (id)dataObjectForLevelNameTable
 {

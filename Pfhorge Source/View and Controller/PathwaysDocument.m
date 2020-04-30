@@ -138,7 +138,7 @@
         contents:tempData
         attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
-                    [NSNumber numberWithLong:'26.°'],
+                    [NSNumber numberWithLong:'26.âˆž'],
                     NSFileHFSCreatorCode,
                     
                     [NSNumber numberWithLong:'sce2'],
@@ -181,7 +181,7 @@
         //theLevel = [theMap getLevel:1];
         
         
-        // ¥¥¥ ¥¥¥ ¥¥¥ Load The Data Into A PathwaysExchange object... ¥¥¥ ¥¥¥ ¥¥¥
+        // â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢ Load The Data Into A PathwaysExchange object... â€¢â€¢â€¢ â€¢â€¢â€¢ â€¢â€¢â€¢
         
         //pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData];
         pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData resourceData:dpin128ResourceData];

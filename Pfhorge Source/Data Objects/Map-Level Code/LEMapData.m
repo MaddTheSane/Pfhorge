@@ -57,9 +57,9 @@ BOOL setupPointerArraysDurringLoading = YES;
 //#undef useDebugingLogs
 
 
-// ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥ LEMapData implementation ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+// â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ LEMapData implementation â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 #pragma mark -
-#pragma mark ¥¥¥¥¥¥¥¥¥ LEMapData implementation ¥¥¥¥¥¥¥¥¥
+#pragma mark â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢ LEMapData implementation â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢
 
 @implementation LEMapData
 
@@ -1350,7 +1350,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     if (length < 0)
     {
-        NSLog(@"¥¥¥ ERROR: Tried to saved a string of negitive length in LEMapData->saveStringAsChar:");
+        NSLog(@"â€¢â€¢â€¢ ERROR: Tried to saved a string of negitive length in LEMapData->saveStringAsChar:");
         return;
     }
     

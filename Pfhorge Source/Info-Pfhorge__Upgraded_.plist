@@ -17,6 +17,12 @@
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.bungie.source.map</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>LEMap</string>
 		</dict>
@@ -29,6 +35,8 @@
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>PathwaysDocument</string>
 		</dict>
@@ -43,6 +51,12 @@
 			<string>Pfhorge Level</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.xmission.dragons.pfhorge.level</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>PhPfhorgeSingleLevelDoc</string>
 		</dict>
@@ -57,6 +71,12 @@
 			<string>Pfhorge Scenario</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.xmission.dragons.pfhorge.scenario</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>PhPfhorgeScenarioLevelDoc</string>
 		</dict>
@@ -181,5 +201,73 @@
 			</dict>
 		</array>
 	</dict>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Pfhorge Level</string>
+			<key>UTTypeIconFile</key>
+			<string>MapNewIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.xmission.dragons.pfhorge.level</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lev</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Pfhorge Scenario</string>
+			<key>UTTypeIconFile</key>
+			<string>MapNewIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.xmission.dragons.pfhorge.scenario</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sen</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Aleph One Map File</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.bungie.source.map</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>sce∞</string>
+					<string>sce2</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sceA</string>
+					<string>scen</string>
+					<string>sce</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

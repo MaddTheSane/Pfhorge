@@ -271,7 +271,7 @@
         contents:tempData
         attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
-                    [NSNumber numberWithLong:'26.°'],
+                    [NSNumber numberWithLong:'26.âˆž'],
                     NSFileHFSCreatorCode,
                     
                     [NSNumber numberWithLong:'sce2'],
