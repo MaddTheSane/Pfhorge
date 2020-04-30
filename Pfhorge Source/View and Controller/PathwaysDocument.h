@@ -39,5 +39,4 @@
     NSData *dpin128ResourceData;
 }
 
-
 @end

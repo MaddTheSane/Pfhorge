@@ -637,15 +637,15 @@ enum {
     
     double hueMultiplier = 0.0;
     
-    int i = 0;
-    int tmpNumberListCorrectedCount = 0;
+    NSInteger i = 0;
+    NSInteger tmpNumberListCorrectedCount = 0;
     
     NSNumber *negitiveNum = [NSNumber numberWithShort:((short)(-1))];
     
     ///NSArray *theStuff;
     
     NSNumber *copyOfNumber = [theNewHeight copy];
-    int indexOfNewNumber = 0;
+    NSInteger indexOfNewNumber = 0;
     
     if (!(drawingMode == _drawFloorHeight || drawingMode == _drawCeilingHeight))
     {
@@ -736,7 +736,7 @@ enum {
             forKey:curNumber] ];
     }
     
-    NSLog(@"numberTable: %d colorList: %d numberList:%d nameList:%d", [numberTable count], [colorList count], [numberList count], [nameList count]);
+    NSLog(@"numberTable: %lu colorList: %lu numberList:%lu nameList:%lu", (unsigned long)[numberTable count], (unsigned long)[colorList count], (unsigned long)[numberList count], (unsigned long)[nameList count]);
 }
 
 // *************************** Methods that draw the graphics ***************************
@@ -774,7 +774,7 @@ enum {
     while (theStuff = [numer nextObject])
     {
         curDrawingMap = [theStuff objectAtIndex:0];
-        [[theStuff objectAtIndex:1] set];
+        [(NSColor*)[theStuff objectAtIndex:1] set];
         if (![curDrawingMap isEmpty])
             [curDrawingMap fill];
         //[[NSColor colorWithCalibratedRed:0.5 green:0.5 blue:1.0 alpha:1.0] set];
@@ -2088,7 +2088,7 @@ enum {
         [objsList release];
     
     numberList = tmpNumberList;
-    NSLog(@"numberList count: %d", [numberList count]);
+    NSLog(@"numberList count: %lu", (unsigned long)[numberList count]);
     
     if ([tmpObjsList count] > 0)
         objsList = tmpObjsList;
@@ -3453,7 +3453,7 @@ enum {
     NSPoint lastPoint = mouseLoc;
     NSEvent *theEvent = nil;
     BOOL timerOn = NO;
-    unsigned int eventMask = NSLeftMouseDraggedMask | NSLeftMouseUpMask | NSPeriodicMask;
+    NSEventMask eventMask = NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp | NSEventMaskPeriodic;
     NSEvent *autoscrollEvent = nil;
     
     // rect.origin.(x/y)
@@ -3462,7 +3462,7 @@ enum {
     // * The following is the drag loop, program execution stays here while  	*
     // * 		a drag operation for scrolling is in progress.		*
     // * *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ****
-    while (theEvent = [[self window] nextEventMatchingMask:eventMask]) 
+    while ((theEvent = [[self window] nextEventMatchingMask:eventMask]))
     {
         visibleRect = [self visibleRect];
         curPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
@@ -4724,7 +4724,7 @@ enum {
         NSPoint thePoint = NSZeroPoint;
         LEPolygon *poly = nil;
         
-        while (theNote = [objsCopy anyObject])
+        while ((theNote = [objsCopy anyObject]))
         {
             theNote = [objsCopy anyObject];
             // could be: [theNote getLocationAdjusted]
@@ -5936,7 +5936,7 @@ enum {
 // jra 7-25-03: Updates the modifier key variables (shiftDown, etc)
 -(void)updateModifierKeys:(NSEvent*)theEvent
 {
-    unsigned int newFlags = [theEvent modifierFlags];
+    NSEventModifierFlags newFlags = [theEvent modifierFlags];
 
     if (newFlags & NSAlphaShiftKeyMask)
         capsLockDown = YES;
@@ -5974,13 +5974,13 @@ enum {
     // Won't matter if it's nil, because a message to nil does nothing...
     // But it might be usefull to still check for nil so that
     // it is known that a error occured...
-    [[self getSelectionsOfType:type] removeObject:obj];
+    [(NSMutableSet*)[self getSelectionsOfType:type] removeObject:obj];
     [(id)undo undoDeselection:obj ofType:type];
 }
 
 -(void)undoDeselection:(id)obj ofType:(int)type
 {
-    [[self getSelectionsOfType:type] addObject:obj];
+    [(NSMutableSet*)[self getSelectionsOfType:type] addObject:obj];
     [(id)undo undoSelection:obj ofType:type];
 }
 

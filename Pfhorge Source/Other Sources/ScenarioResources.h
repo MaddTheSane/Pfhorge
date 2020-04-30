@@ -13,11 +13,12 @@
 Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 
 @interface ScenarioResources : NSObject {
-    NSMutableDictionary	*typeDict;
+    NSMutableDictionary<NSString*, NSArray<Resource*>*>	*typeDict;
     
     NSString		*filename;
 }
 - (id)initWithContentsOfFile:(NSString *)fileName;
+- (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName;
 
 - (Resource *)resourceOfType:(NSString *)type index:(int)index;

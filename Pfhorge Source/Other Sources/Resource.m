@@ -10,11 +10,11 @@
 
 
 @implementation Resource
-- (id)initWithID:(int)newID type:(NSString *)resType name:(NSString *)resName
+- (id)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName
 {
     [super init];
     
-    resID = [[NSNumber numberWithUnsignedShort:newID] retain];
+    resID = [@(newID) retain];
     type = [resType copy];
     name = [resName copy];
     
@@ -40,29 +40,15 @@
     return [(NSNumber *)object compare:resID];
 }
 
-- (NSNumber *)resID
-{
-    return resID;
-}
-
-- (NSString *)type
-{
-    return type;
-}
+@synthesize resID;
+@synthesize type;
 
 - (ResType)typeAsResType
 {
-    ResType value;
-    
-    [type getCString:(unsigned char *)&value maxLength:4];
-    
-    return value;
+    return UTGetOSTypeFromString((CFStringRef)type);
 }
 
-- (NSString *)name
-{
-    return name;
-}
+@synthesize name;
 
 - (ConstStr255Param)nameAsStr255
 {
@@ -71,27 +57,18 @@
     if (!string) {
         string = malloc(256);
     }
-    
-    string[0] = [name length];
-    [name getCString:&string[1] maxLength:255];
+    CFStringGetPascalString((CFStringRef)name, string, 256, kCFStringEncodingMacRoman);
     
     return string;
 }
 
-- (BOOL)loaded
+@synthesize loaded;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingLoaded
 {
-    return loaded;
+    return [NSSet setWithObject:@"data"];
 }
 
-- (void)setLoaded:(BOOL)value
-{
-    loaded = value;
-}
-
-- (NSData *)data
-{
-    return data;
-}
+@synthesize data;
 
 - (void)setData:(NSData *)newData
 {

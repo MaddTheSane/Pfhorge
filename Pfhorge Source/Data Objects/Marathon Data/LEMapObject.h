@@ -36,7 +36,7 @@ enum	// map object types
         _NUMBER_OF_OBJECT_TYPES
 };
 
-enum	// map object flags
+typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)	// map object flags
 {
 	_map_object_is_invisible = 0x0001,	// initially invisible
 	_map_object_is_platform_sound = 0x0001,
@@ -56,7 +56,7 @@ enum	// map object flags
 {
     short type, index, facing, polygonIndex, x, y, z, x32, y32;
     id polygonObject;
-    unsigned short flags;
+    LEMapObjectFlags flags;
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
@@ -81,9 +81,9 @@ enum	// map object flags
 -(short)getObjTypeIndex;
 -(short)getFacing;
 -(short)getPolygonIndex;
--(id)getPolygonObject;
--(unsigned short)getFlags;
--(unsigned short)getMapFlags;
+@property (assign, getter=getPolygonObject) id polygonObject;
+-(LEMapObjectFlags)getFlags;
+@property (getter=getMapFlags) LEMapObjectFlags mapFlags;
 
 //-(void)moveBy32Point:(NSPoint)theOffset;
 
@@ -98,7 +98,5 @@ enum	// map object flags
 -(void)setIndex:(short)s;
 -(void)setFacing:(short)s;
 -(void)setPolygonIndex:(short)s;
--(void)setPolygonObject:(id)s;
--(void)setMapFlags:(unsigned short)us;
 
 @end

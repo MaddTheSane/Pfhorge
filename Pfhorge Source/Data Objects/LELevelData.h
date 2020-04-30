@@ -457,7 +457,7 @@ enum {
 -(short)getMission_flags;
 -(short)getEnvironment_flags;
 -(NSString *)getLevel_name;
--(long)getEntry_point_flags;
+-(int)getEntry_point_flags;
 
 -(void)setEnvironment_code:(short)v;
 -(void)setPhysics_model:(short)v;
@@ -465,7 +465,7 @@ enum {
 -(void)setMission_flags:(short)v;
 -(void)setEnvironment_flags:(short)v;
 -(void)setLevel_name:(NSString *)v;
--(void)setEntry_point_flags:(long)v;
+-(void)setEntry_point_flags:(int)v;
 
 // These are methods that we probably wouldn't bother with if we weren't scriptable.
 - (NSScriptObjectSpecifier *)objectSpecifier;

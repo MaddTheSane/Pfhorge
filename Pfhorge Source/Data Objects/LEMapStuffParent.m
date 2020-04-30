@@ -271,13 +271,13 @@
 - (PhTag *)getTagForNumber:(int)theTagNumber
 {
     ///PhTag *theNewTag = nil;
-    int theNewTagIndexNumber = -1;
+    NSInteger theNewTagIndexNumber = -1;
     //NSLog(@"getTagForNumber: %d", theTagNumber);
     
     theNewTagIndexNumber = [theLELevelDataST tagIndexNumberFromTagNumber:theTagNumber];
     
     
-    if ((int)[theLevelTagObjectsST count] > theNewTagIndexNumber)
+    if ([theLevelTagObjectsST count] > theNewTagIndexNumber)
         return [theLevelTagObjectsST objectAtIndex:theNewTagIndexNumber];
     else
         NSLog(@"ERROR: in getTagForNumber in LEMapStuffParent, tag index from LELevelData beyond range of tag array...");

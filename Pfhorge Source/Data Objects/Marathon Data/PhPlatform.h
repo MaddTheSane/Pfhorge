@@ -161,7 +161,7 @@ struct platform_data2 /* 140 bytes */
 {
 	short type; // !
         //short uknown;
-	unsigned long static_flags; // !
+	unsigned int static_flags; // !
 	short speed, delay; // ! !
 	short minimum_floor_height /* ! */, maximum_floor_height; // 10, 12
 	short minimum_ceiling_height, maximum_ceiling_height/* ! */; // 14, 16
@@ -220,7 +220,7 @@ struct platform_data2 /* 140 bytes */
 - (short)getDelay;
 - (short)getmaximum_height;
 - (short)getminimum_height;
-- (unsigned long)getStatic_flags;
+- (unsigned int)getStatic_flags;
 - (short)getPolygon_index;
 - (id)getPolygon_object;
 - (short)getTag;
@@ -232,7 +232,7 @@ struct platform_data2 /* 140 bytes */
 - (void)setDelay:(short)v;
 - (void)setmaximum_height:(short)v;
 - (void)setminimum_height:(short)v;
-- (void)setStatic_flags:(unsigned long)v;
+- (void)setStatic_flags:(unsigned int)v;
 - (void)setPolygon_index:(short)v;
 - (void)setPolygon_object:(id)v;
 - (void)setTag:(short)v;

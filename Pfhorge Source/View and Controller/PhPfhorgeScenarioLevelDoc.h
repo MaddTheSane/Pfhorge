@@ -50,7 +50,7 @@ extern NSString *PhScenarioLevelNamesChangedNotification;
 - (IBAction)copy:(id)sender;
 - (IBAction)paste:(id)sender;
 
-- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void *)contextInfo;
 
     
 // *** Document Methods ***
@@ -59,7 +59,7 @@ extern NSString *PhScenarioLevelNamesChangedNotification;
 
 // *** Utilites ***
 - (NSString *)getFullPathForDirectory;
-- (void)saveArrayOfNSDatas:(NSArray *)theDataObjs withFileNames:(NSArray *)theFileNames baseDir:(NSString *)basePath;
+- (void)saveArrayOfNSDatas:(NSArray<NSData*> *)theDataObjs withFileNames:(NSArray<NSString*> *)theFileNames baseDir:(NSString *)basePath;
 
 - (void)rescanProjectDirectoryNow;
 - (void)exportLevelToMarathonMap:(NSString *)fullPath;
@@ -67,6 +67,6 @@ extern NSString *PhScenarioLevelNamesChangedNotification;
 
 // *** Information ***
 - (id)dataObjectForLevelNameTable;
-- (NSArray *)getLevelNames;
+- (NSArray<NSString*> *)getLevelNames;
 
 @end

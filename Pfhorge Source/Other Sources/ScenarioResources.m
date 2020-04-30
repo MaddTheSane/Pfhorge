@@ -16,6 +16,14 @@
 
 - (id)initWithContentsOfFile:(NSString *)fileName
 {
+    if (self = [super init]) {
+        [self loadContentsOfFile:fileName];
+    }
+    return self;
+}
+
+- (BOOL)loadContentsOfFile:(NSString *)fileName
+{
     FSRef		fsref;
     CFStringRef		string;
     CFURLRef		url;
@@ -29,22 +37,12 @@
     Resource		*res;
     ResFileRefNum	refNum;
     int			i, j;
-    
-    [super init];
-    
+        
     filename = [fileName copy];
     
     typeDict = [[NSMutableDictionary dictionary] retain];
-    
-    uniBuffer = malloc(sizeof(unichar) * [fileName length]);
-    
-    [fileName getCharacters:uniBuffer];
-    
-    string = CFStringCreateWithCharacters(kCFAllocatorDefault, uniBuffer, [fileName length]);
-    
-    free(uniBuffer);
-    
-    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, string, kCFURLPOSIXPathStyle, NO);
+        
+    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)fileName, kCFURLPOSIXPathStyle, NO);
     
     CFURLGetFSRef(url, &fsref);
     
@@ -58,7 +56,7 @@
         
         if (Count1Types() == 0) {
             CloseResFile(refNum);
-            return self;
+            return YES;
         }
         
         for (i = 1; i <= Count1Types(); i++) {
@@ -73,9 +71,11 @@
                 
                 GetResInfo(resource, &resID, NULL, resName);
                 
+                
+                
                 res = [[Resource alloc] initWithID:resID
-                    type:[NSString stringWithCString:(unsigned char *)&restype length:4]
-                    name:[NSString stringWithCString:&resName[1] length:resName[0]]];
+                    type:CFBridgingRelease(UTCreateStringForOSType(restype))
+                                              name:resName[0] != 0 ? CFBridgingRelease(CFStringCreateWithPascalString(kCFAllocatorDefault, resName, kCFStringEncodingMacRoman)) : nil];
                 
                 [array addObject:[res autorelease]];
                 
@@ -85,9 +85,7 @@
             }
             
             [typeDict setObject:array
-                forKey:[NSString
-                stringWithCString:(unsigned char *)&restype
-                length:4]];
+                forKey:CFBridgingRelease(UTCreateStringForOSType(restype))];
             
             [array sortUsingSelector:@selector(compare:)];
         }
@@ -95,7 +93,7 @@
         CloseResFile(refNum);
     }
     
-    return self;
+    return YES;
 }
 
 - (void)dealloc
@@ -109,30 +107,25 @@
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName
 {
     FSRef		fsref, parentfsref;
-    CFStringRef		string;
-    CFURLRef		url, parenturl;
+    NSString	*string;
+    NSURL		*url, *parenturl;
     unichar		*uniBuffer;
     ResFileRefNum	refNum;
-    NSArray		*array;
+    NSArray<Resource*>		*array;
     Resource		*resource;
     Handle		handle;
     int			i, j;
     
-    uniBuffer = malloc(sizeof(unichar) * [fileName length]);
-    [fileName getCharacters:uniBuffer];
-    string = CFStringCreateWithCharacters(kCFAllocatorDefault, uniBuffer, [fileName length]);
-    free(uniBuffer);
-    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, string, kCFURLPOSIXPathStyle, NO);
+    url = [NSURL fileURLWithPath:fileName];
     //CFURLGetFSRef(url, &fsref);
-    CFRelease(string);
     
-    parenturl = CFURLCreateCopyDeletingLastPathComponent(kCFAllocatorDefault, url);
-    CFURLGetFSRef(parenturl, &parentfsref);
-    string = CFURLCopyLastPathComponent(url);
-    uniBuffer = malloc(sizeof(UniChar) * CFStringGetLength(string));
-    CFStringGetCharacters(string, CFRangeMake(0, CFStringGetLength(string)), uniBuffer);
+    parenturl = [url URLByDeletingLastPathComponent];
+    CFURLGetFSRef((CFURLRef)parenturl, &parentfsref);
+    string = [url lastPathComponent];
+    uniBuffer = malloc(sizeof(UniChar) * string.length);
+    [string getCharacters:uniBuffer range:NSMakeRange(0, string.length)];
     
-    FSCreateResFile(&parentfsref, CFStringGetLength(string), uniBuffer, 0, NULL, &fsref, NULL);
+    FSCreateResFile(&parentfsref, string.length, uniBuffer, 0, NULL, &fsref, NULL);
     
     free(uniBuffer);
     CFRelease(url);
@@ -186,13 +179,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     ResFileRefNum	refNum, saveNum;
     ResType		resType;
     
-    uniBuffer = malloc(sizeof(unichar) * [fileName length]);
-    [fileName getCharacters:uniBuffer];
-    string = CFStringCreateWithCharacters(kCFAllocatorDefault, uniBuffer, [fileName length]);
-    free(uniBuffer);
-    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, string, kCFURLPOSIXPathStyle, NO);
+    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)fileName, kCFURLPOSIXPathStyle, NO);
     CFURLGetFSRef(url, &fsref);
-    CFRelease(string);
     CFRelease(url);
     
     saveNum = CurResFile();
@@ -275,7 +263,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     while (resource = [resEnum nextObject])
     {
         handle = ASGetResource(type, [resource resID], filename);
-        theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle)];
+        theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
         
         [progress setInformationalText:[NSString stringWithFormat:@"Saving PICT Resource# %@...", [[resource resID] stringValue], nil]];
         

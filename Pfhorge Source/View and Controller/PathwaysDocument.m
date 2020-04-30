@@ -191,7 +191,7 @@
         
         //[currentLevelNames addObject:@"PID Level"];
         
-        currentLevelNames = [[pidMap levelNames] retain];
+        currentLevelNames = [[pidMap levelNames] mutableCopy];
         
         // *** *** ***
         
@@ -273,7 +273,7 @@
         
         //[currentLevelNames addObject:@"PID Level"];
         
-        currentLevelNames = [[pidMap levelNames] retain];
+        currentLevelNames = [[pidMap levelNames] mutableCopy];
         
         // *** *** ***
         
@@ -365,15 +365,13 @@
 
 // ****************** NEW METHODS ******************
 
-- (BOOL)writeToFile:(NSString *)fullDocumentPath ofType:(NSString *)documentTypeName
-    originalFile:(NSString *)fullOriginalDocumentPath
-    saveOperation:(NSSaveOperationType)saveOperationType
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     //[self updateInternalData];
     
     
     
-    NSString *pathToUse = [fullDocumentPath copy];
+    NSString *pathToUse = [url.path copy];
     /*
     if (![[fullDocumentPath pathExtension] isEqualToString:@"lev"])
     {
@@ -397,22 +395,21 @@
     return YES;
 }
 
-- (NSDictionary *)fileAttributesToWriteToFile:(NSString *)fullDocumentPath
-    ofType:(NSString *)documentTypeName saveOperation:(NSSaveOperationType)saveOperationType
+-(NSDictionary<NSString *,id> *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)documentTypeName forSaveOperation:(NSSaveOperationType)saveOperationType originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
-                            [super fileAttributesToWriteToFile:fullDocumentPath
-                           ofType:documentTypeName saveOperation:saveOperationType]];
+                            [super fileAttributesToWriteToURL:url ofType:documentTypeName forSaveOperation:saveOperationType originalContentsURL:absoluteOriginalContentsURL error:outError]];
     
-    [dict setObject:[NSNumber numberWithUnsignedLong:'sce2'] forKey:NSFileHFSTypeCode];
+    [dict setObject:@((OSType)'sce2') forKey:NSFileHFSTypeCode];
     
     return dict;
 }
 
-- (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)type
+- (BOOL)readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError * _Nullable *)outError
 {
     BOOL value = YES;
     BOOL isDir = NO;
+    NSString *fileName = [url path];
     
     pathPathwaysApp = [fileName stringByDeletingLastPathComponent];
     
@@ -478,7 +475,7 @@
 
 // ****************** (END) NEW METHODS ******************
 
-- (NSData *)dataRepresentationOfType:(NSString *)aType
+- (NSData *)dataOfType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
     NSMutableData *entireMapData = [[NSMutableData alloc] init];
     
@@ -491,10 +488,14 @@
     else
     {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
+        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
-        short thePfhorgeDataSig2 = 34521;
-        long thePfhorgeDataSig3 = 42296737;
-        
+        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
+        unsigned short thePfhorgeDataSig2 = 34521;
+        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
+        int thePfhorgeDataSig3 = 42296737;
+        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+
         NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
@@ -510,7 +511,7 @@
     return entireMapData;
 }
 
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
     BOOL loadedOk = NO;
      

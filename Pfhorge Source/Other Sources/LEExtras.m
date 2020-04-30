@@ -193,7 +193,7 @@ NSString *PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 @implementation NSObject (SKTPerformExtras)
 
 - (void)performSelector:(SEL)sel withEachObjectInArray:(NSArray *)array {
-    unsigned i, c = [array count];
+    NSInteger i, c = [array count];
     
     if (c < 1)
         return;
@@ -211,7 +211,7 @@ NSString *PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 
 - (void)setEnabledOfMatrixCellsTo:(BOOL)v
 {
-    int j, c;
+    NSInteger j, c;
     NSArray *theCells;
     NSMatrix *m = (NSMatrix *) self;
     
@@ -263,7 +263,7 @@ NSPoint LEAddToPoint(NSPoint point1, float theSum) {
 {
 	SendTarget		* theInstance;
 
-	if( theInstance = [[[self alloc] init] autorelease] )
+	if( (theInstance = [[[self alloc] init] autorelease]) )
 	{
 		theInstance->appleScriptObject = [anObject retain];
 		theInstance->OK_Enough = 0;

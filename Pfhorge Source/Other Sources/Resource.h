@@ -17,17 +17,16 @@
     BOOL	loaded;
     NSData	*data;
 }
-- (id)initWithID:(int)newID type:(NSString *)resType name:(NSString *)resName;
+- (id)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName;
 
 - (NSComparisonResult)compare:(id)object;
 
-- (NSNumber *)resID;
-- (NSString *)type;
-- (ResType)typeAsResType;
-- (NSString *)name;
-- (ConstStr255Param)nameAsStr255;
-- (BOOL)loaded;
-- (void)setLoaded:(BOOL)value;
-- (NSData *)data;
-- (void)setData:(NSData *)newData;
+@property (readonly, copy) NSNumber *resID;
+@property (readonly, copy) NSString *type;
+@property (nonatomic, readonly) ResType typeAsResType;
+@property (readonly, copy) NSString *name;
+- (ConstStr255Param)nameAsStr255 NS_RETURNS_INNER_POINTER;
+@property (nonatomic, readonly) ConstStr255Param nameAsStr255;
+@property BOOL loaded;
+@property (nonatomic, retain) NSData *data;
 @end

@@ -128,16 +128,18 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 - (IBAction)importMarathonMap:(id)sender
 {
-    NSArray	*fileTypes	= [NSArray arrayWithObject:NSFileTypeForHFSTypeCode('sce2')];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), @"org.bungie.source.map"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];
     [op setTitle:@"Import Marathon Wad"];
     [op setPrompt:@"Import"];
-    
-    [op beginSheetForDirectory:nil file:nil types:fileTypes
-        modalForWindow:[theScenarioDocumentWindowController window] modalDelegate:self
-        didEndSelector:@selector(importMapScriptDone:returnCode:contextInfo:) contextInfo:nil];
+    op.allowedFileTypes = fileTypes;
+
+    [op beginSheetModalForWindow:[theScenarioDocumentWindowController window] completionHandler:^(NSModalResponse result) {
+        [self importMapScriptDone:op returnCode:result contextInfo:NULL];
+    }];
+
 }
 
 - (IBAction)importPathwaysMap:(id)sender
@@ -148,10 +150,11 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     [op	setAllowsMultipleSelection:NO];
     [op setTitle:@"Import Pathways Map"];
     [op setPrompt:@"Import"];
+    op.allowedFileTypes = fileTypes;
     
-    [op beginSheetForDirectory:nil file:nil types:fileTypes
-        modalForWindow:[theScenarioDocumentWindowController window] modalDelegate:self
-        didEndSelector:@selector(importPIDMapScriptDone:returnCode:contextInfo:) contextInfo:nil];
+    [op beginSheetModalForWindow:[theScenarioDocumentWindowController window] completionHandler:^(NSModalResponse result) {
+        [self importPIDMapScriptDone:op returnCode:result contextInfo:NULL];
+    }];
 }
 
 - (IBAction)cut:(id)sender
@@ -169,7 +172,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 
 
-- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(int)returnCode
+- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode
     contextInfo:(void  *)contextInfo
 {
     NSString	*fileName = nil;
@@ -250,7 +253,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 }
 
 
-- (void)importPIDMapScriptDone:(NSOpenPanel *)sheet returnCode:(int)returnCode
+- (void)importPIDMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode
     contextInfo:(void  *)contextInfo
 {
     NSString		*fileName = nil;
@@ -389,23 +392,24 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     return YES;
 }
 
-- (NSData *)dataRepresentationOfType:(NSString *)type {
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to provide a persistent data representation of your document OR remove this and implement the file-wrapper or file path based save methods.
     return [NSArchiver archivedDataWithRootObject:scenarioData];
 }
 
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)type {
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to load a persistent data representation of your document OR remove this and implement the file-wrapper or file path based load methods.
     scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
     
     return (scenarioData == nil) ? (NO) : (YES);
 }
 
+/*
 - (NSDictionary *)fileAttributesToWriteToFile:(NSString *)fullDocumentPath ofType:(NSString *)documentTypeName saveOperation:(NSSaveOperationType)saveOperationType
 {
     return [super fileAttributesToWriteToFile:fullDocumentPath ofType:documentTypeName saveOperation:saveOperationType];
 }
-
+*/
 // ****************** Utilites ******************
 #pragma mark -
 #pragma mark ••••••••• Utilites •••••••••

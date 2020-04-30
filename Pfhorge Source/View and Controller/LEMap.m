@@ -611,13 +611,11 @@
 
 // ****************** NEW METHODS ******************
 
-- (BOOL)writeToFile:(NSString *)fullDocumentPath ofType:(NSString *)documentTypeName
-    originalFile:(NSString *)fullOriginalDocumentPath
-    saveOperation:(NSSaveOperationType)saveOperationType
+-(BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperationType originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     //[self updateInternalData];
     
-    NSString *pathToUse = [fullDocumentPath copy];
+    NSString *pathToUse = [url.path copy];
     /*
     if (![[fullDocumentPath pathExtension] isEqualToString:@"lev"])
     {
@@ -637,20 +635,19 @@
     return YES;
 }
 
-- (NSDictionary *)fileAttributesToWriteToFile:(NSString *)fullDocumentPath
-    ofType:(NSString *)documentTypeName saveOperation:(NSSaveOperationType)saveOperationType
+-(NSDictionary<NSString *,id> *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
-                            [super fileAttributesToWriteToFile:fullDocumentPath
-                            ofType:documentTypeName saveOperation:saveOperationType]];
+                            [super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError]];
     
-    [dict setObject:[NSNumber numberWithUnsignedLong:'sce2'] forKey:NSFileHFSTypeCode];
+    [dict setObject:[NSNumber numberWithUnsignedInt:'sce2'] forKey:NSFileHFSTypeCode];
     
     return dict;
 }
 
-- (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)type
+-(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError * _Nullable *)outError
 {
+    NSString *fileName = url.path;
     BOOL value = YES;
     
     value = [self loadDataRepresentation:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:@""];
@@ -683,7 +680,7 @@
 
 // ****************** (END) NEW METHODS ******************
 
-- (NSData *)dataRepresentationOfType:(NSString *)aType
+- (NSData *)dataOfType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
     // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
     //NSData *theLevelMapData = [theMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1];
@@ -698,10 +695,14 @@
     else
     {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
+        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
-        short thePfhorgeDataSig2 = 34521;
-        long thePfhorgeDataSig3 = 42296737;
-        
+        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
+        unsigned short thePfhorgeDataSig2 = 34521;
+        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
+        int thePfhorgeDataSig3 = 42296737;
+        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+
         NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
@@ -748,7 +749,7 @@
     return [entireMapData autorelease];*/
 }
 
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
+-(BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
     // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
     //theRawMapData = data;
@@ -759,13 +760,13 @@
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
     short thePfhorgeDataSig1 = 26743;
-    short thePfhorgeDataSig2 = 34521;
+    unsigned short thePfhorgeDataSig2 = 34521;
     long thePfhorgeDataSig3 = 42296737;
     
     short theVersionNumberFromData = 0;
     short thePfhorgeDataSig1FromData = 0;
-    short thePfhorgeDataSig2FromData = 0;
-    long thePfhorgeDataSig3FromData = 0;
+    unsigned short thePfhorgeDataSig2FromData = 0;
+    int thePfhorgeDataSig3FromData = 0;
     
    // NSRange firstOne = [aType rangeOfString:@"mmap"];
     
@@ -774,6 +775,10 @@
     [data getBytes:&thePfhorgeDataSig2FromData range:NSMakeRange(4,2)];
     [data getBytes:&thePfhorgeDataSig3FromData range:NSMakeRange(6,4)];
      
+    theVersionNumberFromData = CFSwapInt16BigToHost(theVersionNumberFromData);
+    thePfhorgeDataSig1FromData = CFSwapInt16BigToHost(thePfhorgeDataSig1FromData);
+    thePfhorgeDataSig2FromData = CFSwapInt16BigToHost(thePfhorgeDataSig2FromData);
+    thePfhorgeDataSig3FromData = CFSwapInt32BigToHost(thePfhorgeDataSig3FromData);
      NSLog(@"loadDataRepresentation");
     
     //NSRange secondOne = [theRawString rangeOfString:@"map"];

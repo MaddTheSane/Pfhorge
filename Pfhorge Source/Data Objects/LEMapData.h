@@ -142,16 +142,16 @@ enum {
 -(id)getShortZeroIsNilIfOverObjectFrom:(NSArray *)theArray;
 - (short)getUnsignedShort;
 -(id)getUnsignedShortObjectFrom:(NSArray *)theArray;
-- (long)getLong;
-- (unsigned long)getUnsignedLong;
+- (int)getLong;
+- (unsigned int)getUnsignedLong;
 - (id)getChar:(unsigned)theCharAmount;
 - (short)getOneByteShort;
 
 - (void)saveData:(NSData *)theData;
 - (void)saveShort:(short)v;
 - (void)saveUnsignedShort:(unsigned short)v;
-- (void)saveLong:(long)v;
-- (void)saveUnsignedLong:(unsigned long)v;
+- (void)saveLong:(int)v;
+- (void)saveUnsignedLong:(unsigned int)v;
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length;
 - (void)saveOneByteShort:(char)v;
 - (void)saveEmptyBytes:(int)amount;

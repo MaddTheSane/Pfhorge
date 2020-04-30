@@ -91,10 +91,14 @@ BOOL setupPointerArraysDurringLoading = YES;
     int i = 0;
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
+    theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
     short thePfhorgeDataSig1 = 26743;
-    short thePfhorgeDataSig2 = 34521;
+    thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
+    unsigned short thePfhorgeDataSig2 = 34521;
+    thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
     int thePfhorgeDataSig3 = 42296737;
-    
+    thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+
     NSMutableArray *theArchivedLevels = [[NSMutableArray alloc] initWithCapacity:numberOfLevels];
     
     PhProgress *progress = [PhProgress sharedPhProgress];
@@ -996,7 +1000,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     while (myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart))
     {        
-        long next_offset, length, offset, tag;
+        int next_offset, length, offset;
+        OSType tag;
         NSMutableArray *theArray = nil;
         int amountOfObjects = 0;
         Class theClass = nil;
@@ -1113,7 +1118,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                 
             default:
                 NSLog(@"   PreAllocation Process Detected Unknown Tag: %@",
-                        [NSString stringWithCString:(const char *)&tag length:4]);
+                        CFBridgingRelease(UTCreateStringForOSType(tag)));
             case 'Minf':
                 if (next_offset == 0 /* && !foundTheTag */)
                 {
@@ -1131,7 +1136,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         if (foundTheTag)
         {
             int i;
-            NSString *theTmpTagString = [NSString stringWithCString:(const char *)&tag length:4];
+            NSString *theTmpTagString = CFBridgingRelease(UTCreateStringForOSType(tag));
             [theArray removeAllObjects];
             
             #ifdef useDebugingLogs
@@ -1261,9 +1266,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     return [theArray objectAtIndex:theUnsignedShort];
 }
 
-- (long)getLong
+- (int)getLong
 {
-    long theLong;
+    int theLong;
     //[mapData deserializeDataAt:&theLong ofObjCType:@encode(long) atCursor:&theCursor context:nil];
     [mapData getBytes:&theLong range:NSMakeRange(theCursor,4)];
 	theLong = CFSwapInt32BigToHost(theLong);
@@ -1271,9 +1276,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     return theLong;
 }
 
-- (unsigned long)getUnsignedLong
+- (unsigned int)getUnsignedLong
 {
-    unsigned long theUnsignedLong;
+    unsigned int theUnsignedLong;
     //[mapData deserializeDataAt:&theUnsignedLong ofObjCType:@encode(unsigned long) atCursor:&theCursor context:nil];
     [mapData getBytes:&theUnsignedLong range:NSMakeRange(theCursor,4)];
 	theUnsignedLong = CFSwapInt32BigToHost(theUnsignedLong);
@@ -1297,7 +1302,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         theChar[i] = theLetter;
     }
     theCharConstPntr = theChar;
-    theTmpCharString = [NSString stringWithCString:theCharConstPntr]; //length:theCharAmount];
+    theTmpCharString = @(theCharConstPntr); //length:theCharAmount];
     
    return theTmpCharString;
 }
@@ -1330,21 +1335,21 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[mapDataToSave appendBytes:&theShort length:2]; 
 }
 
-- (void)saveLong:(long)v 
+- (void)saveLong:(int)v
 { 
-	long theLong = CFSwapInt32HostToBig(v);
+	int theLong = CFSwapInt32HostToBig(v);
 	[mapDataToSave appendBytes:&theLong length:4]; 
 }
 
-- (void)saveUnsignedLong:(unsigned long)v 
+- (void)saveUnsignedLong:(unsigned int)v
 { 
-	long theLong = CFSwapInt32HostToBig(v);
+	int theLong = CFSwapInt32HostToBig(v);
 	[mapDataToSave appendBytes:&theLong length:4]; 
 }
 
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length
 {
-    const char *theStringAsCString = [v lossyCString];
+    const char *theStringAsCString = [v UTF8String];
     int theStringLength = strlen(theStringAsCString);
     char nullChar = '\0';
     
@@ -1581,7 +1586,8 @@ BOOL setupPointerArraysDurringLoading = YES;
         #endif
         while (GoOn == YES /*&& theCursor < (theCursor + myLevelHeaders[i].length) */) // Logicaly check this out some time!!!
         {
-            long next_offset, length, offset, tag;
+            int next_offset, length, offset;
+            OSType tag;
             //NSString *theTagAsString;
             //char *theTagAsChar;
             
@@ -2795,7 +2801,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #pragma mark -
 #pragma mark ********* Save Data Functions *********
 
-- (void)saveEntryHeader:(long)tag next_offset:(long)nextOffset length:(long)length offset:(long)offset
+- (void)saveEntryHeader:(OSType)tag next_offset:(long)nextOffset length:(long)length offset:(long)offset
 {
 
     [self saveLong:tag];

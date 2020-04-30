@@ -45,8 +45,8 @@
 #pragma mark ********* Coding/Copy Protocal Methods *********
 
 - (long)exportWithIndex:(NSMutableArray *)theIndex withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
-    long theNumber = [theIndex indexOfObjectIdenticalTo:self];
+{
+    NSInteger theNumber = [theIndex indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
     
@@ -94,7 +94,7 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Map Object: %d  -- Position: %d --- myData: %d", [self getIndex], [theIndex indexOfObjectIdenticalTo:self], [myData length]);
+    NSLog(@"Exporting Map Object: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -111,7 +111,7 @@
 
 - (void)importWithIndex:(NSArray *)theIndex withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-	NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %d", [self getIndex], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(type);
     ImportShort(index);
@@ -321,9 +321,9 @@
 -(short)getObjTypeIndex { return index; }
 -(short)getFacing { return facing; }
 -(short)getPolygonIndex { return (polygonObject == nil) ? -1 : [polygonObject getIndex]; }
--(id)getPolygonObject { return polygonObject; }
--(unsigned short)getFlags { return flags; }
--(short unsigned)getMapFlags { return flags; }
+@synthesize polygonObject;
+-(LEMapObjectFlags)getFlags { return flags; }
+@synthesize mapFlags=flags;
 
 // *****************   Set Accsessors   *****************
 #pragma mark -
@@ -414,12 +414,5 @@
     else if (everythingLoadedST)
         polygonObject = [theMapPolysST objectAtIndex:s];
 }
-
--(void)setPolygonObject:(id)s
-{
-    polygonObject = s;
-}
-
--(void)setMapFlags:(unsigned short)us { flags = us; }
 
 @end
