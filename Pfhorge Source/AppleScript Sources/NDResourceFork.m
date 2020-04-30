@@ -139,7 +139,7 @@ OSErr createResourceFork( NSURL * aURL );
 		if ( noErr == PtrToHand ( [aData bytes], &theResHandle, [aData length] ) )
 		{
 			Str255			thePName;
-			CFStringGetPascalString(aName, thePName, 255, kCFStringEncodingMacRoman);
+			CFStringGetPascalString((CFStringRef)aName, thePName, 255, kCFStringEncodingMacRoman);
 			
 			HLock( theResHandle );
 			AddResource( theResHandle, aType, anID, thePName );

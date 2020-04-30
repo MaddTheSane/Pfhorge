@@ -72,7 +72,7 @@
                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26">
                         <rect key="frame" x="238" y="193" width="143" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Random Location" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="101">
+                        <buttonCell key="cell" type="check" title="Random Location" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="101">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>

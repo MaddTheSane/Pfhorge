@@ -1429,7 +1429,7 @@ enum {
             default:
                 showAngle = NO;
                 theCurDrawingMap = nil;
-                NSLog(@"ERROR: unkown object type??? Object Index: %d, I will skip it...", [[currentLevel layerMapObjects] indexOfObjectIdenticalTo:thisMapObject]);
+                NSLog(@"ERROR: unkown object type??? Object Index: %lu, I will skip it...", (unsigned long)[[currentLevel layerMapObjects] indexOfObjectIdenticalTo:thisMapObject]);
                 return;
         }
         

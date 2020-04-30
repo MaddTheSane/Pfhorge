@@ -333,8 +333,8 @@
     // addItemsWithTitles   removeAllItems
     // indexOfSelectedItem  selectItemAtIndex:
     NSMutableArray *theNameArray = [self getNameArrayUsingType:menuKind];
-    int indexOfSelectedMenuItem = [theMenuUIO indexOfSelectedItem];
-    int totalNumberOfMenuItems;
+    NSInteger indexOfSelectedMenuItem = [theMenuUIO indexOfSelectedItem];
+    NSInteger totalNumberOfMenuItems;
     
     //NSEnumerator *enumerator;
     //NSMenuItem *item;

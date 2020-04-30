@@ -44,7 +44,7 @@
 - (IBAction)exportSelectedToMarathonMap:(id)sender;
 - (IBAction)deleteSelectedLevel:(id)sender;
 
-- (void)savePanelDidEnd:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
-- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
+- (void)savePanelDidEnd:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
+- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
 
 @end

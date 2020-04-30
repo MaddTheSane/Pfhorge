@@ -62,7 +62,7 @@ static void free_crc_table(void);
 	return crc;
 }*/
 
-unsigned long calculate_crc_for_nsdata(NSData *fileData) 
+unsigned int calculate_crc_for_nsdata(NSData *fileData) 
 {
 	uint32 crc=0;
 	unsigned char *buffer;
@@ -86,7 +86,7 @@ unsigned long calculate_crc_for_nsdata(NSData *fileData)
 }
 
 /* Calculate the crc for a file using the given buffer.. */
-unsigned long calculate_data_crc(
+unsigned int calculate_data_crc(
 	unsigned char *buffer,
 	long length)
 {

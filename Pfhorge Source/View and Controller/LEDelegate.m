@@ -567,15 +567,15 @@
 - (void)testOutChecksum:(NSData *)theData
 {
     NSMutableData *newData = [[NSMutableData alloc] init];
-    unsigned long oldCheckSum1;
-    unsigned long oldCheckSum2;
-	unsigned long oldCheckSum3;
+    unsigned int oldCheckSum1;
+    unsigned int oldCheckSum2;
+	unsigned int oldCheckSum3;
     //[mapData deserializeDataAt:&theUnsignedLong ofObjCType:@encode(unsigned long) atCursor:&theCursor context:nil];
     [theData getBytes:&oldCheckSum1 range:NSMakeRange(68,4)];
     [newData setData:theData];
     [newData getBytes:&oldCheckSum2 range:NSMakeRange(68,4)];
     
-    unsigned long ulongZero = 0;
+    unsigned int ulongZero = 0;
     
     NSRange checksumRange = NSMakeRange(68, 4);
     [newData replaceBytesInRange:checksumRange withBytes:&ulongZero];
@@ -584,7 +584,7 @@
     //unsigned char *buffer = [newData mutableBytes];
     //long theLength = [newData length];
     //unsigned long theChecksum = calculate_data_crc(buffer, theLength);
-	unsigned long theChecksum = calculate_crc_for_nsdata(newData);
+	unsigned int theChecksum = calculate_crc_for_nsdata(newData);
     
     // at 68 for 4 bytes...
     NSLog(@"Caculated Checksum: %d   -   The Old Checksum: %d   -   The Old Transfer Checksum: %d  -  Supposed To Be Zero: %d", theChecksum, oldCheckSum1, oldCheckSum2, oldCheckSum3);

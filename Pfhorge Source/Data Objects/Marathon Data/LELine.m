@@ -1439,7 +1439,7 @@
             } // End while (currentLine == [numer nextObject])
             
             //We have found the next line to follow...
-            NSLog(@"FINNAL Lowest Line Index: %d  With Angle Of: %g", smallestLineIndex, smallestAngle);
+            NSLog(@"FINNAL Lowest Line Index: %ld  With Angle Of: %g", (long)smallestLineIndex, smallestAngle);
             
             if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
             {

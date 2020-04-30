@@ -18,9 +18,9 @@
 	NDAppleScriptObject					* contextAppleScriptObject;
 	id<NDAppleScriptObjectSendEvent>	sendAppleEventTarget;
 	id<NDAppleScriptObjectActive>		activeTarget;
-	ComponentInstance						osaComponent;
+	ComponentInstance					osaComponent;
 
-	long										executionModeFlags;
+	SInt32								executionModeFlags;
 }
 
 + (id)compileExecuteString:(NSString *) aString;
@@ -47,7 +47,7 @@
 - (BOOL)executeOpen:(NSArray *)aParameters;
 - (BOOL)executeEvent:(NSAppleEventDescriptor *)anEvent;
 
-- (NSArray *)arrayOfEventIdentifier;
+- (NSArray<NSString*> *)arrayOfEventIdentifier;
 - (BOOL)respondsToEventClass:(AEEventClass)aEventClass eventID:(AEEventID)aEventID;
 
 - (NSAppleEventDescriptor *)resultAppleEventDescriptor;
@@ -56,8 +56,8 @@
 - (NSString *)resultAsString;
 
 - (void)setContextAppleScriptObject:(NDAppleScriptObject *)aAppleScriptObject;
-- (long)executionModeFlags;
-- (void)setExecutionModeFlags:(long)aModeFlags;
+- (SInt32)executionModeFlags;
+- (void)setExecutionModeFlags:(SInt32)aModeFlags;
 
 - (void)setDefaultTarget:(NSAppleEventDescriptor *)aDefaultTarget;
 - (void)setDefaultTargetAsCreator:(OSType)aCreator;

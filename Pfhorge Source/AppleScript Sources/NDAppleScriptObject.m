@@ -80,7 +80,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 					theScriptDesc = { typeNull, NULL };
 	id				theResultObject = nil;
 
-	if( (AECreateDesc( typeChar, [aString cString], [aString cStringLength], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
+	if( (AECreateDesc( typeChar, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
 	{
 		if( OSACoerceToDesc( [self OSAComponent], theResultID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr )
 		{
@@ -387,7 +387,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		[theEvent setParamDescriptor:theEventList forKeyword:keyDirectObject];
 	}
 
-	return (theEvent != nil ) ? [self executeEvent:theEvent] : nil;
+	return (theEvent != nil ) ? [self executeEvent:theEvent] : NO;
 }
 
 /*
@@ -432,8 +432,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
 {
 	NSString		* theEventClass,
 					* theEventID;
-	theEventClass = [NSString stringWithCString:(char*)&aEventClass length:sizeof(aEventClass)];
-	theEventID = [NSString stringWithCString:(char*)&aEventID length:sizeof(aEventID)];
+	theEventClass = CFBridgingRelease(UTCreateStringForOSType(aEventClass));
+	theEventID = CFBridgingRelease(UTCreateStringForOSType(aEventID));
 	
 	return [[self arrayOfEventIdentifier] containsObject:[theEventClass stringByAppendingString:theEventID]];
 }
@@ -526,7 +526,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - executionModeFlags
  */
-- (long)executionModeFlags
+- (SInt32)executionModeFlags
 {
 	return executionModeFlags;
 }
@@ -534,7 +534,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - setExecutionModeFlags:
  */
-- (void)setExecutionModeFlags:(long)aModeFlags
+- (void)setExecutionModeFlags:(SInt32)aModeFlags
 {
 	executionModeFlags = aModeFlags;
 }

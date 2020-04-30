@@ -179,7 +179,7 @@
     origin.y = decodeInt(coder);
     height = decodeShort(coder);
     
-    minimum_light_intensity = decodeLong(coder);
+    minimum_light_intensity = decodeInt(coder);
     texture = decodeShort(coder);
     transfer_mode = decodeShort(coder);
     

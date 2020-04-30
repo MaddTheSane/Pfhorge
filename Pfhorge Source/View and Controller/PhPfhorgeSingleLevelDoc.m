@@ -166,7 +166,7 @@
     return value;
 }
 
-- (NSData *)dataRepresentationOfType:(NSString *)type {
+- (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to provide a persistent data representation of your document
     // OR remove this and implement the file-wrapper or file path based save methods.
     
@@ -187,8 +187,8 @@
     {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         short thePfhorgeDataSig1 = 26743;
-        short thePfhorgeDataSig2 = 34521;
-        long thePfhorgeDataSig3 = 42296737;
+        unsigned short thePfhorgeDataSig2 = 34521;
+        int thePfhorgeDataSig3 = 42296737;
         
         NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
         
@@ -205,7 +205,7 @@
     return entireMapData;
 }
 
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)type {
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to load a persistent data representation of your document OR remove this and implement the file-wrapper or file path based load methods.
     ///NSLog(@"*** Subclassed LEMap - loadDataRepresentation ***");
     
@@ -218,13 +218,13 @@
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
     short thePfhorgeDataSig1 = 26743;
-    short thePfhorgeDataSig2 = 34521;
-    long thePfhorgeDataSig3 = 42296737;
+    unsigned short thePfhorgeDataSig2 = 34521;
+    int thePfhorgeDataSig3 = 42296737;
     
     short theVersionNumberFromData = 0;
     short thePfhorgeDataSig1FromData = 0;
-    short thePfhorgeDataSig2FromData = 0;
-    long thePfhorgeDataSig3FromData = 0;
+    unsigned short thePfhorgeDataSig2FromData = 0;
+    int thePfhorgeDataSig3FromData = 0;
     
    // NSRange firstOne = [aType rangeOfString:@"mmap"];
     

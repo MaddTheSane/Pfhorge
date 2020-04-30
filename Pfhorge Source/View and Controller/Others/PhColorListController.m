@@ -229,7 +229,7 @@
 
 // *********************** Updater Methods ***********************
 
-- (int)getSelection { return [colorListTable selectedRow] - 1; }
+- (NSInteger)getSelection { return [colorListTable selectedRow] - 1; }
 
 - (NSNumber *)getSelectedNumber
 {
@@ -241,7 +241,7 @@
 
 - (void)setSelectionToNumber:(NSNumber *)theNumberToSelect
 {
-    int selectNumber = ([numbers indexOfObject:theNumberToSelect] + 1);
+    NSInteger selectNumber = ([numbers indexOfObject:theNumberToSelect] + 1);
     
     [colorListTable scrollRowToVisible:selectNumber];
     [colorListTable selectRow:selectNumber byExtendingSelection:NO];

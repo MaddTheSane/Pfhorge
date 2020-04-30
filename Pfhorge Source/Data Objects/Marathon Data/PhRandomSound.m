@@ -33,7 +33,7 @@
 
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     long theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
@@ -43,7 +43,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -77,14 +77,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Random Sound: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+    NSLog(@"Exporting Random Sound: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
-    if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
+    if ([index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -196,8 +196,8 @@
 - (void) setDelta_period:(short)v { delta_period = v; }
 - (void) setDirection:(short)v { direction = v; }
 - (void) setDelta_direction:(short)v { delta_direction = v; }
-- (void) setPitch:(long)v { pitch = v; }
-- (void) setDelta_pitch:(long)v { delta_pitch = v; }
+- (void) setPitch:(int32_t)v { pitch = v; }
+- (void) setDelta_pitch:(int32_t)v { delta_pitch = v; }
 - (void) setPhase:(short)v { phase = v; }
 
 @end

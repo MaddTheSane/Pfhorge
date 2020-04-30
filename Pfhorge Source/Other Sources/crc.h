@@ -14,5 +14,5 @@
 
 #import <Foundation/Foundation.h>
 
-unsigned long calculate_crc_for_nsdata(NSData *fileData);
-unsigned long calculate_data_crc(unsigned char *buffer, long length);
+unsigned int calculate_crc_for_nsdata(NSData *fileData);
+unsigned int calculate_data_crc(unsigned char *buffer, long length);

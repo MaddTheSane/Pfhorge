@@ -23,7 +23,7 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 #import "PhTextureRepository.h"
-#import <AppKit/NSFileWrapper.h>
+#import <Foundation/Foundation.h>
 
 #import "LELevelData.h"
 

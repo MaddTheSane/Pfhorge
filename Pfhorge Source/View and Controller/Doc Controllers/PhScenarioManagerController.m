@@ -73,7 +73,7 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
-    int theSelectedRow = [theLevelTable selectedRow];
+    NSInteger theSelectedRow = [theLevelTable selectedRow];
     
     if (theSelectedRow < 0)
         return;
@@ -97,10 +97,11 @@
     SEND_INFO_MSG_TITLE(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now...", @"Warning");
     
     [theSavePanel setPrompt:@"Export"];
+    theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
-    [theSavePanel beginSheetForDirectory:nil file:nil modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:) contextInfo:NULL];
-    
-    
+    [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+        [self savePanelDidEnd:theSavePanel returnCode:result contextInfo:NULL];
+    }];
 }
 
 - (IBAction)rescanProjectDirectory:(id)sender
@@ -118,8 +119,11 @@
     NSSavePanel *theSavePanel = [NSSavePanel savePanel];
     
     [theSavePanel setPrompt:@"Export Single Level"];
+    theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
-    [theSavePanel beginSheetForDirectory:nil file:nil modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(savePanelDidEndForSingleExport:returnCode:contextInfo:) contextInfo:NULL];
+    [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+        [self savePanelDidEndForSingleExport:theSavePanel returnCode:result contextInfo:NULL];
+    }];
 }
 
 - (IBAction)deleteSelectedLevel:(id)sender
@@ -130,20 +134,16 @@
 
 // ********* END ACTIONS *********
 
-- (void)savePanelDidEnd:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void)savePanelDidEnd:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
-
     if (returnCode != NSOKButton)
         return;
     
     [[self document] saveMergedMapTo:[sheet filename]];
-    
-    
 }
 
-- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
-
     if (returnCode != NSOKButton)
         return;
     

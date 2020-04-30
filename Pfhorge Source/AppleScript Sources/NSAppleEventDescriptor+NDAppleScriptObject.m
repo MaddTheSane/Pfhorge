@@ -26,7 +26,7 @@
 + (NSAppleEventDescriptor *)aliasListDescriptorWithArray:(NSArray *)aArray
 {
 	NSAppleEventDescriptor	* theEventList = nil;
-	unsigned int				theIndex,
+	NSInteger				theIndex,
 									theNumOfParam;
 
 	theNumOfParam = [aArray count];

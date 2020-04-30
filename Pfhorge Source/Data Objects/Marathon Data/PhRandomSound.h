@@ -77,8 +77,8 @@ enum	// sound image flags
 - (void) setDelta_period:(short)v;
 - (void) setDirection:(short)v;
 - (void) setDelta_direction:(short)v;
-- (void) setPitch:(long)v;
-- (void) setDelta_pitch:(long)v;
+- (void) setPitch:(int32_t)v;
+- (void) setDelta_pitch:(int32_t)v;
 - (void) setPhase:(short)v;
 
 @end

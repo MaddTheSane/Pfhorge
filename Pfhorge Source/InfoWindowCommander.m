@@ -74,6 +74,7 @@
     NSLog(@"InfoCommanderWindow dealloc");
     [mapDocument removeLevelInfoWinCon:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 - (BOOL)windowShouldClose:(id)sender

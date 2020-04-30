@@ -459,13 +459,13 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             <size key="cellSize" width="125" height="18"/>
                                             <size key="intercellSpacing" width="2" height="0.0"/>
-                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="leading" alignment="left" inset="2" id="2903">
+                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="2903">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Clockwise" imagePosition="leading" alignment="left" controlSize="small" state="on" inset="2" id="2317">
+                                                    <buttonCell type="radio" title="Clockwise" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2317">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <string key="keyEquivalent">k</string>
@@ -473,7 +473,7 @@
                                                     </buttonCell>
                                                 </column>
                                                 <column>
-                                                    <buttonCell type="radio" title="Counter-Clockwise" imagePosition="leading" alignment="left" controlSize="small" tag="1" inset="2" id="2318">
+                                                    <buttonCell type="radio" title="Counter-Clockwise" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="2318">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                         <string key="keyEquivalent">l</string>
@@ -825,19 +825,19 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             <size key="cellSize" width="89" height="18"/>
                                             <size key="intercellSpacing" width="4" height="2"/>
-                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="leading" alignment="left" inset="2" id="2904">
+                                            <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="2904">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Clockwise" imagePosition="leading" alignment="left" controlSize="small" state="on" inset="2" id="2640">
+                                                    <buttonCell type="radio" title="Clockwise" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="2640">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
                                                 </column>
                                                 <column>
-                                                    <buttonCell type="radio" title="C-Clockwise" imagePosition="leading" alignment="left" controlSize="small" tag="1" inset="2" id="2641">
+                                                    <buttonCell type="radio" title="C-Clockwise" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="2641">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
@@ -1612,7 +1612,7 @@
                             <tabViewItem label="Obj" identifier="3" id="966">
                                 <view key="view" id="945">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="981">
                                             <rect key="frame" x="85" y="219" width="109" height="22"/>
@@ -1723,37 +1723,37 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             <size key="cellSize" width="169" height="18"/>
-                                            <buttonCell key="prototype" type="check" title="Initially Invisible" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="-1" inset="2" id="2908">
+                                            <buttonCell key="prototype" type="check" title="Initially Invisible" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="-1" inset="2" id="2908">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="check" title="Initially Invisible (Teleports)" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" state="on" tag="1" inset="2" id="1031">
+                                                    <buttonCell type="check" title="Initially Invisible (Teleports)" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="1" inset="2" id="1031">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Platform Sound" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="2" inset="2" id="1029">
+                                                    <buttonCell type="check" title="Platform Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="1029">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Hangs From Ceiling" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="3" inset="2" id="1030">
+                                                    <buttonCell type="check" title="Hangs From Ceiling" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="1030">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Blind" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="4" inset="2" id="1032">
+                                                    <buttonCell type="check" title="Blind" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="4" inset="2" id="1032">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Deaf" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="5" inset="2" id="1033">
+                                                    <buttonCell type="check" title="Deaf" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="5" inset="2" id="1033">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Floats" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="6" inset="2" id="1027">
+                                                    <buttonCell type="check" title="Floats" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="6" inset="2" id="1027">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
-                                                    <buttonCell type="check" title="Network Only" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" tag="8" inset="2" id="1028">
+                                                    <buttonCell type="check" title="Network Only" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="8" inset="2" id="1028">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="message" size="11"/>
                                                     </buttonCell>
@@ -1785,7 +1785,7 @@
                             <tabViewItem label="N/A" identifier="4" id="946">
                                 <view key="view" id="953">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1250">
                                             <rect key="frame" x="31" y="120" width="153" height="27"/>
@@ -1802,7 +1802,7 @@
                             <tabViewItem label="Annotation" identifier="5" id="2798">
                                 <view key="view" id="2799">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2802">
                                             <rect key="frame" x="11" y="92" width="187" height="128"/>
@@ -1852,7 +1852,7 @@
                             <tabViewItem label="Annotation" identifier="5" id="2801">
                                 <view key="view" id="2800">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2811">
                                             <rect key="frame" x="27" y="123" width="153" height="27"/>

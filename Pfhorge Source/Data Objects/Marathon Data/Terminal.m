@@ -89,8 +89,8 @@ void convertLFtoCR(NSMutableData *theRawTextData)
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
  {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
+    int tmpLong = 0;
     //int i = 0;
     
     if (theNumber != NSNotFound)
@@ -98,7 +98,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -112,7 +112,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     // *** End Exporting ***
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
+    tmpLong = (int)[myData length];
     [theData appendBytes:&tmpLong length:4];
     [theData appendData:myData];
     [theData appendData:futureData];
@@ -124,7 +124,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -279,7 +279,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
         position += 12;
     }
     
-    NSLog(@"%@ grouping_count: %d  section objects: %d", [self getPhName], grouping_count, [theSections count]);
+    NSLog(@"%@ grouping_count: %d  section objects: %lu", [self getPhName], grouping_count, (unsigned long)[theSections count]);
     
     return self;
 }

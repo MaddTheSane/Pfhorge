@@ -70,7 +70,7 @@
 - (void)updateInterface:(LEMapDraw *)theView;
 
 // ***********************Accsessor Methods ***********************
-- (int)getSelection;
+- (NSInteger)getSelection;
 - (NSNumber *)getSelectedNumber;
 
 - (void)setSelectionToNumber:(NSNumber *)theNumberToSelect;
