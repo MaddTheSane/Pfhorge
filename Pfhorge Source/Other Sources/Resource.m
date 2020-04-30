@@ -12,27 +12,15 @@
 @implementation Resource
 - (id)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName
 {
-    [super init];
-    
-    resID = [@(newID) retain];
-    type = [resType copy];
-    name = [resName copy];
-    
-    loaded = NO;
-    data = [[NSData data] retain];
-    
+    if (self = [super init]) {
+        resID = @(newID);
+        type = [resType copy];
+        name = [resName copy];
+        
+        loaded = NO;
+        data = [NSData data];
+    }
     return self;
-}
-
-- (void)dealloc
-{
-    [data release];
-    
-    [resID release];
-    [type release];
-    [name release];
-    
-    [super dealloc];
 }
 
 - (NSComparisonResult)compare:(id)object
@@ -45,7 +33,7 @@
 
 - (ResType)typeAsResType
 {
-    return UTGetOSTypeFromString((CFStringRef)type);
+    return UTGetOSTypeFromString((__bridge CFStringRef)type);
 }
 
 @synthesize name;
@@ -72,9 +60,7 @@
 
 - (void)setData:(NSData *)newData
 {
-    [data release];
-    
-    data = [newData retain];
+    data = newData;
     
     [self setLoaded:YES];
 }

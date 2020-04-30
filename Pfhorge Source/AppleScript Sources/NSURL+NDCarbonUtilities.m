@@ -12,7 +12,7 @@
 
 + (NSURL *)URLWithFSRef:(const FSRef *)aFsRef
 {
-	return [(NSURL *)CFURLCreateFromFSRef( kCFAllocatorDefault, aFsRef ) autorelease];
+	return CFBridgingRelease(CFURLCreateFromFSRef( kCFAllocatorDefault, aFsRef ));
 }
 
 - (BOOL)getFSRef:(FSRef *)aFsRef

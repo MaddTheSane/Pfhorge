@@ -28,5 +28,5 @@
 - (ConstStr255Param)nameAsStr255 NS_RETURNS_INNER_POINTER;
 @property (nonatomic, readonly) ConstStr255Param nameAsStr255;
 @property BOOL loaded;
-@property (nonatomic, retain) NSData *data;
+@property (nonatomic, strong) NSData *data;
 @end

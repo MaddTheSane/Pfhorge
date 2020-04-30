@@ -185,7 +185,7 @@
 		AE3C15720A04512100FBFFCD /* LELevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBE54900DBBE877F000001 /* LELevelData.m */; };
 		AE3C15730A04512100FBFFCD /* PhAbstractNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */; };
 		AE3C15740A04512100FBFFCD /* PhLevelNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */; };
-		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; };
+		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F2021F01E90146BBD2 /* NDResourceFork.m */; };
 		AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; };
 		AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; };
@@ -200,7 +200,7 @@
 		AE3C15810A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */; };
 		AE3C15820A04512100FBFFCD /* PhScenarioManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */; };
 		AE3C15830A04512100FBFFCD /* PhScenarioData.m in Sources */ = {isa = PBXBuildFile; fileRef = F51939C602AC7C150146BBD2 /* PhScenarioData.m */; };
-		AE3C15840A04512100FBFFCD /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; };
+		AE3C15840A04512100FBFFCD /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; };
 		AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
 		AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
