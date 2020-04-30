@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
+		557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Exsample Script.applescript */; };
+		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -138,7 +140,6 @@
 		AE3C15200A04512100FBFFCD /* Pfhorge.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */; };
 		AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.nib */; };
 		AE3C15240A04512100FBFFCD /* Startup.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.nib */; };
-		AE3C15250A04512100FBFFCD /* Exsample Script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = F59C625F021F86750146BBD2 /* Exsample Script.scpt */; };
 		AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.nib */; };
 		AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.nib */; };
 		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.nib */; };
@@ -353,6 +354,8 @@
 		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
 		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ToolPallette.nib; sourceTree = "<group>"; };
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		557A9B40245A922A00527063 /* Exsample Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Exsample Script.applescript"; sourceTree = "<group>"; };
+		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
 		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyControls.h; sourceTree = "<group>"; };
 		A514D90A080ACBF200F94B8E /* KeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyControls.mm; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
@@ -510,7 +513,6 @@
 		F58032D603E322530146BBD2 /* LELevelData-Utilites.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Utilites.m"; sourceTree = "<group>"; };
 		F58032D803E322660146BBD2 /* LELevelData-Objects.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Objects.m"; sourceTree = "<group>"; };
 		F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Layers.m"; sourceTree = "<group>"; };
-		F59C625F021F86750146BBD2 /* Exsample Script.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Exsample Script.scpt"; sourceTree = SOURCE_ROOT; };
 		F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "LELine-SideCalc.h"; path = "Data Objects/Marathon Data/LELine-SideCalc.h"; sourceTree = SOURCE_ROOT; };
 		F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "LELine-SideCalc.m"; path = "Data Objects/Marathon Data/LELine-SideCalc.m"; sourceTree = SOURCE_ROOT; };
 		F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhTextureInspectorController.h; sourceTree = "<group>"; };
@@ -726,9 +728,10 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F59C625F021F86750146BBD2 /* Exsample Script.scpt */,
+				557A9B40245A922A00527063 /* Exsample Script.applescript */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
 				557A9B3E245A617B00527063 /* Media.xcassets */,
+				557A9B42245A924700527063 /* Pfhorge.sdef */,
 				F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */,
 				F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
@@ -1158,6 +1161,7 @@
 				AE3C15140A04512100FBFFCD /* Prefs.nib in Resources */,
 				AE3C15170A04512100FBFFCD /* AmbientSoundEditor.nib in Resources */,
 				AE3C15180A04512100FBFFCD /* Errors, Inc..nib in Resources */,
+				557A9B43245A924700527063 /* Pfhorge.sdef in Resources */,
 				AE3C15190A04512100FBFFCD /* LightEditor.nib in Resources */,
 				AE3C151A0A04512100FBFFCD /* LiquidInterface.nib in Resources */,
 				AE3C151B0A04512100FBFFCD /* PlatformEditor.nib in Resources */,
@@ -1169,7 +1173,6 @@
 				AE3C15200A04512100FBFFCD /* Pfhorge.scriptSuite in Resources */,
 				AE3C15230A04512100FBFFCD /* OpenGLVisualMode.nib in Resources */,
 				AE3C15240A04512100FBFFCD /* Startup.nib in Resources */,
-				AE3C15250A04512100FBFFCD /* Exsample Script.scpt in Resources */,
 				AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */,
 				AE3C15450A04512100FBFFCD /* MapManager.nib in Resources */,
 				AE3C15460A04512100FBFFCD /* ItemPlacementEditor.nib in Resources */,
@@ -1203,6 +1206,7 @@
 				AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */,
 				AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */,
 				AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */,
+				557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */,
 				AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */,
 				AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */,
 				AE3C15550A04512100FBFFCD /* LELevelWindowController.m in Sources */,

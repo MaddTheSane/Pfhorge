@@ -87,6 +87,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>OSAScriptingDefinition</key>
+	<string>Pfhorge.sdef</string>
 	<key>PfhPathwaysConvert</key>
 	<dict>
 		<key>Lights</key>
