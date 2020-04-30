@@ -34,7 +34,7 @@
     
     // Lists the LEMap documents open,
     //    in order of front to back...
-    - (NSArray *)levelDocumentsOpen;
+    - (NSArray<LEMap *> *)levelDocumentsOpen;
     {
         NSArray *theArray = [[NSDocumentController sharedDocumentController] documents];
         return ([theArray count] < 1) ? nil : theArray;

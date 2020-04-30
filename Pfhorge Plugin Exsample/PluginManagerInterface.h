@@ -12,21 +12,22 @@
 #import <Cocoa/Cocoa.h>
 
 @class LEMap, PhPluginManager;
+@protocol PhLevelPluginProtocol;
 
-@interface PhPluginManager
+@interface PhPluginManager: NSObject
 
     // Use this to get the plugin manager...
     + (PhPluginManager *)getThePluginManager;
     
     // Currently Loaded Plugin Types...
-    - (NSArray *)pluginClasses;
+    - (NSArray<Class> *)pluginClasses;
     
     // Currently Instated Plugins...
-    - (NSArray *)pluginInstances;
+    - (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances;
     
     // Lists the LEMap documents open,
     //    in order of front to back...
-    - (NSArray *)levelDocumentsOpen;
+    - (NSArray<LEMap *> *)levelDocumentsOpen;
     
     // Gives the front most LEMap level document...
     -(LEMap *)currentDocument;

@@ -65,7 +65,7 @@
     What ever this returns will be used in the user interface
         (the menu) for activating this plugin...
 
-    Should return an auto released NSString copy.
+    Should return an autoreleased NSString copy.
 */
 @property (readonly, nonatomic, copy) NSString *name;
 

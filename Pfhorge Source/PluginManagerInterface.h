@@ -27,7 +27,7 @@
 
 // Lists the LEMap documents open,
 //    in order of front to back...
-- (NSArray *)levelDocumentsOpen;
+- (NSArray<LEMap *> *)levelDocumentsOpen;
 
 // Gives the front most LEMap level document...
 -(LEMap *)currentDocument;
