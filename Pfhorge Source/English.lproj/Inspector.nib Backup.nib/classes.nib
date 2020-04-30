@@ -1,0 +1,123 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = LEInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                linePrimaryLight = id; 
+                lineSecondaryLight = id; 
+                lineSubController = id; 
+                lineTextureExp = id; 
+                lineTransparentLight = id; 
+                objAngle = id; 
+                objBox = id; 
+                objFlags = id; 
+                objItem = id; 
+                objType = id; 
+                objZHeight = id; 
+                objectSubController = id; 
+                polyAmbientSound = id; 
+                polyCeilingLight = id; 
+                polyFloorLight = id; 
+                polyLiquid = id; 
+                polyLiquidLight = id; 
+                polyRandomSound = id; 
+                polySubController = id; 
+                theMainTabMenu = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                controlPanelFlagsAction = id; 
+                controlPanelPermutationAction = id; 
+                controlPanelStatusAction = id; 
+                controlPanelTypeAction = id; 
+                emptyFlagAction = id; 
+                primaryLightAction = id; 
+                primaryTextureMenuAction = id; 
+                regularFlagsAction = id; 
+                secondaryLightAction = id; 
+                secondaryTextureMenuAction = id; 
+                textureOffsetMatrixAction = id; 
+                transparentLightAction = id; 
+                transparentTextureMenuAction = id; 
+            }; 
+            CLASS = PhLineInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                emptyFlag = id; 
+                lineBox = id; 
+                lineControlPanelFlags = id; 
+                lineControlPanelType = id; 
+                lineFlags = id; 
+                lineIsControlPanel = id; 
+                linePermutation = id; 
+                linePrimaryLight = id; 
+                lineSecondaryLight = id; 
+                lineTransparentLight = id; 
+                mainInspectorController = id; 
+                primaryTextureMenu = id; 
+                secondaryTextureMenu = id; 
+                textureOffsetMatrix = id; 
+                transparentTextureMenu = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                objectAngleAction = id; 
+                objectFlagsAction = id; 
+                objectHeightAction = id; 
+                objectKindAction = id; 
+                objectTypeAction = id; 
+            }; 
+            CLASS = PhObjectInspectorSubController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mainInspectorController = id; 
+                objAngle = id; 
+                objBox = id; 
+                objFlags = id; 
+                objItem = id; 
+                objType = id; 
+                objZHeight = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                ambientSoundAction = id; 
+                ceilingHeightAction = id; 
+                ceilingLightAction = id; 
+                floorHeightAction = id; 
+                floorLightAction = id; 
+                liauidLightAction = id; 
+                liquidAction = id; 
+                permutationAction = id; 
+                platformParametersAction = id; 
+                polygonTypeAction = id; 
+                randomSoundAction = id; 
+            }; 
+            CLASS = PhPolyInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                ambientSound = id; 
+                ceilingHeight = id; 
+                ceilingLight = id; 
+                floorHeight = id; 
+                floorLight = id; 
+                liquid = id; 
+                liquidLight = id; 
+                mainInspectorController = id; 
+                permutation = id; 
+                polyBox = id; 
+                type = id; 
+                yandomSound = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

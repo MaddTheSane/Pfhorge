@@ -1,0 +1,31 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                apperenceSliderChanged = id; 
+                apperenceTBChanged = id; 
+                initalCountTBChanged = id; 
+                itemPlacementTableViewDidChange = id; 
+                maxCountTBChanged = id; 
+                minCountTBChanged = id; 
+                randomCheckboxDidChange = id; 
+                totalCountTBChanged = id; 
+            }; 
+            CLASS = PhItemPlacementEditorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                appearenceSlider = id; 
+                appearenceTB = id; 
+                initalCountTB = id; 
+                maxCountTB = id; 
+                minCountTB = id; 
+                randomCB = id; 
+                theTableView = NSTableView; 
+                totalCountTB = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

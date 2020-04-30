@@ -1,0 +1,539 @@
+{\rtf1\mac\ansicpg10000\cocoartf102
+{\fonttbl\f0\fswiss\fcharset77 Helvetica;\f1\fnil\fcharset77 LucidaGrande;\f2\fswiss\fcharset77 Helvetica-Bold;
+\f3\fswiss\fcharset77 Helvetica-Oblique;\f4\fswiss\fcharset77 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red13\green14\blue204;\red7\green0\blue149;\red96\green0\blue95;
+\red5\green0\blue255;\red0\green12\blue255;\red0\green115\blue20;\red0\green108\blue14;\red0\green128\blue16;
+\red0\green16\blue108;\red255\green9\blue0;\red255\green0\blue6;\red0\green1\blue255;\red0\green8\blue255;
+\red243\green0\blue3;\red0\green77\blue22;\red149\green7\blue0;\red255\green6\blue0;\red0\green69\blue12;
+\red21\green21\blue255;\red255\green0\blue0;\red4\green0\blue104;\red0\green66\blue4;\red0\green105\blue105;
+\red0\green21\blue9;}
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0\fs24 \cf2 \CocoaLigature0 Pfhorge Read Me - V0.9.12\cf3 \
+\cf0 Pfhorge \'a9 Joshua D. Orr, 2002\
+dragons@xmission.com\
+Last Updated: 4/9/2002\
+Version 0.9.12\
+\
+\cf4 Please e-mail me any of your problems, suggestions, impressions, or comments to dragons@xmission.com\
+\
+\cf5 Special Thanks To:\
+\
+Loren Petrich for some of his Map Viewer code for Visual Mode.\
+Tom Hackett for the Pfhorge Icon.\
+Nick Rolfe for his help with object angle logic.\
+Nathan Day <nathan_day@mac.com> for his help with code that lets Pfhorge have a script menu (to run scripts internally). \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f1 \cf6 Raul Bonilla for the tool pallet icons.\cf0 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0 \cf5 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf7 *** *** *** Notes For 0.9.12 & 0.9.11 & 0.9.1 & 0.9.0 & 0.8.0 *** *** ***\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0\b0 \cf0 \
+0.9.12\
+\
+Fixed a really stupid layer bug (it would not work anymore in 0.9.1 or 0.9.11), it was only one line that got messed up some how... I fixed it...  The layer menu should work now.\
+\
+0.9.11\
+\
+Fixed a bug where for every polygon that was in the map it would display a error message about an obsolete method whenever you entered visual mode or exported the map.  This is now fixed.\
+\
+0.9.1\
+\
+Fixed a lot of bugs related to the default system. Should even copy platform settings correctly now when you make a polygon with a platform the default!\
+\
+Added Raul Bonilla to the credits for tool pallet icons.\
+\
+Did some touch up work, mainly on the level settings sheet.  Now the level name will change in the level name popup menu at the top of the window.\
+\
+Other Minor Fixes.\
+\
+0.9.0:\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf8 Very Good Tip:  If you use layers well, you can divide you level into different layers and get Pfhorge drawing faster.    Layers with anything from 0 to 400 polygons work well.  Pfhorge supports unlimited amount of polygons in each layer.  Pfhorge will not have to draw other polygons in other layers speeding up drawing.\
+\
+With layers you could have a 10,000 polygon map and still have good drawing speed.\
+\
+Another good tip is to connect polygons between layers in the "No Layer On" layer.  You should divide up you level is such a way that you should not have to do very much "Layer Connecting" or "Layer Joining", where you connect polygons between layers.\cf9 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+Thanks for reading the Read Me!  Pleas e-mail me any bugs you find and any other comments!  Anything is welcome, I hardly ever get any feedback... (I have only received about 5 or 6 e-mails informing me of bugs and telling me suggestions since June of last year [2001], seriously!).\
+\
+I am to the point now that I may like some help.  I may be releasing the most current version of the source if any buddy is interested.  Please e-mail me if you are interested.  The main things I need help in are:\
+\
+Help with the visual mode to make it able to determine which side is clicked and set the texture. I have not even started work on this aspect of the visual mode yet, I have been to busy.  My priority is to get the more essential stuff in Pfhorge working, for the most part but I can go off on tangents sometime (like with the terminal viewer/half editor).\
+\
+Improvements for 0.9.0: Make sure to read the 0.8.0 section directly after this section for important information.\
+\
+NOTE: All 0.8.0 notes below apply to 0.9.0.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf10 1. A whole bucket load of bug fixes that I found across the entire program but mainly having to do with the inspector, and with determine the right kind of side object combination to use.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+2. You can select more then one object by holding down the shift key.  The inspector will only edit one of the objects you select, and it should be the first one you select, but it may not be.  I will fix the inspector up soon to better support multiple selections.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf10 \
+3. Dragging with the mouse should work well for multiple selections, but it may not be perfect.  I will fix this soon. However, using the arrow keys on the keyboard should work well all the time (please tell me if it does not).\cf0 \
+\
+4. Using Pfhorge Formated Maps from older versions will not work.  Please open them with a older version of Pfhorge, export them, then open them in the new Pfhorge.  Some settings (layer and name information) will be lost, sorry.   0.9.0 Pfhorge formated maps may not work in 1.0.0, by the way, I am revamping the code a little for this and it should be finalized by 1.0.0.  ANything created in 1.0.0 should be able to open without problems in subsequent versions.\
+\
+\cf10 5. There are several new tools.  The zoom, text, and hand tool act like the arrow tool (this will be fixed soon).  But the rest of the tools should do something.  Here are some notes on these tools:\cf0 \
+\cf10 \
+A:  The object tools (first six on the bottom) each can store a default "object" for each type of object.  So the first tool (the monster tools) will store default settings for objects created by it.  You can set the default object by using the dropper tool and clicking on an object that you want to be come default.  Which kind of object you click on will determine which tools gets the new default object.  The object that the dropper copied will be selected letting you know which one it choose (just in case).\
+\
+B: This will work on lines and polygons also.  Please not that lines may have a little trouble, please notify if you don't like how default lines, objects, or polygons are handled and of any bugs!!! I need feedback to make the program better!\
+\
+C: The brush tool should apply default settings to anything you click on, it will also select whatever got the default settings.\cf0 \
+\
+6. When you are in a view mode (like hight view mode) holding the option key down and clicking on a polygon will select the item in the color list that corasponds to that polygon (it should, please tell me if it does not work correctly).\
+\
+\cf10 7. I think there are a few more things in the prefs.  More will be added latter.\cf0 \
+\
+8. There is a terminal view, please note that it will only display terminals if terminals were found when the level loaded.  Terminals will not save when you save the map (this will be fixed soon). It should decrypt encrypted terminals without difficultly automatically. Try opening the Bungie maps in Marathon 2 or Marathon infinity (or other maps with terminals in them) to check out the viewer.\
+\
+It will only display the Pfhorge icon when it encounters a picture.  As soon as I get resource fork loading in this cocoa program working better I should be able to get this working.\
+\
+\cf10 9. You should be able to mostly copy and paste, but when copying and pasting multiple polygons ( and maybe sometime even one polygon) when the polygons are pasted it may give garbage polygons (they don't look right) or it may crashes Pfhorge.  WHen your copying multiple polygons it may crash Pfhorge.\cf0 \
+\cf10 \
+These problems will probably almost never happen (I seem to have gotten this problem mostly under control, but who knows?).\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 There are other things (including 0.8.0 notes below) but I A) Can't recall them at this moment or B) It's behind the scenes stuff that you should not have to worry to much about or C) minor and not worth mentioning.\
+\
+0.8.0:\
+\
+I have gotten a terminal viewer mostly working.  It will not display the pictures, but will display text and som other information.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf11 IMPORTANT:\
+\
+I have got a lot of bugs fixed, maps exported to Aleph One format should work, but there is one catch:  If you create brand new maps in Pfhorge, it will get a default set of 'plac' tags.  So any objects you put in the new map will not show up in the game.\
+\
+Solution:\
+\
+Create brand new maps in Forge, then you can open the brand new map in Pfhorge and it should work fine.  I will fix this up in the new version.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+There are a lot of bug fixes having to do with Sides.\
+\
+There are a lot of bug fixes having to do wil the inspectors.\
+\
+I don't have time right now to list them all out.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf7 *** *** *** Notes For 0.7.6 *** *** ***
+\f0\b0 \cf0 \
+\
+Visual Mode Keys are user selectable.\
+Visual mode sensitivity/speed is now adjustable.\
+Mouse inverting in visual mode is user selectable.\
+\
+
+\f2\b \cf7 *** *** *** Notes For 0.7.5 *** *** ***
+\f0\b0 \cf0 \
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf12 IMPORTANT: \
+\
+When opening merged maps Pfhorge currently can't get the platforms in that map, I plan on fixing this soon. If you are going to change the map in Pfhorge I would split the merged map first before editing it in Pfhorge\
+\
+\cf13 Also...\cf12 \
+\
+I do not have an inspector available for inspecting the item placment data tag ( 'plac'  ) which has the item frequency information and I do not give new maps created in Pfhorge a default set of these.  I would recommend, if you are creating a new map, to do it in Forge then save it and open that map in Pfhorge. I will fix this soon!!!\cf0 \
+\
+\cf13 1. You can now select textures for ceilings, floors, and walls and they will be saved in both save formats and the change will reflect in visual mode.\cf0 \
+\
+2. I fixed up the inspector so it should now a lot better.\
+\
+\cf13 3. When you change something in the inspector, and then click something in the level, it will do it in one click instead of two.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+4. When you make new polygons, it should show up in visual mode now.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf13 5. The lines automatically get sides (not empty) when you create new polygons.\cf0 \
+\
+6. I still have a few issues with sides, but it should work much better if you play the level in Alpha One or Forge.\
+\
+\cf13 7. Added a bunch of new items, monsters, and scenery objects that can now be used...\cf0 \
+\
+8. Please be aware that some of the object types you can select now in Pfhorge were not available in Forge. If you use these items then you open it up in Forge, I am now sure what will happen when you select that object. These new object types are in Marathon 2 and Infinity (at least according to the Marathon Map Specs documentation) so I decided to let them be a choice to use.\
+\
+\cf13 9. If I did not say different above, then the below 0.7.0 notes most likely still apply...\cf0 \
+\
+10. There are other, smaller, improvements...\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf7 *** *** *** Notes For 0.7.0 *** *** ***
+\f0\b0 \cf0 \
+\
+1. There are numerous small changes thought the program. \
+\
+2. Exporting in 
+\f1 Aleph One/Marathon (\'b0/2)  format should be much better, it has a much better chance of opening in the game or working in Forges visual mode then in 0.6.0.\
+\
+3. Please be aware: Before you can texture a wall the Empty checkbox should be unchecked in the general inspector for that wall/line.  Soon I will have a pave command that will give sides (making it not Empty) to everything (similar to Forge's pave) so you don't have to un-check most new lines you create.\
+\
+4. Selecting a different texture in the texture inspector will not save in the exported Aleph One/Marathon (\'b0/2)  format, I will fix this very soon! I think it should save in Pfhorge's map format, but I can't remember (if it does not, it soon will!).\
+\
+5. Since visual mode uses the export code in Pfhorge to get the map data in the right format before sending it off to the OpenGL render, texture changes in Pfhorge will not display, but this will be fixed soon!!!\
+\
+6. Opening Aleph One/Marathon (\'b0/2)  format map files should be more reliable.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0 \cf0 \
+7. After entering visual mode it takes over Pfhorge until you press the F12 key, pressing the F12 key will get you out of visual mode. I plan to make this much better in the future, so that will not take over Pfhorge, and will do nothing until you activate the window that it is in and start moving around, only then will it render (only when there is a change, like moving around, will it render in the future). But for right now it takes over until F12 is pressed.\
+\
+8. I have designed the visual mode so that in the future, you could have more then one open at the same time, this is only partially supported in 0.7.0.\
+\
+9. The keys to use the visual mode are: Left and right arrow keys move you up and down, up and down arrow keys move you forward and backward.  Use the mouse to turn left and right and to look up and down.\
+\
+10. Visual mode always displays -1 for the polygon you in, if this is ever different please inform me, it could help me out!\
+\
+11. You can select option for the visual mode in Pfhorge prefs window under the Visual Mode tab.\
+\
+12. User selectable keys for the visual mode will be coming soon.\
+\
+13. Changing Prefs should not not crash Pfhorge at any time, if it does please report this to me!  When you change the colors and click the Apple Colors button or change the Grid options, etc. there will be a second delay before you see the changes.\
+\
+14. I am tired and it is late, so this is the end of the 0.7.0 Read Me Update... There are other things, but they are more minor.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf14 *** *** *** *** *** *** *** *** ***\
+\cf15 Bellow is general information, after this general information is some history of the changes made in pervious versions.\cf14 \
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 One problem I just thought of is when you change the polygon type in the general inspector, you will not see a color change in the polygon until you do something that forces pfhorge to update pre-calculated polygon drawing map.  You can do this by moving any polygon slightly, and then use the redraw command in the tools menu. Or you can just mov the polygon you just changed the type on slightly, if you do it this way you should not have to use the redraw command (changing that polygon forces Pfhorge to both recalculate the poly drawing map and redraw that part of the map with the new information).\
+\
+The program does alert you when major things happen, or for example, if you try to fill a polygon with more then eight vertices. There are errors, and other useful information that is printed in the console, if the program crashes and you decide to tell me about it, not only include what you did/what happened/what errors popped up, but also include the console recored relevant to the crash.\
+\
+To accsess the console, open:   \cf16  /
+\f1 Applications
+\f0 /
+\f1 Utilities/Console
+\f0 \cf0 \
+\
+There are several other minor issues not listed below that I am aware of, however, please e-mail me at \cf16 dragons@xmission.com\cf0  with \cf16 [Pfhorge Bug Report]\cf0  (\cf17 include the brackets [ ]\cf0 ) somewhere in the subject line for any bugs/errors/problems you encounter that are not listed below.  Please tell me exactly what you where doing and what happened. Please copy and past the console messages that Pfhorge creates into the e-mail (at the end, or as an attachment)!\
+\
+If you have a comment about the program or a suggestion, please E-Mail me at the above address with \cf16 [Pfhorge Comment]\cf0  somewhere in the subject line.\
+\
+\
+Please be aware that by next release, you should be able to edit lights, platforms, sounds, and liquids and add new lights, etc.  Also, the random sound menu in the general inspector does work. This will be fixed in the next release.  Names for lights, tags, etc. will not save with the map, this will be fixed in the next version.\
+\
+\
+Thanks for trying out Pfhorge!\
+\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b\fs28 \cf18 --- --- --- History Of Previous Releases --- --- ---
+\f0\b0\fs24 \cf0 \
+\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf7 *** *** *** Notes For 0.6.0 *** *** ***
+\f0\b0 \cf0 \
+\
+Please be aware that in the tool pallet, the icons are a little bit off. I am still working on them so they don't look exactly right but so there are no questions, the fourth icon is the object creating tool.  It is a little limited because it always starts out with the same settings, I plan to make it like forge and in the future it will copy the settings from the last object that you manipulated.\
+\
+You can't create sides right now. What this means is you can set control panel settings or textures on lines or polygons unless the lines already have a side (Forge may have done this).  This is not to hard to fix but I just have not gotten to it yet.  This should be resolved by the next release.\
+\
+You can drag maps onto Pfhorge to be opened.\
+\
+I don't think you can use apples script to open maps (you can use it to create new ones, though) this capability and many other will be added in time for Apple Script.\cf14 \
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf15 Some of the changes since 0.5.1 to 0.6.0:
+\f0\b0 \cf14 \
+\
+\cf19 1. There is a native map format for Pfhorge now.  It should save everything (including layer information and the names for every object). You can export any map using a menu item in the file menu to the Marathon/
+\f1 Aleph One format.  Merging files will be incorporated in the near future, the merge will be able to merge map files in either the Pfhorge format or the Aleph format without you having to worry about it. It will do the any conversions automatically when merging is available.
+\f0 \cf14 \
+\
+\cf20 2.  There is preliminary Apple Script support in Pfhorge now. A sample script was included with the program to give you an idea how it is done. You can also open Pfhorge's dictionary to learn more. Remember that this is just the very beginning, it is limited now but you will be able to do much more in the future.  I spent most of this last week trying to figure out apple script and get the apple scripts to run internally using the script menu (using some code from Nathan Day <nathan_day@mac.com>).\cf0 \
+\
+\cf19 3. There is now a script menu that can be customized with scripts.  Scripts run internally (from the script menu) should run faster then if the script is run externally (though the script editor for example). Please be aware that there may be a slight delay in running the first script from this menu after Pfhorge starts up, but there should be no delay in subsequent scripts as long as Pfhorge stays open.\cf14 \
+\cf19 \
+You can customize the script menu by going home (to your user folder/directory) then in the "/Library/Pfhorge Scripts/" folder. If this folder does not exist, then run Pfhorge and it should automatically be created.\
+\
+Any scripts that you put into this folder will show up in the scripts menu in Pfhorge next time you start up Pfhorge (it scans the scripts folder when Pfhorge launches).  When Pfhorge is running, please do not change the names of files or folders already in the scripts folder. First quit Pfhorge then adjust the scripts folder contents.\
+\
+You have to use compiled scripts in the script menu.  All scripts must end in ".scpt". You can use folders in the Scripts folder, the will show up as submenus in the scripts folder.\cf14 \
+\
+\cf20 4. Polygon Lines ownership settings should now be set properly.  This should fix polygons being show as half there, etc. if you open the file Pfhorge creates in Forge (and it should work better with Aleph One).\cf14 \
+\
+\cf19 5. There are some other changes, but the above are the main ones for this release.\cf14 \
+\
+
+\f2\b *********** *********** **************
+\fs28 \cf18 \
+
+\fs24 \cf19 Changes Since 0.5.0 -> 0.5.1
+\f0\b0 \cf21 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+When you create a new map using the New menu item in the File menu, the layer and level menus should work better. Also, the status bar (it less how many points, polygons, lines, etc,. are in the map) should now update correctly.\
+\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b \cf0 I don't have time to update this read me right now with the new features in 0.5.0, I will do so at a latter time. New stuff in older versions are listed below
+\f0\b0 \
+\
+\
+
+\f2\b \cf19 Some Of The New Stuff In 0.4.0:\cf14 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0\b0 \cf0 Please note that this is not a complete listing of changes, only the major ones that I happen to think of when I update this read me.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf14 1. You can now mostly edit lights, platforms, random sounds, ambient sounds, and media.  You can reach the edit window for these via two different methods currently. the first one is when you are in a view mode (like the liquid/media view mode where it shows via color which polygons of which media/liquid) you can double click the color coded items in the table to edit them.  the other method is when you have the name edit window open, there you can use the edit command in the command pull-down menu to edit the selected item.  The other commands in the command menu do not do anything, but they will by next release.\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 \
+2. Everything should look way better now (thanks to the person who suggested on the marathon-dev list to offset pixels by 0.5, I can't remember you name right now but I will include it here when I find it.)\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf14 3. Please note that when you change a name in the name editor the tag menus in the light editor window, and the platform editor window (now that I think about it, I think I forgot the connect the tag menu in the platform editor to the tags names, doh! I will do this by next release!) will not get updated instantly.  The name changes will reflect next time you edit a light, but any currently opened light editor windows will not get updated, I will change this soon.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 5. Also not that you can't add tags to the level, it will automatically add tags when the level loads (they are based on what tags that level is using when it loads). Same with the platform, light, sounds, and media. I will defenitly get this fixed up and more by next release.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf14 6. Layer information will not save when you save maps, this will be fixed via a new tag (or chunk)  in the next release. Name information will also not save, I will fix this next release.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf0 7. Layers are now mostly implemented.  By mostly I mean that I plan to make layers a lot more powerful in the future.  Most of the back-end is in place, I just need to expand the GUI and add more stuff to the GUI to support more of what it can do. Right now the only way to get layers into a map is while it is loading, I plan to make it so you can delete/add/rename and even change the color of a layer so that polygons in those layers have the normal color overridden with the custom layer color, while the map is loaded. Like I said above, most of the layer technology already supports these, but there is no interface to it currently.\
+\
+You setup how layers will be automatically created at level loading time via "File->Pfhorge Prefs->Default Layers." When you click on that menu item, a window will open.  You use the sliders/text boxes at the bottom to adjust the range.  Any polys at load time that are within the range (Both there Ceiling and Floor Height have to be within the corasponding ranges) will be assigned to that layer.  Also, when the program is determining which layer the poly should be long to at level load time, it will start at the top of the list and work its way down. When it finds a layer that the poly is in range of, it will assign that poly to that layer and then go on to the next poly, stopping its search at that point.  So layers will override any layer underneath it.  that last layer will always be the "Default Layer" with a floor range from -9wu to 9wu, and a ceiling range from -9wu to 9wu. So it will basically collect any polygons that do not get assigned to any layers above it. Right now weird things 
+\f3\i may
+\f0\i0  happen if a poly does not get assigned a layer (but probably not), but there should not be a situation that a polygon is not assigned to a layer.\
+\
+You can change which layer you are currently viewing by selecting a layer in the layer menu at the top of the map window. You may experience a slight delay while switching layers, depending on how many polygons you have in the layer. The more polygons the longer the delay (there are other factors, but that is the main one). this is because Pfhorge is computing on the fly which polygons are apart of which layer and puting a list together, it also has to find the which lines and points and objects are apart of the polygons in the layer and make a list of those too.  In the future I will cache this so there will be no delay.\
+\
+When you are viewing a layer, no other polygons, lines, or map objects will be display that are apart of other layers. Points, however, will still be drawn 
+\f2\b \ul but you can't select points that are apart of other layers, even though you see them
+\f0\b0 \ulnone . In the future I will give the ability to turn off or on if Pfhorge will draw the points from other layers.\
+\
+You can change wha layer a polygon belongs to in the Layer View Mode under the View menu on the main menu bar.\
+\
+When you create new polygons, they will be assigned the layer you are currently viewing. If you are viewing no layers (so every polygon/line/etc. is being drawn) then it will be assigned the "Default Layer".  If you create lines in a layer and then switch layers, you will not see the lines unless you turn off layer viewing (select "No Layers" in the layer menu).\
+\
+\
+\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f2\b\fs28 \cf19 The following are the old notes that where released with previous versions:
+\f0\b0 \cf0 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\fs24 \cf0 \
+Features:\
+\
+1. You can now name tags, lights, liquids (media), platforms, ambient sounds, and random sounds. To open the name editor for a document, make sure the the document you want to edit is the front most (the active document). Open the Tools menu, then select the first menu item , named "Edit Tag Names, Etc."   The new names should show up in the inspector and anywhere else relevant in the program. Please keep in mind that each document keeps track of its names, and that each document can have a separate window for each document for editing the names.  If you have more then one document open, you could also have more then one naming window open also (one for each document, if you wanted to), make sure you do not mix them up and start naming things for one level meant for another.  I will fix it so that it will be obvious which document the name editor will edit in the future. For right now, simply close the name editor after you are done to avoid confusion if you have more then one document open at the same time.\
+\
+2. There are additional prefs in the preferences window available. The "Enable Grid" checkbox now works, and when unchecked, Pfhorge will not draw the grid. Not drawing the grid will give a speed boost to scrolling. Expect scrolling to take less power to draw with future releases.  A new checkbox called "Enable Object Boarders" will allow you to turn off or on the boarders surrounding objects. Turning this option off will improve scrolling performance. Under the "General Prefs" tab you will find the "Enable Antialiased Drawing" which will allow you to turn on or turn off antialiased drawing. This will slightly improve scrolling speed if turned off.\
+\
+3. Some preferences do not require you to click the "Apply All Changes" button when they are changed. If you see the option take imidet effect on a document when changed, that option takes imidet effect and does not require the "Apply All Changes" button to be clicked.\
+\
+4. The inspector has been split up into four different windows.  These windows will allow you to more easily customize your working space, and if you do not need all the settings, you can close on or two of them to save screen space.\
+\
+5. There is now a status bar that will give you the progress when a level is loading.\
+\
+6. The program will now alert you of many different problems that may come up (ie: It will tell you why if a poly can't be filled). Expect this to improve with future releases.\
+\
+7. The optimize button will set a flag for the window server that may improve drawing performance a little. Expect with a future release major speed improvements with scrolling and drawing!\
+\
+There are more features and improvements then this, the above are just some of the main ones.\
+\
+\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf22 ----------\cf0 \
+\cf23 History\cf0 \
+\cf22 ----------\
+\cf19 \
+10/15/2001\
+V0.3.0 Alpha\
+\
+8/29/2001\
+V0.2.1 Alpha\cf0 \
+\
+\cf20 Note: I fixed a bug in which if you selected an polygon or line when you switched levels via the choose level menu, you would may not of been able to select anything.\cf0 \
+\
+\cf21 IMPORTENT:  Although you can open more then one map at the same time, there area few bugs that prevent this from working 100% right now (they will be fixed very soon). To avoid these bugs, whenever you open a new map file, close the previous one.\
+\
+I am sorry that this release does not yet fix this problem.  It will for sure by the next release (I already have much of it done, but there are a few things holding me back that I need to get though first).\cf0 \
+\
+\cf19 --- Main changes in this release that are working, hopefully :) ---\cf0 \
+\
+\cf19 1. 
+\f4\fs26 \cf20 Deleting should work on everything except map objects. Next build will have the ability to delete objects.\
+\
+
+\f0\fs24 \cf19 2. 
+\f4\fs26 \cf20 The
+\f0\fs24 \cf19  
+\f4\fs26 \cf20 concave aspect of polygons is now calculated on most affected polygons while dragging. Still have a little bit more work to do with this, but it is mostly working.\
+\
+
+\f0\fs24 \cf19 3. 
+\f4\fs26 \cf20 It should draw better, especially while dragging. Also, it might be faster.  Since it has more to do while drawing now (mainly the object color separation) it might be about the same speed, or faster.\
+\
+
+\f0\fs24 \cf19 4. 
+\f4\fs26 \cf20 The objects are now color coded.\
+\
+
+\f0\fs24 \cf19 5. 
+\f4\fs26 \cf20 There should be no delay after dragging.\
+\
+
+\f0\fs24 \cf19 6. 
+\f4\fs26 \cf20 The colors used are now user definable.
+\f0\fs24 \cf19 \
+\
+7. 
+\f4\fs26 \cf20 There is now a grid drawing.  It is a 1 world unit by 1 world unit grid. It will be more customizable in the future.
+\f0\fs24 \cf19 \
+\
+8. 
+\f4\fs26 \cf20 The arrow keys can now move anything that is selected.
+\f0\fs24 \cf0 \
+\
+\cf24 --- Stuff coming along ---\cf21 \
+\
+\cf19 1. 
+\f4\fs26 \cf20 Saving is coming soon.\
+\
+
+\f0\fs24 \cf19 2. 
+\f4\fs26 \cf20 Inspector will be finished.\
+\
+
+\f0\fs24 \cf19 3. 
+\f4\fs26 \cf20 Platforms and random sounds will be loaded and be available for editing.\
+\
+
+\f0\fs24 \cf19 4. 
+\f4\fs26 \cf20 Object settings (the settings that tell how often a object will come in the level, and what the min/max/initial of each object is, etc.) is coming.\
+\
+
+\f0\fs24 \cf19 5. 
+\f4\fs26 \cf20 Light editing is coming.\
+\
+
+\f0\fs24 \cf19 6. 
+\f4\fs26 \cf20 I am trying to think up a good splash screen and icon.
+\f0\fs24 \cf0 \
+\
+\cf21 --- Stuff I still have to fix ---\
+\
+\cf19 1. 
+\f4\fs26 \cf20 Some of the preferences items have been disabled. Don't worry about these, I will implement them soon.
+\f0\fs24 \cf0 \
+\
+\cf19 2.\cf20  
+\f4\fs26 Only water textured levels will display control panel settings for lines in the inspector. I plan on getting the inspector in shape by next build.\
+\
+
+\f0\fs24 \cf19 3.\cf14  Long lines will sometimes not draw the middle of them selves (the two ends should always draw). Clicking the redraw button, redraw menu item or pressing Command-R, will redraw the entire section of the level you are viewing and fix this. I will have it draw better in this regard soon, hopefully.\
+\
+\cf19 4. \cf14 When you zoom in past the original zoom level, dragging will be a little different (it will fall behind the cursor), and the objects/points will be bigger, I will fix this. When you zoom back out to the original zoom level, everything should be working (zooming out past original zoom level will not cause this problem).\
+\
+\cf19 5.\cf14  You can create new, blank documents, but you can't add or do anything with them yet.  BUT you can open existing maps on the hard drive and edit them. I will fix this.\
+\
+\cf19 6.\cf14  You can't save anything, I will hopefully have this working by next build.\
+\
+\cf19 7.\cf14  The polygon tool does not change the cursor, it leaves it an arrow, I will fix this.\
+\
+\cf19 8. \cf14 Please be aware that in the tool pallet, there are currently three tools. The left side top one is the arrow, the middle left side is the line tool, and the bottom left side is the polygon fill tool (there is not icon yet for this tool, yet).\
+\
+\cf19 9.\cf14  Everything is slower that it will be when released, I have not done much optimization yet...\
+\
+\cf19 10.\cf14  You can't set the textures of walls/ceilings/floors.
+\f4\fs26 \cf20  I plan on getting the inspector in shape by next build.
+\f0\fs24 \cf0 \
+\
+----------------------------------\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\qc
+\cf0 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf19 8/5/2001\
+V0.1.0 alpha\cf0 \
+\
+\cf21 There are several known issues with 0.1.0 alpha:\cf0 \
+\
+\cf19 1. \cf14 Whenever you drag anything with the arrow tool, there may be a slight pause after you finish dragging. This pause will be longer the more polygons that are in the level.  This happened because after a drag I check all the polygons for concavness. In the future it will only check polygons that have been effected by the drag operation, which will eliminate that pause.\
+\
+\cf19 2.\cf14  You can't set the textures of walls/ceilings/floors.\
+\
+\cf19 3. \cf14 There are no user definable prefs, this will be fixed shortly to allow you to choose colors, etc.\
+\
+\cf19 4. \cf14 When you move items around, you get some stuff drawing that does not being there, when you finish dragging this will clear, this will be fixed.\
+\
+\cf19 5.\cf14  Everything is slower that it will be when released, I have not done much optimization yet...\
+\
+\cf19 6. \cf14 Please be aware that in the tool pallet, there are current three tools. The left side top one is the arrow, the middle left side is the line tool, and the bottom left side is the polygon fill tool (there is not icon yet for this tool).\
+\
+\cf19 7.\cf14  The polygon tool does not change the cursor, it leaves it an arrow, I will fix this.\
+\
+\cf19 8.\cf14  You can't save anything, I will get this working this week.\
+\
+\cf19 9.\cf14  You can create new, blank documents, but you can add or do anything with them yet.  BUT you can open existing maps on the hard drive and edit them. I will fix this soon.\
+\
+\cf19 10.\cf14  When you create new polygons, the lines between the new polygons will not be a different color.  This will be fixed soon.\
+\
+\cf19 11. \cf14 When you zoom in past the original zoom level, dragging will be a little different (slower), and the objects/points will be bigger, i will fix this soon. When you zoom back out to the original zoom level, everything should be working (zooming out past original zoom level will not cause this problem).\
+\
+\cf19 12.\cf14  Long lines will sometimes not draw the middle of them selves (the two ends should always draw). I will fix this soon. Clicking anywhere in the level should redraw the entire part your looking at accuretly, so click somewhere after you get done scrolling if it is bad (re-sizing the window will do the same thing).\
+\
+\cf19 13.\cf20  
+\f4\fs26 Whenever you switch levels via the Other Levels menu in the drawer you need to click somewhere in the level to get the view menu items enabled.
+\f0\fs24 \
+\
+\cf19 14.\cf20  
+\f4\fs26 Only water textured levels will display control panel settings for lines in the inspector.\
+\
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+\cf19 15.\cf20  Even if you do not drag anything, when you click anywhere in the level with the arrow tool (even in a blank area, where nothing will be selected) it will make sure all the polygons are concave, so there may be a slight delay when you try to select somthing. This should be fixed, and be much faster next build.\cf25 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\f0\fs24 \cf14 \
+\pard\tx960\tx1920\tx2880\tx3840\tx4800\tx5760\tx6721\tx7681\tx8641\tx9601\tx10561\tx11521\tx12482\tx13442\tx14402\tx15362\tx16322\tx17282\tx18242\tx19203\tx20163\tx21123\tx22083\tx23043\tx24003\tx24964\tx25924\tx26884\tx27844\tx28804\tx29764\tx30725\tx31685\tx32645\tx33605\tx34565\tx35525\tx36485\tx37446\tx38406\tx39366\tx40326\tx41286\tx42246\tx43207\tx44167\tx45127\tx46087\tx47047\tx48007\tx48967\tx49928\tx50888\tx51848\tx52808\tx53768\tx54728\tx55689\tx56649\tx57609\tx58569\tx59529\tx60489\tx61450\tx62410\tx63370\tx64330\tx65290\tx66250\tx67210\tx68171\tx69131\tx70091\tx71051\tx72011\tx72971\tx73932\tx74892\tx75852\tx76812\tx77772\tx78732\tx79692\tx80653\tx81613\tx82573\tx83533\tx84493\tx85453\tx86414\tx87374\tx88334\tx89294\tx90254\tx91214\tx92175\tx93135\tx94095\tx95055\tx96015\ql\qnatural
+
+\fs36 \cf18 --- --- --- Copyright Notice and Other Conditions  --- --- ---
+\fs24 \cf0 \
+\
+Pfhorge is Copyright (c) 2001 Joshua D. Orr. All rights reserved.\
+\
+E-Mail:   dragons@xmission.com\
+\
+This program is free software; you can redistribute it and/or modify\
+it under the terms of the GNU General Public License as published by\
+the Free Software Foundation; either version 2 of the License, or\
+(at your option) any later version.\
+\
+This program is distributed in the hope that it will be useful,\
+but WITHOUT ANY WARRANTY; without even the implied warranty of\
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\
+GNU General Public License for more details.\
+\
+You should have received a copy of the GNU General Public License\
+along with this program; if not, write to the Free Software\
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA\
+or you can read it by running the program and selecting Phorge->About Phorge.\
+\
+}

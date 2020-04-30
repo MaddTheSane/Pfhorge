@@ -1,0 +1,5 @@
+Please be aware that this is my first Cocoa project that I developed, and because of this it may be a little messy.  I am planing on going though it and cleaning it up a bit soon.  Please just be aware of this when going though the source.
+
+Thanks!
+
+Joshua D. Orr

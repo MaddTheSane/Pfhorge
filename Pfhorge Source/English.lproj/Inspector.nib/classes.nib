@@ -1,0 +1,213 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                lineSectionChanged = id; 
+                objSectionChanged = id; 
+                polySectionChanged = id; 
+                showControlPanelWindow = id; 
+                showGeneralPropertiesWindow = id; 
+                showLightWindow = id; 
+                showTextureWindow = id; 
+            }; 
+            CLASS = LEInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                controlPanelTabMenu = id; 
+                controlPanelWindow = id; 
+                generalTabMenu = id; 
+                generalWindow = id; 
+                lightsTabMenu = id; 
+                lightsWindow = id; 
+                linePrimaryLight = id; 
+                lineSecondaryLight = id; 
+                lineSubController = id; 
+                lineTextureExp = id; 
+                lineTransparentLight = id; 
+                objAngle = id; 
+                objBox = id; 
+                objFlags = id; 
+                objItem = id; 
+                objType = id; 
+                objZHeight = id; 
+                objectSubController = id; 
+                polyAmbientSound = id; 
+                polyCeilingLight = id; 
+                polyFloorLight = id; 
+                polyLiquid = id; 
+                polyLiquidLight = id; 
+                polyRandomSound = id; 
+                polySubController = id; 
+                textureInspectorWindowController = id; 
+                textureInspectorWindowTabMenu = id; 
+                texturesTabMenu = id; 
+                texturesWindow = id; 
+                theCurrentSelection = id; 
+                theMainTabMenu = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                controlPanelFlagsAction = id; 
+                controlPanelPermutationAction = id; 
+                controlPanelStatusAction = id; 
+                controlPanelTypeAction = id; 
+                emptyFlagAction = id; 
+                regularFlagsAction = id; 
+                textureOffsetMatrixAction = id; 
+            }; 
+            CLASS = PhLineInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                emptyFlag = id; 
+                lightWindow = id; 
+                lineBox = id; 
+                lineControlPanelFlags = id; 
+                lineControlPanelType = id; 
+                lineFlags = id; 
+                lineIsControlPanel = id; 
+                linePermutation = id; 
+                linePermutationTabView = id; 
+                linePermutationTextBox = id; 
+                mainInspectorController = id; 
+                primaryTextureMenu = id; 
+                secondaryTextureMenu = id; 
+                textureInspectorController = id; 
+                textureOffsetMatrix = id; 
+                transparentTextureMenu = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                objectAngleAction = id; 
+                objectFlagsAction = id; 
+                objectHeightAction = id; 
+                objectKindAction = id; 
+                objectTypeAction = id; 
+            }; 
+            CLASS = PhObjectInspectorSubController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                mainInspectorController = id; 
+                objAngle = id; 
+                objBox = id; 
+                objFlags = id; 
+                objItem = id; 
+                objType = id; 
+                objZHeight = id; 
+                objectWindow = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                ambientSoundAction = id; 
+                ceilingHeightAction = id; 
+                ceilingLightAction = id; 
+                floorHeightAction = id; 
+                floorLightAction = id; 
+                liauidLightAction = id; 
+                liquidAction = id; 
+                permutationAction = id; 
+                permutationNumberTBAction = id; 
+                platformParametersAction = id; 
+                polygonTypeAction = id; 
+                randomSoundAction = id; 
+                textureOffsetMatrixAction = id; 
+            }; 
+            CLASS = PhPolyInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                ambientSound = id; 
+                ceilingHeight = id; 
+                ceilingLight = id; 
+                ceilingTextureMenu = id; 
+                floorHeight = id; 
+                floorLight = id; 
+                floorTextureMenu = id; 
+                liquid = id; 
+                liquidLight = id; 
+                mainInspectorController = id; 
+                permutation = id; 
+                permutationNumberTB = id; 
+                permutationTab = id; 
+                platformParametersBtn = id; 
+                polyBox = id; 
+                textureInspectorController = id; 
+                textureOffsetMatrix = id; 
+                textureWindow = id; 
+                type = id; 
+                yandomSound = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {
+                ceilingModeMenuAction = id; 
+                ceilingTextureCollectionMenuAction = id; 
+                ceilingTextureMenuAction = id; 
+                floorModeMenuAction = id; 
+                floorTextureCollectionMenuAction = id; 
+                floorTextureMenuAction = id; 
+                polyTextureOffsetMatrixAction = id; 
+                primaryLightAction = id; 
+                primaryModeMenuAction = id; 
+                primaryTextureCollectionMenuAction = id; 
+                primaryTextureMenuAction = id; 
+                secondaryLightAction = id; 
+                secondaryModeMenuAction = id; 
+                secondaryTextureCollectionMenuAction = id; 
+                secondaryTextureMenuAction = id; 
+                sideExtraRadioBtnAction = id; 
+                sideRadioBtnAction = id; 
+                sideTextureOffsetMatrixAction = id; 
+                sideTransparencyCheckBoxAction = id; 
+                transparentLightAction = id; 
+                transparentModeMenuAction = id; 
+                transparentTextureCollectionMenuAction = id; 
+                transparentTextureMenuAction = id; 
+            }; 
+            CLASS = PhTextureInspectorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                ceilingMode = NSPopUpButton; 
+                ceilingTexture = NSPopUpButton; 
+                ceilingTextureNums = NSPopUpButton; 
+                floorMode = NSPopUpButton; 
+                floorTexture = NSPopUpButton; 
+                floorTextureNums = NSPopUpButton; 
+                jjaroMenu = NSMenu; 
+                lavaMenu = NSMenu; 
+                lineInspectorController = PhLineInspectorController; 
+                mainInspectorController = LEInspectorController; 
+                pfhorMenu = NSMenu; 
+                polyTextureOffsetMatrix = id; 
+                primaryLight = NSPopUpButton; 
+                primaryMode = NSPopUpButton; 
+                primaryTexture = NSPopUpButton; 
+                primaryTextureNums = NSPopUpButton; 
+                secondaryLight = NSPopUpButton; 
+                secondaryMode = NSPopUpButton; 
+                secondaryTexture = NSPopUpButton; 
+                secondaryTextureNums = NSPopUpButton; 
+                sewageMenu = NSMenu; 
+                sideControlRadioBtn = id; 
+                sideLightRadioBtn = id; 
+                sideTextureOffsetMatrix = id; 
+                sideTextureRadioBtn = id; 
+                textureMenuWindows = NSWindow; 
+                transparentLight = NSPopUpButton; 
+                transparentMode = NSPopUpButton; 
+                transparentTexture = NSPopUpButton; 
+                transparentTextureCheckBox = id; 
+                transparentTextureNums = NSPopUpButton; 
+                waterMenu = NSMenu; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,83 @@
+//
+//  Terminal.h
+//  Pfhorge
+//
+//  Created by Joshua D. Orr on Sun Mar 10 2002.
+//  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
+//  
+//  E-Mail:   dragons@xmission.com
+//  
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation; either version 2 of the License, or
+//  (at your option) any later version.
+
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+
+//  You should have received a copy of the GNU General Public License
+//  along with this program; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  or you can read it by running the program and selecting Phorge->About Phorge
+
+
+
+#import <Foundation/Foundation.h>
+/*
+ *	The data for a single terminal consists of
+ *		a header,
+ *		some number of section descriptors,
+ *		some number of text style descriptors,
+ *		the text itself, possibly disguised.
+ *
+ *	A 'term' chunk in an M2 level consists of
+ *	the data for all the terminals appended.
+ */
+
+typedef struct term_head {
+	short size;		/*	the size (header included) of this terminal */
+	unsigned short flags;	/*	flags, see below */
+	short line_count;	/*	the number of text lines to show at once (I think).
+                                            always 22 in Bungie's levels.absent in the preview */
+	short section_count;	/*	the number of text sections */
+	short style_count;	/*	the number of text style changes */
+} term_head;
+
+enum {	/*	terminal flags */
+	term_disguised = 0x0001	/*	if this is on, the text is xored with
+                                        hex 0000FEED (repeated indefinitely) */
+};
+
+
+
+
+#import "PhAbstractName.h"
+
+@class TerminalSection;
+
+@interface Terminal : PhAbstractName <NSCoding>
+{
+    NSMutableArray *theSections;
+    unsigned short flags;
+    short lineCount;
+    BOOL textEncoded;
+}
+
+-(id)initWithTerminalData:(NSData *)data terminalNumber:(int)theTerminalNumber withLevel:(LELevelData *)levelDataObj;
+
+-(NSMutableArray *)theSections;
+-(BOOL)doYouHaveThisSection:(TerminalSection *)theSec;
+-(unsigned short)flags;
+-(short)lineCount;
+
+-(void)setTheSections:(NSMutableArray *)theArray;
+-(void)setFlags:(unsigned short)theNewFlags;
+-(void)setLineCount:(short)theNewLineCount;
+
+-(NSData *)getTerminalAsMarathonData;
+
+@end
+
+

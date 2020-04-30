@@ -1,0 +1,37 @@
+{
+    AppleEventCode = Pfrg; 
+    Classes = {
+        LELevelData = {
+            AppleEventCode = docu; 
+            Superclass = NSCoreSuite.NSDocument; 
+            ToManyRelationships = {
+                lines = {AppleEventCode = Plin; Type = LELine; }; 
+                objects = {AppleEventCode = Pobj; Type = LEMapObject; }; 
+                points = {AppleEventCode = Pptn; Type = LEMapPoint; }; 
+                polygons = {AppleEventCode = Pply; Type = LEPolygon; }; 
+            }; 
+        }; 
+        LELine = {AppleEventCode = Plin; Superclass = NSCoreSuite.AbstractObject; }; 
+        LEMap = {
+            AppleEventCode = docu; 
+            Superclass = NSCoreSuite.NSDocument; 
+            ToOneRelationships = {level = {AppleEventCode = Plvl; ReadOnly = YES; Type = LELevelData; }; }; 
+        }; 
+        LEMapObject = {AppleEventCode = Pobj; Superclass = NSCoreSuite.AbstractObject; }; 
+        LEMapPoint = {
+            AppleEventCode = Pptn; 
+            Attributes = {
+                x = {AppleEventCode = Ppgx; ReadOnly = NO; Type = NSNumber; }; 
+                y = {AppleEventCode = Ppgy; ReadOnly = NO; Type = NSNumber; }; 
+            }; 
+            Superclass = NSCoreSuite.AbstractObject; 
+        }; 
+        LEPolygon = {AppleEventCode = Pply; Superclass = NSCoreSuite.AbstractObject; }; 
+        NSApplication = {
+            AppleEventCode = capp; 
+            Superclass = NSCoreSuite.NSApplication; 
+            ToManyRelationships = {orderedDocuments = {AppleEventCode = docu; Type = LEMap; }; }; 
+        }; 
+    }; 
+    Name = Pfhorge; 
+}

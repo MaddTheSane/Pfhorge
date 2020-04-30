@@ -1,0 +1,69 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                caculateSidesOnSelectedLines = id; 
+                enableAmbientSoundViewMode = id; 
+                enableCeilingLightViewMode = id; 
+                enableFloorHeightViewMode = id; 
+                enableFloorLightViewMode = id; 
+                enableLayerViewMode = id; 
+                enableLiquidLightViewMode = id; 
+                enableLiquidViewMode = id; 
+                enableRandomSoundViewMode = id; 
+                enterVisualMode = id; 
+                exportMeToMarathonMap = id; 
+                exportToMarathonFormat = id; 
+                getInfoAction = id; 
+                goToPfhorgeObjectViaIndexSheet = id; 
+                importMarathonMap = id; 
+                importPathwaysMap = id; 
+                levelSettingsSheet = id; 
+                openItemPalcmentEditor = id; 
+                openTerminalEditor = id; 
+                redrawEverything = id; 
+                renameSelectedPolygon = id; 
+                saveToPfhorgeFormat = id; 
+                setDrawModeToCeilingHeight = id; 
+                setDrawModeToNormal = id; 
+                showTheNameWindow = id; 
+                toggleMapManagerDrawer = id; 
+                zoomIn = id; 
+                zoomNormal = id; 
+                zoomOut = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                exectuteScriptExsample = id; 
+                newPhorgeLevel = id; 
+                newPhorgeScenario = id; 
+                pluginMenuItemAction = id; 
+                scriptMenuItemAction = id; 
+                testTheCheckSumOnAFile = id; 
+                theControlPanels = id; 
+                theGeneralProperties = id; 
+                theInspector = id; 
+                theLayerDefaults = id; 
+                theLights = id; 
+                thePalette = id; 
+                thePrefs = id; 
+                theTextures = id; 
+            }; 
+            CLASS = LEDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {theAppleScriptMenu = NSMenu; thePluginMenu = NSMenu; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {caculateSidesOnSelectedLines = id; }; 
+            CLASS = NSApplication; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSResponder; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,1 @@
+NSArray * getAllTexturesOf(int theCollection, int theColorTable, char *theShapesPath);

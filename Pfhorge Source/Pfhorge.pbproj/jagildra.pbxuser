@@ -1,0 +1,1176 @@
+// !$*UTF8*$!
+{
+	00C98A2B010513217F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	00C98A2C010513217F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	00CCECF40125C7647F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{50, 115}, {903, 503}}";
+		};
+	};
+	00D18BC0010A18747F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{96, 140}, {750, 502}}";
+		};
+	};
+	00D2ACA20103C59A7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{95, 162}, {873, 504}}";
+		};
+	};
+	00D2ACA60103D0887F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{102, 208}, {750, 502}}";
+		};
+	};
+	00D4535A0144672D7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	00D4535B0144672D7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	00DF106900FBCC6F7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	00DF106A00FBCC6F7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{72, 119}, {877, 501}}";
+		};
+	};
+	00E36AC400FAA8537F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{393, 292}, {540, 431}}";
+		};
+	};
+	00EC509E0110FB3D7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{130, 123}, {750, 502}}";
+		};
+	};
+	00EC509F0110FB3D7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{110, 68}, {728, 624}}";
+		};
+	};
+	00ED45AE0102B0FF7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{56, 80}, {750, 502}}";
+		};
+	};
+	00ED45AF0102B0FF7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{164, 20}, {750, 502}}";
+		};
+	};
+	00F4A78A00F7E1DA7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{103, 137}, {750, 502}}";
+		};
+	};
+	00F4A78B00F7E1DA7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{56, 94}, {750, 502}}";
+		};
+	};
+	00F6628500E19BB67F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{74, 52}, {753, 674}}";
+		};
+	};
+	00F6628600E19BB67F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{74, 52}, {753, 674}}";
+		};
+	};
+	00FBE54800DBBE877F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 20}, {979, 726}}";
+		};
+	};
+	00FBE54900DBBE877F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{39, 7}, {979, 726}}";
+		};
+	};
+	00FBF3A700EAC1717F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	00FBF3AC00EACC4F7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 240}, {890, 501}}";
+		};
+	};
+	00FCE08900DB2EFD7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{41, 57}, {981, 658}}";
+		};
+	};
+	00FCE08A00DB2EFD7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{155, 5}, {785, 739}}";
+		};
+	};
+	00FD2B8A00E806097F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{98, 122}, {750, 502}}";
+		};
+	};
+	00FD2B8B00E806097F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{98, 122}, {750, 502}}";
+		};
+	};
+	00FE5A0E00DC52C37F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{159, 153}, {750, 502}}";
+		};
+	};
+	00FE5A0F00DC52C37F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 144}, {871, 530}}";
+		};
+	};
+	010314F600ED57F57F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{112, 23}, {750, 502}}";
+		};
+	};
+	010314F700ED57F57F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	0112096A00DEC9357F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{26, 47}, {981, 678}}";
+		};
+	};
+	0112096B00DEC9357F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{91, 20}, {981, 678}}";
+		};
+	};
+	011A1BE600D3B6677F000001 = {
+		activeArgIndex = 2147483647;
+		argumentStrings = (
+		);
+		debuggerPlugin = GDBDebugging;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+			{
+				active = NO;
+				name = NSZombieEnabled;
+				value = YES;
+			},
+		);
+		isa = PBXExecutable;
+		name = Pfhorge;
+		shlibInfoDictList = (
+		);
+		sourceDirectories = (
+		);
+	};
+	011A1BEA00D3C7827F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{154, 117}, {750, 502}}";
+		};
+	};
+	011A1BEB00D3C7827F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{154, 117}, {750, 502}}";
+		};
+	};
+	011A1BEE00D3D8317F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{145, 160}, {750, 502}}";
+		};
+	};
+	011A1BEF00D3D8317F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{302, -75}, {750, 502}}";
+		};
+	};
+	0121ECA700DDCD937F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{561, -88}, {835, 701}}";
+		};
+	};
+	0121ECA800DDCD937F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{78, 27}, {835, 701}}";
+		};
+	};
+	01EA85FD00F96CDD7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{82, 100}, {789, 578}}";
+		};
+	};
+	01EA85FE00F96CDD7F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{587, 62}, {789, 578}}";
+		};
+	};
+	01EA860200F96F707F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
+		};
+	};
+	01EA860300F96F707F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
+		};
+	};
+	01EA860B00F96FD57F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	01EA861300F970667F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	01EA861500F970667F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{98, 134}, {750, 502}}";
+		};
+	};
+	01EA861700F970667F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	035877BE00E7E7C67F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{22, 132}, {982, 531}}";
+		};
+	};
+	035877BF00E7E7C67F000001 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{353, 115}, {630, 627}}";
+		};
+	};
+	089C1660FE840EACC02AAC07 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	2A37F4A9FDCFA73011CA2CEA = {
+		activeBuildStyle = F529E94D02A3F6170146BBD2;
+		activeExecutable = 011A1BE600D3B6677F000001;
+		activeTarget = 2A37F4C6FDCFA73011CA2CEA;
+		addToTargets = (
+			2A37F4C6FDCFA73011CA2CEA,
+		);
+		breakpoints = (
+			F528EA4E031D17E40146BBD2,
+		);
+		executables = (
+			011A1BE600D3B6677F000001,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 52882664;
+			"PBXTemplateGeometry-F5314676015831810DCA290F" = {
+				ContentSize = "{768, 572}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 23}, {768, 549}}";
+					Split0 = {
+						ActiveTab = 2;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {768, 549}}";
+						Split0 = {
+							Frame = "{{0, 367}, {768, 182}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {952, 321}}";
+								Split0 = {
+									Frame = "{{0, 24}, {952, 297}}";
+									Split0 = {
+										Frame = "{{0, 0}, {468, 297}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											126.803,
+											Value,
+											150.074,
+											Summary,
+											172.123,
+										);
+										Frame = "{{477, 0}, {475, 297}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {952, 321}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {781, 452}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {781, 452}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {770, 279}}";
+							BuildTranscriptFrame = "{{0, 288}, {770, 75}}";
+							Frame = "{{0, 0}, {768, 361}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 100}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				StatusViewVisible = YES;
+				Template = F5314676015831810DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{7, 112}";
+			};
+			"PBXTemplateGeometry-F5CA7EC8015C06940DCA290F" = {
+				ContentSize = "{705, 569}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 0}, {705, 569}}";
+					Split0 = {
+						Collapsed = NO;
+						Frame = "{{0, 0}, {705, 569}}";
+						Split0 = {
+							Frame = "{{0, 0}, {705, 569}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {484, 208}}";
+								Split0 = {
+									Frame = "{{0, 24}, {484, 184}}";
+									Split0 = {
+										Frame = "{{0, 0}, {236, 184}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											62.123,
+										);
+										Frame = "{{245, 0}, {239, 184}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {484, 208}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {522, 208}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {522, 208}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {809, 410}}";
+							BuildTranscriptFrame = "{{0, 419}, {809, 119}}";
+							Frame = "{{0, 0}, {807, 536}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {300, 533}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							267,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {222, 536}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 528}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				StatusViewVisible = NO;
+				Template = F5CA7EC8015C06940DCA290F;
+				ToolbarVisible = YES;
+				WindowLocation = "{11, 115}";
+			};
+			"PBXTemplateGeometry-F5CA7EC9015C08ED0DCA290F" = {
+				ContentSize = "{665, 594}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 0}, {665, 594}}";
+					Split0 = {
+						ActiveTab = 3;
+						Collapsed = NO;
+						Frame = "{{0, 0}, {665, 594}}";
+						Split0 = {
+							Frame = "{{0, 304}, {665, 290}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {484, 208}}";
+								Split0 = {
+									Frame = "{{0, 24}, {484, 184}}";
+									Split0 = {
+										Frame = "{{0, 0}, {236, 184}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											62.123,
+										);
+										Frame = "{{245, 0}, {239, 184}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {484, 208}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {664, 208}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {664, 208}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {666, 43}}";
+							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
+							Frame = "{{0, 0}, {664, 50}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {665, 298}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {313, 531}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							280,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 557}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				StatusViewVisible = NO;
+				Template = F5CA7EC9015C08ED0DCA290F;
+				ToolbarVisible = NO;
+				WindowLocation = "{69, 130}";
+			};
+			"PBXTemplateGeometry-F5CA7ECB015C094F0DCA290F" = {
+				ContentSize = "{841, 622}";
+				LeftSlideOut = {
+					Collapsed = NO;
+					Frame = "{{0, 0}, {841, 622}}";
+					Split0 = {
+						Collapsed = NO;
+						Frame = "{{0, 0}, {841, 622}}";
+						Split0 = {
+							Frame = "{{0, 0}, {841, 622}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Collapsed = NO;
+								Frame = "{{0, 0}, {484, 208}}";
+								Split0 = {
+									Frame = "{{0, 24}, {484, 184}}";
+									Split0 = {
+										Frame = "{{0, 0}, {236, 184}}";
+									};
+									Split1 = {
+										DebugVariablesTableConfiguration = (
+											Name,
+											123,
+											Value,
+											85,
+											Summary,
+											62.123,
+										);
+										Frame = "{{245, 0}, {239, 184}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+								TabsVisible = YES;
+							};
+							Frame = "{{0, 0}, {484, 208}}";
+							LauncherConfigVersion = 7;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {664, 208}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {664, 208}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {666, 43}}";
+							BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
+							Frame = "{{0, 0}, {664, 50}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {612, 295}}";
+						};
+						TabCount = 4;
+						TabsVisible = NO;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {313, 531}}";
+						GroupTreeTableConfiguration = (
+							TargetStatusColumn,
+							18,
+							MainColumn,
+							280,
+						);
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {280, 398}}";
+						ClassesTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXClassColumnIdentifier,
+							237,
+						);
+						Frame = "{{0, 0}, {278, 659}}";
+						MembersFrame = "{{0, 407}, {280, 252}}";
+						MembersTreeTableConfiguration = (
+							PBXBookColumnIdentifier,
+							20,
+							PBXMethodColumnIdentifier,
+							236,
+						);
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 557}}";
+						TargetTableConfiguration = (
+							ActiveObject,
+							16,
+							ObjectNames,
+							202.296,
+						);
+					};
+					Tab4 = {
+						BreakpointsTreeTableConfiguration = (
+							breakpointColumn,
+							197,
+							enabledColumn,
+							31,
+						);
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+					TabsVisible = NO;
+				};
+				StatusViewVisible = NO;
+				Template = F5CA7ECB015C094F0DCA290F;
+				ToolbarVisible = NO;
+				WindowLocation = "{136, -123}";
+			};
+			PBXWorkspaceContents = (
+				{
+					LeftSlideOut = {
+						Split0 = {
+							Split0 = {
+								NavCount = 1;
+								NavGeometry0 = {
+									Frame = "{{0, 0}, {150, 530}}";
+									NavBarVisible = YES;
+								};
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Debugger = {
+									Split0 = {
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									TabCount = 2;
+								};
+								LauncherConfigVersion = 7;
+							};
+							Tab1 = {
+								LauncherConfigVersion = 3;
+								Runner = {
+								};
+							};
+							TabCount = 4;
+						};
+						SplitCount = 1;
+						Tab1 = {
+							OptionsSetName = "Hierarchy, all classes";
+						};
+						TabCount = 5;
+					};
+				},
+			);
+			PBXWorkspaceGeometries = (
+				{
+					ContentSize = "{471, 580}";
+					LeftSlideOut = {
+						ActiveTab = 3;
+						Collapsed = YES;
+						Frame = "{{0, 23}, {471, 557}}";
+						Split0 = {
+							Collapsed = NO;
+							Frame = "{{1e+06, 1e+06}, {0, 487}}";
+							Split0 = {
+								Frame = "{{0, 0}, {0, 487}}";
+							};
+							SplitCount = 1;
+							Tab0 = {
+								Debugger = {
+									Collapsed = NO;
+									Frame = "{{0, 0}, {484, 208}}";
+									Split0 = {
+										Frame = "{{0, 24}, {484, 184}}";
+										Split0 = {
+											Frame = "{{0, 0}, {236, 184}}";
+										};
+										Split1 = {
+											DebugVariablesTableConfiguration = (
+												Name,
+												48.80299,
+												Value,
+												71.07401,
+												Summary,
+												93.123,
+											);
+											Frame = "{{245, 0}, {239, 184}}";
+										};
+										SplitCount = 2;
+									};
+									SplitCount = 1;
+									Tab0 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									Tab1 = {
+										Frame = "{{0, 0}, {100, 50}}";
+									};
+									TabCount = 2;
+									TabsVisible = YES;
+								};
+								Frame = "{{0, 0}, {484, 208}}";
+								LauncherConfigVersion = 7;
+							};
+							Tab1 = {
+								Frame = "{{0, 0}, {664, 208}}";
+								LauncherConfigVersion = 3;
+								Runner = {
+									Frame = "{{0, 0}, {664, 208}}";
+								};
+							};
+							Tab2 = {
+								BuildMessageFrame = "{{0, 0}, {666, 43}}";
+								BuildTranscriptFrame = "{{0, 52}, {666, 0}}";
+								Frame = "{{0, 0}, {664, 50}}";
+							};
+							Tab3 = {
+								Frame = "{{0, 0}, {612, 295}}";
+							};
+							TabCount = 4;
+							TabsVisible = NO;
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Frame = "{{0, 0}, {447, 557}}";
+							GroupTreeTableConfiguration = (
+								TargetStatusColumn,
+								18,
+								MainColumn,
+								414,
+							);
+						};
+						Tab1 = {
+							ClassesFrame = "{{0, 0}, {343, 348}}";
+							ClassesTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXClassColumnIdentifier,
+								300,
+							);
+							Frame = "{{0, 0}, {341, 578}}";
+							MembersFrame = "{{0, 357}, {343, 221}}";
+							MembersTreeTableConfiguration = (
+								PBXBookColumnIdentifier,
+								20,
+								PBXMethodColumnIdentifier,
+								299,
+							);
+						};
+						Tab2 = {
+							Frame = "{{0, 0}, {319, 576}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {447, 557}}";
+							TargetTableConfiguration = (
+								ActiveObject,
+								16,
+								ObjectNames,
+								414.296,
+							);
+						};
+						Tab4 = {
+							BreakpointsTreeTableConfiguration = (
+								breakpointColumn,
+								266,
+								enabledColumn,
+								31,
+							);
+							Frame = "{{0, 0}, {319, 576}}";
+						};
+						TabCount = 5;
+						TabsVisible = YES;
+					};
+					StatusViewVisible = YES;
+					Template = F5E465990156DFB90DCA290F;
+					ToolbarVisible = YES;
+					WindowLocation = "{71, 84}";
+				},
+			);
+			PBXWorkspaceStateSaveDate = 52882664;
+		};
+		projectwideBuildSettings = {
+			SYMROOT = /Users/jagildra/Public;
+		};
+		wantsIndex = 1;
+		wantsSCM = 0;
+	};
+	2A37F4C6FDCFA73011CA2CEA = {
+		activeExec = 0;
+		executables = (
+			011A1BE600D3B6677F000001,
+		);
+	};
+	F520388C024156C10146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F520388D024156C10146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{491, 134}, {750, 502}}";
+		};
+	};
+	F528EA4E031D17E40146BBD2 = {
+		fileReference = 00D4535B0144672D7F000001;
+		isa = PBXFileBreakpoint;
+		lineNumber = 102;
+		state = 1;
+	};
+	F52974FE01C44D7B01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{42, 120}, {800, 602}}";
+		};
+	};
+	F52974FF01C44D7B01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{42, 120}, {800, 602}}";
+		};
+	};
+	F52AB18A01CA949A01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{171, -65}, {750, 502}}";
+		};
+	};
+	F52AB18B01CA949A01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{127, 71}, {750, 502}}";
+		};
+	};
+	F52BE6F7023C39CB0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{60, 86}, {828, 595}}";
+		};
+	};
+	F52BE6F8023C39CB0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{60, 86}, {828, 595}}";
+		};
+	};
+	F52BE6FB023C56FA0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{166, 76}, {750, 502}}";
+		};
+	};
+	F52BE6FC023C56FA0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{129, 114}, {750, 502}}";
+		};
+	};
+	F52E215801D03C100146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{225, 48}, {750, 502}}";
+		};
+	};
+	F52E215901D03C110146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{225, 48}, {750, 502}}";
+		};
+	};
+	F52E216301D0500B0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{25, 109}, {747, 634}}";
+		};
+	};
+	F530626602A2E53D0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	F530626902A2E57E0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
+		};
+	};
+	F532393001AF836201A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{80, 161}, {750, 502}}";
+		};
+	};
+	F532393101AF836201A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{80, 161}, {750, 502}}";
+		};
+	};
+	F532A6C0029741880146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 252}, {905, 489}}";
+		};
+	};
+	F5339DC301B0ACB801A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{176, 92}, {750, 502}}";
+		};
+	};
+	F536BD5C02824AA40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{52, 119}, {746, 570}}";
+		};
+	};
+	F536BD5D02824AA40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{130, 134}, {750, 502}}";
+		};
+	};
+	F536BD5E02824AA40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{71, 45}, {750, 502}}";
+		};
+	};
+	F536BD5F02824AA40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{95, 26}, {760, 630}}";
+		};
+	};
+	F53CC3620207B6C40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F53CC3630207B6C40146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F53CCE3E0228BEF90146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{18, 75}, {959, 504}}";
+		};
+	};
+	F53CCE3F0228BEF90146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{0, 10}, {993, 736}}";
+		};
+	};
+	F53CCE420228BEF90146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F53CCE4E0228BEF90146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{147, 151}, {750, 502}}";
+		};
+	};
+	F53CCE810228C0510146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{153, 113}, {750, 502}}";
+		};
+	};
+	F53CCE820228C0510146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{199, 71}, {750, 502}}";
+		};
+	};
+	F5441733021755CA0146BBD2 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{274, -127}, {750, 502}}";
+		};
+	};
+	F54D4C3F01CBF6E401A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F54D4C4001CBF6E401A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F54D4C4301CBF70101A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{84, 176}, {750, 502}}";
+		};
+	};
+	F54D4C4401CBF70101A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{61, 197}, {750, 502}}";
+		};
+	};
+	F54D4C4801CBF77601A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 218}, {750, 502}}";
+		};
+	};
+	F56B756001BC908701A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{132, 157}, {750, 502}}";
+		};
+	};
+	F56B756101BC908701A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{176, 104}, {750, 502}}";
+		};
+	};
+	F5D2B794019CEB5D01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 239}, {750, 502}}";
+		};
+	};
+	F5EFE97601ADC99101A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{453, 32}, {511, 653}}";
+		};
+	};
+	F5EFE97701ADC99101A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{39, 59}, {787, 654}}";
+		};
+	};
+	F5EFE97E01ADCAEA01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{178, 75}, {750, 502}}";
+		};
+	};
+	F5EFE97F01ADCAEA01A8A806 = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{178, 75}, {750, 502}}";
+		};
+	};
+}

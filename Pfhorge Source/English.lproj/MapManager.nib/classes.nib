@@ -1,0 +1,26 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {importMarathonMap = id; importPathwaysMap = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                deleteSelectedLevel = id; 
+                editSelectedLevel = id; 
+                exportSelectedToMarathonMap = id; 
+                mergeScenarioToMap = id; 
+                notDoneYet = id; 
+                reloadLevelTable = id; 
+                rescanProjectDirectory = id; 
+            }; 
+            CLASS = PhScenarioManagerController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {theLevelTable = NSTableView; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

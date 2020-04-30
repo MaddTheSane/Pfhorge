@@ -1,0 +1,30 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addRecord = id; 
+                deleteRecord = id; 
+                insertRecord = id; 
+                revertToSavedPrefs = id; 
+                saveToPrefs = id; 
+            }; 
+            CLASS = PhDefaultLayerController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                ceilingMaxSB = id; 
+                ceilingMaxTB = id; 
+                ceilingMinSB = id; 
+                ceilingMinTB = id; 
+                floorMaxSB = id; 
+                floorMaxTB = id; 
+                floorMinSB = id; 
+                floorMinTB = id; 
+                nameTB = id; 
+                tableView = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

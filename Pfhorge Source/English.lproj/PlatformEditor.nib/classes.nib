@@ -1,0 +1,50 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                applyAction = id; 
+                autoCalcMaxHeightAction = id; 
+                autoCalcMinHeightAction = id; 
+                copyFromAction = id; 
+                renameObjectAction = id; 
+                renamePlatformAction = id; 
+                renameSheetApplyAction = id; 
+                renameSheetCancelAction = id; 
+                revertAction = id; 
+                saveAndCloseBtnAction = id; 
+                typeOfPlatformAction = id; 
+            }; 
+            CLASS = PhPlatformSheetController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                activatesCBMatrix = id; 
+                autoCalcMaxCB = id; 
+                autoCalcMinCB = id; 
+                controllableByCBMatrix = id; 
+                copyFromComboMenu = id; 
+                deactivatesCBMatrix = id; 
+                deactivatesRBMatrix = id; 
+                delayTB = id; 
+                extendsFromRBMatrix = id; 
+                floorToCeilingCB = id; 
+                hitsObstructionCBMatrix = id; 
+                initiallyCBMatrix = id; 
+                maxHeightTB = id; 
+                minHeightTB = id; 
+                otherOptionsCBMatrix = id; 
+                platformIsADoorCB = id; 
+                renameSheetMsgIT = id; 
+                speedTB = id; 
+                statusIT = id; 
+                tagComboMenu = id; 
+                theInputBox = id; 
+                theSheet = id; 
+                theWindow = id; 
+                typeComboMenu = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

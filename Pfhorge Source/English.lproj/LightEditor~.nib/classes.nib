@@ -1,0 +1,78 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                copyFromMenuAction = id; 
+                renameBtnAction = id; 
+                renameObjectAction = id; 
+                renameSheetApplyAction = id; 
+                renameSheetCancelAction = id; 
+                revertBtnAction = id; 
+                saveAndCloseBtnAction = id; 
+                saveBtnAction = id; 
+                templateAction = id; 
+            }; 
+            CLASS = PhLightEditorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                becomeingActiveFunction = id; 
+                becomeingActiveIntesity = id; 
+                becomeingActiveIntesityChng = id; 
+                becomeingActiveIntesityChngSlider = id; 
+                becomeingActiveIntesitySlider = id; 
+                becomeingActivePeriod = id; 
+                becomeingActivePeriodChng = id; 
+                becomeingInactiveFunction = id; 
+                becomeingInactiveIntesity = id; 
+                becomeingInactiveIntesityChng = id; 
+                becomeingInactiveIntesityChngSlider = id; 
+                becomeingInactiveIntesitySlider = id; 
+                becomeingInactivePeriod = id; 
+                becomeingInactivePeriodChng = id; 
+                copyFromComboMenu = id; 
+                infoIT = id; 
+                initalyActiveCB = id; 
+                lightBlueNameIT = id; 
+                nameIT = id; 
+                phaseTB = id; 
+                primaryActiveFunction = id; 
+                primaryActiveIntesity = id; 
+                primaryActiveIntesityChng = id; 
+                primaryActiveIntesityChngSlider = id; 
+                primaryActiveIntesitySlider = id; 
+                primaryActivePeriod = id; 
+                primaryActivePeriodChng = id; 
+                primaryInactiveFunction = id; 
+                primaryInactiveIntesity = id; 
+                primaryInactiveIntesityChng = id; 
+                primaryInactiveIntesityChngSlider = id; 
+                primaryInactiveIntesitySlider = id; 
+                primaryInactivePeriod = id; 
+                primaryInactivePeriodChng = id; 
+                renameSheetMsgIT = id; 
+                secondaryActiveFunction = id; 
+                secondaryActiveIntesity = id; 
+                secondaryActiveIntesityChng = id; 
+                secondaryActiveIntesityChngSlider = id; 
+                secondaryActiveIntesitySlider = id; 
+                secondaryActivePeriod = id; 
+                secondaryActivePeriodChng = id; 
+                secondaryInactiveFunction = id; 
+                secondaryInactiveIntesity = id; 
+                secondaryInactiveIntesityChng = id; 
+                secondaryInactiveIntesityChngSlider = id; 
+                secondaryInactiveIntesitySlider = id; 
+                secondaryInactivePeriod = id; 
+                secondaryInactivePeriodChng = id; 
+                statelessCB = id; 
+                tagComboMenu = id; 
+                templateComboMenu = id; 
+                theInputBox = id; 
+                theSheet = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

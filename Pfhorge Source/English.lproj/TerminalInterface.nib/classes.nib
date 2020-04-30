@@ -1,0 +1,48 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addANewSectionAction = id; 
+                addANewTerminalAction = id; 
+                applyBoldStyleAction = id; 
+                applyItalicStyleAction = id; 
+                applyPlainStyleAction = id; 
+                applyUnderlineStyleAction = id; 
+                changedIndexMenuAction = id; 
+                colorBtnMatrixAction = id; 
+                deleteSelectedAction = id; 
+                deleteTerminalConfirmation = id; 
+                indexPopMAction = id; 
+                pictBitRatePMChanged = id; 
+                sectionTypePopMAction = id; 
+            }; 
+            CLASS = TerminalEditorController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                currentColorCW = id; 
+                indexPopM = id; 
+                informationTextView = id; 
+                loginAndOffImageView = NSImageView; 
+                loginAndOffTextView = id; 
+                menuTextTabView = id; 
+                noTextMsgTextView = id; 
+                pictBitRatePM = id; 
+                pictureImageView = NSImageView; 
+                pictureTextView = id; 
+                premutationMenu = id; 
+                sectionTypesPopM = id; 
+                sheetWarningCancelBtn = id; 
+                sheetWarningMessageMT = id; 
+                sheetWarningSubjectMT = id; 
+                sheetWarningWindow = id; 
+                stylePopM = id; 
+                terminalTabView = id; 
+                theLastObjectEdited = id; 
+                theTeriminalTableView = NSOutlineView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

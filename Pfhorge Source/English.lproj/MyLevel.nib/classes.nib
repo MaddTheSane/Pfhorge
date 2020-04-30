@@ -1,0 +1,209 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                caculateSidesOnSelectedLines = id; 
+                redrawEverything = id; 
+                toggleMapManagerDrawer = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                adjacentPolygonAssociationsResetAction = id; 
+                applyLevelSettings = id; 
+                caculateSelectedLines = id; 
+                cancelLevelSettings = id; 
+                cancelNewHeightSheetBtn = id; 
+                chooseLevelMenu = id; 
+                closeNoteEditorSheet = id; 
+                closeNoteGroupManager = id; 
+                createNewHeightSheetBtn = id; 
+                exportMeToMarathonMap = id; 
+                goToPfhorgeObjectViaIndexSheet = id; 
+                gotoCancelBtnAction = id; 
+                gotoOkBtnAction = id; 
+                importMarathonMap = id; 
+                importPathwaysMap = id; 
+                layerMenuAction = id; 
+                levelSettingsSheet = id; 
+                mapManagerDrawerAction = id; 
+                mapManagerPerfOverrideDrawerAction = id; 
+                openNoteGroupManager = id; 
+                platformBtn = id; 
+                rdCancelBtnAction = id; 
+                rdOkBtnAction = id; 
+                rdRemoveBtnAction = id; 
+                showTheNameWindow = id; 
+                toggleMapManagerDrawer = id; 
+                turnOnUseOptimizedDrawing = id; 
+                updateMapManagerInterface = id; 
+                useMapManagerCheckboxDrawerAction = id; 
+                warnAboutLandscapeSetting = id; 
+            }; 
+            CLASS = LELevelWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                annotationNoteEditorSheet = id; 
+                colorObject = id; 
+                environmentFlags = id; 
+                environmentTexture = id; 
+                gameType = id; 
+                generalDrawerContentView = id; 
+                gotoMsgIT = id; 
+                gotoPfhorgeObjectTypePopMenu = id; 
+                gotoSheet = id; 
+                gotoTextInputTB = id; 
+                gridFactorMenu = id; 
+                gridOptionCheckboxes = id; 
+                landscape = id; 
+                layerNamesMenu = id; 
+                levelDrawView = id; 
+                levelName = id; 
+                levelSCancelBtn = id; 
+                levelSettingsSheet = id; 
+                levelStatusBar = id; 
+                mainWindow = id; 
+                mapLevelList = id; 
+                mission = id; 
+                nameWindowController = id; 
+                newHeightTextBox = id; 
+                newHeightWindowSheet = id; 
+                noteGroupPM = id; 
+                noteGroupWinController = id; 
+                noteGroupWindow = id; 
+                noteTextTB = id; 
+                objectToRename = id; 
+                objectVisabilityCheckboxes = id; 
+                rdApplyBtn = id; 
+                rdCancelBtn = id; 
+                rdMessageIT = id; 
+                rdRemoveBtn = id; 
+                rdSheet = id; 
+                rdTextInputTB = id; 
+                rdTitleIT = id; 
+                selectionOptionCheckboxes = id; 
+                theColorDrawer = id; 
+                theDrawer = id; 
+                theExSheet = id; 
+                theManagerDrawer = id; 
+                useMapManager = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = LEMap; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {comboLevelList = id; levelDrawArea = id; numberOut = id; theDrawer = id; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {
+            ACTIONS = {
+                copy = id; 
+                cut = id; 
+                enableAmbientSoundViewMode = id; 
+                enableCeilingLightViewMode = id; 
+                enableFloorHeightViewMode = id; 
+                enableFloorLightViewMode = id; 
+                enableLayerViewMode = id; 
+                enableLiquidLightViewMode = id; 
+                enableLiquidViewMode = id; 
+                enableRandomSoundViewMode = id; 
+                paste = id; 
+                redrawEverything = id; 
+                renameSelectedPolygon = id; 
+                setDrawModeToCeilingHeight = id; 
+                setDrawModeToNormal = id; 
+                zoomIn = id; 
+                zoomOut = id; 
+            }; 
+            CLASS = LEMapDraw; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                colorListDrawer = id; 
+                colorListObject = id; 
+                scrollView = id; 
+                ttt = id; 
+                winController = id; 
+            }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = MySound; LANGUAGE = ObjC; SUPERCLASS = Sound; }, 
+        {
+            ACTIONS = {cancelNewHeightSheetBtn = id; createNewHeightSheetBtn = id; }; 
+            CLASS = PhColorListController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                colorListDataSource = id; 
+                colorListTable = id; 
+                colorListTableHeader = id; 
+                colorListTableScrollView = id; 
+                drawerObject = id; 
+                newHeightTextBox = id; 
+                newHeightWindowSheet = id; 
+                status = id; 
+                theCurrentSelection = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            ACTIONS = {cancelNewHeightSheetBtn = id; createNewHeightSheetBtn = id; }; 
+            CLASS = PhColorListControllerDrawer; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                colorListDataSource = id; 
+                colorListTable = id; 
+                colorListTableHeader = id; 
+                colorListTableScrollView = id; 
+                drawViewDirect = id; 
+                mainWindowDirect = id; 
+                newHeightTextBox = id; 
+                newHeightWindowSheet = id; 
+                status = id; 
+                theCurrentSelection = id; 
+                theDrawer = id; 
+                windowContollerDirect = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                addBtnAction = id; 
+                defaultBtnAction = id; 
+                deleteAllBtnAction = id; 
+                deleteBtnAction = id; 
+                duplicateBtnAction = id; 
+                editBtnAction = id; 
+                editingMenuAction = id; 
+                okBtn = id; 
+            }; 
+            CLASS = PhNamesController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                addBtn = id; 
+                defaultBtn = id; 
+                deleteAllBtn = id; 
+                deleteBtn = id; 
+                duplicateBtn = id; 
+                editBtn = id; 
+                editingMenu = id; 
+                okBtn = id; 
+                theLevelDrawView = id; 
+                theLevelWindowControllerOutlet = id; 
+                theNameWindow = id; 
+                theTable = id; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = PhNoteGroupsCon; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {mainController = LELevelWindowController; table = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = myQD; LANGUAGE = ObjC; SUPERCLASS = NSQuickDrawView; }
+    ); 
+    IBVersion = 1; 
+}
