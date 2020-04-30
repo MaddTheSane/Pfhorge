@@ -268,15 +268,11 @@
     tempData = [[LEMapData convertLevelToDataObject:[self level]] retain];
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
-        contents:tempData
-        attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    
-                    [NSNumber numberWithLong:'26.∞'],
-                    NSFileHFSCreatorCode,
-                    
-                    [NSNumber numberWithLong:'sce2'],
-                    NSFileHFSTypeCode, nil]];
-    
+	  contents:tempData
+	attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+				 NSFileHFSTypeCode: @((OSType)'sce2')
+	}];
+	
     [tempData release];
     
     return YES;

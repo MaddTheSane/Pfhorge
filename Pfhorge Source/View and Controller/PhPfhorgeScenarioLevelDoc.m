@@ -422,14 +422,10 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     tempData = [[LEMapData convertLevelToDataObject:theLevel] retain];
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
-        contents:tempData
-        attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    
-                    [NSNumber numberWithLong:'26.∞'],
-                    NSFileHFSCreatorCode,
-                    
-                    [NSNumber numberWithLong:'sce2'],
-                    NSFileHFSTypeCode, nil]];
+	  contents:tempData
+	attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+				 NSFileHFSTypeCode: @((OSType)'sce2')
+	}];
     
     [tempData release];
     [theLevel release];
@@ -491,14 +487,10 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     ScenarioResources *maraResources;
     
     [manager createFileAtPath:fullPath
-        contents:mergedMap
-        attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    
-                    [NSNumber numberWithLong:'26.∞'],
-                    NSFileHFSCreatorCode,
-                    
-                    [NSNumber numberWithLong:'sce2'],
-                    NSFileHFSTypeCode, nil]];
+					 contents:mergedMap
+				   attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+								NSFileHFSTypeCode: @((OSType)'sce2')
+				   }];
     
     
     
@@ -515,7 +507,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fullPath];
     
-    subpaths = [manager directoryContentsAtPath:fullImageDirPath];
+    subpaths = [manager contentsOfDirectoryAtPath:fullImageDirPath error:NULL];
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {
