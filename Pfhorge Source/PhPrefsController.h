@@ -24,61 +24,63 @@
 
 #import <AppKit/AppKit.h>
 
+@class PhDynamicPrefSubController;
+
 @interface PhPrefsController : NSWindowController
 {
-    IBOutlet id gridSubController;
+    IBOutlet PhDynamicPrefSubController *gridSubController;
 
-    IBOutlet id polygonRegularColor;
-    IBOutlet id polygonSelectedColor;
-    IBOutlet id polygonPlatformColor;
-    IBOutlet id polygonNonConcaveColor;
-    IBOutlet id polygonHillColor;
-    IBOutlet id polygonZoneColor;
-    IBOutlet id polygonTeleporterExitColor;
+    IBOutlet NSColorWell *polygonRegularColor;
+    IBOutlet NSColorWell *polygonSelectedColor;
+    IBOutlet NSColorWell *polygonPlatformColor;
+    IBOutlet NSColorWell *polygonNonConcaveColor;
+    IBOutlet NSColorWell *polygonHillColor;
+    IBOutlet NSColorWell *polygonZoneColor;
+    IBOutlet NSColorWell *polygonTeleporterExitColor;
         // Consider Moving Below To Dynamic Pref Controller
-    IBOutlet id polygonColorTypeEnableMatrixCBs;
+    IBOutlet NSMatrix *polygonColorTypeEnableMatrixCBs;
     
-    IBOutlet id lineRegularColor;
-    IBOutlet id lineSelectedColor;
-    IBOutlet id lineConnectsPolysColor;
+    IBOutlet NSColorWell *lineRegularColor;
+    IBOutlet NSColorWell *lineSelectedColor;
+    IBOutlet NSColorWell *lineConnectsPolysColor;
     
-    IBOutlet id pointRegularColor;
-    IBOutlet id pointSelectedColor;
+    IBOutlet NSColorWell *pointRegularColor;
+    IBOutlet NSColorWell *pointSelectedColor;
 
-    IBOutlet id objectSelectedColor;
-    IBOutlet id objectItemColor;
-    IBOutlet id objectPlayerColor;
-    IBOutlet id objectEnemyMonsterColor;
-    IBOutlet id objectSceanryColor;
-    IBOutlet id objectSoundColor;
-    IBOutlet id objectGoalColor;
+    IBOutlet NSColorWell *objectSelectedColor;
+    IBOutlet NSColorWell *objectItemColor;
+    IBOutlet NSColorWell *objectPlayerColor;
+    IBOutlet NSColorWell *objectEnemyMonsterColor;
+    IBOutlet NSColorWell *objectSceanryColor;
+    IBOutlet NSColorWell *objectSoundColor;
+    IBOutlet NSColorWell *objectGoalColor;
 
-    IBOutlet id objectBLineSelectedColor;
-    IBOutlet id objectBLineItemColor;
-    IBOutlet id objectBLinePlayerColor;
-    IBOutlet id objectBLineEnemyMonsterColor;
-    IBOutlet id objectBLineSceanryColor;
-    IBOutlet id objectBLineSoundColor;
-    IBOutlet id objectBLineGoalColor;
+    IBOutlet NSColorWell *objectBLineSelectedColor;
+    IBOutlet NSColorWell *objectBLineItemColor;
+    IBOutlet NSColorWell *objectBLinePlayerColor;
+    IBOutlet NSColorWell *objectBLineEnemyMonsterColor;
+    IBOutlet NSColorWell *objectBLineSceanryColor;
+    IBOutlet NSColorWell *objectBLineSoundColor;
+    IBOutlet NSColorWell *objectBLineGoalColor;
     
         // Consider Moving Below To Dynamic Pref Controller
-    IBOutlet id objectTypeEnableMatrixCBs;
+    IBOutlet NSMatrix *objectTypeEnableMatrixCBs;
 
-    IBOutlet id backgroundColor;
-    IBOutlet id worldUnitGridColor;
-    IBOutlet id subWorldUnitGridColor;
-    IBOutlet id centerWorldUnitGridColor;
+    IBOutlet NSColorWell *backgroundColor;
+    IBOutlet NSColorWell *worldUnitGridColor;
+    IBOutlet NSColorWell *subWorldUnitGridColor;
+    IBOutlet NSColorWell *centerWorldUnitGridColor;
     
     // Visual mode Colors:
-    IBOutlet id ceilingColor;
-    IBOutlet id wallColor;
-    IBOutlet id floorColor;
-    IBOutlet id liquidColor;
-    IBOutlet id transparentColor;
-    IBOutlet id landscapeColor;
-    IBOutlet id invalidSurfaceColor;
-    IBOutlet id visualBackgroundColor;
-    IBOutlet id wireFrameLineColor;
+    IBOutlet NSColorWell *ceilingColor;
+    IBOutlet NSColorWell *wallColor;
+    IBOutlet NSColorWell *floorColor;
+    IBOutlet NSColorWell *liquidColor;
+    IBOutlet NSColorWell *transparentColor;
+    IBOutlet NSColorWell *landscapeColor;
+    IBOutlet NSColorWell *invalidSurfaceColor;
+    IBOutlet NSColorWell *visualBackgroundColor;
+    IBOutlet NSColorWell *wireFrameLineColor;
     
     //NSDictionary *theColors;
 }

@@ -155,16 +155,6 @@
     [self addWindowController:theLevelDocumentWindowController];
     [theLevelDocumentWindowController disableTheLevelNamesMenu:YES];
 }
-- (BOOL)readFromFile:(NSString *)fileName ofType:(NSString *)type
-{
-    BOOL value = YES;
-    
-    value = [self loadDataRepresentation:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:@""];
-    
-    //[[self undoManager] removeAllActions];
-    
-    return value;
-}
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to provide a persistent data representation of your document
@@ -186,9 +176,13 @@
     else
     {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
+        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
+        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
         unsigned short thePfhorgeDataSig2 = 34521;
+        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
         int thePfhorgeDataSig3 = 42296737;
+        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
         
         NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
         
@@ -233,6 +227,10 @@
     [data getBytes:&thePfhorgeDataSig2FromData range:NSMakeRange(4,2)];
     [data getBytes:&thePfhorgeDataSig3FromData range:NSMakeRange(6,4)];
      
+    theVersionNumberFromData = CFSwapInt16BigToHost(theVersionNumberFromData);
+    thePfhorgeDataSig1FromData = CFSwapInt16BigToHost(thePfhorgeDataSig1FromData);
+    thePfhorgeDataSig2FromData = CFSwapInt16BigToHost(thePfhorgeDataSig2FromData);
+    thePfhorgeDataSig3FromData = CFSwapInt32BigToHost(thePfhorgeDataSig3FromData);
     
     //NSRange secondOne = [theRawString rangeOfString:@"map"];
     

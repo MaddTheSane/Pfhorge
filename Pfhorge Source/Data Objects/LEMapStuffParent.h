@@ -61,6 +61,7 @@
 }
 
 - (void)displayInfo;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs;
@@ -68,7 +69,7 @@
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs;
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr;
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
  // **************************  Object Settings  *************************
 -(void)setEncodeIndexNumbersInstead:(BOOL)theChoice;

@@ -171,7 +171,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - initWithString:modeFlags:
  */
-- (id)initWithString:(NSString *)aString modeFlags:(long)aModeFlags
+- (id)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags
 {
 	return [self initWithString:aString modeFlags:aModeFlags component:NULL];
 }
@@ -265,7 +265,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - initWithString:modeFlags:component:
  */
-- (id)initWithString:(NSString *)aString modeFlags:(long)aModeFlags component:(Component)aComponent
+- (id)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent
 {
 	if( ( self = [super init] )  )
 	{
@@ -526,18 +526,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - executionModeFlags
  */
-- (SInt32)executionModeFlags
-{
-	return executionModeFlags;
-}
-
-/*
- * - setExecutionModeFlags:
- */
-- (void)setExecutionModeFlags:(SInt32)aModeFlags
-{
-	executionModeFlags = aModeFlags;
-}
+@synthesize executionModeFlags;
 
 /*
  * - setDefaultTarget:
@@ -575,38 +564,14 @@ static ComponentInstance		defaultOSAComponent = NULL;
 }
 
 /*
- * setAppleEventSendTarget:
- */
-- (void)setAppleEventSendTarget:(id)aTarget
-{
-	[sendAppleEventTarget release];
-	sendAppleEventTarget = [aTarget retain];
-}
-
-/*
  * appleEventSendTarget
  */
-- (id)appleEventSendTarget
-{
-	return sendAppleEventTarget;
-}
-
-/*
- * setAppleEventSendTarget:
- */
-- (void)setActivateTarget:(id)aTarget
-{
-	[activeTarget release];
-	activeTarget = [aTarget retain];
-}
+@synthesize appleEventSendTarget=sendAppleEventTarget;
 
 /*
  * activateTarget
  */
-- (id)activateTarget
-{
-	return activeTarget;
-}
+@synthesize activateTarget=activeTarget;
 
 /*
  * sendAppleEvent:sendMode:sendPriority:timeOutInTicks:idleProc:filterProc:

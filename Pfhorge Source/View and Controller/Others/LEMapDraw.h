@@ -228,8 +228,8 @@ enum // Drawing Modes
 
 - (void)scrollBy:(NSPoint)aPoint;
 - (void)clearRectCache;
-- (NSString *)getRectArrayDescription;
-- (void)selectWithinRect:(NSRect)aRect;
+- (NSString *)rectArrayDescription;
+- (void)selectWithinRect:(NSRect)aRect registerUndos:(BOOL)regUndos;
 - (NSMutableSet *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet *)excludeSet;
 - (void)updateRectCacheIn:(NSRect)aRect;
 - (NSMutableSet *)listOfLinesWithin:(NSRect)aRect;

@@ -187,7 +187,7 @@
 		AE3C15740A04512100FBFFCD /* PhLevelNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */; };
 		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F2021F01E90146BBD2 /* NDResourceFork.m */; };
-		AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; };
+		AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; };
 		AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */ = {isa = PBXBuildFile; fileRef = F532393101AF836201A8A806 /* PhAbstractName.m */; };
 		AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; };
@@ -221,7 +221,6 @@
 		AE3C15960A04512100FBFFCD /* trigTables.c in Sources */ = {isa = PBXBuildFile; fileRef = A5CBB2CC04D630590046BBD2 /* trigTables.c */; };
 		AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */; };
 		AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
-		AE3C15990A04512100FBFFCD /* ColorSwatch.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */; };
 		AE3C159A0A04512100FBFFCD /* GetFullPathObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */; };
 		AE3C159B0A04512100FBFFCD /* IndexHeapSort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */; };
 		AE3C159C0A04512100FBFFCD /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE400228BEF90146BBD2 /* Renderer.mm */; };
@@ -234,7 +233,6 @@
 		AE3C15A30A04512100FBFFCD /* MapReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE370228BEF90146BBD2 /* MapReader.mm */; };
 		AE3C15A40A04512100FBFFCD /* MoreFilesExtract.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */; };
 		AE3C15A50A04512100FBFFCD /* MotPort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE3D0228BEF90146BBD2 /* MotPort.mm */; };
-		AE3C15A60A04512100FBFFCD /* KeyControls.mm in Sources */ = {isa = PBXBuildFile; fileRef = A514D90A080ACBF200F94B8E /* KeyControls.mm */; };
 		AE3C15A70A04512100FBFFCD /* MyOpenGLView2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */; };
 		AE3C15A80A04512100FBFFCD /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902CB4069F718C00B4AB92 /* Camera.mm */; };
 		AE3C15A90A04512100FBFFCD /* OpenGLVisualModeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */; };
@@ -795,22 +793,22 @@
 		F531483501CAFB8401A8A806 /* Edit Windows */ = {
 			isa = PBXGroup;
 			children = (
-				00ED45AE0102B0FF7F000001 /* PhPlatformSheetController.h */,
-				F56B756001BC908701A8A806 /* PhLightEditorController.h */,
 				F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */,
 				F52AB18B01CA949A01A8A806 /* InfoWindowCommander.m */,
+				F54D4C4301CBF70101A8A806 /* PhAmbientSndEditCon.h */,
+				F54D4C4401CBF70101A8A806 /* PhAmbientSndEditCon.m */,
+				F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */,
+				F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */,
+				F56B756001BC908701A8A806 /* PhLightEditorController.h */,
 				F56B756101BC908701A8A806 /* PhLightEditorController.m */,
+				F54D4C4701CBF77601A8A806 /* PhLiquidEditCon.h */,
+				F54D4C4801CBF77601A8A806 /* PhLiquidEditCon.m */,
+				00ED45AE0102B0FF7F000001 /* PhPlatformSheetController.h */,
 				00ED45AF0102B0FF7F000001 /* PhPlatformSheetController.m */,
 				F54D4C3F01CBF6E401A8A806 /* PhRandomSndEditCon.h */,
 				F54D4C4001CBF6E401A8A806 /* PhRandomSndEditCon.m */,
-				F54D4C4301CBF70101A8A806 /* PhAmbientSndEditCon.h */,
-				F54D4C4401CBF70101A8A806 /* PhAmbientSndEditCon.m */,
-				F54D4C4701CBF77601A8A806 /* PhLiquidEditCon.h */,
-				F54D4C4801CBF77601A8A806 /* PhLiquidEditCon.m */,
 				F520388C024156C10146BBD2 /* TerminalEditorController.h */,
 				F520388D024156C10146BBD2 /* TerminalEditorController.m */,
-				F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */,
-				F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */,
 			);
 			name = "Edit Windows";
 			sourceTree = "<group>";
@@ -1260,7 +1258,6 @@
 				AE3C15960A04512100FBFFCD /* trigTables.c in Sources */,
 				AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */,
 				AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */,
-				AE3C15990A04512100FBFFCD /* ColorSwatch.mm in Sources */,
 				AE3C159A0A04512100FBFFCD /* GetFullPathObject.mm in Sources */,
 				AE3C159B0A04512100FBFFCD /* IndexHeapSort.mm in Sources */,
 				AE3C159C0A04512100FBFFCD /* Renderer.mm in Sources */,
@@ -1273,7 +1270,6 @@
 				AE3C15A30A04512100FBFFCD /* MapReader.mm in Sources */,
 				AE3C15A40A04512100FBFFCD /* MoreFilesExtract.mm in Sources */,
 				AE3C15A50A04512100FBFFCD /* MotPort.mm in Sources */,
-				AE3C15A60A04512100FBFFCD /* KeyControls.mm in Sources */,
 				AE3C15A70A04512100FBFFCD /* MyOpenGLView2.mm in Sources */,
 				AE3C15A80A04512100FBFFCD /* Camera.mm in Sources */,
 				AE3C15A90A04512100FBFFCD /* OpenGLVisualModeController.m in Sources */,

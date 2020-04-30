@@ -109,41 +109,41 @@
      //Test...
     [appDefaults setObject:@"Default Registration Domain..." forKey:@"TEST"];
         
-    [appDefaults setObject:@"YES" forKey:PhEnablePlatfromPolyColoring];
-    [appDefaults setObject:@"YES" forKey:PhEnableConvexPolyColoring];
-    [appDefaults setObject:@"YES" forKey:PhEnableZonePolyColoring];
-    [appDefaults setObject:@"YES" forKey:PhEnableTeleporterExitPolyColoring];
-    [appDefaults setObject:@"YES" forKey:PhEnableHillPolyColoring];
+    [appDefaults setObject:@YES forKey:PhEnablePlatfromPolyColoring];
+    [appDefaults setObject:@YES forKey:PhEnableConvexPolyColoring];
+    [appDefaults setObject:@YES forKey:PhEnableZonePolyColoring];
+    [appDefaults setObject:@YES forKey:PhEnableTeleporterExitPolyColoring];
+    [appDefaults setObject:@YES forKey:PhEnableHillPolyColoring];
     
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectItem];
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectPlayer];
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectEnemyMonster];
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectSceanry];
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectSound];
-    [appDefaults setObject:@"YES" forKey:PhEnableObjectGoal];
+    [appDefaults setObject:@YES forKey:PhEnableObjectItem];
+    [appDefaults setObject:@YES forKey:PhEnableObjectPlayer];
+    [appDefaults setObject:@YES forKey:PhEnableObjectEnemyMonster];
+    [appDefaults setObject:@YES forKey:PhEnableObjectSceanry];
+    [appDefaults setObject:@YES forKey:PhEnableObjectSound];
+    [appDefaults setObject:@YES forKey:PhEnableObjectGoal];
     
     // *** Grid Defaults ***
     [appDefaults setObject:[NSNumber numberWithFloat:1]  forKey:PhGridFactor];
-    [appDefaults setObject:@"YES"  forKey:PhEnableGridBool];
-    [appDefaults setObject:@"YES"  forKey:PhSnapToGridBool];
+    [appDefaults setObject:@YES  forKey:PhEnableGridBool];
+    [appDefaults setObject:@YES  forKey:PhSnapToGridBool];
     
     // *** General Defaults ***
-    [appDefaults setObject:@"YES"  forKey:PhEnableAntialiasing];
-    [appDefaults setObject:@"YES"  forKey:PhEnableObjectOutling];
+    [appDefaults setObject:@YES  forKey:PhEnableAntialiasing];
+    [appDefaults setObject:@YES  forKey:PhEnableObjectOutling];
 
-    [appDefaults setObject:@"YES" forKey:PhSnapToPoints];
-    [appDefaults setObject:@"YES" forKey:PhSnapObjectsToGrid];
-    [appDefaults setObject:@"NO" forKey:PhSnapToLines];
-    [appDefaults setObject:@"YES" forKey:PhSplitNonPolygonLines];
-    [appDefaults setObject:@"YES" forKey:PhSplitPolygonLines];
-    [appDefaults setObject:@"YES" forKey:PhSelectObjectWhenCreated];
-    [appDefaults setObject:@"YES" forKey:PhDrawOnlyLayerPoints];
+    [appDefaults setObject:@YES forKey:PhSnapToPoints];
+    [appDefaults setObject:@YES forKey:PhSnapObjectsToGrid];
+    [appDefaults setObject:@NO forKey:PhSnapToLines];
+    [appDefaults setObject:@YES forKey:PhSplitNonPolygonLines];
+    [appDefaults setObject:@YES forKey:PhSplitPolygonLines];
+    [appDefaults setObject:@YES forKey:PhSelectObjectWhenCreated];
+    [appDefaults setObject:@YES forKey:PhDrawOnlyLayerPoints];
     
-    [appDefaults setObject:[NSNumber numberWithInt:15] forKey:PhSnapToPointsLength];
+    [appDefaults setObject:@15 forKey:PhSnapToPointsLength];
 
     // *** Visual Mode Defaults ***
-    [appDefaults setObject:@"NO"  forKey:VMInvertMouse];
-    [appDefaults setObject:[NSNumber numberWithInt:33]  forKey:VMKeySpeed];
+    [appDefaults setObject:@NO  forKey:VMInvertMouse];
+    [appDefaults setObject:@33  forKey:VMKeySpeed];
     [appDefaults setObject:[NSNumber numberWithFloat:1]  forKey:VMMouseSpeed];
 
     [appDefaults setObject:[NSNumber numberWithInt:0x38]  forKey:VMUpKey];
@@ -157,28 +157,28 @@
     
     
     
-    [appDefaults setObject:@"YES" forKey:VMShowLiquids];
-    [appDefaults setObject:@"YES" forKey:VMShowTransparent];
-    [appDefaults setObject:@"YES" forKey:VMShowLandscapes];
-    [appDefaults setObject:@"YES" forKey:VMShowInvalid];
-    [appDefaults setObject:@"NO" forKey:VMUseFog];
-    [appDefaults setObject:@"YES" forKey:VMSmoothRendering];
-    [appDefaults setObject:@"YES" forKey:VMUseLighting];
+    [appDefaults setObject:@YES forKey:VMShowLiquids];
+    [appDefaults setObject:@YES forKey:VMShowTransparent];
+    [appDefaults setObject:@YES forKey:VMShowLandscapes];
+    [appDefaults setObject:@YES forKey:VMShowInvalid];
+    [appDefaults setObject:@NO forKey:VMUseFog];
+    [appDefaults setObject:@YES forKey:VMSmoothRendering];
+    [appDefaults setObject:@YES forKey:VMUseLighting];
     
     
     // LP: I would highly recemmend putting enums for these popup menus
     //		in LEExtras!
     
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMWhatLighting];
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMVisibleSide];
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMVerticalLook];
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMFieldOfView];
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMVisibilityMode];
+    [appDefaults setObject:@0  forKey:VMWhatLighting];
+    [appDefaults setObject:@0  forKey:VMVisibleSide];
+    [appDefaults setObject:@0  forKey:VMVerticalLook];
+    [appDefaults setObject:@0  forKey:VMFieldOfView];
+    [appDefaults setObject:@0  forKey:VMVisibilityMode];
     
-    [appDefaults setObject:[NSNumber numberWithFloat:1.0]  forKey:VMFogDepth];
+    [appDefaults setObject:@1.0f  forKey:VMFogDepth];
     
-    [appDefaults setObject:[NSNumber numberWithInt:3] forKey:VMRenderMode];
-    [appDefaults setObject:[NSNumber numberWithInt:0]  forKey:VMStartPosition];
+    [appDefaults setObject:@3 forKey:VMRenderMode];
+    [appDefaults setObject:@0  forKey:VMStartPosition];
      
     [appDefaults setObject:@"" forKey:VMShapesPath];
     
@@ -186,10 +186,10 @@
     
     
     // Default Settings For Recently Added Snap-From and Angle-Snap
-    [appDefaults setObject:@"YES" forKey:PhUseRightAngleSnap];
-    [appDefaults setObject:@"NO" forKey:PhUseIsometricAngleSnap];
-    [appDefaults setObject:@"YES" forKey:PhSnapFromPoints];
-    [appDefaults setObject:[NSNumber numberWithInt:16]  forKey:PhSnapFromLength];
+    [appDefaults setObject:@YES forKey:PhUseRightAngleSnap];
+    [appDefaults setObject:@NO forKey:PhUseIsometricAngleSnap];
+    [appDefaults setObject:@YES forKey:PhSnapFromPoints];
+    [appDefaults setObject:@16  forKey:PhSnapFromLength];
     
     
     [defaults registerDefaults:appDefaults];
@@ -215,7 +215,7 @@
     static PhPrefsController *sharedPrefController = nil;
 
     if (!sharedPrefController) {
-        sharedPrefController = [[PhPrefsController allocWithZone:[self zone]] init];
+        sharedPrefController = [[PhPrefsController alloc] init];
     }
 
     return sharedPrefController;

@@ -103,10 +103,10 @@
         }
         else if ([theColumIdentifier isEqualToString:@"visible"])
         {
-            if ([grp visible] == YES)
-                return [NSNumber numberWithInt:1];
+            if ([grp isVisible] == YES)
+                return @1;
             else
-                return [NSNumber numberWithInt:0];
+                return @0;
         }
         else if ([theColumIdentifier isEqualToString:@"group"])
         {

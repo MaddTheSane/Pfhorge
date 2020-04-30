@@ -107,14 +107,7 @@
     [super dealloc];
 }
 
--(void)setPhName:(NSString *)thePhName
-{
-    [myName release];
-    if (thePhName == nil)
-        myName = nil;
-    else
-        myName = [thePhName copy];
-}
+@synthesize phName=myName;
 
 -(NSString *)getPhName
 {

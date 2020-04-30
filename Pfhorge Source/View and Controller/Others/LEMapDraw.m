@@ -1311,7 +1311,7 @@ enum {
         
         if (grp != nil)
         {
-            if ([grp visible] == NO)
+            if ([grp isVisible] == NO)
                 continue;
             
             if ([grp color] != nil)
@@ -1777,7 +1777,7 @@ enum {
     id thisObj;
     
     int heightMode = [self currentDrawingMode];
-    int tmpNumberListCorrectedCount, tmpNumberListCount;
+    NSInteger tmpNumberListCorrectedCount, tmpNumberListCount;
     int i;
     float hueMultiplier;
     BOOL listIncludesNone;
@@ -1857,7 +1857,7 @@ enum {
     }
     else
     {
-        NSArray *theArray = nil;
+        NSArray<PhAbstractName*> *theArray = nil;
         // Get the correct height...
         switch (heightMode)
         {
@@ -1868,7 +1868,7 @@ enum {
                 return NO;
             case _drawLiquids:
                 theArray = theLiquids;
-                [tmpNumberList addObject:[NSNumber numberWithInt:-1]];
+                [tmpNumberList addObject:@-1];
                 [tmpNameList addObject:@"NONE"];
                 break;
             case _drawFloorLights:
@@ -1878,7 +1878,7 @@ enum {
                 break;
             case _drawAmbientSounds:
                 theArray = theAmbientSounds;
-                [tmpNumberList addObject:[NSNumber numberWithInt:-1]];
+                [tmpNumberList addObject:@-1];
                 [tmpNameList addObject:@"NONE"];
                 break;
             case _drawLayers:
@@ -1890,8 +1890,7 @@ enum {
                 return NO;
         } // end switch (heightMode)
         
-        numer = [theArray objectEnumerator];
-        while (thisObj = [numer nextObject])
+        for (PhAbstractName *thisObj in theArray)
         {
             [tmpNumberList addObject:[NSNumber numberWithInt:[thisObj getIndex]]];
             [tmpNameList addObject:[thisObj getPhName]];
@@ -1901,7 +1900,7 @@ enum {
     // *** Get the assoicated Objects ***
     
     numer = [tmpNumberList objectEnumerator];
-    while (theNumber = [numer nextObject])
+    for (NSNumber *theNumber in tmpNumberList)
     {
         // Get the correct height...
         if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
@@ -1913,22 +1912,22 @@ enum {
         switch (heightMode)
         {
             case _drawLiquids:
-                thisObj = [theLiquids objectAtIndex:[theNumber intValue]];
+                thisObj = [theLiquids objectAtIndex:[theNumber integerValue]];
                 break;
             case _drawFloorLights:
-                thisObj = [theLights objectAtIndex:[theNumber intValue]];
+                thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
             case _drawCeilingLights:
-                thisObj = [theLights objectAtIndex:[theNumber intValue]];
+                thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
             case _drawLiquidLights:
-                thisObj = [theLights objectAtIndex:[theNumber intValue]];
+                thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
             case _drawAmbientSounds:
-                thisObj = [theAmbientSounds objectAtIndex:[theNumber intValue]];
+                thisObj = [theAmbientSounds objectAtIndex:[theNumber integerValue]];
                 break;
             case _drawLayers: //currentLevel
-                thisObj = [theLevelLayerArray objectAtIndex:[theNumber intValue]];
+                thisObj = [theLevelLayerArray objectAtIndex:[theNumber integerValue]];
                 break;
             default:
                 SEND_ERROR_MSG(@"Unkown list query mode, #105.");
@@ -1961,15 +1960,13 @@ enum {
 
     if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
     {
-        numer = [tmpNumberList objectEnumerator];
-        while (curNumber = [numer nextObject])
+        for (NSNumber *curNumber in tmpNumberList)
         {
             NSString *theName;
             
-            if ([curNumber intValue] == -1)
-                theName = [@"NONE" retain];
-            else
-            {
+            if ([curNumber intValue] == -1) {
+                theName = @"NONE";
+            } else {
                 // Get the correct height...
                 switch (heightMode)
                 {
@@ -2047,7 +2044,7 @@ enum {
             (curMap = [numer2 nextObject]) &&
             (curName = [numer4 nextObject]))
     {
-        if ([curNumber isEqual:[NSNumber numberWithShort:((short)(-1))]])
+        if ([curNumber isEqual:[NSNumber numberWithShort:-1]])
         {
             curColor = [NSColor
             colorWithCalibratedHue: 0.0
@@ -2056,7 +2053,9 @@ enum {
                              alpha: 1.0 ];
         }
         else
+        {
             curColor = [numer3 nextObject];
+        }
             
         [numberTable addEntriesFromDictionary:
             [NSDictionary dictionaryWithObject:
@@ -2076,22 +2075,34 @@ enum {
     }
     
     //Keep Track Of The Arrays...
-    if (numberList != nil)
+    if (numberList != nil) {
         [numberList release];
-    if (numberDrawingMaps != nil)
+        numberList = nil;
+    }
+    if (numberDrawingMaps != nil) {
         [numberDrawingMaps release];
-    if (colorList != nil)
+        numberDrawingMaps = nil;
+    }
+    if (colorList != nil) {
         [colorList release];
-    if (nameList != nil)
+        colorList = nil;
+    }
+    if (nameList != nil) {
         [nameList release];
-    if (objsList != nil)
+        nameList = nil;
+    }
+    if (objsList != nil) {
         [objsList release];
+        objsList = nil;
+    }
     
     numberList = tmpNumberList;
     NSLog(@"numberList count: %lu", (unsigned long)[numberList count]);
     
     if ([tmpObjsList count] > 0)
+    {
         objsList = tmpObjsList;
+    }
     else
     {
         [tmpObjsList release];
@@ -2864,33 +2875,33 @@ enum {
     NSMutableArray *snapAzs = [[[NSMutableArray alloc] init] autorelease];
     if(rightAngleSnap == YES &&  isometricSnap == NO /* using right angle snap */)
     {
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:0]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:90]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:180]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:270]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:360]];
+        [snapAzs addObject:@0];
+        [snapAzs addObject:@90];
+        [snapAzs addObject:@180];
+        [snapAzs addObject:@270];
+        [snapAzs addObject:@360];
     }
     else if(rightAngleSnap == NO &&  isometricSnap == YES /* using isometric snap */)
     {
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:0]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:60]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:120]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:180]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:240]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:300]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:360]];
+        [snapAzs addObject:@0];
+        [snapAzs addObject:@60];
+        [snapAzs addObject:@120];
+        [snapAzs addObject:@180];
+        [snapAzs addObject:@240];
+        [snapAzs addObject:@300];
+        [snapAzs addObject:@360];
     }
     else if (rightAngleSnap == YES &&  isometricSnap == YES /* both isometic and right angle snap */)
     {
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:0]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:60]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:90]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:120]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:180]];
-    	[snapAzs addObject:[[NSNumber alloc] initWithShort:240]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:270]];
-    	[snapAzs addObject:[[NSNumber alloc] initWithShort:300]];
-	[snapAzs addObject:[[NSNumber alloc] initWithShort:360]];
+        [snapAzs addObject:@0];
+        [snapAzs addObject:@60];
+        [snapAzs addObject:@90];
+        [snapAzs addObject:@120];
+        [snapAzs addObject:@180];
+        [snapAzs addObject:@240];
+        [snapAzs addObject:@270];
+        [snapAzs addObject:@300];
+        [snapAzs addObject:@360];
     }
     
     //NSLog(@"mouse down normal 1");
@@ -2899,7 +2910,7 @@ enum {
      * The following is the drag loop, program execution stays here while  *
      * 			a drag operation is in progress.		   *
      * *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
-    while (theEvent = [[self window] nextEventMatchingMask:eventMask]) 
+    while ((theEvent = [[self window] nextEventMatchingMask:eventMask]))
     {
         NSRect visibleRect = [self visibleRect];
         curPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
@@ -3775,7 +3786,7 @@ enum {
     //BOOL foundSelection = NO
     BOOL keepFollowingTheLines = YES;
     BOOL lastLineToTest = NO;
-    int indexOfLineFound;
+    NSInteger indexOfLineFound;
     //int dis1, dis2;
     NSMutableArray *theMapPoints, *theLines, *theNewPolyLines, *theNewPolyVectors;
     //NSMutableArray *theMapObjects, *thePolys;
@@ -3853,7 +3864,7 @@ enum {
         SEND_ERROR_MSG(@"Could not fill polygon, could not find the leftmost line.");
         return NO;
     }
-     NSLog(@"Found the line index: %d", [theLines indexOfObjectIdenticalTo:currentLine]);
+    NSLog(@"Found the line index: %lu", (unsigned long)[theLines indexOfObjectIdenticalTo:currentLine]);
     // If line was found, follow it around, always choosing
     // the inner most line, to see if it completes a polygon...
     
@@ -3905,7 +3916,7 @@ enum {
     {
         LELine *smallestLine;
         LEMapPoint *nextMainPoint;
-        int smallestLineIndex = -1, nextMainPointIndex = -1;
+        NSInteger smallestLineIndex = -1, nextMainPointIndex = -1;
         double smallestAngle = 181.0;
         
         smallestLine = nil;
@@ -4075,7 +4086,7 @@ enum {
             } // End while (currentLine = [numer nextObject])
             
             //We have found the next line to follow...
-            NSLog(@"FINNAL Lowest Line Index: %d  With Angle Of: %g", smallestLineIndex, smallestAngle);
+            NSLog(@"FINNAL Lowest Line Index: %ld  With Angle Of: %g", (long)smallestLineIndex, smallestAngle);
             
             if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
             {
@@ -4662,7 +4673,7 @@ enum {
         NSPoint thePoint = NSZeroPoint;
         LEPolygon *poly = nil;
         
-        while (theMapObj = [objsCopy anyObject])
+        while ((theMapObj = [objsCopy anyObject]))
         {
             theMapObj = [objsCopy anyObject];
             thePoint = [theMapObj as32Point];
@@ -5277,13 +5288,13 @@ enum {
     [self scrollPoint:theOrigin];
 }
 
-- (NSString *)getRectArrayDescription
+- (NSString *)rectArrayDescription
 {
-    return [NSString stringWithFormat:@"rectLines: %d  rectObjects: %d  rectPolys:%d  rectPoints:%d  rectNotes: %d",
-               [rectLines count], [rectObjects count], [rectPolys count], [rectPoints count], [rectNotes count], nil];
+    return [NSString stringWithFormat:@"rectLines: %lu  rectObjects: %lu  rectPolys:%lu  rectPoints:%lu  rectNotes: %lu",
+            (unsigned long)[rectLines count], (unsigned long)[rectObjects count], (unsigned long)[rectPolys count], (unsigned long)[rectPoints count], (unsigned long)[rectNotes count]];
 }
 
-// Need to add PhAnnotationNote support...
+//TODO: Need to add PhAnnotationNote support...
 - (void)selectWithinRect:(NSRect)aRect registerUndos:(BOOL)regUndos
 {
     NSSet *tmpSet = nil;
@@ -5829,7 +5840,7 @@ enum {
     int pci = 0;
     NSPoint shortestDistanceNSPoint = NSMakePoint(0,0);
     int snapToPointLength = [currentLevel settingAsInt:PhSnapToPointsLength];
-    float gridFactor = [currentLevel settingAsFloat:PhGridFactor]; // Used to be one...
+    CGFloat gridFactor = [currentLevel settingAsFloat:PhGridFactor]; // Used to be one...
     
    /* if (includePoints == YES)
     {
@@ -5867,7 +5878,7 @@ enum {
     {
         int gridCordY;
         int gridCordX;
-        int numberOfGridLines = (int)((float)64 * gridFactor);
+        int numberOfGridLines = (int)(64.0 * gridFactor);
         int minXCord = mouseLoc.x - snapToPointLength;
         int maxXCord = mouseLoc.x + snapToPointLength;
         int maxYCord = mouseLoc.y + snapToPointLength;
@@ -5896,9 +5907,13 @@ enum {
     }
     
     if (pci == 0) // No points in range...
+    {
         shortestDistanceNSPoint = mouseLoc;
+    }
     else if (pci == 1) // Only one point in range...
-        shortestDistanceNSPoint = pointCache[0];                
+    {
+        shortestDistanceNSPoint = pointCache[0];
+    }
     else // More then one point in range...
     {
         int shortestDistance = 50000;

@@ -35,8 +35,7 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 
-- (void)setVisible:(BOOL)vis;
-- (BOOL)visible;
+@property (getter=isVisible) BOOL visible;
 
 - (void) encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
@@ -45,8 +44,7 @@
 
 -(BOOL)doIHaveColor;
 
--(NSColor *)color;
--(void)setColor:(NSColor *)theColor;
+@property (copy) NSColor *color;
 
 -(NSArray *)objectsInThisLayer;
 

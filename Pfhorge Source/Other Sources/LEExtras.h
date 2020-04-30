@@ -175,8 +175,14 @@ extern unsigned eightBytesCount;*/
 // Preferences Micro Functions
 #define preferences 				[NSUserDefaults standardUserDefaults]
 #define prefBool(key)				[preferences boolForKey:(key)]
-#define archive(Obj) 				[NSArchiver archivedDataWithRootObject:(Obj)]
-#define unarchive(Obj) 				[NSUnarchiver unarchiveObjectWithData:(Obj)]
+#define archive(Obj) 				[NSKeyedArchiver archivedDataWithRootObject:(Obj)]
+static inline id unarchive(NSData *Obj) {
+    id outObj = [NSKeyedUnarchiver unarchiveObjectWithData:Obj];
+    if (outObj) {
+        return outObj;
+    }
+    return [NSUnarchiver unarchiveObjectWithData:Obj];
+}
 #define prefColor(colorKey) 			[preferences objectForKey:(colorKey)]
 #define prefSetColor(colorKey, colorValue) 	[preferences setObject:(colorValue) forKey:(colorKey)]
 #define getArchColor(colorKey) 			unarchive(prefColor(colorKey))

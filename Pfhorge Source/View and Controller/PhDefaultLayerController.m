@@ -65,10 +65,10 @@
     NSLog(@"Registering the Layer Defaults");
     
     [ARecord setObject:@"Default Layer"				forKey:PhDefaultLayer_Name];
-    [ARecord setObject:archive([NSNumber numberWithInt:-9216])	forKey:PhDefaultLayer_FloorMin];
-    [ARecord setObject:archive([NSNumber numberWithInt:9216])	forKey:PhDefaultLayer_FloorMax];
-    [ARecord setObject:archive([NSNumber numberWithInt:-9216])	forKey:PhDefaultLayer_CeilingMin];
-    [ARecord setObject:archive([NSNumber numberWithInt:9216])	forKey:PhDefaultLayer_CeilingMax];
+    [ARecord setObject:archive(@-9216)	forKey:PhDefaultLayer_FloorMin];
+    [ARecord setObject:archive(@9216)	forKey:PhDefaultLayer_FloorMax];
+    [ARecord setObject:archive(@-9216)	forKey:PhDefaultLayer_CeilingMin];
+    [ARecord setObject:archive(@9216)	forKey:PhDefaultLayer_CeilingMax];
     
     [theRecords addObject:ARecord];
     

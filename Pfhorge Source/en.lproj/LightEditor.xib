@@ -24,7 +24,6 @@
                 <outlet property="becomeingInactivePeriodChng" destination="167" id="189"/>
                 <outlet property="infoIT" destination="215" id="228"/>
                 <outlet property="initalyActiveCB" destination="36" id="191"/>
-                <outlet property="lightBlueNameIT" destination="217" id="221"/>
                 <outlet property="nameIT" destination="217" id="227"/>
                 <outlet property="phaseTB" destination="67" id="192"/>
                 <outlet property="primaryActiveFunction" destination="82" id="265"/>

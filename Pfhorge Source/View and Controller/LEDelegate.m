@@ -311,7 +311,7 @@
         NSLog(@"Script folder does not exsist at: '%@', attempting to create it...", scriptFolder);
         
             // In the future verifi that the folder where created!!!
-        [manager createDirectoryAtPath:scriptFolder attributes:nil];
+        [manager createDirectoryAtPath:scriptFolder attributes:@{}];
         //[manager createDirectoryAtPath:[scriptFolder stringByAppendingString:@"/You Can Have Sub-Folders"] attributes:nil];
         
         if (![manager fileExistsAtPath:scriptFolder isDirectory:&isNewDir])
@@ -434,15 +434,15 @@
 - (IBAction)exectuteScriptExsample:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    int returnCode = [panel runModalForTypes:[[NSArray alloc]
-        initWithObjects: @"scpt", nil]];
+    panel.allowedFileTypes = @[@"scpt"];
+    NSModalResponse returnCode = [panel runModal];
     
     if (returnCode == NSOKButton)
     {
         NSString *path = [panel filename];
         NSLog(@"The Path: %@", path);
-    	//NSString *thePath = @"Test Script.scpt";
-	createAndExecuteScriptObject(path);
+        //NSString *thePath = @"Test Script.scpt";
+        createAndExecuteScriptObject(path);
     }
 }
 

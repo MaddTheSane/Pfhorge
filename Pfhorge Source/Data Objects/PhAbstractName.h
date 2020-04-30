@@ -37,12 +37,13 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 -(void) encodeWithCoder:(NSCoder *)coder;
--(id)initWithCoder:(NSCoder *)coder;
+-(id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
--(void)setPhName:(NSString *)theName;
--(NSString *)getPhName;
--(BOOL)doIHaveAName;
--(BOOL)doIHaveACustomName;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+
+@property (nonatomic, copy, getter=getPhName) NSString *phName;
+@property (nonatomic, readonly) BOOL doIHaveAName;
+@property (nonatomic, readonly) BOOL doIHaveACustomName;
 - (void)resetNameToMyIndex;
 
 @end

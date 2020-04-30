@@ -69,7 +69,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
-                                <view key="view" ambiguous="YES" id="82">
+                                <view key="view" id="82">
                                     <rect key="frame" x="10" y="29" width="373" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -394,7 +394,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Grid" identifier="2" id="81">
-                                <view key="view" id="83">
+                                <view key="view" ambiguous="YES" id="83">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -404,6 +404,50 @@ DQ
                                             <view key="contentView" id="Grh-D0-cGz">
                                                 <rect key="frame" x="3" y="3" width="141" height="91"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="293">
+                                                        <rect key="frame" x="0.0" y="8" width="43" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </colorWell>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="294">
+                                                        <rect key="frame" x="50" y="67" width="95" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="World Units" id="1019">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295">
+                                                        <rect key="frame" x="0.0" y="64" width="43" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </colorWell>
+                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="297">
+                                                        <rect key="frame" x="0.0" y="36" width="43" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </colorWell>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="300">
+                                                        <rect key="frame" x="50" y="11" width="95" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Center Lines" id="1020">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="303">
+                                                        <rect key="frame" x="50" y="39" width="95" height="14"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Subworld Units" id="1021">
+                                                            <font key="font" metaFont="message" size="11"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </subviews>
                                             </view>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
@@ -436,48 +480,6 @@ DQ
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Grid Size:" id="1018">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" red="0.083484061062335968" green="0.082436621189117432" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="293">
-                                            <rect key="frame" x="19" y="206" width="43" height="20"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </colorWell>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="294">
-                                            <rect key="frame" x="69" y="265" width="95" height="14"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="World Units" id="1019">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295">
-                                            <rect key="frame" x="19" y="262" width="43" height="20"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </colorWell>
-                                        <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="297">
-                                            <rect key="frame" x="19" y="234" width="43" height="20"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </colorWell>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="300">
-                                            <rect key="frame" x="69" y="209" width="95" height="14"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Center Lines" id="1020">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="303">
-                                            <rect key="frame" x="69" y="237" width="95" height="14"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Subworld Units" id="1021">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>

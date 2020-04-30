@@ -166,7 +166,7 @@
     landscape4 = [getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]) retain];
     
     NSLog(@"*** Done Loading Textures ***");
-    ///[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:theImage forKey:[NSNumber numberWithInt:19]]];
+    ///[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:theImage forKey:@19]];
     
     
     /*

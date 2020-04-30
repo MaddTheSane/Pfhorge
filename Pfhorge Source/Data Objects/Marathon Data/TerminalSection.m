@@ -439,7 +439,7 @@
     term_section theSection;
     term_style theStyle;
     int baseOffsetOfText;
-    NSNumber *numberWithOne = [NSNumber numberWithInt:1];
+    NSNumber *numberWithOne = @1;
     
     theSection.flags = flags;
     theSection.type = type;

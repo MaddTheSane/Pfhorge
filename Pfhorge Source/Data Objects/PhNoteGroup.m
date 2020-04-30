@@ -108,21 +108,12 @@
 
 // ********* Overridden Methods *********
 
-- (void)setVisible:(BOOL)vis
-{
-    visible = vis;
-}
-
-- (BOOL)visible
-{
-    return visible;
-}
+@synthesize visible;
 
 -(short)getIndex { return [theNoteTypesST indexOfObjectIdenticalTo:self]; }
 
 -(BOOL)doIHaveColor { return (noteColor != nil); }
--(NSColor *)color { return [[noteColor copy] autorelease]; }
--(void)setColor:(NSColor *)theColor { noteColor = [theColor copy]; }
+@synthesize color=noteColor;
 
 -(NSArray *)objectsInThisLayer { return notes; }
 

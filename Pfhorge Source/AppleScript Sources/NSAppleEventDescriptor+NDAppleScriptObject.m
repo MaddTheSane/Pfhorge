@@ -17,7 +17,7 @@
 
 + (NSAppleEventDescriptor *)appleEventDescriptorWithString:(NSString *)aString
 {
-	return [self descriptorWithDescriptorType:typeChar data:[aString dataUsingEncoding:NSMacOSRomanStringEncoding]];
+	return [self descriptorWithDescriptorType:typeUTF8Text data:[aString dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 /*
@@ -55,7 +55,8 @@
  */
 + (NSAppleEventDescriptor *)appleEventDescriptorWithURL:(NSURL *)aURL
 {
-	return [self descriptorWithDescriptorType:typeFileURL data:[NSData dataWithBytes:(void *)aURL length:sizeof(void*)]];
+    NSData *urlDat = CFBridgingRelease(CFURLCreateData(kCFAllocatorDefault, (CFURLRef)aURL, kCFStringEncodingUTF8, true));
+	return [self descriptorWithDescriptorType:typeFileURL data:urlDat];
 }
 
 /*
@@ -63,16 +64,12 @@
  */
 + (NSAppleEventDescriptor *)aliasDescriptorWithURL:(NSURL *)aURL
 {
-	AliasHandle						theAliasHandle;
-	FSRef								theReference;
 	NSAppleEventDescriptor		* theAppleEventDescriptor = nil;
 
-	if( [aURL getFSRef:&theReference] == YES && FSNewAliasMinimal( &theReference, &theAliasHandle ) == noErr )
+    NSData *bookData = [aURL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
+	if( bookData )
 	{
-		HLock((Handle)theAliasHandle);
-		theAppleEventDescriptor = [self descriptorWithDescriptorType:typeAlias data:[NSData dataWithBytes:*theAliasHandle length:GetHandleSize((Handle) theAliasHandle)]];
-		HUnlock((Handle)theAliasHandle);
-		DisposeHandle((Handle)theAliasHandle);
+		theAppleEventDescriptor = [self descriptorWithDescriptorType:typeBookmarkData data:bookData];
 	}
 
 	return theAppleEventDescriptor;
@@ -99,7 +96,7 @@
 	return [self descriptorWithDescriptorType:typeSInt16 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
 // typeLongInteger
-+ (NSAppleEventDescriptor *)appleEventDescriptorWithLong:(long int)aValue
++ (NSAppleEventDescriptor *)appleEventDescriptorWithLong:(long long)aValue
 {
 	return [self descriptorWithDescriptorType:typeSInt64 data:[NSData dataWithBytes:&aValue length: sizeof(aValue)]];
 }
@@ -159,7 +156,7 @@
 		if( [theTarget descriptorType] != typeApplSignature )
 			theTarget = [theTarget coerceToDescriptorType:typeApplSignature];
 	
-		[[theTarget data] getBytes:&theCreator length:sizeof(OSType)];
+		theCreator = theTarget.typeCodeValue;
 	}
 	return theCreator;
 }

@@ -86,7 +86,7 @@
     if (!exsists)
     {
         NSLog(@"Creating Support Folder...");
-        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath attributes:nil];
+        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath attributes:@{}];
     }
     /*if (exsists && (!isDir));
     {

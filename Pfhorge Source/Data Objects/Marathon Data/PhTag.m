@@ -66,7 +66,7 @@
 #pragma mark ********* Init and Dealloc Methods *********
 -(PhTag *)init
 {
-    self = [super initWithNumber:[NSNumber numberWithInt:-1]];
+    self = [super initWithNumber:@-1];
     if (self == nil)
         return nil;
     return self;

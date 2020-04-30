@@ -30,7 +30,7 @@
 
 #define MAXIMUM_OBJECT_TYPES 64
 
-enum // flags for object_frequency_definition
+NS_ENUM(unsigned short) // flags for object_frequency_definition
 {
 	_reappears_in_random_location= 0x0001
 };
@@ -66,7 +66,7 @@ enum // flags for object_frequency_definition
 - (unsigned short)getRandom_chance;
 
 // ************************** Set Accsessors *************************
-- (void)setFlags:(short)v;
+- (void)setFlags:(unsigned short)v;
 
 - (void)setInitial_count:(short)v;
 - (void)setMinimum_count:(short)v;

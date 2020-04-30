@@ -26,20 +26,20 @@
 + (id)compileExecuteString:(NSString *) aString;
 + (Component)findNextComponent;
 
-+ (id)appleScriptObjectWithString:(NSString *) aString;
-+ (id)appleScriptObjectWithData:(NSData *) aData;
-+ (id)appleScriptObjectWithContentsOfFile:(NSString *) aPath;
-+ (id)appleScriptObjectWithContentsOfURL:(NSURL *) aURL;
++ (instancetype)appleScriptObjectWithString:(NSString *) aString;
++ (instancetype)appleScriptObjectWithData:(NSData *) aData;
++ (instancetype)appleScriptObjectWithContentsOfFile:(NSString *) aPath;
++ (instancetype)appleScriptObjectWithContentsOfURL:(NSURL *) aURL;
 
-- (id)initWithString:(NSString *)aString modeFlags:(long)aModeFlags;
-- (id)initWithContentsOfFile:(NSString *)aPath;
-- (id)initWithContentsOfFile:(NSString *)aPath component:(Component)aComponent;
-- (id)initWithContentsOfURL:(NSURL *)anURL;
-- (id)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent;
-- (id)initWithData:(NSData *)aDesc;
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags;
+- (instancetype)initWithContentsOfFile:(NSString *)aPath;
+- (instancetype)initWithContentsOfFile:(NSString *)aPath component:(Component)aComponent;
+- (instancetype)initWithContentsOfURL:(NSURL *)anURL;
+- (instancetype)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent;
+- (instancetype)initWithData:(NSData *)aDesc;
 
-- (id)initWithString:(NSString *)aString modeFlags:(long)aModeFlags component:(Component)aComponent;
-- (id)initWithData:(NSData *)aData component:(Component)aComponent;
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent;
+- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent;
 
 - (NSData *)data;
 
@@ -56,17 +56,14 @@
 - (NSString *)resultAsString;
 
 - (void)setContextAppleScriptObject:(NDAppleScriptObject *)aAppleScriptObject;
-- (SInt32)executionModeFlags;
-- (void)setExecutionModeFlags:(SInt32)aModeFlags;
+@property SInt32 executionModeFlags;
 
 - (void)setDefaultTarget:(NSAppleEventDescriptor *)aDefaultTarget;
 - (void)setDefaultTargetAsCreator:(OSType)aCreator;
 - (void)setFinderAsDefaultTarget;
 
-- (void)setAppleEventSendTarget:(id)aTarget;
-- (id)appleEventSendTarget;
-- (void)setActivateTarget:(id)aTarget;
-- (id)activateTarget;
+@property (retain) id appleEventSendTarget;
+@property (retain) id activateTarget;
 
 - (NSAppleEventDescriptor *)targetNoProcess;
 

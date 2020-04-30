@@ -27,7 +27,7 @@
 
 @class LELevelData, LEMap, PhItemPlacement;
 
-@interface PhItemPlacementEditorController : NSWindowController
+@interface PhItemPlacementEditorController : NSWindowController <NSWindowDelegate>
 {
     IBOutlet NSTableView *theTableView;
     IBOutlet NSFormCell *initalCountTB;
@@ -44,21 +44,21 @@
     LELevelData *theLevel;
     NSMutableArray *theItemPlacmentObjects;
     
-    NSArray *theMonsterNames;
-    NSArray *theItemNames;
+    NSArray<NSString*> *theMonsterNames;
+    NSArray<NSString*> *theItemNames;
     
-    int numberOfTableRows;
-    int monstersStartAt;
+    NSInteger numberOfTableRows;
+    NSInteger monstersStartAt;
 }
 
 - (id)initWithMapDocument:(LEMap *)theDocument;
 
 // *********************** Utilites ***********************
 
-- (BOOL)windowShouldClose:(id)sender;
-- (PhItemPlacement *)getObjectForRow:(int)row;
+//- (BOOL)windowShouldClose:(id)sender;
+- (PhItemPlacement *)objectForRow:(NSInteger)row;
 - (BOOL)isSomthingSelected;
-- (PhItemPlacement *)getSelectedObject;
+- (PhItemPlacement *)selectedObject;
 
 // *********************** User Interface Methods ***********************
 - (void)updateUserInterface;

@@ -658,7 +658,7 @@
     NS_DURING
     
     //[wad initWithContentsOfFile:fileName];
-    [resources initWithContentsOfFile:fileName];
+    [resources loadContentsOfFile:fileName];
     
     NS_HANDLER
     if (NSRunCriticalAlertPanel(@"Error opening file",

@@ -31,73 +31,73 @@
 
 @interface PhLightEditorController : InfoWindowCommander
 {
-    IBOutlet id infoIT;
-    IBOutlet id nameIT;
+    IBOutlet NSTextField *infoIT;
+    IBOutlet NSTextField *nameIT;
     
-    IBOutlet id templateComboMenu;
-    IBOutlet id copyFromComboMenu;
+    IBOutlet NSPopUpButton *templateComboMenu;
+    IBOutlet NSPopUpButton *copyFromComboMenu;
     
-    IBOutlet id phaseTB;
-    IBOutlet id tagComboMenu;
+    IBOutlet NSTextField *phaseTB;
+    IBOutlet NSPopUpButton *tagComboMenu;
     
-    IBOutlet id statelessCB;
-    IBOutlet id initalyActiveCB;
+    IBOutlet NSButtonCell *statelessCB;
+    IBOutlet NSButtonCell *initalyActiveCB;
     
     // Active
-    IBOutlet id becomeingActiveFunction;
-    IBOutlet id becomeingActivePeriod;
-    IBOutlet id becomeingActivePeriodChng;
-    IBOutlet id becomeingActiveIntesity;
-    IBOutlet id becomeingActiveIntesityChng;
-        IBOutlet id becomeingActiveIntesitySlider;
-    IBOutlet id becomeingActiveIntesityChngSlider;
+    IBOutlet NSPopUpButton *becomeingActiveFunction;
+    IBOutlet NSFormCell *becomeingActivePeriod;
+    IBOutlet NSFormCell *becomeingActivePeriodChng;
+    IBOutlet NSFormCell *becomeingActiveIntesity;
+    IBOutlet NSFormCell *becomeingActiveIntesityChng;
+    IBOutlet NSSlider *becomeingActiveIntesitySlider;
+    IBOutlet NSSlider *becomeingActiveIntesityChngSlider;
     
-    IBOutlet id primaryActiveFunction;
-    IBOutlet id primaryActivePeriod;
-    IBOutlet id primaryActivePeriodChng;
-    IBOutlet id primaryActiveIntesity;
-    IBOutlet id primaryActiveIntesityChng;
-        IBOutlet id primaryActiveIntesitySlider;
-    IBOutlet id primaryActiveIntesityChngSlider;
+    IBOutlet NSPopUpButton *primaryActiveFunction;
+    IBOutlet NSFormCell *primaryActivePeriod;
+    IBOutlet NSFormCell *primaryActivePeriodChng;
+    IBOutlet NSFormCell *primaryActiveIntesity;
+    IBOutlet NSFormCell *primaryActiveIntesityChng;
+    IBOutlet NSSlider *primaryActiveIntesitySlider;
+    IBOutlet NSSlider *primaryActiveIntesityChngSlider;
     
-    IBOutlet id secondaryActiveFunction;
-    IBOutlet id secondaryActivePeriod;
-    IBOutlet id secondaryActivePeriodChng;
-    IBOutlet id secondaryActiveIntesity;
-    IBOutlet id secondaryActiveIntesityChng;
-        IBOutlet id secondaryActiveIntesitySlider;
-    IBOutlet id secondaryActiveIntesityChngSlider;
+    IBOutlet NSPopUpButton *secondaryActiveFunction;
+    IBOutlet NSFormCell *secondaryActivePeriod;
+    IBOutlet NSFormCell *secondaryActivePeriodChng;
+    IBOutlet NSFormCell *secondaryActiveIntesity;
+    IBOutlet NSFormCell *secondaryActiveIntesityChng;
+    IBOutlet NSSlider *secondaryActiveIntesitySlider;
+    IBOutlet NSSlider *secondaryActiveIntesityChngSlider;
     
-    // InInactive
-    IBOutlet id becomeingInactiveFunction;
-    IBOutlet id becomeingInactivePeriod;
-    IBOutlet id becomeingInactivePeriodChng;
-    IBOutlet id becomeingInactiveIntesity;
-    IBOutlet id becomeingInactiveIntesityChng;
-        IBOutlet id becomeingInactiveIntesitySlider;
-    IBOutlet id becomeingInactiveIntesityChngSlider;
+    // Inactive
+    IBOutlet NSPopUpButton *becomeingInactiveFunction;
+    IBOutlet NSFormCell *becomeingInactivePeriod;
+    IBOutlet NSFormCell *becomeingInactivePeriodChng;
+    IBOutlet NSFormCell *becomeingInactiveIntesity;
+    IBOutlet NSFormCell *becomeingInactiveIntesityChng;
+    IBOutlet NSSlider *becomeingInactiveIntesitySlider;
+    IBOutlet NSSlider *becomeingInactiveIntesityChngSlider;
     
-    IBOutlet id primaryInactiveFunction;
-    IBOutlet id primaryInactivePeriod;
-    IBOutlet id primaryInactivePeriodChng;
-    IBOutlet id primaryInactiveIntesity;
-    IBOutlet id primaryInactiveIntesityChng;
-        IBOutlet id primaryInactiveIntesitySlider;
-    IBOutlet id primaryInactiveIntesityChngSlider;
+    IBOutlet NSFormCell *primaryInactiveFunction;
+    IBOutlet NSFormCell *primaryInactivePeriod;
+    IBOutlet NSFormCell *primaryInactivePeriodChng;
+    IBOutlet NSFormCell *primaryInactiveIntesity;
+    IBOutlet NSFormCell *primaryInactiveIntesityChng;
+    IBOutlet NSSlider *primaryInactiveIntesitySlider;
+    IBOutlet NSSlider *primaryInactiveIntesityChngSlider;
     
-    IBOutlet id secondaryInactiveFunction;
-    IBOutlet id secondaryInactivePeriod;
-    IBOutlet id secondaryInactivePeriodChng;
-    IBOutlet id secondaryInactiveIntesity;
-    IBOutlet id secondaryInactiveIntesityChng;
-        IBOutlet id secondaryInactiveIntesitySlider;
-    IBOutlet id secondaryInactiveIntesityChngSlider;
+    IBOutlet NSFormCell *secondaryInactiveFunction;
+    IBOutlet NSFormCell *secondaryInactivePeriod;
+    IBOutlet NSFormCell *secondaryInactivePeriodChng;
+    IBOutlet NSFormCell *secondaryInactiveIntesity;
+    IBOutlet NSFormCell *secondaryInactiveIntesityChng;
+    IBOutlet NSSlider *secondaryInactiveIntesitySlider;
+    IBOutlet NSSlider *secondaryInactiveIntesityChngSlider;
     
     IBOutlet id theLightPhases[6][7];
-    id	curLight;
+    __unsafe_unretained PhLight *curLight;
 }
 
-- (id)initWithLight:(id)theLight
+- (id)initWithLight:(PhLight*)theLight
             withLevel:(LELevelData *)theLevel
             withMapDocument:(LEMap *)theMapDoc;
 

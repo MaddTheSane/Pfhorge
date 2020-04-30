@@ -24,29 +24,27 @@
 
 - (BOOL)loadContentsOfFile:(NSString *)fileName
 {
-    FSRef		fsref;
-    CFStringRef		string;
+    FSRef			fsref;
     CFURLRef		url;
-    unichar		*uniBuffer;
+    unichar			*uniBuffer;
     FSCatalogInfo	catInfo;
-    ResType		restype;
-    Handle		resource;
-    ResID		resID;
-    Str255		resName;
+    ResType			restype;
+    Handle			resource;
+    ResID			resID;
+    Str255			resName;
     NSMutableArray	*array;
     Resource		*res;
     ResFileRefNum	refNum;
-    int			i, j;
+    int				i, j;
         
     filename = [fileName copy];
     
-    typeDict = [[NSMutableDictionary dictionary] retain];
+    typeDict = [[NSMutableDictionary alloc] init];
         
     url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)fileName, kCFURLPOSIXPathStyle, NO);
     
     CFURLGetFSRef(url, &fsref);
     
-    CFRelease(string);
     CFRelease(url);
     
     FSGetCatalogInfo(&fsref, kFSCatInfoRsrcSizes, &catInfo, NULL, NULL, NULL);
@@ -106,15 +104,15 @@
 
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName
 {
-    FSRef		fsref, parentfsref;
-    NSString	*string;
-    NSURL		*url, *parenturl;
-    unichar		*uniBuffer;
+    FSRef			fsref, parentfsref;
+    NSString		*string;
+    NSURL			*url, *parenturl;
+    unichar			*uniBuffer;
     ResFileRefNum	refNum;
     NSArray<Resource*>		*array;
     Resource		*resource;
-    Handle		handle;
-    int			i, j;
+    Handle			handle;
+    int				i, j;
     
     url = [NSURL fileURLWithPath:fileName];
     //CFURLGetFSRef(url, &fsref);
@@ -171,17 +169,17 @@
 
 Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 {
-    Handle data;
-    FSRef		fsref;
+    Handle			data;
+    FSRef			fsref;
     CFStringRef		string;
-    CFURLRef		url;
-    unichar		*uniBuffer;
+    unichar			*uniBuffer;
     ResFileRefNum	refNum, saveNum;
-    ResType		resType;
+    ResType			resType;
     
-    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)fileName, kCFURLPOSIXPathStyle, NO);
-    CFURLGetFSRef(url, &fsref);
-    CFRelease(url);
+    @autoreleasepool {
+    NSURL *url = [NSURL fileURLWithPath:fileName];
+    CFURLGetFSRef((CFURLRef)url, &fsref);
+    }
     
     saveNum = CurResFile();
     
@@ -189,8 +187,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     UseResFile(refNum);
     
-    [type getCString:(char *)&resType maxLength:4 encoding:NSMacOSRomanStringEncoding];
-	resType = CFSwapInt32BigToHost(resType);
+    resType = UTGetOSTypeFromString((CFStringRef)type);
     SetResLoad(YES);
     
     data = Get1Resource(resType, [resID unsignedShortValue]);
@@ -210,8 +207,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 - (Resource *)resourceOfType:(NSString *)type index:(int)index load:(BOOL)load
 {
     Resource		*resource, *value;
-    Handle		handle;
-    NSArray		*array;
+    Handle			handle;
+    NSArray			*array;
     NSEnumerator	*resEnum;
     NSNumber		*indexAsNSNumber = [NSNumber numberWithInt:index];
     
@@ -232,7 +229,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     if ((value) && (![value loaded]) && load) {
         [value setLoaded:YES];
         handle = ASGetResource(type, indexAsNSNumber, filename);
-        [value setData:[NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle)]];
+        [value setData:[NSData dataWithBytes:*handle length:GetHandleSize(handle)]];
+        DisposeHandle(handle);
     }
     
     return value;
@@ -247,11 +245,11 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress
 {
     Resource		*resource, *value;
-    Handle		handle;
-    NSArray		*array;
+    Handle			handle;
+    NSArray			*array;
     NSEnumerator	*resEnum;
     NSString 		*fullPath;
-    NSData 		*theData;
+    NSData 			*theData;
     NSFileManager	*fileManager = [NSFileManager defaultManager];
     
     PhProgress *progress = [PhProgress sharedPhProgress];
@@ -272,7 +270,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
         [fileManager createFileAtPath:fullPath
                              contents:theData
                         // May want to set creator code, etc...
-                           attributes:nil]; 
+                           attributes:nil];
+        DisposeHandle(handle);
     }
 }
 
@@ -280,8 +279,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 - (int)count
 {
     NSEnumerator	*typeEnum;
-    NSArray		*resArray;
-    int			i, count;
+    NSArray			*resArray;
+    int				i, count;
     
     count = 0;
     
@@ -299,9 +298,9 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 - (Resource *)objectAtIndex:(int)index
 {
     NSEnumerator	*typeEnum;
-    NSArray		*resArray;
-    id			object;
-    int			i, j, count;
+    NSArray			*resArray;
+    id				object;
+    int				i, j, count;
     
     object = nil;
     count = 0;

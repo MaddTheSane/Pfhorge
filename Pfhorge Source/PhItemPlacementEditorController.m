@@ -131,7 +131,7 @@
     return YES;
 }
 
-- (PhItemPlacement *)getObjectForRow:(int)row
+- (PhItemPlacement *)objectForRow:(NSInteger)row
 {
     if (row < 0)
         return nil;
@@ -144,7 +144,7 @@
 
 - (BOOL)isSomthingSelected { return ([theTableView selectedRow] >= 0); }
 
-- (PhItemPlacement *)getSelectedObject { return [self getObjectForRow:[theTableView selectedRow]]; }
+- (PhItemPlacement *)selectedObject { return [self objectForRow:[theTableView selectedRow]]; }
 
 // *********************** User Interface Methods ***********************
 #pragma mark -
@@ -152,7 +152,7 @@
 
 - (void)updateUserInterface
 {
-    PhItemPlacement *theSelectedObj = [self getSelectedObject];
+    PhItemPlacement *theSelectedObj = [self selectedObject];
     unsigned short flags = [theSelectedObj getFlags];
     ///IBOutlet NSTableView *theTableView;
     
@@ -186,32 +186,32 @@
 
 - (IBAction)initalCountTBChanged:(id)sender
 {
-    [[self getSelectedObject] setInitial_count:[sender intValue]];
+    [[self selectedObject] setInitial_count:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)maxCountTBChanged:(id)sender
 {
-    [[self getSelectedObject] setMaximum_count:[sender intValue]];
+    [[self selectedObject] setMaximum_count:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)minCountTBChanged:(id)sender
 {
-    [[self getSelectedObject] setMinimum_count:[sender intValue]];
+    [[self selectedObject] setMinimum_count:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)totalCountTBChanged:(id)sender
 {
-    [[self getSelectedObject] setRandom_count:[sender intValue]];
+    [[self selectedObject] setRandom_count:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)apperenceTBChanged:(id)sender
 {
     float thePrecentMultiplier = (((float)[sender intValue]) / 100);
-    [[self getSelectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
+    [[self selectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
     [appearenceSlider setIntValue:[sender intValue]];
     [theTableView reloadData];
 }
@@ -219,7 +219,7 @@
 - (IBAction)apperenceSliderChanged:(id)sender
 {
     float thePrecentMultiplier = (((float)[sender intValue]) / 100);
-    [[self getSelectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
+    [[self selectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
     [appearenceTB setIntValue:[sender intValue]];
     // [theTableView reloadData];
 }
@@ -227,9 +227,9 @@
 - (IBAction)randomCheckboxDidChange:(id)sender
 {
     if ([sender state] == NSOnState)
-        [[self getSelectedObject] setFlags:_reappears_in_random_location];
+        [[self selectedObject] setFlags:_reappears_in_random_location];
     else
-        [[self getSelectedObject] setFlags:0];
+        [[self selectedObject] setFlags:0];
 }
 
 // *********************** Table Updater Methods ***********************

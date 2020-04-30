@@ -882,7 +882,7 @@
             break;
         case 2:
             [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:1],
+            @1,
             NSUnderlineStyleAttributeName, nil]
             range:[[self getTheCurrentTextView] selectedRange]];
             break;

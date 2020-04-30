@@ -981,12 +981,12 @@ void MapManager::ReloadLevel() {
                                 
                                 if (WInfo.IsFullLength) {
                                         side_texture_definition Txtr = [theSide getSecondary_texture];
-                                        if ((Txtr.texture) & 0x00ff == (NONE & 0x00ff))
+                                        if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
                                                 WInfo.SecondaryPresent = false;
                                 }
                                                                
                                 side_texture_definition Txtr = [theSide getTransparent_texture];
-				if ((Txtr.texture) & 0x00ff == (NONE & 0x00ff))
+				if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
 					WInfo.TransparentPresent = false;
 				
 				if (WInfo.PrimaryPresent) {

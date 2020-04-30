@@ -84,7 +84,7 @@
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: point %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: point %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }

@@ -1081,17 +1081,17 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     NSMutableString *levelInfoString;
     LELevelData *theLevel = [[self document] getCurrentLevelLoaded];   
     NSSet *theSelections = [levelDrawView getSelectionsOfType:_all_selections];
-    int theSelectionsCount = [theSelections count];
+    NSInteger theSelectionsCount = [theSelections count];
     
     if (theSelections == nil || theSelectionsCount < 1)
     {
         [theLevel updateCounts];
         
-        ///levelInfoString = [[levelDrawView getRectArrayDescription] retain];
+        ///levelInfoString = [[levelDrawView rectArrayDescription] retain];
         
         
         
-        levelInfoString = [[NSString stringWithFormat:@"Points: %d   Lines: %d   Polygons: %d   Objects: %d   Platforms: %d   Media: %d   Lights: %d   Ambient Sounds: %d", [theLevel pointCount], [theLevel lineCount], [theLevel polygonCount], [theLevel objectCount], [theLevel platformCount], [theLevel liquidCount], [theLevel lightCount], [theLevel ambientSoundCount]] retain];
+        levelInfoString = [[NSString alloc] initWithFormat:@"Points: %d   Lines: %d   Polygons: %d   Objects: %d   Platforms: %d   Media: %d   Lights: %d   Ambient Sounds: %d", [theLevel pointCount], [theLevel lineCount], [theLevel polygonCount], [theLevel objectCount], [theLevel platformCount], [theLevel liquidCount], [theLevel lightCount], [theLevel ambientSoundCount]];
         
         [self setFlagNow:0];
         // SIDE_IS_CONTROL_PANEL(s)

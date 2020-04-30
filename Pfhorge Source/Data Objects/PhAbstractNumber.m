@@ -89,14 +89,8 @@
 #pragma mark ********* Init and Dealloc Methods *********
 -(id)init
 {
-    self = [super init];
-    if (self == nil)
-        return nil;
-        
-    // Find Lowest undes Tag Number And Use That In Future
-    assignedNumber = [[NSNumber alloc] initWithShort:-1];
-    [self setPhName:@"-1"];
-    return self;
+    // FIXME: Find Lowest undes Tag Number And Use That In Future
+    return [self initWithNumber:@-1];
 }
 
 -(id)initWithNumber:(NSNumber *)thePhNumber
@@ -110,8 +104,7 @@
     return self;
 }
 
--(NSNumber *)getPhNumber { return [[assignedNumber copy] autorelease]; }
--(void)setPhNumber:(NSNumber *)thePhNumber { [thePhNumber retain]; [assignedNumber release]; assignedNumber = thePhNumber; }
+@synthesize phNumber=assignedNumber;
 
 //-(short) getIndex { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }
 

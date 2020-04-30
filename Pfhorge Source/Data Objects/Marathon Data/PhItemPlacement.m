@@ -183,7 +183,7 @@
 - (unsigned short)getRandom_chance { return random_chance; }
 
 // ************************** Set Accsessors *************************
-- (void)setFlags:(short)v { flags = v; }
+- (void)setFlags:(unsigned short)v { flags = v; }
 
 - (void)setInitial_count:(short)v { initial_count = v; }
 - (void)setMinimum_count:(short)v { minimum_count = v; }

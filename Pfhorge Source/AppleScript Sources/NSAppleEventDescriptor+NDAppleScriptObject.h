@@ -22,14 +22,14 @@
 + (NSAppleEventDescriptor *)trueBoolDescriptor;
 + (NSAppleEventDescriptor *)falseBoolDescriptor;
 + (NSAppleEventDescriptor *)appleEventDescriptorWithShort:(short int)aValue;
-+ (NSAppleEventDescriptor *)appleEventDescriptorWithLong:(long int)aValue;
++ (NSAppleEventDescriptor *)appleEventDescriptorWithLong:(long long)aValue;
 + (NSAppleEventDescriptor *)appleEventDescriptorWithInt:(int)aValue;
 + (NSAppleEventDescriptor *)appleEventDescriptorWithFloat:(float)aValue;
 + (NSAppleEventDescriptor *)appleEventDescriptorWithDouble:(double)aValue;
 + (NSAppleEventDescriptor *)appleEventDescriptorWithUnsignedInt:(unsigned int)aValue;
 
 - (ProcessSerialNumber)targetProcessSerialNumber;
-- (OSType)targetCreator;
-- (BOOL)isTargetCurrentProcess;
+@property (readonly) OSType targetCreator;
+@property (readonly, getter=isTargetCurrentProcess) BOOL targetCurrentProcess;
 
 @end
