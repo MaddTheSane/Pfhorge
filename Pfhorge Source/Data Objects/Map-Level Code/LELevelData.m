@@ -71,6 +71,22 @@
 
 
 @implementation LELevelData
+@synthesize levelName=level_name;
+@synthesize environmentCode = environment_code;
+@synthesize physicsModel=physics_model;
+@synthesize songIndex=song_index;
+@synthesize missionFlags=mission_flags;
+@synthesize environmentFlags=environment_flags;
+@synthesize entryPointFlags=entry_point_flags;
+
+-(void)setSongIndex:(short)v
+{
+    if (v > 3 || v < 0)
+        v = 0;
+    
+    song_index = v;
+}
+
 // **************************  Coding/Copy Protocal Methods  *************************
 #pragma mark -
 #pragma mark ********* Coding/Copy Protocal Methods *********
@@ -138,7 +154,7 @@
     song_index = decodeShort(coder);
     mission_flags = decodeShort(coder);
     environment_flags = decodeShort(coder);
-    entry_point_flags = decodeLong(coder);
+    entry_point_flags = decodeInt(coder);
     
     //linesThatIBelongTo = decodeObj(coder);
     //NSLog(@"1");

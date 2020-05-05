@@ -130,7 +130,7 @@ enum	// media sounds
 -(void)setOrigin:(NSPoint)v;
 -(void)setHeight:(short)v;
 
--(void)setMinimum_light_intensity:(long)v; // ??? Object ???
+-(void)setMinimum_light_intensity:(int)v; // ??? Object ???
 -(void)setTexture:(short)v;
 -(void)setTransfer_mode:(short)v;
 

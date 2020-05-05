@@ -176,7 +176,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 - (IBAction)chooseLevelMenu:(id)sender
 {
-    int selectedItem = [sender indexOfSelectedItem];
+    NSInteger selectedItem = [sender indexOfSelectedItem];
     if (selectedItem != -1 && currentLevelLoaded != selectedItem)
     {
         [[self document] loadLevel:(selectedItem + 1)];
@@ -219,8 +219,9 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 - (IBAction)importMarathonMap:(id)sender
 {
-    NSArray	*fileTypes	= [NSArray arrayWithObjects:NSFileTypeForHFSTypeCode('sce2'), @"lev", nil];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), @"lev", @"org.bungie.source.map"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
+    op.allowedFileTypes = fileTypes;
     
     if ([self isSheetAlreadyOpen])
         return;
@@ -229,6 +230,9 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
     [op setPrompt:@"Combine/Import"];
     
+    [op beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+        [self savePanelDidEndForMapImport:op returnCode:result contextInfo:NULL];
+    }];
     [op beginSheetForDirectory:nil file:nil types:fileTypes
         modalForWindow:[self window] modalDelegate:self
         didEndSelector:@selector(savePanelDidEndForMapImport:returnCode:contextInfo:) contextInfo:nil];
@@ -298,7 +302,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     //if ([theLevel isEnvironmentNetwork])
         //???
         
-    //if ([theLevel getEnvironment_flags] == 0)
+    //if ([theLevel environmentFlags] == 0)
         // Nothing is set, but that includes above also...
     
     if (showLevelSettingsSheetWhenWindowIsLoaded)
@@ -348,7 +352,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
         [gameType selectCellAtRow:6 column:0];
     
     // Set the level name...
-    theLevelNameTmp = [theLevel getLevel_name];
+    theLevelNameTmp = [theLevel levelName];
     NSLog(@"thelevelNameTmp: %@", theLevelNameTmp);
     if (theLevelNameTmp == nil)
     {
@@ -359,9 +363,9 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     [levelName setStringValue:theLevelNameTmp];
     
-    //-(short)getPhysics_model;
-    //-(short)getSong_index;
-    [environmentTexture selectItemAtIndex:[theLevel getEnvironment_code]];
+    //-(short)physicsModel;
+    //-(short)songIndex;
+    [environmentTexture selectItemAtIndex:[theLevel environmentCode]];
     /*	_water = 0,
 	_lava,
 	_sewage,
@@ -369,7 +373,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 	_pfhor */
     
     // Song index is apperently used by Forge for which landscape to use...
-    [landscape selectItemAtIndex:[theLevel getSong_index]];
+    [landscape selectItemAtIndex:[theLevel songIndex]];
     
     // Open the sheet...
     [NSApp beginSheet:levelSettingsSheet modalForWindow:mainWindow modalDelegate:self didEndSelector:NULL contextInfo:nil];
@@ -384,8 +388,8 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 - (IBAction)applyLevelSettings:(id)sender
 {
-    //-(void)setPhysics_model:(short)v;
-    //-(void)setSong_index:(short)v;
+    //-(void)setPhysicsModel:(short)v;
+    //-(void)setSongIndex:(short)v;
     
     LELevelData *theLevel = [[self document] getCurrentLevelLoaded];
     //BOOL thereIsAMissionType = NO;
@@ -422,7 +426,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     //[sender setEnabled:NO];
     
-    [theLevel setEntry_point_flags:0];
+    [theLevel setEntryPointFlags:0];
     if SState(gameType, 1) [theLevel setGameTypeSinglePlayer:YES];
     if SState(gameType, 2) [theLevel setGameTypeCooperative:YES];
     if SState(gameType, 3) [theLevel setGameTypeMultiplayerCarnage:YES];
@@ -431,27 +435,27 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     if SState(gameType, 6) [theLevel setGameTypeDefense:YES];
     if SState(gameType, 7) [theLevel setGameTypeRugby:YES];
     
-    [theLevel setMission_flags:0];
+    [theLevel setMissionFlags:0];
     if SState(mission, 1) [theLevel setMissionExtermination:YES];
     if SState(mission, 2) [theLevel setMissionExploration:YES];
     if SState(mission, 3) [theLevel setMissionRetrieval:YES];
     if SState(mission, 4) [theLevel setMissionRepair:YES];
     if SState(mission, 5) [theLevel setMissionRescue:YES];
     
-    [theLevel setEnvironment_flags:0];
+    [theLevel setEnvironmentFlags:0];
     if SState(environmentFlags, 1) [theLevel setEnvironmentVacuum:YES];
     if SState(environmentFlags, 2) [theLevel setEnvironmentRebellion:YES];
     if SState(environmentFlags, 3) [theLevel setEnvironmentLowGravity:YES];
     if SState(environmentFlags, 4) [theLevel setEnvironmentMagnetic:YES];
     
-    [theLevel setEnvironment_code:[environmentTexture indexOfSelectedItem]];
+    [theLevel setEnvironmentCode:[environmentTexture indexOfSelectedItem]];
     //May need to release the previous NSString...  do it in the level
-    //data object setLevel_name method, not here!!!
+    //data object setLevelName method, not here!!!
     
     // Sets the landscape, which for Forge is stored in the song_index of the 'Minf' tag...
-    [theLevel setSong_index:[landscape indexOfSelectedItem]];
+    [theLevel setSongIndex:[landscape indexOfSelectedItem]];
     
-    [theLevel setLevel_name:[levelName stringValue]];
+    [theLevel setLevelName:[levelName stringValue]];
     
     [[self document] changeLevelNameFor:[mapLevelList indexOfSelectedItem] To:[levelName stringValue]];
     
@@ -1020,7 +1024,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
         [noteGroupPM selectItemAtIndex:0];
     }
     
-    [noteTextTB setStringValue:[tmpNote getText]];
+    [noteTextTB setStringValue:[tmpNote text]];
     
     [NSApp  beginSheet:annotationNoteEditorSheet
                         modalForWindow:[self window]
@@ -1036,7 +1040,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 {
     [tmpNote setText:[noteTextTB stringValue]];
     NSArray *types = [[[self document] getCurrentLevelLoaded] getNoteTypes];
-    int index = [noteGroupPM indexOfSelectedItem];
+    NSInteger index = [noteGroupPM indexOfSelectedItem];
     
     if (index > 0)
     {
@@ -1344,14 +1348,14 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     [theSavePanel setPrompt:@"Export"];
     
-    [theSavePanel beginSheetForDirectory:nil file:nil modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:) contextInfo:NULL];
-    
-    
+    [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+        [self savePanelDidEnd:theSavePanel returnCode:result contextInfo:NULL];
+    }];
     
     sheetOpen = YES;
 }
 
-- (void)savePanelDidEnd:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void)savePanelDidEnd:(NSSavePanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
     sheetOpen = NO;
     
@@ -1361,9 +1365,8 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     [[self document] exportToMarathonFormatAtPath:[sheet filename]];
 }
 
-- (void)savePanelDidEndForMapImport:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+- (void)savePanelDidEndForMapImport:(NSOpenPanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
-    LEMap *theMapDocToImport = nil;
     sheetOpen = NO;
     
     if (returnCode != NSOKButton)
@@ -1371,27 +1374,21 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     NSLog(@"Importing....");
     
-    theMapDocToImport = [[NSDocumentController sharedDocumentController]
-                                            openDocumentWithContentsOfFile:[sheet filename]
-                                            display:NO];
-    
-    if (theMapDocToImport != nil)
-    {
-        [[(LEMap *)[self document] level] unionLevel:[theMapDocToImport level]];
-        [theMapDocToImport close];
-        [[(LEMap *)[self document] level] setCurrentLayerToLastLayer];
-        [self updateLayerSelection];
-        [levelDrawView recaculateAndRedrawEverything];
-    }
-    else
-    {
-        SEND_ERROR_MSG_TITLE(@"While importing, the new document was nil?", @"Import Problem");
-    }
+    [[NSDocumentController sharedDocumentController]
+     openDocumentWithContentsOfURL:[sheet URL] display:NO completionHandler:^(NSDocument * _Nullable theMapDocToImport, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {
+        if (theMapDocToImport != nil)
+        {
+            [[(LEMap *)[self document] level] unionLevel:[(LEMap *)theMapDocToImport level]];
+            [theMapDocToImport close];
+            [[(LEMap *)[self document] level] setCurrentLayerToLastLayer];
+            [self updateLayerSelection];
+            [levelDrawView recaculateAndRedrawEverything];
+        }
+        else
+        {
+            SEND_ERROR_MSG_TITLE(@"While importing, the new document was nil?", @"Import Problem");
+        }
+    }];
 }
 
-
-
 @end
-
-
-

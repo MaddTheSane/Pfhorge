@@ -229,7 +229,7 @@
         //currentLevelNames = [[theMap getLevelNames] copy];
         [theLevel setLevelDocument:self];
         //currentLevelNames = [[NSMutableArray alloc] initWithCapacity:1];
-        //[currentLevelNames addObject:[theLevel getLevel_name]];
+        //[currentLevelNames addObject:[theLevel levelName]];
         
         //currentLevelNames = [[pidMap levelNames] retain];
         

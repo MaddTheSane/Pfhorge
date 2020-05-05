@@ -81,7 +81,7 @@
 -(void)setPolygon_object:(LEPolygon *)v;
 -(void)setPolygon:(LEPolygon *)v;
 
--(void)setText:(NSString *)v;
+@property (readonly, copy) NSString *text;
 
 -(void)updateBounds;
 
@@ -100,8 +100,6 @@
 -(short)getPolygon_index;
 -(LEPolygon *)getPolygon_object;
 - (LEPolygon *)polygon;
-
--(NSString *)getText;
 
 // ************************** Inzlizations And Class Methods *************************
 

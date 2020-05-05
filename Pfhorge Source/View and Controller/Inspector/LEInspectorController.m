@@ -176,7 +176,7 @@
         currentLevel = [currentLevelDocument getCurrentLevelLoaded];
         currentMainWindowController = (LELevelWindowController *)controller;
        // NSLog(@"Calling...");
-        [textureInspectorWindowController setMenusToEnvironment:[currentLevel getEnvironment_code]];
+        [textureInspectorWindowController setMenusToEnvironment:[currentLevel environmentCode]];
         
     } else {
         currentLevelDocument = nil;
@@ -484,7 +484,7 @@
 #pragma mark ••••••••• Accsessors •••••••••
 
 -(id)getTheCurrentSelection { return theCurrentSelection; }
--(LELevelData *)getTheCurrentLevel { return currentLevel; }
+-(LELevelData *)currentLevel { return currentLevel; }
 -(LEMapDraw *)getTheCurrentLevelDrawView { return currentLevelDrawView; }
 
 @end

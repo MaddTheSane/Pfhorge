@@ -42,7 +42,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -66,14 +66,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Ambient Sound: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+     NSLog(@"Exporting Ambient Sound: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -83,7 +83,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Ambient Sound: %d  -- Position: %d  --- Length: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Ambient Sound: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportUnsignedShort(flags);
     

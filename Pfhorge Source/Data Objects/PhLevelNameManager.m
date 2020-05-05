@@ -441,7 +441,7 @@
 
 - (void)changeLevelNamesTo:(NSArray *)theNames
 {
-    NSLog(@"changeLevelNamesTo count: %d", [theNames count]);
+    NSLog(@"changeLevelNamesTo count: %lu", (unsigned long)[theNames count]);
     [levelNames removeAllObjects];
     [levelNames addObjectsFromArray:theNames];
     [self refreshAllMenusOf:_levelMenu];

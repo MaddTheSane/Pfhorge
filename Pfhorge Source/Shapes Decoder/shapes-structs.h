@@ -51,15 +51,15 @@ struct collection_definition {
 	word	flags;					/* [unused.16] */
 	short	color_count,
 			clut_count;
-	long	color_table_offset;		/* an array of clut_count arrays of color_count ColorSpec structures */
+	int 	color_table_offset;		/* an array of clut_count arrays of color_count ColorSpec structures */
 	short	high_level_shape_count;
-	long	high_level_shape_offset_table_offset;
+	int 	high_level_shape_offset_table_offset;
 	short	low_level_shape_count;
-	long	low_level_shape_offset_table_offset;
+	int 	low_level_shape_offset_table_offset;
 	short	bitmap_count;
-	long	bitmap_offset_table_offset;
+	int 	bitmap_offset_table_offset;
 	short	pixels_to_world;		/* used to shift pixel values into world coordinates */
-	long	size;					/* used to assert offsets */
+	int 	size;					/* used to assert offsets */
 //	short	unused[253];
 };
 typedef struct collection_definition collection_definition;
@@ -138,8 +138,8 @@ struct collection_header {		// 32 bytes
 	word	flags;
 	
 	// used only in the file
-	long	offset, length;		// for 8 bit screen
-	long	offset16, length16;	// for 16/32 bit and OpenGL
+	int	offset, length;		// for 8 bit screen
+	int	offset16, length16;	// for 16/32 bit and OpenGL
 	
 	// stuff used in the past for holding pointers to coll data, unused in file
 //	short	unused[6];

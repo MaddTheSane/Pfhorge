@@ -136,7 +136,7 @@
 {
     //NSArray *theLevelTags = [mapLevel getTags]; //getPhNumber
     
-    NSLog(@"tagNumber requested: %d, index: %d", tagNumber, [mapLevel tagIndexNumberFromTagNumber:tagNumber]);
+    NSLog(@"tagNumber requested: %d, index: %d", tagNumber, (long)[mapLevel tagIndexNumberFromTagNumber:tagNumber]);
 
     return [mapLevel tagIndexNumberFromTagNumber:tagNumber];
     

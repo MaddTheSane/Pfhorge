@@ -84,7 +84,7 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Light: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+     NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];

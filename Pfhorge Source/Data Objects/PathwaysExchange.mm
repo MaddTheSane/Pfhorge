@@ -29,8 +29,8 @@
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
     short thePfhorgeDataSig1 = 26743;
-    short thePfhorgeDataSig2 = 34521;
-    long thePfhorgeDataSig3 = 42296737;
+    unsigned short thePfhorgeDataSig2 = 34521;
+    int thePfhorgeDataSig3 = 42296737;
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
@@ -71,6 +71,11 @@
         [progress setSecondStatusText:@"Saving Level..."];
         [progress increaseSecondProgressBy:5.0];
         
+        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
+        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
+        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
+        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig2 length:2];

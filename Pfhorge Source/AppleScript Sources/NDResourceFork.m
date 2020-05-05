@@ -217,7 +217,7 @@ OSErr createResourceFork( NSURL * aURL )
 	{
 		NSData			* theFileName;
 
-		theFileName = [[[aURL path] lastPathComponent] dataUsingEncoding:NSUnicodeStringEncoding];
+		theFileName = [[aURL lastPathComponent] dataUsingEncoding:NSUnicodeStringEncoding];
 		FSCreateResFile ( &theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL );
 	}
 	

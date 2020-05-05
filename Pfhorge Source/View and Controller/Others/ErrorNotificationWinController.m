@@ -86,6 +86,6 @@
     
     //NSRunAlertPanel(title, msg, @"Darn!", nil, nil);
     
-    NSRunInformationalAlertPanel(title, msg, @"Ok", nil, nil);
+    NSRunInformationalAlertPanel(title, @"%@", @"Ok", nil, nil, msg);
 }
 @end

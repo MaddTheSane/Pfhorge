@@ -651,7 +651,7 @@
     char *thePTexChar = (char *)&primary_texture.texture;
     char *theSTexChar = (char *)&secondary_texture.texture;
     char *theTTexChar = (char *)&transparent_texture.texture;
-    //short theCurrentEnviroCode = [theLELevelDataST getEnvironment_code];
+    //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
     (thePTexChar)[0] = (0x11 + number);
     (theSTexChar)[0] = (0x11 + number);
     (theTTexChar)[0] = (0x11 + number);

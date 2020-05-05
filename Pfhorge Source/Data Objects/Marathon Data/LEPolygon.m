@@ -1149,7 +1149,7 @@
     // collection.
     char *theFTexChar = (char *)&floor_texture;
     char *theCTexChar = (char *)&ceiling_texture;
-    short theCurrentEnviroCode = [theLELevelDataST getEnvironment_code];
+    short theCurrentEnviroCode = [theLELevelDataST environmentCode];
     (theFTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theCTexChar)[0] = (0x11 + theCurrentEnviroCode);
 }
@@ -1158,7 +1158,7 @@
 { 
     char *theFTexChar = (char *)&floor_texture;
     char *theCTexChar = (char *)&ceiling_texture;
-    //short theCurrentEnviroCode = [theLELevelDataST getEnvironment_code];
+    //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
     (theFTexChar)[0] = (0x11 + number);
     (theCTexChar)[0] = (0x11 + number);
 }
@@ -1194,7 +1194,7 @@
 { 
     char *theFTexChar = (char *)&floor_texture;
     //char *theCTexChar = (char *)&ceiling_texture;
-    //short theCurrentEnviroCode = [theLELevelDataST getEnvironment_code];
+    //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
     return (theFTexChar)[0] - 0x11;
     //(theCTexChar)[0] = (0x11 + number);
 }

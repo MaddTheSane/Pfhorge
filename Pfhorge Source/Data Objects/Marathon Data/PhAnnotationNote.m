@@ -39,7 +39,7 @@
     NSPoint regP = [self getLocation];
     NSPoint adjP = [self getLocationAdjusted];
     
-    return [NSString stringWithFormat:@"Note Index: %d   In Polygon: %@   X/Y:(%d, %d)   AdjX/AdjY:(%d, %d)", [self getIndex], polyField, regP.x, regP.y, adjP.x, adjP.y, nil];
+    return [NSString stringWithFormat:@"Note Index: %d   In Polygon: %@   X/Y:(%d, %d)   AdjX/AdjY:(%d, %d)", [self getIndex], polyField, (int)regP.x, (int)regP.y, (int)adjP.x, (int)adjP.y, nil];
 }
 
 - (BOOL)LEhitTest:(NSPoint)point
@@ -184,6 +184,8 @@
 -(void)setPolygon_object:(LEPolygon *)v { polygon_object = v; }
 -(void)setPolygon:(LEPolygon *)v { polygon_object = v; }
 
+@synthesize text;
+
 -(void)setText:(NSString *)v
 {
     [text release];
@@ -258,8 +260,6 @@
 -(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
 -(LEPolygon *)getPolygon_object { return polygon_object; }
 - (LEPolygon *)polygon { return polygon_object; }
-
--(NSString *)getText { return [[text copy] autorelease]; }
 
  // **************************  Overriden Standard Methods  *************************
  

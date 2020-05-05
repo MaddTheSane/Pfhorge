@@ -469,7 +469,7 @@ static unsigned short SetColor(short ID, int Indx) {
     
     bool  invertMouse 		= [preferences boolForKey:VMInvertMouse];
     float mouseSpeedMultiplier 	= [preferences floatForKey:VMMouseSpeed];
-    int   keySpeed		= [preferences integerForKey:VMKeySpeed];
+    NSInteger   keySpeed		= [preferences integerForKey:VMKeySpeed];
     
     NSEvent *event;
     ///NSAutoreleasePool *pool;

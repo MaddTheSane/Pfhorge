@@ -106,7 +106,7 @@
     // •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
     
     LEPolygon *thePoly = [mainInspectorController getTheCurrentSelection];
-    LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevelData = [mainInspectorController currentLevel];
     int curPolyType;
     id tmpObj;
     
@@ -285,11 +285,11 @@
 {
     //[[PhPlatformParametersWindowController sharedPlatformController] showSheet];
     LEPolygon *thePoly = curPoly;//[mainInspectorController getTheCurrentSelection];
-    //LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    //LELevelData *theLevelData = [mainInspectorController currentLevel];
     PhPlatform *thePolyPlatform = [thePoly getPermutationObject];
     PhPlatform *curPlat = nil;
     
-    NSArray *thePlatforms = [[mainInspectorController getTheCurrentLevel] getPlatforms];
+    NSArray *thePlatforms = [[mainInspectorController currentLevel] getPlatforms];
     
     NSEnumerator *numer = [thePlatforms objectEnumerator];
     while (curPlat = [numer nextObject])
@@ -326,7 +326,7 @@
 {
     int thePolyType = [sender indexOfSelectedItem];
     LEPolygon *thePolyInQuestion = curPoly; //((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
-    LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevelData = [mainInspectorController currentLevel];
     LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
     int theOldPolyType = [thePolyInQuestion getType];
     
@@ -405,7 +405,7 @@
 - (IBAction)permutationAction:(id)sender
 {
     LEPolygon *thePolyInQuestion = curPoly;//((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
-    LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevelData = [mainInspectorController currentLevel];
     ///LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
     int thePolyType = [thePolyInQuestion getType];
     id thePerObj = nil;
@@ -449,7 +449,7 @@
 - (IBAction)permutationNumberTBAction:(id)sender
 {
     LEPolygon *thePolyInQuestion = curPoly;//((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
-    ///LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    ///LELevelData *theLevelData = [mainInspectorController currentLevel];
     ///LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
     int thePolyType = [thePolyInQuestion getType];
     id thePerObj = nil;

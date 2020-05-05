@@ -45,7 +45,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -81,14 +81,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Media: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+     NSLog(@"Exporting Media: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -279,7 +279,7 @@
 -(void)setOrigin:(NSPoint)v { origin = v; }
 -(void)setHeight:(short)v { height = v; }
 
--(void)setMinimum_light_intensity:(long)v { minimum_light_intensity = v; } // ??? Object ???
+-(void)setMinimum_light_intensity:(int)v { minimum_light_intensity = v; } // ??? Object ???
 -(void)setTexture:(short)v { texture = v; }
 -(void)setTransfer_mode:(short)v { transfer_mode = v; }
 

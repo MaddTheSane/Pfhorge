@@ -75,11 +75,13 @@ int LoadCollection(int coll, FILE *f)
 
 void UnloadCollection(int coll)
 {
-	if (CollIsLoaded(coll))
+    if (CollIsLoaded(coll)) {
 		free(colls[coll]);
+        colls[coll] = NULL;
+    }
 }
 
-int CollIsLoaded(int coll)
+bool CollIsLoaded(int coll)
 {
 	return (colls[coll] != NULL);
 }

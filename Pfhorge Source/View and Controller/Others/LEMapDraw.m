@@ -1333,7 +1333,7 @@ enum {
         //activateArchColor(PhLineSelectedColor);
         //NSRectFill(bounds);
         
-        [[note getText] drawAtPoint:[note getLocationAdjusted] withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+        [[note text] drawAtPoint:[note getLocationAdjusted] withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
                                         color,
                                         NSForegroundColorAttributeName,
@@ -3610,7 +3610,7 @@ enum {
                 {
                     BOOL objInSelections = [self isObjectInSelections:curObj];
                     
-                    NSLog(@"Found a note: %@", [curObj getText]);
+                    NSLog(@"Found a note: %@", [curObj text]);
                     
                     if (!shiftDown && !objInSelections)
                     {

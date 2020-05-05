@@ -461,7 +461,7 @@
 
 - (IBAction)controlPanelTypeAction:(id)sender
 {
-    switch ([[mainInspectorController getTheCurrentLevel] getEnvironment_code])
+    switch ([[mainInspectorController getTheCurrentLevel] environmentCode])
     {
         case _water:
             [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + waterOffset)];

@@ -104,7 +104,8 @@ enum /* environment_code wall textre collection */
         _landscape_collection_4
 };
 
-enum	// entry point types - this is per map level (long)
+//! entry point types - this is per map level (long)
+typedef NS_OPTIONS(int, _entry_point_flag)
 {
 	_single_player_entry_point = 0x01,
 	_multiplayer_cooperative_entry_point = 0x02,
@@ -115,7 +116,8 @@ enum	// entry point types - this is per map level (long)
 	_rugby_entry_point= 0x40
 };
 
-enum	// mission flags
+//! mission flags
+typedef NS_OPTIONS(short,_mission_flag)
 {
 	_mission_none = 0x0000,
 	_mission_extermination = 0x0001,
@@ -125,7 +127,8 @@ enum	// mission flags
 	_mission_rescue = 0x0010
 };
 
-enum	// environment flags
+//! environment flags
+typedef NS_OPTIONS(short, _environment_flag)
 {
 	_environment_normal = 0x0000,
 	_environment_vacuum = 0x0001,
@@ -161,9 +164,19 @@ enum {
 
 @interface LELevelData : PhLevelNameManager <NSCoding>
 {
-    NSMutableArray  *points, *lines, *polys, *mapObjects, *sides,
-                    *lights, *notes, *media, *ambientSounds,
-                    *randomSounds, *itemPlacement, *platforms;
+    NSMutableArray<LEMapPoint*> *points;
+    NSMutableArray<LELine*> *lines;
+    NSMutableArray<LEPolygon*> *polys;
+    NSMutableArray *mapObjects;
+    NSMutableArray<LESide*> *sides;
+    NSMutableArray<PhLight*> *lights;
+    NSMutableArray<PhNoteGroup*> *notes;
+    NSMutableArray *media;
+    NSMutableArray *ambientSounds;
+    
+    NSMutableArray *randomSounds;
+    NSMutableArray *itemPlacement;
+    NSMutableArray<PhPlatform*> *platforms;
     
     NSMutableArray  *layersInLevel;
     PhLayer	    *currentLayer;
@@ -172,7 +185,7 @@ enum {
     NSMutableArray  *namedPolyObjects;
     NSMutableArray  *tags;
     
-    NSMutableArray *terimals;
+    NSMutableArray<Terminal*> *terimals;
     
     short unsigned objectCount, lineCount, pointCount, lightCount, polygonCount;
     short unsigned ambientSoundCount, randomSoundCount, platformCount, liquidCount;
@@ -180,13 +193,13 @@ enum {
     short	environment_code;
     short	physics_model;
     short	song_index;
-    short	mission_flags;
-    short	environment_flags;
+    _mission_flag	mission_flags;
+    _environment_flag	environment_flags;
     
     short	unused[4];
     
     NSString	*level_name;
-    long	entry_point_flags;
+    _entry_point_flag	entry_point_flags;
     
     //LESide *defaultSide;
     LELine *defaultLine;
@@ -227,6 +240,16 @@ enum {
 
 - (NSData *)exportObjects:(NSSet *)objects;
 - (NSSet *)importObjects:(NSData *)theData;
+
+// ***************** Level Information Accessors  ****************
+
+@property short environmentCode;
+@property short physicsModel;
+@property (nonatomic) short songIndex;
+@property _mission_flag missionFlags;
+@property _environment_flag environmentFlags;
+@property (copy) NSString *levelName;
+@property _entry_point_flag entryPointFlags;
 
 @end
 
@@ -354,11 +377,11 @@ enum {
 // I will be making more and expanding the add and delete methods soon.
 
 
--(NSMutableArray *)getThePoints;
+-(NSMutableArray<LEMapPoint*> *)getThePoints;
 //-(NSArray *)points;
--(NSMutableArray *)getTheLines;
--(NSMutableArray *)getThePolys;
--(NSMutableArray *)getTheMapObjects;
+-(NSMutableArray<LELine*> *)getTheLines;
+-(NSMutableArray<LEPolygon*> *)getThePolys;
+-(NSMutableArray<LEMapObject*> *)getTheMapObjects;
 
 -(NSArray *)layerNotes;
 -(NSMutableArray *)layerPoints;
@@ -369,14 +392,14 @@ enum {
 -(NSMutableArray *)layersInLevel;
 -(NSMutableArray *)namedPolyObjects;
 
--(NSMutableArray *)getSides;
--(NSMutableArray *)getLights;
--(NSMutableArray *)getNotes;
+-(NSMutableArray<LESide*> *)getSides;
+-(NSMutableArray<PhLight*> *)getLights;
+-(NSMutableArray<PhNoteGroup*> *)getNotes;
 -(NSMutableArray *)getMedia;
 -(NSMutableArray *)getAmbientSounds;
 -(NSMutableArray *)getRandomSounds;
 -(NSMutableArray *)getItemPlacement;
--(NSMutableArray *)getPlatforms;
+-(NSMutableArray<PhPlatform*> *)getPlatforms;
 
 -(NSMutableArray *)getTags;
 
@@ -405,67 +428,28 @@ enum {
 
 // ****************** Level Information Flag Accsessors  ****************
 
--(BOOL)isEnvironmentNormal;
--(BOOL)isEnvironmentVacuum;
--(BOOL)isEnvironmentMagnetic;
--(BOOL)isEnvironmentRebellion;
--(BOOL)isEnvironmentLowGravity;
--(BOOL)isEnvironmentNetwork;
--(BOOL)isEnvironmentSinglePlayer;
-
--(BOOL)isMissionExtermination;
--(BOOL)isMissionExploration;
--(BOOL)isMissionRetrieval;
--(BOOL)isMissionRepair;
--(BOOL)isMissionRescue;
-
--(BOOL)isGameTypeSinglePlayer;
--(BOOL)isGameTypeCooperative;
--(BOOL)isGameTypeMultiplayerCarnage;
--(BOOL)isGameTypeCaptureTheFlag;
--(BOOL)isGameTypeKingOfTheHill;
--(BOOL)isGameTypeDefense;
--(BOOL)isGameTypeRugby;
-
+@property (nonatomic, readonly, getter=isEnvironmentNormal) BOOL environmentNormal;
 -(void)setEnvironmentNormal;
--(void)setEnvironmentVacuum:(BOOL)v;
--(void)setEnvironmentMagnetic:(BOOL)v;
--(void)setEnvironmentRebellion:(BOOL)v;
--(void)setEnvironmentLowGravity:(BOOL)v;
--(void)setEnvironmentNetwork:(BOOL)v;
--(void)setEnvironmentSinglePlayer:(BOOL)v;
+@property (nonatomic, getter=isEnvironmentVacuum) BOOL environmentVacuum;
+@property (nonatomic, getter=isEnvironmentMagnetic) BOOL environmentMagnetic;
+@property (nonatomic, getter=isEnvironmentRebellion) BOOL environmentRebellion;
+@property (nonatomic, getter=isEnvironmentLowGravity) BOOL environmentLowGravity;
+@property (nonatomic, getter=isEnvironmentNetwork) BOOL environmentNetwork;
+@property (nonatomic, getter=isEnvironmentSinglePlayer) BOOL environmentSinglePlayer;
 
--(void)setMissionExtermination:(BOOL)v;
--(void)setMissionExploration:(BOOL)v;
--(void)setMissionRetrieval:(BOOL)v;
--(void)setMissionRepair:(BOOL)v;
--(void)setMissionRescue:(BOOL)v;
+@property (nonatomic, getter=isMissionExtermination) BOOL missionExtermination;
+@property (nonatomic, getter=isMissionExploration) BOOL missionExploration;
+@property (nonatomic, getter=isMissionRetrieval) BOOL missionRetrieval;
+@property (nonatomic, getter=isMissionRepair) BOOL missionRepair;
+@property (nonatomic, getter=isMissionRescue) BOOL missionRescue;
 
--(void)setGameTypeSinglePlayer:(BOOL)v;
--(void)setGameTypeCooperative:(BOOL)v;
--(void)setGameTypeMultiplayerCarnage:(BOOL)v;
--(void)setGameTypeCaptureTheFlag:(BOOL)v;
--(void)setGameTypeKingOfTheHill:(BOOL)v;
--(void)setGameTypeDefense:(BOOL)v;
--(void)setGameTypeRugby:(BOOL)v;
-
-// ***************** Level Information Accessors  ****************
-
--(short)getEnvironment_code;
--(short)getPhysics_model;
--(short)getSong_index;
--(short)getMission_flags;
--(short)getEnvironment_flags;
--(NSString *)getLevel_name;
--(int)getEntry_point_flags;
-
--(void)setEnvironment_code:(short)v;
--(void)setPhysics_model:(short)v;
--(void)setSong_index:(short)v;
--(void)setMission_flags:(short)v;
--(void)setEnvironment_flags:(short)v;
--(void)setLevel_name:(NSString *)v;
--(void)setEntry_point_flags:(int)v;
+@property (nonatomic, getter=isGameTypeSinglePlayer) BOOL gameTypeSinglePlayer;
+@property (nonatomic, getter=isGameTypeCooperative) BOOL gameTypeCooperative;
+@property (nonatomic, getter=isGameTypeMultiplayerCarnage) BOOL gameTypeMultiplayerCarnage;
+@property (nonatomic, getter=isGameTypeCaptureTheFlag) BOOL gameTypeCaptureTheFlag;
+@property (nonatomic, getter=isGameTypeKingOfTheHill) BOOL gameTypeKingOfTheHill;
+@property (nonatomic, getter=isGameTypeDefense) BOOL gameTypeDefense;
+@property (nonatomic, getter=isGameTypeRugby) BOOL gameTypeRugby;
 
 // These are methods that we probably wouldn't bother with if we weren't scriptable.
 - (NSScriptObjectSpecifier *)objectSpecifier;

@@ -553,11 +553,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     [LEMapObject setTheMapPolysST:[theLevel getThePolys]];
     */
     
-    [theLevel setEnvironment_code:environment_code[levelToGet - 1]];
-    [theLevel setPhysics_model:physics_model[levelToGet - 1]];
-    [theLevel setSong_index:song_index[levelToGet - 1]];
-    [theLevel setMission_flags:mission_flags[levelToGet - 1]];
-    [theLevel setEnvironment_flags:environment_flags[levelToGet - 1]];
+    [theLevel setEnvironmentCode:environment_code[levelToGet - 1]];
+    [theLevel setPhysicsModel:physics_model[levelToGet - 1]];
+    [theLevel setSongIndex:song_index[levelToGet - 1]];
+    [theLevel setMissionFlags:mission_flags[levelToGet - 1]];
+    [theLevel setEnvironmentFlags:environment_flags[levelToGet - 1]];
     
     
     /*if (setupPointerArraysDurringLoading)
@@ -828,9 +828,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     // with the retain messages, because when this object (LEMapData)
     // gets deallocated, it may dealocate the level name which
     // the theLevel (LELevelData) has a pointer to...
-    [theLevel setLevel_name:[levelNames objectAtIndex:(levelToGet - 1)]];
+    [theLevel setLevelName:[levelNames objectAtIndex:(levelToGet - 1)]];
     
-    [theLevel setEntry_point_flags:entry_point_flags[levelToGet - 1]];
+    [theLevel setEntryPointFlags:entry_point_flags[levelToGet - 1]];
     #ifdef useDebugingLogs
         NSLogs(@"The Levels Entry Point Flag Value: %d", entry_point_flags[levelToGet - 1]);
         
@@ -1466,11 +1466,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     //int lengthFromTop = [mapDataToSave length];
     //int objByteCount = 74; //(objCount * 88 /* objs length */);
     
-    NSString *theLevelName = [level getLevel_name];
+    NSString *theLevelName = [level levelName];
     
-    [self saveShort:[level getMission_flags]];
-    [self saveShort:[level getEnvironment_flags]];
-    [self saveLong:[level getEntry_point_flags]];
+    [self saveShort:[level missionFlags]];
+    [self saveShort:[level environmentFlags]];
+    [self saveLong:[level entryPointFlags]];
     
     [self saveStringAsChar:theLevelName withLength:66];
     
@@ -1489,7 +1489,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //int lengthFromTop = [mapDataToSave length];
     int objByteCount = 88; //(objCount * 88 /* objs length */);
     
-    NSString *theLevelName = [level getLevel_name];
+    NSString *theLevelName = [level levelName];
     
     [self saveLong:'Minf'];
     // Going to be zero, for now I am assuming that this is the last tag... :)
@@ -1498,11 +1498,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveLong:0]; // offset, for inplace expansion of data???
     
     
-    [self saveShort:[level getEnvironment_code]];
-    [self saveShort:[level getPhysics_model]];
-    [self saveShort:[level getSong_index]];
-    [self saveShort:[level getMission_flags]];
-    [self saveShort:[level getEnvironment_flags]];
+    [self saveShort:[level environmentCode]];
+    [self saveShort:[level physicsModel]];
+    [self saveShort:[level songIndex]];
+    [self saveShort:[level missionFlags]];
+    [self saveShort:[level environmentFlags]];
     
     [self saveEmptyBytes:8];
     
@@ -1511,7 +1511,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveStringAsChar:theLevelName withLength:66];
     //[self saveEmptyBytes:60];
     
-    [self saveLong:[level getEntry_point_flags]];
+    [self saveLong:[level entryPointFlags]];
     
     #ifdef useDebugingLogs
         NSLog(@"Saved the level info object ('Minf'). SIZE: %d", [mapDataToSave length]);
@@ -3178,7 +3178,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getLocation].y];
 	[self saveShort:[currentObj getPolygon_index]];
 	
-	[self saveStringAsChar:[currentObj getText] withLength:64];
+	[self saveStringAsChar:[currentObj text] withLength:64];
 	
     }
     #ifdef useDebugingLogs

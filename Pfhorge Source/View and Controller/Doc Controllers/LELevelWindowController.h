@@ -224,11 +224,6 @@ extern NSString *PhLevelDidChangeName;
 
 // *** NSSavePanelForExportingLevelMethods ***
 - (IBAction)exportMeToMarathonMap:(id)sender;
-- (void)savePanelDidEnd:(id)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo;
-
+- (void)savePanelDidEnd:(NSSavePanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
 
 @end
-
-
-
-

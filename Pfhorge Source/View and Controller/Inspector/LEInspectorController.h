@@ -98,6 +98,6 @@
 
 // *********************** Accsessors ***********************
 -(id)getTheCurrentSelection;
--(LELevelData *)getTheCurrentLevel;
+-(LELevelData *)currentLevel;
 -(LEMapDraw *)getTheCurrentLevelDrawView;
 @end

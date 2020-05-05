@@ -386,7 +386,7 @@
 
 - (void)updateLineTextureAndLightMenus
 {
-    // LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    // LELevelData *theLevelData = [mainInspectorController currentLevel];
     
     // NOTE: Check to make sure returned object is a LELine!
     LELine *theCurrentSelection = [mainInspectorController getTheCurrentSelection];
@@ -865,7 +865,7 @@
     struct side_texture_definition theTTex;
     
     char *theTexChar = NULL;
-    short theCurrentEnviroCode = [[mainInspectorController getTheCurrentLevel] getEnvironment_code];
+    short theCurrentEnviroCode = [[mainInspectorController currentLevel] environmentCode];
     
     theTexChar = (char *)&thePTex.texture;
     thePTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 1);

@@ -189,35 +189,6 @@
 -(void)setGameTypeRugby:(BOOL)v { SET_ENTRY_FLAG(_rugby_entry_point, v); }
 
 
-// ************************** Level Information Accessors  *************************
-#pragma mark -
-#pragma mark ********* Level Info *********
-
--(short)getEnvironment_code { return environment_code; }
--(short)getPhysics_model { return physics_model; }
--(short)getSong_index { return song_index; }
--(short)getMission_flags { return mission_flags; }
--(short)getEnvironment_flags { return environment_flags; }
--(NSString *)getLevel_name { return [[level_name copy] autorelease]; }
--(long)getEntry_point_flags { return entry_point_flags; }
-
--(void)setEnvironment_code:(short)v { environment_code = v; }
--(void)setPhysics_model:(short)v { physics_model = v; }
-
--(void)setSong_index:(short)v
-{
-    if (v > 3 || v < 0)
-        v = 0;
-    
-    song_index = v;
-}
-
--(void)setMission_flags:(short)v { mission_flags = v; }
--(void)setEnvironment_flags:(short)v { environment_flags = v; }
--(void)setLevel_name:(NSString *)v { [level_name release]; level_name = [v copy];  }
-
--(void)setEntry_point_flags:(long)v { entry_point_flags = v; }
-
 // These are methods that we probably wouldn't bother with if we weren't scriptable.
 
 //NSScriptObjectSpecifier initWithContainerSpecifier:(NSScriptObjectSpecifier *)specifier key:(NSString *)key

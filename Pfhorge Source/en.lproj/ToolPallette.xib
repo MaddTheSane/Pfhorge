@@ -17,10 +17,10 @@
         <window title="Tools" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="TheToolPalletteWin" animationBehavior="default" id="2" userLabel="Palette Window" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="29" y="487" width="224" height="68"/>
+            <rect key="contentRect" x="29" y="487" width="224" height="64"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="3">
-                <rect key="frame" x="0.0" y="0.0" width="224" height="68"/>
+                <rect key="frame" x="0.0" y="0.0" width="224" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <matrix verticalHuggingPriority="750" fixedFrame="YES" drawsBackground="YES" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14">
@@ -113,7 +113,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="90"/>
             </connections>
-            <point key="canvasLocation" x="139" y="150"/>
+            <point key="canvasLocation" x="139" y="148"/>
         </window>
     </objects>
     <resources>

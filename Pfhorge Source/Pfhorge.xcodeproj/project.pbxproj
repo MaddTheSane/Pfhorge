@@ -569,7 +569,6 @@
 			children = (
 				F58032D303E31DF70146BBD2 /* Map\Level Code */,
 				F5EFE97A01ADCA1A01A8A806 /* Marathon Data */,
-				00FBE54800DBBE877F000001 /* LELevelData.h */,
 				011A1BEE00D3D8317F000001 /* LEMapData.h */,
 				00FD2B8A00E806097F000001 /* LEMapStuffParent.h */,
 				00FD2B8B00E806097F000001 /* LEMapStuffParent.m */,
@@ -888,6 +887,7 @@
 		F58032D303E31DF70146BBD2 /* Map\Level Code */ = {
 			isa = PBXGroup;
 			children = (
+				00FBE54800DBBE877F000001 /* LELevelData.h */,
 				00FBE54900DBBE877F000001 /* LELevelData.m */,
 				F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */,
 				F58032D403E3223A0146BBD2 /* LELevelData-Data.m */,

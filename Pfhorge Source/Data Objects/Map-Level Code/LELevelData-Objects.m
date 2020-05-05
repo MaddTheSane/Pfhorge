@@ -43,6 +43,7 @@
 #import "PhRandomSound.h"
 #import "PhItemPlacement.h"
 #import "PhPlatform.h"
+#import "PhNoteGroup.h"
 
 #import "Terminal.h"
 #import "TerminalSection.h"
@@ -651,8 +652,8 @@
     // *** *** ***
     LELine *smallestLine;
     LEMapPoint *nextMainPoint, *alphaPoint, *betaPoint;
-    int countOfLineArray = [lineArray count];
-    int i;
+    NSInteger countOfLineArray = [lineArray count];
+    NSInteger i;
     
     alphaPoint = [currentLine getMapPoint2];
     betaPoint = [currentLine getMapPoint1];
