@@ -230,11 +230,11 @@
         int ccF = [conterclockwisePolygon getFloor_height];
         int ccC = [conterclockwisePolygon getCeiling_height];
         
-        int cPlatMax = [cPlat getmaximum_height];
-        int ccPlatMax = [ccPlat getmaximum_height];
+        int cPlatMax = [cPlat maximumHeight];
+        int ccPlatMax = [ccPlat maximumHeight];
         
-        int cPlatMin = [cPlat getminimum_height];
-        int ccPlatMin = [ccPlat getminimum_height];
+        int cPlatMin = [cPlat minimumHeight];
+        int ccPlatMin = [ccPlat minimumHeight];
         
         if (cPlatMax == -1)
             cPlatMax = cC;
@@ -248,8 +248,8 @@
         
         //if 
         
-        unsigned long ccPlatFlags = [ccPlat getStatic_flags];
-        unsigned long cPlatFlags = [cPlat getStatic_flags];
+        unsigned long ccPlatFlags = [ccPlat staticFlags];
+        unsigned long cPlatFlags = [cPlat staticFlags];
         
         BOOL cPlatFloor = ((cPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
         BOOL cPlatCeiling = ((cPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
@@ -929,7 +929,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon getIndex], [self getIndex]);
         
         /*
-        if ([clockwisePolygonSideObject getFlags] & _side_is_control_panel)
+        if ([clockwisePolygonSideObject flags] & _side_is_control_panel)
         { // This side is a control panel... Attempt to keep it...
             [clockwisePolygonSideObject setType:_composite_side];
         }
@@ -967,7 +967,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon getIndex], [self getIndex]);
         
         /*
-        if ([counterclockwisePolygonSideObject getFlags] & _side_is_control_panel)
+        if ([counterclockwisePolygonSideObject flags] & _side_is_control_panel)
         { // This side is a control panel... Attempt to keep it...
             [counterclockwisePolygonSideObject setType:_composite_side];
         }
@@ -982,7 +982,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
     
 
     /*
-    if ([clockwisePolygonSideObject getFlags] & _side_is_control_panel)
+    if ([clockwisePolygonSideObject flags] & _side_is_control_panel)
     { // This side is a control panel... Attempt to keep it...
         [clockwisePolygonSideObject setType:_composite_side];
     }*/

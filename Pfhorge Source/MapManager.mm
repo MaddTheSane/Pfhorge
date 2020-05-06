@@ -629,9 +629,9 @@ void MapManager::ReloadLevel() {
                     short MaxNgbrFloorHeight = MaxNgbrFloorHeights[np];
                     short MinNgbrCeilingHeight = MinNgbrCeilingHeights[np];
                     short MaxNgbrCeilingHeight = MaxNgbrCeilingHeights[np];
-                    short PlatMinHeight = [thePlatform getminimum_height];
-                    short PlatMaxHeight = [thePlatform getmaximum_height];
-                    unsigned long PlatFlags = [thePlatform getStatic_flags];
+                    short PlatMinHeight = [thePlatform minimumHeight];
+                    short PlatMaxHeight = [thePlatform maximumHeight];
+                    unsigned long PlatFlags = [thePlatform staticFlags];
                     
                     bool FromFloorToCeiling = (PlatFlags & _platform_extends_floor_to_ceiling) != 0;
                     if (FromFloorToCeiling)
@@ -715,39 +715,39 @@ void MapManager::ReloadLevel() {
             PhLight *theLight = [theLights objectAtIndex:il];
             LightInfo &Light = LightList[il];
             
-            GLfloat OnInten1 = [theLight getIntensity_forState:_light_primary_active]/MaxLightValue;
-            GLfloat OnInten2 = [theLight getIntensity_forState:_light_secondary_active]/MaxLightValue;
-            GLfloat OffInten1 = [theLight getIntensity_forState:_light_primary_inactive]/MaxLightValue;
-            GLfloat OffInten2 = [theLight getIntensity_forState:_light_secondary_inactive]/MaxLightValue;
+            GLfloat OnInten1 = [theLight intensityForState:_light_primary_active]/MaxLightValue;
+            GLfloat OnInten2 = [theLight intensityForState:_light_secondary_active]/MaxLightValue;
+            GLfloat OffInten1 = [theLight intensityForState:_light_primary_inactive]/MaxLightValue;
+            GLfloat OffInten2 = [theLight intensityForState:_light_secondary_inactive]/MaxLightValue;
             GLfloat InitInten =
-                ([theLight getFlags] & (1 << _light_is_initially_active)) ? OnInten1 : OffInten1;
+                ([theLight flags] & (1 << _light_is_initially_active)) ? OnInten1 : OffInten1;
             
             // Average values -- weighted
             
             GLfloat OnIntenAvg1 =
-                ([theLight getFunction_forState:_light_primary_active] == _constant_lighting_function) ? 
+                ([theLight functionForState:_light_primary_active] == _constant_lighting_function) ? 
 					OnInten1 : (OnInten1 + OnInten2)/2;
             
             GLfloat OnIntenAvg2 =
-                ([theLight getFunction_forState:_light_secondary_active] == _constant_lighting_function) ? 
+                ([theLight functionForState:_light_secondary_active] == _constant_lighting_function) ? 
 					OnInten2 : (OnInten1 + OnInten2)/2;
             
-            GLfloat OnP1 = GLfloat([theLight getPeriod_forState:_light_primary_active]);
-            GLfloat OnP2 = GLfloat([theLight getPeriod_forState:_light_secondary_active]);
+            GLfloat OnP1 = GLfloat([theLight periodForState:_light_primary_active]);
+            GLfloat OnP2 = GLfloat([theLight periodForState:_light_secondary_active]);
             GLfloat OnPTot = OnP1 + OnP2;
             GLfloat OnIntenAvg =
                 (OnPTot > 0) ? (OnIntenAvg1*OnP1 + OnIntenAvg2*OnP2)/OnPTot : (OnInten1 + OnInten2)/2;
             
             GLfloat OffIntenAvg1 =
-		([theLight getFunction_forState:_light_primary_inactive] == _constant_lighting_function) ? 
+		([theLight functionForState:_light_primary_inactive] == _constant_lighting_function) ? 
 					OffInten1 : (OffInten1 + OffInten2)/2;
             
             GLfloat OffIntenAvg2 =
-		([theLight getFunction_forState:_light_secondary_inactive] == _constant_lighting_function) ? 
+		([theLight functionForState:_light_secondary_inactive] == _constant_lighting_function) ? 
 					OffInten2 : (OffInten1 + OffInten2)/2;
             
-            GLfloat OffP1 = GLfloat([theLight getPeriod_forState:_light_primary_inactive]);
-            GLfloat OffP2 = GLfloat([theLight getPeriod_forState:_light_secondary_inactive]);
+            GLfloat OffP1 = GLfloat([theLight periodForState:_light_primary_inactive]);
+            GLfloat OffP2 = GLfloat([theLight periodForState:_light_secondary_inactive]);
             GLfloat OffPTot = OffP1 + OffP2;
             GLfloat OffIntenAvg =
                 (OffPTot > 0) ? (OffIntenAvg1*OffP1 + OffIntenAvg2*OffP2)/OffPTot : (OffInten1 + OffInten2)/2;

@@ -217,7 +217,7 @@
 
 /*
 
-    [objType selectItemAtIndex:[theObj getType]];
+    [objType selectItemAtIndex:[theObj type]];
     [self updateObjectKindMenu];
     [objItem selectItemAtIndex:[theObj getIndex]];
     [objItem setObjectValue:[objItem objectValueOfSelectedItem]];

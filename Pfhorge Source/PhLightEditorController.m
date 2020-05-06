@@ -179,12 +179,12 @@
 
 -(void)refreshInterfaceFromData
 {
-    // -(short)getType;
-    // -(short)getTag;
+    // -(short)type;
+    // -(short)tag;
     
-    //unsigned short theFlags = [light getFlags];
+    //unsigned short theFlags = [light flags];
     int i;
-    int lightTagMenuIndex = [self tagIndexNumberFromShort:[curLight getTag]];
+    int lightTagMenuIndex = [self tagIndexNumberFromShort:[curLight tag]];
     
     [self setupTitlesAndNames];
     
@@ -194,15 +194,15 @@
         NSLog(@"Light that just entered edit mode -> tag not found?"); 
     
     //[curLight getPhName];
-    [phaseTB setIntValue:[curLight getPhase]];
+    [phaseTB setIntValue:[curLight phase]];
     
     for (i = 0; i < 6; i++)
     {
-        float intensity = [curLight getIntensity_forState:i];
-        float deltaIntensity = [curLight getDelta_intensity_forState:i];
+        float intensity = [curLight intensityForState:i];
+        float deltaIntensity = [curLight deltaIntensityForState:i];
         
-        [theLightPhases[i][0] setIntValue:[curLight getPeriod_forState:i]];
-        [theLightPhases[i][1] setIntValue:[curLight getDelta_period_forState:i]];
+        [theLightPhases[i][0] setIntValue:[curLight periodForState:i]];
+        [theLightPhases[i][1] setIntValue:[curLight deltaPeriodForState:i]];
         
         intensity = intensity / 65535;
         intensity = intensity * 100;
@@ -215,9 +215,9 @@
         [theLightPhases[i][5] setIntValue:intensity];
         [theLightPhases[i][6] setIntValue:deltaIntensity];
         
-        [theLightPhases[i][4] selectItemAtIndex:[curLight getFunction_forState:i]];
+        [theLightPhases[i][4] selectItemAtIndex:[curLight functionForState:i]];
         
-        //NSLog(@"State %d has function# %d",i,[curLight getFunction_forState:i]);
+        //NSLog(@"State %d has function# %d",i,[curLight functionForState:i]);
     }
     
     //[[NSNotificationCenter defaultCenter] postNotificationName:NSControlTextDidChangeNotification object:self];
@@ -230,10 +230,10 @@
 
 -(BOOL)saveChanges
 {
-    // -(short)getType;
-    // -(short)getTag;
+    // -(short)type;
+    // -(short)tag;
     //NSMutableString *infoString, *lightNameString;
-    //unsigned short theFlags = [light getFlags];
+    //unsigned short theFlags = [light flags];
     int i;
     //[curLight getPhName];
     [curLight setPhase:[phaseTB intValue]];
@@ -272,14 +272,14 @@
         
         
         [curLight setIntensity:intensity forState:i];
-        [curLight setDelta_intensity:deltaIntensity forState:i];
+        [curLight setDeltaIntensity:deltaIntensity forState:i];
         
         [curLight setPeriod:[theLightPhases[i][0] intValue] forState:i];
-        [curLight setDelta_period:[theLightPhases[i][1] intValue] forState:i];
+        [curLight setDeltaPeriod:[theLightPhases[i][1] intValue] forState:i];
         
         [curLight setFunction:[theLightPhases[i][4] indexOfSelectedItem] forState:i];
         
-        //NSLog(@"State %d has function# %d",i,[curLight getFunction_forState:i]);
+        //NSLog(@"State %d has function# %d",i,[curLight functionForState:i]);
     }
     
     //[[NSNotificationCenter defaultCenter] postNotificationName:NSControlTextDidChangeNotification object:self];

@@ -31,15 +31,16 @@
 
 #define MAXIMUM_RANDOM_SOUND_IMAGES_PER_MAP 64
 
-enum	// sound image flags
-{
-	_sound_image_is_non_directional = 0x0001	// ignore direction
+//! sound image flags
+typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
+    //! ignore direction
+	_sound_image_is_non_directional = 0x0001
 };
 
 // possibly directional random sound effects
 @interface PhRandomSound : PhAbstractName <NSCoding>
 {
-	unsigned short	flags; // word
+	PhRandomSoundFlags	flags; // word
         
 	short	sound_index;
 	short	volume, delta_volume;
@@ -56,29 +57,29 @@ enum	// sound image flags
 - (id)initWithCoder:(NSCoder *)coder;
 
 // ************************** Get Accsessors *************************
-- (unsigned short) getFlags;
-- (short) getSound_index;
-- (short) getVolume;
-- (short) getDelta_volume;
-- (short) getPeriod;
-- (short) getDelta_period;
-- (short) getDirection;
-- (short) getDelta_direction;
-- (long) getPitch;
-- (long) getDelta_pitch;
-- (short) getPhase;
+@property PhRandomSoundFlags flags;
+@property short soundIndex;
+@property short volume;
+@property short deltaVolume;
+@property short period;
+@property short deltaPeriod;
+@property short direction;
+@property short deltaDirection;
+@property int32_t pitch;
+@property int32_t deltaPitch;
+@property short phase;
 
-// ************************** Set Accsessors *************************
-- (void) setFlags:(short)v;
-- (void) setSound_index:(short)v;
+// ************************** Accsessors *************************
+- (void) setFlags:(PhRandomSoundFlags)v;
+- (void) setSoundIndex:(short)v;
 - (void) setVolume:(short)v;
-- (void) setDelta_volume:(short)v;
+- (void) setDeltaVolume:(short)v;
 - (void) setPeriod:(short)v;
-- (void) setDelta_period:(short)v;
+- (void) setDeltaPeriod:(short)v;
 - (void) setDirection:(short)v;
 - (void) setDelta_direction:(short)v;
 - (void) setPitch:(int32_t)v;
-- (void) setDelta_pitch:(int32_t)v;
+- (void) setDeltaPitch:(int32_t)v;
 - (void) setPhase:(short)v;
 
 @end

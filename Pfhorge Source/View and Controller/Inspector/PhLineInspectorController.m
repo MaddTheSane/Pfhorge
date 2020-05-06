@@ -113,7 +113,7 @@
     lSolid 		= (([theCurrentSelection getFlags] & 0x4000) ? YES : NO);
     lTransparent 	= (([theCurrentSelection getFlags] & 0x2000) ? YES : NO);
     lLandscape 		= (([theCurrentSelection getFlags] & 0x1000) ? YES : NO);
-    //lTransparentSide 	= (([theCurrentSelection getFlags] & 0x200) ? YES : NO);
+    //lTransparentSide 	= (([theCurrentSelection flags] & 0x200) ? YES : NO);
     
     doNotAutoSetFlags	= [theCurrentSelection getPermanentSetting:_use_parmanent_settings];
     

@@ -176,7 +176,7 @@
     // / NSLog(@"   term section lines: %d", lines);
     
     
-    if (type == _map_teleport_section)
+    if (type == PhTerminalSectionTypeInMapTeleport)
     {
         permutationObject = [theMapPolysST objectAtIndex:permutation];
         [theLELevelDataST namePolygon:permutationObject to:stringFromInt([permutationObject getIndex])];
@@ -258,17 +258,17 @@
             underlineValue = 0;
             theFontToUse = regularFont;
             
-            if (theCurrentFont.face & _italic_text)
+            if (theCurrentFont.face & PhTerminalSectionItalic)
             {
                 theFontAtributeMast |= NSItalicFontMask;
                 italicValue = @"YES";
             }
-            if (theCurrentFont.face & _bold_text) // NSBoldFontMask
+            if (theCurrentFont.face & PhTerminalSectionBold) // NSBoldFontMask
             {
                 theFontToUse = boldFont;
                 boldValue = @"YES";
             }
-            if (theCurrentFont.face & _underline_text)
+            if (theCurrentFont.face & PhTerminalSectionUnderline)
                 underlineValue = 1;
             
             [theText setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -331,58 +331,58 @@
     
     switch (type)
     {
-        case _logon_section:
+        case PhTerminalSectionTypeLogOn:
             [self setPhName:@"Logon"];
             [theParagraphStyle setAlignment:NSCenterTextAlignment];
             break;
-        case _unfinished_section:
+        case PhTerminalSectionTypeUnfinished:
             [self setPhName:@"Unfinished"];
             break;
-        case _success_section:
+        case PhTerminalSectionTypeSuccess:
             [self setPhName:@"Success"];
             break;
-        case _failure_section:
+        case PhTerminalSectionTypeFailure:
             [self setPhName:@"Failure"];
             break;
-        case _information_section:
+        case PhTerminalSectionTypeInformation:
             [self setPhName:@"Information"];
             break;
-        case _delimiter_section:
+        case PhTerminalSectionTypeDelimiter:
             [self setPhName:@"Delimiter"];
             break;
-        case _new_level_teleport_section:
+        case PhTerminalSectionTypeLevelTeleport:
             [self setPhName:@"New Level"];
             break;
-        case _map_teleport_section:
+        case PhTerminalSectionTypeInMapTeleport:
             [self setPhName:@"Teleporter"];
             break;
-        case _checkpoint_section:
+        case PhTerminalSectionTypeCheckpoint:
             [self setPhName:@"Checkpoint"];
             break; 
-        case _pict_section:
+        case PhTerminalSectionTypePict:
             [self setPhName:@"Picture"];
             break;
-        case _logoff_section:
+        case PhTerminalSectionTypeLogOff:
             [self setPhName:@"Logoff"];
             [theParagraphStyle setAlignment:NSCenterTextAlignment];
             break;
-        case _camera_section:
+        case PhTerminalSectionTypeCamera:
             [self setPhName:@"Camera"];
             break;
-        case _static_section:
+        case PhTerminalSectionTypeStatic:
             [self setPhName:@"Static"];
             break;
-        case _tag_section:
+        case PhTerminalSectionTypeTag:
             [self setPhName:@"Tag"];
             break;
         // *** *** *** *** *** *** *** *** ***
-        case _sound_section:
+        case PhTerminalSectionTypeSound:
             [self setPhName:@"Sound"];
             break;
-        case _movie_section:
+        case PhTerminalSectionTypeMovie:
             [self setPhName:@"Movie"];
             break;
-        case _track_section:
+        case PhTerminalSectionTypeTrack:
             [self setPhName:@"Track"];
             theText = nil;
             break;
@@ -400,16 +400,16 @@
 #pragma mark -
 #pragma mark ********* Accsessor Methods *********
 
--(short)type { return type; }
+@synthesize type;
 
--(void)setType:(short)value
+-(void)setType:(PhTerminalSectionType)value
 {
     NSMutableParagraphStyle *theParagraphStyle;
     
-    if (value != _map_teleport_section)
+    if (value != PhTerminalSectionTypeInMapTeleport)
         [self setPermutationObject:nil];
     
-    if (value == _new_level_teleport_section)
+    if (value == PhTerminalSectionTypeLevelTeleport)
         [self setPermutation:0];
     
     type = value;
@@ -423,11 +423,8 @@
             range:NSMakeRange(0, [theText length])];
 }
 
--(short)permutation { return permutation; }
--(void)setPermutation:(short)value { permutation = value; }
-
--(id)permutationObject { return permutationObject; }
--(void)setPermutationObject:(id)value { permutationObject = value; }
+@synthesize permutation;
+@synthesize permutationObject;
 
 -(NSMutableAttributedString *)text { return [[theText copy] autorelease]; }
 -(NSMutableAttributedString *)textPointer { return theText; }
@@ -444,7 +441,7 @@
     theSection.flags = flags;
     theSection.type = type;
     
-    if (type != _map_teleport_section)
+    if (type != PhTerminalSectionTypeInMapTeleport)
         theSection.permutation = permutation;
     else
         theSection.permutation = [permutationObject getIndex];
@@ -502,14 +499,14 @@
             inRange:limitRange];*/
             
             theStyle.offset = (baseOffsetOfText + limitRange.location);
-            theStyle.face = _plain_text;
+            theStyle.face = PhTerminalSectionPlain;
             
             if ([boldValue isEqualTo:@"YES"])
-                theStyle.face |= _bold_text;
+                theStyle.face |= PhTerminalSectionBold;
             if ([italicValue isEqualTo:@"YES"])
-                theStyle.face |= _italic_text;
+                theStyle.face |= PhTerminalSectionItalic;
             if ([underlineValue isEqualTo:numberWithOne])
-                theStyle.face |= _underline_text;
+                theStyle.face |= PhTerminalSectionUnderline;
             
             theStyle.color = ((short)[colorValue intValue]);
             

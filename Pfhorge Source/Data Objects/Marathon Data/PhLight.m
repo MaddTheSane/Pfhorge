@@ -37,7 +37,7 @@
 
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     long theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     int i = 0;
@@ -84,7 +84,7 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-     NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -169,8 +169,8 @@
         light_states[i].function = decodeShort(coder);
         light_states[i].period = decodeShort(coder);
         light_states[i].delta_period = decodeShort(coder);
-        light_states[i].intensity = decodeLong(coder);
-        light_states[i].delta_intensity = decodeLong(coder);
+        light_states[i].intensity = decodeInt(coder);
+        light_states[i].delta_intensity = decodeInt(coder);
     }
      
     tag = decodeShort(coder);
@@ -231,16 +231,16 @@
 
 // *****************   Set Accsessors   *****************
 
--(void)setType:(short)v { type = v; }
--(void)setFlags:(unsigned short)v { flags = v; }
+@synthesize type;
+@synthesize flags;
 
--(void)setPhase:(short)v { phase = v; }
+@synthesize phase;
 
 -(void)setFunction:(short)v forState:(short)i { light_states[i].function = v; }
 -(void)setPeriod:(short)v forState:(short)i { light_states[i].period = v; }
--(void)setDelta_period:(short)v forState:(short)i { light_states[i].delta_period = v; }
--(void)setIntensity:(long)v forState:(short)i { light_states[i].intensity = v; } 
--(void)setDelta_intensity:(long)v forState:(short)i { light_states[i].delta_intensity = v; } // used to be a fixed type :)
+-(void)setDeltaPeriod:(short)v forState:(short)i { light_states[i].delta_period = v; }
+-(void)setIntensity:(int)v forState:(short)i { light_states[i].intensity = v; }
+-(void)setDeltaIntensity:(int)v forState:(short)i { light_states[i].delta_intensity = v; } // used to be a fixed type :)
 
 -(void)setTag:(short)v
 {
@@ -252,18 +252,13 @@
 
 // *****************   Get Accsessors   *****************
 
--(short)getType { return type; }
--(unsigned short)getFlags { return flags; }
+-(short)functionForState:(short)i { return  light_states[i].function; }
+-(short)periodForState:(short)i { return  light_states[i].period; }
+-(short)deltaPeriodForState:(short)i { return  light_states[i].delta_period; }
+-(int32_t)intensityForState:(short)i { return  light_states[i].intensity; }
+-(int32_t)deltaIntensityForState:(short)i { return  light_states[i].delta_intensity; } // used to be a fixed type :)
 
--(short)getPhase { return  phase; }
-
--(short)getFunction_forState:(short)i { return  light_states[i].function; }
--(short)getPeriod_forState:(short)i { return  light_states[i].period; }
--(short)getDelta_period_forState:(short)i { return  light_states[i].delta_period; }
--(long)getIntensity_forState:(short)i { return  light_states[i].intensity; } 
--(long)getDelta_intensity_forState:(short)i { return  light_states[i].delta_intensity; } // used to be a fixed type :)
-
--(short)getTag { return (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
+-(short)tag { return (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
 -(PhTag *)getTagObject { return tagObject; }
 
 // ************************** Inzlizations And Class Methods *************************

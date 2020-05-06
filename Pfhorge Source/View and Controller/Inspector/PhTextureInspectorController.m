@@ -402,8 +402,8 @@
     
         // Cache the flags, to reduce call count...
         // Do I need these here?
-    //lSolid 		= ([theCurrentSelection getFlags] & 0x4000);
-    //lTransparent 	= ([theCurrentSelection getFlags] & 0x2000);
+    //lSolid 		= ([theCurrentSelection flags] & 0x4000);
+    //lTransparent 	= ([theCurrentSelection flags] & 0x2000);
     
     lLandscape 		= ((flags & LANDSCAPE_LINE_BIT) ? YES : NO);
     lTransparentSide 	= ((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? YES : NO);

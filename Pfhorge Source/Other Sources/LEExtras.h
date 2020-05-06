@@ -165,6 +165,7 @@ extern unsigned eightBytesCount;*/
 #define decodeLong(coder)			*(long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeFloat(coder)			*(float *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeDouble(coder)			*(double *)([(coder) decodeBytesWithReturnedLength:&eightBytesCount])
+#define decodeUnsignedInt(coder)            (unsigned int)*(unsigned int*)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeUnsignedLong(coder)		*(unsigned long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeUnsignedShort(coder)		*(unsigned short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount])
 #define decodeObj(coder)			[(coder) decodeObject] // used to be retained!!!

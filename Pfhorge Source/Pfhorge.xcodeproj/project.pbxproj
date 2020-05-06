@@ -251,7 +251,7 @@
 		00D4535A0144672D7F000001 /* PhDynamicPrefSubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDynamicPrefSubController.h; sourceTree = "<group>"; };
 		00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhDynamicPrefSubController.m; sourceTree = "<group>"; };
 		00DF106900FBCC6F7F000001 /* PhPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPlatform.h; sourceTree = "<group>"; };
-		00DF106A00FBCC6F7F000001 /* PhPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPlatform.m; sourceTree = "<group>"; };
+		00DF106A00FBCC6F7F000001 /* PhPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPlatform.m; sourceTree = "<group>"; usesTabs = 1; };
 		00DF106D00FC00527F000001 /* PhAnnotationNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhAnnotationNote.h; sourceTree = "<group>"; };
 		00DF106E00FC00527F000001 /* PhAnnotationNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhAnnotationNote.m; sourceTree = "<group>"; };
 		00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTypesStructresEnums.h; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 		0121ECA800DDCD937F000001 /* LELine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELine.m; sourceTree = "<group>"; };
 		01EA85FD00F96CDD7F000001 /* LESide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESide.h; sourceTree = "<group>"; };
 		01EA85FE00F96CDD7F000001 /* LESide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESide.m; sourceTree = "<group>"; };
-		01EA860200F96F707F000001 /* PhLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLight.h; sourceTree = "<group>"; };
+		01EA860200F96F707F000001 /* PhLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLight.h; sourceTree = "<group>"; usesTabs = 1; };
 		01EA860300F96F707F000001 /* PhLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLight.m; sourceTree = "<group>"; };
 		01EA860A00F96FD57F000001 /* PhItemPlacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhItemPlacement.h; sourceTree = "<group>"; };
 		01EA860B00F96FD57F000001 /* PhItemPlacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhItemPlacement.m; sourceTree = "<group>"; };

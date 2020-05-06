@@ -117,27 +117,27 @@
 
 -(void)refreshInterfaceFromData
 {
-    ///unsigned short soundFlags = [curRandomSound getFlags];
+    ///unsigned short soundFlags = [curRandomSound flags];
     
     [self setupTitlesAndNames];
     
     // *** update rest of interface ***
     
-    [typeMenu selectItemAtIndex:[curRandomSound getSound_index]];
+    [typeMenu selectItemAtIndex:[curRandomSound soundIndex]];
     
-    [directionTB setIntValue:[curRandomSound getDirection]];
-    [directionDeltaTB setIntValue:[curRandomSound getDelta_direction]];
+    [directionTB setIntValue:[curRandomSound direction]];
+    [directionDeltaTB setIntValue:[curRandomSound deltaDirection]];
     
-    [volumeTB setIntValue:[curRandomSound getVolume]];
-    [volumeDeltaTB setIntValue:[curRandomSound getDelta_volume]];
+    [volumeTB setIntValue:[curRandomSound volume]];
+    [volumeDeltaTB setIntValue:[curRandomSound deltaVolume]];
 
-    [periodTB setIntValue:[curRandomSound getPeriod]];
-    [periodDeltaTB setIntValue:[curRandomSound getDelta_period]];
+    [periodTB setIntValue:[curRandomSound period]];
+    [periodDeltaTB setIntValue:[curRandomSound deltaPeriod]];
 
-    [pitchTB setIntValue:[curRandomSound getPitch]];
-    [pitchDeltaTB setIntValue:[curRandomSound getDelta_pitch]];
+    [pitchTB setIntValue:[curRandomSound pitch]];
+    [pitchDeltaTB setIntValue:[curRandomSound deltaPitch]];
     
-    [phaseTB setIntValue:[curRandomSound getPhase]];
+    [phaseTB setIntValue:[curRandomSound phase]];
     
     [nonDirectionalCB setState:NO];
     [nonDirectionalCB setEnabled:NO];

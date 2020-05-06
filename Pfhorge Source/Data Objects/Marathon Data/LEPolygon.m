@@ -1257,7 +1257,7 @@
 						tempPermutationObj = [permutationObject copy];
 							/* copy method should automatically do this */
 						//[permutationObject copySettingsTo:tempPermutationObj];
-						[tempPermutationObj setPolygon_object:theTarget];
+						[tempPermutationObj setPolygonObject:theTarget];
 					}
 				}
 				else
@@ -1265,7 +1265,7 @@
 					tempPermutationObj = [permutationObject copy];
 						/* copy method should automatically do this */
 					//[permutationObject copySettingsTo:tempPermutationObj];
-					[tempPermutationObj setPolygon_object:theTarget];
+					[tempPermutationObj setPolygonObject:theTarget];
 				}
             }
             else
@@ -1545,7 +1545,7 @@
     }
     else if ([permutationObject isKindOfClass:[PhPlatform class]])
     {
-        [theObject setPolygon_object:nil];
+        [theObject setPolygonObject:nil];
         permutationObject = nil;
     }
     
@@ -1565,7 +1565,7 @@
     else if ([theObject isKindOfClass:[PhPlatform class]])
     {
         permutationObject = theObject;
-        [theObject setPolygon_object:self];
+        [theObject setPolygonObject:self];
     }
     else
     {

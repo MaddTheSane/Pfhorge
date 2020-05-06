@@ -2383,9 +2383,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         {
             [theObj setFunction:[self getShort] forState:i];
             [theObj setPeriod:[self getShort]forState:i];
-            [theObj setDelta_period:[self getShort] forState:i];
+            [theObj setDeltaPeriod:[self getShort] forState:i];
             [theObj setIntensity:[self getLong] forState:i]; 
-            [theObj setDelta_intensity:[self getLong] forState:i];
+            [theObj setDeltaIntensity:[self getLong] forState:i];
         }
         
         [theObj setTag:[self getShort]]; // May Want To Make It Point To Tag Object
@@ -2512,10 +2512,10 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         [theObj setSpeed:[self getShort]];
         [theObj setDelay:[self getShort]];
-        [theObj setmaximum_height:[self getShort]];
-        [theObj setminimum_height:[self getShort]];
-        [theObj setStatic_flags:[self getUnsignedLong]];
-        [theObj setPolygon_object:[self getShortObjectFrom:thePolyArray]];
+        [theObj setMaximumHeight:[self getShort]];
+        [theObj setMinimumHeight:[self getShort]];
+        [theObj setStaticFlags:[self getUnsignedLong]];
+        [theObj setPolygonObject:[self getShortObjectFrom:thePolyArray]];
         [theObj setTag:[self getShort]];
         
         #ifdef useDebugingLogs
@@ -2600,15 +2600,15 @@ BOOL setupPointerArraysDurringLoading = YES;
                 && (theObj = [numer nextObject]))
     {
         [theObj setFlags:[self getShort]];
-        [theObj setSound_index:[self getShort]];
+        [theObj setSoundIndex:[self getShort]];
         [theObj setVolume:[self getShort]];
-        [theObj setDelta_volume:[self getShort]];
+        [theObj setDeltaVolume:[self getShort]];
         [theObj setPeriod:[self getShort]];
-        [theObj setDelta_period:[self getShort]];
+        [theObj setDeltaPeriod:[self getShort]];
         [theObj setDirection:[self getShort]];
         [theObj setDelta_direction:[self getLong]];
         [theObj setPitch:[self getLong]];
-        [theObj setDelta_pitch:[self getShort]];
+        [theObj setDeltaPitch:[self getShort]];
         [theObj setPhase:[self getShort]];
         
         theCursor+=6; // Skip the 5 unused shorts
@@ -3136,18 +3136,18 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getType]];
 	[self saveUnsignedShort:[currentObj getFlags]];
 	
-	[self saveShort:[currentObj getPhase]];
+	[self saveShort:[currentObj phase]];
 	
 	for (i = 0; i < 6; i++)
 	{
-	    [self saveShort:[currentObj getFunction_forState:i]];
-	    [self saveShort:[currentObj getPeriod_forState:i]];
-	    [self saveShort:[currentObj getDelta_period_forState:i]];
-	    [self saveLong:[currentObj getIntensity_forState:i]]; 
-	    [self saveLong:[currentObj getDelta_intensity_forState:i]];
+	    [self saveShort:[currentObj functionForState:i]];
+	    [self saveShort:[currentObj periodForState:i]];
+	    [self saveShort:[currentObj deltaPeriodForState:i]];
+	    [self saveLong:[currentObj intensityForState:i]]; 
+	    [self saveLong:[currentObj deltaIntensityForState:i]];
 	}
 	
-	[self saveShort:[currentObj getTag]];
+	[self saveShort:[currentObj tag]];
 	
 	[self saveEmptyBytes:8]; //Skip the unused part... :)
     }
@@ -3273,14 +3273,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getFlags]];
 	[self saveShort:[currentObj getSound_index]];
 	[self saveShort:[currentObj getVolume]];
-	[self saveShort:[currentObj getDelta_volume]];
-	[self saveShort:[currentObj getPeriod]];
-	[self saveShort:[currentObj getDelta_period]];
-	[self saveShort:[currentObj getDirection]];
-	[self saveShort:[currentObj getDelta_direction]];
-	[self saveLong:[currentObj getPitch]];
-	[self saveLong:[currentObj getDelta_pitch]];
-	[self saveShort:[currentObj getPhase]];
+	[self saveShort:[currentObj deltaVolume]];
+	[self saveShort:[currentObj period]];
+	[self saveShort:[currentObj deltaPeriod]];
+	[self saveShort:[currentObj direction]];
+	[self saveShort:[currentObj deltaDirection]];
+	[self saveLong:[currentObj pitch]];
+	[self saveLong:[currentObj deltaPitch]];
+	[self saveShort:[currentObj phase]];
 	
 	[self saveEmptyBytes:6]; //Skip the unused part... :)
     }
@@ -3334,13 +3334,13 @@ BOOL setupPointerArraysDurringLoading = YES;
     while (currentObj = [numer nextObject])
     {
 	[self saveShort:[currentObj getType]];
-	[self saveShort:[currentObj getSpeed]];
-	[self saveShort:[currentObj getDelay]];
-	[self saveShort:[currentObj getmaximum_height]];
-	[self saveShort:[currentObj getminimum_height]];
-	[self saveUnsignedLong:[currentObj getStatic_flags]];
+	[self saveShort:[currentObj speed]];
+	[self saveShort:[currentObj delay]];
+	[self saveShort:[currentObj maximumHeight]];
+	[self saveShort:[currentObj minimumHeight]];
+	[self saveUnsignedLong:[currentObj staticFlags]];
 	[self saveShort:[currentObj getPolygon_index]];
-	[self saveShort:[currentObj getTag]];
+	[self saveShort:[currentObj tag]];
 	
 	[self saveEmptyBytes:14]; //Skip the unused part... :)
     }

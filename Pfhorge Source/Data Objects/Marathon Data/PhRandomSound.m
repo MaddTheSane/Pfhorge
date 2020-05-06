@@ -174,30 +174,16 @@
 // *************** Overridden Standard Methods ****************
 -(short)getIndex { return [theRandomSoundsST indexOfObjectIdenticalTo:self]; }
 
-// ************************** Get Accsessors *************************
-- (unsigned short) getFlags { return flags; }
-- (short) getSound_index { return sound_index; }
-- (short) getVolume { return volume; }
-- (short) getDelta_volume { return delta_volume; }
-- (short) getPeriod { return period; }
-- (short) getDelta_period { return delta_period; }
-- (short) getDirection { return direction; }
-- (short) getDelta_direction { return delta_direction; }
-- (long) getPitch { return pitch; }
-- (long) getDelta_pitch { return delta_pitch; }
-- (short) getPhase { return phase; }
-
-// ************************** Set Accsessors *************************
-- (void) setFlags:(short)v { flags = v; }
-- (void) setSound_index:(short)v { sound_index = v; }
-- (void) setVolume:(short)v { volume = v; }
-- (void) setDelta_volume:(short)v { delta_volume = v; }
-- (void) setPeriod:(short)v { period = v; }
-- (void) setDelta_period:(short)v { delta_period = v; }
-- (void) setDirection:(short)v { direction = v; }
-- (void) setDelta_direction:(short)v { delta_direction = v; }
-- (void) setPitch:(int32_t)v { pitch = v; }
-- (void) setDelta_pitch:(int32_t)v { delta_pitch = v; }
-- (void) setPhase:(short)v { phase = v; }
+@synthesize flags;
+@synthesize soundIndex=sound_index;
+@synthesize volume;
+@synthesize deltaVolume=delta_volume;
+@synthesize period;
+@synthesize deltaPeriod=delta_period;
+@synthesize direction;
+@synthesize deltaDirection=delta_direction;
+@synthesize pitch;
+@synthesize deltaPitch=delta_pitch;
+@synthesize phase;
 
 @end

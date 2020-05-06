@@ -457,15 +457,15 @@
     [theLevel recompileTerminalNamesCache];
 }
 
-///_no_section_type
+///PhTerminalSectionTypeNone
 - (void)updateViewToTerminalSection:(TerminalSection *)terminalObject
 {
-    int theType = _no_section_type;
+    int theType = PhTerminalSectionTypeNone;
     NSAttributedString *theText = nil;
     ///NSLog(@"Updating...");
     if (terminalObject == nil)
     {
-        theType = _no_section_type;
+        theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
         [indexPopM setEnabled:NO];
@@ -485,7 +485,7 @@
     }
     else if ([terminalObject isKindOfClass:[Terminal class]])
     {
-        theType = _no_section_type;
+        theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
         [indexPopM setEnabled:NO];
@@ -497,7 +497,7 @@
     {
         SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data... updateViewToTerminalSection",
                              @"Unknown Object");
-        theType = _no_section_type;
+        theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
         [indexPopM setEnabled:NO];
@@ -514,42 +514,42 @@
     
     switch (theType)
     {
-        case _logon_section:
-        case _logoff_section:   ///   theText
+        case PhTerminalSectionTypeLogOn:
+        case PhTerminalSectionTypeLogOff:   ///   theText
             [terminalTabView selectTabViewItemAtIndex:1];
             [menuTextTabView selectTabViewItemAtIndex:1];
             [self setTextView:loginAndOffTextView withAttributedString:theText];
             [loginAndOffImageView setImage:[theMap getPICTResourceIndex:[terminalObject permutation]]];
             break;
-        case _information_section:
+        case PhTerminalSectionTypeInformation:
             [self setTextView:informationTextView withAttributedString:theText];
             [terminalTabView selectTabViewItemAtIndex:0];
             [menuTextTabView selectTabViewItemAtIndex:1];
             break;
-        case _pict_section:
+        case PhTerminalSectionTypePict:
             [pictureImageView setImage:[theMap getPICTResourceIndex:[terminalObject permutation]]];
-        case _checkpoint_section:
+        case PhTerminalSectionTypeCheckpoint:
             [self setTextView:pictureTextView withAttributedString:theText];
             [terminalTabView selectTabViewItemAtIndex:2];
             [menuTextTabView selectTabViewItemAtIndex:1];
             break;
-        case _camera_section:
-        case _static_section:
-        case _tag_section:
-        case _sound_section:
-        case _movie_section:
-        case _track_section:
+        case PhTerminalSectionTypeCamera:
+        case PhTerminalSectionTypeStatic:
+        case PhTerminalSectionTypeTag:
+        case PhTerminalSectionTypeSound:
+        case PhTerminalSectionTypeMovie:
+        case PhTerminalSectionTypeTrack:
             [terminalTabView selectTabViewItemAtIndex:3];
             [menuTextTabView selectTabViewItemAtIndex:1];
             break;
-        case _delimiter_section:
-        case _success_section:
-        case _failure_section:
-        case _unfinished_section:
+        case PhTerminalSectionTypeDelimiter:
+        case PhTerminalSectionTypeSuccess:
+        case PhTerminalSectionTypeFailure:
+        case PhTerminalSectionTypeUnfinished:
             [terminalTabView selectTabViewItemAtIndex:3];
             [menuTextTabView selectTabViewItemAtIndex:1];
             break;
-        case _new_level_teleport_section:
+        case PhTerminalSectionTypeLevelTeleport:
             [terminalTabView selectTabViewItemAtIndex:3];
             
             if ([theMap isKindOfClass:[PhPfhorgeSingleLevelDoc class]])
@@ -575,7 +575,7 @@
                 [menuTextTabView selectTabViewItemAtIndex:1];
             
             break;
-        case _map_teleport_section:
+        case PhTerminalSectionTypeInMapTeleport:
             [theLevel addMenu:premutationMenu asA:_polyMenu];
             [terminalTabView selectTabViewItemAtIndex:3];
             [menuTextTabView selectTabViewItemAtIndex:0];
@@ -585,7 +585,7 @@
             else
                 [premutationMenu selectItemAtIndex:-1];
             break;
-        case _no_section_type:
+        case PhTerminalSectionTypeNone:
         default:
             [terminalTabView selectTabViewItemAtIndex:3];
             [menuTextTabView selectTabViewItemAtIndex:1];
@@ -954,17 +954,17 @@
 - (IBAction)changedIndexMenuAction:(id)sender
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
-    int theType = _no_section_type;
+    int theType = PhTerminalSectionTypeNone;
     
     if ([theSelectedObj isKindOfClass:[TerminalSection class]])
     {
         theType = [(TerminalSection *)theSelectedObj type];
-        if (theType == _new_level_teleport_section)
+        if (theType == PhTerminalSectionTypeLevelTeleport)
         {
             [theSelectedObj setPermutation:[sender indexOfSelectedItem]];
             /// [theSelectedObj setPermutationObject:nil];
         }
-        else if (theType == _map_teleport_section)
+        else if (theType == PhTerminalSectionTypeInMapTeleport)
         {
             [theSelectedObj setPermutationObject:
                             [[theLevel namedPolyObjects]

@@ -246,7 +246,7 @@
     maximum_height = decodeShort(coder);
     minimum_height = decodeShort(coder);
     
-    static_flags = decodeUnsignedLong(coder);
+    static_flags = decodeUnsignedInt(coder);
     
     polygon_object = decodeObj(coder);
     
@@ -359,12 +359,12 @@
     }
     
     [tis appendString:@"\n"];
-    [tis appendString:[NSString stringWithFormat:@"Speed : %d\n", [self getSpeed]]];
-    [tis appendString:[NSString stringWithFormat:@"Delay : %d\n", [self getDelay]]];
-    [tis appendString:[NSString stringWithFormat:@"Tag Index : %d\n", [self getTag]]];
+    [tis appendString:[NSString stringWithFormat:@"Speed : %d\n", [self speed]]];
+    [tis appendString:[NSString stringWithFormat:@"Delay : %d\n", [self delay]]];
+    [tis appendString:[NSString stringWithFormat:@"Tag Index : %d\n", [self tag]]];
     
-    [tis appendString:[NSString stringWithFormat:@"Floor Height : %d\n", [self getminimum_height], nil]];
-    [tis appendString:[NSString stringWithFormat:@"Ceiling Height : %d\n", [self getmaximum_height], nil]];
+    [tis appendString:[NSString stringWithFormat:@"Floor Height : %d\n", [self minimumHeight], nil]];
+    [tis appendString:[NSString stringWithFormat:@"Ceiling Height : %d\n", [self maximumHeight], nil]];
     
     [tis appendString:@"Platform Flags : \n"];
     [tis appendString:PFs(_platform_is_initially_active, @"_platform_is_initially_active")];
@@ -412,11 +412,11 @@
     [theTarget setType:type];
     [theTarget setSpeed:speed];
     [theTarget setDelay:delay];
-    [theTarget setmaximum_height:maximum_height];
-    [theTarget setminimum_height:minimum_height];
-    [theTarget setStatic_flags:static_flags];
-    [theTarget setPolygon_index:-1];
-    [theTarget setPolygon_object:nil];
+    [theTarget setMaximumHeight:maximum_height];
+    [theTarget setMinimumHeight:minimum_height];
+    [theTarget setStaticFlags:static_flags];
+    [theTarget setPolygonIndex:-1];
+    [theTarget setPolygonObject:nil];
     [theTarget setTag:tag];
 }
 
@@ -445,26 +445,21 @@
 }
 
 // ************************** Get Accsessors *************************
-- (short)getType { return type; }
-- (short)getSpeed { return speed; }
-- (short)getDelay { return delay; }
-- (short)getmaximum_height { return maximum_height; }
-- (short)getminimum_height { return minimum_height; }
-- (unsigned long)getStatic_flags { return static_flags; }
-- (short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
-- (id)getPolygon_object { return polygon_object; }
--(short)getTag { return  (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
--(PhTag *)getTagObject { return tagObject; }
+@synthesize type;
+@synthesize speed;
+@synthesize delay;
+@synthesize maximumHeight=maximum_height;
+@synthesize minimumHeight=minimum_height;
+@synthesize staticFlags=static_flags;
+- (short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
+@synthesize polygonObject=polygon_object;
+@synthesize tag;
+-(short)tag { return  (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
+@synthesize tagObject;
 
 // ************************** Set Accsessors *************************
-- (void)setType:(short)v { type = v; }
-- (void)setSpeed:(short)v { speed = v; }
-- (void)setDelay:(short)v { delay = v; }
-- (void)setmaximum_height:(short)v { maximum_height = v; }
-- (void)setminimum_height:(short)v { minimum_height = v; }
-- (void)setStatic_flags:(unsigned long)v { static_flags = v; }
 
-- (void)setPolygon_index:(short)v
+- (void)setPolygonIndex:(short)v
 {
     //polygon_index = v;
     if (v == -1)
@@ -473,18 +468,21 @@
         polygon_object = [theMapPolysST objectAtIndex:v];
 }
 
-- (void)setPolygon_object:(id)v
-{
-    polygon_object = v;
-}
-
 -(void)setTag:(short)v
 {
     tag = v;
     tagObject = [self getTagForNumber:tag];
 }
 
--(void)setTagObject:(PhTag *)value { tagObject = value; }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingTagObject
+{
+    return [NSSet setWithObject:@"tag"];
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingPolygonObject
+{
+    return [NSSet setWithObject:@"polygonIndex"];
+}
 
 // ************************** Inzlizations And Class Methods *************************
 #pragma mark -
@@ -496,20 +494,19 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
-	type = 0;
-	speed = 60;
-        delay = 30;
-	maximum_height = 1024;
-        minimum_height = 0;
-        static_flags = 0;
-	polygon_index = -1;
-        polygon_object = nil;
-	tag = 0;
-        tagObject = nil;
-    }
+    if (self = [super init])
+	{
+		type = 0;
+		speed = 60;
+		delay = 30;
+		maximum_height = 1024;
+		minimum_height = 0;
+		static_flags = 0;
+		polygon_index = -1;
+		polygon_object = nil;
+		tag = 0;
+		tagObject = nil;
+	}
     return self;
 }
 @end

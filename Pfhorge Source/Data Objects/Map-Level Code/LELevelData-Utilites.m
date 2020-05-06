@@ -310,10 +310,10 @@
             NSLog(@"Object With Type %d has unknown type, can't make it a default object...", theObjType);
         
         /*
-        switch ([theObject getType])
+        switch ([theObject type])
         {
             case _saved_monster:
-                [theObject copySettingsTo:defaultObjects[[theObject getType]]];
+                [theObject copySettingsTo:defaultObjects[[theObject type]]];
                 break;
             case _saved_object:
                 

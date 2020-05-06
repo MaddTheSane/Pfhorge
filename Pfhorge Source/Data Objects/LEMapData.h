@@ -25,37 +25,47 @@
 #import <Foundation/Foundation.h>
 #import "LELevelData.h"
 
-typedef unsigned long LevelTagType;
+typedef unsigned int LevelTagType;
 
-typedef struct SMainMapHeader /* 128 bytes, wad_header (map_header) */
+/*! 128 bytes, wad_header (map_header) */
+typedef struct SMainMapHeader
 {
     short version;
     short dataVersion;
     char *theName; //[64]; //May have to send a retain message so the char this points to is not lost?
-    unsigned long checksum; // ??? How To Caculate This ???
-    long mapSize; // This is bascialy the location of the trailer headers at end of map file...
+    unsigned int checksum; // ??? How To Caculate This ???
+    int mapSize; // This is bascialy the location of the trailer headers at end of map file...
     short numberOfLevels;
     short applicationSpecificDirectoryDataSize;
     short entryHeaderSize; /* if not 16, then STagHeader may be diffrent? */
     short directoryEntryBaseSize; /* if not 10, then SLevelHeader may be diffrent? */
      // ??? How To Caculate This ???
-    unsigned long parentChecksum; /* if non-zero, this is the checksum of our parent, and we are simply modifications! */
+    unsigned int parentChecksum; /* if non-zero, this is the checksum of our parent, and we are simply modifications! */
     short unused[20];
 } MainMapHeaderTag;
 
-typedef struct SLevelHeader /* 10 bytes, directory_entry */
+/*! 10 bytes, directory_entry */
+typedef struct SLevelHeader
 {
-    long offsetToStart; /* From start of file */
-    long length; /* Of total level */
-    short index; /* For inplace modification of the mapfile! */
+    /*! From start of file */
+    int offsetToStart;
+    /*! Of total level */
+    int length;
+    /*! For inplace modification of the mapfile! */
+    short index;
 } SLevelHeaderTag;
 
-typedef struct STagHeader /* 16 bytes, entry_header */
+/*! 16 bytes, entry_header */
+typedef struct STagHeader
 {
-    LevelTagType offsetToStart; /* 4 character ACSII string signifying chunk(tag) type (unsigned long) */
-    long nextOffset; /* From current file location -> ie SLevelHeader.offsetToStart + nextOffset */
-    long length; /* Of entry */
-    long offset; /* Offset for inplace expansion of data */
+    /*! 4 character ACSII string signifying chunk(tag) type (unsigned long) */
+    LevelTagType offsetToStart;
+    /*! From current file location -> ie SLevelHeader.offsetToStart + nextOffset */
+    int nextOffset;
+    /*! length Of entry */
+    int length;
+    /*! Offset for inplace expansion of data */
+    int offset;
 } STagHeaderTag;
 
 
@@ -65,19 +75,19 @@ enum {
     WADFILE_HAS_DIRECTORY_ENTRY		= 1,
     WADFILE_SUPPORTS_OVERLAYS		= 2,
     WADFILE_HAS_INFINITY_STUFF		= 4,
-    CURRENT_WADFILE_VERSION		= 4
+    CURRENT_WADFILE_VERSION			= 4
 };
 
-enum {
+typedef NS_ENUM(short, LEMapVersion) {
     MARATHON_ONE_DATA_VERSION		= 0,
     MARATHON_TWO_DATA_VERSION		= 1,
     MARATHON_INFINITY_DATA_VERSION	= 2,
-    EDITOR_MAP_VERSION			= 2
+    EDITOR_MAP_VERSION				= 2
 };
 
 enum {
     MAXIMUM_DIRECTORY_ENTRIES_PER_FILE	= 64,
-    MAXIMUM_WADFILE_NAME_LENGTH		= 64,
+    MAXIMUM_WADFILE_NAME_LENGTH			= 64,
     MAXIMUM_UNION_WADFILES		= 16,
     MAXIMUM_OPEN_WADFILES		= 3,
     MAXIMUM_LEVELS_PER_MAP		= 128,

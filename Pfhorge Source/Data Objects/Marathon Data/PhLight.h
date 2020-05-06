@@ -30,7 +30,8 @@
 
 #define MAXIMUM_LIGHTS_PER_MAP 64
 
-enum	// default light types
+//! default light types
+typedef NS_ENUM(short, PhLightTypes)
 {
 	_normal_light,
 	_strobe_light,
@@ -42,12 +43,12 @@ enum	//states
 {
 	_light_primary_active = 0,
 	_light_secondary_active,
-        _light_becoming_active,
+	_light_becoming_active,
 	
 	_light_primary_inactive,
 	_light_secondary_inactive,
-        _light_becoming_inactive,
-        _NUMBER_OF_LIGHT_STATES
+	_light_becoming_inactive,
+	_NUMBER_OF_LIGHT_STATES
 };
 
 // static light data
@@ -90,7 +91,7 @@ enum	// static flags
 
 @interface PhLight : PhAbstractName <NSCoding>
 {
-    	short type;
+	PhLightTypes type;
 	unsigned short flags;
 
 	short phase;	// initializer, so lights may start out-of-phase with each other
@@ -98,7 +99,7 @@ enum	// static flags
 	struct lighting_function_specification light_states[6];
         
 	short tag;
-        PhTag *tagObject;
+	PhTag *tagObject;
 	short unused[4];
 }
 
@@ -115,34 +116,29 @@ enum	// static flags
 
 // *****************   Set Accsessors   *****************
 
--(void)setType:(short)v;
--(void)setFlags:(unsigned short)v;
+@property PhLightTypes type;
+@property unsigned short flags;
 
--(void)setPhase:(short)v;
+@property short phase;
 
 -(void)setFunction:(short)v forState:(short)i;
 -(void)setPeriod:(short)v forState:(short)i;
--(void)setDelta_period:(short)v forState:(short)i;
--(void)setIntensity:(long)v forState:(short)i; 
--(void)setDelta_intensity:(long)v forState:(short)i; // used to be a fixed type :)
+-(void)setDeltaPeriod:(short)v forState:(short)i;
+-(void)setIntensity:(int)v forState:(short)i;
+-(void)setDeltaIntensity:(int)v forState:(short)i; // used to be a fixed type :)
 
 -(void)setTag:(short)v;
 -(void)setTagObject:(PhTag *)value;
 
 // *****************   Get Accsessors   *****************
 
--(short)getType;
--(unsigned short)getFlags;
+-(short)functionForState:(short)i;
+-(short)periodForState:(short)i;
+-(short)deltaPeriodForState:(short)i;
+-(int32_t)intensityForState:(short)i;
+-(int32_t)deltaIntensityForState:(short)i; // used to be a fixed type :)
 
--(short)getPhase;
-
--(short)getFunction_forState:(short)i;
--(short)getPeriod_forState:(short)i;
--(short)getDelta_period_forState:(short)i;
--(long)getIntensity_forState:(short)i; 
--(long)getDelta_intensity_forState:(short)i; // used to be a fixed type :)
-
--(short)getTag;
+-(short)tag;
 -(PhTag *)getTagObject;
 
 // ************************** Inzlizations And Class Methods *************************

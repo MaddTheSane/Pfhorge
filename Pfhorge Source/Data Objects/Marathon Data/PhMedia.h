@@ -151,7 +151,7 @@ enum	// media sounds
 -(NSPoint)getOrigin;
 -(short)getHeight;
 
--(long)getMinimum_light_intensity; // ??? Object ???
+-(int)getMinimum_light_intensity; // ??? Object ???
 -(short)getTexture;
 -(short)getTransfer_mode;
 

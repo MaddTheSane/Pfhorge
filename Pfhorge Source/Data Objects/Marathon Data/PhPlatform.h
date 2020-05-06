@@ -39,7 +39,7 @@
 
 
 
-enum	// platform types
+typedef NS_ENUM(int16_t, PhPlatformType)	// platform types
 {
 	_platform_is_spht_door,
 	_platform_is_spht_split_door,
@@ -56,7 +56,7 @@ enum	// platform types
 
 
 
-enum	// platform speeds
+NS_ENUM(short)	// platform speeds
 {
 	_very_slow_platform = WORLD_ONE / (4*TICKS_PER_SECOND),
 	_slow_platform = WORLD_ONE / (2*TICKS_PER_SECOND),
@@ -65,7 +65,7 @@ enum	// platform speeds
 	_blindingly_fast_platform = 4 * _slow_platform
 };
 
-enum	// platform delays
+NS_ENUM(short)	// platform delays
 {
 	_no_delay_platform = 0,
 	_short_delay_platform = TICKS_PER_SECOND,
@@ -78,8 +78,8 @@ enum	// platform delays
 // ••• ••• ••• Platform Flags ••• ••• •••
 
 
-
-enum // static platform flags
+//! static platform flags
+typedef NS_ENUM(unsigned int, PhPlatformStaticFlags)
 {
 	_platform_is_initially_active = 0x00000001,	// otherwise inactive
 	_platform_is_initially_extended = 0x00000002, // high for floor platforms, low for ceiling platforms, closed for two_way platforms
@@ -137,31 +137,31 @@ enum /* dynamic platform flags */
 
 struct endpoint_owner_data
 {
-	int16 first_polygon_index, polygon_index_count;
-	int16 first_line_index, line_index_count;
+	int16_t first_polygon_index, polygon_index_count;
+	int16_t first_line_index, line_index_count;
 };
 
 struct static_platform_data_platform /* size platform-dependant */
 {
-	int16 type;
-	int16 speed, delay;
+	PhPlatformType type;
+	int16_t speed, delay;
 	world_distance maximum_height, minimum_height; /* if NONE then calculated in some reasonable way */
 
-	uint32 static_flags;
+	PhPlatformStaticFlags static_flags;
 	
-	int16 polygon_index;
+	int16_t polygon_index;
 	
-	int16 tag;
+	int16_t tag;
 	
-	int16 unused[7];
+	int16_t unused[7];
 };
 /// const int SIZEOF_static_platform_data = 32;
 
 struct platform_data2 /* 140 bytes */
 {
-	short type; // !
+	PhPlatformType type; // !
         //short uknown;
-	unsigned int static_flags; // !
+	PhPlatformStaticFlags static_flags; // !
 	short speed, delay; // ! !
 	short minimum_floor_height /* ! */, maximum_floor_height; // 10, 12
 	short minimum_ceiling_height, maximum_ceiling_height/* ! */; // 14, 16
@@ -191,13 +191,13 @@ struct platform_data2 /* 140 bytes */
 @interface PhPlatform : PhAbstractName <NSCoding, NSCopying>
 {
 @private
-	short	type;
+	PhPlatformType	type;
 	short	speed, delay;
 	
 	// world_distance:
 	short	maximum_height, minimum_height; // if NONE then calculated in some reasonable way
 	
-	unsigned int static_flags;
+	PhPlatformStaticFlags static_flags;
 	
 	short polygon_index;
 	id polygon_object;
@@ -215,26 +215,25 @@ struct platform_data2 /* 140 bytes */
 - (void)copyInDynamicPlatformData:(NSData *)theData at:(long)locationOfBytes;
 
 // ************************** Get Accsessors *************************
-- (short)getType;
-- (short)getSpeed;
-- (short)getDelay;
-- (short)getmaximum_height;
-- (short)getminimum_height;
-- (unsigned int)getStatic_flags;
-- (short)getPolygon_index;
-- (id)getPolygon_object;
-- (short)getTag;
--(PhTag *)getTagObject;
+@property PhPlatformType type;
+@property short speed;
+@property short delay;
+@property short maximumHeight;
+@property short minimumHeight;
+@property PhPlatformStaticFlags staticFlags;
+@property short polygonIndex;
+@property (assign) id polygonObject;
+@property (nonatomic) short tag;
+@property (assign) PhTag *tagObject;
 
 // ************************** Set Accsessors *************************
-- (void)setType:(short)v;
+- (void)setType:(PhPlatformType)v;
 - (void)setSpeed:(short)v;
 - (void)setDelay:(short)v;
-- (void)setmaximum_height:(short)v;
-- (void)setminimum_height:(short)v;
-- (void)setStatic_flags:(unsigned int)v;
-- (void)setPolygon_index:(short)v;
-- (void)setPolygon_object:(id)v;
+- (void)setMaximumHeight:(short)v;
+- (void)setMinimumHeight:(short)v;
+- (void)setPolygonIndex:(short)v;
+- (void)setPolygonObject:(id)v;
 - (void)setTag:(short)v;
 -(void)setTagObject:(PhTag *)value;
 

@@ -5651,7 +5651,7 @@ enum {
                 return @"Platform Index Beyond Bounds";
             
             obj1 = [arrayOne objectAtIndex:theIndex];
-            obj2 = [(PhPlatform *)obj1 getPolygon_object];
+            obj2 = [(PhPlatform *)obj1 polygonObject];
             arrayTwo = [currentLevel layerPolys];
             
             if ([arrayTwo containsObject:obj2])

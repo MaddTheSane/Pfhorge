@@ -96,8 +96,8 @@
 - (void)setupTitlesAndNames
 {
     NSMutableString *platformInfoString;
-    // [platform getPolygon_object];
-    short platformPolygonIndex = [platform getPolygon_index];
+    // [platform polygonObject];
+    short platformPolygonIndex = [platform polygonIndex];
     
     platformInfoString = [[NSMutableString alloc] initWithString:@"Level: Map - Name: "];
     [platformInfoString appendString:[platform getPhName]];
@@ -115,16 +115,16 @@
 {
     // *** Instalize Variables ***
     
-    unsigned long platformFlags = [platform getStatic_flags];
+    unsigned long platformFlags = [platform staticFlags];
     
-    // [platform getPolygon_object];
-    // short platformPolygonIndex = [platform getPolygon_index];
+    // [platform polygonObject];
+    // short platformPolygonIndex = [platform polygonIndex];
     // short platformIndex =  [platform getIndex];
     
-    int platformTagMenuIndex = [self tagIndexNumberFromShort:[platform getTag]];
+    int platformTagMenuIndex = [self tagIndexNumberFromShort:[platform tag]];
     
     
-    NSLog(@"Platform Tag Index: %d  number: %d", [[platform getTagObject] getIndex], [[[platform getTagObject] getPhNumber] intValue]);
+    NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] getIndex], [[[platform tagObject] getPhNumber] intValue]);
     
     [self setupTitlesAndNames];
     
@@ -153,13 +153,13 @@
     
     // *** Set Everything ***
     
-    [typeComboMenu selectItemAtIndex:[platform getType]];
-    [speedTB setFloatValue:(((float)[platform getSpeed]) / 30)];
-    [delayTB setFloatValue:([platform getDelay] / 30)];
-    [minHeightTB setIntValue:[platform getminimum_height]];
-    [maxHeightTB setIntValue:[platform getmaximum_height]];
+    [typeComboMenu selectItemAtIndex:[platform type]];
+    [speedTB setFloatValue:(((float)[platform speed]) / 30)];
+    [delayTB setFloatValue:([platform delay] / 30)];
+    [minHeightTB setIntValue:[platform minimumHeight]];
+    [maxHeightTB setIntValue:[platform maximumHeight]];
     
-    if ([platform getminimum_height] == -1)
+    if ([platform minimumHeight] == -1)
     {
         [autoCalcMinCB setState:NSOnState];
         [minHeightTB setEnabled:NO];
@@ -170,7 +170,7 @@
         [autoCalcMinCB setState:NSOffState];
     }
     
-    if ([platform getmaximum_height] == -1)
+    if ([platform maximumHeight] == -1)
     {
         [autoCalcMaxCB setState:NSOnState];
         [maxHeightTB setEnabled:NO];
@@ -267,8 +267,8 @@
     [platform setType:[typeComboMenu indexOfSelectedItem]];
     [platform setSpeed:((short)([speedTB floatValue] * 30))];
     [platform setDelay:((short)([delayTB floatValue] * 30))];
-    [platform setminimum_height:[minHeightTB intValue]];
-    [platform setmaximum_height:[maxHeightTB intValue]];
+    [platform setMinimumHeight:[minHeightTB intValue]];
+    [platform setMaximumHeight:[maxHeightTB intValue]];
     
     if (SState(initiallyCBMatrix, 0)){ 		(theFlags |= _platform_is_initially_active); NSLog(@"Plat: _platform_is_initially_active");}
     if (SState(initiallyCBMatrix, 1)){ 		(theFlags |= _platform_is_initially_extended); NSLog(@"Plat: _platform_is_initially_extended");}
@@ -312,9 +312,9 @@
     if SState(otherOptionsCBMatrix, 6) (theFlags |= _platform_is_secret);
     if ([platformIsADoorCB state] == NSOnState) (theFlags |= _platform_is_door);
     
-    [platform setStatic_flags:theFlags];
+    [platform setStaticFlags:theFlags];
     
-    [[platform getPolygon_object] calculateSidesForAllLines];
+    [[platform polygonObject] calculateSidesForAllLines];
 	
 	if ([tagComboMenu indexOfSelectedItem] != -1)
 		[platform setTag:[[tagComboMenu titleOfSelectedItem] intValue]];

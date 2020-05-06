@@ -418,7 +418,7 @@
     while (theObj = [numer nextObject])
     {
         NSNumber *theNumber;
-        theNumber = [NSNumber numberWithShort:[theObj getTag]];
+        theNumber = [NSNumber numberWithShort:[theObj tag]];
         
         if (theNumber == nil)
         {
@@ -436,7 +436,7 @@
     while (theObj = [numer nextObject])
     {
         NSNumber *theNumber;
-        theNumber = [NSNumber numberWithShort:[theObj getTag]];
+        theNumber = [NSNumber numberWithShort:[theObj tag]];
         
         if (theNumber == nil)
         {
@@ -572,7 +572,7 @@
         
         if ([theObj getType] == _polygon_is_platform)
         {
-            if ([[theObj getPermutationObject] getPolygon_object] != theObj)
+            if ([[theObj getPermutationObject] polygonObject] != theObj)
             { // The polygon points to a platform which does not point back
               //   to the polygon...  This will fix that, hopefully...
                 [[theObj getPermutationObject] setPolygon_object:theObj];
@@ -984,9 +984,9 @@ enum // export data types
         {
             [newLight setFunction:_constant_lighting_function forState:j];
             [newLight setPeriod:60 forState:j];
-            [newLight setDelta_period:0 forState:j];
+            [newLight setDeltaPeriod:0 forState:j];
             [newLight setIntensity:intensity forState:j];
-            [newLight setDelta_intensity:0 forState:j];
+            [newLight setDeltaIntensity:0 forState:j];
         }
     }
     
@@ -1041,9 +1041,9 @@ enum // export data types
         {
             [newLight setFunction:_constant_lighting_function forState:j];
             [newLight setPeriod:60 forState:j];
-            [newLight setDelta_period:0 forState:j];
+            [newLight setDeltaPeriod:0 forState:j];
             [newLight setIntensity:intesity forState:j];
-            [newLight setDelta_intensity:0 forState:j];
+            [newLight setDeltaIntensity:0 forState:j];
         }
     }
     

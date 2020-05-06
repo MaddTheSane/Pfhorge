@@ -294,7 +294,7 @@
     NSEnumerator *numer = [thePlatforms objectEnumerator];
     while (curPlat = [numer nextObject])
     {
-        if ([curPlat getPolygon_object] == thePoly)
+        if ([curPlat polygonObject] == thePoly)
         {
             if (curPlat != thePolyPlatform)
             {

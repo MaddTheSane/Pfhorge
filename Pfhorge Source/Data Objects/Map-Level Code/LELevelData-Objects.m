@@ -1038,7 +1038,7 @@
         if ([thePlatform isKindOfClass:[PhPlatform class]])
         {
             [thePolyToRemove setPermutationObject:nil];
-            [thePlatform setPolygon_object:nil];
+            [thePlatform setPolygonObject:nil];
             [self deletePlatform:thePlatform];
         }
         else
@@ -1117,7 +1117,7 @@
     numer = [notes objectEnumerator];
     while (thisObj = [numer nextObject])
     {
-        if ([thisObj getPolygon_object] == thePolyToRemove)
+        if ([thisObj polygonObject] == thePolyToRemove)
         {
             [thisObj setPolygon_object:nil];
         }
@@ -1126,7 +1126,7 @@
     numer = [platforms objectEnumerator];
     while (thisObj = [numer nextObject])
     {
-        if ([thisObj getPolygon_object] == thePolyToRemove)
+        if ([thisObj polygonObject] == thePolyToRemove)
         {
             [thisObj setPolygon_object:nil];
             [self deletePlatform:thisObj];
@@ -1176,7 +1176,7 @@
     NSLog(@"Deleteing Platfrom: %d", [thePlatformToRemove getIndex]);
     #endif
     
-    LEPolygon *poly = [thePlatformToRemove getPolygon_object];
+    LEPolygon *poly = [thePlatformToRemove polygonObject];
     
     if ([poly getType] == _polygon_is_platform)
     {
@@ -1206,7 +1206,7 @@
         }
     }
     
-    [thePlatformToRemove setPolygon_object:nil];
+    [thePlatformToRemove setPolygonObject:nil];
     [platforms removeObjectIdenticalTo:thePlatformToRemove];
 }
 

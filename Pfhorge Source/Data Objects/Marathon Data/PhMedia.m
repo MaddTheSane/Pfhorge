@@ -302,7 +302,7 @@
 -(NSPoint)getOrigin { return origin; }
 -(short)getHeight { return height; }
 
--(long)getMinimum_light_intensity { return minimum_light_intensity; } // ??? Object ???
+-(int)getMinimum_light_intensity { return minimum_light_intensity; } // ??? Object ???
 -(short)getTexture { return texture; }
 -(short)getTransfer_mode { return transfer_mode; }
 

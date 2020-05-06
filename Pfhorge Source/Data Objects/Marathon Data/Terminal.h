@@ -25,7 +25,16 @@
 
 
 #import <Foundation/Foundation.h>
-/*
+#import "PhAbstractName.h"
+
+/*! terminal flags */
+typedef NS_ENUM(unsigned short, PhTerminalFlags) {
+    /*! if this is on, the text is xored with
+    hex 0000FEED (repeated indefinitely) */
+    term_disguised = 0x0001
+};
+
+/*!
  *	The data for a single terminal consists of
  *		a header,
  *		some number of section descriptors,
@@ -35,25 +44,19 @@
  *	A 'term' chunk in an M2 level consists of
  *	the data for all the terminals appended.
  */
-
 typedef struct term_head {
-	short size;		/*	the size (header included) of this terminal */
-	unsigned short flags;	/*	flags, see below */
-	short line_count;	/*	the number of text lines to show at once (I think).
-                                            always 22 in Bungie's levels.absent in the preview */
-	short section_count;	/*	the number of text sections */
-	short style_count;	/*	the number of text style changes */
+    /*! the size (header included) of this terminal */
+	short size;
+    /*! flags, see above */
+	unsigned short PhTerminalFlags;
+    /*! the number of text lines to show at once (I think).
+    always 22 in Bungie's levels.absent in the preview */
+	short line_count;
+    /*! the number of text sections */
+	short section_count;
+    /*! the number of text style changes */
+	short style_count;
 } term_head;
-
-enum {	/*	terminal flags */
-	term_disguised = 0x0001	/*	if this is on, the text is xored with
-                                        hex 0000FEED (repeated indefinitely) */
-};
-
-
-
-
-#import "PhAbstractName.h"
 
 @class TerminalSection;
 
@@ -67,13 +70,13 @@ enum {	/*	terminal flags */
 
 -(id)initWithTerminalData:(NSData *)data terminalNumber:(int)theTerminalNumber withLevel:(LELevelData *)levelDataObj;
 
--(NSMutableArray *)theSections;
+-(NSMutableArray<TerminalSection*> *)theSections;
 -(BOOL)doYouHaveThisSection:(TerminalSection *)theSec;
--(unsigned short)flags;
+-(PhTerminalFlags)flags;
 -(short)lineCount;
 
--(void)setTheSections:(NSMutableArray *)theArray;
--(void)setFlags:(unsigned short)theNewFlags;
+-(void)setTheSections:(NSMutableArray<TerminalSection*> *)theArray;
+-(void)setFlags:(PhTerminalFlags)theNewFlags;
 -(void)setLineCount:(short)theNewLineCount;
 
 -(NSData *)getTerminalAsMarathonData;
