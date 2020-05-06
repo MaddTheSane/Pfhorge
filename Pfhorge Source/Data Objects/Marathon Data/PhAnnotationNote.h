@@ -39,18 +39,21 @@
 {
         // From map_annotation structure, in LEMarathon2Structres.h...
         
-	short	type;	// turns into color, font, size, style, etc...
+	//! turns into color, font, size, style, etc...
+	short	type;
 
-	NSPoint	location;	// where to draw this (lower left)
-	short	polygon_index;	// only displayed if this polygon is in the automap
-        id	polygon_object;
+	//! where to draw this (lower left)
+	NSPoint	location;
+	//! only displayed if this polygon is in the automap
+	//short	polygon_index;
+	LEPolygon *polygon_object;
 
 	NSString	*text;
         
-        NSRect bounds;
-        NSSize size;
+	NSRect bounds;
+	NSSize size;
         
-        PhNoteGroup *group;
+	PhNoteGroup *group;
 }
 
 -(id)initWithAdjPoint:(NSPoint)point;
@@ -60,46 +63,36 @@
 - (void)set32X:(int)v;
 - (void)set32Y:(int)v;
 
--(NSPoint)as32Point;
+-(NSPoint)as32Point API_DEPRECATED_WITH_REPLACEMENT("-locationAdjusted", macos(10.0, 10.7));
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 // *****************   Accsessors   *****************
 
--(void)setGroup:(PhNoteGroup *)grp;
-
--(void)setType:(short)v;
-
--(void)setLocation:(NSPoint)v;
-
 -(void)setLocationX:(int)v;
 -(void)setLocationY:(int)v;
 
--(void)setPolygonIndex:(short)v;
--(void)setPolygon_object:(LEPolygon *)v;
--(void)setPolygon:(LEPolygon *)v;
+-(void)setPolygon:(LEPolygon *)v API_DEPRECATED_WITH_REPLACEMENT("-setPolygonObject:", macos(10.0, 10.7));
 
 @property (nonatomic, copy) NSString *text;
 
 -(void)updateBounds;
 
-// *****************   Get Accsessors   *****************
-
 -(NSRect) drawingBounds;
 
--(PhNoteGroup *)group;
--(PhNoteGroup *)getGroup;
+@property (nonatomic, retain) PhNoteGroup *group;
+-(PhNoteGroup *)getGroup API_DEPRECATED_WITH_REPLACEMENT("-group", macos(10.0, 10.7));
 
--(short)type;
+@property short type;
 
--(NSPoint)getLocation;
--(NSPoint)getLocationAdjusted;
+@property (nonatomic) NSPoint location;
+@property (readonly) NSPoint locationAdjusted;
 
--(short)polygonIndex;
--(LEPolygon *)getPolygon_object;
-- (LEPolygon *)polygon;
+@property (nonatomic) short polygonIndex;
+@property (assign) LEPolygon *polygonObject;
+- (LEPolygon *)polygon API_DEPRECATED_WITH_REPLACEMENT("-polygonObject", macos(10.0, 10.7));
 
 // ************************** Inzlizations And Class Methods *************************
 

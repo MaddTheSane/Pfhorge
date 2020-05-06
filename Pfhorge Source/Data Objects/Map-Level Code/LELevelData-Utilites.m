@@ -555,16 +555,16 @@
     {
         //getControl_panel_type
         
-        if ([thisSide getFlags] & _side_is_control_panel)
+        if ([thisSide flags] & _side_is_control_panel)
         {
-            NSLog(@"Control Panel Flags: %d   -   Line Index: %d", [thisSide getFlags], [thisSide getLine_index]);
+            NSLog(@"Control Panel Flags: %d   -   Line Index: %d", [thisSide flags], [thisSide getLine_index]);
         }
         
         if ([thisSide getPermutationEffects] == _cpanel_effects_polygon)
         {
             if ([thisSide getControl_panel_permutation_object] == nil)
             {
-                if ([thisSide getFlags] & _side_is_control_panel)
+                if ([thisSide flags] & _side_is_control_panel)
                 {
                     NSLog(@"There is a side with control panel effect 'polygon' and its a nil permuation object... CONTROL PANEL FLAG...");
                 }

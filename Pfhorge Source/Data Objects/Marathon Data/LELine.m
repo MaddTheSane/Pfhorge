@@ -69,7 +69,7 @@
         
         [tis appendString:@"\n cSide Type: "];
         
-        switch ([clockwisePolygonSideObject getType])
+        switch ([clockwisePolygonSideObject type])
         {
             case _full_side:
                 [tis appendString:@"_full_side"];
@@ -99,7 +99,7 @@
         
         [tis appendString:@"ccSide Type: "];
         
-        switch ([counterclockwisePolygonSideObject getType])
+        switch ([counterclockwisePolygonSideObject type])
         {
             case _full_side:
                 [tis appendString:@"_full_side"];

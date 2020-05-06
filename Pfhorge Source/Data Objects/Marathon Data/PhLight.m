@@ -193,29 +193,29 @@
 
 // **************************  Flag Methods  *************************
 
--(BOOL)getFlag:(unsigned short)theFlag;
+-(BOOL)getFlag:(PhLightStaticFlags)theFlag;
 {
     switch (theFlag)
     {
-        case _light_is_initially_active:
-            return GET_LIGHT_FLAG(_light_is_initially_active);
+        case PhLightStaticFlagIsInitiallyActive:
+            return GET_LIGHT_FLAG(PhLightStaticFlagIsInitiallyActive);
             break;
-        case _light_is_stateless:
-            return GET_LIGHT_FLAG(_light_is_stateless);
+        case PhLightStaticFlagIsStateless:
+            return GET_LIGHT_FLAG(PhLightStaticFlagIsStateless);
             break;
     }
     return NO;
 }
 
--(void)setFlag:(unsigned short)theFlag to:(BOOL)v
+-(void)setFlag:(PhLightStaticFlags)theFlag to:(BOOL)v
 {
     switch (theFlag)
     {
-        case _light_is_initially_active:
-            SET_LIGHT_FLAG(_light_is_initially_active, v);
+        case PhLightStaticFlagIsInitiallyActive:
+            SET_LIGHT_FLAG(PhLightStaticFlagIsInitiallyActive, v);
             break;
-        case _light_is_stateless:
-            SET_LIGHT_FLAG(_light_is_stateless, v);
+        case PhLightStaticFlagIsStateless:
+            SET_LIGHT_FLAG(PhLightStaticFlagIsStateless, v);
             break;
     }
 }
@@ -229,7 +229,7 @@
     
 }
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 
 @synthesize type;
 @synthesize flags;
@@ -242,15 +242,24 @@
 -(void)setIntensity:(int)v forState:(short)i { light_states[i].intensity = v; }
 -(void)setDeltaIntensity:(int)v forState:(short)i { light_states[i].delta_intensity = v; } // used to be a fixed type :)
 
+@synthesize tag;
 -(void)setTag:(short)v
 {
     tag = v;
     tagObject = [self getTagForNumber:tag];
 }
 
--(void)setTagObject:(PhTag *)value { tagObject = value; }
+@synthesize tagObject;
 
-// *****************   Get Accsessors   *****************
++(NSSet<NSString *> *)keyPathsForValuesAffectingTag
+{
+    return [NSSet setWithObject:@"tagObject"];
+}
+
++(NSSet<NSString *> *)keyPathsForValuesAffectingTagObject
+{
+    return [NSSet setWithObject:@"tag"];
+}
 
 -(short)functionForState:(short)i { return  light_states[i].function; }
 -(short)periodForState:(short)i { return  light_states[i].period; }
@@ -259,7 +268,6 @@
 -(int32_t)deltaIntensityForState:(short)i { return  light_states[i].delta_intensity; } // used to be a fixed type :)
 
 -(short)tag { return (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
--(PhTag *)getTagObject { return tagObject; }
 
 // ************************** Inzlizations And Class Methods *************************
 
@@ -267,18 +275,16 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
         int i;
         
-    	type = 0;
-	flags = 0;
-	phase = 0;
+        type = 0;
+        flags = 0;
+        phase = 0;
         tag = 0;
         tagObject = nil;
         
-	for (i = 0; i < 6; i++)
+        for (i = 0; i < 6; i++)
         {
             NSParameterAssert(i >= 0 && i < 6);
             

@@ -943,22 +943,22 @@ BOOL setupPointerArraysDurringLoading = YES;
     return theLevel;
 }
 
-- (long)getByteCountForLevel:(LELevelData *)level
+- (NSInteger)getByteCountForLevel:(LELevelData *)level
 {
-    int pointsByteCount = ([[level getThePoints] count]) * 4; // 16
-    int linesByteCount = ([[level getTheLines] count]) * 32; // 32
-    int polygonsByteCount = ([[level getThePolys] count]) * 128; // 128
-    int mapObjectsByteCount = ([[level getTheMapObjects] count]) * 16; // 16
-    int sidesByteCount = ([[level getSides] count]) * 64; // 64
-    int lightsByteCount = ([[level getLights] count]) * 100; // 100
+    NSInteger pointsByteCount = ([[level getThePoints] count]) * 4; // 16
+    NSInteger linesByteCount = ([[level getTheLines] count]) * 32; // 32
+    NSInteger polygonsByteCount = ([[level getThePolys] count]) * 128; // 128
+    NSInteger mapObjectsByteCount = ([[level getTheMapObjects] count]) * 16; // 16
+    NSInteger sidesByteCount = ([[level getSides] count]) * 64; // 64
+    NSInteger lightsByteCount = ([[level getLights] count]) * 100; // 100
     //int notesByteCount = ([[level getNotes] count]) * 72; // 72
-    int mediaByteCount = ([[level getMedia] count]) * 32; // 32
-    int ambientSoundsByteCount = ([[level getAmbientSounds] count]) * 16; // 16
-    int randomSoundsByteCount = ([[level getRandomSounds] count]) * 32; // 32
-    int itemPlacmentByteCount = ([[level getItemPlacement] count]) * 12; // 12
-    int platformsByteCount = ([[level getPlatforms] count]) * 32; // 32
+    NSInteger mediaByteCount = ([[level getMedia] count]) * 32; // 32
+    NSInteger ambientSoundsByteCount = ([[level getAmbientSounds] count]) * 16; // 16
+    NSInteger randomSoundsByteCount = ([[level getRandomSounds] count]) * 32; // 32
+    NSInteger itemPlacmentByteCount = ([[level getItemPlacement] count]) * 12; // 12
+    NSInteger platformsByteCount = ([[level getPlatforms] count]) * 32; // 32
     
-    int byteCount = pointsByteCount + linesByteCount + polygonsByteCount +
+    NSInteger byteCount = pointsByteCount + linesByteCount + polygonsByteCount +
                     mapObjectsByteCount + sidesByteCount + lightsByteCount +
                     mediaByteCount + ambientSoundsByteCount + randomSoundsByteCount +
                     itemPlacmentByteCount + platformsByteCount;
@@ -1568,7 +1568,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     physics_model = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
     song_index = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
     mission_flags = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    entry_point_flags = (long *) malloc (sizeof(long) * [self getNumberOfLevels]);
+    entry_point_flags = (int *) malloc (sizeof(int) * [self getNumberOfLevels]);
     
     for (i = 0; i < [self getNumberOfLevels]; i++)
     {
@@ -2416,7 +2416,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         
         [theObj setLocation:NSMakePoint([self getShort], [self getShort])];
-        [theObj setPolygon_object:[self getShortObjectFrom:thePolyArray]];
+        [theObj setPolygonObject:[self getShortObjectFrom:thePolyArray]];
         
         [theObj setText:[self getChar:64]];
     }
@@ -2606,7 +2606,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setPeriod:[self getShort]];
         [theObj setDeltaPeriod:[self getShort]];
         [theObj setDirection:[self getShort]];
-        [theObj setDelta_direction:[self getLong]];
+        [theObj setDeltaDirection:[self getLong]];
         [theObj setPitch:[self getLong]];
         [theObj setDeltaPitch:[self getShort]];
         [theObj setPhase:[self getShort]];
@@ -3028,7 +3028,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 64)];
     NSArray *theObjects = [level getSides];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    LESide *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3041,8 +3041,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 	struct side_texture_definition theTempSideTextureDefinition;
 	struct side_exclusion_zone theTempExclusionZone;
 	
-	[self saveShort:[currentObj getType]];
-	[self saveShort:[currentObj getFlags]];
+	[self saveShort:[currentObj type]];
+	[self saveShort:[currentObj flags]];
 	
 	// ***
 	
@@ -3121,7 +3121,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 100)];
     NSArray *theObjects = [level getLights];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    PhLight *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3133,8 +3133,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
 	int i;
 	
-	[self saveShort:[currentObj getType]];
-	[self saveUnsignedShort:[currentObj getFlags]];
+	[self saveShort:[currentObj type]];
+	[self saveUnsignedShort:[currentObj flags]];
 	
 	[self saveShort:[currentObj phase]];
 	
@@ -3162,7 +3162,6 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     NSArray *theObjects = [level getNotes];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3170,13 +3169,13 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveEntryHeader:'NOTE' next_offset:[mapDataToSave length] length:(objCount * 72 /* annotation length */) offset:0];
     
     NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
+    for (PhAnnotationNote *currentObj in theObjects)
     {
-	[self saveShort:[currentObj getType]];
+	[self saveShort:[currentObj type]];
 	
-	[self saveShort:[currentObj getLocation].x];
-	[self saveShort:[currentObj getLocation].y];
-	[self saveShort:[currentObj getPolygon_index]];
+	[self saveShort:[currentObj location].x];
+	[self saveShort:[currentObj location].y];
+	[self saveShort:[currentObj polygonIndex]];
 	
 	[self saveStringAsChar:[currentObj text] withLength:64];
 	
@@ -3191,7 +3190,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 32)];
     NSArray *theObjects = [level getMedia];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    PhMedia *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3201,8 +3200,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {    
-	[self saveShort:[currentObj getType]];
-	[self saveUnsignedShort:[currentObj getFlags]];
+	[self saveShort:[currentObj type]];
+	[self saveUnsignedShort:[currentObj flags]];
 	
 	[self saveShort:[currentObj lightIndex]];
 	
@@ -3233,7 +3232,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 16)];
     NSArray *theObjects = [level getAmbientSounds];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    PhAmbientSound *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3243,7 +3242,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {
-	[self saveUnsignedShort:[currentObj getFlags]];
+	[self saveUnsignedShort:[currentObj flags]];
 	
 	[self saveShort:[currentObj soundIndex]];
 	[self saveShort:[currentObj volume]];
@@ -3260,7 +3259,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 28)];
     NSArray *theObjects = [level getRandomSounds];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    PhRandomSound *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3270,7 +3269,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {                
-	[self saveShort:[currentObj getFlags]];
+	[self saveShort:[currentObj flags]];
 	[self saveShort:[currentObj soundIndex]];
 	[self saveShort:[currentObj volume]];
 	[self saveShort:[currentObj deltaVolume]];
@@ -3323,7 +3322,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 32)];
     NSArray *theObjects = [level getPlatforms];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    PhPlatform *currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -3333,13 +3332,13 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {
-	[self saveShort:[currentObj getType]];
+	[self saveShort:[currentObj type]];
 	[self saveShort:[currentObj speed]];
 	[self saveShort:[currentObj delay]];
 	[self saveShort:[currentObj maximumHeight]];
 	[self saveShort:[currentObj minimumHeight]];
 	[self saveUnsignedLong:[currentObj staticFlags]];
-	[self saveShort:[currentObj getPolygon_index]];
+	[self saveShort:[currentObj polygonIndex]];
 	[self saveShort:[currentObj tag]];
 	
 	[self saveEmptyBytes:14]; //Skip the unused part... :)

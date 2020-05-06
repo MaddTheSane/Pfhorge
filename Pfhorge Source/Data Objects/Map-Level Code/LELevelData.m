@@ -415,7 +415,7 @@
     
     // Gets Tags In Light Objects
     numer = [lights objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhLight *theObj in numer)
     {
         NSNumber *theNumber;
         theNumber = [NSNumber numberWithShort:[theObj tag]];
@@ -433,7 +433,7 @@
     
     // Gets Tags In Platform Objects
     numer = [platforms objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhPlatform *theObj in numer)
     {
         NSNumber *theNumber;
         theNumber = [NSNumber numberWithShort:[theObj tag]];
@@ -973,7 +973,7 @@ enum // export data types
         long intensity = (long)(((float)(i)/PID_LIGHT_SET_RANGE) * 65534) + 1;
         unsigned short theFlags = 0;
         
-        theFlags |= _light_is_initially_active;
+        theFlags |= PhLightStaticFlagIsInitiallyActive;
         
         [newLight setType:_normal_light];
         [newLight setFlags:theFlags];
@@ -1030,7 +1030,7 @@ enum // export data types
         long intesity = (long)((float)((float)(i * 5) / 100) * 65534) + 1;
         unsigned short theFlags = 0;
         
-        theFlags |= _light_is_initially_active;
+        theFlags |= PhLightStaticFlagIsInitiallyActive;
         
         [newLight setType:_normal_light];
         [newLight setFlags:theFlags];

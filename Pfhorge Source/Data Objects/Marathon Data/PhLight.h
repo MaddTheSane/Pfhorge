@@ -73,26 +73,27 @@ struct lighting_function_specification	// 2*3 + 4*2 = 14 bytes
 	int32_t	intensity, delta_intensity; // used to be a fixed type :)
 };
 
-enum	// static flags
+//! static flags
+typedef NS_ENUM(unsigned short, PhLightStaticFlags)
 {
-	_light_is_initially_active = 0x0001,
-	_light_has_slaved_intensities = 0x0002,
-	_light_is_stateless = 0x0004,
+	PhLightStaticFlagIsInitiallyActive = 0x0001,
+	PhLightStaticFlagHasSlavedIntensities = 0x0002,
+	PhLightStaticFlagIsStateless = 0x0004,
 	NUMBER_OF_STATIC_LIGHT_FLAGS // <= 16
 };
 
-#define LIGHT_IS_INITIALLY_ACTIVE TEST_FLAG16(flags, _light_is_initially_active)
-#define LIGHT_IS_STATELESS TEST_FLAG16(flags, _light_is_stateless)
+#define LIGHT_IS_INITIALLY_ACTIVE TEST_FLAG16(flags, PhLightStaticFlagIsInitiallyActive)
+#define LIGHT_IS_STATELESS TEST_FLAG16(flags, PhLightStaticFlagIsStateless)
 
-#define SET_LIGHT_IS_INITIALLY_ACTIVE(v) SET_FLAG16(flags, _light_is_initially_active, (v))
-#define SET_LIGHT_IS_STATELESS(v) SET_FLAG16(flags, _light_is_stateless, (v))
+#define SETPhLightStaticFlagIsInitiallyActive(v) SET_FLAG16(flags, PhLightStaticFlagIsInitiallyActive, (v))
+#define SETPhLightStaticFlagIsStateless(v) SET_FLAG16(flags, PhLightStaticFlagIsStateless, (v))
 
 @class PhTag;
 
-@interface PhLight : PhAbstractName <NSCoding>
+@interface PhLight : PhAbstractName <NSCoding, NSCopying>
 {
 	PhLightTypes type;
-	unsigned short flags;
+	PhLightStaticFlags flags;
 
 	short phase;	// initializer, so lights may start out-of-phase with each other
         
@@ -105,19 +106,19 @@ enum	// static flags
 
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 
 // ************************** Flag Accssors *************************
 
--(BOOL)getFlag:(unsigned short)theFlag;
--(void)setFlag:(unsigned short)theFlag to:(BOOL)v;
+-(BOOL)getFlag:(PhLightStaticFlags)theFlag;
+-(void)setFlag:(PhLightStaticFlags)theFlag to:(BOOL)v;
 
 // *****************   Accsessors   *****************
 
 @property PhLightTypes type;
-@property unsigned short flags;
+@property PhLightStaticFlags flags;
 
 @property short phase;
 
@@ -127,17 +128,14 @@ enum	// static flags
 -(void)setIntensity:(int)v forState:(short)i;
 -(void)setDeltaIntensity:(int)v forState:(short)i; // used to be a fixed type :)
 
--(void)setTag:(short)v;
--(void)setTagObject:(PhTag *)value;
+@property (nonatomic) short tag;
+@property (assign) PhTag *tagObject;
 
 -(short)functionForState:(short)i;
 -(short)periodForState:(short)i;
 -(short)deltaPeriodForState:(short)i;
 -(int32_t)intensityForState:(short)i;
 -(int32_t)deltaIntensityForState:(short)i; // used to be a fixed type :)
-
--(short)tag;
--(PhTag *)getTagObject;
 
 // ************************** Inzlizations And Class Methods *************************
 

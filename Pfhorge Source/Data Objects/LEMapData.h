@@ -113,7 +113,7 @@ enum {
     short *mission_flags;
     short *environment_flags;
     NSMutableArray *levelNames;
-    long *entry_point_flags;
+    int *entry_point_flags;
     
     // Other Data
     long theCursor;
@@ -141,10 +141,10 @@ enum {
 - (void)preAllocateArraysForLevel:(LELevelData *)level forLevelNumber:(int)theLevel;
 
 
-- (long)getByteCountForLevel:(LELevelData *)level;
+- (NSInteger)getByteCountForLevel:(LELevelData *)level;
 
 - (long)getNumberOfLevels;
-- (NSMutableArray *)getLevelNames;
+- (NSMutableArray<NSString*> *)getLevelNames;
 
 
 - (short)getShort;

@@ -720,7 +720,7 @@ void MapManager::ReloadLevel() {
             GLfloat OffInten1 = [theLight intensityForState:_light_primary_inactive]/MaxLightValue;
             GLfloat OffInten2 = [theLight intensityForState:_light_secondary_inactive]/MaxLightValue;
             GLfloat InitInten =
-                ([theLight flags] & (1 << _light_is_initially_active)) ? OnInten1 : OffInten1;
+                ([theLight flags] & (1 << PhLightStaticFlagIsInitiallyActive)) ? OnInten1 : OffInten1;
             
             // Average values -- weighted
             

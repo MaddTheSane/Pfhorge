@@ -172,23 +172,14 @@
 
 - (void)adjustTheInitalCountBy:(int)value { initial_count += value; }
 
-// ************************** Get Accsessors *************************
+// ************************** Accsessors *************************
 @synthesize flags;
 	
-- (short)initialCount { return initial_count; }
-- (short)minimumCount { return minimum_count; }
-- (short)maximumCount { return maximum_count; }
+@synthesize initialCount=initial_count;
+@synthesize minimumCount=minimum_count;
+@synthesize maximumCount=maximum_count;
 	
-- (short)randomCount { return random_count; }
-- (unsigned short)randomChance { return random_chance; }
-
-// ************************** Set Accsessors *************************
-
-- (void)setInitialCount:(short)v { initial_count = v; }
-- (void)setMinimumCount:(short)v { minimum_count = v; }
-- (void)setMaximumCount:(short)v { maximum_count = v; }
-
-- (void)setRandomCount:(short)v { random_count = v; }
-- (void)setRandomChance:(unsigned short)v { random_chance = v; }
+@synthesize randomCount=random_count;
+@synthesize randomChance=random_chance;
 
 @end

@@ -44,7 +44,8 @@ enum /* environment control panel offsets */
     waterOffset = 0
 };
 
-enum	// side flags
+//! side flags
+typedef NS_OPTIONS(unsigned short, LESideFlags)
 {
 	_control_panel_status = 0x0001,
 	_side_is_control_panel = 0x0002,
@@ -57,9 +58,9 @@ enum	// side flags
 	_editor_dirty_bit = 0x4000 // used by the editor (Not Used In Pfhorge)
 };
 
-enum	//control panel side types // THIS IS CURRENTLY INACURATE!!!
-{
-        _panel_singleShield,
+//! control panel side types // FIXME: THIS IS CURRENTLY INACURATE!!!
+typedef NS_ENUM(short, LESideControlPanelType) {
+	_panel_singleShield,
 	_panel_doubleShield,
 	_panel_tripleShield,
 	_panel_lightSwitch, // Light index
@@ -67,9 +68,9 @@ enum	//control panel side types // THIS IS CURRENTLY INACURATE!!!
 	_panel_tagSwitch, // Tag number
 	_panel_patternBuffer,
 	_panel_computerTerminal,
-        _panel_oxygen,
-        _panel_chipInserton, // tag number
-        _panel_wires, // tag number
+	_panel_oxygen,
+	_panel_chipInserton, // tag number
+	_panel_wires, // tag number
 	NUMBER_OF_CONTROL_PANELS
 };
 
@@ -99,10 +100,10 @@ typedef struct side_texture_definition
 {
 	world_distance		x0, y0;
 	shape_descriptor	texture;
-        
-        // These have been added, they are not apart of the orginal structure defintion...
-        short int		textureCollection; // Obsolete... This was not in the orginal structure!
-        short int		textureNumber; // Obsolete... This was not in the orginal structure!
+	
+	// These have been added, they are not a part of the orginal structure defintion...
+	short int		textureCollection; //!< Obsolete... This was not in the orginal structure!
+	short int		textureNumber; //!< Obsolete... This was not in the orginal structure!
 }side_texture_definition;
 
 typedef struct side_exclusion_zone
@@ -112,42 +113,43 @@ typedef struct side_exclusion_zone
 
 @interface LESide : LEMapStuffParent <NSCopying, NSCoding>
 {
-   // struct side_data // 64 bytes
-        short		type;
-        unsigned short	flags;
-        
-        struct 	side_texture_definition		primary_texture;
-        struct 	side_texture_definition		secondary_texture;
-        struct 	side_texture_definition		transparent_texture;	// not drawn if texture == NONE
-        
-        /* all sides have the potential of being impassable; the exclusion zone
-                is the area near the side which cannont be walked through */
-        struct side_exclusion_zone	exclusion_zone;
-        
-        short		control_panel_type; // only valid if side->flags & _side_is_control_panel
-        short		control_panel_permutation; //platform index, light source index, etc...
-        id		control_panel_permutation_object;
-        
-        int 		permutationEffects;
-        
-        short		primary_transfer_mode;
-        short		secondary_transfer_mode;
-        short		transparent_transfer_mode;
-        
-        short		polygon_index, line_index;
-        id		polygon_object, line_object;
-        
-        short		primary_lightsource_index;
-        short		secondary_lightsource_index;
-        short		transparent_lightsource_index;
-        
-        id		primary_lightsource_object;
-        id		secondary_lightsource_object;
-        id		transparent_lightsource_object;
-        
-        int		ambient_delta;
-        
-        short		unused[1];
+	// struct side_data // 64 bytes
+	short		type;
+	LESideFlags	flags;
+	
+	struct 	side_texture_definition		primary_texture;
+	struct 	side_texture_definition		secondary_texture;
+	struct 	side_texture_definition		transparent_texture;	// not drawn if texture == NONE
+	
+	/* all sides have the potential of being impassable; the exclusion zone
+	 is the area near the side which cannont be walked through */
+	struct side_exclusion_zone	exclusion_zone;
+	
+	//! only valid if side->flags & _side_is_control_panel
+	LESideControlPanelType		control_panel_type;
+	short		control_panel_permutation; //platform index, light source index, etc...
+	id		control_panel_permutation_object;
+	
+	int 		permutationEffects;
+	
+	short		primary_transfer_mode;
+	short		secondary_transfer_mode;
+	short		transparent_transfer_mode;
+	
+	short		polygon_index, line_index;
+	id		polygon_object, line_object;
+	
+	short		primary_lightsource_index;
+	short		secondary_lightsource_index;
+	short		transparent_lightsource_index;
+	
+	id		primary_lightsource_object;
+	id		secondary_lightsource_object;
+	id		transparent_lightsource_object;
+	
+	int		ambient_delta;
+	
+	short		unused[1];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
@@ -179,7 +181,7 @@ typedef struct side_exclusion_zone
 -(void)setTextureCollection:(char)number;
 
 -(void)setType:(short)v;
--(void)setFlags:(unsigned short)v;
+-(void)setFlags:(LESideFlags)v;
         
 -(void)setPrimary_texture:(struct side_texture_definition)v;
 -(void)setSecondary_texture:(struct side_texture_definition)v;
@@ -222,8 +224,8 @@ typedef struct side_exclusion_zone
 
 -(char)textureCollection;
 
--(short)getType;
--(unsigned short)getFlags;
+-(short)type;
+-(LESideFlags)flags;
         
 -(struct side_texture_definition)getPrimary_texture;
 -(struct side_texture_definition)getSecondary_texture;
@@ -255,7 +257,7 @@ typedef struct side_exclusion_zone
 -(id)getsecondary_lightsource_object;
 -(id)gettransparent_lightsource_object;
 
--(long)getAmbient_delta;
+-(int)getAmbient_delta;
 
 //  ************************** Other Usful Methods *************************
 -(short)getAdjustedControlPanelType;

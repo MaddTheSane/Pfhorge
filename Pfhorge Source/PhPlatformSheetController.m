@@ -254,7 +254,7 @@
 
 -(void)saveChanges
 {
-    unsigned long theFlags = 0;
+    unsigned int theFlags = 0;
     
     if (platform == nil)
     {

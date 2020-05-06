@@ -60,10 +60,10 @@
 
 // *****************   Get Accsessors   *****************
 
--(unsigned short)flags;
+@property unsigned short flags;
 
--(short)soundIndex;
--(short)volume;
+@property short soundIndex;
+@property short volume;
 
 // ************************** Inzlizations And Class Methods *************************
 

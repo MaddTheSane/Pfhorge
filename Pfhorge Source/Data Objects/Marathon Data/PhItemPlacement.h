@@ -52,19 +52,20 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 - (void)adjustTheInitalCountBy:(int)value;
 
 // ************************** Accsessors *************************
 @property PhItemPlacementFlags flags;
 	
-- (short)initialCount;
-- (short)minimumCount;
-- (short)maximumCount;
+@property short initialCount;
+@property short minimumCount;
+@property short maximumCount;
 	
-- (short)randomCount;
-- (unsigned short)randomChance;
+@property short randomCount;
+@property unsigned short randomChance;
 
 // ************************** Set Accsessors *************************
 - (void)setFlags:(PhItemPlacementFlags)v;

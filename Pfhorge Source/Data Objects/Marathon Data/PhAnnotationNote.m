@@ -36,8 +36,8 @@
     if (polygon_object != nil)
         polyField = [polygon_object getPhName];
         
-    NSPoint regP = [self getLocation];
-    NSPoint adjP = [self getLocationAdjusted];
+    NSPoint regP = [self location];
+    NSPoint adjP = [self locationAdjusted];
     
     return [NSString stringWithFormat:@"Note Index: %d   In Polygon: %@   X/Y:(%d, %d)   AdjX/AdjY:(%d, %d)", [self getIndex], polyField, (int)regP.x, (int)regP.y, (int)adjP.x, (int)adjP.y, nil];
 }
@@ -71,7 +71,7 @@
 -(void)moveBy32Point:(NSPoint)theOffset
 {
     //theOffset.y += 16;
-    NSPoint adjLoc = location; // [self getLocationAdjusted];
+    NSPoint adjLoc = location; // [self locationAdjusted];
     //NSLog(@"Point Offset: (%g, %g)", theOffset.x, theOffset.y);
     
     [self setX32:((adjLoc.x / 16) + theOffset.x)];
@@ -154,6 +154,7 @@
 
 // *****************   Set Accsessors   *****************
 
+@synthesize group;
 -(void)setGroup:(PhNoteGroup *)grp
 {
     if (group != nil && grp != group)
@@ -165,7 +166,8 @@
     group = [grp retain];
 }
 
--(void)setType:(short)v { type = v; }
+@synthesize type;
+@synthesize location;
 
 -(void)setLocation:(NSPoint)v { location = v; [self updateBounds]; }
 
@@ -181,7 +183,7 @@
     
 } // *** NEED TO FIX THIS UP FOR NEW OBJECT MODEL ***, Fixed, I think...
 
--(void)setPolygon_object:(LEPolygon *)v { polygon_object = v; }
+@synthesize polygonObject=polygon_object;
 -(void)setPolygon:(LEPolygon *)v { polygon_object = v; }
 
 @synthesize text;
@@ -195,7 +197,7 @@
 
 -(void)updateBounds
 {
-    NSPoint adjPoint = location;//[self getLocationAdjusted];
+    NSPoint adjPoint = location;//[self locationAdjusted];
     
     adjPoint.x /= 16;
     adjPoint.y /= 16;
@@ -218,7 +220,7 @@
 
 -(NSRect) drawingBounds
 {
-    //NSPoint adjPoint = [self getLocationAdjusted];
+    //NSPoint adjPoint = [self locationAdjusted];
     //bounds.origin = location;
     //bounds.size = size;
     return bounds;
@@ -226,25 +228,17 @@
 
 // *****************   Get Accsessors   *****************
 
--(PhNoteGroup *)group
-{
-    return group;
-}
-
 -(PhNoteGroup *)getGroup
 {
     return group;
 }
 
--(short)type { return type; }
-
--(NSPoint)getLocation { return location; }
 -(NSPoint)as32Point
 {
-    return [self getLocationAdjusted];
+    return [self locationAdjusted];
 }
 
--(NSPoint)getLocationAdjusted
+-(NSPoint)locationAdjusted
 {
     NSPoint locationAdj;
     
@@ -257,7 +251,6 @@
 }
 
 -(short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
--(LEPolygon *)getPolygon_object { return polygon_object; }
 - (LEPolygon *)polygon { return polygon_object; }
 
  // **************************  Overriden Standard Methods  *************************
@@ -285,7 +278,7 @@
         type = 0;
         location.x = 0;
         location.y = 0;
-        polygon_index = 0;
+        //polygon_index = 0;
         
         group = nil;
         
@@ -306,7 +299,7 @@
         type = 0;
         location.x = point.x*16;
         location.y = point.y*16;
-        polygon_index = 0;
+        //polygon_index = 0;
         
         group = nil;
         

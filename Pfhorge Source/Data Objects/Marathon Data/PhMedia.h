@@ -29,7 +29,8 @@
 //#define MEDIA_TAG 'medi'
 #define MAXIMUM_MEDIAS_PER_MAP 16
 
-enum // media  types
+//! media  types
+typedef NS_ENUM(short, PhMediaType)
 {
 	_media_water,
 	_media_lava,
@@ -75,7 +76,7 @@ enum	// media sounds
 
 @interface PhMedia : PhAbstractName <NSCoding> /* 32 bytes */
 {
-	short	type;
+	PhMediaType	type;
 	unsigned short	flags;
 
 	/* this light is not used as a real light; instead, the
@@ -113,47 +114,26 @@ enum	// media sounds
 -(BOOL)getFlag:(unsigned short)theFlag;
 -(void)setFlag:(unsigned short)theFlag to:(BOOL)v;
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 
--(void)setType:(short)v;
--(void)setFlags:(unsigned short)v;
+@property PhMediaType type;
+@property unsigned short flags;
 
--(void)setLightIndex:(short)v;
--(void)setLightObject:(id)v;
+@property short lightIndex;
+@property (assign) id lightObject;
 
--(void)setCurrentDirection:(short)v;
--(void)setCurrentMagnitude:(short)v;
+@property short currentDirection;
+@property short currentMagnitude;
 
--(void)setLow:(short)v;
--(void)setHigh:(short)v;
+@property short low;
+@property short high;
 
--(void)setOrigin:(NSPoint)v;
--(void)setHeight:(short)v;
+@property NSPoint origin;
+@property short height;
 
--(void)setMinimumLightIntensity:(int)v; // ??? Object ???
--(void)setTexture:(short)v;
--(void)setTransferMode:(short)v;
-
-// *****************   Get Accsessors   *****************
-
--(short)type;
--(unsigned short)flags;
-
--(short)lightIndex;
--(id)lightObject;
-
--(short)currentDirection;
--(short)currentMagnitude;
-
--(short)low;
--(short)high;
-
--(NSPoint)origin;
--(short)height;
-
--(int)minimumLightIntensity; // ??? Object ???
--(short)texture;
--(short)transferMode;
+@property int minimumLightIntensity; // ??? Object ???
+@property short texture;
+@property short transferMode;
 
 // ************************** Inzlizations And Class Methods *************************
 

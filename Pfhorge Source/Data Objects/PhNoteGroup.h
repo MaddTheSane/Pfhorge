@@ -25,10 +25,12 @@
 #import <Cocoa/Cocoa.h>
 #import "PhAbstractName.h"
 
+@class PhAnnotationNote;
+
 @interface PhNoteGroup : PhAbstractName <NSCoding>
 {
     NSColor *noteColor;
-    NSMutableArray *notes;
+    NSMutableArray<PhAnnotationNote*> *notes;
     
     BOOL visible;
 }

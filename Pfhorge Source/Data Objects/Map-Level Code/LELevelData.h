@@ -91,17 +91,17 @@ enum /* environment_code codes */
 	_pfhor
 };
 
-enum /* environment_code wall textre collection */
-{
+/*! environment_code wall textre collection */
+typedef NS_ENUM(short, LELevelEnvironmentCode) {
 	_water_collection = 0x11, // 17
 	_lava_collection, // 18
 	_sewage_collection, // 19
 	_jjaro_collection, // 20
 	_pfhor_collection, // 21
-        _landscape_collection_1 = 0x1B,
-        _landscape_collection_2,
-        _landscape_collection_3,
-        _landscape_collection_4
+	_landscape_collection_1 = 0x1B,
+	_landscape_collection_2,
+	_landscape_collection_3,
+	_landscape_collection_4
 };
 
 //! entry point types - this is per map level (long)
@@ -157,7 +157,8 @@ enum {
 
 @class LEMapPoint, LELine, PhPlatform, LEMapStuffParent,
        LESide, PhLayer, PhLight, PhTag, LEMap, Terminal,
-       TerminalSection, PhNoteGroup;
+       TerminalSection, PhNoteGroup, PhRandomSound, PhMedia,
+       PhAnnotationNote, PhItemPlacement, PhAmbientSound;
 
 // *****************  Class Blue Print  *****************
 // #pragma mark ********* Class Blue Print *********
@@ -167,18 +168,18 @@ enum {
     NSMutableArray<LEMapPoint*> *points;
     NSMutableArray<LELine*> *lines;
     NSMutableArray<LEPolygon*> *polys;
-    NSMutableArray *mapObjects;
+    NSMutableArray<LEMapObject*> *mapObjects;
     NSMutableArray<LESide*> *sides;
     NSMutableArray<PhLight*> *lights;
-    NSMutableArray<PhNoteGroup*> *notes;
-    NSMutableArray *media;
-    NSMutableArray *ambientSounds;
+    NSMutableArray<PhAnnotationNote*> *notes;
+    NSMutableArray<PhMedia*> *media;
+    NSMutableArray<PhAmbientSound*> *ambientSounds;
     
-    NSMutableArray *randomSounds;
-    NSMutableArray *itemPlacement;
+    NSMutableArray<PhRandomSound*> *randomSounds;
+    NSMutableArray<PhItemPlacement*> *itemPlacement;
     NSMutableArray<PhPlatform*> *platforms;
     
-    NSMutableArray  *layersInLevel;
+    NSMutableArray<PhLayer*>  *layersInLevel;
     PhLayer	    *currentLayer;
     // Should make these sets...
     NSMutableArray  *layerPoints, *layerLines, *layerPolys, *layerMapObjects, *layerNotes;
@@ -190,7 +191,7 @@ enum {
     short unsigned objectCount, lineCount, pointCount, lightCount, polygonCount;
     short unsigned ambientSoundCount, randomSoundCount, platformCount, liquidCount;
     
-    short	environment_code;
+    LELevelEnvironmentCode	environment_code;
     short	physics_model;
     short	song_index;
     _mission_flag	mission_flags;
@@ -243,7 +244,7 @@ enum {
 
 // ***************** Level Information Accessors  ****************
 
-@property short environmentCode;
+@property LELevelEnvironmentCode environmentCode;
 @property short physicsModel;
 @property (nonatomic) short songIndex;
 @property _mission_flag missionFlags;
@@ -395,10 +396,10 @@ enum {
 -(NSMutableArray<LESide*> *)getSides;
 -(NSMutableArray<PhLight*> *)getLights;
 -(NSMutableArray<PhNoteGroup*> *)getNotes;
--(NSMutableArray *)getMedia;
--(NSMutableArray *)getAmbientSounds;
--(NSMutableArray *)getRandomSounds;
--(NSMutableArray *)getItemPlacement;
+-(NSMutableArray<PhMedia*> *)getMedia;
+-(NSMutableArray<PhAmbientSound*> *)getAmbientSounds;
+-(NSMutableArray<PhRandomSound*> *)getRandomSounds;
+-(NSMutableArray<PhItemPlacement*> *)getItemPlacement;
 -(NSMutableArray<PhPlatform*> *)getPlatforms;
 
 -(NSMutableArray *)getTags;

@@ -39,7 +39,7 @@
 
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     long theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
@@ -151,7 +151,7 @@
     [theData appendData:futureData];
     
 
-    NSLog(@"Exporting Side: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+	NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
@@ -168,7 +168,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Side: %d  -- Position: %d  --- Length: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+	NSLog(@"Importing Side: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(type);
     ImportUnsignedShort(flags);
@@ -640,7 +640,7 @@
     char *thePTexChar = (char *)&primary_texture.texture;
     char *theSTexChar = (char *)&secondary_texture.texture;
     char *theTTexChar = (char *)&transparent_texture.texture;
-    short theCurrentEnviroCode = [theLELevelDataST getEnvironment_code];
+    short theCurrentEnviroCode = [theLELevelDataST environmentCode];
     (thePTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theSTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theTTexChar)[0] = (0x11 + theCurrentEnviroCode);
@@ -658,7 +658,7 @@
 }
 
 -(void)setType:(short)v { type = v; }
--(void)setFlags:(unsigned short)v { flags = v; }
+-(void)setFlags:(LESideFlags)v { flags = v; }
         
 -(void)setPrimary_texture:(struct side_texture_definition)v { primary_texture = v; }
 -(void)setSecondary_texture:(struct side_texture_definition)v { secondary_texture = v; }
@@ -668,7 +668,7 @@
         
 -(void)setControl_panel_type:(short)v
 {
-    int enviroCode = [theLELevelDataST getEnvironment_code];
+    int enviroCode = [theLELevelDataST environmentCode];
     int modfiedControlPanelType = -1;
     permutationEffects = 0;
     control_panel_type = v;
@@ -904,8 +904,8 @@
     return [self primaryTextureCollection];
 }
 
--(short)getType { return type; }
--(unsigned short)getFlags { return flags; }
+-(short)type { return type; }
+-(LESideFlags)flags { return flags; }
         
 -(struct side_texture_definition)getPrimary_texture { return primary_texture; }
 -(struct side_texture_definition)getSecondary_texture { return secondary_texture; }
@@ -948,7 +948,7 @@
 -(id)getsecondary_lightsource_object { return secondary_lightsource_object; }
 -(id)gettransparent_lightsource_object { return transparent_lightsource_object; }
 
--(long)getAmbient_delta { return ambient_delta; }
+-(int)getAmbient_delta { return ambient_delta; }
 
 //  ************************** Other Useful Methods *************************
 #pragma mark -

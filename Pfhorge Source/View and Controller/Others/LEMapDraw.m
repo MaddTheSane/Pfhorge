@@ -1333,7 +1333,7 @@ enum {
         //activateArchColor(PhLineSelectedColor);
         //NSRectFill(bounds);
         
-        [[note text] drawAtPoint:[note getLocationAdjusted] withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+        [[note text] drawAtPoint:[note locationAdjusted] withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
                                         color,
                                         NSForegroundColorAttributeName,
@@ -2167,7 +2167,7 @@ enum {
         numer = [selectedPoints objectEnumerator];
         while (curObj = [numer nextObject])
         {
-            [(id)undoWith(curObj) setY32:[curObj y32]];
+            [(LEMapPoint *)undoWith(curObj) setY32:[curObj y32]];
             [(LEMapPoint *)undoWith(curObj) setX32:[curObj x32]];
             [(LEMapPoint *)curObj setY32:theLocation.y];
             [(LEMapPoint *)curObj setX32:theLocation.x];
@@ -2484,11 +2484,11 @@ enum {
                         if (!optionDown)
                             [curObj setPolyLayer:[[currentLevel layersInLevel] objectAtIndex:[selectedNumber shortValue]]];
                         else
-                             selectedNumber = [NSNumber numberWithInt:[[currentLevel layersInLevel] indexOfObjectIdenticalTo:[curObj polyLayer]]];
+                             selectedNumber = [NSNumber numberWithInteger:[[currentLevel layersInLevel] indexOfObjectIdenticalTo:[curObj polyLayer]]];
                         break;
                     default:
                         NSLog(@"*** Hit detection in 'mouseDownHeightMap' which is the wrong method, %@",
-                                "going to try to fix this by going to 'mouseDownNormal'! ***");
+                                @"going to try to fix this by going to 'mouseDownNormal'! ***");
                         [self mouseDownNormal:theEvent];
                         return;
                 }
@@ -4734,15 +4734,15 @@ enum {
         while ((theNote = [objsCopy anyObject]))
         {
             theNote = [objsCopy anyObject];
-            // could be: [theNote getLocationAdjusted]
-            thePoint = [theNote as32Point];
+            // could be: [theNote locationAdjusted]
+            thePoint = [theNote locationAdjusted];
             poly = [self findPolygonAtPoint:thePoint];
-            [theNote setPolygon:poly];
+            [theNote setPolygonObject:poly];
             [objsCopy removeObject:theNote];
             
             if (poly == nil /*!polyWasFoundForObject*/)
             {
-                [theNote setPolygon:nil];
+                [theNote setPolygonObject:nil];
                 polyWasNotFoundForAtLeastOneObject = YES;
             }
             else
@@ -4754,10 +4754,10 @@ enum {
                 pNumer = [[[objsCopy objectEnumerator] allObjects] objectEnumerator];
                 while (theNote = [pNumer nextObject])
                 {
-                    thePoint = [theNote as32Point];
+                    thePoint = [theNote locationAdjusted];
                     if ([poly LEhitTest:thePoint])
                     {
-                        [theNote setPolygon:poly];
+                        [theNote setPolygonObject:poly];
                         //polyWasFoundForObject = YES;
                         [objsCopy removeObject:theNote];
                     }
@@ -6154,7 +6154,7 @@ enum {
         
        // numer = [selections objectEnumerator];
         
-        NSLog(@"Count of selections: %d", [selections count]);
+        NSLog(@"Count of selections: %lu", (unsigned long)[selections count]);
         
         theLevelMapData = [currentLevel exportObjects:selections];
         
@@ -6184,7 +6184,7 @@ enum {
         
         numer = [selections objectEnumerator];
         
-        NSLog(@"Count of selections: %d", [selections count]);
+        NSLog(@"Count of selections: %lu", (unsigned long)[selections count]);
         
         while (curObj = [numer nextObject])
             [curObj setEncodeIndexNumbersInstead:YES];

@@ -250,13 +250,24 @@
 
 }
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 #pragma mark -
-#pragma mark ********* Set Accsessors *********
+#pragma mark ********* Accsessors *********
 
--(void)setType:(short)v { type = v; }
--(void)setFlags:(unsigned short)v { flags = v; }
+@synthesize type;
+@synthesize flags;
 
++(NSSet<NSString *> *)keyPathsForValuesAffectingLightIndex
+{
+    return [NSSet setWithObject:@"lightObject"];
+}
+
++(NSSet<NSString *> *)keyPathsForValuesAffectingLightObject
+{
+    return [NSSet setWithObject:@"lightIndex"];
+}
+
+@dynamic lightIndex;
 -(void)setLightIndex:(short)v
 {
     //light_index = v;
@@ -265,46 +276,27 @@
     else if (everythingLoadedST)
         light_object = [theMapLightsST objectAtIndex:v];
 }
--(void)setLightObject:(id)v
-{
-    light_object = v;
-}
+@synthesize lightObject=light_object;
 
--(void)setCurrentDirection:(short)v { current_direction = v; }
--(void)setCurrentMagnitude:(short)v { current_magnitude = v; }
+@synthesize currentDirection=current_direction;
+@synthesize currentMagnitude=current_magnitude;
 
--(void)setLow:(short)v { low = v; }
--(void)setHigh:(short)v { high = v; }
+@synthesize low;
+@synthesize high;
 
--(void)setOrigin:(NSPoint)v { origin = v; }
--(void)setHeight:(short)v { height = v; }
+@synthesize origin;
+@synthesize height;
 
--(void)setMinimumLightIntensity:(int)v { minimum_light_intensity = v; } // ??? Object ???
--(void)setTexture:(short)v { texture = v; }
--(void)setTransferMode:(short)v { transfer_mode = v; }
+@synthesize minimumLightIntensity=minimum_light_intensity; // ??? Object ???
+@synthesize texture;
+@synthesize transferMode=transfer_mode;
 
 // *****************   Get Accsessors   *****************
 #pragma mark -
 #pragma mark ********* Get Accsessors *********
 
--(short)type { return type; }
--(unsigned short)flags { return flags; }
 
 -(short)lightIndex { return (light_object == nil) ? -1 : [light_object getIndex]; }
--(id)lightObject { return light_object; }
-
--(short)currentDirection { return current_direction; }
--(short)currentMagnitude { return current_magnitude; }
-
--(short)low { return low; }
--(short)high { return high; }
-
--(NSPoint)origin { return origin; }
--(short)height { return height; }
-
--(int)minimumLightIntensity { return minimum_light_intensity; } // ??? Object ???
--(short)texture { return texture; }
--(short)transferMode { return transfer_mode; }
 
 // ************************** Inzlizations And Class Methods *************************
 #pragma mark -

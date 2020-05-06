@@ -238,7 +238,7 @@
         return;
     }
     
-    subpaths = [manager directoryContentsAtPath:thePath];
+    subpaths = [manager contentsOfDirectoryAtPath:thePath error:NULL];
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {
@@ -311,7 +311,7 @@
         NSLog(@"Script folder does not exsist at: '%@', attempting to create it...", scriptFolder);
         
             // In the future verifi that the folder where created!!!
-        [manager createDirectoryAtPath:scriptFolder attributes:@{}];
+        [manager createDirectoryAtPath:scriptFolder withIntermediateDirectories:YES attributes:nil error:NULL];
         //[manager createDirectoryAtPath:[scriptFolder stringByAppendingString:@"/You Can Have Sub-Folders"] attributes:nil];
         
         if (![manager fileExistsAtPath:scriptFolder isDirectory:&isNewDir])
@@ -550,7 +550,7 @@
     [op setTitle:@"Checksum Test"];
     [op setPrompt:@"Check"];
     
-    int returnCode = [op runModalForDirectory:nil file:nil types:nil];
+    NSModalResponse returnCode = [op runModal];
     NSString		*fileName = nil;
     NSFileManager 	*fileManager = [NSFileManager defaultManager];
     

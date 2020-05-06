@@ -98,7 +98,7 @@
     BOOL sIsInitalyOn, lHasSide;
     LEPolygon *cPoly, *ccPoly;
     
-    LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevelData = [mainInspectorController currentLevel];
     
     unsigned short lineFlagsNumber;
     
@@ -237,10 +237,10 @@
                 
             ///NSLog(@"Control Panel Type: %d", [baseSideRef getControl_panel_type]);
             
-            if (prevEnviroCode != [[mainInspectorController getTheCurrentLevel] getEnvironment_code])
+            if (prevEnviroCode != [[mainInspectorController currentLevel] environmentCode])
             {
                 enviromentChanged = YES;
-                prevEnviroCode = [[mainInspectorController getTheCurrentLevel] getEnvironment_code];
+                prevEnviroCode = [[mainInspectorController currentLevel] environmentCode];
                 [lineControlPanelType removeAllItems];
             }
             
@@ -461,7 +461,7 @@
 
 - (IBAction)controlPanelTypeAction:(id)sender
 {
-    switch ([[mainInspectorController getTheCurrentLevel] environmentCode])
+    switch ([[mainInspectorController currentLevel] environmentCode])
     {
         case _water:
             [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + waterOffset)];
@@ -493,7 +493,7 @@
 
 - (IBAction)controlPanelPermutationAction:(id)sender
 {
-    LELevelData *theLevelData = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevelData = [mainInspectorController currentLevel];
     
     switch([baseSideRef getPermutationEffects])
     {
@@ -517,7 +517,7 @@
     //IBOutlet id linePermutationTabView;
             
             {
-                int objIndex = [sender indexOfSelectedItem];
+                NSInteger objIndex = [sender indexOfSelectedItem];
                 
                 if (objIndex < 0)
                     [baseSideRef setControl_panel_permutation_object:nil];
@@ -604,7 +604,7 @@
 
 - (IBAction)emptyFlagAction:(id)sender
 {
-    LELevelData *theLevel = [mainInspectorController getTheCurrentLevel];
+    LELevelData *theLevel = [mainInspectorController currentLevel];
     LELine *theLine = [mainInspectorController getTheCurrentSelection];
     
     if ([sender state] == NSOffState)

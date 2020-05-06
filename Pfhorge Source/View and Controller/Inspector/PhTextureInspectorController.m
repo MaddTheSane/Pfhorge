@@ -523,7 +523,7 @@
         
         if (side != nil)
         {
-            int sideType = [side getType];
+            int sideType = [side type];
             
             if (sideType == _full_side || sideType == _high_side || sideType == _low_side)
             {
@@ -573,7 +573,7 @@
         }
         
         /*
-        struct side_texture_definition primaryTex; 	//= [baseSideRef getPrimary_texture];
+        struct side_texture_definition primaryTex; 	//= [baseSideRef primaryTexture];
         struct side_texture_definition secondaryTex; 	//= [baseSideRef getSecondary_texture];
         struct side_texture_definition transparentTex; 	//= [baseSideRef getTransparent_texture];
         */

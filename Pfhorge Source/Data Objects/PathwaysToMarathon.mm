@@ -32,7 +32,7 @@ static NSString *MakeFromPascalString(byte *PasString)
     memcpy(CString,PasString+1,Len);
     CString[Len] = 0;
     
-    return [NSString stringWithCString:CString];
+    return [NSString stringWithCString:CString encoding:NSMacOSRomanStringEncoding];
 }
 
 
@@ -874,7 +874,7 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
 
 // For adding all the doors -- they are Marathon-engine platforms
 
-const long PlainDoorFlags =
+const PhPlatformStaticFlags PlainDoorFlags =
     _platform_uses_native_polygon_heights |
     _platform_comes_from_ceiling |
     _platform_is_player_controllable |
@@ -884,7 +884,7 @@ const long PlainDoorFlags =
     _platform_activates_only_once |
     _platform_is_initially_extended;
 
-const long SecretDoorFlags =
+const PhPlatformStaticFlags SecretDoorFlags =
     _platform_uses_native_polygon_heights |
     _platform_comes_from_ceiling |
     _platform_is_player_controllable |
@@ -896,10 +896,10 @@ const long SecretDoorFlags =
     _platform_is_initially_extended;
 
 // A single one of them
-static void AddDoor(long DoorFlags, LEPolygon *Pg, LELevelData *level)
+static void AddDoor(PhPlatformStaticFlags DoorFlags, LEPolygon *Pg, LELevelData *level)
 {
     PhPlatform *Platform =[level addObjectWithDefaults:[PhPlatform class]];
-    [Platform setStatic_flags:DoorFlags];
+    [Platform setStaticFlags:DoorFlags];
     [Pg setType:_polygon_is_platform];
     [Pg setPermutationObject:Platform];
 }
@@ -1057,7 +1057,7 @@ static void AddNote(LELevelData *level, SectorArray SO, short x, short y, NSStri
         [Note setLocationX:xloc];
         [Note setLocationY:yloc];
         [Note setText:Text];
-        [Note setPolygon_object:Pg];
+        [Note setPolygonObject:Pg];
         [NoteGroup addObject:Note];
     }
 }
@@ -1091,8 +1091,8 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
     short Env = (PL.TextureList[0] & 0x0fff) - 64;
     if (Env < 0 || Env > NumTextureSets) Env = 0;	// Idiot-Proofing
     
-    [level setLevel_name:GetLevelName(PL)];
-    [level setEnvironment_code:Txtrs[Env][Tx_Collection]];
+    [level setLevelName:GetLevelName(PL)];
+    [level setEnvironmentCode:Txtrs[Env][Tx_Collection]];
     [level setEnvironmentSinglePlayer:YES];
     [level setGameTypeSinglePlayer:YES];
     

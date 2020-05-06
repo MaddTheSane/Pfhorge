@@ -229,7 +229,7 @@
         numer = [notes objectEnumerator];
         while (theObj = [numer nextObject])
         {
-            if (contains(layerPolys, [theObj polygon]))
+            if (contains(layerPolys, [theObj polygonObject]))
                 [layerNotes addObject:theObj];
         }
     }

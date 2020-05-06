@@ -1008,8 +1008,8 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     int index = -1;
     
-    if ([tmpNote getGroup] != nil)
-        index = [[tmpNote getGroup] getIndex];
+    if ([tmpNote group] != nil)
+        index = [[tmpNote group] getIndex];
     
     NSLog(@"index: %d", index);
     
@@ -1093,7 +1093,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
         
         
         
-        levelInfoString = [[NSString alloc] initWithFormat:@"Points: %d   Lines: %d   Polygons: %d   Objects: %d   Platforms: %d   Media: %d   Lights: %d   Ambient Sounds: %d", [theLevel pointCount], [theLevel lineCount], [theLevel polygonCount], [theLevel objectCount], [theLevel platformCount], [theLevel liquidCount], [theLevel lightCount], [theLevel ambientSoundCount]];
+        levelInfoString = [[NSMutableString alloc] initWithFormat:@"Points: %d   Lines: %d   Polygons: %d   Objects: %d   Platforms: %d   Media: %d   Lights: %d   Ambient Sounds: %d", [theLevel pointCount], [theLevel lineCount], [theLevel polygonCount], [theLevel objectCount], [theLevel platformCount], [theLevel liquidCount], [theLevel lightCount], [theLevel ambientSoundCount]];
         
         [self setFlagNow:0];
         // SIDE_IS_CONTROL_PANEL(s)

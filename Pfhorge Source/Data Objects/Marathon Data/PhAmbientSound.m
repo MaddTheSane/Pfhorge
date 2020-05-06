@@ -131,19 +131,12 @@
     return copy;
 }
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 
--(void)setFlags:(unsigned short)v { flags = v; }
+@synthesize flags;
 
--(void)setSoundIndex:(short)v { sound_index = v; }
--(void)setVolume:(short)v { volume = v; }
-
-// *****************   Get Accsessors   *****************
-
--(unsigned short)flags { return flags; }
-
--(short)soundIndex { return sound_index; }
--(short)volume { return volume; }
+@synthesize soundIndex=sound_index;
+@synthesize volume;
 
  // **************************  Overriden Standard Methods  *************************
 
