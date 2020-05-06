@@ -21,7 +21,7 @@ OSErr createResourceFork( NSURL * aURL );
  */
 + (id)resourceForkForReadingAtURL:(NSURL *)aURL
 {
-	return [[[self alloc] initForReadingAtURL:aURL] autorelease];
+	return [[self alloc] initForReadingAtURL:aURL];
 }
 
 /*
@@ -29,7 +29,7 @@ OSErr createResourceFork( NSURL * aURL );
  */
 + (id)resourceForkForWritingAtURL:(NSURL *)aURL
 {
-	return [[[self alloc] initForWritingAtURL:aURL] autorelease];
+	return [[self alloc] initForWritingAtURL:aURL];
 }
 
 /*
@@ -37,7 +37,7 @@ OSErr createResourceFork( NSURL * aURL );
  */
 + (id)resourceForkForReadingAtPath:(NSString *)aPath
 {
-	return [[[self alloc] initForReadingAtPath:aPath] autorelease];
+	return [[self alloc] initForReadingAtPath:aPath];
 }
 
 /*
@@ -45,7 +45,7 @@ OSErr createResourceFork( NSURL * aURL );
  */
 + (id)resourceForkForWritingAtPath:(NSString *)aPath
 {
-	return [[[self alloc] initForWritingAtPath:aPath] autorelease];
+	return [[self alloc] initForWritingAtPath:aPath];
 }
 
 /*
@@ -89,7 +89,6 @@ OSErr createResourceFork( NSURL * aURL );
 
 	if( noErr != theError )
 	{
-		[self release];
 		self = nil;
 	}
 
@@ -121,7 +120,6 @@ OSErr createResourceFork( NSURL * aURL );
 - (void)dealloc
 {
 	CloseResFile( fileReference );
-	[super dealloc];
 }
 
 - (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName
