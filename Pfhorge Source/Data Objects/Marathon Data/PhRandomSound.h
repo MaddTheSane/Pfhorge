@@ -53,10 +53,10 @@ typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder;
 
-// ************************** Get Accsessors *************************
+// ************************** Accsessors *************************
 @property PhRandomSoundFlags flags;
 @property short soundIndex;
 @property short volume;
@@ -68,18 +68,5 @@ typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
 @property int32_t pitch;
 @property int32_t deltaPitch;
 @property short phase;
-
-// ************************** Accsessors *************************
-- (void) setFlags:(PhRandomSoundFlags)v;
-- (void) setSoundIndex:(short)v;
-- (void) setVolume:(short)v;
-- (void) setDeltaVolume:(short)v;
-- (void) setPeriod:(short)v;
-- (void) setDeltaPeriod:(short)v;
-- (void) setDirection:(short)v;
-- (void) setDelta_direction:(short)v;
-- (void) setPitch:(int32_t)v;
-- (void) setDeltaPitch:(int32_t)v;
-- (void) setPhase:(short)v;
 
 @end

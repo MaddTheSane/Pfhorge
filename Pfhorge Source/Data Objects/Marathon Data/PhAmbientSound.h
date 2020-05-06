@@ -48,22 +48,22 @@
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 // *****************   Set Accsessors   *****************
 
 -(void)setFlags:(unsigned short)v;
 
--(void)setSound_index:(short)v;
+-(void)setSoundIndex:(short)v;
 -(void)setVolume:(short)v;
 
 // *****************   Get Accsessors   *****************
 
--(unsigned short)getFlags;
+-(unsigned short)flags;
 
--(short)getSound_index;
--(short)getVolume;
+-(short)soundIndex;
+-(short)volume;
 
 // ************************** Inzlizations And Class Methods *************************
 

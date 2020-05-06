@@ -2483,7 +2483,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
         [theObj setFlags:[self getUnsignedShort]];
         
-        [theObj setSound_index:[self getShort]];
+        [theObj setSoundIndex:[self getShort]];
         [theObj setVolume:[self getShort]];
         
         theCursor+=10; // Skip the 5 unused shorts
@@ -2572,12 +2572,12 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
         [theObj setFlags:[self getShort]];
     
-        [theObj setInitial_count:[self getShort]];
-        [theObj setMinimum_count:[self getShort]];
-        [theObj setMaximum_count:[self getShort]];
+        [theObj setInitialCount:[self getShort]];
+        [theObj setMinimumCount:[self getShort]];
+        [theObj setMaximumCount:[self getShort]];
     
-        [theObj setRandom_count:[self getShort]];
-        [theObj setRandom_chance:[self getUnsignedShort]];
+        [theObj setRandomCount:[self getShort]];
+        [theObj setRandomChance:[self getUnsignedShort]];
     }
     return;
 }
@@ -3245,8 +3245,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
 	[self saveUnsignedShort:[currentObj getFlags]];
 	
-	[self saveShort:[currentObj getSound_index]];
-	[self saveShort:[currentObj getVolume]];
+	[self saveShort:[currentObj soundIndex]];
+	[self saveShort:[currentObj volume]];
 	
 	[self saveEmptyBytes:10]; //Skip the unused part... :)
     }
@@ -3271,8 +3271,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     while (currentObj = [numer nextObject])
     {                
 	[self saveShort:[currentObj getFlags]];
-	[self saveShort:[currentObj getSound_index]];
-	[self saveShort:[currentObj getVolume]];
+	[self saveShort:[currentObj soundIndex]];
+	[self saveShort:[currentObj volume]];
 	[self saveShort:[currentObj deltaVolume]];
 	[self saveShort:[currentObj period]];
 	[self saveShort:[currentObj deltaPeriod]];
@@ -3306,12 +3306,12 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
 	[self saveShort:[currentObj getFlags]];
 	
-	[self saveShort:[currentObj getInitial_count]];
-	[self saveShort:[currentObj getMinimum_count]];
-	[self saveShort:[currentObj getMaximum_count]];
+	[self saveShort:[currentObj initialCount]];
+	[self saveShort:[currentObj minimumCount]];
+	[self saveShort:[currentObj maximumCount]];
 	
-	[self saveShort:[currentObj getRandom_count]];
-	[self saveUnsignedShort:[currentObj getRandom_chance]];
+	[self saveShort:[currentObj randomCount]];
+	[self saveUnsignedShort:[currentObj randomChance]];
     }
     #ifdef useDebugingLogs
         NSLog(@"Saved %d item placement objects.", objCount);

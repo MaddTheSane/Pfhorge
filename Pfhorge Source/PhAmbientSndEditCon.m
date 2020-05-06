@@ -120,13 +120,13 @@
 -(void)refreshInterfaceFromData
 {
     [self setupTitlesAndNames];
-    [typeMenu selectItemAtIndex:[curSound getSound_index]];
-    [volumeTB setIntValue:[curSound getVolume]];
+    [typeMenu selectItemAtIndex:[curSound soundIndex]];
+    [volumeTB setIntValue:[curSound volume]];
 }
 
 -(void)saveChanges
 {    
-    [curSound setSound_index:[typeMenu indexOfSelectedItem]];
+    [curSound setSoundIndex:[typeMenu indexOfSelectedItem]];
     [curSound setVolume:[volumeTB intValue]];
 }
 

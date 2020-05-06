@@ -114,7 +114,7 @@ enum	// static flags
 -(BOOL)getFlag:(unsigned short)theFlag;
 -(void)setFlag:(unsigned short)theFlag to:(BOOL)v;
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 
 @property PhLightTypes type;
 @property unsigned short flags;
@@ -129,8 +129,6 @@ enum	// static flags
 
 -(void)setTag:(short)v;
 -(void)setTagObject:(PhTag *)value;
-
-// *****************   Get Accsessors   *****************
 
 -(short)functionForState:(short)i;
 -(short)periodForState:(short)i;

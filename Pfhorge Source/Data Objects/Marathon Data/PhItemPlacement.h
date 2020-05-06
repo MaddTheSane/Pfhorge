@@ -30,14 +30,15 @@
 
 #define MAXIMUM_OBJECT_TYPES 64
 
-NS_ENUM(unsigned short) // flags for object_frequency_definition
+//! flags for object_frequency_definition
+typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 {
 	_reappears_in_random_location= 0x0001
 };
 
 @interface PhItemPlacement : LEMapStuffParent <NSCoding>
 {
-	unsigned short flags;
+	PhItemPlacementFlags flags;
 	
 	short initial_count;   // number that initially appear. can be greater than maximum_count
 	short minimum_count;   // this number of objects will be maintained.
@@ -50,29 +51,29 @@ NS_ENUM(unsigned short) // flags for object_frequency_definition
 + (PhItemPlacement *)itemPlacementObjWithDefaults;
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 - (void)adjustTheInitalCountBy:(int)value;
 
-// ************************** Get Accsessors *************************
-- (unsigned short)getFlags;
+// ************************** Accsessors *************************
+@property PhItemPlacementFlags flags;
 	
-- (short)getInitial_count;
-- (short)getMinimum_count;
-- (short)getMaximum_count;
+- (short)initialCount;
+- (short)minimumCount;
+- (short)maximumCount;
 	
-- (short)getRandom_count;
-- (unsigned short)getRandom_chance;
+- (short)randomCount;
+- (unsigned short)randomChance;
 
 // ************************** Set Accsessors *************************
-- (void)setFlags:(unsigned short)v;
+- (void)setFlags:(PhItemPlacementFlags)v;
 
-- (void)setInitial_count:(short)v;
-- (void)setMinimum_count:(short)v;
-- (void)setMaximum_count:(short)v;
+- (void)setInitialCount:(short)v;
+- (void)setMinimumCount:(short)v;
+- (void)setMaximumCount:(short)v;
 
-- (void)setRandom_count:(short)v;
-- (void)setRandom_chance:(unsigned short)v;
+- (void)setRandomCount:(short)v;
+- (void)setRandomChance:(unsigned short)v;
 
 @end

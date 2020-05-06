@@ -135,15 +135,15 @@
 
 -(void)setFlags:(unsigned short)v { flags = v; }
 
--(void)setSound_index:(short)v { sound_index = v; }
+-(void)setSoundIndex:(short)v { sound_index = v; }
 -(void)setVolume:(short)v { volume = v; }
 
 // *****************   Get Accsessors   *****************
 
--(unsigned short)getFlags { return flags; }
+-(unsigned short)flags { return flags; }
 
--(short)getSound_index { return sound_index; }
--(short)getVolume { return volume; }
+-(short)soundIndex { return sound_index; }
+-(short)volume { return volume; }
 
  // **************************  Overriden Standard Methods  *************************
 

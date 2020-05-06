@@ -66,7 +66,7 @@
 - (void) encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
-// *****************   Set Accsessors   *****************
+// *****************   Accsessors   *****************
 
 -(void)setGroup:(PhNoteGroup *)grp;
 
@@ -92,12 +92,12 @@
 -(PhNoteGroup *)group;
 -(PhNoteGroup *)getGroup;
 
--(short)getType;
+-(short)type;
 
 -(NSPoint)getLocation;
 -(NSPoint)getLocationAdjusted;
 
--(short)getPolygon_index;
+-(short)polygonIndex;
 -(LEPolygon *)getPolygon_object;
 - (LEPolygon *)polygon;
 

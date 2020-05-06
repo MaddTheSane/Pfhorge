@@ -153,15 +153,15 @@
 - (void)updateUserInterface
 {
     PhItemPlacement *theSelectedObj = [self selectedObject];
-    unsigned short flags = [theSelectedObj getFlags];
+    unsigned short flags = [theSelectedObj flags];
     ///IBOutlet NSTableView *theTableView;
     
-    int randomChancePercent = ((int)((((float)[theSelectedObj getRandom_chance]) / 65535) * 100));
+    int randomChancePercent = ((int)((((float)[theSelectedObj randomChance]) / 65535) * 100));
     
-    [initalCountTB setIntValue:[theSelectedObj getInitial_count]];
-    [maxCountTB setIntValue:[theSelectedObj getMaximum_count]];
-    [minCountTB setIntValue:[theSelectedObj getMinimum_count]];
-    [totalCountTB setIntValue:[theSelectedObj getRandom_count]];
+    [initalCountTB setIntValue:[theSelectedObj initialCount]];
+    [maxCountTB setIntValue:[theSelectedObj maximumCount]];
+    [minCountTB setIntValue:[theSelectedObj minimumCount]];
+    [totalCountTB setIntValue:[theSelectedObj randomCount]];
     
     [appearenceTB setIntValue:randomChancePercent];
     [appearenceSlider setIntValue:randomChancePercent];
@@ -186,32 +186,32 @@
 
 - (IBAction)initalCountTBChanged:(id)sender
 {
-    [[self selectedObject] setInitial_count:[sender intValue]];
+    [[self selectedObject] setInitialCount:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)maxCountTBChanged:(id)sender
 {
-    [[self selectedObject] setMaximum_count:[sender intValue]];
+    [[self selectedObject] setMaximumCount:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)minCountTBChanged:(id)sender
 {
-    [[self selectedObject] setMinimum_count:[sender intValue]];
+    [[self selectedObject] setMinimumCount:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)totalCountTBChanged:(id)sender
 {
-    [[self selectedObject] setRandom_count:[sender intValue]];
+    [[self selectedObject] setRandomCount:[sender intValue]];
     [theTableView reloadData];
 }
 
 - (IBAction)apperenceTBChanged:(id)sender
 {
     float thePrecentMultiplier = (((float)[sender intValue]) / 100);
-    [[self selectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
+    [[self selectedObject] setRandomChance:((unsigned short)(65535 * thePrecentMultiplier))];
     [appearenceSlider setIntValue:[sender intValue]];
     [theTableView reloadData];
 }
@@ -219,7 +219,7 @@
 - (IBAction)apperenceSliderChanged:(id)sender
 {
     float thePrecentMultiplier = (((float)[sender intValue]) / 100);
-    [[self selectedObject] setRandom_chance:((unsigned short)(65535 * thePrecentMultiplier))];
+    [[self selectedObject] setRandomChance:((unsigned short)(65535 * thePrecentMultiplier))];
     [appearenceTB setIntValue:[sender intValue]];
     // [theTableView reloadData];
 }
@@ -296,18 +296,18 @@
         else
             theCurNameObj = [theItemPlacmentObjects objectAtIndex:row];
         if 	([theColumIdentifier isEqualToString:@"Inital"])
-            return [NSNumber numberWithInt:[theCurNameObj getInitial_count]];
+            return [NSNumber numberWithInt:[theCurNameObj initialCount]];
         else if ([theColumIdentifier isEqualToString:@"Total"])
-            return [NSNumber numberWithInt:[theCurNameObj getRandom_count]];
+            return [NSNumber numberWithInt:[theCurNameObj randomCount]];
         else if ([theColumIdentifier isEqualToString:@"Max"])
-            return [NSNumber numberWithInt:[theCurNameObj getMaximum_count]];
+            return [NSNumber numberWithInt:[theCurNameObj maximumCount]];
         else if ([theColumIdentifier isEqualToString:@"Min"])
-            return [NSNumber numberWithInt:[theCurNameObj getMinimum_count]];
+            return [NSNumber numberWithInt:[theCurNameObj minimumCount]];
         else if ([theColumIdentifier isEqualToString:@"Percent"])
-            return [NSNumber numberWithInt:((int)((((float)[theCurNameObj getRandom_chance]) / 65535) * 100))];
+            return [NSNumber numberWithInt:((int)((((float)[theCurNameObj randomChance]) / 65535) * 100))];
         else if ([[col identifier] isEqualToString:@"Random"])
         {
-            if ([theCurNameObj getFlags] & _reappears_in_random_location)
+            if ([theCurNameObj flags] & _reappears_in_random_location)
                 return @"X";
             else
                 return @" ";

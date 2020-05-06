@@ -236,7 +236,7 @@
     return group;
 }
 
--(short)getType { return type; }
+-(short)type { return type; }
 
 -(NSPoint)getLocation { return location; }
 -(NSPoint)as32Point
@@ -256,7 +256,7 @@
     return locationAdj;
 }
 
--(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
+-(short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
 -(LEPolygon *)getPolygon_object { return polygon_object; }
 - (LEPolygon *)polygon { return polygon_object; }
 

@@ -214,7 +214,7 @@ struct platform_data2 /* 140 bytes */
 
 - (void)copyInDynamicPlatformData:(NSData *)theData at:(long)locationOfBytes;
 
-// ************************** Get Accsessors *************************
+// ************************** Accsessors *************************
 @property PhPlatformType type;
 @property short speed;
 @property short delay;
@@ -225,17 +225,6 @@ struct platform_data2 /* 140 bytes */
 @property (assign) id polygonObject;
 @property (nonatomic) short tag;
 @property (assign) PhTag *tagObject;
-
-// ************************** Set Accsessors *************************
-- (void)setType:(PhPlatformType)v;
-- (void)setSpeed:(short)v;
-- (void)setDelay:(short)v;
-- (void)setMaximumHeight:(short)v;
-- (void)setMinimumHeight:(short)v;
-- (void)setPolygonIndex:(short)v;
-- (void)setPolygonObject:(id)v;
-- (void)setTag:(short)v;
--(void)setTagObject:(PhTag *)value;
 
 // ************************** Inzlizations And Class Methods *************************
 
