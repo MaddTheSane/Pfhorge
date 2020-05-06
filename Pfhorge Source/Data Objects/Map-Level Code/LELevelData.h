@@ -395,7 +395,7 @@ enum {
 
 -(NSMutableArray<LESide*> *)getSides;
 -(NSMutableArray<PhLight*> *)getLights;
--(NSMutableArray<PhNoteGroup*> *)getNotes;
+-(NSMutableArray<PhAnnotationNote*> *)getNotes;
 -(NSMutableArray<PhMedia*> *)getMedia;
 -(NSMutableArray<PhAmbientSound*> *)getAmbientSounds;
 -(NSMutableArray<PhRandomSound*> *)getRandomSounds;

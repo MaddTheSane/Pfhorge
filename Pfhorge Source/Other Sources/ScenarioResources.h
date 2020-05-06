@@ -13,7 +13,7 @@
 Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 
 @interface ScenarioResources : NSObject {
-    NSMutableDictionary<NSString*, NSArray<Resource*>*>	*typeDict;
+    NSMutableDictionary<NSString*, NSMutableArray<Resource*>*>	*typeDict;
     
     NSString		*filename;
 }
@@ -32,5 +32,5 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 - (void)addResource:(Resource *)resource;
 - (void)removeResource:(Resource *)resource;
 
-- (NSMutableDictionary *)typeDict;
+- (NSMutableDictionary<NSString*, NSMutableArray<Resource*>*> *)typeDict;
 @end

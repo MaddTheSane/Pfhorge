@@ -105,7 +105,7 @@
 -(void)setTheLELevelDataST:(LELevelData *)theLevel;
 
 -(void)setTheMapLayersST:(NSArray *)theNSArray;
-
+-(void)setTheNoteTypesST:(NSArray *)theNSArray;
 -(void)setTheTerminalsST:(NSArray *)theNSArray;
 
 -(void)setAllObjectSTsFor:(LEMapStuffParent *)copy;

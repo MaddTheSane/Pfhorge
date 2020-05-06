@@ -26,7 +26,6 @@
 {
     FSRef			fsref;
     CFURLRef		url;
-    unichar			*uniBuffer;
     FSCatalogInfo	catInfo;
     ResType			restype;
     Handle			resource;
@@ -171,15 +170,13 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 {
     Handle			data;
     FSRef			fsref;
-    CFStringRef		string;
-    unichar			*uniBuffer;
     ResFileRefNum	refNum, saveNum;
     ResType			resType;
     
-    @autoreleasepool {
-    NSURL *url = [NSURL fileURLWithPath:fileName];
-    CFURLGetFSRef((CFURLRef)url, &fsref);
-    }
+	@autoreleasepool {
+		NSURL *url = [NSURL fileURLWithPath:fileName];
+		CFURLGetFSRef((CFURLRef)url, &fsref);
+	}
     
     saveNum = CurResFile();
     

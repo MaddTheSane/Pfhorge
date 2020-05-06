@@ -152,7 +152,7 @@
    
         
     
-    subpaths = [manager directoryContentsAtPath:projectDir];
+    subpaths = [manager contentsOfDirectoryAtPath:projectDir error:NULL];
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {

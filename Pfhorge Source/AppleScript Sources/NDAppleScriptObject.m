@@ -11,7 +11,7 @@
 #import "NDResourceFork.h"
 #import "NSAppleEventDescriptor+NDAppleScriptObject.h"
 
-const short		kScriptResourceID = 128;
+const ResID		kScriptResourceID = 128;
 const OSType	kFinderCreatorCode = 'MACS';
 
 static OSASendUPP				defaultSendProc = NULL;
@@ -29,7 +29,7 @@ static OSErr AppleEventSendProc( const AppleEvent *theAppleEvent, AppleEvent *re
 - (ComponentInstance)OSAComponent;
 - (OSAID)loadData:(NSData *)aData;
 
-- (OSAID)compiledScriptID;
+@property (readonly) OSAID compiledScriptID;
 - (OSAID)contextID;
 
 - (void)setSendProc;
@@ -39,6 +39,8 @@ static OSErr AppleEventSendProc( const AppleEvent *theAppleEvent, AppleEvent *re
 
 @interface NSString (NDAEDescCreation)
 + (id)stringWithAEDesc:(const AEDesc *)aDesc;
++ (id)stringWithUTF8AEDesc:(const AEDesc *)aDesc;
++ (id)stringWithCStringAEDesc:(const AEDesc *)aDesc;
 @end
 
 @interface NSArray (NDAEDescCreation)
@@ -75,10 +77,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)compileExecuteString:(NSString *) aString
 {
-	OSAID			theResultID;
+	OSAID		theResultID;
 	AEDesc		theResultDesc = { typeNull, NULL },
-					theScriptDesc = { typeNull, NULL };
-	id				theResultObject = nil;
+				theScriptDesc = { typeNull, NULL };
+	id			theResultObject = nil;
 
 	if( (AECreateDesc( typeChar, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
 	{
@@ -131,8 +133,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (void)closeDefaultComponent
 {
-	if( defaultOSAComponent != NULL )
+	if( defaultOSAComponent != NULL ) {
 		CloseComponent( defaultOSAComponent );
+		defaultOSAComponent = NULL;
+	}
 }
 
 /*
@@ -228,7 +232,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 	else
 	{
-		self = nil;
+		self = [self initWithData:[NSData dataWithContentsOfURL:aURL] component:aComponent];
 	}
 	
 	return self;
@@ -331,10 +335,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
 - (NSData *)data
 {
 	NSData				* theData = nil;
-	OSStatus				theError;
+	OSStatus			theError;
 	AEDesc				theDesc = { typeNull, NULL };
 	
-	theError = (OSErr)OSAStore( [self OSAComponent], compiledScriptID, typeOSAGenericStorage, kOSAModeNull, &theDesc );
+	theError = OSAStore( [self OSAComponent], compiledScriptID, typeOSAGenericStorage, kOSAModeNull, &theDesc );
 	if( noErr == theError )
 	{
 		theData = [NSData dataWithAEDesc: &theDesc];
@@ -386,7 +390,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 - (BOOL)executeEvent:(NSAppleEventDescriptor *)anEvent
 {
 	AEDesc				theEventDesc;
-	BOOL					theSuccess= NO;
+	BOOL				theSuccess= NO;
 	
 	if( [anEvent AEDesc:&theEventDesc] )
 	{
@@ -433,8 +437,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (NSAppleEventDescriptor *)resultAppleEventDescriptor
 {
-	AEDesc									theResultDesc = { typeNull, NULL };
-	NSAppleEventDescriptor				* theResult = nil;
+	AEDesc					theResultDesc = { typeNull, NULL };
+	NSAppleEventDescriptor	* theResult = nil;
 	
 	if( OSACoerceToDesc( [self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr )
 	{
@@ -492,8 +496,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (NSString *)resultAsString
 {
-	AEDesc					theResultDesc = { typeNull, NULL };
-	NSString					* theResult = nil;
+	AEDesc		theResultDesc = { typeNull, NULL };
+	NSString	* theResult = nil;
 
 	if( OSADisplay( [self OSAComponent], resultingValueID, typeChar, kOSAModeNull, &theResultDesc ) == noErr )
 	{
@@ -567,8 +571,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
 {
-	AppleEvent						theAppleEvent;
-	NSAppleEventDescriptor		* theReplyAppleEventDesc = nil;
+	AppleEvent				theAppleEvent;
+	NSAppleEventDescriptor	* theReplyAppleEventDesc = nil;
 
 	if( [theAppleEventDescriptor AEDesc:&theAppleEvent] )
 	{
@@ -705,41 +709,45 @@ static ComponentInstance		defaultOSAComponent = NULL;
 
 	switch(aDesc->descriptorType)
 	{
-		case typeBoolean:						//	1-byte Boolean value
-		case typeSInt16:				//	16-bit integer
-//		case typeSMInt:							//	16-bit integer
-		case typeSInt32:				//	32-bit integer
-//		case typeInteger:							//	32-bit integer
-		case typeIEEE32BitFloatingPoint:					//	SANE single
-//		case typeSMFloat:							//	SANE single
-		case typeIEEE64BitFloatingPoint:						//	SANE double
-//		case typeLongFloat:						//	SANE double
-//		case typeExtended:						//	SANE extended
-//		case typeComp:							//	SANE comp
+		case typeBoolean:					//	1-byte Boolean value
+		case typeSInt16:					//	16-bit integer
+		case typeSInt32:					//	32-bit integer
+		case typeSInt64:					//	64-bit integer
+		case typeIEEE32BitFloatingPoint:	//	SANE single
+		case typeIEEE64BitFloatingPoint:	//	SANE double
+		case typeUInt16:					//	unsigned 16-bit integer
 		case typeUInt32:					//	unsigned 32-bit integer
-		case typeTrue:							//	TRUE Boolean value
+		case typeUInt64:					//	unsigned 64-bit integer
+		case typeTrue:						//	TRUE Boolean value
 		case typeFalse:						//	FALSE Boolean value
 			theResult = [NSNumber numberWithAEDesc:aDesc];
 			break;
-		case typeChar:							//	unterminated string
+		case typeChar:						//	unterminated string
 			theResult = [NSString stringWithAEDesc:aDesc];
 			break;
-		case typeAEList:						//	list of descriptor records
+		case typeCString:					//	null-terminated string
+			theResult = [NSString stringWithCStringAEDesc:aDesc];
+			break;
+		case typeUTF8Text:
+			theResult = [NSString stringWithUTF8AEDesc:aDesc];
+			break;
+		case typeAEList:					//	list of descriptor records
 			theResult = [NSArray arrayWithAEDesc:aDesc];
 			break;
 		case typeAERecord:					//	list of keyword-specified 
 			theResult = [NSDictionary dictionaryWithAEDesc:aDesc];
 			break;
-		case typeAppleEvent:						//	Apple event record
+		case typeAppleEvent:				//	Apple event record
 			theResult = [NSAppleEventDescriptor appleEventDescriptorWithAEDesc:aDesc];
 			break;
-		case typeAlias:							//	alias record
+		case typeAlias:						// alias record
 		case typeFileURL:
+		case typeBookmarkData:				// file bookmark
 			theResult = [NSURL URLWithAEDesc:aDesc];
 			break;
-//		case typeEnumerated:					//	enumerated data
+//		case typeEnumerated:					// enumerated data
 //			break;
-		case cScript:							// script data
+		case cScript:						// script data
 			theResult = [NDAppleScriptObject appleScriptObjectWithAEDesc:aDesc];
 			break;
 		case cEventIdentifier:
@@ -789,7 +797,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 - (OSAID)loadData:(NSData *)aData
 {
 	AEDesc		theScriptDesc = { typeNull, NULL };
-	OSAID			theCompiledScript = kOSANullScript;
+	OSAID		theCompiledScript = kOSANullScript;
 
 	if( AECreateDesc( typeOSAGenericStorage, [aData bytes], [aData length], &theScriptDesc ) == noErr )
 	{
@@ -803,10 +811,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * - compiledScriptID
  */
-- (OSAID)compiledScriptID
-{
-	return compiledScriptID;
-}
+@synthesize compiledScriptID;
 
 /*
  * - contextID
@@ -837,51 +842,51 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		NSLog(@"Could not set AppleScript send procedure");
 	}
 }
-	/*
-	 * function AppleEventSendProc
-	 */
-	OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AESendMode aSendMode, AESendPriority aSendPriority, SInt32 aTimeOutInTicks, AEIdleUPP anIdleProc, AEFilterUPP aFilterProc, SRefCon aRefCon )
+
+/*
+ * function AppleEventSendProc
+ */
+OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AESendMode aSendMode, AESendPriority aSendPriority, SInt32 aTimeOutInTicks, AEIdleUPP anIdleProc, AEFilterUPP aFilterProc, SRefCon aRefCon )
+{
+	NSAppleEventDescriptor		* theAppleEventDescriptor = nil,
+	* theAppleEventDescReply;
+	
+	theAppleEventDescriptor = [NSAppleEventDescriptor appleEventDescriptorWithAEDesc:anAppleEvent];
+	
+	if( theAppleEventDescriptor )
 	{
-		NSAppleEventDescriptor		* theAppleEventDescriptor = nil,
-											* theAppleEventDescReply;
-
-		theAppleEventDescriptor = [NSAppleEventDescriptor appleEventDescriptorWithAEDesc:anAppleEvent];
-	
-		if( theAppleEventDescriptor )
+		id								theSendTarget;
+		//static BOOL					hasFirstEventBeenSent = NO;
+		
+		/*if( [theAppleEventDescriptor isTargetCurrentProcess] && !hasFirstEventBeenSent )
+		 {
+		 hasFirstEventBeenSent = YES;
+		 [[NSNotificationCenter defaultCenter] postNotificationName:NSAppleEventManagerWillProcessFirstEventNotification object:[NSAppleEventManager sharedAppleEventManager]];
+		 }*/
+		
+		theSendTarget = [(__bridge id)aRefCon appleEventSendTarget];
+		
+		if( theSendTarget != nil )
 		{
-			id								theSendTarget;
-			//static BOOL					hasFirstEventBeenSent = NO;
-
-			/*if( [theAppleEventDescriptor isTargetCurrentProcess] && !hasFirstEventBeenSent )
-			{
-				hasFirstEventBeenSent = YES;
-				[[NSNotificationCenter defaultCenter] postNotificationName:NSAppleEventManagerWillProcessFirstEventNotification object:[NSAppleEventManager sharedAppleEventManager]];
-			}*/
-
-			theSendTarget = [(__bridge id)aRefCon appleEventSendTarget];
-			
-			if( theSendTarget != nil )
-			{
-				theAppleEventDescReply = [theSendTarget sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
-			}
-			else
-			{
-				theAppleEventDescReply = [(__bridge id)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
-			}
-			
-			if( ![theAppleEventDescReply AEDesc:(AEDesc*)aReply] )
-				theAppleEventDescriptor = nil;			// ERROR
+			theAppleEventDescReply = [theSendTarget sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
 		}
-	
-		return ( theAppleEventDescriptor == nil ) ? errOSASystemError : noErr;
+		else
+		{
+			theAppleEventDescReply = [(__bridge id)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
+		}
+		
+		if( ![theAppleEventDescReply AEDesc:(AEDesc*)aReply] )
+			theAppleEventDescriptor = nil;			// ERROR
 	}
+	
+	return ( theAppleEventDescriptor == nil ) ? errOSASystemError : noErr;
+}
 
 /*
  * setActiveProc
  */
 - (void)setActiveProc
 {
-	
 	if( activeTarget != nil )
 	{
 		if( defaultActiveProcPtr == NULL )
@@ -904,13 +909,14 @@ static ComponentInstance		defaultOSAComponent = NULL;
 			NSLog(@"Could not restore default AppleScript activation procedure.");
 	}
 }
-	/*
-	* function AppleScriptActiveProc
-	*/
-	OSErr AppleScriptActiveProc( SRefCon aRefCon )
-	{
-		return [(__bridge id)aRefCon appleScriptActive] ? noErr : errOSASystemError;
-	}
+
+/*
+ * function AppleScriptActiveProc
+ */
+OSErr AppleScriptActiveProc( SRefCon aRefCon )
+{
+	return [(__bridge id)aRefCon appleScriptActive] ? noErr : errOSASystemError;
+}
 
 @end
 
@@ -928,7 +934,26 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	return ( theTextData == nil ) ? nil : [[NSString alloc] initWithData:theTextData encoding:NSMacOSRomanStringEncoding];
 }
 
-@end
++ (id)stringWithUTF8AEDesc:(const AEDesc *)aDesc
+{
+	NSData			* theTextData;
+	
+	theTextData = [NSData dataWithAEDesc: aDesc];
+	
+	return ( theTextData == nil ) ? nil : [[NSString alloc] initWithData:theTextData encoding:NSUTF8StringEncoding];
+}
+
++ (id)stringWithCStringAEDesc:(const AEDesc *)aDesc
+{
+	NSData			* theTextData;
+	
+	theTextData = [NSData dataWithAEDesc: aDesc];
+	
+	//TODO: trim last byte if \0.
+	NSString *theText = ( theTextData == nil ) ? nil : [[NSString alloc] initWithData:theTextData encoding:NSMacOSRomanStringEncoding];
+	return theText;
+
+}@end
 
 @implementation NSArray (NDAEDescCreation)
 
@@ -1085,11 +1110,32 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theInstance = [NSNumber numberWithUnsignedInt: theInteger];
 			break;
 		}
+		case typeUInt16:					//	unsigned 16-bit integer
+		{
+			unsigned short		theInteger;
+			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned short)) == noErr )
+				theInstance = @(theInteger);
+			break;
+		}
+		case typeUInt64:					//	unsigned 64-bit integer
+		{
+			unsigned long long theInteger;
+			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned long long)) == noErr )
+				theInstance = @(theInteger);
+			break;
+		}
+		case typeSInt64:					//	signed 64-bit integer
+		{
+			long long		theInteger;
+			if( AEGetDescData(aDesc, &theInteger, sizeof(long long)) == noErr )
+				theInstance = @(theInteger);
+			break;
+		}
 		case typeTrue:							//	TRUE Boolean value
-			theInstance = [NSNumber numberWithBool:YES];
+			theInstance = @YES;
 			break;
 		case typeFalse:						//	FALSE Boolean value
-			theInstance = [NSNumber numberWithBool:NO];
+			theInstance = @NO;
 			break;
 		default:
 			theInstance = nil;
@@ -1127,6 +1173,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 			theURL = [NSURL URLByResolvingBookmarkData:bookData options:0 relativeToURL:nil bookmarkDataIsStale:NULL error:NULL];
 			break;
 		}
+			
 		case typeBookmarkData:
 		{
 			NSMutableData *mutDat = [NSMutableData dataWithLength:theSize];

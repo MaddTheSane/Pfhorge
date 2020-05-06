@@ -1513,19 +1513,9 @@
 				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				MARKETING_VERSION = 0.96;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -1545,19 +1535,9 @@
 				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				MARKETING_VERSION = 0.96;
-				OTHER_CFLAGS = (
-					"-Wno-selector",
-					"-Wno-undeclared-selector",
-					"-Wno-unused",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};

@@ -16,11 +16,11 @@ static int				color_count = 0;
 static unsigned char	*pixels = NULL;
 
 
-NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap/*, unsigned char *pixelsOut*/);
-NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned char *pixels);
-void write_word(unsigned short w, NSMutableData *theData);
-void write_dword(unsigned int w, NSMutableData *theData);
-void write_c(unsigned char w, NSMutableData *theData);
+static NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap/*, unsigned char *pixelsOut*/);
+static NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned char *pixels);
+static void write_word(unsigned short w, NSMutableData *theData);
+static void write_dword(unsigned int w, NSMutableData *theData);
+static void write_c(unsigned char w, NSMutableData *theData);
 
 NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *theShapesPath)
 {
@@ -197,7 +197,6 @@ void write_word(unsigned short w, NSMutableData *theData)
 {
 	write_c(w & 0x00ff, theData);
 	write_c(w >> 8, theData);
-        //[theData appendBytes:&w length:2];
 }
 
 void write_dword(unsigned int w, NSMutableData *theData)
@@ -206,12 +205,9 @@ void write_dword(unsigned int w, NSMutableData *theData)
 	write_c((w >> 8) & 0xff, theData);
 	write_c((w >> 16) & 0xff, theData);
 	write_c((w >> 24) & 0xff, theData);
-        //[theData appendBytes:&w length:4];
 }
 
 void write_c(unsigned char w, NSMutableData *theData)
 {
     [theData appendBytes:&w length:1];
 }
-
-
