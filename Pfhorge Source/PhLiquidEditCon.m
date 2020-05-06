@@ -139,20 +139,20 @@
         return;
     }
     
-    [typeMenu selectItemAtIndex:[curMedia getType]];
-    [tideLightMenu selectItemAtIndex:[[curMedia getLight_object] getIndex]];
-    [transferModeMenu selectItemAtIndex:[curMedia getTransfer_mode]];
+    [typeMenu selectItemAtIndex:[curMedia type]];
+    [tideLightMenu selectItemAtIndex:[[curMedia lightObject] getIndex]];
+    [transferModeMenu selectItemAtIndex:[curMedia transferMode]];
     
-    [flowTB setIntValue:[curMedia getCurrent_magnitude]];
-    [angleTB setIntValue:[curMedia getCurrent_direction]];
-    [highTideMaxTB setIntValue:[curMedia getHigh]];
-    [lowTideMinTB setIntValue:[curMedia getLow]];
+    [flowTB setIntValue:[curMedia currentMagnitude]];
+    [angleTB setIntValue:[curMedia currentDirection]];
+    [highTideMaxTB setIntValue:[curMedia high]];
+    [lowTideMinTB setIntValue:[curMedia low]];
     
-    [originXTB setIntValue:[curMedia getOrigin].x];
-    [originYTB setIntValue:[curMedia getOrigin].y];
-    [heightTB setIntValue:[curMedia getHeight]];
-    [minLightIntensityTB setObjectValue:[NSNumber numberWithLong:[curMedia getMinimum_light_intensity]]];
-    [textureTB setIntValue:[curMedia getTexture]];
+    [originXTB setIntValue:[curMedia origin].x];
+    [originYTB setIntValue:[curMedia origin].y];
+    [heightTB setIntValue:[curMedia height]];
+    [minLightIntensityTB setObjectValue:[NSNumber numberWithLong:[curMedia minimumLightIntensity]]];
+    [textureTB setIntValue:[curMedia texture]];
 
 }
 
@@ -169,12 +169,12 @@
     
     [curMedia setType:[typeMenu indexOfSelectedItem]];
     
-    [curMedia setLight_object:[theLights objectAtIndex:[tideLightMenu indexOfSelectedItem]]];
+    [curMedia setLightObject:[theLights objectAtIndex:[tideLightMenu indexOfSelectedItem]]];
     
-    [curMedia setTransfer_mode:[transferModeMenu indexOfSelectedItem]];
+    [curMedia setTransferMode:[transferModeMenu indexOfSelectedItem]];
     
-    [curMedia setCurrent_magnitude:[flowTB intValue]];
-    [curMedia setCurrent_direction:[angleTB intValue]];
+    [curMedia setCurrentMagnitude:[flowTB intValue]];
+    [curMedia setCurrentDirection:[angleTB intValue]];
     [curMedia setHigh:[highTideMaxTB intValue]];
     [curMedia setLow:[lowTideMinTB intValue]];
     
@@ -185,7 +185,7 @@
     [curMedia setHeight:[heightTB intValue]];
     
     // Might want to get NSNumber Object value becuase of long, or double/float???
-    [curMedia setMinimum_light_intensity:[minLightIntensityTB intValue]];
+    [curMedia setMinimumLightIntensity:[minLightIntensityTB intValue]];
     [curMedia setTexture:[textureTB intValue]];
     
 }

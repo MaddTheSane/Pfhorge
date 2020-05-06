@@ -284,20 +284,10 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     return self;
 }
 
--(NSMutableArray *)theSections { return theSections; }
+@synthesize theSections;
 -(BOOL)doYouHaveThisSection:(TerminalSection *)theSec { return [theSections containsObject:theSec]; }
--(unsigned short)flags { return flags; }
--(short)lineCount { return lineCount; }
-
--(void)setTheSections:(NSMutableArray *)theArray
-{
-    [theSections release];
-    theSections = theArray;
-    [theSections retain];
-}
-
--(void)setFlags:(unsigned short)theNewFlags { flags = theNewFlags; }
--(void)setLineCount:(short)theNewLineCount { lineCount = theNewLineCount; }
+@synthesize flags;
+@synthesize lineCount;
 
 -(NSData *)getTerminalAsMarathonData
 {

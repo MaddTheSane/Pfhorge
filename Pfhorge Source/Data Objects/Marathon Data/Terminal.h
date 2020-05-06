@@ -48,7 +48,7 @@ typedef struct term_head {
     /*! the size (header included) of this terminal */
 	short size;
     /*! flags, see above */
-	unsigned short PhTerminalFlags;
+	PhTerminalFlags flags;
     /*! the number of text lines to show at once (I think).
     always 22 in Bungie's levels.absent in the preview */
 	short line_count;
@@ -62,22 +62,18 @@ typedef struct term_head {
 
 @interface Terminal : PhAbstractName <NSCoding>
 {
-    NSMutableArray *theSections;
-    unsigned short flags;
+    NSMutableArray<TerminalSection*> *theSections;
+    PhTerminalFlags flags;
     short lineCount;
     BOOL textEncoded;
 }
 
 -(id)initWithTerminalData:(NSData *)data terminalNumber:(int)theTerminalNumber withLevel:(LELevelData *)levelDataObj;
 
--(NSMutableArray<TerminalSection*> *)theSections;
+@property (retain) NSMutableArray<TerminalSection*> *theSections;
 -(BOOL)doYouHaveThisSection:(TerminalSection *)theSec;
--(PhTerminalFlags)flags;
--(short)lineCount;
-
--(void)setTheSections:(NSMutableArray<TerminalSection*> *)theArray;
--(void)setFlags:(PhTerminalFlags)theNewFlags;
--(void)setLineCount:(short)theNewLineCount;
+@property PhTerminalFlags flags;
+@property short lineCount;
 
 -(NSData *)getTerminalAsMarathonData;
 

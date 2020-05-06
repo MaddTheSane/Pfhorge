@@ -205,7 +205,7 @@
 -(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight
 {
     if (light_object == theLightInQuestion)
-        [self setLight_object:setToLight];
+        [self setLightObject:setToLight];
 }
 
 
@@ -242,7 +242,7 @@
 
 -(void) updateObjectsFromIndexes
 {
-    //[self setLight_index:[self getLight_index]];
+    //[self setLightIndex:[self lightIndex]];
 }
 
 -(void)update
@@ -257,7 +257,7 @@
 -(void)setType:(short)v { type = v; }
 -(void)setFlags:(unsigned short)v { flags = v; }
 
--(void)setLight_index:(short)v
+-(void)setLightIndex:(short)v
 {
     //light_index = v;
     if (v == -1)
@@ -265,13 +265,13 @@
     else if (everythingLoadedST)
         light_object = [theMapLightsST objectAtIndex:v];
 }
--(void)setLight_object:(id)v
+-(void)setLightObject:(id)v
 {
     light_object = v;
 }
 
--(void)setCurrent_direction:(short)v { current_direction = v; }
--(void)setCurrent_magnitude:(short)v { current_magnitude = v; }
+-(void)setCurrentDirection:(short)v { current_direction = v; }
+-(void)setCurrentMagnitude:(short)v { current_magnitude = v; }
 
 -(void)setLow:(short)v { low = v; }
 -(void)setHigh:(short)v { high = v; }
@@ -279,32 +279,32 @@
 -(void)setOrigin:(NSPoint)v { origin = v; }
 -(void)setHeight:(short)v { height = v; }
 
--(void)setMinimum_light_intensity:(int)v { minimum_light_intensity = v; } // ??? Object ???
+-(void)setMinimumLightIntensity:(int)v { minimum_light_intensity = v; } // ??? Object ???
 -(void)setTexture:(short)v { texture = v; }
--(void)setTransfer_mode:(short)v { transfer_mode = v; }
+-(void)setTransferMode:(short)v { transfer_mode = v; }
 
 // *****************   Get Accsessors   *****************
 #pragma mark -
 #pragma mark ********* Get Accsessors *********
 
--(short)getType { return type; }
--(unsigned short)getFlags { return flags; }
+-(short)type { return type; }
+-(unsigned short)flags { return flags; }
 
--(short)getLight_index { return (light_object == nil) ? -1 : [light_object getIndex]; }
--(id)getLight_object { return light_object; }
+-(short)lightIndex { return (light_object == nil) ? -1 : [light_object getIndex]; }
+-(id)lightObject { return light_object; }
 
--(short)getCurrent_direction { return current_direction; }
--(short)getCurrent_magnitude { return current_magnitude; }
+-(short)currentDirection { return current_direction; }
+-(short)currentMagnitude { return current_magnitude; }
 
--(short)getLow { return low; }
--(short)getHigh { return high; }
+-(short)low { return low; }
+-(short)high { return high; }
 
--(NSPoint)getOrigin { return origin; }
--(short)getHeight { return height; }
+-(NSPoint)origin { return origin; }
+-(short)height { return height; }
 
--(int)getMinimum_light_intensity { return minimum_light_intensity; } // ??? Object ???
--(short)getTexture { return texture; }
--(short)getTransfer_mode { return transfer_mode; }
+-(int)minimumLightIntensity { return minimum_light_intensity; } // ??? Object ???
+-(short)texture { return texture; }
+-(short)transferMode { return transfer_mode; }
 
 // ************************** Inzlizations And Class Methods *************************
 #pragma mark -

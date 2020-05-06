@@ -2444,10 +2444,10 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         [theObj setFlags:[self getUnsignedShort]];
         
-        [theObj setLight_object:[self getShortObjectFrom:theLightArray]];
+        [theObj setLightObject:[self getShortObjectFrom:theLightArray]];
         
-        [theObj setCurrent_direction:[self getShort]];
-        [theObj setCurrent_magnitude:[self getShort]];
+        [theObj setCurrentDirection:[self getShort]];
+        [theObj setCurrentMagnitude:[self getShort]];
         
         [theObj setLow:[self getShort]];
         [theObj setHigh:[self getShort]];
@@ -2455,9 +2455,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setOrigin:NSMakePoint([self getShort], [self getShort])];
         [theObj setHeight:[self getShort]];
         
-        [theObj setMinimum_light_intensity:[self getLong]]; // ??? Should Make Object Pointer ???
+        [theObj setMinimumLightIntensity:[self getLong]]; // ??? Should Make Object Pointer ???
         [theObj setTexture:[self getShort]];
-        [theObj setTransfer_mode:[self getShort]];
+        [theObj setTransferMode:[self getShort]];
         
         theCursor+=4; // Skip the 2 unused shorts
     }
@@ -3204,22 +3204,22 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getType]];
 	[self saveUnsignedShort:[currentObj getFlags]];
 	
-	[self saveShort:[currentObj getLight_index]];
+	[self saveShort:[currentObj lightIndex]];
 	
-	[self saveShort:[currentObj getCurrent_direction]];
-	[self saveShort:[currentObj getCurrent_magnitude]];
+	[self saveShort:[currentObj currentDirection]];
+	[self saveShort:[currentObj currentMagnitude]];
 	
-	[self saveShort:[currentObj getLow]];
-	[self saveShort:[currentObj getHigh]];
+	[self saveShort:[currentObj low]];
+	[self saveShort:[currentObj high]];
 	
-	[self saveShort:[currentObj getOrigin].x];
-	[self saveShort:[currentObj getOrigin].y];
+	[self saveShort:[currentObj origin].x];
+	[self saveShort:[currentObj origin].y];
 	
-	[self saveShort:[currentObj getHeight]];
+	[self saveShort:[currentObj height]];
 	
-	[self saveLong:[currentObj getMinimum_light_intensity]]; // ??? Should Make Object Pointer ???
-	[self saveShort:[currentObj getTexture]];
-	[self saveShort:[currentObj getTransfer_mode]];
+	[self saveLong:[currentObj minimumLightIntensity]]; // ??? Should Make Object Pointer ???
+	[self saveShort:[currentObj texture]];
+	[self saveShort:[currentObj transferMode]];
 	
 	[self saveEmptyBytes:4]; //Skip the unused part... :)
     }

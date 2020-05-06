@@ -772,10 +772,10 @@ void MapManager::ReloadLevel() {
             PhMedia *theLiquid = [theLiquids objectAtIndex:iq];
             LiquidInfo &Liquid = LiquidList[iq];
             
-            Liquid.Type = [theLiquid getType];
-            Liquid.ControlLight = [theLiquid getLight_index];
-            Liquid.Low = [theLiquid getLow];
-            Liquid.High = [theLiquid getHigh];
+            Liquid.Type = [theLiquid type];
+            Liquid.ControlLight = [theLiquid lightIndex];
+            Liquid.Low = [theLiquid low];
+            Liquid.High = [theLiquid high];
             
             Liquid.TransferMode = tNormal;
             Liquid.Texture = (((unsigned short)LiquidTextureSet[Liquid.Type]) << 8) +

@@ -35,7 +35,7 @@ enum // media  types
 	_media_lava,
 	_media_goo,
 	_media_sewage,
-        _media_jjaro,
+	_media_jjaro,
 	NUMBER_OF_MEDIA_TYPES
 };
 
@@ -118,11 +118,11 @@ enum	// media sounds
 -(void)setType:(short)v;
 -(void)setFlags:(unsigned short)v;
 
--(void)setLight_index:(short)v;
--(void)setLight_object:(id)v;
+-(void)setLightIndex:(short)v;
+-(void)setLightObject:(id)v;
 
--(void)setCurrent_direction:(short)v;
--(void)setCurrent_magnitude:(short)v;
+-(void)setCurrentDirection:(short)v;
+-(void)setCurrentMagnitude:(short)v;
 
 -(void)setLow:(short)v;
 -(void)setHigh:(short)v;
@@ -130,30 +130,30 @@ enum	// media sounds
 -(void)setOrigin:(NSPoint)v;
 -(void)setHeight:(short)v;
 
--(void)setMinimum_light_intensity:(int)v; // ??? Object ???
+-(void)setMinimumLightIntensity:(int)v; // ??? Object ???
 -(void)setTexture:(short)v;
--(void)setTransfer_mode:(short)v;
+-(void)setTransferMode:(short)v;
 
 // *****************   Get Accsessors   *****************
 
--(short)getType;
--(unsigned short)getFlags;
+-(short)type;
+-(unsigned short)flags;
 
--(short)getLight_index;
--(id)getLight_object;
+-(short)lightIndex;
+-(id)lightObject;
 
--(short)getCurrent_direction;
--(short)getCurrent_magnitude;
+-(short)currentDirection;
+-(short)currentMagnitude;
 
--(short)getLow;
--(short)getHigh;
+-(short)low;
+-(short)high;
 
--(NSPoint)getOrigin;
--(short)getHeight;
+-(NSPoint)origin;
+-(short)height;
 
--(int)getMinimum_light_intensity; // ??? Object ???
--(short)getTexture;
--(short)getTransfer_mode;
+-(int)minimumLightIntensity; // ??? Object ???
+-(short)texture;
+-(short)transferMode;
 
 // ************************** Inzlizations And Class Methods *************************
 

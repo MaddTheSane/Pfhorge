@@ -31,13 +31,11 @@
 @interface PhAbstractName : LEMapStuffParent <NSCoding>
 {
     NSString *myName;
-    
-
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
--(void) encodeWithCoder:(NSCoder *)coder;
--(id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
