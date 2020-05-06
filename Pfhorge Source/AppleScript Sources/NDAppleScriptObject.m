@@ -140,7 +140,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)appleScriptObjectWithString:(NSString *) aString
 {
-	return [[[self alloc] initWithString:aString modeFlags:kOSAModeCompileIntoContext] autorelease];
+	return [[self alloc] initWithString:aString modeFlags:kOSAModeCompileIntoContext];
 }
 
 /*
@@ -148,7 +148,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)appleScriptObjectWithData:(NSData *) aData
 {
-	return [[[self alloc] initWithData:aData] autorelease];
+	return [[self alloc] initWithData:aData];
 }
 
 /*
@@ -156,7 +156,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)appleScriptObjectWithContentsOfFile:(NSString *) aPath
 {
-	return [[[self alloc] initWithContentsOfFile:aPath] autorelease];
+	return [[self alloc] initWithContentsOfFile:aPath];
 }
 
 /*
@@ -164,7 +164,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (id)appleScriptObjectWithContentsOfURL:(NSURL *) aURL
 {
-	return [[[self alloc] initWithContentsOfURL:aURL] autorelease];
+	return [[self alloc] initWithContentsOfURL:aURL];
 }
 
 
@@ -199,7 +199,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 	else
 	{
-		[self release];
 		self = nil;
 	}
 	
@@ -229,7 +228,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 	else
 	{
-		[self release];
 		self = nil;
 	}
 	
@@ -247,7 +245,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 	else
 	{
-		[self release];
 		self = nil;
 	}
 	
@@ -281,7 +278,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 
 		if( compiledScriptID == kOSANullScript )
 		{
-			[self release];
 			self = nil;
 		}
 	}
@@ -308,7 +304,6 @@ static ComponentInstance		defaultOSAComponent = NULL;
 
 		if( compiledScriptID == kOSANullScript )
 		{
-			[self release];
 			self = nil;
 		}
 	}
@@ -325,14 +320,9 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		OSADispose( [self OSAComponent], compiledScriptID );
 	if( resultingValueID != kOSANullScript )
 		OSADispose( [self OSAComponent], resultingValueID );
-		
-	[contextAppleScriptObject release];
-	[sendAppleEventTarget release];
-	[activeTarget release];
 
 	if( osaComponent != NULL )
 		CloseComponent( osaComponent );
-	[super dealloc];
 }
 
 /*
@@ -519,8 +509,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (void)setContextAppleScriptObject:(NDAppleScriptObject *)aAppleScriptObject
 {
-	[contextAppleScriptObject release];
-	contextAppleScriptObject = [aAppleScriptObject retain];
+	contextAppleScriptObject = aAppleScriptObject;
 }
 
 /*
@@ -699,7 +688,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	
 	theData = [NSData dataWithAEDesc: aDesc];
 
-	return ( theData == nil ) ? nil : [[[self alloc] initWithData:theData] autorelease];
+	return ( theData == nil ) ? nil : [[self alloc] initWithData:theData];
 }
 
 /*
@@ -843,7 +832,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		}
 	}
 
-	if( OSASetSendProc( [self OSAComponent], AppleEventSendProc, (SRefCon)self ) != noErr )
+	if( OSASetSendProc( [self OSAComponent], AppleEventSendProc, (__bridge SRefCon)self ) != noErr )
 	{
 		NSLog(@"Could not set AppleScript send procedure");
 	}
@@ -869,7 +858,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				[[NSNotificationCenter defaultCenter] postNotificationName:NSAppleEventManagerWillProcessFirstEventNotification object:[NSAppleEventManager sharedAppleEventManager]];
 			}*/
 
-			theSendTarget = [(id)aRefCon appleEventSendTarget];
+			theSendTarget = [(__bridge id)aRefCon appleEventSendTarget];
 			
 			if( theSendTarget != nil )
 			{
@@ -877,7 +866,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 			}
 			else
 			{
-				theAppleEventDescReply = [(id)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
+				theAppleEventDescReply = [(__bridge id)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
 			}
 			
 			if( ![theAppleEventDescReply AEDesc:(AEDesc*)aReply] )
@@ -906,7 +895,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		
 		NSAssert( sizeof(long) == sizeof(id), @"This method works by assuming type long is the same size as type id" );
 
-		if( OSASetActiveProc( [self OSAComponent], AppleScriptActiveProc , (SRefCon)activeTarget ) != noErr )
+		if( OSASetActiveProc( [self OSAComponent], AppleScriptActiveProc , (__bridge SRefCon)activeTarget ) != noErr )
 			NSLog(@"Could not set AppleScript activation procedure.");
 	}
 	else
@@ -920,7 +909,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	*/
 	OSErr AppleScriptActiveProc( SRefCon aRefCon )
 	{
-		return [(id)aRefCon appleScriptActive] ? noErr : errOSASystemError;
+		return [(__bridge id)aRefCon appleScriptActive] ? noErr : errOSASystemError;
 	}
 
 @end
@@ -936,7 +925,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	
 	theTextData = [NSData dataWithAEDesc: aDesc];
 	
-	return ( theTextData == nil ) ? nil : [[[NSString alloc]initWithData:theTextData encoding:NSMacOSRomanStringEncoding] autorelease];
+	return ( theTextData == nil ) ? nil : [[NSString alloc] initWithData:theTextData encoding:NSMacOSRomanStringEncoding];
 }
 
 @end
@@ -1129,25 +1118,34 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	{
 		case typeAlias:							//	alias record
 		{
-			Handle			theAliasHandle;
-			FSRef				theTarget;
-			Boolean			theWasChanged;
+			NSMutableData *mutDat = [NSMutableData dataWithLength:theSize];
+			NSData *bookData;
 			
-			theAliasHandle = NewHandle( theSize );
-			HLock(theAliasHandle);
-			theError = AEGetDescData(aDesc, *theAliasHandle, theSize);
-			HUnlock(theAliasHandle);
-			if( theError == noErr  && FSResolveAlias( NULL, (AliasHandle)theAliasHandle, &theTarget, &theWasChanged ) == noErr )
-			{
-				theURL = [NSURL URLWithFSRef:&theTarget];
-			}
-	
-			DisposeHandle(theAliasHandle);
+			theError = AEGetDescData(aDesc, mutDat.mutableBytes, theSize);
+			bookData = CFBridgingRelease(CFURLCreateBookmarkDataFromAliasRecord(kCFAllocatorDefault, (__bridge CFDataRef)mutDat));
+
+			theURL = [NSURL URLByResolvingBookmarkData:bookData options:0 relativeToURL:nil bookmarkDataIsStale:NULL error:NULL];
 			break;
 		}
-		case typeFileURL:					// ???		NOT IMPLEMENTED YET
-			NSLog(@"NOT IMPLEMENTED YET: Attempt to create a NSURL from 'typeFileURL' AEDesc" );
+		case typeBookmarkData:
+		{
+			NSMutableData *mutDat = [NSMutableData dataWithLength:theSize];
+			theError = AEGetDescData(aDesc, mutDat.mutableBytes, theSize);
+			if (theError != noErr) {
+				return theURL;
+			}
+			theURL = [NSURL URLByResolvingBookmarkData:mutDat options:0 relativeToURL:nil bookmarkDataIsStale:NULL error:NULL];
 			break;
+		}
+			
+		case typeFileURL:
+		{
+			NSMutableData *mutDat = [NSMutableData dataWithLength:theSize];
+			theError = AEGetDescData(aDesc, mutDat.mutableBytes, theSize);
+			
+			theURL = CFBridgingRelease(CFURLCreateWithBytes(kCFAllocatorDefault, mutDat.bytes, theSize, kCFStringEncodingUTF8, NULL));
+			break;
+		}
 	}
 	
 	return theURL;
