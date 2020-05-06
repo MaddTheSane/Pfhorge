@@ -9,7 +9,7 @@ typedef byte boolean;
 /* ---------- fixed math */
 
 // This is to get around "fixed" being in namespace "std"
-typedef long _fixed;
+typedef int _fixed;
 
 typedef short angle; /* 0-512 */
 typedef short world_distance;

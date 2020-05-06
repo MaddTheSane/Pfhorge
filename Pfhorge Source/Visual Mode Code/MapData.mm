@@ -4,30 +4,30 @@
 #include "MapData.h"
 #include "Vector3D.h"
 
-
+using namespace simd;
 
 void PortalInfo::Update() {
 
 	for (int iv=0; iv<NumPortalVertices; iv++) {
-		float *V1 = PVList[iv].Vertex;
-		float *V2 = PVList[(iv+1)%NumPortalVertices].Vertex;
-		float *P = PVList[iv].Plane;
-		vecprod_3d(V2,V1,P);
+		auto V1 = PVList[iv].Vertex;
+		auto V2 = PVList[(iv+1)%NumPortalVertices].Vertex;
+		PVList[iv].Plane = cross(V1, V2);
 	}
 }
 
 bool PortalInfo::IsValid() {
 
-	float vertsum[3], plnsum[3];
+	simd::float3 vertsum, plnsum;
 	for (int c=0; c<3; c++)
 		vertsum[c] = plnsum[c] = 0;
 	
 	for (int iv=0; iv<NumPortalVertices; iv++) {
-		add_3d(vertsum,PVList[iv].Vertex,vertsum);
-		add_3d(plnsum,PVList[iv].Plane,plnsum);
+		vertsum += PVList[iv].Vertex;
+		plnsum += PVList[iv].Plane;
 	}
 	
-	return (innerprod_3d(vertsum,plnsum) > 0);
+	//simd_inn
+	return (dot(vertsum,plnsum) > 0);
 }
 
 
@@ -44,9 +44,9 @@ bool PortalOverlapCheck(PortalInfo &P1, PortalInfo &P2) {
 		bool p2v1 = false;
 		for (int iv=0; iv<NumPortalVertices; iv++) {
 			bool p1v2ind = Pln1Vert2[ip][iv] =
-				innerprod_3d(P1.PVList[ip].Plane,P2.PVList[iv].Vertex) >= 0;
+				dot(P1.PVList[ip].Plane,P2.PVList[iv].Vertex) >= 0;
 			bool p2v1ind = Pln2Vert1[ip][iv] =
-				innerprod_3d(P2.PVList[ip].Plane,P1.PVList[iv].Vertex) >= 0;
+				dot(P2.PVList[ip].Plane,P1.PVList[iv].Vertex) >= 0;
 			p1v2 |= p1v2ind;
 			p2v1 |= p2v1ind;
 		}
@@ -93,10 +93,10 @@ void PolygonInfo::FindMinMax() {
 		WallInfo &WInfo = WInfoList[iw];
 		world_distance x = WInfo.StartPoint.x;
 		world_distance y = WInfo.StartPoint.y;
-		XMin = min(XMin,x);
-		XMax = max(XMax,x);
-		YMin = min(YMin,y);
-		YMax = max(YMax,y);
+		XMin = std::min(XMin,x);
+		XMax = std::max(XMax,x);
+		YMin = std::min(YMin,y);
+		YMax = std::max(YMax,y);
 	}
 }
 

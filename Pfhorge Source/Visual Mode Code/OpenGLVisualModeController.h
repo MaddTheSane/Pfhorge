@@ -26,9 +26,11 @@
 #import <AppKit/AppKit.h>
 #import "LELevelData.h"
 
+@class MyOpenGLView;
+
 @interface OpenGLVisualModeController : NSWindowController
 {
-    IBOutlet id OpenGLViewOGLV;
+    IBOutlet MyOpenGLView *OpenGLViewOGLV;
     
     NSData *mapData;
     LELevelData *levelData;

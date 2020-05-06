@@ -267,8 +267,8 @@ void MapManager::DoPortals() {
 				PortalInfo &Portal = WInfo.Portal;
 				SurfaceInfo &PtlSurf = WInfo.TransparentInfo;
 				for (int iv=0; iv<NumPortalVertices; iv++) {
-					short *InpVert = PtlSurf.VInfoList[iv].Vert;
-					float *Vertex = Portal.PVList[iv].Vertex;
+					auto InpVert = PtlSurf.VInfoList[iv].Vert;
+					simd::float3 &Vertex = Portal.PVList[iv].Vertex;
 					Vertex[0] = InpVert[0] - VC.x;
 					Vertex[1] = InpVert[1] - VC.y;
 					Vertex[2] = InpVert[2] - VC.z;
@@ -653,7 +653,7 @@ void MapManager::DoRender(int RenderMode, bool DoDoubleSided) {
 				GLdouble ClipPlane[4];	
 				for (int ipln=0; ipln<NumPortalVertices; ipln++) {
 					// Get the clipping plane's normal
-					float *Plane = Portal.PVList[ipln].Plane;
+					auto Plane = Portal.PVList[ipln].Plane;
 					copy_3d(Plane,ClipPlane);
 					scalmult_3d(1.0,ClipPlane,ClipPlane);
 					// Clipping plane passes through viewpoint;

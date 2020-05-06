@@ -18,7 +18,7 @@
 	}
 
 
-ShapesFileCatalog::ShapesFileCatalog(NSString *path, int _Version) {
+ShapesFileCatalog::ShapesFileCatalog(NSString *path, ShapesFileVersion _Version) {
 	
 	Version = _Version;
 	

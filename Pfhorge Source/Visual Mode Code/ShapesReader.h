@@ -80,8 +80,14 @@ struct ShapeObject {
 
 
 class ShapesFileCatalog {
-
-	// File reference number
+public:
+	//! Marathon version
+	enum ShapesFileVersion: int {
+		Version_1,
+		Version_2_oo
+	};
+private:
+	//! File reference number
 	FSIORefNum RefNum;
 
 	// Readin OK?
@@ -89,9 +95,9 @@ class ShapesFileCatalog {
 
 	ShapesDirEntry DirList[NUMBER_OF_SHAPES_COLLECTIONS];
 	
-	int Version;
+	ShapesFileVersion Version;
         
-        NSData *theShapesFileData;
+	NSData *theShapesFileData;
 	
 public:
 
@@ -100,13 +106,8 @@ public:
 		Error_Alloc
 	};
 	
-	// Marathon version
-	enum {
-		Version_1,
-		Version_2_oo
-	};
 	
-	int GetVersion() {return Version;}
+	ShapesFileVersion GetVersion() {return Version;}
 
 	// Error reporting
 	OSErr MacError; // MacOS error code
@@ -131,7 +132,7 @@ public:
 	ShapeObject *GetShapes(int CollIndx, int SubcollIndx);
 
 	// Create with a file to be opened
-	ShapesFileCatalog(NSString *path, int _Version);
+	ShapesFileCatalog(NSString *path, ShapesFileVersion _Version);
 	~ShapesFileCatalog();
 	
 	// The name of the shapes file in Pascal-string form

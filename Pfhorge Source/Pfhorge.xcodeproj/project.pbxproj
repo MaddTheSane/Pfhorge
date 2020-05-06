@@ -10,6 +10,8 @@
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Exsample Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
+		55F00802246379A2007BB0F3 /* Init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5902CD2069F71AD00B4AB92 /* Init.cpp */; };
+		55F00803246379A2007BB0F3 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5902CE3069F71B300B4AB92 /* Main.cpp */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -374,8 +376,8 @@
 		F521C1C302BBE0CA0146BBD2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		F521F7CB03302AB30146BBD2 /* PluginManagerInterface.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PluginManagerInterface.h; sourceTree = SOURCE_ROOT; };
 		F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PluginManagerInterface.m; sourceTree = SOURCE_ROOT; };
-		F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhItemPlacementEditorController.m; sourceTree = SOURCE_ROOT; };
-		F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhItemPlacementEditorController.h; sourceTree = SOURCE_ROOT; };
+		F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhItemPlacementEditorController.m; sourceTree = "<group>"; };
+		F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhItemPlacementEditorController.h; sourceTree = "<group>"; };
 		F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLevelNameManager.h; sourceTree = "<group>"; };
 		F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLevelNameManager.m; sourceTree = "<group>"; };
 		F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InfoWindowCommander.h; sourceTree = "<group>"; };
@@ -388,7 +390,7 @@
 		F52E215901D03C110146BBD2 /* PhLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLayer.m; sourceTree = "<group>"; };
 		F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefaultLayerController.h; sourceTree = "<group>"; };
 		F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhDefaultLayerController.m; sourceTree = "<group>"; };
-		F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PhorgeAppIcon.icns; sourceTree = SOURCE_ROOT; };
+		F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PhorgeAppIcon.icns; sourceTree = "<group>"; };
 		F530626502A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPfhorgeSingleLevelDoc.h; sourceTree = "<group>"; };
 		F530626602A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPfhorgeSingleLevelDoc.m; sourceTree = "<group>"; };
 		F530626902A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPfhorgeScenarioLevelDoc.h; sourceTree = "<group>"; };
@@ -459,8 +461,8 @@
 		F53CCE8A0228C81D0146BBD2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		F53CCE8B0228C81D0146BBD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pfhorge.scriptTerminology; sourceTree = SOURCE_ROOT; };
-		F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Pfhorge.scriptSuite; sourceTree = SOURCE_ROOT; };
+		F5441731021755920146BBD2 /* Pfhorge.scriptTerminology */ = {isa = PBXFileReference; lastKnownFileType = text.plist.scriptTerminology; path = Pfhorge.scriptTerminology; sourceTree = "<group>"; };
+		F5441733021755CA0146BBD2 /* Pfhorge.scriptSuite */ = {isa = PBXFileReference; lastKnownFileType = text.plist.scriptSuite; path = Pfhorge.scriptSuite; sourceTree = "<group>"; };
 		F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+NDCarbonUtilities.m"; path = "AppleScript Sources/NSURL+NDCarbonUtilities.m"; sourceTree = SOURCE_ROOT; };
 		F54738F1021F01E90146BBD2 /* NDResourceFork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDResourceFork.h; path = "AppleScript Sources/NDResourceFork.h"; sourceTree = SOURCE_ROOT; };
 		F54738F2021F01E90146BBD2 /* NDResourceFork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NDResourceFork.m; path = "AppleScript Sources/NDResourceFork.m"; sourceTree = SOURCE_ROOT; };
@@ -562,6 +564,7 @@
 				00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */,
 			);
 			name = Prefs;
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		00FD589900EC04447F000001 /* Data Objects */ = {
@@ -704,7 +707,7 @@
 				A5EE9AB7040439D60046BBD2 /* MapManager.xib */,
 				F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
@@ -763,7 +766,7 @@
 				A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */,
 				A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */,
 			);
-			name = MyOpenGL;
+			path = MyOpenGL;
 			sourceTree = "<group>";
 		};
 		F500878E0347B88B0146BBD2 /* Shapes Decoder */ = {
@@ -810,7 +813,7 @@
 				F520388C024156C10146BBD2 /* TerminalEditorController.h */,
 				F520388D024156C10146BBD2 /* TerminalEditorController.m */,
 			);
-			name = "Edit Windows";
+			path = "Edit Windows";
 			sourceTree = "<group>";
 		};
 		F534C02D021DDA5F0146BBD2 /* AppleScript Sources */ = {
@@ -865,7 +868,7 @@
 				F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */,
 				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
 			);
-			name = "Visual Mode Code";
+			path = "Visual Mode Code";
 			sourceTree = "<group>";
 		};
 		F58032D303E31DF70146BBD2 /* Map\Level Code */ = {
@@ -1182,6 +1185,7 @@
 				AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */,
 				AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */,
 				AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */,
+				55F00803246379A2007BB0F3 /* Main.cpp in Sources */,
 				AE3C15660A04512100FBFFCD /* PhPlatform.m in Sources */,
 				AE3C15670A04512100FBFFCD /* ErrorNotificationWinController.m in Sources */,
 				AE3C15680A04512100FBFFCD /* PhNamesController.m in Sources */,
@@ -1201,6 +1205,7 @@
 				AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */,
 				AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */,
 				AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */,
+				55F00802246379A2007BB0F3 /* Init.cpp in Sources */,
 				AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */,
 				AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */,
 				AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */,
@@ -1362,7 +1367,7 @@
 				557A9B36245A519200527063 /* en */,
 			);
 			name = OpenGLVisualMode.xib;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.xib */ = {
 			isa = PBXVariantGroup;

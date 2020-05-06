@@ -66,8 +66,8 @@ const int ShapesDirectory_Step = 32;
 // If the offset is -1, that means that
 // there is no corresponding shapes chunk.
 struct ShapesSubdirEntry {
-	long Offset;
-	long Size;
+	int Offset;
+	int Size;
 	
 	// Convenient C++ methods
 	bool Exists() {return ((Offset >= 0) && (Size > 0));}
@@ -89,7 +89,7 @@ struct ShapesDirEntry {
 
 
 // This is to get around "fixed" being in namespace "std"
-typedef long _fixed;
+typedef int _fixed;
 
 // End of a lot of LP stuff
 

@@ -9,14 +9,15 @@
 #include <OpenGL/gl.h>
 #include "LESide.h"
 #include "MapDataFormats.h"
+#include <simd/simd.h>
 #include "SimpleVec.h"
 
 
 struct VertexInfo {
 	// Vertex position
-	GLshort Vert[3];
+	simd::short3 Vert;
 	// Vertex texture coordinates
-	GLfloat TxtrCoord[2];
+	simd::float2 TxtrCoord;
 };
 
 
@@ -48,11 +49,11 @@ struct SurfaceInfo {
 	}
 	
 	void UseTextures() {
-		glTexCoordPointer(2,GL_FLOAT,sizeof(VertexInfo),VInfoList[0].TxtrCoord);
+		glTexCoordPointer(2,GL_FLOAT,sizeof(VertexInfo),&VInfoList[0].TxtrCoord);
 	}
 	
 	void Render(GLint Mode) {
-		glVertexPointer(3,GL_SHORT,sizeof(VertexInfo),VInfoList[0].Vert);
+		glVertexPointer(3,GL_SHORT,sizeof(VertexInfo),&VInfoList[0].Vert);
 		glDrawArrays(Mode,0,VInfoList.get_len());
 	}
 	
@@ -65,8 +66,8 @@ struct SurfaceInfo {
 // First, here's the stuff for each vertex:
 // vertex + plane connecting vertex with next one
 struct PVInfo {
-	float Vertex[3];
-	float Plane[3];
+	simd::float3 Vertex;
+	simd::float3 Plane;
 };
 
 // I'll hardcode the number of portal vertices
@@ -118,12 +119,12 @@ struct WallInfo {
 	PortalInfo Portal;
 	
 	// Portal state:
-	enum {
+	enum portal_state : short {
 		Portal_Invalid,
 		Portal_Invisible,
 		Portal_Visible
 	};
-	short PortalState;
+	portal_state PortalState;
 	
 	// The visible neighbor (Neighbor or NONE):
 	short VisibleNeighbor() {return (PortalState == Portal_Visible) ? Neighbor : NONE;}

@@ -6,11 +6,28 @@
 #pragma once
 
 #include "MiscUtils.h"
+#include <simd/simd.h>
 
 
 // b = a
 // May change type
 template<class T1, class T2> inline void copy_3d(const T1 *a, T2 *b) {
+	for (int k=0; k<3; k++)
+		b[k] = T2(a[k]);
+}
+
+
+// b = a
+// May change type
+template<class T1> inline void copy_3d(const T1 *a, simd::float3 &b) {
+	for (int k=0; k<3; k++)
+		b[k] = float(a[k]);
+}
+
+
+// b = a
+// May change type
+template<class T2> inline void copy_3d(const simd::float3 a, T2 *b) {
 	for (int k=0; k<3; k++)
 		b[k] = T2(a[k]);
 }

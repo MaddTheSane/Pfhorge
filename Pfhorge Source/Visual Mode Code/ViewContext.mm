@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include "MiscUtils.h"
+#include <GLKit/GLKit.h>
 
 #include "ViewContext.h"
 
