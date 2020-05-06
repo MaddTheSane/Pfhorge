@@ -172,7 +172,7 @@
 -(void)setLocationX:(int)v { location.x = v; [self updateBounds]; }
 -(void)setLocationY:(int)v { location.y = v; [self updateBounds]; }
 
--(void)setPolygon_index:(short)v
+-(void)setPolygonIndex:(short)v
 {
     if (v > -1)
         polygon_object = [theMapPolysST objectAtIndex:v];
@@ -192,7 +192,6 @@
     text = [v copy];
     [self updateBounds];
 }
-
 
 -(void)updateBounds
 {

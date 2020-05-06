@@ -77,11 +77,11 @@
 -(void)setLocationX:(int)v;
 -(void)setLocationY:(int)v;
 
--(void)setPolygon_index:(short)v;
+-(void)setPolygonIndex:(short)v;
 -(void)setPolygon_object:(LEPolygon *)v;
 -(void)setPolygon:(LEPolygon *)v;
 
-@property (readonly, copy) NSString *text;
+@property (nonatomic, copy) NSString *text;
 
 -(void)updateBounds;
 

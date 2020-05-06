@@ -594,30 +594,6 @@
 			path = "Data Objects";
 			sourceTree = "<group>";
 		};
-		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
-				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
-				F53CCE870228C81D0146BBD2 /* AGL.framework */,
-				F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */,
-				F53CCE890228C81D0146BBD2 /* CoreServices.framework */,
-				F53CCE8A0228C81D0146BBD2 /* GLUT.framework */,
-				F53CCE8B0228C81D0146BBD2 /* IOKit.framework */,
-				F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */,
-				F521C1C302BBE0CA0146BBD2 /* Carbon.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,8 +710,16 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
-				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+				F53CCE870228C81D0146BBD2 /* AGL.framework */,
+				F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */,
+				F53CCE890228C81D0146BBD2 /* CoreServices.framework */,
+				F53CCE8A0228C81D0146BBD2 /* GLUT.framework */,
+				F53CCE8B0228C81D0146BBD2 /* IOKit.framework */,
+				F53CCE8C0228C81D0146BBD2 /* OpenGL.framework */,
+				F521C1C302BBE0CA0146BBD2 /* Carbon.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

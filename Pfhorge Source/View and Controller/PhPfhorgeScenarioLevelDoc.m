@@ -231,7 +231,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         if (!exsists)
         {
             BOOL succsessfull = YES;
-            succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] attributes:nil];
+            succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
             if (!succsessfull)
             {
                 SEND_ERROR_MSG(@"Could not create images folder");
@@ -427,7 +427,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
-	attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
 				 NSFileHFSTypeCode: @((OSType)'sce2')
 	}];
     
@@ -492,13 +492,9 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     [manager createFileAtPath:fullPath
 					 contents:mergedMap
-				   attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+				   attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
 								NSFileHFSTypeCode: @((OSType)'sce2')
 				   }];
-    
-    
-    
-
     
     NSLog(@"Scaning Image Folder FOr Resources Now...");
     

@@ -269,7 +269,7 @@
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
-	attributes:@{NSFileHFSCreatorCode: @(0x32362EB0), // '26.∞'
+	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
 				 NSFileHFSTypeCode: @((OSType)'sce2')
 	}];
 	

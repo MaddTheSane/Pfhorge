@@ -179,7 +179,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     NSInteger selectedItem = [sender indexOfSelectedItem];
     if (selectedItem != -1 && currentLevelLoaded != selectedItem)
     {
-        [[self document] loadLevel:(selectedItem + 1)];
+        [[self document] loadLevel:(int)(selectedItem + 1)];
         //[generalDrawerContentView setNextKeyView:levelDrawView];
         //[sender selectItemAtIndex:[sender indexOfSelectedItem]];
         
@@ -233,16 +233,13 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     [op beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         [self savePanelDidEndForMapImport:op returnCode:result contextInfo:NULL];
     }];
-    [op beginSheetForDirectory:nil file:nil types:fileTypes
-        modalForWindow:[self window] modalDelegate:self
-        didEndSelector:@selector(savePanelDidEndForMapImport:returnCode:contextInfo:) contextInfo:nil];
     
     sheetOpen = YES;
 }
 
 - (IBAction)importPathwaysMap:(id)sender
 {
-    NSArray	*fileTypes	= [NSArray arrayWithObjects:NSFileTypeForHFSTypeCode('maps'), @"lev", nil];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('maps'), @"lev"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     if ([self isSheetAlreadyOpen])
@@ -251,10 +248,11 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     [op	setAllowsMultipleSelection:NO];
     [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
     [op setPrompt:@"Combine/Import"];
+    op.allowedFileTypes = fileTypes;
     
-    [op beginSheetForDirectory:nil file:nil types:fileTypes
-        modalForWindow:[self window] modalDelegate:self
-        didEndSelector:@selector(savePanelDidEndForMapImport:returnCode:contextInfo:) contextInfo:nil];
+    [op beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
+        [self savePanelDidEndForMapImport:op returnCode:result contextInfo:NULL];
+    }];
     
     sheetOpen = YES;
 }
