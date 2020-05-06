@@ -21,7 +21,7 @@
 #import <OpenGL/glu.h>
 #import <Foundation/Foundation.h>
 #import "LEExtras.h"
-#include <math.h>
+#include <cmath>
 #import <ApplicationServices/ApplicationServices.h>
 #import <AppKit/AppKit.h>
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
@@ -39,13 +39,15 @@ float g_FrameInterval = 0.0f;
 
 extern bool upPressed , downPressed, leftPressed , rightPressed;
 
+using namespace simd;
+
 ///////////////////////////////// CALCULATE FRAME RATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////   This function calculates the frame rate and time intervals between frames
 /////
 ///////////////////////////////// CALCULATE FRAME RATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
-void CalculateFrameRate()
+static void CalculateFrameRate()
 {
     static float framesPerSecond    = 0.0f;     // This will store our fps
     static float lastTime           = 0.0f;     // This will hold the time from the last frame
@@ -91,61 +93,6 @@ void CalculateFrameRate()
 }
 
 
-/////////////////////////////////////// CROSS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This returns a perpendicular vector from 2 given vectors by taking the cross product.
-/////
-/////////////////////////////////////// CROSS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-                                                
-CVector3 Cross(CVector3 vVector1, CVector3 vVector2)
-{
-    CVector3 vNormal;   
-
-    // Calculate the cross product with the non communitive equation
-    vNormal.x = ((vVector1.y * vVector2.z) - (vVector1.z * vVector2.y));
-    vNormal.y = ((vVector1.z * vVector2.x) - (vVector1.x * vVector2.z));
-    vNormal.z = ((vVector1.x * vVector2.y) - (vVector1.y * vVector2.x));
-
-    // Return the cross product
-    return vNormal;                                      
-}
-
-
-/////////////////////////////////////// MAGNITUDE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This returns the magnitude of a vector
-/////
-/////////////////////////////////////// MAGNITUDE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
-float Magnitude(CVector3 vNormal)
-{
-    // Here is the equation:  magnitude = sqrt(V.x^2 + V.y^2 + V.z^2) : Where V is the vector
-    return (float)sqrt( (vNormal.x * vNormal.x) + 
-                        (vNormal.y * vNormal.y) + 
-                        (vNormal.z * vNormal.z) );
-}
-
-
-/////////////////////////////////////// NORMALIZE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This returns a normalize vector (A vector exactly of length 1)
-/////
-/////////////////////////////////////// NORMALIZE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
-CVector3 Normalize(CVector3 vVector)
-{
-    // Get the magnitude of our normal
-    float magnitude = Magnitude(vVector);               
-
-    // Now that we have the magnitude, we can divide our vector by that magnitude.
-    // That will make our vector a total length of 1.  
-    vVector = vVector / magnitude;      
-    
-    // Finally, return our normalized vector
-    return vVector;                                     
-}
-
-
 ///////////////////////////////// CCAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////   This is the class constructor
@@ -154,9 +101,9 @@ CVector3 Normalize(CVector3 vVector)
 
 CCamera::CCamera()
 {
-    CVector3 vZero = CVector3(0.0, 0.0, 0.0);       // Init a vVector to 0 0 0 for our position
-    CVector3 vView = CVector3(0.0, 1.0, 0.5);       // Init a starting view vVector (looking up and out the screen) 
-    CVector3 vUp   = CVector3(0.0, 0.0, 1.0);       // Init a standard up vVector (Rarely ever changes)
+    simd::float3 vZero = simd_make_float3(0.0, 0.0, 0.0);       // Init a vVector to 0 0 0 for our position
+    simd::float3 vView = simd_make_float3(0.0, 1.0, 0.5);       // Init a starting view vVector (looking up and out the screen)
+    simd::float3 vUp   = simd_make_float3(0.0, 0.0, 1.0);       // Init a standard up vVector (Rarely ever changes)
 
     m_vPosition = vZero;                    // Init the position to zero
     m_vView     = vView;                    // Init the view to a std starting view
@@ -174,9 +121,9 @@ void CCamera::PositionCamera(float positionX, float positionY, float positionZ,
                              float viewX,     float viewY,     float viewZ,
                              float upVectorX, float upVectorY, float upVectorZ)
 {
-    CVector3 vPosition  = CVector3(positionX, positionY, positionZ);
-    CVector3 vView      = CVector3(viewX, viewY, viewZ);
-    CVector3 vUpVector  = CVector3(upVectorX, upVectorY, upVectorZ);
+    auto vPosition  = simd_make_float3(positionX, positionY, positionZ);
+    auto vView      = simd_make_float3(viewX, viewY, viewZ);
+    auto vUpVector  = simd_make_float3(upVectorX, upVectorY, upVectorZ);
 
     // The code above just makes it cleaner to set the variables.
     // Otherwise we would have to set each variable x y and z.
@@ -249,14 +196,14 @@ void CCamera::SetViewByMouse()
 
 void CCamera::RotateView(float angle, float x, float y, float z)
 {
-    CVector3 vNewView;
+    simd::float3 vNewView;
 
     // Get the view vector (The direction we are facing)
-    CVector3 vView = m_vView - m_vPosition;     
+    simd::float3 vView = m_vView - m_vPosition;
 
     // Calculate the sine and cosine of the angle once
-    float cosTheta = (float)cos(angle);
-    float sinTheta = (float)sin(angle);
+    float cosTheta = (float)std::cos(angle);
+    float sinTheta = (float)std::sin(angle);
 
     // Find the new x position for the new rotated point
     vNewView.x  = (cosTheta + (1 - cosTheta) * x * x)       * vView.x;
@@ -306,8 +253,8 @@ void CCamera::StrafeCamera(float speed)
 void CCamera::MoveCamera(float speed)
 {
     // Get the current view vector (the direction we are looking)
-    CVector3 vVector = m_vView - m_vPosition;
-    vVector = Normalize(vVector);
+    float3 vVector = m_vView - m_vPosition;
+    vVector = normalize(vVector);
 
     m_vPosition.x += vVector.x * speed;     // Add our acceleration to our position's X
     m_vPosition.z += vVector.z * speed;     // Add our acceleration to our position's Z
@@ -374,10 +321,10 @@ void CCamera::CheckForMovement(bool upPressed, bool downPressed, bool leftPresse
 void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) 
 {
     // Initialize a variable for the cross product result
-    CVector3 vCross = Cross(m_vView - m_vPosition, m_vUpVector);
+    simd::float3 vCross = cross(m_vView - m_vPosition, m_vUpVector);
 
     // Normalize the strafe vector
-    m_vStrafe = Normalize(vCross);
+    m_vStrafe = normalize(vCross);
 
     // Move the camera's view by the mouse
     //SetViewByMouse();
