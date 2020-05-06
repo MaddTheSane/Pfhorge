@@ -170,7 +170,7 @@
                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28">
                         <rect key="frame" x="19" y="178" width="108" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="check" title="Non-Directional" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" inset="2" id="78">
+                        <buttonCell key="cell" type="check" title="Non-Directional" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="78">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="message" size="11"/>
                         </buttonCell>
@@ -255,8 +255,8 @@ DQ
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="155" y="283" width="367" height="127"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" misplaced="YES" id="54">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
+            <view key="contentView" id="54">
+                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
@@ -304,6 +304,7 @@ Gw
                 </subviews>
                 <constraints>
                     <constraint firstItem="59" firstAttribute="width" secondItem="56" secondAttribute="width" id="6jk-yy-zSO"/>
+                    <constraint firstItem="56" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="54" secondAttribute="leading" constant="20" symbolic="YES" id="8uJ-T9-1Mg"/>
                     <constraint firstItem="57" firstAttribute="top" secondItem="54" secondAttribute="top" constant="20" symbolic="YES" id="95x-mU-2gc"/>
                     <constraint firstAttribute="bottom" secondItem="59" secondAttribute="bottom" constant="20" symbolic="YES" id="FAY-lK-D7C"/>
                     <constraint firstItem="58" firstAttribute="centerX" secondItem="54" secondAttribute="centerX" id="JDg-LH-jdB"/>

@@ -177,9 +177,9 @@
             [theLevelData addMenu:permutation asA:_polyMenu];
             lastMenuTypeCache = _polyMenu;
             
-            int index = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:tmpObj];
+            NSInteger index = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:tmpObj];
             
-            NSLog(@"index: %d   count: %d  named count: %d", index, [permutation numberOfItems], [[theLevelData namedPolyObjects] count]);
+            NSLog(@"index: %ld   count: %ld  named count: %lu", (long)index, (long)[permutation numberOfItems], (unsigned long)[[theLevelData namedPolyObjects] count]);
             
             if ((index != NSNotFound || index >= 0) && ([permutation numberOfItems] > index))
                 [permutation selectItemAtIndex:index];

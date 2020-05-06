@@ -1246,8 +1246,6 @@ enum {
                 [currentGridDrawingMap moveToPoint:NSMakePoint((i * gridSpacingFactor), 2048)];
                 [currentGridDrawingMap lineToPoint:NSMakePoint((i * gridSpacingFactor), -2048)];
             }
-            
-            [theGridDrawingMap setCachesBezierPath:YES];
         }
         
         //tmpBezierPath = [trans transformBezierPath:theGridDrawingMap];

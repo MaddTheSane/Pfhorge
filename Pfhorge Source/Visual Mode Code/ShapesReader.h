@@ -13,6 +13,7 @@
 #include "SimpleVec.h"
 #include "MiscUtils.h"
 #include "ShapesDataFormats.h"
+#include "MarathonVersions.h"
 
 
 typedef unsigned char byte;
@@ -80,13 +81,6 @@ struct ShapeObject {
 
 
 class ShapesFileCatalog {
-public:
-	//! Marathon version
-	enum ShapesFileVersion: int {
-		Version_1,
-		Version_2_oo
-	};
-private:
 	//! File reference number
 	FSIORefNum RefNum;
 
@@ -95,7 +89,7 @@ private:
 
 	ShapesDirEntry DirList[NUMBER_OF_SHAPES_COLLECTIONS];
 	
-	ShapesFileVersion Version;
+	MarathonAssetVersion Version;
         
 	NSData *theShapesFileData;
 	
@@ -107,7 +101,7 @@ public:
 	};
 	
 	
-	ShapesFileVersion GetVersion() {return Version;}
+	MarathonAssetVersion GetVersion() {return Version;}
 
 	// Error reporting
 	OSErr MacError; // MacOS error code
@@ -132,7 +126,7 @@ public:
 	ShapeObject *GetShapes(int CollIndx, int SubcollIndx);
 
 	// Create with a file to be opened
-	ShapesFileCatalog(NSString *path, ShapesFileVersion _Version);
+	ShapesFileCatalog(NSString *path, MarathonAssetVersion _Version);
 	~ShapesFileCatalog();
 	
 	// The name of the shapes file in Pascal-string form

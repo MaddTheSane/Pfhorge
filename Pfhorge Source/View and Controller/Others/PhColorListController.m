@@ -244,7 +244,7 @@
     NSInteger selectNumber = ([numbers indexOfObject:theNumberToSelect] + 1);
     
     [colorListTable scrollRowToVisible:selectNumber];
-    [colorListTable selectRow:selectNumber byExtendingSelection:NO];
+    [colorListTable selectRowIndexes:[NSIndexSet indexSetWithIndex:selectNumber] byExtendingSelection:NO];
 }
 
 -(void)updateInterface:(LEMapDraw *)theView
@@ -290,7 +290,7 @@
         objs = [currentLevelDrawView getTableObjectList];
         
         levelInfoString = [[NSMutableString alloc] initWithString:
-            [[NSNumber numberWithInt:[numbers count]] stringValue]];
+            [[NSNumber numberWithInteger:[numbers count]] stringValue]];
         [levelInfoString appendString:@" Listed"];
         [status setStringValue:levelInfoString];
         [levelInfoString release];
@@ -306,7 +306,7 @@
         /// NSLog(@"Numbers Array Count: %d and Colors Array Count: %d, if these are not equal, ERROR!", [numbers count], [colors count]);
         if ([numbers count] != [colors count])
         {
-            NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %d Colors: %d)", [numbers count], [colors count]);
+			NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
             SEND_ERROR_MSG(@"Numbers array count and colors array count are not equal (check console for more details), ERROR!");
         }
     }

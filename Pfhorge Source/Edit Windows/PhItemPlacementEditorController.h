@@ -27,7 +27,7 @@
 
 @class LELevelData, LEMap, PhItemPlacement;
 
-@interface PhItemPlacementEditorController : NSWindowController <NSWindowDelegate>
+@interface PhItemPlacementEditorController : NSWindowController <NSWindowDelegate, NSTableViewDataSource, NSTableViewDelegate>
 {
     IBOutlet NSTableView *theTableView;
     IBOutlet NSFormCell *initalCountTB;

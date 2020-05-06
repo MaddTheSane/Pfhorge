@@ -25,14 +25,14 @@ typedef unsigned char byte;
 
 
 // Extracted for convenience
-class MapFileCatalog {
-public:
-	// Which version?
-	enum {
-		Version_1,		// Marathon 1
-		Version_2_oo		// Marathon 2/Infinity
-	};
-};
+//class MapFileCatalog {
+//public:
+//	// Which version?
+//	enum {
+//		Version_1,		// Marathon 1
+//		Version_2_oo		// Marathon 2/Infinity
+//	};
+//};
 
 
 #ifdef ALL_OBSOLETE
@@ -60,13 +60,13 @@ struct LevelCatalog {
 class MapFileCatalog {
 
 	// File reference number
-	short RefNum;
+	FSIORefNum RefNum;
 
 	// Map header
 	wad_header Header;
 	
 	// Map Version (either Marathon 1 or Marathon 2/oo):
-	int Version;
+	MarathonAssetVersion Version;
 
 	// Block of level catalogs
 	simple_vector<LevelCatalog> LevelList;
@@ -97,12 +97,7 @@ public:
 	enum ErrorType OtherError; // Other error
 	bool ReadOK() {return OK;}
 	
-	// Which version?
-	enum {
-		Version_1,		// Marathon 1
-		Version_2_oo		// Marathon 2/Infinity
-	};
-	int GetVersion() {return Version;}
+	MarathonAssetVersion GetVersion() {return Version;}
 	
 	// Return the header:
 	wad_header GetHeader() {return Header;}

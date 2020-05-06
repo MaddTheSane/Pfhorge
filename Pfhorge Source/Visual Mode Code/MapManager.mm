@@ -46,7 +46,7 @@ static void SetTexture(int Version, SurfaceInfo &SInfo, shape_descriptor &Desc) 
 
 	switch(Version) {
 	// Marathon 2/oo
-	case MapFileCatalog::Version_2_oo:
+	case MarathonAssetVersion::Version_2_oo:
 	{
 		if ((DescSet >= 17) && (DescSet <= 21) && (DescFrame != (NONE & 0x00ff))) {
 			SInfo.TxtrType = SurfaceInfo::Wall;
@@ -64,7 +64,7 @@ static void SetTexture(int Version, SurfaceInfo &SInfo, shape_descriptor &Desc) 
 	}
 	break;
 	// Marathon 1
-	case MapFileCatalog::Version_1:
+	case MarathonAssetVersion::Version_1:
 	{
 		if ((DescSet >= 17) && (DescSet <= 19) && (DescFrame != (NONE & 0x00ff))) {
 			SInfo.TxtrType = SurfaceInfo::Wall;
@@ -325,9 +325,9 @@ bool MapManager::DoDialog(LELevelData *theLevelData, NSString *thePathToShapesFi
             return false;
         }
         
-        Version = MapFileCatalog::Version_2_oo;
+        Version = MarathonAssetVersion::Version_2_oo;
         
-        DoShapesSelect(Version, thePathToShapesFile);
+	DoShapesSelect(Version, thePathToShapesFile);
         
         ReloadLevel();
         
@@ -336,7 +336,7 @@ bool MapManager::DoDialog(LELevelData *theLevelData, NSString *thePathToShapesFi
 
 
 // Select a shapes file:
-void MapManager::DoShapesSelect(int _Version, NSString *thePathToShapesFile) {
+void MapManager::DoShapesSelect(MarathonAssetVersion _Version, NSString *thePathToShapesFile) {
         NSLog(@"DoShapesSelect");
         
         if (thePathToShapesFile == nil)
@@ -357,12 +357,12 @@ void MapManager::DoShapesSelect(int _Version, NSString *thePathToShapesFile) {
 	int M1TxtrSource[] = {17,18,19,8,2,24};
 	
 	switch(_Version) {
-	case MapFileCatalog::Version_2_oo:
+	case MarathonAssetVersion::Version_2_oo:
 		NumTxtrSets = 5;
 		TxtrSource = M2TxtrSource;
 		TxtrMgrRef = 0;
 		break;
-	case MapFileCatalog::Version_1:
+	case MarathonAssetVersion::Version_1:
 		NumTxtrSets = 6;
 		TxtrSource = M1TxtrSource;
 		TxtrMgrRef = 9;
@@ -422,10 +422,10 @@ void MapManager::DoShapesSelect(int _Version, NSString *thePathToShapesFile) {
 		////PB.Update((2*its+2)/double(2*NumTxtrSets));
 	}
 	switch(_Version) {
-	case MapFileCatalog::Version_2_oo:
+	case MarathonAssetVersion::Version_2_oo:
 		AreM2WallsPresent = true;
 		break;
-	case MapFileCatalog::Version_1:
+	case MarathonAssetVersion::Version_1:
 		AreM1WallsPresent = true;
 		break;
 	}

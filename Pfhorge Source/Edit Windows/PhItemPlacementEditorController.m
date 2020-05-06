@@ -240,7 +240,7 @@
 
 - (BOOL)tableView:(NSTableView *)aTableView
     shouldEditTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     
     /*if ([[col identifier] isEqualToString:PhNumberOfObject])
@@ -262,7 +262,7 @@
     [cell setBackgroundColor: [colors objectAtIndex:row]];
 }*/
 
-- (int)numberOfRowsInTableView:(NSTableView *)view
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)view
 {
    // return [theItemPlacmentObjects count];
     
@@ -271,7 +271,7 @@
 
 - (id)tableView:(NSTableView *)view
     objectValueForTableColumn:(NSTableColumn *)col
-    row:(int)row
+    row:(NSInteger)row
 {
     id theCurNameObj = nil;
     NSString *theColumIdentifier = [col identifier];
@@ -320,7 +320,7 @@
 - (void)tableView:(NSTableView *)aTableView
     setObjectValue:anObject
     forTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     //id theRecord;
     //PhAbstractName *theCurNameObj= [currentArray objectAtIndex:row];

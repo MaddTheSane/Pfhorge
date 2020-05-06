@@ -19,6 +19,7 @@
 #include "MotPort.h"
 #include "ViewContext.h"
 #include "LELevelData.h"
+#include "MarathonVersions.h"
 
 
 // Details of starting points
@@ -56,7 +57,7 @@ class MapManager {
     LELevelData *theLevel;
 	
 	// Dialog-item-handler methods:
-	void DoShapesSelect(int _Version, NSString *thePathToShapesFile);
+	void DoShapesSelect(MarathonAssetVersion _Version, NSString *thePathToShapesFile);
 	void DoGoto();
         
         // Used in reloading a level -- defined here to avoid repeated reallocations
@@ -93,12 +94,12 @@ class MapManager {
 	simple_vector<short> LiquidTextureSet, LiquidTile;
 		
 	// Which version of the Marathon series?
-	int Version;
+	MarathonAssetVersion Version;
 	
 public:
 
 	// Which version of the Marathon series?
-	int GetVersion();
+	MarathonAssetVersion GetVersion();
 
 	// Initialize the main dialog box
 	void InitDialog();

@@ -338,7 +338,7 @@
     
     NSLog(@"Getting Scripts At: %@", [scriptFolder stringByAppendingString:@"/"]);
     
-    if ([[manager directoryContentsAtPath:[scriptFolder stringByAppendingString:@"/"]] count] == 0)
+    if ([[manager contentsOfDirectoryAtPath:[scriptFolder stringByAppendingString:@"/"] error:NULL] count] == 0)
     {
         NSMenuItem *newItem;
         NSZone *theMenuZone = [NSMenu menuZone];

@@ -10,8 +10,6 @@
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Exsample Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
-		55F00802246379A2007BB0F3 /* Init.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5902CD2069F71AD00B4AB92 /* Init.cpp */; };
-		55F00803246379A2007BB0F3 /* Main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5902CE3069F71B300B4AB92 /* Main.cpp */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -330,6 +328,7 @@
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557A9B40245A922A00527063 /* Exsample Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Exsample Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
+		55F0080424637C27007BB0F3 /* MarathonVersions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarathonVersions.h; sourceTree = "<group>"; };
 		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KeyControls.h; sourceTree = "<group>"; };
 		A514D90A080ACBF200F94B8E /* KeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = KeyControls.mm; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
@@ -844,6 +843,7 @@
 				F53CCE310228BEF90146BBD2 /* MapData.h */,
 				F53CCE320228BEF90146BBD2 /* MapData.mm */,
 				F53CCE330228BEF90146BBD2 /* MapDataFormats.h */,
+				55F0080424637C27007BB0F3 /* MarathonVersions.h */,
 				F53CCE340228BEF90146BBD2 /* MapManager.h */,
 				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
 				F53CCE360228BEF90146BBD2 /* MapReader.h */,
@@ -1185,7 +1185,6 @@
 				AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */,
 				AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */,
 				AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */,
-				55F00803246379A2007BB0F3 /* Main.cpp in Sources */,
 				AE3C15660A04512100FBFFCD /* PhPlatform.m in Sources */,
 				AE3C15670A04512100FBFFCD /* ErrorNotificationWinController.m in Sources */,
 				AE3C15680A04512100FBFFCD /* PhNamesController.m in Sources */,
@@ -1205,7 +1204,6 @@
 				AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */,
 				AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */,
 				AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */,
-				55F00802246379A2007BB0F3 /* Init.cpp in Sources */,
 				AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */,
 				AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */,
 				AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */,
