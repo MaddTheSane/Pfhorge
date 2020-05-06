@@ -6,10 +6,10 @@
 #include "shapes-structs.h"
 #include "bitmap-decode.h"
 
-collection_header	coll_hdrs[MAX_COLLECTIONS];
-byte				*colls[MAX_COLLECTIONS];
-FILE				*shapes;
-int					bit_depth = 8;
+static collection_header	coll_hdrs[MAX_COLLECTIONS];
+static byte					*colls[MAX_COLLECTIONS];
+static FILE					*shapes;
+static int					bit_depth = 8;
 
 // load headers of a shapes file
 int LoadShapes(FILE *f, int depth)

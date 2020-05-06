@@ -82,7 +82,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theScriptDesc = { typeNull, NULL };
 	id			theResultObject = nil;
 
-	if( (AECreateDesc( typeChar, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
+	if( (AECreateDesc( typeUTF8Text, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
 	{
 		if( OSACoerceToDesc( [self OSAComponent], theResultID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr )
 		{

@@ -1,6 +1,7 @@
 #define SHAPES_STRUCTS
 
 #include <stdint.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 typedef unsigned char	byte;
 typedef unsigned short	word;
@@ -37,12 +38,18 @@ typedef unsigned char	pixel8;
 /* at the beginning of the clut, used by the extractor for various opaque reasons */
 #define NUMBER_OF_PRIVATE_COLORS 3
 
-enum {						/* collection types */
-	_unused_collection = 0,	/* raw */
-	_wall_collection,		/* textures, landscapes: raw, column order */
-	_object_collection,		/* monsters, weapons, items: rle */
-	_interface_collection,	/* interface parts: raw, row order */
-	_scenery_collection		/* scenery: rle */
+/*! collection types */
+typedef CF_ENUM(short, collection_definition_types) {
+	/*! raw */
+	_unused_collection = 0,
+	/*! textures, landscapes: raw, column order */
+	_wall_collection,
+	/*! monsters, weapons, items: rle */
+	_object_collection,
+	/*! interface parts: raw, row order */
+	_interface_collection,
+	/*! scenery: rle */
+	_scenery_collection
 };
 
 struct collection_definition {
@@ -88,12 +95,14 @@ struct high_level_shape_definition {
 typedef struct high_level_shape_definition	high_level_shape_definition;
 
 /* --------- low-level shape definition */
-#define _X_MIRRORED_BIT 0x8000
-#define _Y_MIRRORED_BIT 0x4000
-#define _KEYPOINT_OBSCURED_BIT 0x2000
+typedef CF_ENUM(word, low_level_shape_flags) {
+	_X_MIRRORED_BIT = 0x8000,
+	_Y_MIRRORED_BIT = 0x4000,
+	_KEYPOINT_OBSCURED_BIT = 0x2000,
+};
 
 struct low_level_shape_definition {
-	word	flags;						/* [x-mirror.1] [y-mirror.1] [keypoint_obscured.1] [unused.13] */
+	low_level_shape_flags	flags;		/* [x-mirror.1] [y-mirror.1] [keypoint_obscured.1] [unused.13] */
 	fixed	minimum_light_intensity;	/* in [0,FIXED_ONE] */
 	short	bitmap_index;
 	short	origin_x, origin_y;			/* (x,y) in pixel coordinates of origin */
@@ -105,28 +114,34 @@ struct low_level_shape_definition {
 typedef struct low_level_shape_definition low_level_shape_definition;
 
 
-enum {
-	SELF_LUMINESCENT_COLOR_FLAG= 0x80	// what is this??? Unshadable color?
+typedef CF_ENUM(byte, rgb_color_flags) {
+	//! what is this??? Unshadable color?
+	SELF_LUMINESCENT_COLOR_FLAG= 0x80
 };
 
 struct rgb_color_value {
-	byte	flags;
+	rgb_color_flags	flags;
 	byte	value;
 	word	red, green, blue;
 };
 typedef struct rgb_color_value	rgb_color_value;
 
 
-enum {	/* bitmap flags */
+/*! bitmap flags */
+typedef CF_ENUM(unsigned short, bitmap_definition_flags) {
 	_COLUMN_ORDER_BIT= 0x8000,
 	_TRANSPARENT_BIT= 0x4000
 };
 
 struct bitmap_definition {
-	short	width, height;		/* in pixels */
-	short	bytes_per_row;		/* if == NONE this is a transparent RLE shape */
-	short	flags;				/* [column_order.1] [unused.15] */
-	short	bit_depth;			/* should always be ==8 */
+	/*! in pixels */
+	short	width, height;
+	/*! if == NONE this is a transparent RLE shape */
+	short	bytes_per_row;
+	/*! [column_order.1] [unused.15] */
+	bitmap_definition_flags	flags;
+	/*! should always be ==8 */
+	short	bit_depth;
 	short	unused[8];
 	pixel8	*row_addresses[1];
 };
