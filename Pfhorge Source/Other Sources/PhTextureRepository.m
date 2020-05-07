@@ -69,6 +69,11 @@
 {
     NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
     
+    if (!theShapesPath || theShapesPath.length == 0) {
+        NSLog(@"*** No valid shapes file! ***");
+        return;
+    }
+    
     switch (textureSet) {
         case _water:
             NSLog(@"*** Loading Water Textures ***");

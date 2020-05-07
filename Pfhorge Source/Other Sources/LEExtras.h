@@ -243,108 +243,108 @@ enum
 
 // *********************** EXTERN Variables ***********************
 // ********* Notifications *********
-extern NSString *PhLevelDeallocatingNotification;
-extern NSString *PhUserDidChangePrefs;
-extern NSString *PhUserDidChangeNames;
-extern NSString *LELevelChangedNotification;
-extern NSString *LESelectionChangedNotification;
-extern NSString *LEToolChangedNotification;
-extern NSString *PhLevelStatusBarUpdate;
+extern NSString *const PhLevelDeallocatingNotification;
+extern NSString *const PhUserDidChangePrefs;
+extern NSString *const PhUserDidChangeNames;
+extern NSString *const LELevelChangedNotification;
+extern NSString *const LESelectionChangedNotification;
+extern NSString *const LEToolChangedNotification;
+extern NSString *const PhLevelStatusBarUpdate;
 
 // ********* Visual Settings *********
-extern NSString *VMKeySpeed;
-extern NSString *VMMouseSpeed;
-extern NSString *VMInvertMouse;
+extern NSString *const VMKeySpeed;
+extern NSString *const VMMouseSpeed;
+extern NSString *const VMInvertMouse;
 
-extern NSString *VMUpKey;
-extern NSString *VMDownKey;
-extern NSString *VMLeftKey;
-extern NSString *VMRightKey;
-extern NSString *VMForwardKey;
-extern NSString *VMBackwardKey;
-extern NSString *VMSlideLeftKey;
-extern NSString *VMSlideRightKey;
+extern NSString *const VMUpKey;
+extern NSString *const VMDownKey;
+extern NSString *const VMLeftKey;
+extern NSString *const VMRightKey;
+extern NSString *const VMForwardKey;
+extern NSString *const VMBackwardKey;
+extern NSString *const VMSlideLeftKey;
+extern NSString *const VMSlideRightKey;
 
-extern NSString *VMCeilingColor;
-extern NSString *VMFloorColor;
-extern NSString *VMWallColor;
-extern NSString *VMLiquidColor;
-extern NSString *VMTransparentColor;
-extern NSString *VMLandscapeColor;
-extern NSString *VMInvalidSurfaceColor;
-extern NSString *VMWireFrameLineColor;
-extern NSString *VMBackGroundColor;
+extern NSString *const VMCeilingColor;
+extern NSString *const VMFloorColor;
+extern NSString *const VMWallColor;
+extern NSString *const VMLiquidColor;
+extern NSString *const VMTransparentColor;
+extern NSString *const VMLandscapeColor;
+extern NSString *const VMInvalidSurfaceColor;
+extern NSString *const VMWireFrameLineColor;
+extern NSString *const VMBackGroundColor;
 
 
-extern NSString *VMShapesPath;
-extern NSString *VMRenderMode;
-extern NSString *VMStartPosition;
+extern NSString *const VMShapesPath;
+extern NSString *const VMRenderMode;
+extern NSString *const VMStartPosition;
 
-extern NSString *VMShowLiquids;
-extern NSString *VMShowTransparent;
-extern NSString *VMShowLandscapes;
-extern NSString *VMShowInvalid;
-extern NSString *VMShowObjects;
+extern NSString *const VMShowLiquids;
+extern NSString *const VMShowTransparent;
+extern NSString *const VMShowLandscapes;
+extern NSString *const VMShowInvalid;
+extern NSString *const VMShowObjects;
 
-extern NSString *VMLiquidsTransparent;
-extern NSString *VMUseFog;
-extern NSString *VMFogDepth;
+extern NSString *const VMLiquidsTransparent;
+extern NSString *const VMUseFog;
+extern NSString *const VMFogDepth;
 
-extern NSString *VMSmoothRendering;
+extern NSString *const VMSmoothRendering;
 
-extern NSString *VMUseLighting;
-extern NSString *VMWhatLighting;
+extern NSString *const VMUseLighting;
+extern NSString *const VMWhatLighting;
 
-extern NSString *VMPlatformState;
-extern NSString *VMVisibleSide;
-extern NSString *VMVerticalLook;
-extern NSString *VMFieldOfView;
-extern NSString *VMVisibilityMode;
+extern NSString *const VMPlatformState;
+extern NSString *const VMVisibleSide;
+extern NSString *const VMVerticalLook;
+extern NSString *const VMFieldOfView;
+extern NSString *const VMVisibilityMode;
 
 // ********* Default Layer Settings *********
-extern NSString *PhDefaultLayers;
-extern NSString *PhDefaultLayer_Name;
-extern NSString *PhDefaultLayer_FloorMin;
-extern NSString *PhDefaultLayer_FloorMax;
-extern NSString *PhDefaultLayer_CeilingMin;
-extern NSString *PhDefaultLayer_CeilingMax;
+extern NSString *const PhDefaultLayers;
+extern NSString *const PhDefaultLayer_Name;
+extern NSString *const PhDefaultLayer_FloorMin;
+extern NSString *const PhDefaultLayer_FloorMax;
+extern NSString *const PhDefaultLayer_CeilingMin;
+extern NSString *const PhDefaultLayer_CeilingMax;
 
 // ********* General Settings *********
-extern NSString *PhEnableAntialiasing;
-extern NSString *PhEnableObjectOutling;
-extern NSString *PhDrawOnlyLayerPoints;
-extern NSString *PhSelectObjectWhenCreated;
-extern NSString *PhSplitPolygonLines;
-extern NSString *PhSplitNonPolygonLines;
-extern NSString *PhSnapToLines;
-extern NSString *PhSnapObjectsToGrid;
-extern NSString *PhSnapToGridBool;
-extern NSString *PhSnapToPoints;
-extern NSString *PhSnapToPointsLength;
+extern NSString *const PhEnableAntialiasing;
+extern NSString *const PhEnableObjectOutling;
+extern NSString *const PhDrawOnlyLayerPoints;
+extern NSString *const PhSelectObjectWhenCreated;
+extern NSString *const PhSplitPolygonLines;
+extern NSString *const PhSplitNonPolygonLines;
+extern NSString *const PhSnapToLines;
+extern NSString *const PhSnapObjectsToGrid;
+extern NSString *const PhSnapToGridBool;
+extern NSString *const PhSnapToPoints;
+extern NSString *const PhSnapToPointsLength;
 
-extern NSString *PhUseRightAngleSnap;
-extern NSString *PhUseIsometricAngleSnap;
-extern NSString *PhSnapFromPoints;
-extern NSString *PhSnapFromLength;
+extern NSString *const PhUseRightAngleSnap;
+extern NSString *const PhUseIsometricAngleSnap;
+extern NSString *const PhSnapFromPoints;
+extern NSString *const PhSnapFromLength;
 
 // ********* Object Type Visability Settings *********
-extern NSString *PhEnableObjectItem;
-extern NSString *PhEnableObjectPlayer;
-extern NSString *PhEnableObjectEnemyMonster;
-extern NSString *PhEnableObjectSceanry;
-extern NSString *PhEnableObjectSound;
-extern NSString *PhEnableObjectGoal;
+extern NSString *const PhEnableObjectItem;
+extern NSString *const PhEnableObjectPlayer;
+extern NSString *const PhEnableObjectEnemyMonster;
+extern NSString *const PhEnableObjectSceanry;
+extern NSString *const PhEnableObjectSound;
+extern NSString *const PhEnableObjectGoal;
 
 // ********* Polygon Color Visability Settings *********
-extern NSString *PhEnablePlatfromPolyColoring;
-extern NSString *PhEnableConvexPolyColoring;
-extern NSString *PhEnableZonePolyColoring;
-extern NSString *PhEnableTeleporterExitPolyColoring;
-extern NSString *PhEnableHillPolyColoring;
+extern NSString *const PhEnablePlatfromPolyColoring;
+extern NSString *const PhEnableConvexPolyColoring;
+extern NSString *const PhEnableZonePolyColoring;
+extern NSString *const PhEnableTeleporterExitPolyColoring;
+extern NSString *const PhEnableHillPolyColoring;
 
 // ********* Grid Settings *********
-extern NSString *PhGridFactor;
-extern NSString *PhEnableGridBool;
+extern NSString *const PhGridFactor;
+extern NSString *const PhEnableGridBool;
 
 // ********* Current Phorge Information *********
 
@@ -352,49 +352,49 @@ extern int currentVersionOfPfhorgeLevelData;
 
 extern NSString *currentPhorgeVersion; // = @"0.3.0 alpha";
 
-extern NSString *PhPrefVersion; // = @"PhPrefVersion";
-extern NSString *PhPhorgePrefVersion; // = @"PhPhorgePrefVersion";
-extern NSString *PhPhorgeColors; // = @"PhPhorgeColors";
+extern NSString *const PhPrefVersion; // = @"PhPrefVersion";
+extern NSString *const PhPhorgePrefVersion; // = @"PhPhorgePrefVersion";
+extern NSString *const PhPhorgeColors; // = @"PhPhorgeColors";
 
 // ********* PhPhorgeColors Strings *********
-extern NSString *PhPolygonRegularColor; // = @"PhPolygonRegularColor";
-extern NSString *PhPolygonSelectedColor; // = @"PhPolygonSelectedColor";
-extern NSString *PhPolygonPlatformColor; // = @"PhPolygonPlatformColor";
-extern NSString *PhPolygonNonConcaveColor; // = @"PhPolygonNonConcaveColor";
-extern NSString *PhPolygonTeleporterColor;
-extern NSString *PhPolygonZoneColor;
-extern NSString *PhPolygonHillColor;
+extern NSString *const PhPolygonRegularColor; // = @"PhPolygonRegularColor";
+extern NSString *const PhPolygonSelectedColor; // = @"PhPolygonSelectedColor";
+extern NSString *const PhPolygonPlatformColor; // = @"PhPolygonPlatformColor";
+extern NSString *const PhPolygonNonConcaveColor; // = @"PhPolygonNonConcaveColor";
+extern NSString *const PhPolygonTeleporterColor;
+extern NSString *const PhPolygonZoneColor;
+extern NSString *const PhPolygonHillColor;
 
-extern NSString *PhLineRegularColor; // = @"PhLineRegularColor";
-extern NSString *PhLineSelectedColor; // = @"PhLineSelectedColor";
-extern NSString *PhLineConnectsPolysColor; // = @"PhLineConnectsPolysColor";
+extern NSString *const PhLineRegularColor; // = @"PhLineRegularColor";
+extern NSString *const PhLineSelectedColor; // = @"PhLineSelectedColor";
+extern NSString *const PhLineConnectsPolysColor; // = @"PhLineConnectsPolysColor";
 
-extern NSString *PhPointRegularColor; // = @"PhPointRegularColor";
-extern NSString *PhPointSelectedColor; // = @"PhPointSelectedColor";
+extern NSString *const PhPointRegularColor; // = @"PhPointRegularColor";
+extern NSString *const PhPointSelectedColor; // = @"PhPointSelectedColor";
 
-extern NSString *PhObjectSelectedColor; // = @"PhObjectSelectedColor";
-extern NSString *PhObjectItemColor; // = @"PhObjectItemColor";
-extern NSString *PhObjectPlayerColor; // = @"PhObjectPlayerColor";
-extern NSString *PhObjectFriendlyMonsterColor; // = @"PhObjectFriendlyMonsterColor";
-extern NSString *PhObjectNeutralMonsterColor; // = @"PhObjectNeutralMonsterColor";
-extern NSString *PhObjectEnemyMonsterColor; // = @"PhObjectEnemyMonsterColor";
-extern NSString *PhObjectSceanryColor; // = @"PhObjectSceanryColor";
-extern NSString *PhObjectSoundColor; // = @"PhObjectSoundColor";
-extern NSString *PhObjectGoalColor; // = @"PhObjectGoalColor";
+extern NSString *const PhObjectSelectedColor; // = @"PhObjectSelectedColor";
+extern NSString *const PhObjectItemColor; // = @"PhObjectItemColor";
+extern NSString *const PhObjectPlayerColor; // = @"PhObjectPlayerColor";
+extern NSString *const PhObjectFriendlyMonsterColor; // = @"PhObjectFriendlyMonsterColor";
+extern NSString *const PhObjectNeutralMonsterColor; // = @"PhObjectNeutralMonsterColor";
+extern NSString *const PhObjectEnemyMonsterColor; // = @"PhObjectEnemyMonsterColor";
+extern NSString *const PhObjectSceanryColor; // = @"PhObjectSceanryColor";
+extern NSString *const PhObjectSoundColor; // = @"PhObjectSoundColor";
+extern NSString *const PhObjectGoalColor; // = @"PhObjectGoalColor";
 
-extern NSString *PhObjectBLineSelectedColor; // = @"PhObjectBLineSelectedColor";
-extern NSString *PhObjectBLineItemColor; // = @"PhObjectBLineItemColor";
-extern NSString *PhObjectBLinePlayerColor; // = @"PhObjectBLinePlayerColor";
-extern NSString *PhObjectBLineFriendlyMonsterColor; // = @"PhObjectBLineFriendlyMonsterColor";
-extern NSString *PhObjectBLineNeutralMonsterColor; // = @"PhObjectBLineNeutralMonsterColor";
-extern NSString *PhObjectBLineEnemyMonsterColor; // = @"PhObjectBLineEnemyMonsterColor";
-extern NSString *PhObjectBLineSceanryColor; // = @"PhObjectBLineSceanryColor";
-extern NSString *PhObjectBLineSoundColor; // = @"PhObjectBLineSoundColor";
-extern NSString *PhObjectBLineGoalColor; // = @"PhObjectBLineGoalColor";
+extern NSString *const PhObjectBLineSelectedColor; // = @"PhObjectBLineSelectedColor";
+extern NSString *const PhObjectBLineItemColor; // = @"PhObjectBLineItemColor";
+extern NSString *const PhObjectBLinePlayerColor; // = @"PhObjectBLinePlayerColor";
+extern NSString *const PhObjectBLineFriendlyMonsterColor; // = @"PhObjectBLineFriendlyMonsterColor";
+extern NSString *const PhObjectBLineNeutralMonsterColor; // = @"PhObjectBLineNeutralMonsterColor";
+extern NSString *const PhObjectBLineEnemyMonsterColor; // = @"PhObjectBLineEnemyMonsterColor";
+extern NSString *const PhObjectBLineSceanryColor; // = @"PhObjectBLineSceanryColor";
+extern NSString *const PhObjectBLineSoundColor; // = @"PhObjectBLineSoundColor";
+extern NSString *const PhObjectBLineGoalColor; // = @"PhObjectBLineGoalColor";
 
-extern NSString *PhBackgroundColor; // = @"PhBackgroundColor";
-extern NSString *PhWorldUnitGridColor; // = @"PhWorldUnitGridColor";
-extern NSString *PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
-extern NSString *PhCenterWorldUnitGridColor;
+extern NSString *const PhBackgroundColor; // = @"PhBackgroundColor";
+extern NSString *const PhWorldUnitGridColor; // = @"PhWorldUnitGridColor";
+extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
+extern NSString *const PhCenterWorldUnitGridColor;
 // *********************** End EXTERN Variables ***********************
 

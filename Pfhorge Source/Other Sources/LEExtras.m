@@ -34,108 +34,108 @@ unsigned eightBytesCount = 8;*/
 
 // *********************** EXTERN Variables ***********************
 // ********* Notifications *********
-NSString *PhLevelDeallocatingNotification = @"PhLevelDeallocatingNotification";
-NSString *PhUserDidChangePrefs = @"PhUserDidChangePref";
-NSString *PhUserDidChangeNames = @"PhUserDidChangeName";
-NSString *LELevelChangedNotification = @"LELevelChangedNotification";
-NSString *LESelectionChangedNotification = @"LESelectionChangedNotification";
-NSString *LEToolChangedNotification = @"LEToolChangedNotification";
-NSString *PhLevelStatusBarUpdate = @"PhLevelStatusBarUpdate";
+NSString *const PhLevelDeallocatingNotification = @"PhLevelDeallocatingNotification";
+NSString *const PhUserDidChangePrefs = @"PhUserDidChangePref";
+NSString *const PhUserDidChangeNames = @"PhUserDidChangeName";
+NSString *const LELevelChangedNotification = @"LELevelChangedNotification";
+NSString *const LESelectionChangedNotification = @"LESelectionChangedNotification";
+NSString *const LEToolChangedNotification = @"LEToolChangedNotification";
+NSString *const PhLevelStatusBarUpdate = @"PhLevelStatusBarUpdate";
 
 // ********* Visual Settings *********
-NSString *VMKeySpeed = @"VMKeySpeed";
-NSString *VMMouseSpeed = @"VMMouseSpeed";
-NSString *VMInvertMouse = @"VMInvertMouse";
+NSString *const VMKeySpeed = @"VMKeySpeed";
+NSString *const VMMouseSpeed = @"VMMouseSpeed";
+NSString *const VMInvertMouse = @"VMInvertMouse";
 
-NSString *VMUpKey = @"VMUpKey";
-NSString *VMDownKey = @"VMDownKey";
-NSString *VMLeftKey = @"VMLeftKey";
-NSString *VMRightKey = @"VMRightKey";
-NSString *VMForwardKey = @"VMForwardKey";
-NSString *VMBackwardKey = @"VMBackwardKey";
-NSString *VMSlideLeftKey = @"VMSlideLeftKey";
-NSString *VMSlideRightKey = @"VMSlideRightKey";
+NSString *const VMUpKey = @"VMUpKey";
+NSString *const VMDownKey = @"VMDownKey";
+NSString *const VMLeftKey = @"VMLeftKey";
+NSString *const VMRightKey = @"VMRightKey";
+NSString *const VMForwardKey = @"VMForwardKey";
+NSString *const VMBackwardKey = @"VMBackwardKey";
+NSString *const VMSlideLeftKey = @"VMSlideLeftKey";
+NSString *const VMSlideRightKey = @"VMSlideRightKey";
 
-NSString *VMCeilingColor = @"VMCeilingColor";
-NSString *VMFloorColor = @"VMFloorColor";
-NSString *VMWallColor = @"VMWallColor";
-NSString *VMLiquidColor = @"VMLiquidColor";
-NSString *VMTransparentColor = @"VMTransparentColor";
-NSString *VMLandscapeColor = @"VMLandscapeColor";
-NSString *VMInvalidSurfaceColor = @"VMInvalidSurfaceColor";
-NSString *VMWireFrameLineColor = @"VMWireFrameLineColor";
-NSString *VMBackGroundColor = @"VMBackGroundColor";
+NSString *const VMCeilingColor = @"VMCeilingColor";
+NSString *const VMFloorColor = @"VMFloorColor";
+NSString *const VMWallColor = @"VMWallColor";
+NSString *const VMLiquidColor = @"VMLiquidColor";
+NSString *const VMTransparentColor = @"VMTransparentColor";
+NSString *const VMLandscapeColor = @"VMLandscapeColor";
+NSString *const VMInvalidSurfaceColor = @"VMInvalidSurfaceColor";
+NSString *const VMWireFrameLineColor = @"VMWireFrameLineColor";
+NSString *const VMBackGroundColor = @"VMBackGroundColor";
 
 
-NSString *VMShapesPath = @"VMShapesPath";
-NSString *VMRenderMode = @"VMRenderMode";
-NSString *VMStartPosition = @"VMStartPosition";
+NSString *const VMShapesPath = @"VMShapesPath";
+NSString *const VMRenderMode = @"VMRenderMode";
+NSString *const VMStartPosition = @"VMStartPosition";
 
-NSString *VMShowLiquids = @"VMShowLiquids";
-NSString *VMShowTransparent = @"VMShowTransparent";
-NSString *VMShowLandscapes = @"VMShowLandscapes";
-NSString *VMShowInvalid = @"VMShowInvalid";
-NSString *VMShowObjects = @"VMShowObjects";
+NSString *const VMShowLiquids = @"VMShowLiquids";
+NSString *const VMShowTransparent = @"VMShowTransparent";
+NSString *const VMShowLandscapes = @"VMShowLandscapes";
+NSString *const VMShowInvalid = @"VMShowInvalid";
+NSString *const VMShowObjects = @"VMShowObjects";
 
-NSString *VMLiquidsTransparent = @"VMLiquidsTransparent";
-NSString *VMUseFog = @"VMUseFog";
-NSString *VMFogDepth = @"VMFogDepth";
+NSString *const VMLiquidsTransparent = @"VMLiquidsTransparent";
+NSString *const VMUseFog = @"VMUseFog";
+NSString *const VMFogDepth = @"VMFogDepth";
 
-NSString *VMSmoothRendering = @"VMSmoothRendering";
+NSString *const VMSmoothRendering = @"VMSmoothRendering";
 
-NSString *VMUseLighting = @"VMUseLighting";
-NSString *VMWhatLighting = @"VMWhatLighting";
+NSString *const VMUseLighting = @"VMUseLighting";
+NSString *const VMWhatLighting = @"VMWhatLighting";
 
-NSString *VMPlatformState = @"VMPlatformState";
-NSString *VMVisibleSide = @"VMVisibleSide";
-NSString *VMVerticalLook = @"VMVerticalLook";
-NSString *VMFieldOfView = @"VMFieldOfView";
-NSString *VMVisibilityMode = @"VMVisibilityMode";
+NSString *const VMPlatformState = @"VMPlatformState";
+NSString *const VMVisibleSide = @"VMVisibleSide";
+NSString *const VMVerticalLook = @"VMVerticalLook";
+NSString *const VMFieldOfView = @"VMFieldOfView";
+NSString *const VMVisibilityMode = @"VMVisibilityMode";
 
 // ********* Default Layer Settings *********
-NSString *PhDefaultLayers = @"PhDefaultLayers";
-NSString *PhDefaultLayer_Name = @"Name";
-NSString *PhDefaultLayer_FloorMin = @"Floor Min";
-NSString *PhDefaultLayer_FloorMax = @"Floor Max";
-NSString *PhDefaultLayer_CeilingMin = @"Ceiling Min";
-NSString *PhDefaultLayer_CeilingMax = @"Ceiling Max";
+NSString *const PhDefaultLayers = @"PhDefaultLayers";
+NSString *const PhDefaultLayer_Name = @"Name";
+NSString *const PhDefaultLayer_FloorMin = @"Floor Min";
+NSString *const PhDefaultLayer_FloorMax = @"Floor Max";
+NSString *const PhDefaultLayer_CeilingMin = @"Ceiling Min";
+NSString *const PhDefaultLayer_CeilingMax = @"Ceiling Max";
 
 // ********* General Settings *********
-NSString *PhEnableAntialiasing = @"PhEnableAntialiasing";
-NSString *PhEnableObjectOutling = @"PhEnableObjectOutling";
-NSString *PhDrawOnlyLayerPoints = @"PhDrawOnlyLayerPoints";
-NSString *PhSelectObjectWhenCreated = @"PhSelectObjectWhenCreated";
-NSString *PhSplitPolygonLines = @"PhSplitPolygonLines";
-NSString *PhSplitNonPolygonLines = @"PhSplitNonPolygonLines";
-NSString *PhSnapToLines = @"PhSnapToLines";
-NSString *PhSnapToPoints = @"PhSnapToPoints";
-NSString *PhSnapObjectsToGrid = @"PhSnapObjectsToGrid";
-NSString *PhSnapToGridBool = @"PhSnapToGridBool";
-NSString *PhSnapToPointsLength = @"PhSnapToPointsLength";
+NSString *const PhEnableAntialiasing = @"PhEnableAntialiasing";
+NSString *const PhEnableObjectOutling = @"PhEnableObjectOutling";
+NSString *const PhDrawOnlyLayerPoints = @"PhDrawOnlyLayerPoints";
+NSString *const PhSelectObjectWhenCreated = @"PhSelectObjectWhenCreated";
+NSString *const PhSplitPolygonLines = @"PhSplitPolygonLines";
+NSString *const PhSplitNonPolygonLines = @"PhSplitNonPolygonLines";
+NSString *const PhSnapToLines = @"PhSnapToLines";
+NSString *const PhSnapToPoints = @"PhSnapToPoints";
+NSString *const PhSnapObjectsToGrid = @"PhSnapObjectsToGrid";
+NSString *const PhSnapToGridBool = @"PhSnapToGridBool";
+NSString *const PhSnapToPointsLength = @"PhSnapToPointsLength";
 
-NSString *PhUseRightAngleSnap = @"PhUseRightAngleSnap";
-NSString *PhUseIsometricAngleSnap = @"PhUseIsometricAngleSnap";
-NSString *PhSnapFromPoints = @"PhSnapFromPoints";
-NSString *PhSnapFromLength = @"PhSnapFromLength";
+NSString *const PhUseRightAngleSnap = @"PhUseRightAngleSnap";
+NSString *const PhUseIsometricAngleSnap = @"PhUseIsometricAngleSnap";
+NSString *const PhSnapFromPoints = @"PhSnapFromPoints";
+NSString *const PhSnapFromLength = @"PhSnapFromLength";
 
 // ********* Object Type Visability Settings *********
-NSString *PhEnableObjectItem = @"PhEnableObjectItem";
-NSString *PhEnableObjectPlayer = @"PhEnableObjectPlayer";
-NSString *PhEnableObjectEnemyMonster = @"PhEnableObjectEnemyMonster";
-NSString *PhEnableObjectSceanry = @"PhEnableObjectSceanry";
-NSString *PhEnableObjectSound = @"PhEnableObjectSound";
-NSString *PhEnableObjectGoal = @"PhEnableObjectGoal";
+NSString *const PhEnableObjectItem = @"PhEnableObjectItem";
+NSString *const PhEnableObjectPlayer = @"PhEnableObjectPlayer";
+NSString *const PhEnableObjectEnemyMonster = @"PhEnableObjectEnemyMonster";
+NSString *const PhEnableObjectSceanry = @"PhEnableObjectSceanry";
+NSString *const PhEnableObjectSound = @"PhEnableObjectSound";
+NSString *const PhEnableObjectGoal = @"PhEnableObjectGoal";
 
 // ********* Polygon Color Visability Settings *********
-NSString *PhEnablePlatfromPolyColoring = @"PhEnablePlatfromPolyColoring";
-NSString *PhEnableConvexPolyColoring = @"PhEnableConvexPolyColoring";
-NSString *PhEnableZonePolyColoring = @"PhEnableZonePolyColoring";
-NSString *PhEnableTeleporterExitPolyColoring = @"PhEnableTeleporterExitPolyColoring";
-NSString *PhEnableHillPolyColoring = @"PhEnableHillPolyColoring";
+NSString *const PhEnablePlatfromPolyColoring = @"PhEnablePlatfromPolyColoring";
+NSString *const PhEnableConvexPolyColoring = @"PhEnableConvexPolyColoring";
+NSString *const PhEnableZonePolyColoring = @"PhEnableZonePolyColoring";
+NSString *const PhEnableTeleporterExitPolyColoring = @"PhEnableTeleporterExitPolyColoring";
+NSString *const PhEnableHillPolyColoring = @"PhEnableHillPolyColoring";
 
 // ********* Grid Settings *********
-NSString *PhGridFactor = @"PhGridFactor";
-NSString *PhEnableGridBool = @"PhEnableGridBool";
+NSString *const PhGridFactor = @"PhGridFactor";
+NSString *const PhEnableGridBool = @"PhEnableGridBool";
 
 // ********* Current Phorge Information *********
 
@@ -143,50 +143,50 @@ int currentVersionOfPfhorgeLevelData = 6;
 
 NSString *currentPhorgeVersion = @"0.3.0 alpha";
 
-NSString *PhPrefVersion = @"PhPrefVersion";
-NSString *PhPhorgePrefVersion = @"PhPhorgePrefVersion";
-NSString *PhPhorgeColors = @"PhPhorgeColors";
+NSString *const PhPrefVersion = @"PhPrefVersion";
+NSString *const PhPhorgePrefVersion = @"PhPhorgePrefVersion";
+NSString *const PhPhorgeColors = @"PhPhorgeColors";
 
 // ********* PhPhorgeColors Strings *********
-NSString *PhPolygonRegularColor = @"PhPolygonRegularColor";
-NSString *PhPolygonSelectedColor = @"PhPolygonSelectedColor";
-NSString *PhPolygonPlatformColor = @"PhPolygonPlatformColor";
-NSString *PhPolygonNonConcaveColor = @"PhPolygonNonConcaveColor";
-NSString *PhPolygonTeleporterColor = @"PhPolygonTeleporterColor";
-NSString *PhPolygonZoneColor = @"PhPolygonZoneColor";
-NSString *PhPolygonHillColor = @"PhPolygonHillColor";
+NSString *const PhPolygonRegularColor = @"PhPolygonRegularColor";
+NSString *const PhPolygonSelectedColor = @"PhPolygonSelectedColor";
+NSString *const PhPolygonPlatformColor = @"PhPolygonPlatformColor";
+NSString *const PhPolygonNonConcaveColor = @"PhPolygonNonConcaveColor";
+NSString *const PhPolygonTeleporterColor = @"PhPolygonTeleporterColor";
+NSString *const PhPolygonZoneColor = @"PhPolygonZoneColor";
+NSString *const PhPolygonHillColor = @"PhPolygonHillColor";
 
-NSString *PhLineRegularColor = @"PhLineRegularColor";
-NSString *PhLineSelectedColor = @"PhLineSelectedColor";
-NSString *PhLineConnectsPolysColor = @"PhLineConnectsPolysColor";
+NSString *const PhLineRegularColor = @"PhLineRegularColor";
+NSString *const PhLineSelectedColor = @"PhLineSelectedColor";
+NSString *const PhLineConnectsPolysColor = @"PhLineConnectsPolysColor";
 
-NSString *PhPointRegularColor = @"PhPointRegularColor";
-NSString *PhPointSelectedColor = @"PhPointSelectedColor";
+NSString *const PhPointRegularColor = @"PhPointRegularColor";
+NSString *const PhPointSelectedColor = @"PhPointSelectedColor";
 
-NSString *PhObjectSelectedColor = @"PhObjectSelectedColor";
-NSString *PhObjectItemColor = @"PhObjectItemColor";
-NSString *PhObjectPlayerColor = @"PhObjectPlayerColor";
-NSString *PhObjectFriendlyMonsterColor = @"PhObjectFriendlyMonsterColor";
-NSString *PhObjectNeutralMonsterColor = @"PhObjectNeutralMonsterColor";
-NSString *PhObjectEnemyMonsterColor = @"PhObjectEnemyMonsterColor";
-NSString *PhObjectSceanryColor = @"PhObjectSceanryColor";
-NSString *PhObjectSoundColor = @"PhObjectSoundColor";
-NSString *PhObjectGoalColor = @"PhObjectGoalColor";
+NSString *const PhObjectSelectedColor = @"PhObjectSelectedColor";
+NSString *const PhObjectItemColor = @"PhObjectItemColor";
+NSString *const PhObjectPlayerColor = @"PhObjectPlayerColor";
+NSString *const PhObjectFriendlyMonsterColor = @"PhObjectFriendlyMonsterColor";
+NSString *const PhObjectNeutralMonsterColor = @"PhObjectNeutralMonsterColor";
+NSString *const PhObjectEnemyMonsterColor = @"PhObjectEnemyMonsterColor";
+NSString *const PhObjectSceanryColor = @"PhObjectSceanryColor";
+NSString *const PhObjectSoundColor = @"PhObjectSoundColor";
+NSString *const PhObjectGoalColor = @"PhObjectGoalColor";
 
-NSString *PhObjectBLineSelectedColor = @"PhObjectBLineSelectedColor";
-NSString *PhObjectBLineItemColor = @"PhObjectBLineItemColor";
-NSString *PhObjectBLinePlayerColor = @"PhObjectBLinePlayerColor";
-NSString *PhObjectBLineFriendlyMonsterColor = @"PhObjectBLineFriendlyMonsterColor";
-NSString *PhObjectBLineNeutralMonsterColor = @"PhObjectBLineNeutralMonsterColor";
-NSString *PhObjectBLineEnemyMonsterColor = @"PhObjectBLineEnemyMonsterColor";
-NSString *PhObjectBLineSceanryColor = @"PhObjectBLineSceanryColor";
-NSString *PhObjectBLineSoundColor = @"PhObjectBLineSoundColor";
-NSString *PhObjectBLineGoalColor = @"PhObjectBLineGoalColor";
+NSString *const PhObjectBLineSelectedColor = @"PhObjectBLineSelectedColor";
+NSString *const PhObjectBLineItemColor = @"PhObjectBLineItemColor";
+NSString *const PhObjectBLinePlayerColor = @"PhObjectBLinePlayerColor";
+NSString *const PhObjectBLineFriendlyMonsterColor = @"PhObjectBLineFriendlyMonsterColor";
+NSString *const PhObjectBLineNeutralMonsterColor = @"PhObjectBLineNeutralMonsterColor";
+NSString *const PhObjectBLineEnemyMonsterColor = @"PhObjectBLineEnemyMonsterColor";
+NSString *const PhObjectBLineSceanryColor = @"PhObjectBLineSceanryColor";
+NSString *const PhObjectBLineSoundColor = @"PhObjectBLineSoundColor";
+NSString *const PhObjectBLineGoalColor = @"PhObjectBLineGoalColor";
 
-NSString *PhBackgroundColor = @"PhBackgroundColor";
-NSString *PhWorldUnitGridColor = @"PhWorldUnitGridColor";
-NSString *PhSubWorldUnitGridColor = @"PhSubWorldUnitGridColor";
-NSString *PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
+NSString *const PhBackgroundColor = @"PhBackgroundColor";
+NSString *const PhWorldUnitGridColor = @"PhWorldUnitGridColor";
+NSString *const PhSubWorldUnitGridColor = @"PhSubWorldUnitGridColor";
+NSString *const PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 
 // *********************** End EXTERN Variables ***********************
 
