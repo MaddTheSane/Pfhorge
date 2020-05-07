@@ -45,8 +45,8 @@
     IBOutlet id yandomSound;
     IBOutlet id type;
     
-    //IBOutlet id ceilingTextureMenu;
-    //IBOutlet id floorTextureMenu;
+    IBOutlet NSPopUpButton *ceilingTextureMenu;
+    IBOutlet NSPopUpButton *floorTextureMenu;
     //IBOutlet id textureOffsetMatrix;
     
     IBOutlet id permutationTab;

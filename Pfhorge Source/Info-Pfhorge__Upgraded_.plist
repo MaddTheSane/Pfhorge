@@ -268,6 +268,29 @@
 				</array>
 			</dict>
 		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Aleph One Shapes File</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.bungie.source.shapes</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>shp2</string>
+					<string>shp∞</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>shpA</string>
+					<string>shps</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

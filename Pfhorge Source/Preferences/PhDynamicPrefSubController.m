@@ -107,7 +107,7 @@
 
 - (void)loadAndSetVisualModePrefUI
 {
-    NSString *theShapesPath = [preferences objectForKey:VMShapesPath];
+    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
     
     [renderModePM selectItemAtIndex:[preferences integerForKey:VMRenderMode]];
     [startPositionPM selectItemAtIndex:[preferences integerForKey:VMStartPosition]];
@@ -118,7 +118,7 @@
     }
     else
     {
-        [shapesPathTB setStringValue:@"No Shapes Selected"];
+        [shapesPathTB setStringValue:NSLocalizedString(@"No Shapes Selected", @"No Shapes Selected")];
     }
  
     [showLiquids setState:[preferences boolForKey:VMShowLiquids]];
@@ -383,19 +383,20 @@ extern NSString *VMBackwardKey;
     [panel setAllowsMultipleSelection:NO];
     [panel setCanChooseDirectories:NO];
     [panel setCanChooseFiles:YES];
+	panel.allowedFileTypes = @[@"org.bungie.source.shapes", @"shpA", NSFileTypeForHFSTypeCode('shp2'), NSFileTypeForHFSTypeCode(0x736870B0 /*shp∞*/)];
     
     returnCode = [panel runModal];
     
     if (returnCode == NSOKButton)
     {
-        NSString *path = [panel filename];
+        NSString *path = [panel URL].path;
         NSLog(@"The Shapes Path Choosen: %@", path);
         [shapesPathTB setStringValue:path];
         [preferences setObject:path forKey:VMShapesPath];
     }
     else
     {
-        [shapesPathTB setStringValue:@"No Shapes Selected"];
+        [shapesPathTB setStringValue:NSLocalizedString(@"No Shapes Selected", @"No Shapes Selected")];
         [preferences setObject:@"" forKey:VMShapesPath];
     }
 }

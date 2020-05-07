@@ -129,8 +129,10 @@ int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **o
 int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, short *outFlags, unsigned char **outPixData)
 {
 	byte	*bd, *outPixBase, *p;
-	long	bitmapOffsetTableOffset, *bitmapOffsetTable;
-	int		bitmapCount, width, height, flags;
+	long	bitmapOffsetTableOffset;
+	int		*bitmapOffsetTable;
+	short	bitmapCount, width, height;
+	bitmap_definition_flags flags;
 	int		err = 0;
 	short	bytes_per_row;
 	
@@ -144,7 +146,7 @@ int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, short *outF
 	if (bitmapID >= bitmapCount)
 		return EINVAL;
 	bitmapOffsetTableOffset = GET_LONG(p);
-	bitmapOffsetTable = (long *)(colls[coll] + bitmapOffsetTableOffset);
+	bitmapOffsetTable = (int *)(colls[coll] + bitmapOffsetTableOffset);
 	p = (byte *)(bitmapOffsetTable + bitmapID);
 	bd = colls[coll] + GET_LONG(p);
 	

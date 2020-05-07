@@ -45,9 +45,6 @@
     NSMutableDictionary *appDefaults = [NSMutableDictionary
         dictionaryWithObject:@"050" forKey:PhPhorgePrefVersion];
     
-    // Call super
-    [super initialize];
-    
     theMutableColors = [[NSMutableDictionary alloc] initWithCapacity:30];
     
     // Set the values    
@@ -144,7 +141,7 @@
     // *** Visual Mode Defaults ***
     [appDefaults setObject:@NO  forKey:VMInvertMouse];
     [appDefaults setObject:@33  forKey:VMKeySpeed];
-    [appDefaults setObject:[NSNumber numberWithFloat:1]  forKey:VMMouseSpeed];
+    [appDefaults setObject:@1.0f  forKey:VMMouseSpeed];
 
     [appDefaults setObject:[NSNumber numberWithInt:0x38]  forKey:VMUpKey];
     [appDefaults setObject:[NSNumber numberWithInt:0x35]  forKey:VMDownKey];

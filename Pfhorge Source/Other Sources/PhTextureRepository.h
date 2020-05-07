@@ -32,7 +32,7 @@
 }
 
 // *********************** Class Methods ***********************
-+ (PhTextureRepository*)sharedTextureRepository;
+@property (class, readonly, strong) PhTextureRepository *sharedTextureRepository;
 
 // *********************** Other Methods ***********************
 - (void)loadTextureSet:(int)textureSet;

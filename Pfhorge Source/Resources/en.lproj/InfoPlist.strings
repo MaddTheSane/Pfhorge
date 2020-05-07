@@ -6,6 +6,7 @@ CFBundleGetInfoString = "Pfhorge Version 0.95, Copyright 2005 Joshua D. Orr All 
 NSHumanReadableCopyright = "Pfhorge Copyright 2005 Joshua D. Orr All Rights Reserved.";
 
 "org.bungie.source.map" = "Aleph One Map File";
+"org.bungie.source.shapes" = "Aleph One Shapes File";
 "com.xmission.dragons.pfhorge.level" = "Pfhorge Level";
 "com.xmission.dragons.pfhorge.scenario" = "Pfhorge Scenario";
 

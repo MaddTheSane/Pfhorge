@@ -10,6 +10,7 @@
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
+		55D7334224640306008B33F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D7334424640306008B33F6 /* Localizable.strings */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -241,7 +242,7 @@
 		00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhObjectInspectorSubController.h; sourceTree = "<group>"; };
 		00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhObjectInspectorSubController.m; sourceTree = "<group>"; };
 		00CCECF30125C7647F000001 /* PhPrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPrefsController.h; sourceTree = "<group>"; };
-		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; };
+		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; usesTabs = 0; };
 		00D18BBF010A18747F000001 /* PhTextureRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTextureRepository.h; sourceTree = "<group>"; };
 		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; usesTabs = 0; };
 		00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLineInspectorController.h; sourceTree = "<group>"; };
@@ -328,6 +329,7 @@
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
+		55D7334324640306008B33F6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55F0080424637C27007BB0F3 /* MarathonVersions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarathonVersions.h; sourceTree = "<group>"; };
 		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KeyControls.h; sourceTree = "<group>"; };
 		A514D90A080ACBF200F94B8E /* KeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = KeyControls.mm; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 			isa = PBXGroup;
 			children = (
 				557A9B40245A922A00527063 /* Example Script.applescript */,
+				55D7334424640306008B33F6 /* Localizable.strings */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
 				557A9B3E245A617B00527063 /* Media.xcassets */,
 				557A9B42245A924700527063 /* Pfhorge.sdef */,
@@ -1125,6 +1128,7 @@
 				557A9B43245A924700527063 /* Pfhorge.sdef in Resources */,
 				AE3C15190A04512100FBFFCD /* LightEditor.xib in Resources */,
 				AE3C151A0A04512100FBFFCD /* LiquidInterface.xib in Resources */,
+				55D7334224640306008B33F6 /* Localizable.strings in Resources */,
 				AE3C151B0A04512100FBFFCD /* PlatformEditor.xib in Resources */,
 				AE3C151C0A04512100FBFFCD /* RandomSoundInterface.xib in Resources */,
 				AE3C151D0A04512100FBFFCD /* StatusWin.xib in Resources */,
@@ -1317,6 +1321,14 @@
 				557A9B2B245A519200527063 /* en */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		55D7334424640306008B33F6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55D7334324640306008B33F6 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		A5EE9AB7040439D60046BBD2 /* MapManager.xib */ = {

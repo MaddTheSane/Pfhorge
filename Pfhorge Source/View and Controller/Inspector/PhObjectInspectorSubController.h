@@ -30,12 +30,12 @@
     
     IBOutlet id objectWindow;
     
-    IBOutlet id objAngle;
+    IBOutlet NSTextField *objAngle;
     IBOutlet id objBox;
-    IBOutlet id objFlags;
+    IBOutlet NSMatrix *objFlags;
     IBOutlet id objItem;
-    IBOutlet id objType;
-    IBOutlet id objZHeight;
+    IBOutlet NSPopUpButton *objType;
+    IBOutlet NSTextField *objZHeight;
     
     NSArray *theMonsterNames;
     NSArray *theItemNames;

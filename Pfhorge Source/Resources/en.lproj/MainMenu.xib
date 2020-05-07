@@ -25,12 +25,12 @@
                             <menuItem isSeparatorItem="YES" id="487">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="General Prefs" id="485">
+                            <menuItem title="General Preferences…" keyEquivalent="," id="485">
                                 <connections>
                                     <action selector="thePrefs:" target="202" id="488"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Layer Defaults" id="486">
+                            <menuItem title="Layer Defaults…" id="486">
                                 <connections>
                                     <action selector="theLayerDefaults:" target="202" id="489"/>
                                 </connections>

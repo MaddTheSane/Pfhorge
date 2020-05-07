@@ -67,7 +67,7 @@
 
 -(void)loadTextureSet:(int)textureSet
 {
-    NSString *theShapesPath = [preferences objectForKey:VMShapesPath];
+    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
     
     switch (textureSet) {
         case _water:
@@ -109,7 +109,7 @@
 
 -(void)loadTheTextures
 {
-    NSString *theShapesPath = [preferences objectForKey:VMShapesPath];
+    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
     
     // (Collection, Color Table, Shapes Path)
     

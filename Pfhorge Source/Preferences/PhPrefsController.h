@@ -85,7 +85,7 @@
     //NSDictionary *theColors;
 }
 // *********************** Class Methods ***********************
-+ (id)sharedPrefController;
+@property (class, readonly, retain) PhPrefsController *sharedPrefController NS_SWIFT_NAME(shared);
 
 // *********************** Regular Methods ***********************
 -(void)saveColorsToPrefs;
