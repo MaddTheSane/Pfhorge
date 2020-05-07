@@ -88,7 +88,6 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
         [theImage addRepresentation:getRawImageBits(theCollection, theColorTable, i)];
         [theTextures addObject:theImage];
         [theImage setSize:NSMakeSize(32, 32)];
-        [theImage release];
     }
     
     // free everything
@@ -96,7 +95,7 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
     fclose(f);
     free(ctable);
         
-    return [theTextures autorelease];
+    return theTextures;
 }
 
 NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap/*, unsigned char *pixelsOut*/)
@@ -144,9 +143,9 @@ NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int the
 
 NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned char *pixels)
 {
-        NSMutableData *f = [[NSMutableData alloc] initWithCapacity:((width * height) * 3)];
+	NSMutableData *f = [[NSMutableData alloc] initWithCapacity:((width * height) * 3)];
         
-	unsigned long	file_size = 0;
+	unsigned int	file_size = 0;
 	long			x, y;
 	
 	write_c('B', f);	write_c('M', f);	// identificazione BMP
@@ -187,10 +186,10 @@ NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned
 	}
 	// scrivi la dimensione del file
 	
-        file_size = [f length];
-        [f replaceBytesInRange:NSMakeRange(2, 4) withBytes:&file_size];
-        
-        return [f autorelease];
+	file_size = (int)[f length];
+	[f replaceBytesInRange:NSMakeRange(2, 4) withBytes:&file_size];
+	
+	return f;
 }
 
 void write_word(unsigned short w, NSMutableData *theData)

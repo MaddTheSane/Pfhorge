@@ -235,12 +235,10 @@ void CCamera::RotateView(float angle, float x, float y, float z)
 void CCamera::StrafeCamera(float speed)
 {   
     // Add the strafe vector to our position
-    m_vPosition.x += m_vStrafe.x * speed;
-    m_vPosition.z += m_vStrafe.z * speed;
+    m_vPosition.xz += m_vStrafe.xz * speed;
 
     // Add the strafe vector to our view
-    m_vView.x += m_vStrafe.x * speed;
-    m_vView.z += m_vStrafe.z * speed;
+    m_vView.xz += m_vStrafe.xz * speed;
 }
 
 
@@ -256,10 +254,8 @@ void CCamera::MoveCamera(float speed)
     float3 vVector = m_vView - m_vPosition;
     vVector = normalize(vVector);
 
-    m_vPosition.x += vVector.x * speed;     // Add our acceleration to our position's X
-    m_vPosition.z += vVector.z * speed;     // Add our acceleration to our position's Z
-    m_vView.x += vVector.x * speed;         // Add our acceleration to our view's X
-    m_vView.z += vVector.z * speed;         // Add our acceleration to our view's Z
+    m_vPosition.xz += vVector.xz * speed;     // Add our acceleration to our position's X/Z
+    m_vView.xz += vVector.xz * speed;         // Add our acceleration to our view's X/Z
 }
 
 
@@ -357,7 +353,7 @@ void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool ri
 void CCamera::Look()
 {
     // Give openGL our camera position, then camera view, then camera up vector
-    gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z,  
+    gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z,
               m_vView.x,     m_vView.y,     m_vView.z,  
               m_vUpVector.x, m_vUpVector.y, m_vUpVector.z);
 }

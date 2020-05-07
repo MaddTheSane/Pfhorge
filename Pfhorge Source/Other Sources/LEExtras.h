@@ -195,7 +195,7 @@ static inline id unarchive(NSData *Obj) {
 #define undo                                    [myUndoManager prepareWithInvocationTarget:self]
 #define undoWith(t)                             [myUndoManager prepareWithInvocationTarget:(t)]
 
-//Exsamples:
+//Examples:
 
 //#define POLYGON_IS_DETACHED_BIT 0x4000
 //#define POLYGON_IS_DETACHED(p) ([p getFlag] & POLYGON_IS_DETACHED_BIT)

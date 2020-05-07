@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
-		557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Exsample Script.applescript */; };
+		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
@@ -185,7 +185,7 @@
 		AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; };
 		AE3C157C0A04512100FBFFCD /* TerminalEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F520388D024156C10146BBD2 /* TerminalEditorController.m */; };
 		AE3C157D0A04512100FBFFCD /* bitmap-decode.c in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5D02824AA40146BBD2 /* bitmap-decode.c */; };
-		AE3C157E0A04512100FBFFCD /* extractbitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5F02824AA40146BBD2 /* extractbitmap.m */; };
+		AE3C157E0A04512100FBFFCD /* extractbitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5F02824AA40146BBD2 /* extractbitmap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157F0A04512100FBFFCD /* PhStartupWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = F530D716029862DA0146BBD2 /* PhStartupWinController.m */; };
 		AE3C15800A04512100FBFFCD /* PhPfhorgeSingleLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626602A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.m */; };
 		AE3C15810A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */; };
@@ -326,7 +326,7 @@
 		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
 		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ToolPallette.xib; sourceTree = "<group>"; };
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		557A9B40245A922A00527063 /* Exsample Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Exsample Script.applescript"; sourceTree = "<group>"; };
+		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
 		55F0080424637C27007BB0F3 /* MarathonVersions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarathonVersions.h; sourceTree = "<group>"; };
 		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KeyControls.h; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				557A9B40245A922A00527063 /* Exsample Script.applescript */,
+				557A9B40245A922A00527063 /* Example Script.applescript */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
 				557A9B3E245A617B00527063 /* Media.xcassets */,
 				557A9B42245A924700527063 /* Pfhorge.sdef */,
@@ -1165,7 +1165,7 @@
 				AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */,
 				AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */,
 				AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */,
-				557A9B41245A922B00527063 /* Exsample Script.applescript in Sources */,
+				557A9B41245A922B00527063 /* Example Script.applescript in Sources */,
 				AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */,
 				AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */,
 				AE3C15550A04512100FBFFCD /* LELevelWindowController.m in Sources */,
@@ -1452,6 +1452,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1511,7 +1512,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
 				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";

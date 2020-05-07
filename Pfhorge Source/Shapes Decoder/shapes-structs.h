@@ -75,15 +75,18 @@ typedef struct collection_definition collection_definition;
 #define HIGH_LEVEL_SHAPE_NAME_LENGTH 32
 
 struct high_level_shape_definition {
-	short	type;					/* ==0 */
-	word	flags;					/* [unused.16] */
+	/*! ==0 */
+	short	type;
+	/*! [unused.16] */
+	word	flags;
 	char	name[HIGH_LEVEL_SHAPE_NAME_LENGTH + 2];
 	short	number_of_views;
 	short	frames_per_view,
 			ticks_per_frame;
 	short	key_frame;
 	short	transfer_mode;
-	short	transfer_mode_period;	/* in ticks */
+	/*! in ticks */
+	short	transfer_mode_period;
 	short	first_frame_sound,
 			key_frame_sound,
 			last_frame_sound;
@@ -102,11 +105,15 @@ typedef CF_ENUM(word, low_level_shape_flags) {
 };
 
 struct low_level_shape_definition {
-	low_level_shape_flags	flags;		/* [x-mirror.1] [y-mirror.1] [keypoint_obscured.1] [unused.13] */
-	fixed	minimum_light_intensity;	/* in [0,FIXED_ONE] */
+	/*! [x-mirror.1] [y-mirror.1] [keypoint_obscured.1] [unused.13] */
+	low_level_shape_flags	flags;
+	/*! in [0,FIXED_ONE] */
+	fixed	minimum_light_intensity;
 	short	bitmap_index;
-	short	origin_x, origin_y;			/* (x,y) in pixel coordinates of origin */
-	short	key_x, key_y;				/* (x,y) in pixel coordinates of key point */
+	/*! (x,y) in pixel coordinates of origin */
+	short	origin_x, origin_y;
+	/*! (x,y) in pixel coordinates of key point */
+	short	key_x, key_y;
 	short	world_left, world_right, world_top, world_bottom;
 	short	world_x0, world_y0;
 //	short	unused[4];

@@ -52,7 +52,7 @@
 - (IBAction)pluginMenuItemAction:(id)sender;
 - (IBAction)scriptMenuItemAction:(id)sender;
 
-- (IBAction)exectuteScriptExsample:(id)sender;
+- (IBAction)exectuteScriptExample:(id)sender;
 
 - (IBAction)theGeneralProperties:(id)sender;
 - (IBAction)theControlPanels:(id)sender;

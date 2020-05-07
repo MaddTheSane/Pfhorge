@@ -302,7 +302,7 @@
     { // For attributes use a dict with key "NSFileExtensionHidden"
       // set to a NSNumber containing a BOOL...
         
-        //NSString *theExScriptPath = [[NSBundle mainBundle] pathForResource:@"Exsample Script" ofType:@"scpt"];
+        //NSString *theExScriptPath = [[NSBundle mainBundle] pathForResource:@"Example Script" ofType:@"scpt"];
         BOOL isNewDir = NO;
         
         SEND_ERROR_MSG_TITLE(@"Script folder does not exist. Please see read me for details about using this. Creating It...",
@@ -322,7 +322,7 @@
         }
         
         /*if ([manager fileExistsAtPath:theExScriptPath])
-            [manager copyPath:theExScriptPath toPath:[scriptFolder stringByAppendingString:@"/Exsample Script.scpt"] handler:nil];
+            [manager copyPath:theExScriptPath toPath:[scriptFolder stringByAppendingString:@"/Example Script.scpt"] handler:nil];
         else
         {
             NSLog(@"Missing the example script resource...");
@@ -392,7 +392,7 @@
         [newItem release];
         
         newItem = [[NSMenuItem allocWithZone:theMenuZone]
-                    initWithTitle:@"The exsample script creates a new map and creates"
+                    initWithTitle:@"The example script creates a new map and creates"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
@@ -431,7 +431,7 @@
     createAndExecuteScriptObject(fullPathToScript);
 }
 
-- (IBAction)exectuteScriptExsample:(id)sender
+- (IBAction)exectuteScriptExample:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowedFileTypes = @[@"scpt"];

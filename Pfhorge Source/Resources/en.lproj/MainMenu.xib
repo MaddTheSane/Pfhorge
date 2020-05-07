@@ -419,7 +419,7 @@
                         <items>
                             <menuItem title="Choose Script Manually..." id="478">
                                 <connections>
-                                    <action selector="exectuteScriptExsample:" target="202" id="479"/>
+                                    <action selector="exectuteScriptExample:" target="202" id="rQ3-yX-b0V"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="481">

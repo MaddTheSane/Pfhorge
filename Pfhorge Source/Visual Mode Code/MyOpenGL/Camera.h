@@ -8,62 +8,62 @@
 // without having to cut and paste code.  This file and camera.cpp should be
 // added to your project.
 
-// This is our camera class
+//! This is our camera class
 class CCamera {
 
 public:
 
-    // Our camera constructor
+    //! Our camera constructor
     CCamera();  
 
-    // These are are data access functions for our camera's private data
+    //! These are are data access functions for our camera's private data
     simd::float3 Position() {   return m_vPosition;     }
     simd::float3 View()     {   return m_vView;         }
     simd::float3 UpVector() {   return m_vUpVector;     }
     simd::float3 Strafe()   {   return m_vStrafe;       }
     
-    // This changes the position, view, and up vector of the camera.
-    // This is primarily used for initialization
+    //! This changes the position, view, and up vector of the camera.
+    //! This is primarily used for initialization
     void PositionCamera(float positionX, float positionY, float positionZ,
                         float viewX,     float viewY,     float viewZ,
                         float upVectorX, float upVectorY, float upVectorZ);
 
-    // This rotates the camera's view around the position depending on the values passed in.
+    //! This rotates the camera's view around the position depending on the values passed in.
     void RotateView(float angle, float X, float Y, float Z);
 
-    // This moves the camera's view by the mouse movements (First person view)
+    //! This moves the camera's view by the mouse movements (First person view)
     void SetViewByMouse(); 
 
-    // This rotates the camera around a point (I.E. your character).
+    //! This rotates the camera around a point (I.E. your character).
     void RotateAroundPoint(simd::float3 vCenter, float X, float Y, float Z);
 
-    // This strafes the camera left or right depending on the speed (+/-) 
+    //! This strafes the camera left or right depending on the speed (+/-)
     void StrafeCamera(float speed);
 
-    // This will move the camera forward or backward depending on the speed
+    //! This will move the camera forward or backward depending on the speed
     void MoveCamera(float speed);
 
-    // This checks for keyboard movement
+    //! This checks for keyboard movement
     void CheckForMovement(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed);
 
-    // This updates the camera's view and other data (Should be called each frame)
+    //! This updates the camera's view and other data (Should be called each frame)
     void Update(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed);
 
-    // This uses gluLookAt() to tell OpenGL where to look
+    //! This uses gluLookAt() to tell OpenGL where to look
     void Look();
 
 private:
 
-    // The camera's position
+    //! The camera's position
     simd::float3 m_vPosition;
 
-    // The camera's view
+    //! The camera's view
     simd::float3 m_vView;
 
-    // The camera's up vector
+    //! The camera's up vector
     simd::float3 m_vUpVector;
     
-    // The camera's strafe vector
+    //! The camera's strafe vector
     simd::float3 m_vStrafe;
 };
 

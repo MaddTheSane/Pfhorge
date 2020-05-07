@@ -1,4 +1,4 @@
--- This is only an exsample...  Pfhorge does not need to be open
+-- This is only an example...  Pfhorge does not need to be open
 -- for this to work, it will automaticaly open if not already open.
 -- (but make sure it is on your hard drive)
 -- This script will create a new map and put five polygons

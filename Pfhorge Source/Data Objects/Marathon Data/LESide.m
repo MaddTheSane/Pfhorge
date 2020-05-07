@@ -81,7 +81,7 @@
     
     // 	In the future, might want to encode an addtional short that
     // tells wether, when importing, it should refer to an imported object
-    // or an already exsisting object... (for exsample, a teleport destination
+    // or an already exsisting object... (for example, a teleport destination
     // that is not going to be exported)...
     
     if (control_panel_permutation_object != nil && [mainObjs containsObject:control_panel_permutation_object])
@@ -195,7 +195,7 @@
     
     // 	In the future, might want to encode an addtional short that
     // tells wether, when importing, it should refer to an imported object
-    // or an already exsisting object... (for exsample, a teleport destination
+    // or an already exsisting object... (for example, a teleport destination
     // that is not going to be exported)...
     
     ImportObj(control_panel_permutation_object);
