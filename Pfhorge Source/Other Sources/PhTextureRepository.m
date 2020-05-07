@@ -52,28 +52,12 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [waterTextures release];
-    [lavaTextures release];
-    [sewageTextures release];
-    [jjaroTextures release];
-    [pfhorTextures release];
-    
-    [landscape1 release];
-    [landscape2 release];
-    [landscape3 release];
-    [landscape4 release];
-    
-    [super dealloc];
-}
-
 // *********************** Class Methods ***********************
 + (id)sharedTextureRepository {
     static PhTextureRepository *sharedTextureRepository = nil;
 
     if (!sharedTextureRepository) {
-        sharedTextureRepository = [[PhTextureRepository allocWithZone:[self zone]] init];
+        sharedTextureRepository = [[PhTextureRepository alloc] init];
     }
 
     return sharedTextureRepository;
@@ -85,41 +69,40 @@
 {
     NSString *theShapesPath = [preferences objectForKey:VMShapesPath];
     
-    switch (textureSet)
-    {
+    switch (textureSet) {
         case _water:
             NSLog(@"*** Loading Water Textures ***");
-            waterTextures = [getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]) retain];
+            waterTextures = getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]);
             break;
-        
+            
         case _lava:
             NSLog(@"*** Loading Lava Textures ***");
-            lavaTextures = [getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]) retain];
+            lavaTextures = getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]);
             break;
-        
+            
         case _sewage:
             NSLog(@"*** Loading Sewage Textures ***");
-            sewageTextures = [getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]) retain];
+            sewageTextures = getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]);
             break;
-        
+            
         case _jjaro:
             NSLog(@"*** Loading Jjaro Textures ***");
-            jjaroTextures = [getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]) retain];
+            jjaroTextures = getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]);
             break;
-        
+            
         case _pfhor:
             NSLog(@"*** Loading Pfhor Textures ***");
-            pfhorTextures = [getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]) retain];
+            pfhorTextures = getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]);
             break;
         case 99:
             NSLog(@"*** Loading Landscapes 1 ***");
-            landscape1 = [getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]) retain];
+            landscape1 = getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]);
             NSLog(@"*** Loading Landscapes 2 ***");
-            landscape2 = [getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]) retain];
+            landscape2 = getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]);
             NSLog(@"*** Loading Landscapes 3 ***");
-            landscape3 = [getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]) retain];
+            landscape3 = getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]);
             NSLog(@"*** Loading Landscapes 4 ***");
-            landscape4 = [getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]) retain];
+            landscape4 = getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]);
             break;
     }
 }
@@ -146,24 +129,24 @@
         return;
     
     NSLog(@"*** Loading Water Textures ***");
-    waterTextures = [getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]) retain];
+    waterTextures = getAllTexturesOf(17, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Lava Textures ***");
-    lavaTextures = [getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]) retain];
+    lavaTextures = getAllTexturesOf(18, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Sewage Textures ***");
-    sewageTextures = [getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]) retain];
+    sewageTextures = getAllTexturesOf(19, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Jjaro Textures ***");
-    jjaroTextures = [getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]) retain];
+    jjaroTextures = getAllTexturesOf(20, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Pfhor Textures ***");
-    pfhorTextures = [getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]) retain];
+    pfhorTextures = getAllTexturesOf(21, 0, [theShapesPath fileSystemRepresentation]);
     
     NSLog(@"*** Loading Landscapes 1 ***");
-    landscape1 = [getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]) retain];
+    landscape1 = getAllTexturesOf(27, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Landscapes 2 ***");
-    landscape2 = [getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]) retain];
+    landscape2 = getAllTexturesOf(28, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Landscapes 3 ***");
-    landscape3 = [getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]) retain];
+    landscape3 = getAllTexturesOf(29, 0, [theShapesPath fileSystemRepresentation]);
     NSLog(@"*** Loading Landscapes 4 ***");
-    landscape4 = [getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]) retain];
+    landscape4 = getAllTexturesOf(30, 0, [theShapesPath fileSystemRepresentation]);
     
     NSLog(@"*** Done Loading Textures ***");
     ///[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:theImage forKey:@19]];
@@ -241,21 +224,20 @@
 // *********************** Get Methods ***********************
 -(NSArray *)getTextureCollection:(int)collection
 {
-    switch (collection)
-    {
-	case _water:
+    switch (collection) {
+        case _water:
             return waterTextures;
             break;
-	case _lava:
+        case _lava:
             return lavaTextures;
             break;
-	case _sewage:
+        case _sewage:
             return sewageTextures;
             break;
-	case _jjaro:
+        case _jjaro:
             return jjaroTextures;
             break;
-	case _pfhor:
+        case _pfhor:
             return pfhorTextures;
             break;
         default:
@@ -265,35 +247,34 @@
     return nil;
 }
 
-- (NSArray *)collection:(int)collection
+- (NSArray *)collection:(LELevelEnvironmentCode)collection
 {
-    switch (collection)
-    {
-	case _water_collection:
+    switch (collection) {
+        case _water_collection:
             return waterTextures;
             break;
-	case _lava_collection:
+        case _lava_collection:
             return lavaTextures;
             break;
-	case _sewage_collection:
+        case _sewage_collection:
             return sewageTextures;
             break;
-	case _jjaro_collection:
+        case _jjaro_collection:
             return jjaroTextures;
             break;
-	case _pfhor_collection:
+        case _pfhor_collection:
             return pfhorTextures;
             break;
-	case _landscape_collection_1:
+        case _landscape_collection_1:
             return landscape1;
             break;
-	case _landscape_collection_2:
+        case _landscape_collection_2:
             return landscape2;
             break;
-	case _landscape_collection_3:
+        case _landscape_collection_3:
             return landscape3;
             break;
-	case _landscape_collection_4:
+        case _landscape_collection_4:
             return landscape4;
             break;
         default:

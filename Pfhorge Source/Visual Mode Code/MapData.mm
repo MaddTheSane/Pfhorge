@@ -26,7 +26,6 @@ bool PortalInfo::IsValid() {
 		plnsum += PVList[iv].Plane;
 	}
 	
-	//simd_inn
 	return (dot(vertsum,plnsum) > 0);
 }
 

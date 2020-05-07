@@ -33,7 +33,7 @@
 // Create a global float that stores the elapsed time between the current
 // and last frame.  For your engine, this would move likely go into a 
 // CTime or CTimer class, along with the CalculateFrameRate() function.
-float g_FrameInterval = 0.0f;
+static float g_FrameInterval = 0.0f;
 
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
 

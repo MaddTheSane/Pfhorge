@@ -22,24 +22,24 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "LELevelData.h"
 
 
 @interface PhTextureRepository : NSObject {
-    NSArray *waterTextures, *lavaTextures, *sewageTextures, *jjaroTextures, *pfhorTextures;
-    NSArray *landscape1, *landscape2, *landscape3, *landscape4;
+    NSArray<NSImage*> *waterTextures, *lavaTextures, *sewageTextures, *jjaroTextures, *pfhorTextures;
+    NSArray<NSImage*> *landscape1, *landscape2, *landscape3, *landscape4;
 }
 
 // *********************** Class Methods ***********************
-+ (id)sharedTextureRepository;
++ (PhTextureRepository*)sharedTextureRepository;
 
 // *********************** Other Methods ***********************
 - (void)loadTextureSet:(int)textureSet;
 - (void)loadTheTextures;
 
 // *********************** Accessors ***********************
-- (NSArray *)getTextureCollection:(int)collection;
-- (NSArray *)collection:(int)collection;
+- (NSArray<NSImage*> *)getTextureCollection:(int)collection;
+- (NSArray<NSImage*> *)collection:(LELevelEnvironmentCode)collection;
 
 @end

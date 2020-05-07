@@ -157,7 +157,7 @@
 		AE3C155F0A04512100FBFFCD /* PhLineInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */; };
 		AE3C15600A04512100FBFFCD /* PhPolyInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */; };
 		AE3C15610A04512100FBFFCD /* PhObjectInspectorSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */; };
-		AE3C15620A04512100FBFFCD /* PhTextureRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D18BC0010A18747F000001 /* PhTextureRepository.m */; };
+		AE3C15620A04512100FBFFCD /* PhTextureRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D18BC0010A18747F000001 /* PhTextureRepository.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC509F0110FB3D7F000001 /* PhColorListController.m */; };
 		AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CCECF40125C7647F000001 /* PhPrefsController.m */; };
 		AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */; };
@@ -243,7 +243,7 @@
 		00CCECF30125C7647F000001 /* PhPrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPrefsController.h; sourceTree = "<group>"; };
 		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; };
 		00D18BBF010A18747F000001 /* PhTextureRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTextureRepository.h; sourceTree = "<group>"; };
-		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; };
+		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; usesTabs = 0; };
 		00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLineInspectorController.h; sourceTree = "<group>"; };
 		00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLineInspectorController.m; sourceTree = "<group>"; };
 		00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPolyInspectorController.h; sourceTree = "<group>"; };

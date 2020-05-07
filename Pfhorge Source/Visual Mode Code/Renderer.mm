@@ -267,7 +267,7 @@ void MapManager::DoPortals() {
 				PortalInfo &Portal = WInfo.Portal;
 				SurfaceInfo &PtlSurf = WInfo.TransparentInfo;
 				for (int iv=0; iv<NumPortalVertices; iv++) {
-					auto InpVert = PtlSurf.VInfoList[iv].Vert;
+					simd::short3 InpVert = PtlSurf.VInfoList[iv].Vert;
 					simd::float3 &Vertex = Portal.PVList[iv].Vertex;
 					Vertex[0] = InpVert[0] - VC.x;
 					Vertex[1] = InpVert[1] - VC.y;
