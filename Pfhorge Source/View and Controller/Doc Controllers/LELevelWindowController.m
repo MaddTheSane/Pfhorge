@@ -1174,7 +1174,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 - (void)toolJustChanged:(NSNotification *)notification
 {
     // Just set the correct cursor
-    short currentTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
+    LEPaletteTool currentTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
     NSCursor *theCursor = nil;
     static NSCursor *crosshairCursor = nil;
     
@@ -1189,24 +1189,24 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     
     switch (currentTool)
     {
-        case _line_tool:
+        case LEPaletteToolLine:
             //NSLog(@"toolJustChanged Line");
             theCursor = crosshairCursor;
             break;
        
-        case _paint_tool:
-        case _text_tool:
-        case _hand_tool:
-        case _zoom_tool:
-        case _sampler_tool:
-        case _brush_tool:
-        case _monster_tool:
-        case _player_tool:
-        case _item_tool:
-        case _scenary_tool:
-        case _sound_tool:
-        case _goal_tool:
-        case _arrow_tool:
+        case LEPaletteToolPaint:
+        case LEPaletteToolText:
+        case LEPaletteToolHand:
+        case LEPaletteToolZoom:
+        case LEPaletteToolSampler:
+        case LEPaletteToolBrush:
+        case LEPaletteToolMonster:
+        case LEPaletteToolPlayer:
+        case LEPaletteToolItem:
+        case LEPaletteToolScenery:
+        case LEPaletteToolSound:
+        case LEPaletteToolGoal:
+        case LEPaletteToolArrow:
         default:
             //NSLog(@"toolJustChanged Arrow");
             theCursor = [NSCursor arrowCursor];

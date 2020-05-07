@@ -13,7 +13,7 @@
 
 template<class T> class simple_vector {
 
-	int length;
+	long length;
 	T *contents;
 
 	void allocate()
@@ -24,11 +24,11 @@ template<class T> class simple_vector {
 
 public:
 	// Constructors and destructors
-	simple_vector(int _length = 0): length(_length) {allocate();}
+	simple_vector(long _length = 0): length(_length) {allocate();}
 	simple_vector(simple_vector<T> &v): length(v.length) {allocate(); copy_in(v.contents);}
 	
 	// More STL-ish constructors
-	simple_vector(int _length, T *v): length(_length)
+	simple_vector(long _length, T *v): length(_length)
 		{allocate(); copy(v,v+length,contents);}
 	simple_vector(T *v_begin, T *v_end)
 		{length = v_end - v_begin; allocate(); copy(v_begin,v_end,contents);}
@@ -36,12 +36,12 @@ public:
 
 	// Accessors
 	int get_len() {return length;}
-	T &operator[](int indx) {return contents[indx];}
+	T &operator[](long indx) {return contents[indx];}
 	// Imitation of pointer semantics
-	T *operator+(int indx) {return contents + indx;}
+	T *operator+(long indx) {return contents + indx;}
 		
 	// Reallocation of internal space (destroys previous contents):
-	void reallocate(int _length) {deallocate(); length = _length; allocate();}
+	void reallocate(long _length) {deallocate(); length = _length; allocate();}
 	
 	// Copies without changing original
 	simple_vector &operator=(simple_vector<T> &v) {

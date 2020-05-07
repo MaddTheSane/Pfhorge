@@ -31,14 +31,14 @@ public:
 		Render_Textured,
 		NUM_RENDER_MODES
 	};
-        enum {
-                Platform_Contracted,
-                Platform_1_4,
-                Platform_1_2,
-                Platform_3_4,
-                Platform_Extended,
-                NUM_PLATFORM_STATES
-        };
+	enum {
+		Platform_Contracted,
+		Platform_1_4,
+		Platform_1_2,
+		Platform_3_4,
+		Platform_Extended,
+		NUM_PLATFORM_STATES
+	};
 	enum {
 		SideBoth,
 		SideInward,
@@ -105,33 +105,33 @@ public:
 		Fog_1,
 		NUM_FOG_TYPES
 	};
-    
-        // Were once popup-menu indices
-        int
-            SelectRenderMode,
-            SelectPlatformState,
-            SelectVisibleSides,
-            SelectVerticalLook,
-            SelectFieldOfView,
-            SelectCloseupRender,
-            SelectDistantRender,
-            SelectLightType,
-            SelectNearDistance,
-            SelectFarDistance;
 	
-        // Were once checkbox indices
-        bool
-            ShowTrans,		// Transparent
-            ShowLdscp,		// Landscape
-            ShowInvld,		// Invalid
-            ShowObjects,
-            UseLights,
-            LiquidsTransparent,
-            ShowLiquids,
-            OffsetWires,
-            UseFog;
-       
-        float FogDepth;
+	// Were once popup-menu indices
+	int
+		SelectRenderMode,
+		SelectPlatformState,
+		SelectVisibleSides,
+		SelectVerticalLook,
+		SelectFieldOfView,
+		SelectCloseupRender,
+		SelectDistantRender,
+		SelectLightType,
+		SelectNearDistance,
+		SelectFarDistance;
+	
+	// Were once checkbox indices
+	bool
+		ShowTrans,		// Transparent
+		ShowLdscp,		// Landscape
+		ShowInvld,		// Invalid
+		ShowObjects,
+		UseLights,
+		LiquidsTransparent,
+		ShowLiquids,
+		OffsetWires,
+		UseFog;
+	
+	float FogDepth;
 	
 	// Set up the dialog box
 	void Init();

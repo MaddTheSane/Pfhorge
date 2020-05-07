@@ -71,8 +71,8 @@
     [toolPalette setFrameOrigin:NSMakePoint(0.0, 0.0)];
 }
 
-- (unsigned short)getCurrentTool {
-    unsigned short theTool = GetTagOfSelected(toolPalette); //[toolPalette selectedColumn];
+- (LEPaletteTool)getCurrentTool {
+    LEPaletteTool theTool = GetTagOfSelected(toolPalette); //[toolPalette selectedColumn];
     
     return theTool;
     /*Class theClass = nil;
@@ -89,32 +89,32 @@
 
 - (void)selectArrowTool {
     ///[toolPalette selectCellAtRow:0 column:0]; // LEPaletteArrowTool // old comment?
-    SelectS(toolPalette, _arrow_tool);
+    SelectS(toolPalette, LEPaletteToolArrow);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
 - (void)selectLineTool {
-    SelectS(toolPalette, _line_tool);
+    SelectS(toolPalette, LEPaletteToolLine);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
 - (void)selectPaintTool {
-    SelectS(toolPalette, _paint_tool);
+    SelectS(toolPalette, LEPaletteToolPaint);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
 - (void)selectHandTool {
-    SelectS(toolPalette, _hand_tool);
+    SelectS(toolPalette, LEPaletteToolHand);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
 - (void)selectTextTool {
-    SelectS(toolPalette, _text_tool);
+    SelectS(toolPalette, LEPaletteToolText);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
 - (void)selectZoomTool {
-    SelectS(toolPalette, _zoom_tool);
+    SelectS(toolPalette, LEPaletteToolZoom);
     [[NSNotificationCenter defaultCenter] postNotificationName:LEToolChangedNotification object:self];
 }
 
@@ -125,7 +125,7 @@
 - (BOOL)tryToMatchKey:(NSString *)keys
 {
     // pull out first letter
-    char key = ([keys UTF8String])[0];
+    unichar key = [keys characterAtIndex:0];
 
     switch(key)
     {

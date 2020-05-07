@@ -98,21 +98,21 @@ bool ViewContext::FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool In
 	GLdouble MVMatDump[16];
 	glGetIntegerv(GL_VIEWPORT,ViewportDump);
 	glGetDoublev(GL_PROJECTION_MATRIX,ProjMatDump);
-        if (!InWorldCoords) {
-            glMatrixMode(GL_MODELVIEW);
-            glPushMatrix();
-            glLoadIdentity();
-        }
+	if (!InWorldCoords) {
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+	}
 	glGetDoublev(GL_MODELVIEW_MATRIX,MVMatDump);
-        if (!InWorldCoords) {
-            glPopMatrix();
-        }
+	if (!InWorldCoords) {
+		glPopMatrix();
+	}
 	
 	// Unproject!
 	// Flip the screen-y coordinate, since it is measured from the top left
 	// instead of OpenGL's bottom left: (Height-1) - double(Scrn_y)
-        // No need to do that anymore, since the code now uses Cocoa's internal coordinate system,
-        // which is just like OpenGL's
+	// No need to do that anymore, since the code now uses Cocoa's internal coordinate system,
+	// which is just like OpenGL's
 	if (gluUnProject(double(Scrn_x) , double(Scrn_y), 0,
 					MVMatDump, ProjMatDump, ViewportDump,
 					PosVec, PosVec+1, PosVec+2) == GL_FALSE) return false;
@@ -120,7 +120,7 @@ bool ViewContext::FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool In
             PosVec[0] -= x;
             PosVec[1] -= y;
             PosVec[2] -= z;
-        }
+	}
 	return true;
 }
 
@@ -144,33 +144,33 @@ bool ViewContext::DragTo(int Scrn_x, int Scrn_y) {
 	GLdouble SPz = SavedPosition[2];
 	
 	switch(VertLookMode) {
-  	case VertLookMarathon:
-	{
-		YawAngle -= (180/PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy);
-                // Really the vertical shift
-		PitchAngle -= (CPz - SPz)/Near;
-	}
-	break;
-        
-        
-	case VertLookThirdGen:
-	{
-                YawAngle -= (180/PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPz*SPz);
-		PitchAngle -= (180/PI)*atan2(CPz*SPy - CPy*SPz, CPy*SPy + CPz*SPz);
-                for (int c=0; c<3; c++)
-                    SavedPosition[c] = CurrentPosition[c];
-                
-                /*
-		// A crude approximate solution -- attempts to find the exact solution
-		// resulted in some 4th-order polynomial equations.
-		// This was derived with the help of some first-order approximations
-		
-		YawAngle -= (180/PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy + CPz*SPz);
-		PitchAngle -= (180/PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPy*SPy + CPz*SPz);
-                */
-	}
-	break;
-		
+		case VertLookMarathon:
+		{
+			YawAngle -= (180/PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy);
+			// Really the vertical shift
+			PitchAngle -= (CPz - SPz)/Near;
+		}
+			break;
+			
+			
+		case VertLookThirdGen:
+		{
+			YawAngle -= (180/PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPz*SPz);
+			PitchAngle -= (180/PI)*atan2(CPz*SPy - CPy*SPz, CPy*SPy + CPz*SPz);
+			for (int c=0; c<3; c++)
+				SavedPosition[c] = CurrentPosition[c];
+			
+			/*
+			 // A crude approximate solution -- attempts to find the exact solution
+			 // resulted in some 4th-order polynomial equations.
+			 // This was derived with the help of some first-order approximations
+			 
+			 YawAngle -= (180/PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy + CPz*SPz);
+			 PitchAngle -= (180/PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPy*SPy + CPz*SPz);
+			 */
+		}
+			break;
+			
 	}
 	SetView();
 	return true;

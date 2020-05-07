@@ -12,6 +12,7 @@
 
 Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 
+//TODO: Update to use AppleSingle for cross-platform compatibility!
 @interface ScenarioResources : NSObject {
     NSMutableDictionary<NSString*, NSMutableArray<Resource*>*>	*typeDict;
     

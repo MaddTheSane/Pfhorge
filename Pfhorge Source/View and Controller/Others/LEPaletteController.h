@@ -38,22 +38,23 @@ enum { // Old Tool enum Names (still work)
 // jra: Uh, the above doesn't jibe with the actual tool palette's configuration.
 // Which is ok because nobody in our code uses it anymore. Suggest removal?
 
-enum { // New Tool enum Names, recommend these be used.
-    _arrow_tool = 0,
-    _line_tool,
-    _paint_tool,
-    _text_tool,
-    _hand_tool,
-    _zoom_tool,
-    _sampler_tool,
-    _brush_tool,
+// New Tool enum Names, recommend these be used.
+typedef NS_ENUM(NSInteger, LEPaletteTool) {
+    LEPaletteToolArrow = 0,
+    LEPaletteToolLine,
+    LEPaletteToolPaint,
+    LEPaletteToolText,
+    LEPaletteToolHand,
+    LEPaletteToolZoom,
+    LEPaletteToolSampler,
+    LEPaletteToolBrush,
      // Object Creation Tools
-    _monster_tool = 10,
-    _player_tool,
-    _item_tool,
-    _scenary_tool,
-    _sound_tool,
-    _goal_tool
+    LEPaletteToolMonster = 10,
+    LEPaletteToolPlayer,
+    LEPaletteToolItem,
+    LEPaletteToolScenery,
+    LEPaletteToolSound,
+    LEPaletteToolGoal
 };
 
 @interface LEPaletteController : NSWindowController
@@ -64,7 +65,7 @@ enum { // New Tool enum Names, recommend these be used.
 + (id)sharedPaletteController;
 
 - (IBAction)toolSelection:(id)sender;
-- (unsigned short)getCurrentTool;
+- (LEPaletteTool)getCurrentTool;
 
 
 - (BOOL)tryToMatchKey:(NSString *)keys;

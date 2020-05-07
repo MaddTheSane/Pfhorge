@@ -25,7 +25,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "LELevelData.h"
-#import <AppKit/AppKit.h>
+#import "LEPaletteController.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 enum // BOOL Options Array Numbers
 {
@@ -46,8 +48,8 @@ enum // Pfhorge Go To Object Types
     _goto_point
 };
 
-enum // Selection Types
-{
+//! Selection Types
+typedef NS_ENUM(int, LEMapDrawSelectionType) {
     _all_selections = 0,
     _point_selections,
     _line_selections,
@@ -59,8 +61,8 @@ enum // Selection Types
     _COUNT_OF_SELECTION_TYPES
 };
 
-enum // Drawing Modes
-{
+//! Drawing Modes
+typedef NS_ENUM(int, LEMapDrawingMode) {
     _drawNormaly = 0,
     _drawAbnormaly,
     _drawCeilingHeight,
@@ -78,77 +80,91 @@ enum // Drawing Modes
 
 @interface LEMapDraw : NSView
 {
-    @protected
-        
-        BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
-        
-        IBOutlet id scrollView;
-        IBOutlet id ttt;
-        IBOutlet id winController;
-        
-        IBOutlet id colorListObject;
-        IBOutlet id colorListDrawer;
-        
-        BOOL alreadySentToolUnavalbeMsg;
-        
-        short drawingMode;
-        short currentDrawingMode;
-        
-        //NSMutableArray *rects;
-        //ColorRect *selectedItem;
-        
-        NSTimer *timer;
-        
-        LELevelData *currentLevel;
-        
-        NSBezierPath    *polyDrawingMap, *lineDrawingMap, *invalidPolyDrawingMap, *theGridDrawingMap,
-                        *pointDrawingMap, *monsterDrawingMap, *itemDrawingMap, *playerDrawingMap, *sceaneryDrawingMap,
-                        *goalDrawingMap, *soundDrawingMap, *subGridDrawingMap, *centerGridDrawingMap,
-                        *joinedLineDrawingMap, *zonePolyMap, *teleporterPolyMap, *platformPolyMap, *hillPolyMap;
-                        
-        NSMutableSet *selectedLines, *selectedPolys, *selectedPoints, *selectedMapObjects, *selectedNotes;
-        NSMutableSet *selections, *affectedBySelections, *includeInBounds;
-        
-        // Rect Cache Lists
-        NSMutableSet *rectPolys, *rectLines, *rectPoints, *rectObjects, *rectNotes;
-        
-        // Special Pointers for line tool...
-        LEMapPoint *startPoint, *endPoint;
-        LELine *newLine;
-        
-        // List Stuff
-        NSMutableDictionary *numberTable;
-        NSMutableArray *numberList, *numberDrawingMaps, *colorList, *nameList, *objsList;
-        
-        BOOL needToCreatPolyMap, drawingHeightMapNeedsUpdating, numberListNeedsUpdating, caculateTheGrid;
-        BOOL isAntialiasingOn, shouldObjectOutline, shouldDrawItemObjects, shouldDrawPlayerObjects;
-        BOOL shouldDrawEnemyMonstersObjects, shouldDrawSceanryObjects, shouldDrawSoundObjects;
-        BOOL shouldDrawGoalObjects, shouldDrawPlatfromPolyObjects, shouldDrawConvexPolyObjects;
-        BOOL shouldDrawZonePolyObjects, shouldDrawTeleporterExitPolyObjects, shouldDrawHillPolyObjects;
-        
-        BOOL optionDown, commandDown, shiftDown, controlKeyDown, capsLockDown;
-        
-        BOOL shouldNotGetNewObjectsForTiledCache;
-        
-        BOOL drawBoundingBox;
-        NSRect boundingBox;
-        
-        NSImage *cachedImage;
-        NSImageRep *cachedImageRep;
-        NSAffineTransform *trans;
-        
-        NSUndoManager *myUndoManager;
-        
-    @public
-        // Color Sheet Boolean;
-        BOOL newHeightSheetOpen;
+@protected
+	
+	BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
+	
+	IBOutlet id scrollView;
+	IBOutlet id ttt;
+	IBOutlet id winController;
+	
+	IBOutlet id colorListObject;
+	IBOutlet id colorListDrawer;
+	
+	BOOL alreadySentToolUnavalbeMsg;
+	
+	LEMapDrawingMode drawingMode;
+	short currentDrawingMode;
+	
+	//NSMutableArray *rects;
+	//ColorRect *selectedItem;
+	
+	NSTimer *timer;
+	
+	LELevelData *currentLevel;
+	
+	NSBezierPath    *polyDrawingMap, *lineDrawingMap, *invalidPolyDrawingMap, *theGridDrawingMap,
+	*pointDrawingMap, *monsterDrawingMap, *itemDrawingMap, *playerDrawingMap, *sceaneryDrawingMap,
+	*goalDrawingMap, *soundDrawingMap, *subGridDrawingMap, *centerGridDrawingMap,
+	*joinedLineDrawingMap, *zonePolyMap, *teleporterPolyMap, *platformPolyMap, *hillPolyMap;
+	
+	NSMutableSet<LELine*> *selectedLines;
+	NSMutableSet<LEPolygon*> *selectedPolys;
+	NSMutableSet *selectedPoints;
+	NSMutableSet *selectedMapObjects;
+	NSMutableSet *selectedNotes;
+	NSMutableSet *selections;
+	NSMutableSet *affectedBySelections;
+	NSMutableSet *includeInBounds;
+	
+	// Rect Cache Lists
+	NSMutableSet *rectPolys;
+	NSMutableSet *rectLines;
+	NSMutableSet *rectPoints;
+	NSMutableSet *rectObjects;
+	NSMutableSet *rectNotes;
+	
+	// Special Pointers for line tool...
+	LEMapPoint *startPoint, *endPoint;
+	LELine *newLine;
+	
+	// List Stuff
+	NSMutableDictionary<NSNumber*,id> *numberTable;
+	NSMutableArray<NSNumber*> *numberList;
+	NSMutableArray *numberDrawingMaps;
+	NSMutableArray<NSColor*> *colorList;
+	NSMutableArray<NSString*> *nameList;
+	NSMutableArray *objsList;
+	
+	BOOL needToCreatPolyMap, drawingHeightMapNeedsUpdating, numberListNeedsUpdating, caculateTheGrid;
+	BOOL isAntialiasingOn, shouldObjectOutline, shouldDrawItemObjects, shouldDrawPlayerObjects;
+	BOOL shouldDrawEnemyMonstersObjects, shouldDrawSceanryObjects, shouldDrawSoundObjects;
+	BOOL shouldDrawGoalObjects, shouldDrawPlatfromPolyObjects, shouldDrawConvexPolyObjects;
+	BOOL shouldDrawZonePolyObjects, shouldDrawTeleporterExitPolyObjects, shouldDrawHillPolyObjects;
+	
+	BOOL optionDown, commandDown, shiftDown, controlKeyDown, capsLockDown;
+	
+	BOOL shouldNotGetNewObjectsForTiledCache;
+	
+	BOOL drawBoundingBox;
+	NSRect boundingBox;
+	
+	NSImage *cachedImage;
+	NSImageRep *cachedImageRep;
+	NSAffineTransform *trans;
+	
+	NSUndoManager *myUndoManager;
+	
+@public
+	// Color Sheet Boolean;
+	BOOL newHeightSheetOpen;
 }
 
 - (BOOL)newHeightSheetOpen;
 - (void)setNewHeightSheetOpen:(BOOL)theValue;
 
 // *** Getting Information ***
-- (NSSet *)getSelectionsOfType:(int)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
+- (nullable NSSet *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
 
 // *** Draw View Methods ***
 - (void)setTheLevel:(LELevelData *)theMapPoints;
@@ -164,13 +180,12 @@ enum // Drawing Modes
 - (void)drawRect:(NSRect)rect;
 
 - (void)updateNameList:(int)theListFromNameManager; // 123 connected 321
-- (void)setCurrentDrawingMode:(int)mode;
-- (int)currentDrawingMode;
+@property (nonatomic) LEMapDrawingMode currentDrawingMode;
 
-- (NSArray *)getNumberList;
-- (NSArray *)getColorList;
-- (NSArray *)getNameList;
-- (NSArray *)getTableObjectList;
+- (NSArray<NSNumber*> *)getNumberList;
+- (NSArray<NSColor*> *)getColorList;
+- (NSArray<NSString*> *)getNameList;
+- (NSArray<__kindof LEMapStuffParent*> *)getTableObjectList;
 
 - (void)addNewHeight:(NSNumber *)theNewHeight; // 123 connected 321
 
@@ -201,14 +216,14 @@ enum // Drawing Modes
 - (void)dragScroll:(NSEvent *)theEvent;
 - (void)mouseScrollingStaringAt:(NSPoint)mouseLoc;
 
--(BOOL)useSamplerTool:(NSPoint)mouseLoc;
--(BOOL)useBrushTool:(NSPoint)mouseLoc;
-- (BOOL)useArrowTool:(NSPoint)mouseLoc clickCount:(int)clickCount;
+- (BOOL)useSamplerTool:(NSPoint)mouseLoc;
+- (BOOL)useBrushTool:(NSPoint)mouseLoc;
+- (BOOL)useArrowTool:(NSPoint)mouseLoc clickCount:(NSInteger)clickCount;
 - (BOOL)useLineTool:(NSPoint)mouseLoc;
--(NSPoint)useLineToolHypothetically:(NSPoint)mouseLoc; // <--- private method!
+- (NSPoint)useLineToolHypothetically:(NSPoint)mouseLoc; // <--- private method!
 - (BOOL)usePaintTool:(NSPoint)mouseLoc;
--(BOOL)useObjectTool:(NSPoint)mouseLoc toolType:(int)tool;
--(BOOL)useZoomTool:(NSPoint)mouseLoc;
+- (BOOL)useObjectTool:(NSPoint)mouseLoc toolType:(LEPaletteTool)tool;
+- (BOOL)useZoomTool:(NSPoint)mouseLoc;
 
 - (void)clearSelections;
 - (NSRect)drawingBoundsForSelections;
@@ -230,9 +245,9 @@ enum // Drawing Modes
 - (void)clearRectCache;
 - (NSString *)rectArrayDescription;
 - (void)selectWithinRect:(NSRect)aRect registerUndos:(BOOL)regUndos;
-- (NSMutableSet *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet *)excludeSet;
+- (NSSet<__kindof LEMapStuffParent*> *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet<LEMapStuffParent*> *)excludeSet;
 - (void)updateRectCacheIn:(NSRect)aRect;
-- (NSMutableSet *)listOfLinesWithin:(NSRect)aRect;
+- (NSSet<LELine*> *)listOfLinesWithin:(NSRect)aRect;
 - (NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject;
 - (void)deselectObject:(id)theObj;
 - (BOOL)isObjectInSelections:(id)theObj;
@@ -242,38 +257,39 @@ enum // Drawing Modes
 - (void)redrawBoundsOfSelection;
 - (void)selectObject:(id)theObject byExtendingSelection:(BOOL)extSelection;
 - (void)checkConcavenessOnPolys:(id)theEnumerationCapableCollection;
-- (id)findPolygonAtPoint:(NSPoint)point;
+- (nullable LEPolygon*)findPolygonAtPoint:(NSPoint)point;
 - (NSPoint)closestPointOrGridIntersectionTo:(NSPoint)mouseLoc includePoints:(BOOL)includePoints includeGrid:(BOOL)includeGrid;
 -(void)updateModifierKeys:(NSEvent*)theEvent;
 
 // ********* Actions, Etc. *********
-- (IBAction)getInfoAction:(id)sender;
-- (IBAction)caculateSidesOnSelectedLines:(id)sender;
+- (IBAction)getInfoAction:(nullable id)sender;
+- (IBAction)caculateSidesOnSelectedLines:(nullable id)sender;
 
-- (IBAction)cut:(id)sender;
+- (IBAction)cut:(nullable id)sender;
 - (IBAction)copy:(id)sender;
 - (IBAction)paste:(id)sender;
 
-- (IBAction)zoomIn:(id)sender;
-- (IBAction)zoomOut:(id)sender;
+- (IBAction)zoomIn:(nullable id)sender;
+- (IBAction)zoomOut:(nullable id)sender;
 - (void)zoomBy:(float)zoomfactor;
-- (IBAction)zoomNormal:(id)sender;
+- (IBAction)zoomNormal:(nullable id)sender;
 
-- (IBAction)redrawEverything:(id)sender;
+- (IBAction)redrawEverything:(nullable id)sender;
 
-- (IBAction)setDrawModeToNormal:(id)sender;
-- (IBAction)setDrawModeToCeilingHeight:(id)sender;
-- (IBAction)enableFloorHeightViewMode:(id)sender;
-- (IBAction)enableLiquidViewMode:(id)sender;
-- (IBAction)enableFloorLightViewMode:(id)sender;
-- (IBAction)enableCeilingLightViewMode:(id)sender;
-- (IBAction)enableLiquidLightViewMode:(id)sender;
-- (IBAction)enableAmbientSoundViewMode:(id)sender;
-- (IBAction)enableRandomSoundViewMode:(id)sender;
-- (IBAction)enableLayerViewMode:(id)sender;
-- (IBAction)renameSelectedPolygon:(id)sender;
+- (IBAction)setDrawModeToNormal:(nullable id)sender;
+- (IBAction)setDrawModeToCeilingHeight:(nullable id)sender;
+- (IBAction)enableFloorHeightViewMode:(nullable id)sender;
+- (IBAction)enableLiquidViewMode:(nullable id)sender;
+- (IBAction)enableFloorLightViewMode:(nullable id)sender;
+- (IBAction)enableCeilingLightViewMode:(nullable id)sender;
+- (IBAction)enableLiquidLightViewMode:(nullable id)sender;
+- (IBAction)enableAmbientSoundViewMode:(nullable id)sender;
+- (IBAction)enableRandomSoundViewMode:(nullable id)sender;
+- (IBAction)enableLayerViewMode:(nullable id)sender;
+- (IBAction)renameSelectedPolygon:(nullable id)sender;
 
 - (void)sendSelChangedNotification;
 
 @end
 
+NS_ASSUME_NONNULL_END

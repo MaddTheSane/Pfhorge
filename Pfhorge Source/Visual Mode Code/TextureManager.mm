@@ -171,7 +171,7 @@ void TextureManager::ResetPriorities() {
 	simple_vector<TileDesc> TDList(TotNum);
 
 	int CurrIndx = 0;
-	for (its=0; its<NumWallTxtrSets; its++)
+	for (its=0; its<NumWallTxtrSets; its++) {
 		for (itl=0; itl<TileList[its].get_len(); itl++) {
 			TileDesc &TD = TDList[CurrIndx];
 			TD.Set = its;
@@ -179,6 +179,7 @@ void TextureManager::ResetPriorities() {
 			TD.Priority = TileList[its][itl].GetPriority();
 			CurrIndx++;
 		}
+	}
 	
 	// Sort!
 	TileDescIndxSort Sorter(TDList.get_len(),TDList.begin());

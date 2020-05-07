@@ -303,7 +303,7 @@ extern NSString *VMBackwardKey;
     
     if (returnCode == NSOKButton)
     {
-        NSString *path = [panel filename];
+        NSString *path = [panel URL].path;
         NSLog(@"The Path: %@", path);
         //NSString *thePath = @"Test Script.scpt";
         createAndExecuteScriptObject( path );

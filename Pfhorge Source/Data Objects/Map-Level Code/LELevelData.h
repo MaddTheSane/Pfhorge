@@ -182,7 +182,11 @@ enum {
     NSMutableArray<PhLayer*>  *layersInLevel;
     PhLayer	    *currentLayer;
     // Should make these sets...
-    NSMutableArray  *layerPoints, *layerLines, *layerPolys, *layerMapObjects, *layerNotes;
+	NSMutableArray<LEMapPoint*>  *layerPoints;
+	NSMutableArray<LELine*>  *layerLines;
+	NSMutableArray<LEPolygon*>  *layerPolys;
+	NSMutableArray<LEMapObject*>  *layerMapObjects;
+	NSMutableArray  *layerNotes;
     NSMutableArray  *namedPolyObjects;
     NSMutableArray  *tags;
     
@@ -385,9 +389,9 @@ enum {
 -(NSMutableArray<LEMapObject*> *)getTheMapObjects;
 
 -(NSArray *)layerNotes;
--(NSMutableArray *)layerPoints;
--(NSMutableArray *)layerLines;
--(NSMutableArray *)layerPolys;
+-(NSMutableArray<LEMapPoint*> *)layerPoints;
+-(NSMutableArray<LELine*> *)layerLines;
+-(NSMutableArray<LEPolygon*> *)layerPolys;
 -(NSMutableArray *)layerMapObjects;
 
 -(NSMutableArray *)layersInLevel;

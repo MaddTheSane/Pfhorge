@@ -81,7 +81,7 @@ enum {
 // *************************** Getting Information ***************************
 #pragma mark -
 #pragma mark ********* Getting Information *********
-- (NSSet *)getSelectionsOfType:(int)theSelectionsWanted
+- (NSSet *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted
 {
     ///NSMutableSet *selectedLines, *selectedPolys, *selectedPoints, *selectedMapObjects;
     ///NSMutableSet *selections, *affectedBySelections, *includeInBounds;
@@ -148,22 +148,6 @@ enum {
 -(void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	
-	if (cachedImage != nil)
-        [cachedImage release];
-    if (cachedImageRep != nil)
-        [cachedImageRep release];
-    if (trans != nil)
-        [trans release];
-    //if (cachedImage != nil)
-    
-    [rectPolys release]; // set to nil in init's!!!
-    [rectLines release];
-    [rectPoints release];
-    [rectObjects release];
-    [rectNotes release];
-    
-    [super dealloc];
 }
 
 -(id)init
@@ -251,35 +235,11 @@ enum {
     
     // List Stuff...
     
-    if (numberList != nil)
-        [numberList release];
-    if (numberDrawingMaps != nil)
-        [numberDrawingMaps release];
-    if (colorList != nil)
-        [colorList release];    
-    if (numberTable != nil)
-        [numberTable release];
-    
     numberList = nil;
     numberDrawingMaps = nil;
     colorList = nil;
     numberTable = nil;
     
-    if (selectedPoints != nil)
-        [selectedPoints release];
-    if (selectedMapObjects != nil)
-        [selectedMapObjects release];
-    if (selectedLines != nil)
-        [selectedLines release];
-    if (selectedPolys != nil)
-        [selectedPolys release];
-    if (affectedBySelections != nil)
-        [affectedBySelections release];
-    if (includeInBounds != nil)
-        [includeInBounds release];
-    if (selectedNotes != nil)
-        [selectedNotes release];
-
     selectedPoints = nil;
     selectedMapObjects = nil;
     selectedLines = nil;
@@ -295,25 +255,12 @@ enum {
     drawingHeightMapNeedsUpdating = NO;
     numberListNeedsUpdating = NO;
     
-    if (monsterDrawingMap != nil)
-        [monsterDrawingMap release];
-    if (playerDrawingMap != nil)
-        [playerDrawingMap release];
-    if (sceaneryDrawingMap != nil)
-        [sceaneryDrawingMap release];    
-    if (goalDrawingMap != nil)
-        [goalDrawingMap release];
-    if (soundDrawingMap != nil)
-        [soundDrawingMap release];
-    if (itemDrawingMap != nil)
-        [itemDrawingMap release];
-    
-    monsterDrawingMap = [[NSBezierPath bezierPath] retain];
-    playerDrawingMap = [[NSBezierPath bezierPath] retain];
-    sceaneryDrawingMap = [[NSBezierPath bezierPath] retain];
-    goalDrawingMap = [[NSBezierPath bezierPath] retain];
-    soundDrawingMap = [[NSBezierPath bezierPath] retain];
-    itemDrawingMap = [[NSBezierPath bezierPath] retain];
+    monsterDrawingMap = [NSBezierPath bezierPath];
+    playerDrawingMap = [NSBezierPath bezierPath];
+    sceaneryDrawingMap = [NSBezierPath bezierPath];
+    goalDrawingMap = [NSBezierPath bezierPath];
+    soundDrawingMap = [NSBezierPath bezierPath];
+    itemDrawingMap = [NSBezierPath bezierPath];
     
     currentLevel = theLevel;
     // release with a new method called
@@ -429,7 +376,7 @@ enum {
     //Set default NSBezier Stuff...
     [NSBezierPath setDefaultLineWidth:0];
     
-    trans = [[NSAffineTransform transform] retain];    
+    trans = [NSAffineTransform transform];
     [trans translateXBy:2048.5 yBy:2048.5];
     
     //isAntialiasingOn = [preferences boolForKey:PhEnableAntialiasing];
@@ -541,7 +488,7 @@ enum {
     return;
 }
 
-- (void)setCurrentDrawingMode:(int)mode
+- (void)setCurrentDrawingMode:(LEMapDrawingMode)mode
 {
     int previousDrawingMode = drawingMode;
     drawingHeightMapNeedsUpdating = YES;
@@ -567,16 +514,7 @@ enum {
     else if (mode == _drawNormaly)
     {
         drawingMode = mode;
-        
-        if (numberList != nil)
-            [numberList release];
-        if (numberDrawingMaps != nil)
-            [numberDrawingMaps release];
-        if (colorList != nil)
-            [colorList release];
-        if (nameList != nil)
-            [nameList release];
-              
+		
         numberList = nil;
         numberDrawingMaps = nil;
         colorList = nil;
@@ -614,13 +552,11 @@ enum {
     [self display];
 }
 
-- (int)currentDrawingMode { return drawingMode; }
+@synthesize currentDrawingMode=drawingMode;
 - (NSArray *)getNumberList { return numberList; }
 - (NSArray *)getColorList { return colorList; }
 - (NSArray *)getNameList
 {
-    
-    
     return nameList; 
 }
 - (NSArray *)getTableObjectList { return objsList; }
@@ -674,10 +610,6 @@ enum {
     
     // Insert drawing map for new number...
     [numberDrawingMaps insertObject:[NSBezierPath bezierPath] atIndex:indexOfNewNumber];
-    
-    // The number array, and not this method, is the owner of object now...
-    [copyOfNumber release];
-    
     
     // Time to reconstruct the colorList with new colors...
     
@@ -1193,11 +1125,11 @@ enum {
     [NSBezierPath setDefaultLineWidth:0];
     
     if (theGridDrawingMap == nil)
-        theGridDrawingMap = [[NSBezierPath bezierPath] retain];
+        theGridDrawingMap = [NSBezierPath bezierPath];
     if (subGridDrawingMap == nil)
-        subGridDrawingMap = [[NSBezierPath bezierPath] retain];
+        subGridDrawingMap = [NSBezierPath bezierPath];
     if (centerGridDrawingMap == nil)
-        centerGridDrawingMap = [[NSBezierPath bezierPath] retain];
+        centerGridDrawingMap = [NSBezierPath bezierPath];
     
     //Set default NSBezier Stuff...
     //[NSBezierPath setDefaultLineWidth:0];
@@ -1603,17 +1535,17 @@ enum {
         return;
     
     if (polyDrawingMap == nil) //release this if not nill?
-        polyDrawingMap = [[NSBezierPath bezierPath] retain]; 
+        polyDrawingMap = [NSBezierPath bezierPath];
     if (invalidPolyDrawingMap == nil) //release this if not nill?
-        invalidPolyDrawingMap = [[NSBezierPath bezierPath] retain];
+        invalidPolyDrawingMap = [NSBezierPath bezierPath];
     if (platformPolyMap == nil)
-        platformPolyMap = [[NSBezierPath bezierPath] retain];
+        platformPolyMap = [NSBezierPath bezierPath];
     if (teleporterPolyMap == nil)
-        teleporterPolyMap = [[NSBezierPath bezierPath] retain];
+        teleporterPolyMap = [NSBezierPath bezierPath];
     if (zonePolyMap == nil)
-        zonePolyMap = [[NSBezierPath bezierPath] retain];
+        zonePolyMap = [NSBezierPath bezierPath];
     if (hillPolyMap == nil)
-        hillPolyMap = [[NSBezierPath bezierPath] retain];
+        hillPolyMap = [NSBezierPath bezierPath];
     
     // I don't set to two above to nil becuase I allocate another
     // NSBezierPath for them on the very next step...
@@ -1707,12 +1639,6 @@ enum {
     
     if (currentLevel == nil) //There is no level currently...
     {
-        if (lineDrawingMap != nil)
-            [lineDrawingMap release];
-        
-        if (joinedLineDrawingMap != nil)
-            [joinedLineDrawingMap release];
-        
         joinedLineDrawingMap = nil;
         lineDrawingMap = nil;
         
@@ -2070,23 +1996,18 @@ enum {
     
     //Keep Track Of The Arrays...
     if (numberList != nil) {
-        [numberList release];
         numberList = nil;
     }
     if (numberDrawingMaps != nil) {
-        [numberDrawingMaps release];
         numberDrawingMaps = nil;
     }
     if (colorList != nil) {
-        [colorList release];
         colorList = nil;
     }
     if (nameList != nil) {
-        [nameList release];
         nameList = nil;
     }
     if (objsList != nil) {
-        [objsList release];
         objsList = nil;
     }
     
@@ -2099,7 +2020,6 @@ enum {
     }
     else
     {
-        [tmpObjsList release];
         tmpObjsList = nil;
         objsList = nil;
     }
@@ -2356,7 +2276,6 @@ enum {
         
         [self setNeedsDisplayInRect:boundingBoxHere];
         
-        [pointsAlreadyMoved release];
         pointsAlreadyMoved = nil;
         
         UpdateLevelStatusBar();
@@ -2405,16 +2324,16 @@ enum {
     NSEnumerator *numer;
     id curObj;
     BOOL foundSelection = NO;
-    int drawMode = [self currentDrawingMode];
+    LEMapDrawingMode drawMode = [self currentDrawingMode];
     
-    int curTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
+    LEPaletteTool curTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
     
-    if (curTool == _hand_tool || commandDown)
+    if (curTool == LEPaletteToolHand || commandDown)
     {
         [self dragScroll:theEvent];
         return;
     }
-    else if (curTool == _sampler_tool)
+    else if (curTool == LEPaletteToolSampler)
         optionDown = YES;
     
     if (selectedNumber == nil && optionDown == NO)
@@ -2522,8 +2441,8 @@ enum {
     //ColorRect *thisRect;
     NSPoint mouseLoc;
     NSPoint mouseOffset;
-    unsigned int eventMask;
-    unsigned short currentTool;
+    NSEventMask eventMask;
+    LEPaletteTool currentTool;
     BOOL dragged = NO;
     BOOL timerOn = NO;
     BOOL onlyScrolling = NO;
@@ -2557,7 +2476,7 @@ enum {
     
     //NSLog(@"Click Count: %d", [theEvent clickCount]);
     
-    int clickCount = [theEvent clickCount];
+    NSInteger clickCount = [theEvent clickCount];
     
     // Prepeare The Stuff... :)   Draconic... --:=>
     
@@ -2622,8 +2541,8 @@ enum {
     {
 	// Normally, option temporarily switches to eyedropper tool
 	// But when the zoom tool is selected, option switches between zoom out and in
-	if(currentTool != _zoom_tool)
-	    currentTool = _sampler_tool;
+	if(currentTool != LEPaletteToolZoom)
+	    currentTool = LEPaletteToolSampler;
     }
 	
     //Drawing bounds for any selections
@@ -2632,7 +2551,7 @@ enum {
     // Run the methods that pretain to the currently selected tool...
     switch (currentTool)
     {
-        case _line_tool:
+        case LEPaletteToolLine:
             // Clear Any Old Selections
             
             //if (!shiftDown)
@@ -2647,7 +2566,7 @@ enum {
             
             break;
        
-        case _paint_tool:
+        case LEPaletteToolPaint:
             // Clear Any Old Selections
             if (!shiftDown)
                 [self clearSelections];
@@ -2660,7 +2579,7 @@ enum {
 	    // else
             break;
         
-        case _sampler_tool:
+        case LEPaletteToolSampler:
             [self clearSelections];
             [self useArrowTool:mouseLoc clickCount:clickCount];
             //Update the selctions set...
@@ -2668,7 +2587,7 @@ enum {
             [self useSamplerTool:mouseLoc];
             break;
         
-        case _brush_tool:
+        case LEPaletteToolBrush:
             [self clearSelections];
             [self useArrowTool:mouseLoc clickCount:clickCount];
             //Update the selctions set...
@@ -2676,28 +2595,28 @@ enum {
             [self useBrushTool:mouseLoc];
             break;
             
-        case _hand_tool:
+        case LEPaletteToolHand:
             [self dragScroll:theEvent];
             //onlyScrolling = YES;
             quitAfterSelectionUndo = YES;
             break;
 
-	case _zoom_tool:
+	case LEPaletteToolZoom:
 	    [self useZoomTool:mouseLoc];
             quitAfterSelectionUndo = YES;
             break;
 	
-	case _text_tool:
+	case LEPaletteToolText:
             [self useTextTool:mouseLoc];
             quitAfterSelectionUndo = YES;
             break;
         
-        case _monster_tool:
-        case _player_tool:
-        case _item_tool:
-        case _scenary_tool:
-        case _sound_tool:
-        case _goal_tool:
+        case LEPaletteToolMonster:
+        case LEPaletteToolPlayer:
+        case LEPaletteToolItem:
+        case LEPaletteToolScenery:
+        case LEPaletteToolSound:
+        case LEPaletteToolGoal:
             if( ! [self useObjectTool:mouseLoc toolType:currentTool])
             {
                 quitAfterSelectionUndo = YES;
@@ -2707,7 +2626,7 @@ enum {
                 addtionalSelections = YES;
             break;
         
-        case _arrow_tool:
+        case LEPaletteToolArrow:
         default:
             if (!shiftDown)
             {
@@ -2779,16 +2698,6 @@ enum {
             [(id)undo undoDeselection:curObj ofType:i];
         }
     }
-    
-    // I copied these earlier, now it's time to release them...
-    [selectedLinesCpy release];
-    [selectedPolysCpy release];
-    [selectedPointsCpy release];
-    [selectedMapObjectsCpy release];
-    [selectedNotesCpy release];
-    [selectionsCpy release];
-    [affectedBySelectionsCpy release];
-    [includeInBoundsCpy release];
     
     if (quitAfterSelectionUndo == YES)
         return;
@@ -2866,7 +2775,7 @@ enum {
     
     // get the list of angles, for snap-to-angle
     // Code more readable with a autorelease rather then a regular release latter in the code...
-    NSMutableArray *snapAzs = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *snapAzs = [[NSMutableArray alloc] init];
     if(rightAngleSnap == YES &&  isometricSnap == NO /* using right angle snap */)
     {
         [snapAzs addObject:@0];
@@ -2939,7 +2848,7 @@ enum {
 
                 [self updateModifierKeys:theEvent];
                 
-                if (addtionalSelections == YES /* && currentTool != _arrow_tool*/)
+                if (addtionalSelections == YES /* && currentTool != LEPaletteToolArrow*/)
                 {
                     if (onlyScrolling)
                     {
@@ -2953,7 +2862,7 @@ enum {
                     // If the user presses the control key, switch the snap to grid setting.
                     if (controlKeyDown != controlKeyWasJustDown)
                     {
-                        if(currentTool != _line_tool || !shiftDown)
+                        if(currentTool != LEPaletteToolLine || !shiftDown)
                         {
                             controlKeyWasJustDown = controlKeyDown;
 
@@ -2968,7 +2877,7 @@ enum {
 
                     // If the user presses the Shift key, and we're a line,
                     // snap motion to angle
-                    if (currentTool == _line_tool)
+                    if (currentTool == LEPaletteToolLine)
                     {
                         if(shiftDown != shiftWasJustDown)
                         {
@@ -3012,7 +2921,7 @@ enum {
                         
                         // Prepeare The Stuff... :)   Draconic... --:=>
                         
-                        if (snapToNearestPoint && currentTool == _line_tool)
+                        if (snapToNearestPoint && currentTool == LEPaletteToolLine)
                         {
                                 // Only need to check current layer points...
                             mapPointsArray = [currentLevel layerPoints];
@@ -3118,13 +3027,10 @@ enum {
                             //if (shortestDistancePoint != nil)
                                 [self moveSelectedTo:shortestDistanceNSPoint];
                         }
-                        // Clean Up
-                        [thePointsInRange release];
-                        
                     } // END if (snapToNearestPoint || snapToGrid)
 
 		    // Snap-to-angle?
-                    else if(snapToAngle && currentTool == _line_tool)
+                    else if(snapToAngle && currentTool == LEPaletteToolLine)
                     {
                         // assumptions this code makes:
                         //  -this is the line tool
@@ -3200,13 +3106,11 @@ enum {
                         {
                             [NSEvent startPeriodicEventsAfterDelay:0.1 withPeriod:0.1];
                             timerOn = YES;
-                            if (autoscrollEvent) [autoscrollEvent release];
-                            autoscrollEvent = [theEvent retain];
+                            autoscrollEvent = theEvent;
                         }
                         else
                         {
-                            if (autoscrollEvent) [autoscrollEvent release];
-                            autoscrollEvent = [theEvent retain];
+                            autoscrollEvent = theEvent;
                         }
                         break;
                     }
@@ -3214,12 +3118,11 @@ enum {
                     {
                         [NSEvent stopPeriodicEvents];
                         timerOn = NO;
-                        if (autoscrollEvent) [autoscrollEvent release];
                         autoscrollEvent = nil;
                     }
                 }
                 
-                if (!addtionalSelections && currentTool == _arrow_tool)
+                if (!addtionalSelections && currentTool == LEPaletteToolArrow)
                 { // Bounding-Box Drag Selecting....
                     NSRect tmpRect = LERectFromPoints(mouseLoc, curPoint);
                     drawBoundingBox = YES;
@@ -3262,7 +3165,6 @@ enum {
                 {
                     [NSEvent stopPeriodicEvents];
                     timerOn = NO;
-                    if (autoscrollEvent) [autoscrollEvent release];
                     autoscrollEvent = nil;
                 }
                 
@@ -3493,13 +3395,11 @@ enum {
                     {
                         [NSEvent startPeriodicEventsAfterDelay:0.1 withPeriod:0.1];
                         timerOn = YES;
-                        if (autoscrollEvent) [autoscrollEvent release];
-                        autoscrollEvent = [theEvent retain];
+                        autoscrollEvent = theEvent;
                     }
                     else
                     {
-                        if (autoscrollEvent) [autoscrollEvent release];
-                        autoscrollEvent = [theEvent retain];
+                        autoscrollEvent = theEvent;
                     }
                     break;
                 }
@@ -3507,7 +3407,6 @@ enum {
                 {
                     [NSEvent stopPeriodicEvents];
                     timerOn = NO;
-                    if (autoscrollEvent) [autoscrollEvent release];
                     autoscrollEvent = nil;
                 }
         
@@ -3522,7 +3421,6 @@ enum {
                 {
                     [NSEvent stopPeriodicEvents];
                     timerOn = NO;
-                    if (autoscrollEvent) [autoscrollEvent release];
                     autoscrollEvent = nil;
                 }
                 return;
@@ -3568,7 +3466,7 @@ enum {
     return YES;
 }
 
--(BOOL)useArrowTool:(NSPoint)mouseLoc clickCount:(int)count
+-(BOOL)useArrowTool:(NSPoint)mouseLoc clickCount:(NSInteger)count
 {
     NSEnumerator *numer;
     BOOL foundSelection = NO;
@@ -3791,12 +3689,11 @@ enum {
     NSPoint point1, point2;
     NSSet *theConnectedLines;
     LEPolygon *theNewPolygon;
-    id curObj;
     NSMutableSet *thePossibleLeftMostLines = [self listOfLinesWithin:NSMakeRect(-2048, theCurPoint.y-1, (theCurPoint.x + 2048), 2)];
     
     //NSLog(@"Runing hit detection on polys...");
     numer = [[currentLevel layerPolys] reverseObjectEnumerator];
-    while (curObj = [numer nextObject])
+    for (LEMapStuffParent *curObj in numer)
     {
         //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
         //{
@@ -4358,12 +4255,6 @@ enum {
 	[currentLevel addObjects:pointToStartFrom];
 	[rectPoints addObject:pointToStartFrom];
         
-        // The level retained the point, so we can release it here.
-        // The releason I do it here and not latter it may have
-        // already been taken care of eariler in the code (this
-        // part of the code may not run).
-        [pointToStartFrom release];
-	
 	currentDrawingMode = LEEDrawLineNotConnected;
     }
 
@@ -4379,13 +4270,13 @@ enum {
     [currentLevel addObjects:theNewPoint]; // Need to do this though LELevel object!!!
     [rectPoints addObject:theNewPoint];
     
-    [theNewPoint release];
+    theNewPoint = nil;
     
     theNewLine = [[LELine alloc] init];
     [currentLevel addObjects:theNewLine]; // Need to do this though LELevel object!!!
     [rectLines addObject:theNewLine];
     
-    [theNewLine release];
+    theNewLine = nil;
     
     [theNewLine setMapPoint1:pointToStartFrom];
     [theNewLine setMapPoint2:theNewPoint];
@@ -4505,12 +4396,7 @@ enum {
     {
 	// all of the above failed - so create a new point at the mouse click
 	pointToStartFrom = [[LEMapPoint alloc] init];
-        
-        // Won't need it for long, and since this is used in the
-        // return statment, we can't release it after the return
-        // so autorelease it...
-        [pointToStartFrom autorelease];
-        
+	
 	[pointToStartFrom setX32:mouseLoc.x];
 	[pointToStartFrom setY32:mouseLoc.y];
     }
@@ -4519,7 +4405,7 @@ enum {
 
 
 
-- (BOOL)useObjectTool:(NSPoint)mouseLoc toolType:(int)tool
+- (BOOL)useObjectTool:(NSPoint)mouseLoc toolType:(LEPaletteTool)tool
 {
     LEMapObject *theNewObject = nil;
     NSPoint pointToUse = mouseLoc;
@@ -4568,24 +4454,26 @@ enum {
         
         switch (tool)
         {
-            case _monster_tool:
+            case LEPaletteToolMonster:
                 [theNewObject setType:_saved_monster];
                 break;
-            case _player_tool:
+            case LEPaletteToolPlayer:
                 [theNewObject setType:_saved_player];
                 break;
-            case _item_tool:
+            case LEPaletteToolItem:
                 [theNewObject setType:_saved_item];
                 break;
-            case _scenary_tool:
+            case LEPaletteToolScenery:
                 [theNewObject setType:_saved_object];
                 break;
-            case _sound_tool:
+            case LEPaletteToolSound:
                 [theNewObject setType:_saved_sound_source];
                 break;
-            case _goal_tool:
+            case LEPaletteToolGoal:
                 [theNewObject setType:_saved_goal];
                 break;
+			default:
+				break;
         }
         
         // gets default state for the specific object type...
@@ -4633,7 +4521,7 @@ enum {
 -(BOOL)useTextTool:(NSPoint)mouseLoc
 {
     PhAnnotationNote *newNote = [[PhAnnotationNote alloc] initWithAdjPoint:mouseLoc];
-    [currentLevel addObject:newNote];
+    [(id)currentLevel addObject:newNote];
     [newNote setText:@"Type Annotation Note Here..."];
     [winController openAnnotationNoteEditor:newNote];
     return YES;
@@ -4888,14 +4776,11 @@ enum {
 {
     NSRect rect = NSZeroRect;
     NSEnumerator *numer;
-    //BOOL firstDone = NO;
-    id theCurObj;
-    //unsigned i, c = [theObjs count];
     
    // NSLog(@"Before!!!");
    
     numer = [theSentObjs objectEnumerator];
-    while (theCurObj = [numer nextObject])
+    for (LEMapStuffParent *theCurObj in numer)
             rect = NSUnionRect(rect, [theCurObj drawingBounds]);
     
     /*if (rect.size.height < 2.0)
@@ -4947,15 +4832,14 @@ enum {
     if (selectedNotes != nil) { [selections unionSet:selectedNotes]; }
 }
 
-- (id)findPolygonAtPoint:(NSPoint)point
+- (LEPolygon*)findPolygonAtPoint:(NSPoint)point
 {
     NSEnumerator *numer;
     NSArray *thePolys;
-    id curObj;
     
     thePolys = [currentLevel layerPolys];
     numer = [thePolys reverseObjectEnumerator];
-    while (curObj = [numer nextObject])
+    for (LEPolygon *curObj in numer)
     {
         //if ([self mouse:point inRect:[curObj theDrawingBound]])
         //{
@@ -5440,14 +5324,12 @@ enum {
     
     //[self setNeedsDisplayInRect:[self drawingBoundsForObjects:tmpSet]];
     
-    [diffSet release];
-    
     [self updateTheSelections];
     [self sendSelChangedNotification];
     [self setNeedsDisplayInRect:[self drawingBoundsForSelections]];
 }
 
-- (NSMutableSet *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet *)excludeSet
+- (NSSet *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet *)excludeSet
 {
     /* Find new objects in the 'aRect', exclude objects in excludeSet */
     //NSRect theFrame = [self visibleRect];
@@ -5517,7 +5399,7 @@ enum {
             break;
     }// END switch
     
-    return [rectSet autorelease];
+    return [rectSet copy];
     
 }// END function
 
@@ -5611,7 +5493,7 @@ enum {
     shouldNotGetNewObjectsForTiledCache = NO;
 }
 
-- (NSMutableSet *)listOfLinesWithin:(NSRect)aRect
+- (NSSet *)listOfLinesWithin:(NSRect)aRect
 {
     NSMutableSet *theTmpRectLines = [[NSMutableSet alloc] initWithCapacity:50];
     NSEnumerator *numer;
@@ -5624,7 +5506,7 @@ enum {
             [theTmpRectLines addObject:theObj];
     }
     //NSLog(@"listOfLinesWithin count: %d", [theTmpRectLines count]);
-    return theTmpRectLines;
+    return [theTmpRectLines copy];
 }
         
 - (NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject
@@ -5645,7 +5527,7 @@ enum {
         case _goto_platform:
             arrayOne = [currentLevel getPlatforms];
             
-            if ((int)[arrayOne count] <= theIndex)
+            if ([arrayOne count] <= theIndex)
                 return @"Platform Index Beyond Bounds";
             
             obj1 = [arrayOne objectAtIndex:theIndex];
@@ -5670,7 +5552,7 @@ enum {
             break;
     }
     
-    if ((int)[arrayOne count] <= theIndex)
+    if ([arrayOne count] <= theIndex)
         return @"Index Beyond Bounds";
     
     obj1 = [arrayOne objectAtIndex:theIndex];
@@ -6240,7 +6122,7 @@ enum {
         NSEnumerator *numer = nil;
         
         NSLog(@"Type was found, begining to unarchive and paste data...");
-        theSelections = [[NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:@"PhorgeSelectionData"]]] retain];
+        theSelections = [NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:@"PhorgeSelectionData"]]];
         
         // Clear Any Old Selections
         [self clearSelections];
@@ -6263,7 +6145,6 @@ enum {
         }
         //Update the selctions set...
         [self updateTheSelections];
-        [theSelections release];
         
         [self setNeedsDisplayInRect:[self drawingBoundsForSelections]];
     }
