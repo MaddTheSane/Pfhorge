@@ -1298,8 +1298,8 @@
     }
     
     [theTarget setPermutationObject:tempPermutationObj];
-    [theTarget setFloor_texture:floor_texture];
-    [theTarget setCeiling_texture:ceiling_texture];
+    [theTarget setFloorTexture:floor_texture];
+    [theTarget setCeilingTexture:ceiling_texture];
     
     [theTarget setFloor_height_no_sides:floor_height];
     [theTarget setCeiling_height:ceiling_height];
@@ -1637,8 +1637,8 @@
     
     lineObjects[i] = v;
 } //
--(void)setFloor_texture:(short)v { floor_texture = v; }
--(void)setCeiling_texture:(short)v { ceiling_texture = v; }
+-(void)setFloorTexture:(short)v { floor_texture = v; }
+-(void)setCeilingTexture:(short)v { ceiling_texture = v; }
 
 -(void)setFloor_height_no_sides:(short)v { floor_height = v; }
 -(void)setCeiling_height_no_sides:(short)v { ceiling_height = v; }

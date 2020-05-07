@@ -618,7 +618,7 @@
         }
         else
         {
-            NSLog(@"Secondary Light was out of range: %d  num of items: %d", sLight, [secondaryLight numberOfItems]);
+			NSLog(@"Secondary Light was out of range: %d  num of items: %ld", sLight, (long)[secondaryLight numberOfItems]);
             [secondaryLight selectItemAtIndex:-1];
         }
         

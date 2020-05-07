@@ -172,9 +172,9 @@ enum	// polygon types
 -(char)textureCollectionOnly;
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
--(id)initWithPolygon:(LEPolygon *)thePolygonToImitate;
+- (id)initWithPolygon:(LEPolygon *)thePolygonToImitate;
 
 
 // ******************** Utilties ***********************
@@ -215,8 +215,8 @@ enum	// polygon types
 -(void)setLines:(short)v i:(short)i; //
 -(void)setLinesObject:(id)v i:(short)i;
 
--(void)setFloor_texture:(short)v;
--(void)setCeiling_texture:(short)v;
+-(void)setFloorTexture:(short)v;
+-(void)setCeilingTexture:(short)v;
 
 -(void)setFloor_height_no_sides:(short)v;
 -(void)setCeiling_height_no_sides:(short)v;
@@ -338,6 +338,8 @@ enum	// polygon types
 -(short)getSound_source_indexes; //
 -(short)getAmbient_sound_image_index; //
 -(short)getRandom_sound_image_index; //
+
+- (void)render;
 
 // **************************** Polygon Concave Verification ***********************************
 -(BOOL)isPolygonConcave;

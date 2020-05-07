@@ -2015,11 +2015,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_texture"];
         #endif
-        [theObj setFloor_texture:[self getShort]];
+        [theObj setFloorTexture:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_texture"];
         #endif
-        [theObj setCeiling_texture:[self getShort]];
+        [theObj setCeilingTexture:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_height:"];
         #endif

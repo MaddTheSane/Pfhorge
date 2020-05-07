@@ -21,6 +21,7 @@ _______________________________________________________________________________
 #import <OpenGL/glu.h>
 #import <Foundation/Foundation.h>
 #import "LEExtras.h"
+#import "LEPolygon.h"
 
 // Here is my Map Viewer:
 

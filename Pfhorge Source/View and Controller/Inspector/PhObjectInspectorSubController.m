@@ -103,7 +103,7 @@
     else
     {
         [objItem selectItemAtIndex:-1];
-        SEND_ERROR_MSG_TITLE(([NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %d", [theObj getObjTypeIndex], [objItem numberOfItems]]), @"Selected Object Kind Beyond Range");
+		SEND_ERROR_MSG_TITLE(([NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %ld", [theObj getObjTypeIndex], (long)[objItem numberOfItems]]), @"Selected Object Kind Beyond Range");
     }
     //NSLog(@"DONE: Setting The Index...");
     //[objItem setObjectValue:[objItem objectValueOfSelectedItem]];
