@@ -126,7 +126,7 @@ int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **o
 }
 
 // get a plain bitmap from a Marathon-encoded bitmap
-int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, short *outFlags, unsigned char **outPixData)
+int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, bitmap_definition_flags *outFlags, unsigned char **outPixData)
 {
 	byte	*bd, *outPixBase, *p;
 	long	bitmapOffsetTableOffset;

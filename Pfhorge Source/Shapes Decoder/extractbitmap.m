@@ -95,19 +95,19 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
     fclose(f);
     free(ctable);
         
-    return theTextures;
+    return [theTextures copy];
 }
 
 NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap/*, unsigned char *pixelsOut*/)
 {
 	///int argc = 5;
-        int		/*i,*/ coll = 0, clut = 0, bitmap = 0;
+	int		/*i,*/ coll = 0, clut = 0, bitmap = 0;
 	int		bwidth = 0, bheight = 0;
-        short		bflags = 0;
+	bitmap_definition_flags	bflags = 0;
 	int		err = 0;
-        
-        NSBitmapImageRep *theImage = nil;
-        
+	
+	NSBitmapImageRep *theImage = nil;
+	
 	///char	bmp_name[255] = "shape.bmp";
 	
 
@@ -127,17 +127,17 @@ NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int the
 		return nil;
 	}
 	/// fprintf(stderr, "done, %d x %d, flags = 0x%.4x --- ", bwidth, bheight, bflags);
-        
-        
+	
+	
 	/// fprintf(stderr, "Formating to bitmap...");
 	//bmp = fopen(bmp_name, "wb");
-        
-        theImage = [[NSBitmapImageRep alloc] initWithData:save_bitmap_to_bmp(bwidth, bheight, ctable, pixels)];
-        
-        /// fprintf(stderr, "done!\n");
-        
+	
+	theImage = [[NSBitmapImageRep alloc] initWithData:save_bitmap_to_bmp(bwidth, bheight, ctable, pixels)];
+	
+	/// fprintf(stderr, "done!\n");
+	
 	free(pixels);
-        
+	
 	return theImage;
 }
 
@@ -189,7 +189,7 @@ NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned
 	file_size = (int)[f length];
 	[f replaceBytesInRange:NSMakeRange(2, 4) withBytes:&file_size];
 	
-	return f;
+	return [f copy];
 }
 
 void write_word(unsigned short w, NSMutableData *theData)
