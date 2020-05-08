@@ -616,7 +616,8 @@
         dict[NSFileHFSCreatorCode] = @((OSType)0x32362EB0); // '26.∞'
         dict[NSFileHFSTypeCode] = @((OSType)'sce2');
     } else {
-        [dict setObject:[NSNumber numberWithUnsignedInt:'sce2'] forKey:NSFileHFSTypeCode];
+        [dict setObject:@((OSType)'PfhL') forKey:NSFileHFSTypeCode];
+        [dict setObject:@((OSType)'PFrg') forKey:NSFileHFSCreatorCode];
     }
     
     return dict;

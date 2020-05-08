@@ -139,9 +139,9 @@ NSString *const PhEnableGridBool = @"PhEnableGridBool";
 
 // ********* Current Phorge Information *********
 
-int currentVersionOfPfhorgeLevelData = 6;
+const int currentVersionOfPfhorgeLevelData = 6;
 
-NSString *currentPhorgeVersion = @"0.3.0 alpha";
+NSString *const currentPhorgeVersion = @"0.3.0 alpha";
 
 NSString *const PhPrefVersion = @"PhPrefVersion";
 NSString *const PhPhorgePrefVersion = @"PhPhorgePrefVersion";

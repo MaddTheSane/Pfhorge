@@ -64,7 +64,7 @@ extern NSString *PhLevelDidChangeName;
 @class PhAnnotationNote, PhNamesController, PhColorListControllerDrawer;
 @class LEMapDraw, PhNoteGroupsCon;
 
-@interface LELevelWindowController : NSWindowController
+@interface LELevelWindowController : NSWindowController <NSTableViewDataSource>
 {
     IBOutlet LEMapDraw *levelDrawView;
     IBOutlet NSTextField *levelStatusBar;

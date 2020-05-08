@@ -1,8 +1,8 @@
 /* Localized versions of Info.plist keys */
 
 CFBundleName = "Pfhorge";
-CFBundleShortVersionString = "Pfhorge Version 0.95";
-CFBundleGetInfoString = "Pfhorge Version 0.95, Copyright 2005 Joshua D. Orr All Rights Reserved";
+CFBundleShortVersionString = "Pfhorge Version 0.96";
+CFBundleGetInfoString = "Pfhorge Version 0.96, Copyright 2005 Joshua D. Orr All Rights Reserved";
 NSHumanReadableCopyright = "Pfhorge Copyright 2005 Joshua D. Orr All Rights Reserved.";
 
 "org.bungie.source.map" = "Aleph One Map File";

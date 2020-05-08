@@ -400,8 +400,9 @@
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
                             [super fileAttributesToWriteToURL:url ofType:documentTypeName forSaveOperation:saveOperationType originalContentsURL:absoluteOriginalContentsURL error:outError]];
     
-    [dict setObject:@((OSType)'sce2') forKey:NSFileHFSTypeCode];
-    
+	[dict setObject:@((OSType)'PfhL') forKey:NSFileHFSTypeCode];
+	[dict setObject:@((OSType)'PFrg') forKey:NSFileHFSCreatorCode];
+
     return dict;
 }
 

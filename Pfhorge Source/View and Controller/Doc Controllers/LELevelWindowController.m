@@ -219,7 +219,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 - (IBAction)importMarathonMap:(id)sender
 {
-    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), @"lev", @"org.bungie.source.map"];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), NSFileTypeForHFSTypeCode(0x736365B0), /*'sce∞'*/ @"lev", @"org.bungie.source.map"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     op.allowedFileTypes = fileTypes;
     
@@ -1321,14 +1321,14 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 // *** Data Source Messages ***
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     return 3;
 }
 
 -(id)tableView:(NSTableView *)aTableView
     objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(int)rowIndex 
+    row:(NSInteger)rowIndex 
 {
     
     return @"TEST";
