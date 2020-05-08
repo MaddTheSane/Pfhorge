@@ -383,7 +383,7 @@
     NSLog(@"writeToFile  for a Pathways (PID) map...  Path: %@", pathToUse);
     
     [[NSFileManager defaultManager] createFileAtPath:pathToUse
-        contents:[self dataRepresentationOfType:@""]
+        contents:[self dataOfType:@"" error:NULL]
         attributes:nil];
     
     [pathToUse release];
@@ -448,7 +448,7 @@
         NSLog(@"Was NOT Able To Load 'Pathways Into Darkness' dpin 128 resource...");
     }
     
-    [self loadDataRepresentation:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:@""];
+    [self readFromData:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:type error:outError];
     
     NS_DURING
     
@@ -481,7 +481,7 @@
     
     shouldExportToMarathonFormat = NO;
     
-    if (shouldExportToMarathonFormat == YES)
+    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"])
     {
         entireMapData = [LEMapData convertLevelToDataObject:(LELevelData *)theLevel];
     }

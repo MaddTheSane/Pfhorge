@@ -18,10 +18,6 @@
                 <outlet property="lineSecondaryLight" destination="2670" id="2677"/>
                 <outlet property="lineSubController" destination="362" id="1094"/>
                 <outlet property="lineTransparentLight" destination="2664" id="2678"/>
-                <outlet property="objAngle" destination="995" id="1108"/>
-                <outlet property="objFlags" destination="1026" id="1109"/>
-                <outlet property="objType" destination="981" id="1098"/>
-                <outlet property="objZHeight" destination="992" id="1099"/>
                 <outlet property="objectSubController" destination="433" id="1096"/>
                 <outlet property="polyAmbientSound" destination="1063" id="1101"/>
                 <outlet property="polyCeilingLight" destination="2644" id="2679"/>
@@ -1310,7 +1306,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Line" identifier="1" id="962">
-                                <view key="view" id="954">
+                                <view key="view" ambiguous="YES" id="954">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1373,7 +1369,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Poly" identifier="2" id="949">
-                                <view key="view" ambiguous="YES" id="964">
+                                <view key="view" id="964">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

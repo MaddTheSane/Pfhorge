@@ -229,7 +229,6 @@
 		AE3C15AB0A04512100FBFFCD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		AE3C15AC0A04512100FBFFCD /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */; };
 		AE3C15AD0A04512100FBFFCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
-		AE3C15AE0A04512100FBFFCD /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE870228C81D0146BBD2 /* AGL.framework */; };
 		AE3C15AF0A04512100FBFFCD /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE880228C81D0146BBD2 /* ApplicationServices.framework */; };
 		AE3C15B00A04512100FBFFCD /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE890228C81D0146BBD2 /* CoreServices.framework */; };
 		AE3C15B10A04512100FBFFCD /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53CCE8A0228C81D0146BBD2 /* GLUT.framework */; };
@@ -356,7 +355,7 @@
 		A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathwaysExchange.h; sourceTree = "<group>"; };
 		A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathwaysDocument.h; sourceTree = "<group>"; };
 		A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathwaysDocument.m; sourceTree = "<group>"; };
-		AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Info-Pfhorge__Upgraded_.plist"; sourceTree = "<group>"; };
+		AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Pfhorge__Upgraded_.plist"; sourceTree = "<group>"; };
 		AE3C15BD0A04512200FBFFCD /* Pfhorge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pfhorge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathwaysToMarathon.h; sourceTree = "<group>"; };
 		CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PathwaysToMarathon.mm; sourceTree = "<group>"; };
@@ -511,7 +510,6 @@
 				AE3C15AB0A04512100FBFFCD /* Cocoa.framework in Frameworks */,
 				AE3C15AC0A04512100FBFFCD /* AppKit.framework in Frameworks */,
 				AE3C15AD0A04512100FBFFCD /* Foundation.framework in Frameworks */,
-				AE3C15AE0A04512100FBFFCD /* AGL.framework in Frameworks */,
 				AE3C15AF0A04512100FBFFCD /* ApplicationServices.framework in Frameworks */,
 				AE3C15B00A04512100FBFFCD /* CoreServices.framework in Frameworks */,
 				AE3C15B10A04512100FBFFCD /* GLUT.framework in Frameworks */,
@@ -613,7 +611,6 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */,
 			);
 			name = LevEd;
 			sourceTree = "<group>";
@@ -695,6 +692,7 @@
 				F520388902414AD90146BBD2 /* TerminalInterface.nib */,
 				A5EE9AB7040439D60046BBD2 /* MapManager.xib */,
 				F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */,
+				AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1537,12 +1535,9 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 0.96;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
+				INFOPLIST_FILE = "Resources/Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
@@ -1561,10 +1556,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 0.96;
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_OPTIMIZATION_LEVEL = 3;
-				HEADER_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/Headers/FlatCarbon\"";
-				INFOPLIST_FILE = "Info-Pfhorge__Upgraded_.plist";
+				INFOPLIST_FILE = "Resources/Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;

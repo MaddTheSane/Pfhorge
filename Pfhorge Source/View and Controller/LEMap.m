@@ -624,7 +624,7 @@
     }*/
     
     [[NSFileManager defaultManager] createFileAtPath:pathToUse
-        contents:[self dataRepresentationOfType:@""]
+        contents:[self dataOfType:@"" error:NULL]
         attributes:nil];
     
     [pathToUse release];
@@ -649,8 +649,12 @@
 {
     NSString *fileName = url.path;
     BOOL value = YES;
+	NSData *theData = [NSData dataWithContentsOfURL:url options:0 error:outError];
+	if (!theData) {
+		return NO;
+	}
     
-    value = [self loadDataRepresentation:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:@""];
+	value = [self readFromData:theData ofType:type error:outError];
     
     if (value == NO)
         return NO;
@@ -688,7 +692,7 @@
     
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
-    if (shouldExportToMarathonFormat == YES)
+    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"])
     {
         entireMapData = [LEMapData convertLevelToDataObject:(LELevelData *)theLevel];
     }

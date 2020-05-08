@@ -7,6 +7,26 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sen</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>MapNewIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Pfhorge Scenario</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.xmission.dragons.pfhorge.scenario</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>PhPfhorgeScenarioLevelDoc</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeIconFile</key>
 			<string>MapNewIcon.icns</string>
 			<key>CFBundleTypeName</key>
@@ -46,7 +66,7 @@
 				<string>lev</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
+			<string>MapNewIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Pfhorge Level</string>
 			<key>CFBundleTypeRole</key>
@@ -59,26 +79,6 @@
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>PhPfhorgeSingleLevelDoc</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sen</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>Pfhorge Scenario</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.xmission.dragons.pfhorge.scenario</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
-			<key>NSDocumentClass</key>
-			<string>PhPfhorgeScenarioLevelDoc</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

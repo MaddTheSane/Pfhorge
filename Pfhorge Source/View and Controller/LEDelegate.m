@@ -499,7 +499,11 @@
 
 - (IBAction)newPhorgeLevel:(id)sender
 {
-    [[NSDocumentController sharedDocumentController] openUntitledDocumentOfType:@"Pfhorge Level" display:YES];
+	NSError *err;
+	NSDocument *doc = [[NSDocumentController sharedDocumentController] makeUntitledDocumentOfType:@"com.xmission.dragons.pfhorge.level" error:&err];
+	[[NSDocumentController sharedDocumentController] addDocument:doc];
+	[doc makeWindowControllers];
+	[doc showWindows];
 }
 
 - (LEMapDraw *)getCurrentLevelDrawViewShowErrors
@@ -538,7 +542,11 @@
 - (IBAction)newPhorgeScenario:(id)sender
 {
     ///NSLog(@"---sen---");
-    [[NSDocumentController sharedDocumentController] openUntitledDocumentOfType:@"Pfhorge Scenario" display:YES];
+	NSError *err;
+	NSDocument *doc = [[NSDocumentController sharedDocumentController] makeUntitledDocumentOfType:@"com.xmission.dragons.pfhorge.scenario" error:&err];
+	[[NSDocumentController sharedDocumentController] addDocument:doc];
+	[doc makeWindowControllers];
+	[doc showWindows];
 }
 
 - (IBAction)testTheCheckSumOnAFile:(id)sender
@@ -558,7 +566,7 @@
     
     if (returnCode == NSOKButton)
     {
-        fileName = [[op filenames] objectAtIndex:0];
+        fileName = op.URL.path;
         theData = [fileManager contentsAtPath:fileName];
         [self testOutChecksum:theData];
     }

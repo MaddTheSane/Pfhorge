@@ -169,7 +169,7 @@
     
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
-    if (shouldExportToMarathonFormat == YES)
+    if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"])
     {
         entireMapData = [LEMapData convertLevelToDataObject:(LELevelData *)theLevel];
     }

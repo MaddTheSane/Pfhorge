@@ -54,10 +54,10 @@
     IBOutlet id lineTransparentLight;
     
     // Texture UI Outlets...
-    //IBOutlet id primaryTextureMenu;
-    //IBOutlet id secondaryTextureMenu;
-    //IBOutlet id transparentTextureMenu;
-    //IBOutlet id textureOffsetMatrix;
+    IBOutlet id primaryTextureMenu;
+    IBOutlet id secondaryTextureMenu;
+    IBOutlet id transparentTextureMenu;
+    IBOutlet id textureOffsetMatrix;
     
     LELine *theCurrentSelection;
     LESide *cSide, *ccSide, *baseSideRef;
