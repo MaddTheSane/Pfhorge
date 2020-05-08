@@ -74,7 +74,7 @@
     
     resource = [resources resourceOfType:@"PICT" index:PICTIndex];  
         
-    return [[[NSImage alloc] initWithData:[resource data]] autorelease];
+    return [[NSImage alloc] initWithData:[resource data]];
     
     /*if (resource) {
         [chapterScreen setImage:[[NSImage alloc] initWithData:[resource data]]];
@@ -123,10 +123,8 @@
 {
    //[[editingWindowController window] performClose:self];
     
-    if (theRawMapData != nil)
-        [theRawMapData release];
-    if (theMap != nil)
-        [theMap release];
+    theRawMapData=nil;
+    theMap=nil;
     if (theLevel != nil)
     {
         NSLog(@"Level Dealloc Post Notification");
@@ -138,24 +136,7 @@
             object:theLevel];
     }
     
-    if (theLevelDocumentWindowController != nil)
-        [theLevelDocumentWindowController release];
-        
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    //if (infoWindows != nil)
-    //    [infoWindows release];
-    
-    [currentLevelNames release];
-    ///currentLevelNames = nil;
-    
-    [resources release];
-    ///resources = nil;
-    
-    [theLevel autorelease];
-    theLevel = nil;
-    
-    [super dealloc];
 }
 
 - (LELevelData *)getCurrentLevelLoaded { return theLevel; }
@@ -168,7 +149,6 @@
 {
     NSString *copy = [theNewName copy];
     [currentLevelNames replaceObjectAtIndex:theLevelIndex withObject:copy];
-    [copy release];
 }
 
 - (BOOL)didIComeFromMarathonFormatedFile { return cameFromMarathonFormatedFile; }
@@ -226,7 +206,6 @@
     {
         TerminalEditorController *theTerminalEditor = [[TerminalEditorController alloc] initWithMapDocument:self];
         [theTerminalEditor showWindow:nil];
-        [theTerminalEditor release];
     }
 }
 
@@ -265,15 +244,13 @@
     //NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
     NSMutableData *tempData;
     
-    tempData = [[LEMapData convertLevelToDataObject:[self level]] retain];
+    tempData = [LEMapData convertLevelToDataObject:[self level]];
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
 	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
 				 NSFileHFSTypeCode: @((OSType)'sce2')
 	}];
-	
-    [tempData release];
     
     return YES;
 }
@@ -379,8 +356,6 @@
         return NO;
     }
     
-    [editingWindowController release];
-    
     return YES;
 }
 
@@ -450,7 +425,7 @@
 
 - (void)makeWindowControllers
 {
-    theLevelDocumentWindowController = [[LELevelWindowController allocWithZone:[self zone]] init];
+    theLevelDocumentWindowController = [[LELevelWindowController alloc] init];
     [self addWindowController:theLevelDocumentWindowController];
 }
 
@@ -564,7 +539,6 @@
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:PhLevelDeallocatingNotification
                 object:theLevel];
-            [theLevel release];
         }
             
         [progress setMinProgress:0.0];
@@ -627,8 +601,6 @@
         contents:[self dataOfType:@"" error:NULL]
         attributes:nil];
     
-    [pathToUse release];
-    
     // [wad saveToFile:fullDocumentPath oldFile:fullOriginalDocumentPath];
     // [resources saveToFile:fullDocumentPath oldFile:fullOriginalDocumentPath];
     
@@ -640,7 +612,12 @@
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
                             [super fileAttributesToWriteToURL:url ofType:typeName forSaveOperation:saveOperation originalContentsURL:absoluteOriginalContentsURL error:outError]];
     
-    [dict setObject:[NSNumber numberWithUnsignedInt:'sce2'] forKey:NSFileHFSTypeCode];
+    if ([typeName isEqualToString:@"org.bungie.source.map"]) {
+        dict[NSFileHFSCreatorCode] = @((OSType)0x32362EB0); // '26.∞'
+        dict[NSFileHFSTypeCode] = @((OSType)'sce2');
+    } else {
+        [dict setObject:[NSNumber numberWithUnsignedInt:'sce2'] forKey:NSFileHFSTypeCode];
+    }
     
     return dict;
 }
@@ -890,8 +867,6 @@
     [theNewLine setMapPoint1:pointOne];
     [theNewLine setMapPoint2:pointTwo];
     
-    [theNewLine release];
-    
     return nil;
 }
 
@@ -935,7 +910,7 @@
             OSType theKeyAsLong = [theKeyNumber unsignedIntValue];
 			theKeyAsLong = CFSwapInt32BigToHost(theKeyAsLong);
 			NSData *dat = [NSData dataWithBytes:&theKeyAsLong length:4];
-            NSString *theTagAsString = [[[NSString alloc] initWithData:dat encoding:NSMacOSRomanStringEncoding] autorelease];
+            NSString *theTagAsString = [[NSString alloc] initWithData:dat encoding:NSMacOSRomanStringEncoding];
             NSLog(@"Perculer key in arguments: %@", theTagAsString);
             NSLog(@"Here is the record description sent via apple script: %@", [args description]);
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
@@ -954,9 +929,6 @@
     [theLevel addObjects:theNewPoint];
     [theNewLine setMapPoint1:theExsistingPoint];
     [theNewLine setMapPoint2:theNewPoint];
-    
-    [theNewLine release];
-    [theNewPoint release];
     
     return nil;
 }

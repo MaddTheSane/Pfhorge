@@ -140,7 +140,7 @@
 		AE3C154C0A04512100FBFFCD /* LEMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F6628600E19BB67F000001 /* LEMapObject.m */; };
 		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; };
 		AE3C154E0A04512100FBFFCD /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; };
+		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
 		AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FD2B8B00E806097F000001 /* LEMapStuffParent.m */; };
 		AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3A800EAC1717F000001 /* LEPaletteController.m */; };
@@ -281,7 +281,7 @@
 		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
 		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPolygon.m; sourceTree = "<group>"; };
 		011A1BEA00D3C7827F000001 /* LEMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMap.h; sourceTree = "<group>"; };
-		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; };
+		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; usesTabs = 0; };
 		011A1BEE00D3D8317F000001 /* LEMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapData.h; sourceTree = "<group>"; };
 		011A1BEF00D3D8317F000001 /* LEMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapData.m; sourceTree = "<group>"; };
 		0121ECA700DDCD937F000001 /* LELine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELine.h; sourceTree = "<group>"; };
