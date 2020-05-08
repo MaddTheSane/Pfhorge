@@ -81,28 +81,44 @@ NS_ENUM(short)	// platform delays
 //! static platform flags
 typedef NS_ENUM(unsigned int, PhPlatformStaticFlags)
 {
-	_platform_is_initially_active = 0x00000001,	// otherwise inactive
-	_platform_is_initially_extended = 0x00000002, // high for floor platforms, low for ceiling platforms, closed for two_way platforms
+	//! otherwise inactive
+	_platform_is_initially_active = 0x00000001,
+	//! high for floor platforms, low for ceiling platforms, closed for two_way platforms
+	_platform_is_initially_extended = 0x00000002,
         
-        // These both can not be set to true a the same time...
-	_platform_deactivates_at_each_level = 0x00000004, // this platform will deactivate each time it reaches a discrete level
-	_platform_deactivates_at_initial_level = 0x00000008, // this platform will deactivate upon returning to its original position
+	// These both can not be set to true a the same time...
+	//! this platform will deactivate each time it reaches a discrete level
+	_platform_deactivates_at_each_level = 0x00000004,
+	//! this platform will deactivate upon returning to its original position
+	_platform_deactivates_at_initial_level = 0x00000008,
         
 	_platform_activates_adjacent_platforms_when_deactivating = 0x00000010,
-	_platform_extends_floor_to_ceiling = 0x00000020, // i.e. there is no empty space when the platform is fully extended
-	_platform_comes_from_floor = 0x00000040, // platform rises from floor
-	_platform_comes_from_ceiling = 0x00000080, // platform lowers from ceiling
-	_platform_causes_damage = 0x00000100, // when obstructed by monsters, this platform causes damage
-	_platform_does_not_activate_parent = 0x00000200, // does not reactive its parent (i.e. that platform which activated it)
+	//! i.e. there is no empty space when the platform is fully extended
+	_platform_extends_floor_to_ceiling = 0x00000020,
+	//! platform rises from floor
+	_platform_comes_from_floor = 0x00000040,
+	//! platform lowers from ceiling
+	_platform_comes_from_ceiling = 0x00000080,
+	//! when obstructed by monsters, this platform causes damage
+	_platform_causes_damage = 0x00000100,
+	//! does not reactive its parent (i.e. that platform which activated it)
+	_platform_does_not_activate_parent = 0x00000200,
 	_platform_activates_only_once = 0x00000400,
-	_platform_activates_light = 0x00000800, // activates floor and ceiling light sources while activating
-	_platform_deactivates_light = 0x00001000, // deactivates floor and ceiling lightsources while deactivating
-	_platform_is_player_controllable = 0x00002000, // i.e. door: players can use action key to change the state and/or direction of this platform
-	_platform_is_monster_controllable = 0x00004000, // i.e. door: monsters can expect to be able to move this platofrm even if inactive
+	//! activates floor and ceiling light sources while activating
+	_platform_activates_light = 0x00000800,
+	//! deactivates floor and ceiling lightsources while deactivating
+	_platform_deactivates_light = 0x00001000,
+	//! i.e. door: players can use action key to change the state and/or direction of this platform
+	_platform_is_player_controllable = 0x00002000,
+	//! i.e. door: monsters can expect to be able to move this platofrm even if inactive
+	_platform_is_monster_controllable = 0x00004000,
 	_platform_reverses_direction_when_obstructed = 0x00008000,
-	_platform_cannot_be_externally_deactivated = 0x00010000, // when acctive, can only be deactivated by itself
-	_platform_uses_native_polygon_heights = 0x00020000, // complicated interpretation; uses native polygon heights during automatic min,max calculation
-	_platform_delays_before_activation = 0x00040000, // whether or not the platform begins with the maximum delay before moving
+	//! when acctive, can only be deactivated by itself
+	_platform_cannot_be_externally_deactivated = 0x00010000,
+	//! complicated interpretation; uses native polygon heights during automatic min,max calculation
+	_platform_uses_native_polygon_heights = 0x00020000,
+	//! whether or not the platform begins with the maximum delay before moving
+	_platform_delays_before_activation = 0x00040000,
 	_platform_activates_adjacent_platforms_when_activating = 0x00080000,
 	_platform_deactivates_adjacent_platforms_when_activating = 0x00100000,
 	_platforms_deactivates_adjacent_platforms_when_deactivating = 0x00200000,
@@ -111,7 +127,6 @@ typedef NS_ENUM(unsigned int, PhPlatformStaticFlags)
 	_platform_is_locked = 0x01000000,
 	_platform_is_secret = 0x02000000,
 	_platform_is_door = 0x04000000,
-	NUMBER_OF_STATIC_PLATFORM_FLAGS // <= 32
 };
 
 enum /* dynamic platform flags */
@@ -160,7 +175,7 @@ struct static_platform_data_platform /* size platform-dependant */
 struct platform_data2 /* 140 bytes */
 {
 	PhPlatformType type; // !
-        //short uknown;
+	//short uknown;
 	PhPlatformStaticFlags static_flags; // !
 	short speed, delay; // ! !
 	short minimum_floor_height /* ! */, maximum_floor_height; // 10, 12
@@ -209,7 +224,7 @@ struct platform_data2 /* 140 bytes */
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 - (void)copyInDynamicPlatformData:(NSData *)theData at:(long)locationOfBytes;

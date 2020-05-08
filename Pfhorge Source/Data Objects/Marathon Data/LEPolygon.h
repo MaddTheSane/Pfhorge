@@ -32,40 +32,52 @@
 
 #define MAXIMUM_VERTICES_PER_POLYGON 8
 
-enum	// polygon types
-{
-	_polygon_is_normal,
-	_polygon_is_item_impassable,
-	_polygon_is_monster_impassable,
-	_polygon_is_hill,	// for koth
-	_polygon_is_base,	// for ctf, rugby, etc (team number in permutation)
-	_polygon_is_platform, // Needs an object pointer? plaftform index
-	_polygon_is_light_on_trigger, // Needs an object pointer? light index
-	_polygon_is_platform_on_trigger, // Needs an object pointer? poly index
-	_polygon_is_light_off_trigger, // Needs an object pointer? light index
-	_polygon_is_platform_off_trigger, // Needs an object pointer? poly index
-	_polygon_is_teleporter, // Needs an object pointer? poly index
-	_polygon_is_zone_border,
-	_polygon_is_goal, // Needs an object pointer?
-	_polygon_is_visible_monster_trigger,
-	_polygon_is_invisible_monster_trigger,
-	_polygon_is_dual_monster_trigger,
-	_polygon_is_item_trigger, // activates all items in this zone
-	_polygon_must_be_explored,
-                                    // Needs an object pointer?
-	_polygon_is_automatic_exit,  // if success conditions are met, causes automatic transport to next level
-        
-        // NOTE: New Marathon 1 types!!!
-        //   Add Support For These!
-	_polygon_is_minor_ouch,
-	_polygon_is_major_ouch,
-	_polygon_is_glue,
-	_polygon_is_glue_trigger,
-	_polygon_is_superglue
-
+//! polygon types
+typedef NS_ENUM(short, LEPolygonType) {
+    _polygon_is_normal,
+    _polygon_is_item_impassable,
+    _polygon_is_monster_impassable,
+    //! for King of The Hill
+    _polygon_is_hill,
+    //! for ctf, rugby, etc (team number in permutation)
+    _polygon_is_base,
+    //! Needs an object pointer? plaftform index
+    _polygon_is_platform,
+    //! Needs an object pointer? light index
+    _polygon_is_light_on_trigger,
+    //! Needs an object pointer? poly index
+    _polygon_is_platform_on_trigger,
+    //! Needs an object pointer? light index
+    _polygon_is_light_off_trigger,
+    //! Needs an object pointer? poly index
+    _polygon_is_platform_off_trigger,
+    //! Needs an object pointer? poly index
+    _polygon_is_teleporter,
+    _polygon_is_zone_border,
+    //! Needs an object pointer?
+    _polygon_is_goal,
+    _polygon_is_visible_monster_trigger,
+    _polygon_is_invisible_monster_trigger,
+    _polygon_is_dual_monster_trigger,
+    //! activates all items in this zone
+    _polygon_is_item_trigger,
+    _polygon_must_be_explored,
+                                // Needs an object pointer?
+    //! if success conditions are met, causes automatic transport to next level
+    _polygon_is_automatic_exit,
+    
+    // NOTE: New Marathon 1 types!!!
+    //   Add Support For These!
+    _polygon_is_minor_ouch,
+    _polygon_is_major_ouch,
+    _polygon_is_glue,
+    _polygon_is_glue_trigger,
+    _polygon_is_superglue
 };
 
-#define POLYGON_IS_DETACHED_BIT 0x4000
+typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
+    POLYGON_IS_DETACHED_BIT = 0x4000,
+};
 #define POLYGON_IS_DETACHED (flags & POLYGON_IS_DETACHED_BIT)
 #define SET_POLYGON_DETACHED_STATE(v) ((v) ? (flags |= POLYGON_IS_DETACHED_BIT) : (flags &= ~POLYGON_IS_DETACHED_BIT))
 
@@ -81,8 +93,8 @@ enum	// polygon types
     BOOL polygonConcave;
     
     // Polygonal Data
-    short	type;
-    unsigned short	flags; // used to be of type word
+    LEPolygonType	type;
+    LEPolygonFlags	flags; // used to be of type word
     
     short	permutation;
     id		permutationObject;
@@ -193,8 +205,8 @@ enum	// polygon types
 // ********** Set **********
 -(void)setPolygonConcaveFlag:(BOOL)v;
 
--(void)setType:(short)v;
--(void)setFlags:(unsigned short)v;
+-(void)setType:(LEPolygonType)v;
+-(void)setFlags:(LEPolygonFlags)v;
 -(void)setPermutation:(short)v;
 
 -(void)setPermutationObject:(id)theObject;
@@ -283,12 +295,12 @@ enum	// polygon types
 // ********** Get **********
 -(BOOL)getPolygonConcaveFlag;
 
--(short)getType;
--(unsigned short)getFlags;
+-(LEPolygonType)getType;
+-(LEPolygonFlags)getFlags;
 -(short)getPermutation;
 -(id)getPermutationObject;
 
--(short *)getTheVertexes; // might want to have this option avaliable for all c arrays in this object?
+-(short *)getTheVertexes NS_RETURNS_INNER_POINTER; // might want to have this option avaliable for all c arrays in this object?
 -(short)getTheVertexCount;
 
 -(short)getVertexIndexes:(short)i; //
@@ -342,6 +354,6 @@ enum	// polygon types
 - (void)render;
 
 // **************************** Polygon Concave Verification ***********************************
--(BOOL)isPolygonConcave;
+@property (readonly, getter=isPolygonConcave) BOOL polygonConcave;
 
 @end

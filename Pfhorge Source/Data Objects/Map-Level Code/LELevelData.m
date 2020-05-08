@@ -975,7 +975,7 @@ enum // export data types
         
         theFlags |= PhLightStaticFlagIsInitiallyActive;
         
-        [newLight setType:_normal_light];
+        [newLight setType:PhLightNormal];
         [newLight setFlags:theFlags];
         [newLight setPhase:0];
         [newLight setTag:0];
@@ -1032,7 +1032,7 @@ enum // export data types
         
         theFlags |= PhLightStaticFlagIsInitiallyActive;
         
-        [newLight setType:_normal_light];
+        [newLight setType:PhLightNormal];
         [newLight setFlags:theFlags];
         [newLight setPhase:0];
         [newLight setTag:0];

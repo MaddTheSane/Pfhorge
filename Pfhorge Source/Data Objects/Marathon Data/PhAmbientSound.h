@@ -33,12 +33,12 @@
 
 @interface PhAmbientSound : PhAbstractName <NSCoding>
 {
-        // Came from ambient_sound_image_data structure in LEMarathon2Structres.h... :)
-        
-        // non-directional ambient component
-        
-        // As far as I know, there are no
-        // flags for ambient sounds!
+	// Came from ambient_sound_image_data structure in LEMarathon2Structres.h... :)
+	
+	// non-directional ambient component
+	
+	// As far as I know, there are no
+	// flags for ambient sounds!
 	unsigned short flags;
 
 	short sound_index;

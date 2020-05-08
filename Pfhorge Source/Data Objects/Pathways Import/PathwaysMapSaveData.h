@@ -22,7 +22,7 @@
 struct PID_Door {
 
 	// Which way does the door open?
-	enum {
+	enum open_direction: short {
 		X_Negative,
 		Y_Negative,
 		X_Positive,
@@ -34,7 +34,7 @@ struct PID_Door {
 	short x, y;
 	
 	// Its direction of opening
-	short Direction;
+	open_direction Direction;
 	
 	// Texture ID?
 	short Texture;
@@ -46,7 +46,7 @@ struct PID_Door {
 struct PID_LevelChange {
 	
 	// The types:
-	enum {
+	enum level_change_type: short {
 		Upward,
 		Downward,
 		SecretDownward,
@@ -56,7 +56,7 @@ struct PID_LevelChange {
 	// The reversal of order is odd, but it checks out
 
 	// The type of change to make
-	short Type;
+	level_change_type Type;
 	
 	// The level to go to
 	short Level;
@@ -70,7 +70,7 @@ struct PID_LevelChange {
 // 4 bytes
 struct PID_Monster {
 	
-	enum {
+	enum pid_monster_type: short {
 		None=-1,
 		
 		Nightmare,
@@ -98,7 +98,7 @@ struct PID_Monster {
 	};
 	
 	// Type of monster present
-	short Type;
+	pid_monster_type Type;
 	
 	// How often they reappear
 	short Frequency;
@@ -110,7 +110,7 @@ struct PID_Monster {
 struct PID_Wall {
 	
 	// The types:
-	enum {
+	enum pid_wall_type: byte {
 		None=0,						// Nothing rendered (both wall and corner)
 		SwitchableWallCorner=1,		// Corner: everywhere in "The Labyrinth"
 		Wall=32,					// Full-length wall
@@ -123,7 +123,7 @@ struct PID_Wall {
 	// Note: the ends of the shortened walls and the cutoff corners must be able to coincide
 	
 	// Type of wall
-	byte Type;
+	pid_wall_type Type;
 	
 	// Texture ID?
 	byte Texture;
@@ -134,7 +134,7 @@ struct PID_Wall {
 struct PID_Sector {
 
 	// The sector types:
-	enum {
+	enum pid_sector_type: byte {
 		Void,				// Inaccessible
 		Normal,				// Accessible, but nothing special
 		Door,				// (self-explanatory)
@@ -145,7 +145,8 @@ struct PID_Sector {
 		Pillar,				// Pillar in the middle -- can't walk through
 		OtherTrigger,		// Not exactly sure what this one does
 		Save,				// Can save game here
-		NUMBER_OF_TYPES
+		NUMBER_OF_TYPES,
+		pid_sector_type_none = -1
 	};
 	
 	// The various kinds of door triggers
@@ -186,7 +187,7 @@ struct PID_Sector {
 	PID_Wall WallList[NUMBER_OF_WALLS_AND_CORNERS];
 	
 	// What item ID (-1 is NONE)
-	short Item;
+	pid_sector_type Item;
 	
 	// Sector type
 	byte Type;

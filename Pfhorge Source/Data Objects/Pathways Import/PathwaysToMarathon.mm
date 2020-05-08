@@ -26,13 +26,7 @@
 
 static NSString *MakeFromPascalString(byte *PasString)
 {
-    // Set to max length of Pascal string
-    char CString[256];
-    int Len = PasString[0];
-    memcpy(CString,PasString+1,Len);
-    CString[Len] = 0;
-    
-    return [NSString stringWithCString:CString encoding:NSMacOSRomanStringEncoding];
+    return CFBridgingRelease(CFStringCreateWithPascalString(kCFAllocatorDefault, PasString, kCFStringEncodingMacRoman));
 }
 
 

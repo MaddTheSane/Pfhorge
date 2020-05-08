@@ -33,14 +33,14 @@
 //! default light types
 typedef NS_ENUM(short, PhLightTypes)
 {
-	_normal_light,
-	_strobe_light,
-	_media_light,
-	NUMBER_OF_LIGHT_TYPES
+	PhLightNormal,
+	PhLightStrobe,
+	PhLightMedia,
+	PhLightTypesCount
 };
 
-enum	//states
-{
+//! states
+typedef NS_ENUM(short, PhLightState) {
 	_light_primary_active = 0,
 	_light_secondary_active,
 	_light_becoming_active,
@@ -53,33 +53,37 @@ enum	//states
 
 // static light data
 
-enum	//lighting functions
-{
-	_constant_lighting_function,	// maintain final intensity for period
-	_linear_lighting_function,	// linear transition between initial and final intensity over period
-	_smooth__lighting_function,	// sine transition between inital and final intensity over period
-	_flicker_lighting_function,	// intensity in [smooth_intensity(t),final_intensity]
+//!lighting functions
+typedef NS_ENUM(short, PhLightFunction) {
+	//! maintain final intensity for period
+	_constant_lighting_function,
+	//! linear transition between initial and final intensity over period
+	_linear_lighting_function,
+	//! sine transition between inital and final intensity over period
+	_smooth__lighting_function,
+	//! intensity in [smooth_intensity(t),final_intensity]
+	_flicker_lighting_function,
 	NUMBER_OF_LIGHTING_FUNCTIONS
 };
 
-/* as intensities, transition function are given the primary
+/*! as intensities, transition function are given the primary
 periods of the active and inactive state, plus the intensity
 at the time of transition */
 struct lighting_function_specification	// 2*3 + 4*2 = 14 bytes
 {
-	short function;
+	PhLightFunction function;
 
 	short period, delta_period;
 	int32_t	intensity, delta_intensity; // used to be a fixed type :)
 };
 
 //! static flags
-typedef NS_ENUM(unsigned short, PhLightStaticFlags)
+typedef NS_OPTIONS(unsigned short, PhLightStaticFlags)
 {
 	PhLightStaticFlagIsInitiallyActive = 0x0001,
 	PhLightStaticFlagHasSlavedIntensities = 0x0002,
 	PhLightStaticFlagIsStateless = 0x0004,
-	NUMBER_OF_STATIC_LIGHT_FLAGS // <= 16
+	//NUMBER_OF_STATIC_LIGHT_FLAGS // <= 16
 };
 
 #define LIGHT_IS_INITIALLY_ACTIVE TEST_FLAG16(flags, PhLightStaticFlagIsInitiallyActive)
@@ -122,20 +126,20 @@ typedef NS_ENUM(unsigned short, PhLightStaticFlags)
 
 @property short phase;
 
--(void)setFunction:(short)v forState:(short)i;
--(void)setPeriod:(short)v forState:(short)i;
--(void)setDeltaPeriod:(short)v forState:(short)i;
--(void)setIntensity:(int)v forState:(short)i;
--(void)setDeltaIntensity:(int)v forState:(short)i; // used to be a fixed type :)
+-(void)setFunction:(PhLightFunction)v forState:(PhLightState)i;
+-(void)setPeriod:(short)v forState:(PhLightState)i;
+-(void)setDeltaPeriod:(short)v forState:(PhLightState)i;
+-(void)setIntensity:(int)v forState:(PhLightState)i;
+-(void)setDeltaIntensity:(int)v forState:(PhLightState)i; // used to be a fixed type :)
 
 @property (nonatomic) short tag;
 @property (assign) PhTag *tagObject;
 
--(short)functionForState:(short)i;
--(short)periodForState:(short)i;
--(short)deltaPeriodForState:(short)i;
--(int32_t)intensityForState:(short)i;
--(int32_t)deltaIntensityForState:(short)i; // used to be a fixed type :)
+-(PhLightFunction)functionForState:(PhLightState)i;
+-(short)periodForState:(PhLightState)i;
+-(short)deltaPeriodForState:(PhLightState)i;
+-(int)intensityForState:(PhLightState)i;
+-(int)deltaIntensityForState:(PhLightState)i; // used to be a fixed type :)
 
 // ************************** Inzlizations And Class Methods *************************
 

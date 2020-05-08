@@ -144,17 +144,11 @@
 
 - (id)initWithData:(NSData *)theData resourceData:(NSData *)dpin128Data
 {
-    // May not be nessary to set self, but I like to keep in the habit :)
-    self = [self initWithData:theData];
-    
-    // In case the object could not be allocated, return nil now
-    // so no other objects are copied, allocated, etc...
-    if (self == nil)
-        return nil;
-    
-    dpinData = [dpin128Data copy];
-    
-    return self;
+	if (self = [self initWithData:theData]) {
+		dpinData = [dpin128Data copy];
+	}
+	
+	return self;
 }
 
 - (void)dealloc
@@ -169,8 +163,8 @@
 
 - (int)levelCount
 {
-    int length = [data length];
-    return (length/sizeof(PID_Level));
+    NSInteger length = [data length];
+    return int(length/sizeof(PID_Level));
 }
 
 - (NSArray *)levelNames

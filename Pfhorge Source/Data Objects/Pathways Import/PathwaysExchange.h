@@ -11,6 +11,7 @@
 
 @class PhData, LELevelData;
 
+// TODO: Byte-swap!
 @interface PathwaysExchange : NSObject
 {
     NSData *data;	// Keeping it very simple...
@@ -26,7 +27,7 @@
 - (id)initWithData:(NSData *)theData resourceData:(NSData *)dpin128Data;
 
 - (int)levelCount;
-- (NSArray *)levelNames;
+- (NSArray<NSString*> *)levelNames;
 - (LELevelData *)getPIDLevel:(int)levNum;
 
 @end

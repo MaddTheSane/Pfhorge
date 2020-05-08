@@ -39,12 +39,12 @@
 
 @property (getter=isVisible) BOOL visible;
 
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
--(id)initWithName:(NSString *)theString;
+- (id)initWithName:(NSString *)theString;
 
--(BOOL)doIHaveColor;
+@property (readonly) BOOL doIHaveColor;
 
 @property (copy) NSColor *color;
 

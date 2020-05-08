@@ -31,15 +31,14 @@
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
--(id)initWithName:(NSString *)theString;
+- (id)initWithName:(NSString *)theString;
 
--(BOOL)doIHaveColor;
+@property (readonly) BOOL doIHaveColor;
 
--(NSColor *)layerColor;
--(void)setLayerColor:(NSColor *)theColor;
+@property (copy) NSColor *layerColor;
 
 -(NSArray *)objectsInThisLayer;
 

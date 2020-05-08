@@ -112,6 +112,10 @@
 
 -(short)getIndex { return [theNoteTypesST indexOfObjectIdenticalTo:self]; }
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveColor
+{
+	return [NSSet setWithObject:@"layerColor"];
+}
 -(BOOL)doIHaveColor { return (noteColor != nil); }
 @synthesize color=noteColor;
 

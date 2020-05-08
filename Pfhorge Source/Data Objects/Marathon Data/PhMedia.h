@@ -40,9 +40,11 @@ typedef NS_ENUM(short, PhMediaType)
 	NUMBER_OF_MEDIA_TYPES
 };
 
-enum	// media flags
+//! media flags
+typedef NS_OPTIONS(unsigned short, PhMediaFlags)
 {
-	_media_sound_obstructed_by_floor, // this media makes no sound when under the floor
+	//! this media makes no sound when under the floor
+	_media_sound_obstructed_by_floor=0x0001,
 	NUMBER_OF_MEDIA_FLAGS
 };
 
@@ -77,7 +79,7 @@ enum	// media sounds
 @interface PhMedia : PhAbstractName <NSCoding> /* 32 bytes */
 {
 	PhMediaType	type;
-	unsigned short	flags;
+	PhMediaFlags	flags;
 
 	/* this light is not used as a real light; instead, the
 	intensity of this light is used to determing the height
@@ -86,7 +88,7 @@ enum	// media sounds
 	light intensities; clearly discontinuous light functions
 	(e.g. strobes) should not be used */
 	short	light_index;
-        id	light_object;
+	id	light_object;
 
 	/* this is the maximum external velocity due to current;
 	acceleration is 1/32nd of this */
@@ -117,7 +119,7 @@ enum	// media sounds
 // *****************   Accsessors   *****************
 
 @property PhMediaType type;
-@property unsigned short flags;
+@property PhMediaFlags flags;
 
 @property short lightIndex;
 @property (assign) id lightObject;

@@ -33,18 +33,25 @@ enum	// map object types
 	_saved_player,		// .index is team bitfield
 	_saved_goal,		// .index is goal number
 	_saved_sound_source,	// .index is source type, .facing is sound volume
-        _NUMBER_OF_OBJECT_TYPES
+	_NUMBER_OF_OBJECT_TYPES
 };
 
-typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)	// map object flags
+//! map object flags
+typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 {
-	_map_object_is_invisible = 0x0001,	// initially invisible
+	//! initially invisible
+	_map_object_is_invisible = 0x0001,
 	_map_object_is_platform_sound = 0x0001,
-	_map_object_hanging_from_ceiling = 0x0002, // used for calculating absolute .z coordinate
-	_map_object_is_blind = 0x0004,	// monster cannot activate by sight
-	_map_object_is_deaf = 0x0008, // monster cannot activate by sound
-	_map_object_floats = 0x0010, // used by sound sourced caused by media
-	_map_object_is_network_only = 0x0020 //for items only
+	//! used for calculating absolute .z coordinate
+	_map_object_hanging_from_ceiling = 0x0002,
+	//! monster cannot activate by sight
+	_map_object_is_blind = 0x0004,
+	//! monster cannot activate by sound
+	_map_object_is_deaf = 0x0008,
+	//! used by sound sourced caused by media
+	_map_object_floats = 0x0010,
+	//! for items only
+	_map_object_is_network_only = 0x0020
 
 	// top four bits is activation bias for monsters
 };
@@ -60,9 +67,9 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)	// map object flags
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
--(id)initWithMapObject:(LEMapObject *)theMapObjectToImitate withLevel:(LELevelData *)theLev;
+- (id)initWithMapObject:(LEMapObject *)theMapObjectToImitate withLevel:(LELevelData *)theLev;
 
 //+(void)setEverythingLoadedST:(BOOL)theChoice;
 //+(void)setTheMapPolysST:(NSArray *)theNSArray;
@@ -72,9 +79,9 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)	// map object flags
 -(NSRect)as32Rect;
 -(NSPoint)as32Point;
 
--(short)getZ;
 -(short)getX;
 -(short)getY;
+-(short)getZ;
 -(short)x32;
 -(short)y32;
 -(short)getType;
@@ -90,8 +97,8 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)	// map object flags
 -(void)setZ:(short)s;
 -(void)setX:(short)s;
 -(void)setY:(short)s;
--(void)set32X:(short)s;
--(void)set32Y:(short)s;
+-(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
+-(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 -(void)setX32:(short)s;
 -(void)setY32:(short)s;
 -(void)setType:(short)s;

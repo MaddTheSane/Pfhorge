@@ -573,14 +573,10 @@
 			children = (
 				F58032D303E31DF70146BBD2 /* Map\Level Code */,
 				F5EFE97A01ADCA1A01A8A806 /* Marathon Data */,
+				55D733452464F4A1008B33F6 /* Pathways Import */,
 				011A1BEE00D3D8317F000001 /* LEMapData.h */,
 				00FD2B8A00E806097F000001 /* LEMapStuffParent.h */,
 				00FD2B8B00E806097F000001 /* LEMapStuffParent.m */,
-				A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */,
-				A59437B504B018070046BBD2 /* PathwaysExchange.mm */,
-				A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */,
-				CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */,
-				CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */,
 				F532393001AF836201A8A806 /* PhAbstractName.h */,
 				F532393101AF836201A8A806 /* PhAbstractName.m */,
 				F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */,
@@ -755,6 +751,18 @@
 			);
 			name = Legacy/Unused;
 			path = "Legacy-unused";
+			sourceTree = "<group>";
+		};
+		55D733452464F4A1008B33F6 /* Pathways Import */ = {
+			isa = PBXGroup;
+			children = (
+				A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */,
+				A59437B504B018070046BBD2 /* PathwaysExchange.mm */,
+				A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */,
+				CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */,
+				CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */,
+			);
+			path = "Pathways Import";
 			sourceTree = "<group>";
 		};
 		A5902C88069F70DC00B4AB92 /* MyOpenGL */ = {

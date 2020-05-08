@@ -89,11 +89,16 @@ typedef NS_ENUM(short, LESideControlPanelType) {
 
 enum // side types (largely redundant; most of this could be guessed for examining adjacent polygons)
 {
-	_full_side,	// primary texture is mapped floor-to-ceiling
-	_high_side, // primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
-	_low_side, // primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
-	_composite_side, //primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
-	_split_side // primary texture is mapped onto a panel coming down from the ceiling, secondary texture is mapped on a panel coming up from the floor
+	//! primary texture is mapped floor-to-ceiling
+	_full_side,
+	//! primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
+	_high_side,
+	//! primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
+	_low_side,
+	//! primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
+	_composite_side,
+	//! primary texture is mapped onto a panel coming down from the ceiling, secondary texture is mapped on a panel coming up from the floor
+	_split_side
 };
 
 typedef struct side_texture_definition

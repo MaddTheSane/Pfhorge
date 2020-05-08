@@ -111,8 +111,14 @@
 
 -(void)setTheScenarioDocument:(PhPfhorgeScenarioLevelDoc *)value { theScenarioDocument = value; }
 
--(void)setProjectDirectory:(NSString *)theProjectDir { projectDir = [theProjectDir copy]; [self scanProjectDirectory]; }
--(NSString *)projectDirectory { return projectDir; }
+-(void)setProjectDirectory:(NSString *)theProjectDir
+{
+	[projectDir autorelease];
+	projectDir = [theProjectDir copy];
+	[self scanProjectDirectory];
+}
+
+@synthesize projectDirectory=projectDir;
 
 -(NSArray *)levelFileNames { return levelFileNames; }
 
@@ -193,7 +199,7 @@
 -(NSString *)getLevelPathForLevel:(int)levelNumber { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:levelNumber] stringByAppendingString:@".lev"]]; }
 -(NSString *)getLevelPathForSelected { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:[theTable selectedRow]] stringByAppendingString:@".lev"]]; }
 
-- (NSInteger)isFileApartOfThisSceanario:(NSString *)queryingfullPath
+- (NSInteger)isFileAPartOfThisSceanario:(NSString *)queryingfullPath
 {
     NSEnumerator *numer = nil;
     NSString *fullPath = nil;

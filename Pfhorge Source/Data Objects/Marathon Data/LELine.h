@@ -25,8 +25,7 @@
 #import <Foundation/Foundation.h>
 #import "LEMapStuffParent.h"
 
-enum
-{
+enum {
     _use_parmanent_settings,
     _parmanent_solid,
     _parmanent_transparent,

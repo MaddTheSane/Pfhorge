@@ -33,7 +33,7 @@
 //! flags for object_frequency_definition
 typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 {
-	_reappears_in_random_location= 0x0001
+	PhItemPlacementReappersInRandomLocation = 0x0001
 };
 
 @interface PhItemPlacement : LEMapStuffParent <NSCoding>
@@ -68,7 +68,6 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 @property unsigned short randomChance;
 
 // ************************** Set Accsessors *************************
-- (void)setFlags:(PhItemPlacementFlags)v;
 
 - (void)setInitialCount:(short)v;
 - (void)setMinimumCount:(short)v;

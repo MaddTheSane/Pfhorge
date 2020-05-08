@@ -31,7 +31,7 @@
 {
     short x, y, y32, x32; //Cordenates Of The Point
     //BOOL cleanUp; //No Longer In The Map, and should be deleted at the next opportinuity...
-    NSMutableSet *lines; //Index of lines that this point is apart of
+    NSMutableSet<LELine*> *lines; //Index of lines that this point is apart of
 }
 
 

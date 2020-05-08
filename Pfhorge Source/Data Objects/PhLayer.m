@@ -109,9 +109,12 @@
 // ********* Overridden Methods *********
 -(short) getIndex { return [theLayersST indexOfObjectIdenticalTo:self]; }
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveColor
+{
+	return [NSSet setWithObject:@"layerColor"];
+}
 -(BOOL)doIHaveColor { return (layerColor != nil); }
--(NSColor *)layerColor { return [[layerColor copy] autorelease]; }
--(void)setLayerColor:(NSColor *)theColor { layerColor = [theColor copy]; }
+@synthesize layerColor;
 
 -(NSArray *)objectsInThisLayer { return objectsInThisLayer; }
 

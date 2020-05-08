@@ -272,8 +272,7 @@
 {
 	glColor3ub(255, 255, 0);  
 	glBegin(GL_TRIANGLES);
-	switch (vertexCountForPoly)
-	{
+	switch (vertexCountForPoly) {
 		case 8:
 			glVertex3i([vertexObjects[0] xgl], 0, [vertexObjects[0] ygl]);
 			glVertex3i([vertexObjects[6] xgl], 0, [vertexObjects[6] ygl]);
@@ -649,33 +648,30 @@
     encodeShort(coder, type);
     encodeUnsignedShort(coder, flags);
     
-        switch (type)
-        {
-            case _polygon_is_base:
-            case _polygon_is_minor_ouch:
-            case _polygon_is_major_ouch:
-            case _polygon_is_glue:
-            case _polygon_is_glue_trigger:
-            case _polygon_is_superglue:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_zone_border:
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
-                permutationObject = nil;
-                break;
-        }
+	switch (type) {
+		case _polygon_is_base:
+		case _polygon_is_minor_ouch:
+		case _polygon_is_major_ouch:
+		case _polygon_is_glue:
+		case _polygon_is_glue_trigger:
+		case _polygon_is_superglue:
+		case _polygon_is_goal:
+		case _polygon_is_visible_monster_trigger:
+		case _polygon_is_invisible_monster_trigger:
+		case _polygon_is_dual_monster_trigger:
+		case _polygon_is_item_trigger:
+		case _polygon_must_be_explored:
+		case _polygon_is_zone_border:
+		case _polygon_is_normal:
+		case _polygon_is_item_impassable:
+		case _polygon_is_monster_impassable:
+		case _polygon_is_hill:
+			permutationObject = nil;
+			break;
+	}
     
-    if (useIndexNumbersInstead)
-    {
-        switch (type)
-        {
+    if (useIndexNumbersInstead) {
+        switch (type) {
             case _polygon_is_base:
                 tmpShort = 0;
                 encodeShort(coder, tmpShort);
@@ -701,9 +697,9 @@
     }
     else
     {
-        if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/)
+		if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/) {
             encodeObj(coder, permutationObject);
-        else
+		} else
         {
             short tmpn = [permutationObject shortValue];
             encodeShort(coder, tmpn);
@@ -849,10 +845,8 @@
 
 
 
-    if (useIndexNumbersInstead)
-    {
-        switch (type)
-        {
+    if (useIndexNumbersInstead) {
+        switch (type) {
             case _polygon_is_base:
                 ///tmpShort = 0;
                 decodeShort(coder);

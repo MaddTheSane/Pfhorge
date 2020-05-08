@@ -27,7 +27,7 @@
 
 @interface PhScenarioData : NSObject <NSCoding, NSCopying, NSTableViewDataSource, NSTableViewDelegate>
 {
-    PhPfhorgeScenarioLevelDoc *theScenarioDocument;
+    __unsafe_unretained PhPfhorgeScenarioLevelDoc *theScenarioDocument;
     
     NSMutableArray *levelFileNames;
     NSMutableArray *pictFileNames;
@@ -38,27 +38,25 @@
     
     id draggedLevel;
 }
--(id)initWithProjectDirectory:(NSString *)theProjectDir;
+- (id)initWithProjectDirectory:(NSString *)theProjectDir;
 
 - (void)setTableView:(NSTableView *)theTableView;
 
 - (void)editSelected:(NSTableView *)aTableView;
 
--(void)setTheScenarioDocument:(PhPfhorgeScenarioLevelDoc *)value;
+- (void)setTheScenarioDocument:(PhPfhorgeScenarioLevelDoc *)value;
 
--(void)setProjectDirectory:(NSString *)theProjectDir;
+- (void)addLevelNames:(NSArray<NSString*> *)theNames;
 
--(void)addLevelNames:(NSArray *)theNames;
+@property (nonatomic, copy) NSString *projectDirectory;
 
--(NSString *)projectDirectory;
-
--(NSArray *)levelFileNames;
+-(NSArray<NSString*> *)levelFileNames;
 -(void)scanProjectDirectory;
 -(int)levelCount;
 -(NSString *)getLevelNameForLevel:(int)levelNumber;
 -(NSString *)getLevelPathForLevel:(int)levelNumber;
 -(NSString *)getLevelPathForSelected;
 
-- (NSInteger)isFileApartOfThisSceanario:(NSString *)queryingfullPath;
+- (NSInteger)isFileAPartOfThisSceanario:(NSString *)queryingfullPath;
 
 @end

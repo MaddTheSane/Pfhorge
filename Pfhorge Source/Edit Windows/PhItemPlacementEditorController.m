@@ -166,7 +166,7 @@
     [appearenceTB setIntValue:randomChancePercent];
     [appearenceSlider setIntValue:randomChancePercent];
     
-    if (flags & _reappears_in_random_location)
+    if (flags & PhItemPlacementReappersInRandomLocation)
         [randomCB setState:NSOnState];
     else
         [randomCB setState:NSOffState];
@@ -227,7 +227,7 @@
 - (IBAction)randomCheckboxDidChange:(id)sender
 {
     if ([sender state] == NSOnState)
-        [[self selectedObject] setFlags:_reappears_in_random_location];
+        [[self selectedObject] setFlags:PhItemPlacementReappersInRandomLocation];
     else
         [[self selectedObject] setFlags:0];
 }
@@ -307,7 +307,7 @@
             return [NSNumber numberWithInt:((int)((((float)[theCurNameObj randomChance]) / 65535) * 100))];
         else if ([[col identifier] isEqualToString:@"Random"])
         {
-            if ([theCurNameObj flags] & _reappears_in_random_location)
+            if ([theCurNameObj flags] & PhItemPlacementReappersInRandomLocation)
                 return @"X";
             else
                 return @" ";
