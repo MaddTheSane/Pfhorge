@@ -236,11 +236,11 @@
 
 @synthesize phase;
 
--(void)setFunction:(short)v forState:(short)i { light_states[i].function = v; }
--(void)setPeriod:(short)v forState:(short)i { light_states[i].period = v; }
--(void)setDeltaPeriod:(short)v forState:(short)i { light_states[i].delta_period = v; }
--(void)setIntensity:(int)v forState:(short)i { light_states[i].intensity = v; }
--(void)setDeltaIntensity:(int)v forState:(short)i { light_states[i].delta_intensity = v; } // used to be a fixed type :)
+-(void)setFunction:(PhLightFunction)v forState:(PhLightState)i { light_states[i].function = v; }
+-(void)setPeriod:(short)v forState:(PhLightState)i { light_states[i].period = v; }
+-(void)setDeltaPeriod:(short)v forState:(PhLightState)i { light_states[i].delta_period = v; }
+-(void)setIntensity:(int)v forState:(PhLightState)i { light_states[i].intensity = v; }
+-(void)setDeltaIntensity:(int)v forState:(PhLightState)i { light_states[i].delta_intensity = v; } // used to be a fixed type :)
 
 @synthesize tag;
 -(void)setTag:(short)v
@@ -261,11 +261,11 @@
     return [NSSet setWithObject:@"tag"];
 }
 
--(short)functionForState:(short)i { return  light_states[i].function; }
--(short)periodForState:(short)i { return  light_states[i].period; }
--(short)deltaPeriodForState:(short)i { return  light_states[i].delta_period; }
--(int32_t)intensityForState:(short)i { return  light_states[i].intensity; }
--(int32_t)deltaIntensityForState:(short)i { return  light_states[i].delta_intensity; } // used to be a fixed type :)
+-(PhLightFunction)functionForState:(PhLightState)i { return  light_states[i].function; }
+-(short)periodForState:(PhLightState)i { return  light_states[i].period; }
+-(short)deltaPeriodForState:(PhLightState)i { return  light_states[i].delta_period; }
+-(int32_t)intensityForState:(PhLightState)i { return  light_states[i].intensity; }
+-(int32_t)deltaIntensityForState:(PhLightState)i { return  light_states[i].delta_intensity; } // used to be a fixed type :)
 
 -(short)tag { return (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }
 

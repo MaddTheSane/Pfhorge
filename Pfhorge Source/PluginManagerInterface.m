@@ -11,6 +11,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PhPluginManager.h"
+#import "PluginManagerInterface.h"
 
 @implementation PhPluginManager (ForPlugins)
 
@@ -20,17 +21,17 @@
         return [PhPluginManager sharedPhPluginManager];
     }
     
-    // Currently Loaded Plugin Types...
-    - (NSArray *)pluginClasses
-    {
-        return pluginClasses;
-    }
+//    // Currently Loaded Plugin Types...
+//    - (NSArray *)pluginClasses
+//    {
+//        return pluginClasses;
+//    }
     
-    // Currently Instated Plugins...
-    - (NSArray *)pluginInstances
-    {
-        return pluginInstances;
-    }
+//    // Currently Instated Plugins...
+//    - (NSArray *)pluginInstances
+//    {
+//        return pluginInstances;
+//    }
     
     // Lists the LEMap documents open,
     //    in order of front to back...

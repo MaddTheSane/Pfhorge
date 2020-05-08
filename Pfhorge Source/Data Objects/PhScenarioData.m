@@ -142,7 +142,7 @@
     numer = [levelFileNames objectEnumerator];
     while (fileName = [numer nextObject])
     {
-        NSString *fullPath = [projectDir stringByAppendingString:[fileName stringByAppendingString:@".lev"]];
+        NSString *fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
         exsists = [manager fileExistsAtPath:fullPath isDirectory:&isDir];
         
         if ((!exsists) || (isDir))
@@ -173,7 +173,7 @@
         {
             continue;
         }
-        else if ([[fileName pathExtension] isEqualToString:@"lev"])
+        else if ([[fileName pathExtension] isEqualToString:@"pfhlev"])
         {
             [levelFileNames addObject:[fileName stringByDeletingPathExtension]];
             //[levelFileFullPaths addObject:[[levelFileNames copy] autorelease]]
@@ -196,8 +196,8 @@
 -(int)levelCount { return ([levelFileNames count]); }
 
 -(NSString *)getLevelNameForLevel:(int)levelNumber { return [levelFileNames objectAtIndex:levelNumber]; }
--(NSString *)getLevelPathForLevel:(int)levelNumber { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:levelNumber] stringByAppendingString:@".lev"]]; }
--(NSString *)getLevelPathForSelected { return [projectDir stringByAppendingString:[[levelFileNames objectAtIndex:[theTable selectedRow]] stringByAppendingString:@".lev"]]; }
+-(NSString *)getLevelPathForLevel:(int)levelNumber { return [projectDir stringByAppendingPathComponent:[[levelFileNames objectAtIndex:levelNumber] stringByAppendingPathExtension:@"pfhlev"]]; }
+-(NSString *)getLevelPathForSelected { return [projectDir stringByAppendingPathComponent:[[levelFileNames objectAtIndex:[theTable selectedRow]] stringByAppendingPathExtension:@"pfhlev"]]; }
 
 - (NSInteger)isFileAPartOfThisSceanario:(NSString *)queryingfullPath
 {
@@ -208,7 +208,7 @@
     numer = [levelFileNames objectEnumerator];
     while (fileName = [numer nextObject])
     {
-        fullPath = [projectDir stringByAppendingString:[fileName stringByAppendingString:@".lev"]];
+        fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
         
         if ([fullPath isEqualToString:queryingfullPath])
             return [levelFileNames indexOfObjectIdenticalTo:fileName];

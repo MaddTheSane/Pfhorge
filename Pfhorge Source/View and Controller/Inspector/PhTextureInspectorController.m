@@ -733,14 +733,14 @@
 
 - (void)addNumbersForMenu:(NSPopUpButton *)menu upTo:(int)maxItem
 {
-    int i;
-    int numberOfItems = [menu numberOfItems];
+    NSInteger i;
+    NSInteger numberOfItems = [menu numberOfItems];
     
     // Remember, Max Is NOT zero based based...
     // but the menu is, 20 max items would be zero to 19 numbers...
     
     for (i = numberOfItems; i < maxItem; i++)
-        [menu addItemWithTitle:stringFromInt(i)];
+        [menu addItemWithTitle:stringFromInteger(i)];
 }
 
 // ************************* Actions - Side *************************

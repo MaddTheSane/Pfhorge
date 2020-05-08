@@ -219,7 +219,7 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
 
 - (IBAction)importMarathonMap:(id)sender
 {
-    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), NSFileTypeForHFSTypeCode(0x736365B0), /*'sce∞'*/ @"lev", @"org.bungie.source.map"];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), NSFileTypeForHFSTypeCode(0x736365B0) /*'sce∞'*/, @"lev", @"org.bungie.source.map"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     op.allowedFileTypes = fileTypes;
     

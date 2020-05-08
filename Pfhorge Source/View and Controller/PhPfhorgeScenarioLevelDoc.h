@@ -37,7 +37,7 @@ extern NSString *PhScenarioLevelNamesChangedNotification;
     PhScenarioManagerController *theScenarioDocumentWindowController;
 }
 
-- (NSImage *)getPICTResourceIndex:(int)PICTIndex;
+- (NSImage *)getPICTResourceIndex:(ResID)PICTIndex;
 - (void)openADocumentFile:(NSString *)fullPath;
 
 // *** Open User Utilites ***

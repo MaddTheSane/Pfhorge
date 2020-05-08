@@ -50,6 +50,6 @@
                     withNibFile:(NSString *)nibFileName
                     withEditingObj:(id)theObj;
 
-- (int)tagIndexNumberFromShort:(short)tagNumber;
+- (NSInteger)tagIndexNumberFromShort:(short)tagNumber;
 - (id)getObjectBeingEdited;
 @end

@@ -41,7 +41,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 @implementation PhPfhorgeScenarioLevelDoc
 
-- (NSImage *)getPICTResourceIndex:(int)PICTIndex
+- (NSImage *)getPICTResourceIndex:(ResID)PICTIndex
 {
     /*resource = [resources resourceOfType:@"PICT"
         index:CHAPTER_SCREEN_BASE + [levelPopUp indexOfSelectedItem]];*/
@@ -54,7 +54,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     fullImagePath  = [[[[self getFullPathForDirectory]
                             stringByAppendingString:@"Images/"]
-                            stringByAppendingString:[[NSNumber numberWithInt:PICTIndex] stringValue]]
+                            stringByAppendingString:[@(PICTIndex) stringValue]]
                                 stringByAppendingString:@".pict"];
     
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
@@ -76,7 +76,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     if (self == nil)
         return nil;
     
-    myFullFilePath = [[self fileName] stringByDeletingLastPathComponent];
+    myFullFilePath = [[self fileURL].path stringByDeletingLastPathComponent];
     
     if (![myFullFilePath isEqualToString:@"/"])
         myFullFilePath  = [[myFullFilePath stringByAppendingString:@"/"] retain];
@@ -107,12 +107,12 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 {
     NSLog(@"Attempting To Open: %@", fullPath);
     
-    [[NSDocumentController sharedDocumentController]
-            openDocumentWithContentsOfFile:fullPath
-                                   display:YES];
-    if ([[NSDocumentController sharedDocumentController] documentForFileName:fullPath] == nil)
-        NSLog(@"NIL");
-    [[[NSDocumentController sharedDocumentController] documentForFileName:fullPath] setScenarioDocument:self];
+	[[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL:[NSURL fileURLWithPath:fullPath] display:YES completionHandler:^(NSDocument * _Nullable document, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {
+		if (!document) {
+			NSLog(@"NIL, error: %@", error);
+		}
+		[(PhPfhorgeSingleLevelDoc*)document setScenarioDocument:self];
+	}];
 }
 
 /// + 
@@ -468,7 +468,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     while ((fdata = [dataNumer nextObject]) && 
            (fname = [fileNumer nextObject]))
     {
-        fpath = [[basePath stringByAppendingString:fname] stringByAppendingString:@".lev"];
+        fpath = [[basePath stringByAppendingPathComponent:fname] stringByAppendingPathExtension:@"pfhlev"];
         
         [[NSFileManager defaultManager] createFileAtPath:fpath
                                                 contents:fdata
@@ -551,6 +551,3 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 }
 
 @end
-
-
-

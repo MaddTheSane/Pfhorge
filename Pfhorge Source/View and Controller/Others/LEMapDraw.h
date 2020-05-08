@@ -168,7 +168,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 - (nullable NSSet *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
 
 // *** Draw View Methods ***
-- (void)setTheLevel:(LELevelData *)theMapPoints;
+- (void)setTheLevel:(nullable LELevelData *)theMapPoints;
 - (id)initWithFrame:(NSRect)frameRect;
 
 - (void)allocateObjects;

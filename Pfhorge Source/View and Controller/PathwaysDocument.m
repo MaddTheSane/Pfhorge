@@ -317,7 +317,7 @@
     }
     
     [self tellDocWinControllerToUpdateLevelInfoString];
-    [self setFileType:@"lev"];
+    [self setFileType:@"pfhlev"];
 }
 
 - (void)loadLevel:(int)levelNumber //Starts at one, not zero... :)
@@ -373,10 +373,10 @@
     
     NSString *pathToUse = [url.path copy];
     /*
-    if (![[fullDocumentPath pathExtension] isEqualToString:@"lev"])
+    if (![[fullDocumentPath pathExtension] isEqualToString:@"pfhlev"])
     {
         [pathToUse release];
-        pathToUse = [[fullDocumentPath stringByAppendingString:@".lev"] copy];
+        pathToUse = [[fullDocumentPath stringByAppendingPathComponent:@"pfhlev"] copy];
     }
     */
     

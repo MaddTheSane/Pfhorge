@@ -591,10 +591,10 @@
     
     NSString *pathToUse = [url.path copy];
     /*
-    if (![[fullDocumentPath pathExtension] isEqualToString:@"lev"])
+    if (![[fullDocumentPath pathExtension] isEqualToString:@"pfhlev"])
     {
         [pathToUse release];
-        pathToUse = [[fullDocumentPath stringByAppendingString:@".lev"] retain];
+        pathToUse = [[fullDocumentPath stringByAppendingPathExtension:@"pfhlev"] retain];
     }*/
     
     [[NSFileManager defaultManager] createFileAtPath:pathToUse
@@ -800,7 +800,7 @@
         cameFromMarathonFormatedFile = NO;
         theRawMapData = nil;
         
-        SEND_ERROR_MSG_TITLE(@"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .lev",
+        SEND_ERROR_MSG_TITLE(@"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev",
                              @"Change File's Extention");
         
         /*

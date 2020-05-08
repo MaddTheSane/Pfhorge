@@ -1503,7 +1503,7 @@
 // ******************************** Set Accsessors **********************************
 -(void)setPolygonConcaveFlag:(BOOL)v { polygonConcave = v; }
 
--(void)setType:(short)v
+-(void)setType:(LEPolygonType)v
 {
     int i;
     
@@ -1518,7 +1518,7 @@
     }
 }
 
--(void)setFlags:(unsigned short)v { flags = v; }
+-(void)setFlags:(LEPolygonFlags)v { flags = v; }
 -(void)setPermutation:(short)v
 {
     /*if (type == _polygon_is_platform)
@@ -1679,7 +1679,7 @@
     
 } //
 
--(void)setArea:(long)v { area = v; }
+-(void)setArea:(int)v { area = v; }
 
 -(void)setFirst_object:(short)v 
 { 
@@ -1822,8 +1822,8 @@
 // ************************************* Get Accsessors ********************************************************
 -(BOOL)getPolygonConcaveFlag { return polygonConcave; }
 
--(short)getType { return type; }
--(unsigned short)getFlags { return flags; }
+-(LEPolygonType)getType { return type; }
+-(LEPolygonFlags)getFlags { return flags; }
 
 -(short)getPermutation
 {
@@ -1908,7 +1908,7 @@
 -(id)getFloor_lightsource_object { return floor_lightsource_object; } // ---
 -(id)getCeiling_lightsource_object { return ceiling_lightsource_object; } // ---
 
--(long)getArea { return area; }
+-(int)getArea { return area; }
 -(short)getFirst_object_index { return first_object_index; } //
 -(short)getFirst_exclusion_zone_index { return first_exclusion_zone_index; }
 -(short)getLine_exclusion_zone_count { return line_exclusion_zone_count; }

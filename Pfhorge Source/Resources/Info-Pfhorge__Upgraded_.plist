@@ -43,12 +43,16 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>lev</string>
+				<string>pfhlev</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>MapNewIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Pfhorge Level</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>PfhL</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -69,6 +73,10 @@
 			<string>MapNewIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Pfhorge Scenario</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>PfhS</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
@@ -222,7 +230,7 @@
 				</array>
 				<key>public.filename-extension</key>
 				<array>
-					<string>lev</string>
+					<string>pfhlev</string>
 				</array>
 			</dict>
 		</dict>

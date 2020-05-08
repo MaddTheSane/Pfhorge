@@ -35,7 +35,7 @@ public:
 	~simple_vector() {deallocate();}
 
 	// Accessors
-	int get_len() {return length;}
+	long get_len() {return length;}
 	T &operator[](long indx) {return contents[indx];}
 	// Imitation of pointer semantics
 	T *operator+(long indx) {return contents + indx;}

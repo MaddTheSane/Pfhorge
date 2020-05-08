@@ -111,7 +111,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     short	floor_lightsource_index, ceiling_lightsource_index;
     __unsafe_unretained id		floor_lightsource_object, ceiling_lightsource_object;
     
-    long	area;		// in world distance^2
+    int	area;		// in world distance^2
     
     short	first_object_index; // index added, is it really an index?
     id		first_object_pointer; // added pointer for less confusion...
@@ -248,7 +248,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setCeiling_lightsource:(short)v; //
 -(void)setCeiling_lightsourceObject:(id)v;
 
--(void)setArea:(long)v;
+-(void)setArea:(int)v;
 
 -(void)setFirst_object:(short)v; //
 -(void)setFirst_objectObject:(id)v;
@@ -321,7 +321,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(id)getFloor_lightsource_object; //
 -(id)getCeiling_lightsource_object; //
 
--(long)getArea;
+-(int)getArea;
 
 -(short)getFirst_object_index; //
 -(id)getFirst_neighbor_object; //

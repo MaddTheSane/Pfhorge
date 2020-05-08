@@ -20,10 +20,10 @@
 + (PhPluginManager *)getThePluginManager;
 
 // Currently Loaded Plugin Types...
-- (NSArray *)pluginClasses;
+//- (NSArray *)pluginClasses;
 
 // Currently Instated Plugins...
-- (NSArray *)pluginInstances;
+//- (NSArray *)pluginInstances;
 
 // Lists the LEMap documents open,
 //    in order of front to back...

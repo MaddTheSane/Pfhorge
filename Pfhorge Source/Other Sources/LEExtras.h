@@ -59,9 +59,9 @@ extern unsigned eightBytesCount;*/
 
 // *** *** ***
 
-#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj getIndex]; } else { tmpLong = -1; } saveIntToNSData(tmpLong, myData)
+#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj getIndex]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObjPos(obj) ExportObjPosIndex(obj, index)
-#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData(tmpLong, myData)
+#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObj(obj) ExportObjIndex(obj, index)
 #define ExportNil() tmpLong = -1; [myData appendBytes:&tmpLong length:4]
 
@@ -120,6 +120,7 @@ extern unsigned eightBytesCount;*/
 
 // Other Usful Data Micro Functions
 #define numInt(v)				[NSNumber numberWithInt:(v)]
+#define numInteger(v)			[NSNumber numberWithInteger:(v)]
 #define numShort(v)				[NSNumber numberWithShort:(v)]
 #define numLong(v)				[NSNumber numberWithLong:(v)]
 #define numFloat(v)				[NSNumber numberWithFloat:(v)]
@@ -128,6 +129,7 @@ extern unsigned eightBytesCount;*/
 #define numUnsignedShort(v)			[NSNumber numberWithUnsignedShort:(v)]
 
 #define stringFromInt(v)			[numInt(v) stringValue]
+#define stringFromInteger(v)		[numInteger(v) stringValue]
 
 
 #define encodeNumInt(coder, value)		[(coder) encodeObject:numInt(value)]

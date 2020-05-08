@@ -132,7 +132,7 @@
     return;
 }
 
-- (int)tagIndexNumberFromShort:(short)tagNumber
+- (NSInteger)tagIndexNumberFromShort:(short)tagNumber
 {
     //NSArray *theLevelTags = [mapLevel getTags]; //getPhNumber
     
