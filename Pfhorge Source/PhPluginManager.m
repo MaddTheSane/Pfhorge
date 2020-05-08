@@ -78,7 +78,7 @@
         }
     }
     
-    folderPath = [[@"~/Library/Application Support/Pfhorge" stringByExpandingTildeInPath] stringByAppendingString:@"/"];
+    folderPath = [@"~/Library/Application Support/Pfhorge" stringByExpandingTildeInPath];
     //NSLog(@"Getting Plugins At: %@", folderPath);
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isDir];
     

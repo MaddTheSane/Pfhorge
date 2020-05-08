@@ -262,7 +262,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
         
         [progress setInformationalText:[NSString stringWithFormat:@"Saving PICT Resource# %@...", [[resource resID] stringValue], nil]];
         
-        fullPath = [baseDirPath stringByAppendingString:[[[resource resID] stringValue] stringByAppendingString:fileExt]];
+        fullPath = [baseDirPath stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:fileExt]];
         
         [fileManager createFileAtPath:fullPath
                              contents:theData

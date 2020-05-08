@@ -53,9 +53,9 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     NSLog(@"getPICTResourceIndex in the scenerio document called...");
     
     fullImagePath  = [[[[self getFullPathForDirectory]
-                            stringByAppendingString:@"Images/"]
-                            stringByAppendingString:[@(PICTIndex) stringValue]]
-                                stringByAppendingString:@".pict"];
+                            stringByAppendingPathComponent:@"Images/"]
+                            stringByAppendingPathComponent:[@(PICTIndex) stringValue]]
+                                stringByAppendingPathExtension:@".pict"];
     
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
     
@@ -179,7 +179,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     NSMutableArray *archivedLevels = nil;
     NSMutableArray *levelNames = [[NSMutableArray alloc] initWithCapacity:0];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *imageDir = [[self getFullPathForDirectory] stringByAppendingString:@"Images/"];
+    NSString *imageDir = [[self getFullPathForDirectory] stringByAppendingPathComponent:@"Images"];
     BOOL isDir = NO;
     
     BOOL exsists = NO;
@@ -189,7 +189,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     if (returnCode == NSOKButton)
     {
         ScenarioResources *maraResources;
-        fileName = [[sheet filenames] objectAtIndex:0];
+        fileName = sheet.URL.path;
         
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
@@ -241,7 +241,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
             }
         }
         
-        [maraResources saveResourcesOfType:@"PICT" to:imageDir extention:@".pict" progress:YES];
+        [maraResources saveResourcesOfType:@"PICT" to:imageDir extention:@"pict" progress:YES];
         [maraResources release];
         
         [progress increaseProgressBy:1.0];
@@ -266,7 +266,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     if (returnCode == NSOKButton)
     {
-        fileName = [[sheet filenames] objectAtIndex:0];
+        fileName = sheet.URL.path;
         
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
@@ -284,12 +284,12 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         if ([pathPathwaysApp length] > 1)
         {
             // No slash, need to prepend it...
-            pathPathwaysApp = [[pathPathwaysApp stringByAppendingString:@"/Pathways Into Darkness"] retain];
+            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"/Pathways Into Darkness"] retain];
         }
         else
         {
             // root path is a single slash, so don't need to prepend a slash...
-            pathPathwaysApp = [[pathPathwaysApp stringByAppendingString:@"Pathways Into Darkness"] retain];
+            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
         }
         
         BOOL exsists = [fileManager fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
@@ -444,16 +444,9 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 - (NSString *)getFullPathForDirectory
 {
-    NSString *myFullFilePath = [[self fileName] stringByDeletingLastPathComponent];
-    
-    if (![myFullFilePath isEqualToString:@"/"])
-        myFullFilePath  = [[myFullFilePath stringByAppendingString:@"/"] retain];
-    else
-        [myFullFilePath retain];
-    
-    // May want the scenario data object to get the path dynamicaly from me...
-    
-    return [myFullFilePath autorelease];
+    NSURL *myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent];
+        
+    return myFullFilePath.path;
 }
 
 - (void)saveArrayOfNSDatas:(NSArray *)theDataObjs withFileNames:(NSArray *)theFileNames baseDir:(NSString *)basePath
@@ -498,7 +491,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     NSLog(@"Scaning Image Folder FOr Resources Now...");
     
-    fullImageDirPath  = [[self getFullPathForDirectory] stringByAppendingString:@"Images/"];
+    fullImageDirPath  = [[self getFullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
     
     exsists = [manager fileExistsAtPath:fullImageDirPath isDirectory:&isDir];
     
@@ -511,7 +504,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {
-        NSString *fullResourcePath = [fullImageDirPath stringByAppendingString:fileName];
+        NSString *fullResourcePath = [fullImageDirPath stringByAppendingPathComponent:fileName];
         
         if (IsPathDirectory(manager, fullResourcePath))
         {

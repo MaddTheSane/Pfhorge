@@ -242,7 +242,7 @@
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {
-        NSString *fullPath = [thePath stringByAppendingString:fileName];
+        NSString *fullPath = [thePath stringByAppendingPathComponent:fileName];
         NSString *onlyName = [fileName stringByDeletingPathExtension];
         
         if ([[fileName substringToIndex:1] isEqualToString:@"."])
@@ -259,7 +259,7 @@
             [theMenu addItem:newItem];
             [newItem release];
             
-            [self recursiveBuildMenuAtFolder:[fullPath stringByAppendingString:@"/"] usingMenu:newMenu];
+            [self recursiveBuildMenuAtFolder:fullPath usingMenu:newMenu];
         }
         else if ([[fileName pathExtension] isEqualToString:@"scpt"])
         {
@@ -336,9 +336,9 @@
         return;
     }
     
-    NSLog(@"Getting Scripts At: %@", [scriptFolder stringByAppendingString:@"/"]);
+    NSLog(@"Getting Scripts At: %@", scriptFolder);
     
-    if ([[manager contentsOfDirectoryAtPath:[scriptFolder stringByAppendingString:@"/"] error:NULL] count] == 0)
+    if ([[manager contentsOfDirectoryAtPath:scriptFolder error:NULL] count] == 0)
     {
         NSMenuItem *newItem;
         NSZone *theMenuZone = [NSMenu menuZone];
@@ -409,7 +409,7 @@
         return;
     }
     
-    [self recursiveBuildMenuAtFolder:[scriptFolder stringByAppendingString:@"/"] usingMenu:theAppleScriptMenu];
+    [self recursiveBuildMenuAtFolder:scriptFolder usingMenu:theAppleScriptMenu];
 }
 
 // ************************* Actions *************************

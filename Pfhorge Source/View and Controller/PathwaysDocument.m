@@ -417,12 +417,12 @@
     if ([pathPathwaysApp length] > 1)
     {
         // No slash, need to prepend it...
-        pathPathwaysApp = [[pathPathwaysApp stringByAppendingString:@"/Pathways Into Darkness"] retain];
+        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"/Pathways Into Darkness"] retain];
     }
     else
     {
         // root path is a single slash, so don't need to prepend a slash...
-        pathPathwaysApp = [[pathPathwaysApp stringByAppendingString:@"Pathways Into Darkness"] retain];
+        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
     }
     
     BOOL exsists = [[NSFileManager defaultManager] fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];

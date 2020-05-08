@@ -162,7 +162,7 @@
     numer = [subpaths objectEnumerator];
     while (fileName = [numer nextObject])
     {
-        NSString *fullPath = [projectDir stringByAppendingString:fileName];
+        NSString *fullPath = [projectDir stringByAppendingPathComponent:fileName];
         //char buffer;
         NSString *firstChar = [fileName substringToIndex:1];
         
