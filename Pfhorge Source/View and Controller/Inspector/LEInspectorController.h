@@ -26,39 +26,41 @@
 #import <Cocoa/Cocoa.h>
     
 @class LEMap, LEMapDraw, LELevelData, LELevelWindowController;
+@class PhLineInspectorController, PhPolyInspectorController;
+@class PhObjectInspectorSubController, PhTextureInspectorController;
 
 @interface LEInspectorController : NSWindowController
 {
-    IBOutlet id theMainTabMenu;
-    IBOutlet id generalTabMenu;
-    IBOutlet id controlPanelTabMenu;
-    IBOutlet id lightsTabMenu;
-    IBOutlet id texturesTabMenu;
+    IBOutlet NSTabView *theMainTabMenu;
+    IBOutlet NSTabView *generalTabMenu;
+    IBOutlet NSTabView *controlPanelTabMenu;
+    IBOutlet NSTabView *lightsTabMenu;
+    IBOutlet NSTabView *texturesTabMenu;
     
-    IBOutlet id generalWindow;
-    IBOutlet id controlPanelWindow;
-    IBOutlet id lightsWindow;
-    IBOutlet id texturesWindow;
+    IBOutlet NSPanel *generalWindow;
+    IBOutlet NSPanel *controlPanelWindow;
+    IBOutlet NSPanel *lightsWindow;
+    IBOutlet NSPanel *texturesWindow;
     
-    IBOutlet id lineSubController;
-    IBOutlet id polySubController;
-    IBOutlet id objectSubController;
-    IBOutlet id textureInspectorWindowController;
+    IBOutlet PhLineInspectorController *lineSubController;
+    IBOutlet PhPolyInspectorController *polySubController;
+    IBOutlet PhObjectInspectorSubController *objectSubController;
+    IBOutlet PhTextureInspectorController *textureInspectorWindowController;
     
-    IBOutlet id linePrimaryLight;
-    IBOutlet id lineSecondaryLight;
-    IBOutlet id lineTransparentLight;
+    IBOutlet NSPopUpButton *linePrimaryLight;
+    IBOutlet NSPopUpButton *lineSecondaryLight;
+    IBOutlet NSPopUpButton *lineTransparentLight;
     
-    IBOutlet id polyAmbientSound;
-    IBOutlet id polyCeilingLight;
-    IBOutlet id polyFloorLight;
-    IBOutlet id polyLiquid;
-    IBOutlet id polyLiquidLight;
-    IBOutlet id polyRandomSound;
+    IBOutlet NSComboBox *polyAmbientSound;
+    IBOutlet NSPopUpButton *polyCeilingLight;
+    IBOutlet NSPopUpButton *polyFloorLight;
+    IBOutlet NSComboBox *polyLiquid;
+    IBOutlet NSPopUpButton *polyLiquidLight;
+    IBOutlet NSComboBox *polyRandomSound;
     
     IBOutlet id lineTextureExp;
     
-    IBOutlet id textureInspectorWindowTabMenu;
+    IBOutlet NSTabView *textureInspectorWindowTabMenu;
     
     id 				theCurrentSelection;
     LEMap 			*currentLevelDocument;

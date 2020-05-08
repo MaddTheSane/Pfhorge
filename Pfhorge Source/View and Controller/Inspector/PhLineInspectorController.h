@@ -46,9 +46,9 @@
     
     IBOutlet id linePermutation;
     IBOutlet id linePermutationTextBox;
-    IBOutlet id linePermutationTabView;
+    IBOutlet NSTabView *linePermutationTabView;
     
-    // Lignt UI Outlets...
+    // Light UI Outlets...
     IBOutlet id linePrimaryLight;
     IBOutlet id lineSecondaryLight;
     IBOutlet id lineTransparentLight;

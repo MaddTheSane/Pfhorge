@@ -61,73 +61,74 @@ enum { // Map Mananger Grid Factor Menu Constents
 
 extern NSString *PhLevelDidChangeName;
 
-@class PhAnnotationNote;
+@class PhAnnotationNote, PhNamesController, PhColorListControllerDrawer;
+@class LEMapDraw, PhNoteGroupsCon;
 
 @interface LELevelWindowController : NSWindowController
 {
-    IBOutlet id levelDrawView;
-    IBOutlet id levelStatusBar;
+    IBOutlet LEMapDraw *levelDrawView;
+    IBOutlet NSTextField *levelStatusBar;
     
-    IBOutlet id noteGroupWinController;
-    IBOutlet id noteGroupWindow;
+    IBOutlet PhNoteGroupsCon *noteGroupWinController;
+    IBOutlet NSWindow *noteGroupWindow;
     
-    IBOutlet id mapLevelList;
-    IBOutlet id layerNamesMenu;
+    IBOutlet NSPopUpButton *mapLevelList;
+    IBOutlet NSPopUpButton *layerNamesMenu;
     
-    IBOutlet id levelSettingsSheet;
-    IBOutlet id mainWindow;
+    IBOutlet NSPanel *levelSettingsSheet;
+    IBOutlet NSWindow *mainWindow;
     IBOutlet id generalDrawerContentView;
     
-    IBOutlet id nameWindowController;
+    IBOutlet PhNamesController *nameWindowController;
     
-    IBOutlet id environmentFlags;
-    IBOutlet id environmentTexture;
-    IBOutlet id gameType;
-    IBOutlet id landscape;
-    IBOutlet id levelName;
-    IBOutlet id mission;
-    IBOutlet id levelSCancelBtn;
+    IBOutlet NSMatrix *environmentFlags;
+    IBOutlet NSPopUpButton *environmentTexture;
+    IBOutlet NSMatrix *gameType;
+    IBOutlet NSPopUpButton *landscape;
+    IBOutlet NSTextField *levelName;
+    IBOutlet NSMatrix *mission;
+    IBOutlet NSButton *levelSCancelBtn;
     
     IBOutlet id theExSheet;
     
     unsigned short theExpShort;
     
     // *** outlets For Rename Dialog ***
-    IBOutlet id rdSheet;
-    IBOutlet id rdApplyBtn;
-    IBOutlet id rdCancelBtn;
-    IBOutlet id rdRemoveBtn;
-    IBOutlet id rdTextInputTB;
-    IBOutlet id rdMessageIT;
+    IBOutlet NSWindow *rdSheet;
+    IBOutlet NSButton *rdApplyBtn;
+    IBOutlet NSButton *rdCancelBtn;
+    IBOutlet NSButton *rdRemoveBtn;
+    IBOutlet NSTextField *rdTextInputTB;
+    IBOutlet NSTextField *rdMessageIT;
     IBOutlet id rdTitleIT;
     id objectToRename;
     
     // *** Stuff For GoTo Sheet ***
-    IBOutlet id gotoSheet;
-    IBOutlet id gotoPfhorgeObjectTypePopMenu;
-    IBOutlet id gotoTextInputTB;
-    IBOutlet id gotoMsgIT;
+    IBOutlet NSWindow *gotoSheet;
+    IBOutlet NSPopUpButton *gotoPfhorgeObjectTypePopMenu;
+    IBOutlet NSTextField *gotoTextInputTB;
+    IBOutlet NSTextField *gotoMsgIT;
 
     // *** Stuff For Note Editor Sheet ***
-    IBOutlet id annotationNoteEditorSheet;
-    IBOutlet id noteGroupPM;
-    IBOutlet id noteTextTB;
+    IBOutlet NSWindow *annotationNoteEditorSheet;
+    IBOutlet NSPopUpButton *noteGroupPM;
+    IBOutlet NSTextField *noteTextTB;
     
     // *** Color Window Stuff ***
-    IBOutlet id colorObject;
-    IBOutlet id theColorDrawer;
-    IBOutlet id newHeightWindowSheet;
-    IBOutlet id newHeightTextBox;
+    IBOutlet PhColorListControllerDrawer *colorObject;
+    IBOutlet NSDrawer *theColorDrawer;
+    IBOutlet NSPanel *newHeightWindowSheet;
+    IBOutlet NSTextField *newHeightTextBox;
     
     // *** Manager Stuff ***
-    IBOutlet id theManagerDrawer;
-    IBOutlet id useMapManager;
-    IBOutlet id gridFactorMenu;
-    IBOutlet id gridOptionCheckboxes;
-    IBOutlet id objectVisabilityCheckboxes;
+    IBOutlet NSDrawer *theManagerDrawer;
+    IBOutlet NSButton *useMapManager;
+    IBOutlet NSPopUpButton *gridFactorMenu;
+    IBOutlet NSMatrix *gridOptionCheckboxes;
+    IBOutlet NSMatrix *objectVisabilityCheckboxes;
     
     // *** Map Manager Non-Overide Options For ***
-    IBOutlet id selectionOptionCheckboxes;
+    IBOutlet NSMatrix *selectionOptionCheckboxes;
     
     
     BOOL showLevelSettingsSheetWhenWindowIsLoaded;

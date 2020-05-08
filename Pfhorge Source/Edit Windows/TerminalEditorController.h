@@ -44,7 +44,7 @@
     IBOutlet NSImageView *pictureImageView;
     
     // Text/Section Change Controls
-    IBOutlet id currentColorCW;
+    IBOutlet NSColorWell *currentColorCW;
     IBOutlet id sectionTypesPopM;
     IBOutlet id indexPopM;
     IBOutlet id stylePopM;

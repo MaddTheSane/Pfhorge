@@ -190,7 +190,7 @@
 
 -(NSMutableArray *)getTheLines { return lines; }
 -(NSMutableArray *)getThePolys { return polys; }
--(NSMutableArray *)getTheMapObjects { return mapObjects; }
+-(NSMutableArray *)theMapObjects { return mapObjects; }
 
 -(NSArray *)layerNotes { return layerNotes; }
 -(NSMutableArray *)layerPoints { return layerPoints; }
@@ -201,7 +201,7 @@
 -(NSMutableArray *)layersInLevel { return layersInLevel; }
 -(NSMutableArray *)namedPolyObjects { return namedPolyObjects; }
 
--(NSMutableArray *)getSides { return sides; }
+-(NSMutableArray *)sides { return sides; }
 -(NSMutableArray *)getLights { return lights; }
 -(NSMutableArray *)getNotes { return notes; }
 -(NSMutableArray *)getMedia { return media; }

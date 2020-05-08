@@ -528,20 +528,20 @@ BOOL setupPointerArraysDurringLoading = YES;
    /*
      //set the pointers for the point objects...
     [LEMapPoint setTheMapLinesST:[theLevel getTheLines]];
-    [LEMapPoint setTheMapObjectsST:[theLevel getTheMapObjects]];
+    [LEMapPoint setTheMapObjectsST:[theLevel theMapObjects]];
     [LEMapPoint setTheMapPointsST:[theLevel getThePoints]];
     [LEMapPoint setTheMapPolysST:[theLevel getThePolys]];
    
     //set the pointers for the line objects...
     [LELine setTheMapLinesST:[theLevel getTheLines]];
-    [LELine setTheMapObjectsST:[theLevel getTheMapObjects]];
+    [LELine setTheMapObjectsST:[theLevel theMapObjects]];
     [LELine setTheMapPointsST:[theLevel getThePoints]];
     [LELine setTheMapPolysST:[theLevel getThePolys]];
-    [LELine setTheMapSidesST:[theLevel getSides]];
+    [LELine setTheMapSidesST:[theLevel sides]];
     
     //Set the pointers for the poly objects...
     [LEPolygon setTheMapLinesST:[theLevel getTheLines]];
-    [LEPolygon setTheMapObjectsST:[theLevel getTheMapObjects]];
+    [LEPolygon setTheMapObjectsST:[theLevel theMapObjects]];
     [LEPolygon setTheMapPointsST:[theLevel getThePoints]];
     [LEPolygon setTheMapPolysST:[theLevel getThePolys]];
     [LEPolygon setTheMapLightsST:[theLevel getLights]];
@@ -565,8 +565,8 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSArray *points = [theLevel getThePoints];
         NSArray *lines = [theLevel getTheLines];
         NSArray *polygons = [theLevel getThePolys];
-        NSArray *mapObjects = [theLevel getTheMapObjects];
-        NSArray *sides = [theLevel getSides];
+        NSArray *mapObjects = [theLevel theMapObjects];
+        NSArray *sides = [theLevel sides];
         NSArray *lights = [theLevel getLights];
         NSArray *notes = [theLevel getNotes];
         NSArray *media = [theLevel getMedia];
@@ -846,10 +846,10 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
     
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getTheLines]];
-    //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getTheMapObjects]];
+    //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel theMapObjects]];
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getThePoints]];
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getThePolys]];
-    //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getSides]];
+    //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel sides]];
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getLights]];
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getNotes]];
     //[self performSelector:@selector(updateObjectsFromIndexes) withEachObjectInArray:[theLevel getMedia]];
@@ -948,8 +948,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSInteger pointsByteCount = ([[level getThePoints] count]) * 4; // 16
     NSInteger linesByteCount = ([[level getTheLines] count]) * 32; // 32
     NSInteger polygonsByteCount = ([[level getThePolys] count]) * 128; // 128
-    NSInteger mapObjectsByteCount = ([[level getTheMapObjects] count]) * 16; // 16
-    NSInteger sidesByteCount = ([[level getSides] count]) * 64; // 64
+    NSInteger mapObjectsByteCount = ([[level theMapObjects] count]) * 16; // 16
+    NSInteger sidesByteCount = ([[level sides] count]) * 64; // 64
     NSInteger lightsByteCount = ([[level getLights] count]) * 100; // 100
     //int notesByteCount = ([[level getNotes] count]) * 72; // 72
     NSInteger mediaByteCount = ([[level getMedia] count]) * 32; // 32
@@ -972,8 +972,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     int pointsByteCount = ([[level getThePoints] count]) * 4; // 16 or 4
     int linesByteCount = ([[level getTheLines] count]) * 32; // 32
     int polygonsByteCount = ([[level getThePolys] count]) * 128; // 128
-    int mapObjectsByteCount = ([[level getTheMapObjects] count]) * 16; // 16
-    int sidesByteCount = ([[level getSides] count]) * 64; // 64
+    int mapObjectsByteCount = ([[level theMapObjects] count]) * 16; // 16
+    int sidesByteCount = ([[level sides] count]) * 64; // 64
     int lightsByteCount = ([[level getLights] count]) * 100; // 100
     int notesByteCount = ([[level getNotes] count]) * 72; // 72
     int mediaByteCount = ([[level getMedia] count]) * 32; // 32
@@ -1045,13 +1045,13 @@ BOOL setupPointerArraysDurringLoading = YES;
                 foundTheTag = YES;
                 break;
             case 'OBJS':
-                theArray = [level getTheMapObjects];
+                theArray = [level theMapObjects];
                 amountOfObjects = length / 16;
                 theClass = [LEMapObject class];
                 foundTheTag = YES;
                 break;
             case 'SIDS':
-                theArray = [level getSides];
+                theArray = [level sides];
                 amountOfObjects = length / 64;
                 theClass = [LESide class];
                 foundTheTag = YES;
@@ -1807,7 +1807,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 { // *** 'LINS' *** 32 bytes each
     NSArray *theLineArray = [curLevel getTheLines];
     NSArray *thePolyArray = [curLevel getThePolys];
-    NSArray *theSideArray = [curLevel getSides];
+    NSArray *theSideArray = [curLevel sides];
     NSArray *thePointArray = [curLevel getThePoints];
     LELine *theObj;
     NSEnumerator *numer;
@@ -1880,14 +1880,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 { // *** 'POLY' *** 128 bytes each
     NSArray *thePolyArray = [curLevel getThePolys];
     NSArray *theLightArray = [curLevel getLights];
-    NSArray *theSideArray = [curLevel getSides];
+    NSArray *theSideArray = [curLevel sides];
     NSArray *theLineArray = [curLevel getTheLines];
     NSArray *thePointArray = [curLevel getThePoints];
     NSArray *theMediaArray = [curLevel getMedia];
     NSArray *theAmbientArray = [curLevel getAmbientSounds];
     NSArray *thePlatformArray = [curLevel getPlatforms];
     NSArray *theRandomArray = [curLevel getRandomSounds];
-    NSArray *theObjectArray = [curLevel getTheMapObjects];
+    NSArray *theObjectArray = [curLevel theMapObjects];
     
     int countOfPlatformArray = [thePlatformArray count];
     int i, c = -1, vertextCount;
@@ -2180,7 +2180,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
 {	// *** 'OBJS' *** 16 bytes each
-    NSArray *theObjectArray = [curLevel getTheMapObjects];
+    NSArray *theObjectArray = [curLevel theMapObjects];
     NSArray *thePolyArray = [curLevel getThePolys];
     LEMapObject *theObj;
     NSEnumerator *numer;
@@ -2211,7 +2211,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
 {	// *** 'SIDS' *** 64 bytes each
-    NSArray *theSideArray = [curLevel getSides];
+    NSArray *theSideArray = [curLevel sides];
     NSArray *theLightArray = [curLevel getLights];
     NSArray *theLineArray = [curLevel getTheLines];
     NSArray *thePolyArray = [curLevel getThePolys];
@@ -2997,7 +2997,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 - (void)saveObjectsForLevel:(LELevelData *)level
 {
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 16)];
-    NSArray *theObjects = [level getTheMapObjects];
+    NSArray *theObjects = [level theMapObjects];
     long objCount = [theObjects count];
     id currentObj = nil;
     
@@ -3026,7 +3026,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 - (void)saveSidesForLevel:(LELevelData *)level
 {
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 64)];
-    NSArray *theObjects = [level getSides];
+    NSArray *theObjects = [level sides];
     long objCount = [theObjects count];
     LESide *currentObj = nil;
     
@@ -3379,8 +3379,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     -(NSMutableArray *)getThePoints;
     -(NSMutableArray *)getTheLines;
     -(NSMutableArray *)getThePolys;
-    -(NSMutableArray *)getTheMapObjects;
-    -(NSMutableArray *)getSides;
+    -(NSMutableArray *)theMapObjects;
+    -(NSMutableArray *)sides;
     -(NSMutableArray *)getLights;
     -(NSMutableArray *)getNotes;
     -(NSMutableArray *)getMedia;

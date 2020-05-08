@@ -850,7 +850,7 @@
 #pragma mark ********* Scripting Support Methods *******
 -(NSArray *)points { return [theLevel getThePoints]; }
 -(NSArray *)lines { return [theLevel getTheLines]; }
--(NSArray *)objects { return [theLevel getTheMapObjects]; }
+-(NSArray *)objects { return [theLevel theMapObjects]; }
 -(NSArray *)polygons { return [theLevel getThePolys]; }
 
 - (id)handleFillWithLine:(NSScriptCommand *)command

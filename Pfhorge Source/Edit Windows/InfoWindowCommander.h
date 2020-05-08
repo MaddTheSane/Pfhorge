@@ -30,9 +30,9 @@
 
 @interface InfoWindowCommander : NSWindowController
 {
-    IBOutlet id theSheet;
-    IBOutlet id theInputBox;
-    IBOutlet id renameSheetMsgIT;
+    IBOutlet NSWindow *theSheet;
+    IBOutlet NSTextField *theInputBox;
+    IBOutlet NSTextField *renameSheetMsgIT;
     
     LELevelData *mapLevel;
     LEMap	*mapDocument;

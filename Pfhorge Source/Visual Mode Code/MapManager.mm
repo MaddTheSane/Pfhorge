@@ -175,19 +175,19 @@ void MapManager::UpdateViewOptions() {
 	}
 	
 	// Field of View
-        GLfloat FOV = NormalFOV;
-        switch(VO.SelectFieldOfView) {
-	case ViewOptions::FOV_TunnelVision:
-		FOV = TunnelFOV;
-		break;
-		
-	case ViewOptions::FOV_Normal:
-		FOV = NormalFOV;
-		break;
-		
-	case ViewOptions::FOV_Extravision:
-		FOV = ExtraFOV;
-		break;
+	GLfloat FOV = NormalFOV;
+	switch(VO.SelectFieldOfView) {
+		case ViewOptions::FOV_TunnelVision:
+			FOV = TunnelFOV;
+			break;
+			
+		case ViewOptions::FOV_Normal:
+			FOV = NormalFOV;
+			break;
+			
+		case ViewOptions::FOV_Extravision:
+			FOV = ExtraFOV;
+			break;
 	}
         
 	// Near distance
@@ -268,7 +268,6 @@ const short PlayerEye = 614;
 // Misc. setup and cleanup
 
 MapManager::MapManager() {
-
     // Originally empty
     theLevel = nil;
 
@@ -301,16 +300,16 @@ MapManager::MapManager() {
 
 
 void MapManager::InitDialog() {
-        
+	
 	// Initialize these objects
-        NSLog(@"VO.Init();");
+	NSLog(@"VO.Init();");
 	VO.Init();
-        NSLog(@"MP.Init();");
+	NSLog(@"MP.Init();");
 	MP.Init();
-        NSLog(@"UpdateViewOptions();");
+	NSLog(@"UpdateViewOptions();");
 	// Distribute view-options parameters:
 	UpdateViewOptions();
-        NSLog(@"InitDialog() DONE returning...");
+	NSLog(@"InitDialog() DONE returning...");
 }
 
 
@@ -318,30 +317,30 @@ void MapManager::InitDialog() {
 bool MapManager::DoDialog(LELevelData *theLevelData, NSString *thePathToShapesFile) {
     // Insert in
     theLevel = theLevelData;
-        
-        if (theLevelData == nil)
-        {
-            NSLog(@"theLevelData was nil, can't go into visual mode...");
-            return false;
-        }
-        
-        Version = MarathonAssetVersion::Version_2_oo;
-        
+	
+	if (theLevelData == nil)
+	{
+		NSLog(@"theLevelData was nil, can't go into visual mode...");
+		return false;
+	}
+	
+	Version = MarathonAssetVersion::Version_2_oo;
+	
 	DoShapesSelect(Version, thePathToShapesFile);
-        
-        ReloadLevel();
-        
+	
+	ReloadLevel();
+	
 	return true;
 }
 
 
 // Select a shapes file:
 void MapManager::DoShapesSelect(MarathonAssetVersion _Version, NSString *thePathToShapesFile) {
-        NSLog(@"DoShapesSelect");
-        
-        if (thePathToShapesFile == nil)
-            return;
-        	
+	NSLog(@"DoShapesSelect");
+	
+	if (thePathToShapesFile == nil)
+		return;
+	
 	// Try to read in the shapes catalog:
 	// For now, this object's scope will be limited to this function
         
@@ -357,16 +356,16 @@ void MapManager::DoShapesSelect(MarathonAssetVersion _Version, NSString *thePath
 	int M1TxtrSource[] = {17,18,19,8,2,24};
 	
 	switch(_Version) {
-	case MarathonAssetVersion::Version_2_oo:
-		NumTxtrSets = 5;
-		TxtrSource = M2TxtrSource;
-		TxtrMgrRef = 0;
-		break;
-	case MarathonAssetVersion::Version_1:
-		NumTxtrSets = 6;
-		TxtrSource = M1TxtrSource;
-		TxtrMgrRef = 9;
-		break;
+		case MarathonAssetVersion::Version_2_oo:
+			NumTxtrSets = 5;
+			TxtrSource = M2TxtrSource;
+			TxtrMgrRef = 0;
+			break;
+		case MarathonAssetVersion::Version_1:
+			NumTxtrSets = 6;
+			TxtrSource = M1TxtrSource;
+			TxtrMgrRef = 9;
+			break;
 	}
 	
 	for (int its=0; its<NumTxtrSets; its++) {
@@ -434,56 +433,54 @@ void MapManager::DoShapesSelect(MarathonAssetVersion _Version, NSString *thePath
 
 // Go to a start location
 void MapManager::DoGoto() {
-        
-        if (!theLevel) return;
-        
-        NSMutableArray *theMapObjects = [theLevel getTheMapObjects];
-        
-        // Reads directly off a popup menu whose first entry (index 0)
-        // means start at the center (behavior when no player start points are found)
- 	int StartIndx = [preferences integerForKey:VMStartPosition] - 1;
-        bool StartPointFound = false;
-        if ((theMapObjects) && StartIndx >= 0)
-        {
-            NSEnumerator *en = [theMapObjects objectEnumerator];
-            LEMapObject *theMapObject;
-            while (theMapObject = (LEMapObject *)[en nextObject])
-            {
-                if ([theMapObject getType] == _saved_player)
-                {
-                    // Use StartIndx itself to count down to the start point to be used
-                    if (StartIndx == 0)
-                    {
-                        StartPoint.Angle = (360/float(512))*[theMapObject getFacing];
-                        StartPoint.Polygon = [theMapObject getPolygonIndex];
-                        StartPoint.loc.x = [theMapObject getX];
-                        StartPoint.loc.y = [theMapObject getY];
-                        StartPoint.loc.z = [theMapObject getZ] + PlayerEye;
-                        LEPolygon *thePolygon = (LEPolygon *)[theMapObject getPolygonObject];
-                        if (([theMapObject getFlags] & _map_object_hanging_from_ceiling) != 0)
-                            StartPoint.loc.z += [thePolygon getCeiling_height];
-                        else
-                            StartPoint.loc.z += [thePolygon getFloor_height];
-                        StartPointFound = true;
-                   }
-                    StartIndx--;
-                }
-                if (StartPointFound) break;
-            }
-            //[en release];
-        }
-        
-        // In the center if necessary
-        if (!StartPointFound)
-        {
-            StartPoint.Angle = 0;
-            StartPoint.Polygon = NONE;
-            StartPoint.loc.x = 0;
-            StartPoint.loc.y = 0;
-            StartPoint.loc.z = 0;
-       }
-               
-        UpdatePosition = true;
+	
+	if (!theLevel) return;
+	
+	NSMutableArray *theMapObjects = [theLevel theMapObjects];
+	
+	// Reads directly off a popup menu whose first entry (index 0)
+	// means start at the center (behavior when no player start points are found)
+	NSInteger StartIndx = [preferences integerForKey:VMStartPosition] - 1;
+	bool StartPointFound = false;
+	if ((theMapObjects) && StartIndx >= 0)
+	{
+		for (LEMapObject *theMapObject in theMapObjects)
+		{
+			if ([theMapObject getType] == _saved_player)
+			{
+				// Use StartIndx itself to count down to the start point to be used
+				if (StartIndx == 0)
+				{
+					StartPoint.Angle = (360/float(512))*[theMapObject getFacing];
+					StartPoint.Polygon = [theMapObject getPolygonIndex];
+					StartPoint.loc.x = [theMapObject getX];
+					StartPoint.loc.y = [theMapObject getY];
+					StartPoint.loc.z = [theMapObject getZ] + PlayerEye;
+					LEPolygon *thePolygon = (LEPolygon *)[theMapObject getPolygonObject];
+					if (([theMapObject getFlags] & _map_object_hanging_from_ceiling) != 0)
+						StartPoint.loc.z += [thePolygon getCeiling_height];
+					else
+						StartPoint.loc.z += [thePolygon getFloor_height];
+					StartPointFound = true;
+				}
+				StartIndx--;
+			}
+			if (StartPointFound) break;
+		}
+		//[en release];
+	}
+	
+	// In the center if necessary
+	if (!StartPointFound)
+	{
+		StartPoint.Angle = 0;
+		StartPoint.Polygon = NONE;
+		StartPoint.loc.x = 0;
+		StartPoint.loc.y = 0;
+		StartPoint.loc.z = 0;
+	}
+	
+	UpdatePosition = true;
 }
 
 
@@ -504,297 +501,297 @@ void MapManager::ReloadLevel() {
 	// Get the appropriate map data:
         
 	// Get the points
-        NSMutableArray *thePoints = [theLevel getThePoints];
+	NSMutableArray *thePoints = [theLevel getThePoints];
+	
+	if (thePoints)
+	{
+		PointList.reallocate([thePoints count]);
+		world_point2d *PointPtr = &PointList[0];
+		
+		NSEnumerator *en = [thePoints objectEnumerator];
+		LEMapPoint *thePoint;
+		while (thePoint = [en nextObject])
+		{
+			PointPtr->x = [thePoint getX];
+			PointPtr->y = [thePoint getY];
+			PointPtr++;
+		}
+	}
+	else
+		return;	// No points: don't bother to continue
+	
+	// Get the lines
+	NSMutableArray *theLines = [theLevel getTheLines];
+	
+	// No lines: don't bother to continue
+	if (!theLines) return;
+	
+	// Get the sides
+	NSMutableArray *theSides = [theLevel sides];
+	
+	// Get the polygons; calculate their heights with the platform data
+	NSMutableArray *thePolygons = [theLevel getThePolys];
+	
+	// No polygons: don't bother to continue
+	if (!thePolygons) return;
         
-        if (thePoints)
-        {
-            PointList.reallocate([thePoints count]);
-            world_point2d *PointPtr = &PointList[0];
-            
-            NSEnumerator *en = [thePoints objectEnumerator];
-            LEMapPoint *thePoint;
-            while (thePoint = [en nextObject])
-            {
-                PointPtr->x = [thePoint getX];
-                PointPtr->y = [thePoint getY];
-                PointPtr++;
-            }
-        }
-        else
-            return;	// No points: don't bother to continue
-        
-        // Get the lines
-        NSMutableArray *theLines = [theLevel getTheLines];
-        
-        // No lines: don't bother to continue
-        if (!theLines) return;
-        
-        // Get the sides
-        NSMutableArray *theSides = [theLevel getSides];
-        
-        // Get the polygons; calculate their heights with the platform data
-        NSMutableArray *thePolygons = [theLevel getThePolys];
-        
-        // No polygons: don't bother to continue
-        if (!thePolygons) return;
-        
-	int NPolygons = [thePolygons count];
-        
-        // Will get platform heights, if used
-        FloorHeights.reallocate(NPolygons);
-        CeilingHeights.reallocate(NPolygons);
-        
-        for (int np=0; np<NPolygons; np++)
-        {
-            LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
-            FloorHeights[np] = [thePolygon getFloor_height];
-            CeilingHeights[np] = [thePolygon getCeiling_height];
-        }
-                
-        // Get the platforms
-        NSMutableArray *thePlatforms = [theLevel getPlatforms];
-        
-        if (thePlatforms)
-        {
-            // Find out how much the platforms are to be extended
-            float PlatExtend = 0;
-            switch(VO.SelectPlatformState - 1)
-            {
-            case ViewOptions::Platform_Contracted:
-                PlatExtend = 0;
-                break;
-                
-            case ViewOptions::Platform_1_4:
-                PlatExtend = 0.25;
-                break;
-                
-            case ViewOptions::Platform_1_2:
-                PlatExtend = 0.5;
-                break;
-                
-            case ViewOptions::Platform_3_4:
-                PlatExtend = 0.75;
-                break;
-                
-            case ViewOptions::Platform_Extended:
-                PlatExtend = 1;
-                break;
-                
-            }
-            
-            // Find all the adjacent heights
-            MinNgbrFloorHeights.reallocate(NPolygons);
-            MaxNgbrFloorHeights.reallocate(NPolygons);
-            MinNgbrCeilingHeights.reallocate(NPolygons);
-            MaxNgbrCeilingHeights.reallocate(NPolygons);
-            
-            for (int np=0; np<NPolygons; np++)
-            {
-                LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
-                int NumNeigbors = [thePolygon getTheVertexCount];
-                world_distance MinNgbrFloorHeight = [thePolygon getFloor_height];
-                world_distance MaxNgbrFloorHeight = [thePolygon getFloor_height];
-                world_distance MinNgbrCeilingHeight = [thePolygon getCeiling_height];
-                world_distance MaxNgbrCeilingHeight = [thePolygon getCeiling_height];
-                for (int i=0; i<NumNeigbors; i++)
-                {
-                    LEPolygon *theNeighbor = [thePolygon getAdjacent_polygon_objects:i];
-                    if (theNeighbor != nil)
-                    {
-                        world_distance FloorHeight = [theNeighbor getFloor_height];
-                        MinNgbrFloorHeight = min(MinNgbrFloorHeight,FloorHeight);
-                        MaxNgbrFloorHeight = max(MaxNgbrFloorHeight,FloorHeight);
-                        world_distance CeilingHeight = [theNeighbor getCeiling_height];
-                        MinNgbrCeilingHeight = min(MinNgbrCeilingHeight,CeilingHeight);
-                        MaxNgbrCeilingHeight = max(MaxNgbrCeilingHeight,CeilingHeight);
-                    }
-                }
-                MinNgbrFloorHeights[np] = MinNgbrFloorHeight;
-                MaxNgbrFloorHeights[np] = MaxNgbrFloorHeight;
-                MinNgbrCeilingHeights[np] = MinNgbrCeilingHeight;
-                MaxNgbrCeilingHeights[np] = MaxNgbrCeilingHeight;
-            }
-            
-            for (int np=0; np<NPolygons; np++)
-            {
-                LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
-                if ([thePolygon getType] == _polygon_is_platform)
-                {
-                    PhPlatform *thePlatform = [thePlatforms objectAtIndex:[thePolygon getPermutation]];
-                    
-                    // Adjust the heights to the platform ranges
-                    short FloorHeight = FloorHeights[np];
-                    short CeilingHeight = CeilingHeights[np];
-                    short MinNgbrFloorHeight = MinNgbrFloorHeights[np];
-                    short MaxNgbrFloorHeight = MaxNgbrFloorHeights[np];
-                    short MinNgbrCeilingHeight = MinNgbrCeilingHeights[np];
-                    short MaxNgbrCeilingHeight = MaxNgbrCeilingHeights[np];
-                    short PlatMinHeight = [thePlatform minimumHeight];
-                    short PlatMaxHeight = [thePlatform maximumHeight];
-                    unsigned long PlatFlags = [thePlatform staticFlags];
-                    
-                    bool FromFloorToCeiling = (PlatFlags & _platform_extends_floor_to_ceiling) != 0;
-                    if (FromFloorToCeiling)
-                    {
-                        if (CeilingHeight > MaxNgbrFloorHeight)
-                            MaxNgbrFloorHeight = CeilingHeight;
-                        if (FloorHeight < MinNgbrCeilingHeight)
-                            MinNgbrCeilingHeight = FloorHeight;
-                    }
-                    
-                    bool FromFloor = (PlatFlags & _platform_comes_from_floor) != 0;
-                    bool FromCeiling = (PlatFlags & _platform_comes_from_ceiling) != 0;
-                    
-                    short PlatMinFloor = FloorHeight;
-                    short PlatMaxFloor = FloorHeight;
-                    short PlatMinCeiling = CeilingHeight;
-                    short PlatMaxCeiling = CeilingHeight;
-                    
-                    const int NONE = -1;
-                    if (FromFloor)
-                    {
-                        if (FromCeiling)
-                        {
-                            /* split platforms always meet in the center */
-                            PlatMinFloor = (PlatMinHeight == NONE) ? MinNgbrFloorHeight : PlatMinHeight;
-                            PlatMaxCeiling = (PlatMaxHeight == NONE) ? MaxNgbrCeilingHeight : PlatMaxHeight;
-                            PlatMaxFloor = PlatMinCeiling = (PlatMinFloor + PlatMaxCeiling)/2;
-                        }
-                        else
-                        {
-                            if (PlatFlags & _platform_uses_native_polygon_heights)
-                            {
-                                if (FloorHeight < MinNgbrFloorHeight || FromFloorToCeiling)
-                                    MinNgbrFloorHeight = FloorHeight;
-                                else
-                                    MaxNgbrFloorHeight = FloorHeight;
-                            }
-                            
-                            PlatMinFloor = (PlatMinHeight == NONE) ? MinNgbrFloorHeight : PlatMinHeight;
-                            PlatMaxFloor = (PlatMaxHeight == NONE) ? MaxNgbrFloorHeight : PlatMaxHeight;
-                            PlatMinCeiling = PlatMaxCeiling = CeilingHeight;
-                        }
-                    }
-                    else
-                    {
-                        if (FromCeiling)
-                        {
-                            if (PlatFlags & _platform_uses_native_polygon_heights)
-                            {
-                                if (CeilingHeight > MinNgbrCeilingHeight || FromFloorToCeiling)
-                                    MaxNgbrCeilingHeight = CeilingHeight;
-                                else
-                                    MinNgbrCeilingHeight = CeilingHeight;
-                            }
-                            
-                            PlatMinCeiling = (PlatMinHeight == NONE) ? MinNgbrCeilingHeight : PlatMinHeight;
-                            PlatMaxCeiling = (PlatMaxHeight == NONE) ? MaxNgbrCeilingHeight : PlatMaxHeight;
-                            PlatMinFloor = PlatMaxFloor = FloorHeight;
-                        }
-                        // A platform that comes from neither is no platform at all
-                    }
-                    
-                    // Adjust the floor and ceiling heights!
-                    FloorHeights[np] = PlatMinFloor + short(PlatExtend*(PlatMaxFloor - PlatMinFloor));
-                    CeilingHeights[np] = PlatMaxCeiling + short(PlatExtend*(PlatMinCeiling - PlatMaxCeiling));
-                }
-            }
-        }
-        
+	NSInteger NPolygons = [thePolygons count];
+	
+	// Will get platform heights, if used
+	FloorHeights.reallocate(NPolygons);
+	CeilingHeights.reallocate(NPolygons);
+	
+	for (int np=0; np<NPolygons; np++)
+	{
+		LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
+		FloorHeights[np] = [thePolygon getFloor_height];
+		CeilingHeights[np] = [thePolygon getCeiling_height];
+	}
+			
+	// Get the platforms
+	NSMutableArray *thePlatforms = [theLevel getPlatforms];
+	
+	if (thePlatforms)
+	{
+		// Find out how much the platforms are to be extended
+		float PlatExtend = 0;
+		switch(VO.SelectPlatformState - 1)
+		{
+		case ViewOptions::Platform_Contracted:
+			PlatExtend = 0;
+			break;
+			
+		case ViewOptions::Platform_1_4:
+			PlatExtend = 0.25;
+			break;
+			
+		case ViewOptions::Platform_1_2:
+			PlatExtend = 0.5;
+			break;
+			
+		case ViewOptions::Platform_3_4:
+			PlatExtend = 0.75;
+			break;
+			
+		case ViewOptions::Platform_Extended:
+			PlatExtend = 1;
+			break;
+			
+		}
+		
+		// Find all the adjacent heights
+		MinNgbrFloorHeights.reallocate(NPolygons);
+		MaxNgbrFloorHeights.reallocate(NPolygons);
+		MinNgbrCeilingHeights.reallocate(NPolygons);
+		MaxNgbrCeilingHeights.reallocate(NPolygons);
+		
+		for (int np=0; np<NPolygons; np++)
+		{
+			LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
+			int NumNeigbors = [thePolygon getTheVertexCount];
+			world_distance MinNgbrFloorHeight = [thePolygon getFloor_height];
+			world_distance MaxNgbrFloorHeight = [thePolygon getFloor_height];
+			world_distance MinNgbrCeilingHeight = [thePolygon getCeiling_height];
+			world_distance MaxNgbrCeilingHeight = [thePolygon getCeiling_height];
+			for (int i=0; i<NumNeigbors; i++)
+			{
+				LEPolygon *theNeighbor = [thePolygon getAdjacent_polygon_objects:i];
+				if (theNeighbor != nil)
+				{
+					world_distance FloorHeight = [theNeighbor getFloor_height];
+					MinNgbrFloorHeight = min(MinNgbrFloorHeight,FloorHeight);
+					MaxNgbrFloorHeight = max(MaxNgbrFloorHeight,FloorHeight);
+					world_distance CeilingHeight = [theNeighbor getCeiling_height];
+					MinNgbrCeilingHeight = min(MinNgbrCeilingHeight,CeilingHeight);
+					MaxNgbrCeilingHeight = max(MaxNgbrCeilingHeight,CeilingHeight);
+				}
+			}
+			MinNgbrFloorHeights[np] = MinNgbrFloorHeight;
+			MaxNgbrFloorHeights[np] = MaxNgbrFloorHeight;
+			MinNgbrCeilingHeights[np] = MinNgbrCeilingHeight;
+			MaxNgbrCeilingHeights[np] = MaxNgbrCeilingHeight;
+		}
+		
+		for (int np=0; np<NPolygons; np++)
+		{
+			LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
+			if ([thePolygon getType] == _polygon_is_platform)
+			{
+				PhPlatform *thePlatform = [thePlatforms objectAtIndex:[thePolygon getPermutation]];
+				
+				// Adjust the heights to the platform ranges
+				short FloorHeight = FloorHeights[np];
+				short CeilingHeight = CeilingHeights[np];
+				short MinNgbrFloorHeight = MinNgbrFloorHeights[np];
+				short MaxNgbrFloorHeight = MaxNgbrFloorHeights[np];
+				short MinNgbrCeilingHeight = MinNgbrCeilingHeights[np];
+				short MaxNgbrCeilingHeight = MaxNgbrCeilingHeights[np];
+				short PlatMinHeight = [thePlatform minimumHeight];
+				short PlatMaxHeight = [thePlatform maximumHeight];
+				unsigned long PlatFlags = [thePlatform staticFlags];
+				
+				bool FromFloorToCeiling = (PlatFlags & _platform_extends_floor_to_ceiling) != 0;
+				if (FromFloorToCeiling)
+				{
+					if (CeilingHeight > MaxNgbrFloorHeight)
+						MaxNgbrFloorHeight = CeilingHeight;
+					if (FloorHeight < MinNgbrCeilingHeight)
+						MinNgbrCeilingHeight = FloorHeight;
+				}
+				
+				bool FromFloor = (PlatFlags & _platform_comes_from_floor) != 0;
+				bool FromCeiling = (PlatFlags & _platform_comes_from_ceiling) != 0;
+				
+				short PlatMinFloor = FloorHeight;
+				short PlatMaxFloor = FloorHeight;
+				short PlatMinCeiling = CeilingHeight;
+				short PlatMaxCeiling = CeilingHeight;
+				
+				const int NONE = -1;
+				if (FromFloor)
+				{
+					if (FromCeiling)
+					{
+						/* split platforms always meet in the center */
+						PlatMinFloor = (PlatMinHeight == NONE) ? MinNgbrFloorHeight : PlatMinHeight;
+						PlatMaxCeiling = (PlatMaxHeight == NONE) ? MaxNgbrCeilingHeight : PlatMaxHeight;
+						PlatMaxFloor = PlatMinCeiling = (PlatMinFloor + PlatMaxCeiling)/2;
+					}
+					else
+					{
+						if (PlatFlags & _platform_uses_native_polygon_heights)
+						{
+							if (FloorHeight < MinNgbrFloorHeight || FromFloorToCeiling)
+								MinNgbrFloorHeight = FloorHeight;
+							else
+								MaxNgbrFloorHeight = FloorHeight;
+						}
+						
+						PlatMinFloor = (PlatMinHeight == NONE) ? MinNgbrFloorHeight : PlatMinHeight;
+						PlatMaxFloor = (PlatMaxHeight == NONE) ? MaxNgbrFloorHeight : PlatMaxHeight;
+						PlatMinCeiling = PlatMaxCeiling = CeilingHeight;
+					}
+				}
+				else
+				{
+					if (FromCeiling)
+					{
+						if (PlatFlags & _platform_uses_native_polygon_heights)
+						{
+							if (CeilingHeight > MinNgbrCeilingHeight || FromFloorToCeiling)
+								MaxNgbrCeilingHeight = CeilingHeight;
+							else
+								MinNgbrCeilingHeight = CeilingHeight;
+						}
+						
+						PlatMinCeiling = (PlatMinHeight == NONE) ? MinNgbrCeilingHeight : PlatMinHeight;
+						PlatMaxCeiling = (PlatMaxHeight == NONE) ? MaxNgbrCeilingHeight : PlatMaxHeight;
+						PlatMinFloor = PlatMaxFloor = FloorHeight;
+					}
+					// A platform that comes from neither is no platform at all
+				}
+				
+				// Adjust the floor and ceiling heights!
+				FloorHeights[np] = PlatMinFloor + short(PlatExtend*(PlatMaxFloor - PlatMinFloor));
+				CeilingHeights[np] = PlatMaxCeiling + short(PlatExtend*(PlatMinCeiling - PlatMaxCeiling));
+			}
+		}
+	}
+	
 	// Maximum light value:
 	const GLfloat MaxLightValue = GLfloat(1 << 16);
-        
-        // Get the lights
-        NSMutableArray *theLights = [theLevel getLights];
+	
+	// Get the lights
+	NSMutableArray *theLights = [theLevel getLights];
 
-	int NLights = [theLights count];
-        LightList.reallocate(NLights);
+	NSInteger NLights = [theLights count];
+	LightList.reallocate(NLights);
 	
 	// Translate
 	for (int il=0; il<NLights; il++) {
-            PhLight *theLight = [theLights objectAtIndex:il];
-            LightInfo &Light = LightList[il];
-            
-            GLfloat OnInten1 = [theLight intensityForState:_light_primary_active]/MaxLightValue;
-            GLfloat OnInten2 = [theLight intensityForState:_light_secondary_active]/MaxLightValue;
-            GLfloat OffInten1 = [theLight intensityForState:_light_primary_inactive]/MaxLightValue;
-            GLfloat OffInten2 = [theLight intensityForState:_light_secondary_inactive]/MaxLightValue;
-            GLfloat InitInten =
-                ([theLight flags] & (1 << PhLightStaticFlagIsInitiallyActive)) ? OnInten1 : OffInten1;
-            
-            // Average values -- weighted
-            
-            GLfloat OnIntenAvg1 =
-                ([theLight functionForState:_light_primary_active] == _constant_lighting_function) ? 
-					OnInten1 : (OnInten1 + OnInten2)/2;
-            
-            GLfloat OnIntenAvg2 =
-                ([theLight functionForState:_light_secondary_active] == _constant_lighting_function) ? 
-					OnInten2 : (OnInten1 + OnInten2)/2;
-            
-            GLfloat OnP1 = GLfloat([theLight periodForState:_light_primary_active]);
-            GLfloat OnP2 = GLfloat([theLight periodForState:_light_secondary_active]);
-            GLfloat OnPTot = OnP1 + OnP2;
-            GLfloat OnIntenAvg =
-                (OnPTot > 0) ? (OnIntenAvg1*OnP1 + OnIntenAvg2*OnP2)/OnPTot : (OnInten1 + OnInten2)/2;
-            
-            GLfloat OffIntenAvg1 =
-		([theLight functionForState:_light_primary_inactive] == _constant_lighting_function) ? 
-					OffInten1 : (OffInten1 + OffInten2)/2;
-            
-            GLfloat OffIntenAvg2 =
-		([theLight functionForState:_light_secondary_inactive] == _constant_lighting_function) ? 
-					OffInten2 : (OffInten1 + OffInten2)/2;
-            
-            GLfloat OffP1 = GLfloat([theLight periodForState:_light_primary_inactive]);
-            GLfloat OffP2 = GLfloat([theLight periodForState:_light_secondary_inactive]);
-            GLfloat OffPTot = OffP1 + OffP2;
-            GLfloat OffIntenAvg =
-                (OffPTot > 0) ? (OffIntenAvg1*OffP1 + OffIntenAvg2*OffP2)/OffPTot : (OffInten1 + OffInten2)/2;
-            
-            Light.L[ViewOptions::Light_Initial] = InitInten;
-            Light.L[ViewOptions::Light_Off_1] = OffInten1;
-            Light.L[ViewOptions::Light_Off_Avg] = OffIntenAvg;
-            Light.L[ViewOptions::Light_Off_2] = OffInten2;
-            Light.L[ViewOptions::Light_On_1] = OnInten1;
-            Light.L[ViewOptions::Light_On_Avg] = OnIntenAvg;
-            Light.L[ViewOptions::Light_On_2] = OnInten2;
-        }
+		PhLight *theLight = [theLights objectAtIndex:il];
+		LightInfo &Light = LightList[il];
+		
+		GLfloat OnInten1 = [theLight intensityForState:_light_primary_active]/MaxLightValue;
+		GLfloat OnInten2 = [theLight intensityForState:_light_secondary_active]/MaxLightValue;
+		GLfloat OffInten1 = [theLight intensityForState:_light_primary_inactive]/MaxLightValue;
+		GLfloat OffInten2 = [theLight intensityForState:_light_secondary_inactive]/MaxLightValue;
+		GLfloat InitInten =
+		([theLight flags] & (1 << PhLightStaticFlagIsInitiallyActive)) ? OnInten1 : OffInten1;
+		
+		// Average values -- weighted
+		
+		GLfloat OnIntenAvg1 =
+		([theLight functionForState:_light_primary_active] == _constant_lighting_function) ?
+		OnInten1 : (OnInten1 + OnInten2)/2;
+		
+		GLfloat OnIntenAvg2 =
+		([theLight functionForState:_light_secondary_active] == _constant_lighting_function) ?
+		OnInten2 : (OnInten1 + OnInten2)/2;
+		
+		GLfloat OnP1 = GLfloat([theLight periodForState:_light_primary_active]);
+		GLfloat OnP2 = GLfloat([theLight periodForState:_light_secondary_active]);
+		GLfloat OnPTot = OnP1 + OnP2;
+		GLfloat OnIntenAvg =
+		(OnPTot > 0) ? (OnIntenAvg1*OnP1 + OnIntenAvg2*OnP2)/OnPTot : (OnInten1 + OnInten2)/2;
+		
+		GLfloat OffIntenAvg1 =
+		([theLight functionForState:_light_primary_inactive] == _constant_lighting_function) ?
+		OffInten1 : (OffInten1 + OffInten2)/2;
+		
+		GLfloat OffIntenAvg2 =
+		([theLight functionForState:_light_secondary_inactive] == _constant_lighting_function) ?
+		OffInten2 : (OffInten1 + OffInten2)/2;
+		
+		GLfloat OffP1 = GLfloat([theLight periodForState:_light_primary_inactive]);
+		GLfloat OffP2 = GLfloat([theLight periodForState:_light_secondary_inactive]);
+		GLfloat OffPTot = OffP1 + OffP2;
+		GLfloat OffIntenAvg =
+		(OffPTot > 0) ? (OffIntenAvg1*OffP1 + OffIntenAvg2*OffP2)/OffPTot : (OffInten1 + OffInten2)/2;
+		
+		Light.L[ViewOptions::Light_Initial] = InitInten;
+		Light.L[ViewOptions::Light_Off_1] = OffInten1;
+		Light.L[ViewOptions::Light_Off_Avg] = OffIntenAvg;
+		Light.L[ViewOptions::Light_Off_2] = OffInten2;
+		Light.L[ViewOptions::Light_On_1] = OnInten1;
+		Light.L[ViewOptions::Light_On_Avg] = OnIntenAvg;
+		Light.L[ViewOptions::Light_On_2] = OnInten2;
+	}
 		
 	// Get the liquids
 	NSMutableArray *theLiquids = [theLevel getMedia];
         
-	int NLiquids = [theLiquids count];
+	NSInteger NLiquids = [theLiquids count];
 	LiquidList.reallocate(NLiquids);
 	
 	// Translate
 	for (int iq=0; iq<NLiquids; iq++) {
-            PhMedia *theLiquid = [theLiquids objectAtIndex:iq];
-            LiquidInfo &Liquid = LiquidList[iq];
-            
-            Liquid.Type = [theLiquid type];
-            Liquid.ControlLight = [theLiquid lightIndex];
-            Liquid.Low = [theLiquid low];
-            Liquid.High = [theLiquid high];
-            
-            Liquid.TransferMode = tNormal;
-            Liquid.Texture = (((unsigned short)LiquidTextureSet[Liquid.Type]) << 8) +
-                (LiquidTile[Liquid.Type] & 0x00ff);
-        }
+		PhMedia *theLiquid = [theLiquids objectAtIndex:iq];
+		LiquidInfo &Liquid = LiquidList[iq];
+		
+		Liquid.Type = [theLiquid type];
+		Liquid.ControlLight = [theLiquid lightIndex];
+		Liquid.Low = [theLiquid low];
+		Liquid.High = [theLiquid high];
+		
+		Liquid.TransferMode = tNormal;
+		Liquid.Texture = (((unsigned short)LiquidTextureSet[Liquid.Type]) << 8) +
+		(LiquidTile[Liquid.Type] & 0x00ff);
+	}
 	
 	// Parse the map and create the surfaces in OpenGL-ready form
 	PInfoList.reallocate(NPolygons);
 	VisList.reallocate(NPolygons);
 	VisList.fill(NONE);		// Idiot-proof value
 	for (int np=0; np<NPolygons; np++) {
-                LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
+		LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
 		PolygonInfo &PInfo = PInfoList[np];
 		
 		int NSides = [thePolygon getTheVertexCount];
 		PInfo.SetNSides(NSides);
 		
-                short PFloor = PInfo.FloorHeight = FloorHeights[np];
-                short PCeiling = PInfo.CeilingHeight = CeilingHeights[np];
+		short PFloor = PInfo.FloorHeight = FloorHeights[np];
+		short PCeiling = PInfo.CeilingHeight = CeilingHeights[np];
 		PInfo.FloorInfo.SetHeight(PFloor);
 		PInfo.CeilInfo.SetHeight(PCeiling);
 		
@@ -805,22 +802,22 @@ void MapManager::ReloadLevel() {
 		PInfo.CeilInfo.Light = [thePolygon getCeiling_lightsource_index];
 		
 		// These must come after setting the transfer mode
-                shape_descriptor ShD;
-                ShD = [thePolygon getFloor_texture];
+		shape_descriptor ShD;
+		ShD = [thePolygon getFloor_texture];
 		SetTexture(Version, PInfo.FloorInfo, ShD);
-                ShD = [thePolygon getCeiling_texture];
+		ShD = [thePolygon getCeiling_texture];
 		SetTexture(Version, PInfo.CeilInfo, ShD);
 		
 		// Liquids only in Marathon 2/oo
-                PInfo.Liquid =  [thePolygon getMedia_index];
+		PInfo.Liquid =  [thePolygon getMedia_index];
 		
 		// Set up liquid surfaces
 		if (PInfo.Liquid != NONE) {
- 			LiquidInfo &Liquid = LiquidList[PInfo.Liquid];
-			PInfo.LiquidBelowInfo.TxtrXfr = PInfo.LiquidAboveInfo.TxtrXfr = 
-				Liquid.TransferMode;
+			LiquidInfo &Liquid = LiquidList[PInfo.Liquid];
+			PInfo.LiquidBelowInfo.TxtrXfr = PInfo.LiquidAboveInfo.TxtrXfr =
+			Liquid.TransferMode;
 			PInfo.LiquidBelowInfo.Light = PInfo.LiquidAboveInfo.Light =
-				[thePolygon getMedia_lightsource_index];
+			[thePolygon getMedia_lightsource_index];
 			
 			// These must come after setting the transfer mode
 			SetTexture(Version, PInfo.LiquidBelowInfo, Liquid.Texture);
@@ -838,19 +835,19 @@ void MapManager::ReloadLevel() {
 			VertexInfo &CeilVInfo = PInfo.CeilInfo.VInfoList[(NSides-1)-iv];
 			VertexInfo &LBelowVInfo = PInfo.LiquidBelowInfo.VInfoList[iv];
 			VertexInfo &LAboveVInfo = PInfo.LiquidAboveInfo.VInfoList[(NSides-1)-iv];
-
+			
 			FloorVInfo.Vert[0] = CeilVInfo.Vert[0] =
-				LBelowVInfo.Vert[0] = LAboveVInfo.Vert[0] = Point.x;
+			LBelowVInfo.Vert[0] = LAboveVInfo.Vert[0] = Point.x;
 			FloorVInfo.TxtrCoord[0] = CeilVInfo.TxtrCoord[0] =
-				LBelowVInfo.TxtrCoord[0] = LAboveVInfo.TxtrCoord[0] = TxtrNorm*Point.x;
-
-			FloorVInfo.Vert[1] = CeilVInfo.Vert[1] = 
-				LBelowVInfo.Vert[1] = LAboveVInfo.Vert[1] = Point.y;
-			FloorVInfo.TxtrCoord[1] = CeilVInfo.TxtrCoord[1] = 
-				LBelowVInfo.TxtrCoord[1] = LAboveVInfo.TxtrCoord[1] = TxtrNorm*Point.y;
+			LBelowVInfo.TxtrCoord[0] = LAboveVInfo.TxtrCoord[0] = TxtrNorm*Point.x;
+			
+			FloorVInfo.Vert[1] = CeilVInfo.Vert[1] =
+			LBelowVInfo.Vert[1] = LAboveVInfo.Vert[1] = Point.y;
+			FloorVInfo.TxtrCoord[1] = CeilVInfo.TxtrCoord[1] =
+			LBelowVInfo.TxtrCoord[1] = LAboveVInfo.TxtrCoord[1] = TxtrNorm*Point.y;
 			
 			// The walls:
-                        LELine *theLine = [theLines objectAtIndex:[thePolygon getLineIndexes:iv]];
+			LELine *theLine = [theLines objectAtIndex:[thePolygon getLineIndexes:iv]];
 			// jra 8-1-03
 			// Must be converted from "32" units to "1024" units
 			world_distance LineLength = ([theLine getLength]) * 16;
@@ -880,88 +877,88 @@ void MapManager::ReloadLevel() {
 			WInfo.InwardDir.y = (Point1.x - Point0.x);
 			
 			// Simply use standard parsing of sides
-                        WInfo.IsFullLength = false;
+			WInfo.IsFullLength = false;
 			if (NIndx == NONE) {
 				// Full-length side:
 				WInfo.PrimaryPresent = true;
 				SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-					PCeiling,PFloor);
+							 PCeiling,PFloor);
 				WInfo.SecondaryPresent = true;
-                                SetWallVerts(WInfo.SecondaryInfo,Point0,Point1,LineLength,
-                                        PCeiling,PFloor);
+				SetWallVerts(WInfo.SecondaryInfo,Point0,Point1,LineLength,
+							 PCeiling,PFloor);
 				WInfo.TransparentPresent = true;
 				SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-					PCeiling,PFloor);
-                                WInfo.IsFullLength = true;
-					
+							 PCeiling,PFloor);
+				WInfo.IsFullLength = true;
+				
 			} else {
-                                short NFloor = FloorHeights[NIndx];
-                                short NCeiling = CeilingHeights[NIndx];
+				short NFloor = FloorHeights[NIndx];
+				short NCeiling = CeilingHeights[NIndx];
 				
 				if (NFloor >= PCeiling) {
 					// Full-length side:
 					WInfo.PrimaryPresent = true;
 					SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-						PCeiling,PFloor);
+								 PCeiling,PFloor);
 					WInfo.SecondaryPresent = true;
 					SetWallVerts(WInfo.SecondaryInfo,Point0,Point1,LineLength,
-						PCeiling,PFloor);
+								 PCeiling,PFloor);
 					WInfo.TransparentPresent = true;
 					SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-						PCeiling,PFloor);
-                                        WInfo.IsFullLength = true;
-						
+								 PCeiling,PFloor);
+					WInfo.IsFullLength = true;
+					
 				} else if (NFloor > PFloor) {
 					if (NCeiling >= PCeiling) {
 						// Lower side:
 						WInfo.TransparentPresent = true;
 						SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-							PCeiling,NFloor);
+									 PCeiling,NFloor);
 						WInfo.PrimaryPresent = true;
 						SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-							NFloor,PFloor);
-							
+									 NFloor,PFloor);
+						
 					} else {
 						// Upper and lower sides:
 						WInfo.PrimaryPresent = true;
 						SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-							PCeiling,NCeiling);
+									 PCeiling,NCeiling);
 						WInfo.TransparentPresent = true;
 						SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-							NCeiling,NFloor);
+									 NCeiling,NFloor);
 						WInfo.SecondaryPresent = true;
 						SetWallVerts(WInfo.SecondaryInfo,Point0,Point1,LineLength,
-							NFloor,PFloor);
-							
+									 NFloor,PFloor);
+						
 					}
 				} else {
 					if (NCeiling >= PCeiling) {
 						// All clear:
 						WInfo.TransparentPresent = true;
 						SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-							PCeiling,PFloor);
-							
+									 PCeiling,PFloor);
+						
 					} else if (NCeiling > PFloor) {
 						// Upper side:
 						WInfo.PrimaryPresent = true;
 						SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-							PCeiling,NCeiling);
+									 PCeiling,NCeiling);
 						WInfo.TransparentPresent = true;
 						SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-							NCeiling,PFloor);
-							
+									 NCeiling,PFloor);
+						
 					} else {
 						// Full-length side:
 						WInfo.PrimaryPresent = true;
 						SetWallVerts(WInfo.PrimaryInfo,Point0,Point1,LineLength,
-							PCeiling,PFloor);
+									 PCeiling,PFloor);
 						WInfo.SecondaryPresent = true;
 						SetWallVerts(WInfo.SecondaryInfo,Point0,Point1,LineLength,
-							PCeiling,PFloor);
+									 PCeiling,PFloor);
 						WInfo.TransparentPresent = true;
 						SetWallVerts(WInfo.TransparentInfo,Point0,Point1,LineLength,
-							PCeiling,PFloor);
-                                        	WInfo.IsFullLength = true;
+									 PCeiling,PFloor);
+						WInfo.IsFullLength = true;
 						
 					}
 				}
@@ -972,38 +969,38 @@ void MapManager::ReloadLevel() {
 				// The primary and secondary sides will keep their default states: being invalid
 				WInfo.TransparentPresent = false;
 			} else {
-                                LESide *theSide = [theSides objectAtIndex:SIndx];
+				LESide *theSide = [theSides objectAtIndex:SIndx];
 				
 				// The wall lights:
-                                WInfo.PrimaryInfo.Light = [theSide getPrimary_lightsource_index];
+				WInfo.PrimaryInfo.Light = [theSide getPrimary_lightsource_index];
 				WInfo.SecondaryInfo.Light = [theSide getSecondary_lightsource_index];
 				WInfo.TransparentInfo.Light = [theSide getTransparent_lightsource_index];
-                                
-                                if (WInfo.IsFullLength) {
-                                        side_texture_definition Txtr = [theSide getSecondary_texture];
-                                        if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
-                                                WInfo.SecondaryPresent = false;
-                                }
-                                                               
-                                side_texture_definition Txtr = [theSide getTransparent_texture];
+				
+				if (WInfo.IsFullLength) {
+					side_texture_definition Txtr = [theSide getSecondary_texture];
+					if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
+						WInfo.SecondaryPresent = false;
+				}
+				
+				side_texture_definition Txtr = [theSide getTransparent_texture];
 				if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
 					WInfo.TransparentPresent = false;
 				
 				if (WInfo.PrimaryPresent) {
 					WInfo.PrimaryInfo.TxtrXfr = [theSide getPrimary_transfer_mode];
-                                        Txtr = [theSide getPrimary_texture];
+					Txtr = [theSide getPrimary_texture];
 					SetWallTxtr(Version, WInfo.PrimaryInfo, Txtr);
 				}
 				
 				if (WInfo.SecondaryPresent) {
 					WInfo.SecondaryInfo.TxtrXfr = [theSide getSecondary_transfer_mode];
-                                        Txtr = [theSide getSecondary_texture];
+					Txtr = [theSide getSecondary_texture];
 					SetWallTxtr(Version, WInfo.SecondaryInfo, Txtr);
 				}
 				
 				if (WInfo.TransparentPresent) {
 					WInfo.TransparentInfo.TxtrXfr = [theSide getTransparent_transfer_mode];
-                                        Txtr = [theSide getTransparent_texture];
+					Txtr = [theSide getTransparent_texture];
 					SetWallTxtr(Version, WInfo.TransparentInfo, Txtr);
 				}
 			}
@@ -1013,11 +1010,11 @@ void MapManager::ReloadLevel() {
 		PInfo.FindMinMax();
 		
 		// Doing the offsets requires that the base values of the vertices be set
-                NSPoint Origin;
-                Origin = [thePolygon getFloor_origin];
-                DoTxtrOffset(PInfo.FloorInfo, (short int)Origin.x, (short int)Origin.y);
-                Origin = [thePolygon getCeiling_origin];
-                DoTxtrOffset(PInfo.CeilInfo, (short int)Origin.x, (short int)Origin.y);
+		NSPoint Origin;
+		Origin = [thePolygon getFloor_origin];
+		DoTxtrOffset(PInfo.FloorInfo, (short int)Origin.x, (short int)Origin.y);
+		Origin = [thePolygon getCeiling_origin];
+		DoTxtrOffset(PInfo.CeilInfo, (short int)Origin.x, (short int)Origin.y);
 		
 		// Likewise for trimming away unused liquid surfaces
 		if (PInfo.Liquid == NONE) {
@@ -1029,8 +1026,8 @@ void MapManager::ReloadLevel() {
 	// Reset the lights and liquids
 	RecalcLightsLiquids();
 	
-        // Go to the current start position
-        DoGoto();
+	// Go to the current start position
+	DoGoto();
 }
 
 

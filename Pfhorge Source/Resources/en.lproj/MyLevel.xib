@@ -45,7 +45,6 @@
                 <outlet property="rdTextInputTB" destination="664" id="669"/>
                 <outlet property="selectionOptionCheckboxes" destination="1018" id="1031"/>
                 <outlet property="theColorDrawer" destination="757" id="776"/>
-                <outlet property="theDrawer" destination="757" id="1137"/>
                 <outlet property="theManagerDrawer" destination="793" id="1029"/>
                 <outlet property="useMapManager" destination="985" id="1030"/>
                 <outlet property="window" destination="34" id="49"/>
@@ -490,7 +489,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" ambiguous="YES" id="1Ds-nc-x4n">
                             <rect key="frame" x="1" y="0.0" width="320" height="295"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="1213" floatsGroupRows="NO" id="535">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
@@ -820,7 +819,7 @@ Gw
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <clipView key="contentView" ambiguous="YES" id="5sj-xK-W2T">
                         <rect key="frame" x="1" y="1" width="81" height="198"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" floatsGroupRows="NO" id="714">
                                 <rect key="frame" x="0.0" y="0.0" width="81" height="198"/>
@@ -958,7 +957,7 @@ DQ
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="956">
                             <view key="view" ambiguous="YES" id="952">
-                                <rect key="frame" x="10" y="7" width="113" height="273"/>
+                                <rect key="frame" x="10" y="7" width="117" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
@@ -1182,7 +1181,7 @@ DQ
                         <rect key="frame" x="-1" y="61" width="423" height="189"/>
                         <clipView key="contentView" id="rir-hE-OT8">
                             <rect key="frame" x="1" y="0.0" width="421" height="188"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1218" floatsGroupRows="NO" id="1074">
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>

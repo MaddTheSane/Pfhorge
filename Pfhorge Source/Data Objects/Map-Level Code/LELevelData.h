@@ -52,22 +52,22 @@ enum/* export data primary, secondary, etc... */
 enum /* export data types */
 {
 	_data_is_polygon,
-        _data_is_line,
-        _data_is_object,
-        _data_is_side,
-        _data_is_point,
-        _data_is_media,
-        _data_is_light,
-        _data_is_tag,
-        _data_is_annotationNote,
-        _data_is_ambientSound,
-        _data_is_randomSound,
-        _data_is_itemPlacement,
-        _data_is_platform,
-        _data_is_terminal,
-        _data_is_terminalSection,
-        _data_is_layer,
-        _data_is_unknown
+	_data_is_line,
+	_data_is_object,
+	_data_is_side,
+	_data_is_point,
+	_data_is_media,
+	_data_is_light,
+	_data_is_tag,
+	_data_is_annotationNote,
+	_data_is_ambientSound,
+	_data_is_randomSound,
+	_data_is_itemPlacement,
+	_data_is_platform,
+	_data_is_terminal,
+	_data_is_terminalSection,
+	_data_is_layer,
+	_data_is_unknown
 };
 
 
@@ -117,7 +117,7 @@ typedef NS_OPTIONS(int, _entry_point_flag)
 };
 
 //! mission flags
-typedef NS_OPTIONS(short,_mission_flag)
+typedef NS_OPTIONS(unsigned short, _mission_flag)
 {
 	_mission_none = 0x0000,
 	_mission_extermination = 0x0001,
@@ -128,7 +128,7 @@ typedef NS_OPTIONS(short,_mission_flag)
 };
 
 //! environment flags
-typedef NS_OPTIONS(short, _environment_flag)
+typedef NS_OPTIONS(unsigned short, _environment_flag)
 {
 	_environment_normal = 0x0000,
 	_environment_vacuum = 0x0001,
@@ -142,9 +142,12 @@ typedef NS_OPTIONS(short, _environment_flag)
 
 /* Game types! */
 enum {
-	_game_of_kill_monsters,		// single player & combative use this
-	_game_of_cooperative_play,	// multiple players, working together
-	_game_of_capture_the_flag,	// A team game.
+	//! single player & combative use this
+	_game_of_kill_monsters,
+	//! multiple players, working together
+	_game_of_cooperative_play,
+	//! A team game.
+	_game_of_capture_the_flag,
 	_game_of_king_of_the_hill,
 	_game_of_kill_man_with_ball,
 	_game_of_defense,
@@ -188,7 +191,7 @@ enum {
 	NSMutableArray<LEMapObject*>  *layerMapObjects;
 	NSMutableArray  *layerNotes;
     NSMutableArray  *namedPolyObjects;
-    NSMutableArray  *tags;
+    NSMutableArray<PhTag*>  *tags;
     
     NSMutableArray<Terminal*> *terimals;
     
@@ -365,20 +368,20 @@ enum {
 
 -(void)updateCounts;
 
--(unsigned short)ambientSoundCount;
--(unsigned short)liquidCount;
--(unsigned short)platformCount;
--(unsigned short)lightCount;
--(unsigned short)objectCount;
--(unsigned short)polygonCount;
--(unsigned short)lineCount;
--(unsigned short)pointCount;
+@property (readonly) unsigned short ambientSoundCount;
+@property (readonly) unsigned short liquidCount;
+@property (readonly) unsigned short platformCount;
+@property (readonly) unsigned short lightCount;
+@property (readonly) unsigned short objectCount;
+@property (readonly) unsigned short polygonCount;
+@property (readonly) unsigned short lineCount;
+@property (readonly) unsigned short pointCount;
 
 -(LEMap *)levelDocument;
 
 
 // The below arrays SHOULD NOT be added to manualy, or deleted from...
-// Unless you know EXZACTLY what you are doing.  You should use the add and delete methods instead,
+// Unless you know EXACTLY what you are doing.  You should use the add and delete methods instead,
 // I will be making more and expanding the add and delete methods soon.
 
 
@@ -386,7 +389,7 @@ enum {
 //-(NSArray *)points;
 -(NSMutableArray<LELine*> *)getTheLines;
 -(NSMutableArray<LEPolygon*> *)getThePolys;
--(NSMutableArray<LEMapObject*> *)getTheMapObjects;
+-(NSMutableArray<LEMapObject*> *)theMapObjects;
 
 -(NSArray *)layerNotes;
 -(NSMutableArray<LEMapPoint*> *)layerPoints;
@@ -397,7 +400,7 @@ enum {
 -(NSMutableArray *)layersInLevel;
 -(NSMutableArray *)namedPolyObjects;
 
--(NSMutableArray<LESide*> *)getSides;
+-(NSMutableArray<LESide*> *)sides;
 -(NSMutableArray<PhLight*> *)getLights;
 -(NSMutableArray<PhAnnotationNote*> *)getNotes;
 -(NSMutableArray<PhMedia*> *)getMedia;
@@ -406,9 +409,9 @@ enum {
 -(NSMutableArray<PhItemPlacement*> *)getItemPlacement;
 -(NSMutableArray<PhPlatform*> *)getPlatforms;
 
--(NSMutableArray *)getTags;
+-(NSMutableArray<PhTag*> *)getTags;
 
--(NSMutableArray *)getTerminals;
+-(NSMutableArray<Terminal*> *)getTerminals;
 
 @end
 

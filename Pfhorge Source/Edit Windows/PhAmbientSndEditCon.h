@@ -30,10 +30,10 @@
 
 @interface PhAmbientSndEditCon : InfoWindowCommander
 {
-    IBOutlet id infoIT;
+    IBOutlet NSTextField *infoIT;
     
-    IBOutlet id typeMenu;
-    IBOutlet id volumeTB;
+    IBOutlet NSPopUpButton *typeMenu;
+    IBOutlet NSTextField *volumeTB;
     
     PhAmbientSound	*curSound;
 }

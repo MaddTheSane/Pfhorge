@@ -77,6 +77,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 };
 
 @class LEMapPoint, LELine;
+@class LELevelWindowController, PhColorListControllerDrawer;
 
 @interface LEMapDraw : NSView
 {
@@ -84,12 +85,12 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 	
 	BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
 	
-	IBOutlet id scrollView;
-	IBOutlet id ttt;
-	IBOutlet id winController;
+	IBOutlet NSScrollView *scrollView;
+	IBOutlet NSTextField *ttt;
+	IBOutlet LELevelWindowController *winController;
 	
-	IBOutlet id colorListObject;
-	IBOutlet id colorListDrawer;
+	IBOutlet PhColorListControllerDrawer *colorListObject;
+	IBOutlet NSDrawer *colorListDrawer;
 	
 	BOOL alreadySentToolUnavalbeMsg;
 	

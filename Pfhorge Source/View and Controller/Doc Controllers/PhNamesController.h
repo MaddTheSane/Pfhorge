@@ -31,7 +31,7 @@
 
 #import <AppKit/AppKit.h>
 
-@class PhAbstractName, LELevelData;
+@class PhAbstractName, LELevelData, LELevelWindowController;
 
 enum /* display modes */
 {
@@ -39,18 +39,18 @@ enum /* display modes */
 	_display_lights,
 	_display_ambient_sounds,
 	_display_random_sounds,
-        _display_liquids,
+	_display_liquids,
 	_display_platforms,
-        _display_polys,
-        _display_layers // Need to add this to menu, etc...
+	_display_polys,
+	_display_layers // Need to add this to menu, etc...
 };
 
-@interface PhNamesController : NSWindowController {
-    IBOutlet id theLevelWindowControllerOutlet;
-    IBOutlet id theLevelDrawView;
+@interface PhNamesController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource> {
+    IBOutlet LELevelWindowController *theLevelWindowControllerOutlet;
+    IBOutlet LEMapDraw *theLevelDrawView;
     
-    IBOutlet id theNameWindow;
-    IBOutlet id theTable;
+    IBOutlet NSPanel *theNameWindow;
+    IBOutlet NSTableView *theTable;
     IBOutlet id editBtn;
     IBOutlet id defaultBtn;
     IBOutlet id deleteBtn;
@@ -58,7 +58,7 @@ enum /* display modes */
     IBOutlet id addBtn;
     IBOutlet id duplicateBtn;
     IBOutlet id okBtn;
-    IBOutlet id editingMenu;
+    IBOutlet NSPopUpButton *editingMenu;
     
     int currentDisplayMode;
     NSArray *currentArray;

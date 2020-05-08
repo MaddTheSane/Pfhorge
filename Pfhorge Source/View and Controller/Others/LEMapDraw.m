@@ -803,7 +803,7 @@ enum {
         theMapPoints = [currentLevel getThePoints];
     
     theMapLines = [currentLevel getTheLines];
-    //theMapObjects = [currentLevel getTheMapObjects];
+    //theMapObjects = [currentLevel theMapObjects];
     theMapPolys = [currentLevel getThePolys];
     
     //Set default NSBezier Stuff...
@@ -1051,7 +1051,7 @@ enum {
     //tmpColor1 = getArchColor(PhObjectBLineEnemyMonsterColor); // activateArchColor
     //tmpColor2 = getArchColor(PhObjectBLineItemColor); // activateArchColor
     
-    //numer = [[currentLevel getTheMapObjects] objectEnumerator];
+    //numer = [[currentLevel theMapObjects] objectEnumerator];
     
     [NSBezierPath setDefaultLineWidth:0];
     
@@ -2511,7 +2511,7 @@ enum {
     theMapPoints = [currentLevel getThePoints];
     thePolys = [currentLevel getThePolys];
     theLines = [currentLevel getTheLines];
-    theMapObjects = [currentLevel getTheMapObjects];
+    theMapObjects = [currentLevel theMapObjects];
 	
     // Make the current drawing mode nothing...
     currentDrawingMode = LEEDrawNothing;
@@ -5521,7 +5521,7 @@ enum {
             arrayTwo = [currentLevel layerPolys];
             break;
         case _goto_object:
-            arrayOne = [currentLevel getTheMapObjects];
+            arrayOne = [currentLevel theMapObjects];
             arrayTwo = [currentLevel layerMapObjects];
             break;
         case _goto_platform:

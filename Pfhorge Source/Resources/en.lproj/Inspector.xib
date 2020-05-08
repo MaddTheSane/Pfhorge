@@ -907,7 +907,7 @@
                             <tabViewItem label="Poly" identifier="2" id="616">
                                 <view key="view" id="617">
                                     <rect key="frame" x="10" y="7" width="207" height="95"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="623">
                                             <rect key="frame" x="8" y="9" width="69" height="17"/>
@@ -1310,7 +1310,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Line" identifier="1" id="962">
-                                <view key="view" ambiguous="YES" id="954">
+                                <view key="view" id="954">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1373,9 +1373,9 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Poly" identifier="2" id="949">
-                                <view key="view" id="964">
+                                <view key="view" ambiguous="YES" id="964">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1034">
                                             <rect key="frame" x="50" y="229" width="51" height="18"/>
@@ -1561,7 +1561,7 @@
                                                 <tabViewItem label="Menu" identifier="1" id="1420">
                                                     <view key="view" ambiguous="YES" id="1411">
                                                         <rect key="frame" x="0.0" y="0.0" width="188" height="20"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1414">
                                                                 <rect key="frame" x="-2" y="-1" width="181" height="22"/>
@@ -1969,7 +1969,7 @@
                             <tabViewItem label="Tab" id="1975">
                                 <view key="view" id="1976">
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="68"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2005">
                                             <rect key="frame" x="6" y="-3" width="54" height="46"/>
@@ -2025,7 +2025,7 @@
                             <tabViewItem label="Tab" id="1977">
                                 <view key="view" id="1978">
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="68"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2033">
                                             <rect key="frame" x="28" y="20" width="153" height="27"/>
@@ -2042,7 +2042,7 @@
                             <tabViewItem label="Tab" id="2000">
                                 <view key="view" id="2001">
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="68"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2034">
                                             <rect key="frame" x="28" y="20" width="153" height="27"/>
@@ -2062,11 +2062,21 @@
             </view>
             <point key="canvasLocation" x="139" y="-346"/>
         </window>
-        <menu title="Menu" autoenablesItems="NO" id="1924" userLabel="Lava"/>
-        <menu title="Menu" autoenablesItems="NO" id="1942" userLabel="Sewage"/>
-        <menu title="Menu" autoenablesItems="NO" id="1943" userLabel="Water"/>
-        <menu title="Menu" autoenablesItems="NO" id="1944" userLabel="Jjaro"/>
-        <menu title="Menu" autoenablesItems="NO" id="1945" userLabel="Pfhor"/>
+        <menu title="Menu" autoenablesItems="NO" id="1924" userLabel="Lava">
+            <point key="canvasLocation" x="139" y="152"/>
+        </menu>
+        <menu title="Menu" autoenablesItems="NO" id="1942" userLabel="Sewage">
+            <point key="canvasLocation" x="139" y="80"/>
+        </menu>
+        <menu title="Menu" autoenablesItems="NO" id="1943" userLabel="Water">
+            <point key="canvasLocation" x="40" y="152"/>
+        </menu>
+        <menu title="Menu" autoenablesItems="NO" id="1944" userLabel="Jjaro">
+            <point key="canvasLocation" x="40" y="80"/>
+        </menu>
+        <menu title="Menu" autoenablesItems="NO" id="1945" userLabel="Pfhor">
+            <point key="canvasLocation" x="139" y="8"/>
+        </menu>
         <customObject id="1946" userLabel="PhTextureInspectorController" customClass="PhTextureInspectorController">
             <connections>
                 <outlet property="ceilingMode" destination="2579" id="2620"/>

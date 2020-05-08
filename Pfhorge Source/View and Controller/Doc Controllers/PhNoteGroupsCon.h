@@ -8,13 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PhNoteGroup;
+@class PhNoteGroup, LELevelWindowController;
 
-@interface PhNoteGroupsCon : NSObject <NSTableViewDataSource>
+@interface PhNoteGroupsCon : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 {
-    IBOutlet id mainController;
+    IBOutlet LELevelWindowController *mainController;
     
-    IBOutlet id table;
+    IBOutlet NSTableView *table;
 }
 
 - (void)awake;

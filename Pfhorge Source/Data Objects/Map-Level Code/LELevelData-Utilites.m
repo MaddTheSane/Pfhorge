@@ -113,9 +113,9 @@
     [points addObjectsFromArray:[theLevelToImport getThePoints]];
     [lines addObjectsFromArray:[theLevelToImport getTheLines]];
     [polys addObjectsFromArray:[theLevelToImport getThePolys]];
-    [mapObjects addObjectsFromArray:[theLevelToImport getTheMapObjects]];
+    [mapObjects addObjectsFromArray:[theLevelToImport theMapObjects]];
     [lights addObjectsFromArray:[theLevelToImport getLights]];
-    [sides addObjectsFromArray:[theLevelToImport getSides]];
+    [sides addObjectsFromArray:[theLevelToImport sides]];
     [notes addObjectsFromArray:[theLevelToImport getNotes]];
     [media addObjectsFromArray:[theLevelToImport getMedia]];
     [ambientSounds addObjectsFromArray:[theLevelToImport getAmbientSounds]];
