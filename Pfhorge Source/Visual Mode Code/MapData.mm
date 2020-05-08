@@ -17,9 +17,7 @@ void PortalInfo::Update() {
 
 bool PortalInfo::IsValid() {
 
-	simd::float3 vertsum, plnsum;
-	for (int c=0; c<3; c++)
-		vertsum[c] = plnsum[c] = 0;
+	simd::float3 vertsum = simd_make_float3(0, 0, 0), plnsum = simd_make_float3(0, 0, 0);
 	
 	for (int iv=0; iv<NumPortalVertices; iv++) {
 		vertsum += PVList[iv].Vertex;
@@ -89,7 +87,7 @@ void PolygonInfo::FindMinMax() {
 	YMin = YMin = WInfoList[0].StartPoint.y;
 
 	for (int iw=0; iw<WInfoList.get_len(); iw++) {
-		WallInfo &WInfo = WInfoList[iw];
+		const WallInfo &WInfo = WInfoList[iw];
 		world_distance x = WInfo.StartPoint.x;
 		world_distance y = WInfo.StartPoint.y;
 		XMin = std::min(XMin,x);
@@ -110,9 +108,9 @@ bool PolygonInfo::IsInside(float x, float y, float z) {
 	if (z > CeilingHeight) return false;
 
 	for (int iw=0; iw<WInfoList.get_len(); iw++) {
-		WallInfo &WInfo = WInfoList[iw];
-		world_point2d &SP = WInfo.StartPoint;
-		world_point2d &ID = WInfo.InwardDir;
+		const WallInfo &WInfo = WInfoList[iw];
+		const world_point2d &SP = WInfo.StartPoint;
+		const world_point2d &ID = WInfo.InwardDir;
 		if (((x-SP.x)*ID.x + (y-SP.y)*ID.y) < 0) return false;
 	}
 	return true;

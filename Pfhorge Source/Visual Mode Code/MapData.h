@@ -54,7 +54,7 @@ struct SurfaceInfo {
 	
 	void Render(GLint Mode) {
 		glVertexPointer(3,GL_SHORT,sizeof(VertexInfo),&VInfoList[0].Vert);
-		glDrawArrays(Mode,0,VInfoList.get_len());
+		glDrawArrays(Mode,0,(GLsizei)VInfoList.get_len());
 	}
 	
 	// Default: invalid

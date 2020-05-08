@@ -344,6 +344,23 @@ void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool ri
 }
 
 
+// Adapted from GLKit's GLKMatrix4MakeLookAt
+static inline float4x4 matrix4MakeLookAt(float3 eye, float3 center, float3 up)
+{
+    float3 n = normalize(eye - center);
+    float3 u = normalize(cross(up, n));
+    float3 v = cross(n, u);
+	float4x4 m((float4){u.x, v.x, n.x, 0.0f},
+						  (float4){u.y, v.y, n.y, 0.0f},
+						  (float4){u.z, v.z, n.z, 0.0f},
+						  (float4){dot(-u, eye),
+		dot(-v, eye),
+		dot(-n, eye),
+		1.0f });
+    return m;
+}
+
+
 ///////////////////////////////// LOOK \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////   This updates the camera according to the 
@@ -352,6 +369,10 @@ void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool ri
 
 void CCamera::Look()
 {
+	//TODO: test this code!
+//	float4x4 lookMatrix = matrix4MakeLookAt(m_vPosition, m_vView, m_vUpVector);
+//	::glMultMatrixf((GLfloat*)&lookMatrix);
+//	glTranslatef(-m_vPosition.x, -m_vPosition.y, -m_vPosition.z);
     // Give openGL our camera position, then camera view, then camera up vector
     gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z,
               m_vView.x,     m_vView.y,     m_vView.z,  

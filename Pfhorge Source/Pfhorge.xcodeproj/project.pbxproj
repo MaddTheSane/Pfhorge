@@ -779,8 +779,8 @@
 				A5902CD2069F71AD00B4AB92 /* Init.cpp */,
 				A5902CB5069F718C00B4AB92 /* Camera.h */,
 				A5902CB4069F718C00B4AB92 /* Camera.mm */,
-				A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */,
 				A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */,
+				A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */,
 			);
 			path = MyOpenGL;
 			sourceTree = "<group>";
