@@ -47,7 +47,7 @@
 - (long)exportWithIndex:(NSMutableArray *)theIndex withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
     NSInteger theNumber = [theIndex indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+    int tmpLong = 0;
     //int i = 0;
     
     if (theNumber != NSNotFound)
@@ -55,7 +55,7 @@
         return theNumber;
     }
     
-    int myPosition = [theIndex count];
+    int myPosition = (int)[theIndex count];
     
     [theIndex addObject:self];
     
@@ -79,7 +79,7 @@
     
     if (polygonObject != nil && [mainObjs containsObject:polygonObject])
     {
-        ExportObjIndex(polygonObject, theIndex);
+        ExportObjIndex(polygonObject, (int)theIndex);
     }
     else
     {
@@ -89,8 +89,8 @@
     // *** End Exporting ***
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
-    [theData appendBytes:&tmpLong length:4];
+    tmpLong = (int)[myData length];
+	saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     
@@ -271,8 +271,8 @@
     //[self set32X:(x32 + theOffset.x)];
     //[self set32Y:(y32 + theOffset.y)];
 	
-	float fx = (theOffset.x * ((float)16));
-	float fy = (theOffset.y * ((float)16));
+	CGFloat fx = (theOffset.x * ((CGFloat)16));
+	CGFloat fy = (theOffset.y * ((CGFloat)16));
 	x += (short)(fx + .5);
 	y += (short)(fy + .5);
 	x32 = x / 16;

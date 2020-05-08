@@ -81,9 +81,11 @@ typedef NS_OPTIONS(unsigned short, PhTerminalSectionFace)
     PhTerminalSectionUnderline  = 0x04
 };
 
-enum { /* terminal grouping/section flags */
+/*! terminal grouping/section flags */
+typedef NS_OPTIONS(unsigned short, TerminalSectionFlags) {
     //! for drawing checkpoints, picts, movies.
     _draw_object_on_right= 0x01,
+	
     _center_object= 0x02
 };
 
@@ -135,14 +137,14 @@ typedef struct term_style {
 @interface TerminalSection : PhAbstractName <NSCoding>
 {
     NSMutableAttributedString *theText;
-    short flags;	/*!<	section flags, see above */
+    TerminalSectionFlags flags;	/*!<	section flags, see above */
     PhTerminalSectionType type;
     short permutation;
     short text_offset;	/*!<	offset to the first character in the text */
     short text_length;	/*!<	number of characters in the text */
     short lines;	/*!<	number of lines in the text. Absent in the preview (demo?) */
     
-    id	 permutationObject;
+    __weak id	 permutationObject;
     
     NSFont *regularFont;
     NSFont *boldFont;
@@ -164,11 +166,11 @@ typedef struct term_style {
 /*! meaning varies with type */
 @property short permutation;
 
-@property (assign) id permutationObject;
+@property (weak) id permutationObject;
 
 -(NSMutableAttributedString *)text;
 -(NSMutableAttributedString *)textPointer;
--(void)setText:(NSMutableAttributedString *)value;
+-(void)setText:(NSAttributedString *)value;
 
 -(void)appendMarathonToText:(NSMutableData *)theTextData toFonts:(NSMutableData *)theFontData toGroups:(NSMutableData *)theGroupData;
                                      

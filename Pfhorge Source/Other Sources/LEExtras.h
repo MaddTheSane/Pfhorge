@@ -59,16 +59,16 @@ extern unsigned eightBytesCount;*/
 
 // *** *** ***
 
-#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj getIndex]; } else { tmpLong = -1; } [myData appendBytes:&tmpLong length:4]
+#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj getIndex]; } else { tmpLong = -1; } saveIntToNSData(tmpLong, myData)
 #define ExportObjPos(obj) ExportObjPosIndex(obj, index)
-#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } [myData appendBytes:&tmpLong length:4]
+#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData(tmpLong, myData)
 #define ExportObj(obj) ExportObjIndex(obj, index)
 #define ExportNil() tmpLong = -1; [myData appendBytes:&tmpLong length:4]
 
-#define ExportShort(v) [myData appendBytes:&v length:2] 
-#define ExportLong(v) [myData appendBytes:&v length:4]
-#define ExportUnsignedShort(v) [myData appendBytes:&v length:2] 
-#define ExportUnsignedLong(v) [myData appendBytes:&v length:4]
+#define ExportShort(v) saveShortToNSData(v, myData)
+#define ExportLong(v) saveIntToNSData(v, myData)
+#define ExportUnsignedShort(v) saveShortToNSData(v, myData)
+#define ExportUnsignedLong(v) saveIntToNSData(v, myData)
 
 #define ExportTag(obj) { short tmpShort = [(obj) getSpecialIndex]; ExportShort(tmpShort); }
 
@@ -150,6 +150,7 @@ extern unsigned eightBytesCount;*/
 #define decodeObj(coder)			[[(coder) decodeObject] retain]*/
 #define decodeBOOL(coder)			((decodeNumInt(coder) == 1) ? YES : NO)
 
+#if __BIG_ENDIAN__
 #define encodeInt(coder, value)			[(coder) encodeBytes:&(value) length:fourBytesCount]
 #define encodeShort(coder, value)		[(coder) encodeBytes:&(value) length:twoBytesCount]
 #define encodeLong(coder, value)		[(coder) encodeBytes:&(value) length:fourBytesCount]
@@ -157,9 +158,53 @@ extern unsigned eightBytesCount;*/
 #define encodeDouble(coder, value)		[(coder) encodeBytes:&(value) length:eightBytesCount]
 #define encodeUnsignedLong(coder, value)	[(coder) encodeBytes:&(value) length:fourBytesCount]
 #define encodeUnsignedShort(coder, value)	[(coder) encodeBytes:&(value) length:twoBytesCount]
+#else
+static inline void encodeInt(NSCoder *coder, int value)
+{
+	value = CFSwapInt32BigToHost(value);
+	[coder encodeBytes:&(value) length:sizeof(int)];
+}
+static inline void encodeShort(NSCoder *coder, short value)
+{
+	value = CFSwapInt16BigToHost(value);
+	[coder encodeBytes:&(value) length:sizeof(short)];
+}
+#define encodeLong		encodeInt
+static inline void encodeFloat(NSCoder *coder, float value)
+{
+	union Swap {
+		float v;
+		uint32_t sv;
+	} result;
+	result.v = value;
+	result.sv = CFSwapInt32BigToHost(result.sv);
+	[coder encodeBytes:&(result.v) length:sizeof(float)];
+}
+static inline void encodeDouble(NSCoder *coder, double value)
+{
+	union Swap {
+		double v;
+		uint64_t sv;
+	} result;
+	result.v = value;
+	result.sv = CFSwapInt64BigToHost(result.sv);
+	[coder encodeBytes:&(result.v) length:sizeof(double)];
+}
+static inline void encodeUnsignedLong(NSCoder *coder, unsigned int value)
+{
+	value = CFSwapInt32BigToHost(value);
+	[coder encodeBytes:&(value) length:sizeof(int)];
+}
+static inline void encodeUnsignedShort(NSCoder *coder, unsigned short value)
+{
+	value = CFSwapInt16BigToHost(value);
+	[coder encodeBytes:&(value) length:sizeof(unsigned short)];
+}
+#endif
 #define encodeObj(coder, value)			[(coder) encodeObject:(value)]
 #define encodeConditionalObject(coder, value)	[(coder) encodeConditionalObject:(value)]
 
+#if __BIG_ENDIAN__
 #define decodeInt(coder)			(int)*(int *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeShort(coder)			*(short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount])
 #define decodeLong(coder)			*(long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
@@ -168,8 +213,62 @@ extern unsigned eightBytesCount;*/
 #define decodeUnsignedInt(coder)            (unsigned int)*(unsigned int*)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeUnsignedLong(coder)		*(unsigned long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeUnsignedShort(coder)		*(unsigned short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount])
+#else
+static inline int decodeInt(NSCoder *coder)
+{
+	NSUInteger fourBytesCount = 4;
+	int value = (int)*(int *)([coder decodeBytesWithReturnedLength:&fourBytesCount]);
+	return CFSwapInt32BigToHost(value);
+}
+static inline short decodeShort(NSCoder *coder)
+{
+	NSUInteger twoBytesCount = 2;
+	short value = *(short *)([coder decodeBytesWithReturnedLength:&twoBytesCount]);
+	return CFSwapInt16BigToHost(value);
+}
+#define decodeLong			decodeInt
+static inline float decodeFloat(NSCoder *coder)
+{
+	NSUInteger fourBytesCount = 4;
+	union Swap {
+		float v;
+		uint32_t sv;
+	} result;
+	result.sv = *(uint32_t *)([coder decodeBytesWithReturnedLength:&fourBytesCount]);
+	result.sv = CFSwapInt32BigToHost(result.sv);
+	return result.v;
+}
+static inline double decodeDouble(NSCoder *coder)
+{
+	NSUInteger eightBytesCount = 8;
+	union Swap {
+		double v;
+		uint64_t sv;
+	} result;
+	result.sv = *(uint64_t *)([coder decodeBytesWithReturnedLength:&eightBytesCount]);
+	result.sv = CFSwapInt64BigToHost(result.sv);
+	return result.v;
+}
+static inline unsigned int decodeUnsignedInt(NSCoder *coder)
+{
+	NSUInteger fourBytesCount = 4;;
+	unsigned int value = *(unsigned int*)([coder decodeBytesWithReturnedLength:&fourBytesCount]);
+	return CFSwapInt32BigToHost(value);
+}
+#define decodeUnsignedLong		decodeUnsignedInt
+static inline unsigned short decodeUnsignedShort(NSCoder *coder)
+{
+	NSUInteger twoBytesCount = 2;
+	unsigned short value = *(unsigned short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount]);
+	return CFSwapInt16BigToHost(value);
+}
+#endif
 #define decodeObj(coder)			[(coder) decodeObject] // used to be retained!!!
+#if __has_feature(objc_arc)
+#define decodeObjRetain(coder)			[(coder) decodeObject]
+#else
 #define decodeObjRetain(coder)			[[(coder) decodeObject] retain]
+#endif
 
 //encodeBytes:(const void *)address length:(unsigned)numBytes
 
@@ -201,6 +300,23 @@ static inline id unarchive(NSData *Obj) {
 //#define POLYGON_IS_DETACHED(p) ([p getFlag] & POLYGON_IS_DETACHED_BIT)
 //#define SET_POLYGON_DETACHED_STATE(p,v) ((v) ? [s setFlag:([s getFlag] | POLYGON_IS_DETACHED_BIT)] : [s setFlag:([s getFlag] & ~POLYGON_IS_DETACHED_BIT)])
 
+
+#define saveShortToNSData(_number, _y) {short hi = CFSwapInt16HostToBig(_number); [(_y) appendBytes:&hi length:2];}
+#define saveIntToNSData(_x, _y) {int hi = CFSwapInt32HostToBig(_x); [(_y) appendBytes:&hi length:4];}
+
+static inline short loadShortFromNSData(NSData *dat, NSInteger offset)
+{
+	short type;
+	[dat getBytes:&type range:NSMakeRange(offset, 2)];
+	return CFSwapInt16BigToHost(type);
+}
+
+static inline short loadIntFromNSData(NSData *dat, NSInteger offset)
+{
+	int type;
+	[dat getBytes:&type range:NSMakeRange(offset, 4)];
+	return CFSwapInt32BigToHost(type);
+}
 
 @interface NSObject (LEExtras)
 

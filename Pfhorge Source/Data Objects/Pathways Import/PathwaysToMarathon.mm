@@ -36,16 +36,16 @@ NSString *GetLevelName(PID_Level& PL)
 }
 
 
-// Addressing a sector
+//! Addressing a sector
 inline int SectorAddr(int x, int y)
 {return (x + PID_Level::NUMBER_X_SECTORS*y);}
 
-// Map positions
-// "Which" refers to how many fourths away from the plain (x,y) point;
-// a plain polygon has four points that are selections from pairs
-// XPos(x,0) XPos(x,4)
-// YPos(y,0) YPos(y,4)
-// const int WORLD_ONE = 1024;
+//! Map positions
+//! "Which" refers to how many fourths away from the plain (x,y) point;
+//! a plain polygon has four points that are selections from pairs
+//! XPos(x,0) XPos(x,4)
+//! YPos(y,0) YPos(y,4)
+//! const int WORLD_ONE = 1024;
 inline int XPos(int x, int which)
 {return ((x - PID_Level::NUMBER_X_SECTORS/2)*WORLD_ONE + which*(WORLD_ONE/4));}
 inline int YPos(int y, int which)
@@ -68,7 +68,7 @@ enum
 };
 
 struct PointDef {
-    short wx, wy;	// Where in sector
+    short wx, wy;	//!< Where in sector
 };
 
 static const PointDef PtDefs[NumPointDefs] = {
@@ -112,12 +112,12 @@ enum {
 };
 
 struct LnPtDef {
-    short x, y;	// Which sector offset
-    short w;	// Which sort of point or line (from appropriate enum)
+    short x, y;	//!< Which sector offset
+    short w;	//!< Which sort of point or line (from appropriate enum)
 };
 
 struct LineDef {
-    LnPtDef p0, p1; // The two endpoints
+    LnPtDef p0, p1; //!< The two endpoints
 };
 
 const LineDef LnDefs[NumLineDefs] = {
@@ -166,7 +166,7 @@ enum {
     NumPolygonDefs
 };
 
-// All of them defined here are either quads or triangles
+//! All of them defined here are either quads or triangles
 struct PolygonDef {
     int N;
     LnPtDef Pts[4], Lns[4];
@@ -232,12 +232,12 @@ const PolygonDef PgDefs[NumPolygonDefs] = {
 };
 
 
-// For the polygons at the bevels of the void sectors
+//! For the polygons at the bevels of the void sectors
 struct BevelDef
 {
-    short x, y;		// Neighbor offset
-    short c, nc;	// Corner line of the sector and its neighbor
-    short p;		// Type of bevel polygon to add
+    short x, y;		//!< Neighbor offset
+    short c, nc;	//!< Corner line of the sector and its neighbor
+    short p;		//!< Type of bevel polygon to add
 };
 
 const int NumBevelDefs = 4;
@@ -248,18 +248,18 @@ const BevelDef BvDefs[NumBevelDefs] = {
     { 1,  1, PID_Sector::Corner_HighX_HighY, PID_Sector::Corner_LowX_LowY,   Pg_XNear_YNear}
 };
 
-// For the sides of each of the sectors that become plain polygons
+//! For the sides of each of the sectors that become plain polygons
 struct SideDef {
-    short x, y;		// Offset to get side from
-    short dir;		// Traversal direction when loading edges
-    short wall;		// Which one to look at
-    short full, lomid, midhi, lo, mid, hi;	// All the possible side segments
-    short crnr_lo_src, crnr_hi_src;		// Corners: low and high sources
-    short crnr_lo_dst, crnr_hi_dst;		// Corners: low and high dests
+    short x, y;		//!< Offset to get side from
+    short dir;		//!< Traversal direction when loading edges
+    short wall;		//!< Which one to look at
+    short full, lomid, midhi, lo, mid, hi;	//!< All the possible side segments
+    short crnr_lo_src, crnr_hi_src;		//!< Corners: low and high sources
+    short crnr_lo_dst, crnr_hi_dst;		//!< Corners: low and high dests
 };
 
-// In clockwise order!
-// Note, the full src is really which wall to look at rather than the wall type
+//! In clockwise order!
+//! Note, the full src is really which wall to look at rather than the wall type
 const int NumSideDefs = 4;
 const SideDef SdDefs[NumSideDefs] = {
     {0, 0,  1, PID_Sector::Wall_Y,
@@ -281,11 +281,11 @@ const SideDef SdDefs[NumSideDefs] = {
 };
 
 
-// Are two point/line defs equal?
+//! Are two point/line defs equal?
 bool Equal(LnPtDef& D1, LnPtDef& D2)
 {return (D1.x == D2.x && D1.y == D2.y && D1.w == D2.w);}
 
-// Do two lines share a point?
+//! Do two lines share a point?
 bool SharedPoint(LineDef& L1, LineDef& L2, LnPtDef& P)
 {
     if(Equal(L1.p0,L2.p0))
@@ -323,15 +323,15 @@ public:
     
     void MakePoint(int i) {if (!Points[i]) {Points[i] = [[LEMapPoint alloc] init];}}
     LEMapPoint *GetPoint(int i) {return Points[i];}
-    void RemovePoint(int i) {if (Points[i]) {[Points[i] release]; Points[i] = nil;}}
+    void RemovePoint(int i) {if (Points[i]) {Points[i] = nil;}}
     
     void MakeLine(int i) {if (!Lines[i]) {Lines[i] = [[LELine alloc] init];}}
     LELine *GetLine(int i) {return Lines[i];}
-    void RemoveLine(int i) {if (Lines[i]) {[Lines[i] release]; Lines[i] = nil;}}
+    void RemoveLine(int i) {if (Lines[i]) {Lines[i] = nil;}}
    
     void MakePolygon(int i) {if (!Polygons[i]) {Polygons[i] = [[LEPolygon alloc] init];}}
     LEPolygon *GetPolygon(int i) {return Polygons[i];}
-    void RemovePolygon(int i) {if (Polygons[i]) {[Polygons[i] release]; Polygons[i] = nil;}}
+    void RemovePolygon(int i) {if (Polygons[i]) {Polygons[i] = nil;}}
     
     // This stuff is for the plain polygons only
     void ResetEdges() {NumEdges = 0;}
@@ -355,11 +355,9 @@ SectorObjects::SectorObjects()
 
 SectorObjects::~SectorObjects()
 {
-    for (int k=0; k<NumPointDefs; k++) [Points[k] release];
-    for (int k=0; k<NumLineDefs; k++) [Lines[k] release];
-    for (int k=0; k<NumPolygonDefs; k++) [Polygons[k] release];
-    
-    [NTxt release];
+    for (int k=0; k<NumPointDefs; k++) Points[k] = nil;
+    for (int k=0; k<NumLineDefs; k++) Lines[k] = nil;
+    for (int k=0; k<NumPolygonDefs; k++) Polygons[k] = nil;
 }
 
 // Offsets and the line type; returns whether it could be added
@@ -428,8 +426,8 @@ static void AddFrame(LELevelData *level)
    
     for (int k=0; k<NumFramePoints; k++)
     {
-        [Pts[k] release];
-        [Lns[k] release];
+        Pts[k] = nil;
+        Lns[k] = nil;
     }
 }
 

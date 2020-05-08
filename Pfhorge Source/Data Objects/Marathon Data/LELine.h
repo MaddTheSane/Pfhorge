@@ -33,12 +33,14 @@ enum {
     _parmanent_no_sides
 };
 
-#define SOLID_LINE_BIT 0x4000
-#define TRANSPARENT_LINE_BIT 0x2000
-#define LANDSCAPE_LINE_BIT 0x1000
-#define ELEVATION_LINE_BIT 0x800
-#define VARIABLE_ELEVATION_LINE_BIT 0x400
-#define LINE_HAS_TRANSPARENT_SIDE_BIT 0x200
+typedef NS_OPTIONS(unsigned short, LELineFlags) {
+	SOLID_LINE_BIT = 0x4000,
+	TRANSPARENT_LINE_BIT = 0x2000,
+	LANDSCAPE_LINE_BIT = 0x1000,
+	ELEVATION_LINE_BIT = 0x800,
+	VARIABLE_ELEVATION_LINE_BIT = 0x400,
+	LINE_HAS_TRANSPARENT_SIDE_BIT = 0x200
+};
 
 @class LEMapPoint, LEPolygon, LESide, PhPlatform, NSBezierPath;
 
@@ -46,7 +48,7 @@ enum {
 {
     short p1, p2;
     LEMapPoint *mapPoint1, *mapPoint2;
-    unsigned short flags; /* no permutation field */
+    LELineFlags flags; /* no permutation field */
     short _Length;
     short _Angle;
     short _Azimuth;
@@ -101,7 +103,7 @@ enum {
 - (LEMapPoint *)getMapPoint1;
 - (LEMapPoint *)getMapPoint2;
 
-- (unsigned short)getFlags;
+- (LELineFlags)getFlags;
 
 - (short)getLength;
 
@@ -136,7 +138,7 @@ enum {
 - (void)setMapPoint1:(LEMapPoint *)s;
 - (void)setMapPoint2:(LEMapPoint *)s;
 - (void)setMapPoint1:(LEMapPoint *)s1 mapPoint2:(LEMapPoint *)s2;
-- (void)setFlags:(unsigned short)us;
+- (void)setFlags:(LELineFlags)us;
 - (void)setLength:(short)s;
 - (void)setAngle:(short)s;		// 0-512 Marathon units from p1 to p2
 - (void)setAzimuth:(short)s;		// Degrees clockwise from vertical, p1 to p2

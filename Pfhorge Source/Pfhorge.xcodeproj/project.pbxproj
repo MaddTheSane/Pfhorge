@@ -182,8 +182,8 @@
 		AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */ = {isa = PBXBuildFile; fileRef = F532393101AF836201A8A806 /* PhAbstractName.m */; };
-		AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; };
-		AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; };
+		AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157C0A04512100FBFFCD /* TerminalEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F520388D024156C10146BBD2 /* TerminalEditorController.m */; };
 		AE3C157D0A04512100FBFFCD /* bitmap-decode.c in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5D02824AA40146BBD2 /* bitmap-decode.c */; };
 		AE3C157E0A04512100FBFFCD /* extractbitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5F02824AA40146BBD2 /* extractbitmap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -207,9 +207,9 @@
 		AE3C15900A04512100FBFFCD /* LELevelData-Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */; };
 		AE3C15910A04512100FBFFCD /* PhData.m in Sources */ = {isa = PBXBuildFile; fileRef = A597FC2D045763B20046BBD2 /* PhData.m */; };
 		AE3C15920A04512100FBFFCD /* PathwaysDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */; };
-		AE3C15930A04512100FBFFCD /* PathwaysExchange.mm in Sources */ = {isa = PBXBuildFile; fileRef = A59437B504B018070046BBD2 /* PathwaysExchange.mm */; };
+		AE3C15930A04512100FBFFCD /* PathwaysExchange.mm in Sources */ = {isa = PBXBuildFile; fileRef = A59437B504B018070046BBD2 /* PathwaysExchange.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15940A04512100FBFFCD /* crc.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CE3C7304B265440046BBD2 /* crc.m */; };
-		AE3C15950A04512100FBFFCD /* PathwaysToMarathon.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */; };
+		AE3C15950A04512100FBFFCD /* PathwaysToMarathon.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA84379004BA61CF00F0A839 /* PathwaysToMarathon.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15960A04512100FBFFCD /* trigTables.c in Sources */ = {isa = PBXBuildFile; fileRef = A5CBB2CC04D630590046BBD2 /* trigTables.c */; };
 		AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */; };
 		AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
@@ -384,9 +384,9 @@
 		F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InfoWindowCommander.h; sourceTree = "<group>"; };
 		F52AB18B01CA949A01A8A806 /* InfoWindowCommander.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InfoWindowCommander.m; sourceTree = "<group>"; };
 		F52BE6F7023C39CB0146BBD2 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
+		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; usesTabs = 0; };
 		F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalSection.h; sourceTree = "<group>"; };
-		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSection.m; sourceTree = "<group>"; };
+		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSection.m; sourceTree = "<group>"; usesTabs = 0; };
 		F52E215801D03C100146BBD2 /* PhLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLayer.h; sourceTree = "<group>"; };
 		F52E215901D03C110146BBD2 /* PhLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLayer.m; sourceTree = "<group>"; };
 		F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefaultLayerController.h; sourceTree = "<group>"; };
@@ -609,17 +609,8 @@
 				F50087930347B9630146BBD2 /* Pfhorge Read Me.rtf */,
 				F50087970347BA3A0146BBD2 /* Source Note.txt */,
 				F50087950347B9670146BBD2 /* GPL.rtf */,
-				00FD589900EC04447F000001 /* Data Objects */,
-				2A37F4ABFDCFA73011CA2CEA /* View and Controller */,
-				F531483501CAFB8401A8A806 /* Edit Windows */,
-				00D45359014465D17F000001 /* Prefs */,
-				F53CCE120228BE860146BBD2 /* Visual Mode Code */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
-				F534C02D021DDA5F0146BBD2 /* AppleScript Sources */,
-				F500878E0347B88B0146BBD2 /* Shapes Decoder */,
-				F500878F0347B8F80146BBD2 /* Plugin Files */,
+				55CF278F246502E2005C4087 /* Source Code */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
-				55D6BB8A245B93D5003FC04C /* Legacy/Unused */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				AE3C15BB0A04512100FBFFCD /* Info-Pfhorge__Upgraded_.plist */,
@@ -723,6 +714,23 @@
 				F521C1C302BBE0CA0146BBD2 /* Carbon.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55CF278F246502E2005C4087 /* Source Code */ = {
+			isa = PBXGroup;
+			children = (
+				00FD589900EC04447F000001 /* Data Objects */,
+				2A37F4ABFDCFA73011CA2CEA /* View and Controller */,
+				F531483501CAFB8401A8A806 /* Edit Windows */,
+				00D45359014465D17F000001 /* Prefs */,
+				F53CCE120228BE860146BBD2 /* Visual Mode Code */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				F534C02D021DDA5F0146BBD2 /* AppleScript Sources */,
+				F500878E0347B88B0146BBD2 /* Shapes Decoder */,
+				F500878F0347B8F80146BBD2 /* Plugin Files */,
+				55D6BB8A245B93D5003FC04C /* Legacy/Unused */,
+			);
+			name = "Source Code";
 			sourceTree = "<group>";
 		};
 		55D6BB8A245B93D5003FC04C /* Legacy/Unused */ = {

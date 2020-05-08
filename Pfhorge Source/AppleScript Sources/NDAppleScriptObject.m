@@ -952,8 +952,9 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 	//TODO: trim last byte if \0.
 	NSString *theText = ( theTextData == nil ) ? nil : [[NSString alloc] initWithData:theTextData encoding:NSMacOSRomanStringEncoding];
 	return theText;
+}
 
-}@end
+@end
 
 @implementation NSArray (NDAEDescCreation)
 

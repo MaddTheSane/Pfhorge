@@ -83,18 +83,6 @@
 #pragma mark -
 #pragma mark ********* Dealloc/Init Methods *********
 
--(void)dealloc
-{
-    [regularFont release];
-    regularFont = nil;
-    [boldFont release];
-    boldFont = nil;
-    
-    [theText release];
-    
-    [super dealloc];
-}
-
 -(id)init
 {
     self = [super init];
@@ -130,7 +118,7 @@
          withText:(NSData *)textData
         withLevel:(LELevelData *)levelDataObj
 {
-    int fontLength = [fontData length];
+    int fontLength = (int)[fontData length];
     int newTextLength = 0;
     int i = 0;
     NSMutableParagraphStyle *theParagraphStyle; /* = [[NSMutableParagraphStyle alloc] init]; */
@@ -151,8 +139,8 @@
     
     [levelDataObj setUpArrayPointersFor:self];
     
-    regularFont = [[NSFont fontWithName:@"Courier" size:12.0] retain];
-    boldFont = [[NSFont fontWithName:@"Courier-Bold" size:12.0] retain];
+    regularFont = [NSFont fontWithName:@"Courier" size:12.0];
+    boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
     
     /* [theParagraphStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]]; */
     
@@ -161,18 +149,18 @@
     if (self == nil)
         return nil;
     
-    [data getBytes:&flags range:NSMakeRange(0, 2)];
+    flags = loadShortFromNSData(data, 0);
     // / NSLog(@"   term section flags: %d", flags);
-    [data getBytes:&type range:NSMakeRange(2, 2)];
+    type = loadShortFromNSData(data, 2);
     [self setNameAndReturnStyleFromType];
     // / NSLog(@"   term section type: %d   type name: %@", type, [self getPhName]);
-    [data getBytes:&permutation range:NSMakeRange(4, 2)];
+    permutation = loadShortFromNSData(data, 4);
     // / NSLog(@"   term section permutation: %d", permutation);
-    [data getBytes:&text_offset range:NSMakeRange(6, 2)];
+    text_offset = loadShortFromNSData(data, 6);
     // / NSLog(@"   term section text_offset: %d", text_offset);
-    [data getBytes:&text_length range:NSMakeRange(8, 2)];
+    text_length = loadShortFromNSData(data, 8);
     // / NSLog(@"   term section text_length: %d", text_length);
-    [data getBytes:&lines range:NSMakeRange(10, 2)];
+    lines = loadShortFromNSData(data, 10);
     // / NSLog(@"   term section lines: %d", lines);
     
     
@@ -211,12 +199,12 @@
         if (NSLocationInRange(theCurrentFont.offset, theTextRange))
         {
             NSColor *theTextColor = nil;
-            long    theFontAtributeMast = 0;
-            int underlineValue = 0;
+            NSFontTraitMask    theFontAtributeMast = 0;
+            NSUnderlineStyle	underlineValue = NSUnderlineStyleNone;
             NSFont *theFontToUse = nil;
             NSString *italicValue = @"NO";
             NSString *boldValue = @"NO";
-            NSNumber *colorValue = [NSNumber numberWithInt:((int)theCurrentFont.color)];
+            NSNumber *colorValue = @(theCurrentFont.color);
             /*
                 0=green, 1=white, 2=red, 3=dim green,
                 4=cyan, 5=yellow, 6=dim red, 7=blue.
@@ -269,7 +257,7 @@
                 boldValue = @"YES";
             }
             if (theCurrentFont.face & PhTerminalSectionUnderline)
-                underlineValue = 1;
+                underlineValue = NSUnderlineStyleSingle;
             
             [theText setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                     
@@ -288,7 +276,7 @@
                     colorValue,
                     @"PhColorTerminalAttribute",
                     
-                    [NSNumber numberWithInt:underlineValue],
+                    @(underlineValue),
                     NSUnderlineStyleAttributeName,
                     
                     theParagraphStyle,
@@ -393,7 +381,7 @@
             break;
     }
     
-    return [theParagraphStyle autorelease];
+    return theParagraphStyle;
 }
 
 // **************************  Accsessor Methods  *************************
@@ -426,12 +414,12 @@
 @synthesize permutation;
 @synthesize permutationObject;
 
--(NSMutableAttributedString *)text { return [[theText copy] autorelease]; }
+-(NSMutableAttributedString *)text { return [theText copy]; }
 -(NSMutableAttributedString *)textPointer { return theText; }
--(void)setText:(NSMutableAttributedString *)value { [theText setAttributedString:value]; }
+-(void)setText:(NSAttributedString *)value { [theText setAttributedString:value]; }
 
 -(void)appendMarathonToText:(NSMutableData *)theTextData toFonts:(NSMutableData *)theFontData toGroups:(NSMutableData *)theGroupData
- {
+{
     NSString *theTextAsString;
     term_section theSection;
     term_style theStyle;
@@ -446,7 +434,7 @@
     else
         theSection.permutation = [permutationObject getIndex];
     
-    baseOffsetOfText = [theTextData length];
+    baseOffsetOfText = (int)[theTextData length];
     
     // These Three Are Cacutalted Dynamicaly
     // And Only If There Is Any Text...
@@ -508,7 +496,7 @@
             if ([underlineValue isEqualTo:numberWithOne])
                 theStyle.face |= PhTerminalSectionUnderline;
             
-            theStyle.color = ((short)[colorValue intValue]);
+            theStyle.color = [colorValue shortValue];
             
             // / NSLog(@"color:   %d", theStyle.color);
             // / NSLog(@"face:    %d", theStyle.face);
@@ -516,9 +504,9 @@
             
             ///[theFontData appendBytes:&theStyle length:6];
             
-            [theFontData appendBytes:&(theStyle.offset) length:2];
-            [theFontData appendBytes:&(theStyle.face) length:2];
-            [theFontData appendBytes:&(theStyle.color) length:2];
+			saveShortToNSData(theStyle.offset, theFontData);
+			saveShortToNSData(theStyle.face, theFontData);
+			saveShortToNSData(theStyle.color, theFontData);
         
             limitRange = NSMakeRange(NSMaxRange(effectiveRange),
             NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
@@ -532,15 +520,15 @@
         [theTextData appendBytes:&zeronullchar length:1];
     }
     
-    [theGroupData appendBytes:&(theSection.flags) length:2];
-    [theGroupData appendBytes:&(theSection.type) length:2];
-    [theGroupData appendBytes:&(theSection.permutation) length:2];
-    [theGroupData appendBytes:&(theSection.text_offset) length:2];
-    [theGroupData appendBytes:&(theSection.text_length) length:2];
-    [theGroupData appendBytes:&(theSection.lines) length:2];
+    saveShortToNSData(theSection.flags, theGroupData);
+    saveShortToNSData(theSection.type, theGroupData);
+    saveShortToNSData(theSection.permutation, theGroupData);
+    saveShortToNSData(theSection.text_offset, theGroupData);
+    saveShortToNSData(theSection.text_length, theGroupData);
+    saveShortToNSData(theSection.lines, theGroupData);
     
     ///[theGroupData appendBytes:&theSection length:6];
- }
+}
 
 @end
 

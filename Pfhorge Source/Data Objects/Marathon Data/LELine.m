@@ -830,7 +830,7 @@
 -(short) getP2 { return  (mapPoint2 == nil) ? -1 : [mapPoint2 getIndex]; }
 -(LEMapPoint *) getMapPoint1 { return mapPoint1; }
 -(LEMapPoint *) getMapPoint2 { return mapPoint2; }
--(unsigned short) getFlags { return flags; }
+-(LELineFlags) getFlags { return flags; }
 
 - (BOOL)getPermanentSetting:(int)settingToSet
 {
@@ -948,7 +948,7 @@
     [self recalc];
 }
 
--(void)setFlags:(unsigned short)v
+-(void)setFlags:(LELineFlags)v
 {
     flags = v;
     

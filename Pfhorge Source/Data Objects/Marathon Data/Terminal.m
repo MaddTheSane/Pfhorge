@@ -88,7 +88,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
 
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
+{
     NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
     int tmpLong = 0;
     //int i = 0;
@@ -113,14 +113,11 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     
     // *** *** **** Splice Data Together *** *** ***
     tmpLong = (int)[myData length];
-    [theData appendBytes:&tmpLong length:4];
+    saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     
     //NSLog(@"Exporting Line: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
-    
-    [myData release];
-    [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
@@ -230,14 +227,14 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     
     // *** Load The Terminal Data ***
     
-    [data getBytes:&length range:NSMakeRange(0, 2)];
+    length = loadShortFromNSData(data, 0);
     // / NSLog(@"term %d  length: %d", theTerminalNumber, length);
-    [data getBytes:&flags range:NSMakeRange(2, 2)];
+    flags = loadShortFromNSData(data, 2);
     // / NSLog(@"term %d  flags: %d", theTerminalNumber, flags);
-    [data getBytes:&lines_per_page range:NSMakeRange(4, 2)];
+    lines_per_page = loadShortFromNSData(data, 4);
     // / NSLog(@"term %d  lines_per_page: %d", theTerminalNumber, lines_per_page);
-    [data getBytes:&grouping_count range:NSMakeRange(6, 2)];
-    [data getBytes:&font_changes_count range:NSMakeRange(8, 2)];
+    grouping_count = loadShortFromNSData(data, 6);
+    font_changes_count = loadShortFromNSData(data, 8);
     
     lineCount = lines_per_page;
     
@@ -295,14 +292,11 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     NSMutableData *terminalText = [[NSMutableData alloc] initWithCapacity:0];
     NSMutableData *terminalFonts = [[NSMutableData alloc] initWithCapacity:0];
     NSMutableData *terminalGroups = [[NSMutableData alloc] initWithCapacity:0];
-    NSEnumerator *numer;
-    TerminalSection *terminalSection;
     term_head theTerminalHeader;
     
     // / NSLog(@"theSections count: %d", [theSections count]);
     
-    numer = [theSections objectEnumerator];
-    while (terminalSection = [numer nextObject])
+    for (TerminalSection *terminalSection in theSections)
         [terminalSection appendMarathonToText:terminalText toFonts:terminalFonts toGroups:terminalGroups];
     
     theTerminalHeader.size = ([terminalText length] + [terminalFonts length] + [terminalGroups length] + 10);
@@ -311,11 +305,11 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     theTerminalHeader.section_count = [theSections count];
     theTerminalHeader.style_count = ([terminalFonts length] / 6);
         
-    [terminalData appendBytes:&(theTerminalHeader.size) length:2];
-    [terminalData appendBytes:&(theTerminalHeader.flags) length:2];
-    [terminalData appendBytes:&(theTerminalHeader.line_count) length:2];
-    [terminalData appendBytes:&(theTerminalHeader.section_count) length:2];
-    [terminalData appendBytes:&(theTerminalHeader.style_count) length:2];
+	saveShortToNSData(theTerminalHeader.size, terminalData);
+	saveShortToNSData(theTerminalHeader.flags, terminalData);
+	saveShortToNSData(theTerminalHeader.line_count, terminalData);
+	saveShortToNSData(theTerminalHeader.section_count, terminalData);
+	saveShortToNSData(theTerminalHeader.style_count, terminalData);
     
     convertLFtoCR(terminalText);
     
@@ -323,11 +317,7 @@ void convertLFtoCR(NSMutableData *theRawTextData)
     [terminalData appendData:terminalFonts];
     [terminalData appendData:terminalText];
     
-    [terminalGroups release];
-    [terminalFonts release];
-    [terminalText release];
-    
-    return [terminalData autorelease];
+    return [terminalData copy];
 }
 
 -(short)getIndex { return [theTerminalsST indexOfObjectIdenticalTo:self]; }

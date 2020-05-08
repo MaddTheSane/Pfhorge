@@ -24,7 +24,7 @@
     // NOTE: Check for (exchange == nil)
     PathwaysExchange *exchange = [[PathwaysExchange alloc] initWithData:theData resourceData:dpin128Data];
     long numberOfLevels = [exchange levelCount];
-    NSMutableArray *theLevelNames = [exchange levelNames];
+    NSArray *theLevelNames = [exchange levelNames];
     int i = 0;
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
@@ -84,16 +84,12 @@
         [entireMapData appendData:theLevelMapData];
         
         [theArchivedLevels addObject:entireMapData];
-        [theLevelNamesEXP addObject:[[[theLevelNames objectAtIndex:(i - 1)] copy] autorelease]];
-        
-        [entireMapData release];
+        [theLevelNamesEXP addObject:[[theLevelNames objectAtIndex:(i - 1)] copy]];
         
         //[currentLevel release]; Not Nessary, sinced it is autoreleased...
         
         [progress increaseProgressBy:1.0];
     }
-    
-    [exchange release];
     
     return YES;
 }
@@ -135,7 +131,6 @@
         NSLog(@"Bad PID map-data file: remainder of %d bytes", rem);
         
         // No reason to stay allocated, release self and return nil...
-        [self autorelease];
         return nil;
     }
     
@@ -149,16 +144,6 @@
 	}
 	
 	return self;
-}
-
-- (void)dealloc
-{
-    // If the objects are nil,
-    // then these messages will be ignored...
-    [data release];
-    [dpinData release];
-    
-    [super dealloc];
 }
 
 - (int)levelCount
@@ -191,7 +176,7 @@
         }
     }
     
-    return [names autorelease];
+    return [names copy];
 }
 
 - (LELevelData *)getPIDLevel:(int)levNum
@@ -216,7 +201,7 @@
         level = PathwaysToMarathon(PL,BlankState);
     }
     
-    return [level autorelease];
+    return level;
 }
 
 @end
