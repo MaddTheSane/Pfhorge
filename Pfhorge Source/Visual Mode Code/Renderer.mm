@@ -4,12 +4,11 @@
 #include "Vector3D.h"
 
 
-// Set current OpenGL color to swatch contents
+//! Set current OpenGL color to swatch contents
 inline void SetOGLColor(RGBColor& Swatch) {glColor3usv((GLushort *)&Swatch);}
 
 
-// This object contains a screen pattern to use with glPolygonStipple() for implementing semitransparency
-
+//! This object contains a screen pattern to use with glPolygonStipple() for implementing semitransparency
 class ScreenPatternObject
 {
     unsigned long Pattern[32];
@@ -78,7 +77,7 @@ void MapManager::FindOtherPolygon(int Dir) {
 				return;
 			}
 		}
-		for (int ip=PInfoList.get_len()-1; ip>VC.MemberOf; ip--) {
+		for (long ip=PInfoList.get_len()-1; ip>VC.MemberOf; ip--) {
 			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
 				VC.MemberOf = ip;
 				return;
@@ -589,11 +588,11 @@ void MapManager::DoRender(int RenderMode, bool DoDoubleSided) {
 		return;	// Don't render if none of these
 	}
 	
-	int VisLen = VisList.get_len();
+	long VisLen = VisList.get_len();
 	for (int ipi=0; ipi<VisLen; ipi++) {
 		// Scan the VisList to find out what to render;
 		// render in reverse order if desired
-		int ipix = MP.ReverseOrderCB ? ((VisLen-1) - ipi) : ipi;
+		long ipix = MP.ReverseOrderCB ? ((VisLen-1) - ipi) : ipi;
 		short ip = VisList[ipix];
 		if (ip < 0) continue;
 		
@@ -603,7 +602,7 @@ void MapManager::DoRender(int RenderMode, bool DoDoubleSided) {
 		// don't clip for room that the viewpoint is a member of.
 		// If so, then render as many times as there are portals.
 		// Otherwise, render only once. 
-		int npt = 1;
+		long npt = 1;
 		bool InContainingRoom = (ip == VC.MemberOf);
 		bool ClipToPortalHere = ClipToPortals && (!InContainingRoom);
 		// Need to check every wall for portals if portal clipping is enabled

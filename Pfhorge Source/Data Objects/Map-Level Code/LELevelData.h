@@ -36,8 +36,8 @@
 #define GET_ENTRY_FLAG(b) (entry_point_flags & (b))
 #define SET_ENTRY_FLAG(b, v) ((v) ? (entry_point_flags |= (b)) : (entry_point_flags &= ~(b)))
 
-enum/* export name types... */
-{
+/*! export name types... */
+typedef NS_ENUM(short, _data_name_export) {
     _data_has_no_name,
     _data_has_regular_name,
     _data_has_custom_name
@@ -49,8 +49,8 @@ enum/* export data primary, secondary, etc... */
     _data_is_secondary
 };
 
-enum /* export data types */
-{
+/*! export data types */
+typedef NS_ENUM(short, _data_type_export) {
 	_data_is_polygon,
 	_data_is_line,
 	_data_is_object,
@@ -238,16 +238,16 @@ enum {
 -(void)setUpArrayNamesForEveryObject;
 
 // **************  Coding/Copy Protocal Methods  *************
--(void) encodeWithCoder:(NSCoder *)coder;
--(id)initWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder;
 
--(LELevelData *)initForNewPathwaysPIDLevel;
--(LELevelData *)initAndGenerateNewLevelObjects;
+- (instancetype)initForNewPathwaysPIDLevel;
+- (instancetype)initAndGenerateNewLevelObjects;
 
--(void)setupDefaultObjects;
+- (void)setupDefaultObjects;
 
-- (NSData *)exportObjects:(NSSet *)objects;
-- (NSSet *)importObjects:(NSData *)theData;
+- (NSData *)exportObjects:(NSSet<__kindof LEMapStuffParent*> *)objects;
+- (NSSet<__kindof LEMapStuffParent*> *)importObjects:(NSData *)theData;
 
 // ***************** Level Information Accessors  ****************
 
@@ -459,7 +459,7 @@ enum {
 @property (nonatomic, getter=isGameTypeDefense) BOOL gameTypeDefense;
 @property (nonatomic, getter=isGameTypeRugby) BOOL gameTypeRugby;
 
-// These are methods that we probably wouldn't bother with if we weren't scriptable.
+//! These are methods that we probably wouldn't bother with if we weren't scriptable.
 - (NSScriptObjectSpecifier *)objectSpecifier;
 
 @end

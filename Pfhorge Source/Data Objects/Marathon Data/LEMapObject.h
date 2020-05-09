@@ -41,6 +41,7 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 {
 	//! initially invisible
 	_map_object_is_invisible = 0x0001,
+	
 	_map_object_is_platform_sound = 0x0001,
 	//! used for calculating absolute .z coordinate
 	_map_object_hanging_from_ceiling = 0x0002,

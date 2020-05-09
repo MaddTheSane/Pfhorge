@@ -12,7 +12,7 @@
 
 @interface PhData : NSObject {
     NSData *theData;
-    long position;
+    NSInteger position;
 }
 
 - (id)initWithSomeData:(NSData *)value;
@@ -24,7 +24,7 @@
 - (BOOL)skipObj;
 - (BOOL)skipLengthLong;
 
--(NSData *)getSubDataLength:(long)theLength;
+-(NSData *)getSubDataLength:(NSInteger)theLength;
 
 - (byte)getByte;
 - (short)getShort;

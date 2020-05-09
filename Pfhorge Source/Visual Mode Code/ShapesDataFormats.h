@@ -57,7 +57,7 @@ enum {
 	NUMBER_OF_SHAPES_SUBCOLLECTIONS
 };
 
-// Directory base and step
+//! Directory base and step
 const int ShapesDirectory_Base = 4;
 const int ShapesDirectory_Step = 32;
 
@@ -70,7 +70,7 @@ struct ShapesSubdirEntry {
 	int Offset;
 	int Size;
 	
-	// Convenient C++ methods
+	//! Convenient C++ methods
 	bool Exists() {return ((Offset >= 0) && (Size > 0));}
 	ShapesSubdirEntry() {Offset = -1; Size = 0;}
 };
@@ -95,23 +95,21 @@ typedef int _fixed;
 // End of a lot of LP stuff
 
 
-enum /* shapes classes */
+/*! shapes classes */
+typedef CF_ENUM(short, shapes_header_class)
 {
+   //! not used
    _shapeUnused,
+   //! usually 128x128 pixels, but not always
    _shapeTexture, /* RAW */
+   //! all monsters, guns, objects...
    _shapeSprite, /* RLE */
+   //! everything that doesn't go in the window
    _shapeInterface, /* RAW */
+   //! ???
    _shapeScenery /* RLE */
 };
 
-
-/*
-%_shapeUnused: not used
-%_shapeTexture: usually 128x128 pixels, but not always
-%_shapeSprite: all monsters, guns, objects..
-%_shapeInterface: everything that doesn't go in the window
-%_shapeScenery: ???
-*/
 
 /*
 	LP: At the beginning of each shapes chunk is this header object
@@ -121,48 +119,47 @@ enum /* shapes classes */
 */
 struct shapes_header /* 544 bytes */
 {
+   //! always equals 3
    short type; 
 // C++ reserved word
-//   short class; 
-   short shape_class; 
+//   short class;
+   //! see above
+   shapes_header_class shape_class;
+   
    unsigned short flags; 
 
+   //! number of color entries in each palette
    short color_count;
+   //! number of palettes (different palettes are used for different
+   //! "variations" of monsters)
    short palette_count;
-   long first_palette_address;
+   //! offset to first palette
+   int first_palette_address;
 
+   //! number of high-level shapes
    short high_level_shapes_count;
-   long high_level_shapes_table;
+   //! offset to table of addresses of high-level shape
+   //! records
+   int high_level_shapes_table;
 
+   //! number of low-level shapes
    short low_level_shapes_count;
-   long low_level_shapes_table;
+   //! offset to table of addresses of low-level shape records
+   int low_level_shapes_table;
 
+   //! number of images
    short image_count;
-   long image_table;
+   //! offset to table of addresses of images
+   int image_table;
 
    short scale_factor;
-   long size;
+   //! size of entire resource
+   int size;
 
    short unused[253];
 };
 
 /*
-%type: always equals 3
-%class: see above
-%flags: 
-%color_count: number of color entries in each palette
-%palette_count: number of palettes (different palettes are used for different
-"variations" of monsters)
-%first_palette_address: offset to first palette
-%high_level_shapes_count: number of high-level shapes
-%high_level_shapes_table: offset to table of addresses of high-level shape
-records
-%low_level_shapes_count: number of low-level shapes
-%low_level_shapes_table: offset to table of addresses of low-level shape records
-%image_count: number of images
-%image_table: offset to table of addresses of images
-%size: size of entire resource
-
 LP: The size includes the header, and is also the size of a M2/Moo shapes chunk
 
 LP: None of the "unused" stuff is used in M2/Moo
@@ -200,23 +197,36 @@ struct color_entry /* 8 bytes */
 
 struct high_level_shape /* 88 bytes */
 {
+   //! see above
    short type;
+   //! see above
    unsigned short flags;
 
+   //! length of name string (i.e. this is a Pascal string)
    char name_length;
+   //! ASCII string
    char name[33];
 
+   //! number of angles at which this animation can be viewed. This should
+   //! only be 1, 2, 5, or 8.
    short view_count;
+   //! number of frames of animation
    short frames_per_view;
+   //! speed of animation
    short ticks_per_frame;
 
+   //! frame at which "something happens"?
    short key_frame;
 
    short transfer_mode;
+   //! absolutely no idea...
    short transfer_mode_period; /* in ticks */
 
+   //! 'snd ' resource to play at start of animation
    short first_frame_sound;
+   //! 'snd ' resource to play at key frame
    short key_frame_sound;
+   //! 'snd ' resource to play at end of animation
    short last_frame_sound;
 
    short scale_factor;
@@ -227,22 +237,6 @@ struct high_level_shape /* 88 bytes */
 };
 
 /*
-
-%type: see above
-%flags: see above
-%name_length: length of name string (i.e. this is a Pascal string)
-%name: ASCII string
-%view_count: number of angles at which this animation can be viewed. This should
-only be 1, 2, 5, or 8.
-%frames_per_view: number of frames of animation
-%ticks_per_frame: speed of animation
-%key_frame: frame at which "something happens"?
-%transfer_mode: 
-%transfer_mode_period: absolutely no idea..
-%first_frame_sound: 'snd ' resource to play at start of animation
-%key_frame_sound: 'snd ' resource to play at key frame
-%last_frame_sound: 'snd ' resource to play at end of animation
-%scale_factor: 
 
 After this comes the frame information, which is a series of 2-byte words, each
 corresponding to a low-level shape. There will be view_count * frames_per_view
@@ -286,6 +280,7 @@ typedef CF_ENUM(unsigned short, low_level_shape_flags)
    //! similar to _lowShapeXMirror, but affects drawing vertically
    //! rather than horizontally. It doesn't seem to be implemented
    _lowShapeYMirror =    0x4000,
+   
    _lowShapeKeyObscure = 0x2000
 };
 
@@ -323,14 +318,15 @@ struct low_level_shape /* 36 bytes */
 
 struct image_header /* 26 bytes */
 {
+   //! width of image
    short width;
+   //! height of image
    short height;
+   
    short unknown[11]; /* ??? */
 };
 
 /*
-%width: width of image
-%height: height of image
 
 	Next comes the scan start addresses. These are run-time calculated, so there is
 no need to provide valid information here. However, the right amount of space

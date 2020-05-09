@@ -9,63 +9,63 @@
 #include <simd/simd.h>
 
 
-// b = a
-// May change type
+//! b = a
+//! May change type
 template<class T1, class T2> inline void copy_3d(const T1 *a, T2 *b) {
 	for (int k=0; k<3; k++)
 		b[k] = T2(a[k]);
 }
 
 
-// b = a
-// May change type
+//! b = a
+//! May change type
 template<class T1> inline void copy_3d(const T1 *a, simd::float3 &b) {
 	for (int k=0; k<3; k++)
 		b[k] = float(a[k]);
 }
 
 
-// b = a
-// May change type
+//! b = a
+//! May change type
 template<class T2> inline void copy_3d(const simd::float3 a, T2 *b) {
 	for (int k=0; k<3; k++)
 		b[k] = T2(a[k]);
 }
 
 
-// Using conversion function
+//! Using conversion function
 template<class T1, class T2, class Convert> inline void copy_3d(const T1 *a, T2 *b, Convert cvt) {
 	for (int k=0; k<3; k++)
 		b[k] = T2(cvt(a[k]));
 }
 
 
-// Float-to-integer class: put to_int() in 3rd arg above
+//! Float-to-integer class: put to_int() in 3rd arg above
 struct to_int {
 	int operator()(float x) {return irint(x);}
 	int operator()(double x) {return irint(x);}
 };
 
 
-// c = a + b
+//! c = a + b
 template<class T> inline void add_3d(const T *a, const T *b, T *c) {
 	for (int k=0; k<3; k++)
 		c[k] = a[k] + b[k];
 }
 
-// c = a - b
+//! c = a - b
 template<class T> inline void sub_3d(const T *a, const T *b, T *c) {
 	for (int k=0; k<3; k++)
 		c[k] = a[k] - b[k];
 }
 
-// c = (a)*b
+//! c = (a)*b
 template<class T> inline void scalmult_3d(const T &a, const T *b, T *c) {
 	for (int k=0; k<3; k++)
 		c[k] = a*b[k];
 }
 
-// Inner product: a.b
+//! Inner product: a⋅b
 template<class T> inline T innerprod_3d(const T *a, const T *b) {
 	T res = 0;
 	for (int k=0; k<3; k++)
@@ -73,7 +73,7 @@ template<class T> inline T innerprod_3d(const T *a, const T *b) {
 	return res;
 }
 
-// Absolute square: a^2
+//! Absolute square: a^2
 template<class T> inline T abssqr_3d(const T *a) {
 	T res = 0;
 	for (int k=0; k<3; k++)
@@ -81,7 +81,7 @@ template<class T> inline T abssqr_3d(const T *a) {
 	return res;
 }
 
-// Vector product c = a x b
+//! Vector product c = a ✕ b
 template<class T> inline void vecprod_3d(const T *a, const T *b, T *c) {
 	// Must be written out
 	c[0] = a[1]*b[2] - a[2]*b[1];
@@ -89,7 +89,7 @@ template<class T> inline void vecprod_3d(const T *a, const T *b, T *c) {
 	c[2] = a[0]*b[1] - a[1]*b[0];
 }
 
-// Determinant: a.(b x c)
+//! Determinant: a⋅(b ✕ c)
 template<class T> inline T det_3d(const T *a, const T *b, const T *c) {
 	T intmd[3];
 	vecprod_3d(b,c,intmd);

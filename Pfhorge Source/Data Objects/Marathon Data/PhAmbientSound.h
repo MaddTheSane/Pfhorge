@@ -51,14 +51,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
-// *****************   Set Accsessors   *****************
-
--(void)setFlags:(unsigned short)v;
-
--(void)setSoundIndex:(short)v;
--(void)setVolume:(short)v;
-
-// *****************   Get Accsessors   *****************
+// *****************   Accsessors   *****************
 
 @property unsigned short flags;
 

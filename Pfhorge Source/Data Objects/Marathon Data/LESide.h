@@ -87,8 +87,8 @@ typedef NS_ENUM(short, LESideControlPanelType) {
 #define SIDE_IS_DIRTY(s) ((s)->flags &_editor_dirty_bit)
 #define SET_SIDE_IS_DIRTY(s, t) ((t)?(s->flags|=(word)_editor_dirty_bit):(s->flags&=(word)~_editor_dirty_bit)
 
-enum // side types (largely redundant; most of this could be guessed for examining adjacent polygons)
-{
+//! side types (largely redundant; most of this could be guessed for examining adjacent polygons)
+typedef NS_ENUM(short, LESideType) {
 	//! primary texture is mapped floor-to-ceiling
 	_full_side,
 	//! primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
@@ -119,14 +119,14 @@ typedef struct side_exclusion_zone
 @interface LESide : LEMapStuffParent <NSCopying, NSCoding>
 {
 	// struct side_data // 64 bytes
-	short		type;
+	LESideType	type;
 	LESideFlags	flags;
 	
 	struct 	side_texture_definition		primary_texture;
 	struct 	side_texture_definition		secondary_texture;
-	struct 	side_texture_definition		transparent_texture;	// not drawn if texture == NONE
+	struct 	side_texture_definition		transparent_texture;	//!< not drawn if texture == NONE
 	
-	/* all sides have the potential of being impassable; the exclusion zone
+	/*! all sides have the potential of being impassable; the exclusion zone
 	 is the area near the side which cannont be walked through */
 	struct side_exclusion_zone	exclusion_zone;
 	
@@ -158,9 +158,9 @@ typedef struct side_exclusion_zone
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
--(id)initWithSide:(LESide *)theSideToImitate;
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithSide:(LESide *)theSideToImitate;
 
 // ***************** Copy Methods *****************
 - (id)copyWithZone:(NSZone *)zone;
@@ -185,7 +185,7 @@ typedef struct side_exclusion_zone
 -(void)resetTextureCollection;
 -(void)setTextureCollection:(char)number;
 
--(void)setType:(short)v;
+-(void)setType:(LESideType)v;
 -(void)setFlags:(LESideFlags)v;
         
 -(void)setPrimary_texture:(struct side_texture_definition)v;
@@ -229,7 +229,7 @@ typedef struct side_exclusion_zone
 
 -(char)textureCollection;
 
--(short)type;
+-(LESideType)type;
 -(LESideFlags)flags;
         
 -(struct side_texture_definition)getPrimary_texture;

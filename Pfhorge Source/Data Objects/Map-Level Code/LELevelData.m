@@ -659,7 +659,7 @@ enum // export data types
     }
     
     short totalObjs = [exports count];
-    long indexEntrys = totalObjs;
+    int indexEntrys = totalObjs;
     
     #ifdef useDebugingLogs
         NSLog(@"Total Exports: %d", totalObjs);
@@ -704,7 +704,7 @@ enum // export data types
         
         
         
-        int customNameStatus = _data_has_no_name;
+        _data_name_export customNameStatus = _data_has_no_name;
         
         if ([theObj isKindOfClass:[PhAbstractName class]])
         {
@@ -726,11 +726,9 @@ enum // export data types
             customNameStatus = _data_has_no_name;
         }
         
-        
-        
-        [finnalData appendBytes:&tmpShort length:2];
-        [finnalData appendBytes:&appendNumber length:2];
-        [finnalData appendBytes:&customNameStatus length:2];
+		saveShortToNSData(tmpShort, finnalData);
+		saveShortToNSData(appendNumber, finnalData);
+		saveShortToNSData(customNameStatus, finnalData);
     }
     
     [finnalData appendData:exportData];
@@ -743,9 +741,9 @@ enum // export data types
 
 - (NSSet *)importObjects:(NSData *)theData
 {
-    PhData *myData = [[[PhData alloc] initWithSomeData:theData] autorelease];
-    NSMutableArray *index = [[[NSMutableArray alloc] init] autorelease];
-    NSMutableSet *theSet = [[[NSMutableSet alloc] init] autorelease];
+    PhData *myData = [[PhData alloc] initWithSomeData:theData];
+    NSMutableArray *index = [[NSMutableArray alloc] init];
+    NSMutableSet *theSet = [[NSMutableSet alloc] init];
     
     ///NSEnumerator *numer = nil;
     id theObj = nil;
@@ -755,8 +753,8 @@ enum // export data types
     
     short objTypesArr[totalObjects];
     BOOL objImported[totalObjects];
-    short objKindArr[totalObjects];
-    short objNameStatusArr[totalObjects];
+    _data_type_export objKindArr[totalObjects];
+    _data_name_export objNameStatusArr[totalObjects];
     
     int i = 0;
     
@@ -770,7 +768,7 @@ enum // export data types
         objImported[i] = NO;
         objKindArr[i] = [myData getShort]; // Light or Polygon?, etc...
         objNameStatusArr[i] = [myData getShort]; // Name Status...
-        short objKind = objKindArr[i];
+        _data_type_export objKind = objKindArr[i];
         id obj = nil;
         
         //   *points, *lines, *polys, *mapObjects, *sides,
@@ -801,6 +799,9 @@ enum // export data types
         else
         {
             NSLog(@"While importing, I found an unkown object type attempted to be imported... I will have to abort importing...");
+			[index release];
+			[theSet release];
+			[myData release];
             return nil;
         }
         
@@ -946,7 +947,10 @@ enum // export data types
     // Tempoary Solution To The Naming Problem For Now...
     [self setUpArrayNamesForEveryObject];
     
-    return theSet;
+	[index release];
+	[myData release];
+	
+    return [theSet autorelease];
 }
 
 
@@ -1234,12 +1238,5 @@ enum // export data types
     
     [super dealloc];
 }
-
-
-
-
-
-
-
 
 @end

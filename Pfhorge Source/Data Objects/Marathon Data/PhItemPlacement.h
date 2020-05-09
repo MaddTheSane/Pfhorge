@@ -40,15 +40,15 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 {
 	PhItemPlacementFlags flags;
 	
-	short initial_count;   // number that initially appear. can be greater than maximum_count
-	short minimum_count;   // this number of objects will be maintained.
-	short maximum_count;   // can’t exceed this, except at the beginning of the level.
+	short initial_count;   //!< number that initially appear. can be greater than maximum_count
+	short minimum_count;   //!< this number of objects will be maintained.
+	short maximum_count;   //!< can’t exceed this, except at the beginning of the level.
 	
-	short random_count;    // maximum random occurences of the object
-	unsigned short random_chance;    // in (0, 65535]
+	short random_count;    //!< maximum random occurences of the object
+	unsigned short random_chance;    //!< in (0, 65535]
 }
 
-+ (PhItemPlacement *)itemPlacementObjWithDefaults;
++ (instancetype)itemPlacementObjWithDefaults;
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
@@ -60,20 +60,17 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 // ************************** Accsessors *************************
 @property PhItemPlacementFlags flags;
 	
+//! number that initially appear. can be greater than \c maximumCount
 @property short initialCount;
+//! this number of objects will be maintained.
 @property short minimumCount;
+//! can’t exceed this, except at the beginning of the level.
 @property short maximumCount;
 	
+//! maximum random occurences of the object
 @property short randomCount;
+//! in (0, 65535]
 @property unsigned short randomChance;
 
-// ************************** Set Accsessors *************************
-
-- (void)setInitialCount:(short)v;
-- (void)setMinimumCount:(short)v;
-- (void)setMaximumCount:(short)v;
-
-- (void)setRandomCount:(short)v;
-- (void)setRandomChance:(unsigned short)v;
 
 @end

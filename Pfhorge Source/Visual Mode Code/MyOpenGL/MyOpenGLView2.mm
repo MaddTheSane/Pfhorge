@@ -172,9 +172,9 @@ RGBColor TextColor, TextShadowColor;
 // int theRenderMode;
 
 // For finding framerates
-int PrevTick = 0;
-float AvgTickIntvl = -1; // A value of -1 means "reset"
-bool TakingAverage = false;
+//int PrevTick = 0;
+//float AvgTickIntvl = -1; // A value of -1 means "reset"
+//bool TakingAverage = false;
 
 // Range of fog depths:
 const float MIN_FOG = 1;
@@ -405,7 +405,7 @@ static unsigned short SetColor(short ID, int Indx) {
 /////
 ///////////////////////////////// RENDER SCENE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
-- (void)RenderScene 
+- (void)renderScene 
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
     glLoadIdentity();                                   // Reset The matrix
@@ -518,7 +518,7 @@ static unsigned short SetColor(short ID, int Indx) {
         if (event == nil) {
             //[pool release];
             //DisplayFunc([thePathToShapesFile length] > 1);
-            [self RenderScene];
+            [self renderScene];
 			
             glFinish();
             // We'd break out of this loop instead of continuing in a real game (as mentioned above).

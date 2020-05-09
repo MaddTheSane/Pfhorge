@@ -37,7 +37,7 @@ typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
 	_sound_image_is_non_directional = 0x0001
 };
 
-// possibly directional random sound effects
+//! possibly directional random sound effects
 @interface PhRandomSound : PhAbstractName <NSCoding>
 {
 	PhRandomSoundFlags	flags; // word

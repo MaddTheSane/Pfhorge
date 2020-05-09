@@ -137,20 +137,20 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     id		first_neighbor_object;
     short	neighbor_count;
     
-    NSPoint	center; //world_point2d is a NSPoint for now...
+    NSPoint	center; //!< world_point2d is a NSPoint for now...
     
     short	side_indexes[ MAXIMUM_VERTICES_PER_POLYGON ];
     id		side_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     
-    NSPoint	floor_origin, ceiling_origin; //world_point2d is a NSPoint for now...
+    NSPoint	floor_origin, ceiling_origin; //!< world_point2d is a NSPoint for now...
     
     short	media_index;
     id		media_object;
     short	media_lightsource_index;
     id		media_lightsource_object;
     
-    /* NONE terminated list of _saved_sound_source indexes
+    /*! NONE terminated list of _saved_sound_source indexes
     which must be checked while a listener is inside this
     polygon (can be none) */
     short	sound_source_indexes; //???
@@ -178,9 +178,9 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(char)ceilingTextureCollectionOnly;
 -(char)floorTextureCollectionOnly;
 
-// I would not reccemend using this function any more, since the ceiling could be diffrent.
-// Before is was assumed that the floor and ceiling would be in the same colleciton,
-// that assumtion can not be made anymore...
+//! I would not recommend using this function any more, since the ceiling could be different.
+//! Before it was assumed that the floor and ceiling would be in the same colleciton,
+//! that assumtion can not be made anymore...
 -(char)textureCollectionOnly;
 
 // **************************  Coding/Copy Protocal Methods  *************************

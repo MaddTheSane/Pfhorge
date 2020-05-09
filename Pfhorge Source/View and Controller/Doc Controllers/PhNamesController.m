@@ -57,8 +57,8 @@
 // *********************** EXTERN Variables ***********************
 #pragma mark -
 #pragma mark ********* ||| EXTERN Variables ||| *********
-NSString *PhNumberOfObject = @"#";
-NSString *PhNameOfObject = @"Name";
+static NSString *const PhNumberOfObject = @"#";
+static NSString *const PhNameOfObject = @"Name";
 
 // *********************** Action Methods ***********************
 #pragma mark -
@@ -272,7 +272,7 @@ NSString *PhNameOfObject = @"Name";
 
 - (int)getSelection { return [theTable selectedRow]; }
 
-- (BOOL)isSomthingSelected { return ([theTable selectedRow] >= 0); }
+- (BOOL)isSomthingSelected { return ([theTable selectedRowIndexes].count >= 0); }
 
 - (id)getSelectedObject
 {
@@ -347,7 +347,6 @@ NSString *PhNameOfObject = @"Name";
 shouldEditTableColumn:(NSTableColumn *)col
 			  row:(NSInteger)rowIndex
 {
-    
     if ([[col identifier] isEqualToString:PhNumberOfObject])
         return NO;
     
@@ -407,16 +406,16 @@ objectValueForTableColumn:(NSTableColumn *)col
     
     NSParameterAssert(rowIndex >= 0 && rowIndex < ((int)[currentArray count]));
      
-    if ([[col identifier] isEqualToString:PhNameOfObject])
+	if ([[col identifier] isEqualToString:PhNameOfObject]) {
         [theLevelDataObject setNameFor:[currentArray objectAtIndex:rowIndex] to:anObject];
     
-    else if ([[col identifier] isEqualToString:PhNumberOfObject])
-    {
-        if (currentDisplayMode == _display_tags)
+	} else if ([[col identifier] isEqualToString:PhNumberOfObject]) {
+		if (currentDisplayMode == _display_tags) {
             return;
         
-        else
+		} else {
             return;
+		}
     }
     
     return;

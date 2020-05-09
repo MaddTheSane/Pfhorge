@@ -79,8 +79,8 @@ class MapManager {
 	void DoSurfaceRender(SurfaceInfo &SInfo);
 
 	// Data needed:
-	bool IfTextured; // Whether textured rendering is to be done; this includes averaging
-	bool IfAveraged; // Whether averaged-texture rendering is to be done
+	bool IfTextured; //!< Whether textured rendering is to be done; this includes averaging
+	bool IfAveraged; //!< Whether averaged-texture rendering is to be done
 	GLint SurfaceRenderMode;
 	
 	//! Wall textures:

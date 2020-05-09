@@ -109,11 +109,13 @@ struct low_level_shape_definition {
 	low_level_shape_flags	flags;
 	/*! in [0,FIXED_ONE] */
 	fixed	minimum_light_intensity;
+	
 	short	bitmap_index;
 	/*! (x,y) in pixel coordinates of origin */
 	short	origin_x, origin_y;
 	/*! (x,y) in pixel coordinates of key point */
 	short	key_x, key_y;
+	
 	short	world_left, world_right, world_top, world_bottom;
 	short	world_x0, world_y0;
 //	short	unused[4];
@@ -149,6 +151,7 @@ struct bitmap_definition {
 	bitmap_definition_flags	flags;
 	/*! should always be ==8 */
 	short	bit_depth;
+	
 	short	unused[8];
 	pixel8	*row_addresses[1];
 };

@@ -28,7 +28,7 @@
 #import "LEExtras.h"
 #import "LELevelData.h"
 
-void encode_text(NSMutableData *terminal_text_data)
+static void encode_text(NSMutableData *terminal_text_data)
 {
     long length = [terminal_text_data length];
     UInt8	*p = [terminal_text_data mutableBytes];
@@ -59,7 +59,7 @@ void encode_text(NSMutableData *terminal_text_data)
 }
 
 
-void convertLFtoCR(NSMutableData *theRawTextData)
+static void convertLFtoCR(NSMutableData *theRawTextData)
 {
     long	length = [theRawTextData length];
     unsigned char	*p = [theRawTextData mutableBytes];

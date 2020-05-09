@@ -28,7 +28,7 @@ enum {
 }
 
 - (void)Init;
-- (void)RenderScene;
+- (void)renderScene;
 
 - (void)doMapRenderingLoopWithMapData:(LELevelData *)theLevel shapesLocation:(NSString *)theShapesLocation;
 

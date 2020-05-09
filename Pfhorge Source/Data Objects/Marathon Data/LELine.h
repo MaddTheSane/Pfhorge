@@ -48,20 +48,20 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 {
     short p1, p2;
     LEMapPoint *mapPoint1, *mapPoint2;
-    LELineFlags flags; /* no permutation field */
+    LELineFlags flags; /*!< no permutation field */
     short _Length;
     short _Angle;
     short _Azimuth;
     
-    // Mabye make these pointers to the polygons themselves???
+    //! Mabye make these pointers to the polygons themselves???
     short highestAdjacentFloor, lowestAdjacentCeiling;
     
-    /* the side definition facing the clockwise polygon which references this side,
+    /*! the side definition facing the clockwise polygon which references this side,
         and the side definition facing the counterclockwise polygon (can be NONE (-1)) */
     short clockwisePolygonSideIndex, counterclockwisePolygonSideIndex;
     LESide *clockwisePolygonSideObject, *counterclockwisePolygonSideObject;
     
-    /* a line can be owned by a clockwise polygon, a counterclockwise polygon,
+    /*! a line can be owned by a clockwise polygon, a counterclockwise polygon,
         or both (but never two of the same) (can be NONE) */
     short clockwisePolygonIndex, conterclockwisePolygonIndex;
     LEPolygon *clockwisePolygon, *conterclockwisePolygon;
@@ -107,10 +107,10 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 
 - (short)getLength;
 
-- (short)getAngle;		// 0-512 Marathon units from p1 to p2
-- (short)getFlippedAngle;	// From p2 to p1 ((getAngle+256)%512)
-- (short)getAzimuth;		// Degrees clockwise from vertical from p1 to p2
-- (short)getFlippedAzimuth;	// From p2 to p1 ((getAzimuth+180)%360)
+- (short)getAngle;		//!< 0-512 Marathon units from p1 to p2
+- (short)getFlippedAngle;	//!< From p2 to p1 ((getAngle+256)%512)
+- (short)getAzimuth;		//!< Degrees clockwise from vertical from p1 to p2
+- (short)getFlippedAzimuth;	//!< From p2 to p1 ((getAzimuth+180)%360)
 
 - (short)getHighestAdjacentFloor;
 - (short)getLowestAdjacentCeiling;
@@ -140,8 +140,8 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 - (void)setMapPoint1:(LEMapPoint *)s1 mapPoint2:(LEMapPoint *)s2;
 - (void)setFlags:(LELineFlags)us;
 - (void)setLength:(short)s;
-- (void)setAngle:(short)s;		// 0-512 Marathon units from p1 to p2
-- (void)setAzimuth:(short)s;		// Degrees clockwise from vertical, p1 to p2
+- (void)setAngle:(short)s;		//!< 0-512 Marathon units from p1 to p2
+- (void)setAzimuth:(short)s;		//!< Degrees clockwise from vertical, p1 to p2
 - (void)setHighestAdjacentFloor:(short)s;
 - (void)setLowestAdjacentCeiling:(short)s;
 
@@ -167,11 +167,11 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @end
 
 @interface LELine (SideCalculations)
-    // **************************  Side Rotines  *************************
-    - (void)caculateSides;
-    - (void)setupWithClockPlat:(PhPlatform *)cPlat counterClockPlat:(PhPlatform *)ccPlat;
-    - (void)setupAsNonPlatformLine;
-    - (LESide *)setupSideFor:(int)sideDirection asA:(int)sideType;
-    - (LESide *)setupSideFor:(int)sideToReturn;
-    - (void)removeSideFor:(int)sideDirectionToRemove;
+// **************************  Side Rotines  *************************
+- (void)caculateSides;
+- (void)setupWithClockPlat:(PhPlatform *)cPlat counterClockPlat:(PhPlatform *)ccPlat;
+- (void)setupAsNonPlatformLine;
+- (LESide *)setupSideFor:(int)sideDirection asA:(int)sideType;
+- (LESide *)setupSideFor:(int)sideToReturn;
+- (void)removeSideFor:(int)sideDirectionToRemove;
 @end

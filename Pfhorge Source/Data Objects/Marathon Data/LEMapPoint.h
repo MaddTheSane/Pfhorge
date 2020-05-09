@@ -50,8 +50,8 @@
 -(void)setY:(short)theY;
 -(void)setX32:(short)theX;
 -(void)setY32:(short)theY;
--(void)set32X:(short)theX;
--(void)set32Y:(short)theY;
+-(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
+-(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 
 -(NSPoint)asPoint;
 -(NSPoint)as32Point;
