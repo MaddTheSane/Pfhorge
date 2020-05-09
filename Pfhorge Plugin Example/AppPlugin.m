@@ -95,7 +95,7 @@ static NSBundle* pluginBundle = nil;
 }
 
 // This is called when user selects plugin from menu.
-// This exsample brings up the window.
+// This example brings up the window.
 
 - (void)activate
 {

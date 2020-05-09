@@ -3,4 +3,4 @@
 CFBundleName = "Application Plug-in";
 CFBundleShortVersionString = "Application Plug-in version 0.1";
 CFBundleGetInfoString = "Written for MacHack 2002 by Rainer Brockerhoff.";
-NSHumanReadableCopyright = "Copyright (c) 2002 Rainer Brockerhoff.";
+NSHumanReadableCopyright = "Copyright © 2002 Rainer Brockerhoff.";
