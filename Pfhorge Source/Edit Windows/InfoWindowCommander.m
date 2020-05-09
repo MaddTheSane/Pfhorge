@@ -134,7 +134,7 @@
 
 - (NSInteger)tagIndexNumberFromShort:(short)tagNumber
 {
-    //NSArray *theLevelTags = [mapLevel getTags]; //getPhNumber
+    //NSArray *theLevelTags = [mapLevel getTags]; //phNumber
     
     NSLog(@"tagNumber requested: %d, index: %ld", tagNumber, (long)[mapLevel tagIndexNumberFromTagNumber:tagNumber]);
 

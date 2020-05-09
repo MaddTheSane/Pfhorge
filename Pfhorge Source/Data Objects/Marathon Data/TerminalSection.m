@@ -167,7 +167,7 @@
     if (type == PhTerminalSectionTypeInMapTeleport)
     {
         permutationObject = [theMapPolysST objectAtIndex:permutation];
-        [theLELevelDataST namePolygon:permutationObject to:stringFromInt([permutationObject index])];
+        [theLELevelDataST namePolygon:permutationObject to:stringFromInt([(LEMapStuffParent*)permutationObject index])];
     }
     else
         permutationObject = nil;

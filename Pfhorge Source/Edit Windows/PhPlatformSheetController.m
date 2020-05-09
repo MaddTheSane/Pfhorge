@@ -124,7 +124,7 @@
     NSInteger platformTagMenuIndex = [self tagIndexNumberFromShort:[platform tag]];
     
     
-    NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] index], [[[platform tagObject] getPhNumber] intValue]);
+    NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] index], [[[platform tagObject] phNumber] intValue]);
     
     [self setupTitlesAndNames];
     

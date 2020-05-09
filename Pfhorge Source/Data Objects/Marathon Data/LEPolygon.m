@@ -634,7 +634,7 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     int i, tempInt;
-    int tmpShort;
+    short tmpShort;
     
     [super encodeWithCoder:coder];
     encodeNumInt(coder, 1);

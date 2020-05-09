@@ -25,6 +25,7 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "LEMapStuffParent.h"
 
 @class LELevelData, LEMap;
 
@@ -36,7 +37,7 @@
     
     LELevelData *mapLevel;
     LEMap	*mapDocument;
-    id		theObjBeingEdited;
+    __kindof LEMapStuffParent	*theObjBeingEdited;
 }
 
 - (IBAction)renameObjectAction:(id)sender;

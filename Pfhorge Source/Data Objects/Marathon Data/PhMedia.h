@@ -88,7 +88,7 @@ enum	// media sounds
 	light intensities; clearly discontinuous light functions
 	(e.g. strobes) should not be used */
 	short	light_index;
-	id	light_object;
+	__kindof LEMapStuffParent	*light_object;
 
 	/* this is the maximum external velocity due to current;
 	acceleration is 1/32nd of this */
@@ -122,7 +122,7 @@ enum	// media sounds
 @property PhMediaFlags flags;
 
 @property short lightIndex;
-@property (assign) id lightObject;
+@property (assign) __kindof LEMapStuffParent *lightObject;
 
 @property short currentDirection;
 @property short currentMagnitude;

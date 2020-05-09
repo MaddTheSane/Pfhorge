@@ -149,9 +149,8 @@
 
 - (NSInteger)tagIndexNumberFromTagNumber:(short)tagNumber
 {
-    //NSArray *theLevelTags = [self getTags]; //getPhNumber
+    //NSArray *theLevelTags = [self getTags]; //phNumber
     NSEnumerator *numer;
-    id thisObj;
     NSNumber *currentTagNumber = [NSNumber numberWithShort:tagNumber];
     PhTag *theNewTag = nil;
     NSInteger theTagNumber = 0;
@@ -159,11 +158,11 @@
     ///NSLog(@"tagIndexNumberFromTagNumber called tagNumber Geting: %d", tagNumber);
     
     numer = [tags objectEnumerator];
-    while ((thisObj = [numer nextObject]))
+    for (__kindof LEMapStuffParent *thisObj in numer)
     {
-        if ([[thisObj getPhNumber] isEqualToNumber:currentTagNumber])
+        if ([[thisObj phNumber] isEqualToNumber:currentTagNumber])
         {
-            ///NSLog(@"Returning Tag Index: %d  tagsCount: %d currentTagNumber: %d TagNumber Returning: %d", [thisObj index], [tags count], [currentTagNumber intValue], [[thisObj getPhNumber] intValue]);
+            ///NSLog(@"Returning Tag Index: %d  tagsCount: %d currentTagNumber: %d TagNumber Returning: %d", [thisObj index], [tags count], [currentTagNumber intValue], [[thisObj phNumber] intValue]);
             return [thisObj index];
         }
     }
@@ -184,7 +183,7 @@
     
     [self setUpArrayPointersFor:theNewTag];
     
-    ///NSLog(@"newTag: %d", [[theNewTag getPhNumber] intValue]);
+    ///NSLog(@"newTag: %d", [[theNewTag phNumber] intValue]);
     
     
     [theNewTag release];
@@ -404,7 +403,7 @@
     }
 }
 
--(void)setNameFor:(id)theObject to:(NSString *)theName
+-(void)setNameFor:(__kindof LEMapStuffParent*)theObject to:(NSString *)theName
 {
     LEMapDraw *theDrawView = [theLevelDocument getMapDrawView];
     

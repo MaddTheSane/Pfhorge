@@ -59,7 +59,7 @@ extern unsigned eightBytesCount;*/
 
 // *** *** ***
 
-#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj getIndex]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
+#define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj index]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObjPos(obj) ExportObjPosIndex(obj, index)
 #define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObj(obj) ExportObjIndex(obj, index)
@@ -76,7 +76,7 @@ extern unsigned eightBytesCount;*/
 
 // *** *** ***
 
-#define GetIndexAdv(obj) (obj != nil) ? [obj getIndex] : -1
+#define GetIndexAdv(obj) (obj != nil) ? [(LEMapStuffParent*)(obj) index] : -1
 
 #define FileAttributes(fmngr, path) [(fmngr) fileAttributesAtPath:(path) traverseLink:YES]
 #define IsPathDirectory(fmngr, path) [[FileAttributes(fmngr, path) fileType] isEqualToString:NSFileTypeDirectory]

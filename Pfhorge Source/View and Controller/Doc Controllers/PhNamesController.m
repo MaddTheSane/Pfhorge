@@ -375,12 +375,12 @@ shouldEditTableColumn:(NSTableColumn *)col
 objectValueForTableColumn:(NSTableColumn *)col
 			row:(NSInteger)row
 {
-    /*PhAbstractName **/ id theCurNameObj= [currentArray objectAtIndex:row];
+    __kindof LEMapStuffParent	*theCurNameObj= [currentArray objectAtIndex:row];
     
     if (currentDisplayMode == _display_tags)
     {
         if ([[col identifier] isEqualToString:PhNumberOfObject])
-            return [theCurNameObj getPhNumber];
+            return [theCurNameObj phNumber];
             
         else if ([[col identifier] isEqualToString:PhNameOfObject])
             return [theCurNameObj getPhName];

@@ -85,6 +85,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 #import "PhAbstractName.h"
 
+@class PhLight;
+
 @interface LEPolygon : PhAbstractName <NSCoding>
 {
     PhLayer *polyLayer;
@@ -97,24 +99,24 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     LEPolygonFlags	flags; // used to be of type word
     
     short	permutation;
-    id		permutationObject;
+    __kindof LEMapStuffParent	*permutationObject;
     
     short 	vertexCountForPoly;
     short 	vertexIndexes[ MAXIMUM_VERTICES_PER_POLYGON ];
-    id	 	vertexObjects[ MAXIMUM_VERTICES_PER_POLYGON ];
+    __kindof LEMapStuffParent *vertexObjects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     short	lineIndexes [ MAXIMUM_VERTICES_PER_POLYGON ];
-    id		lineObjects [ MAXIMUM_VERTICES_PER_POLYGON ];
+    LELine	*lineObjects [ MAXIMUM_VERTICES_PER_POLYGON ];
     
     short	floor_texture, ceiling_texture; // shape_descriptor - short
     short	floor_height, ceiling_height; // world_distance
     short	floor_lightsource_index, ceiling_lightsource_index;
-    __unsafe_unretained id		floor_lightsource_object, ceiling_lightsource_object;
+    __unsafe_unretained __kindof LEMapStuffParent		*floor_lightsource_object, *ceiling_lightsource_object;
     
     int	area;		// in world distance^2
     
     short	first_object_index; // index added, is it really an index?
-    id		first_object_pointer; // added pointer for less confusion...
+    __kindof LEMapStuffParent	*first_object_pointer; // added pointer for less confusion...
     
     /* precalculated impassibility information; each polygon has
     a list of lines and points that anything big (i.e. monsters
@@ -122,7 +124,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     ending a move inside it */
     
     short	first_exclusion_zone_index;
-    id		first_exclusion_zone_object;
+    __kindof LEMapStuffParent	*first_exclusion_zone_object;
     short	line_exclusion_zone_count;
     short	point_exclusion_zone_count;
     
@@ -130,37 +132,37 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     short	ceiling_transfer_mode;
     
     short	adjacent_polygon_indexes[ MAXIMUM_VERTICES_PER_POLYGON ];
-    id		adjacent_polygon_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
+    __kindof LEMapStuffParent	*adjacent_polygon_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     // a list of polygons withing WORLD_ONE of us
     short	first_neighbor_index;
-    id		first_neighbor_object;
+    __kindof LEMapStuffParent	*first_neighbor_object;
     short	neighbor_count;
     
     NSPoint	center; //!< world_point2d is a NSPoint for now...
     
     short	side_indexes[ MAXIMUM_VERTICES_PER_POLYGON ];
-    id		side_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
+    __kindof LEMapStuffParent	*side_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     
     NSPoint	floor_origin, ceiling_origin; //!< world_point2d is a NSPoint for now...
     
     short	media_index;
-    id		media_object;
+    __kindof LEMapStuffParent	*media_object;
     short	media_lightsource_index;
-    id		media_lightsource_object;
+    __kindof LEMapStuffParent	*media_lightsource_object;
     
     /*! NONE terminated list of _saved_sound_source indexes
     which must be checked while a listener is inside this
     polygon (can be none) */
     short	sound_source_indexes; //???
-    id		sound_source_objects; //???
+    __kindof LEMapStuffParent	*sound_source_objects; //???
     
     // either can be NONE
     short	ambient_sound_image_index;
-    id		ambient_sound_image_object;
+    __kindof LEMapStuffParent	*ambient_sound_image_object;
     short	random_sound_image_index;
-    id		random_sound_image_object;
+    __kindof LEMapStuffParent	*random_sound_image_object;
     
     short	unused[1];
 }

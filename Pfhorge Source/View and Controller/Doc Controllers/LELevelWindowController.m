@@ -787,7 +787,7 @@ static NSCursor *crosshairCursor = nil;
 #pragma mark -
 #pragma mark ********* Rename Dialog Actions/Methods *********
 
-- (void)renamePolyWithSheet:(id)thePoly
+- (void)renamePolyWithSheet:(__kindof LEMapStuffParent*)thePoly
 {
     if ([self isSheetAlreadyOpen])
         return;

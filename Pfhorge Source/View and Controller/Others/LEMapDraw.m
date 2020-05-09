@@ -2179,7 +2179,7 @@ enum {
                 cPolyM = YES;
             else if ([thisObj isKindOfClass:[LEMapObject class]])
             {
-                switch ([thisObj type])
+                switch ([(LEMapObject*)thisObj type])
                 {
                     case _saved_monster:
                         cMonsterM = YES;
@@ -2219,7 +2219,7 @@ enum {
                 cPolyM = YES;
             else if ([thisObj isKindOfClass:[LEMapObject class]])
             {
-                switch ([thisObj type])
+                switch ([(LEMapObject*)thisObj type])
                 {
                     case _saved_monster:
                         cMonsterM = YES;

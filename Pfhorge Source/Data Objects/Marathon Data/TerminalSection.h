@@ -144,7 +144,7 @@ typedef struct term_style {
     short text_length;	/*!<	number of characters in the text */
     short lines;	/*!<	number of lines in the text. Absent in the preview (demo?) */
     
-    __weak id	 permutationObject;
+    __weak __kindof LEMapStuffParent	*permutationObject;
     
     NSFont *regularFont;
     NSFont *boldFont;

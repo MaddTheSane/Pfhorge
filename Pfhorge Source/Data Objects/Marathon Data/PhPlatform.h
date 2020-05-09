@@ -215,7 +215,7 @@ struct platform_data2 /* 140 bytes */
 	PhPlatformStaticFlags static_flags;
 	
 	short polygon_index;
-	id polygon_object;
+	__kindof LEMapStuffParent	*polygon_object;
 	
 	short tag;
 	PhTag *tagObject;

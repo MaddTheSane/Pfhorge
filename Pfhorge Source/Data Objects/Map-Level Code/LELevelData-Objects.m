@@ -250,7 +250,7 @@
     }
     else if (theClass == [PhTag class])
     {
-        NSNumber *theNum = [NSNumber numberWithInt:(([[[tags lastObject] getPhNumber] intValue]) + 1)];
+        NSNumber *theNum = [NSNumber numberWithInt:(([[[tags lastObject] phNumber] intValue]) + 1)];
         PhTag *theNewTag = [self addNewTagWithNumber:theNum]; // this adds to naems and sets up array pointers...
         #ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhTag object with index #%d", [theNewTag getIndex]);

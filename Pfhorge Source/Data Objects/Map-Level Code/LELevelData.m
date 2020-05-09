@@ -361,7 +361,7 @@
     
     { // Checking polygons to see if I need to name some polygons...
         LEPolygon *thePolyToCheck;
-        id thePolyPointedTo;
+		LEPolygon	*thePolyPointedTo;
         id theObj;
         NSEnumerator *spenumer = [polys objectEnumerator];
         while (thePolyToCheck = [spenumer nextObject])

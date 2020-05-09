@@ -60,11 +60,13 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 #define DECODE_ACTIVATION_BIAS(f) ((f)>>12)
 #define ENCODE_ACTIVATION_BIAS(b) ((b)<<12)
 
+@class LEPolygon;
+
 @interface LEMapObject : LEMapStuffParent <NSCoding>
 {
     short index, facing, polygonIndex, x, y, z, x32, y32;
 	LEMapObjectType type;
-    id polygonObject;
+    LEPolygon *polygonObject;
     LEMapObjectFlags flags;
 }
 

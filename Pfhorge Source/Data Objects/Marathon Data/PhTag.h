@@ -39,7 +39,7 @@
 -(PhTag *)initWithTagNumber:(NSNumber *)thePhNumber;
 
 
-//-(NSNumber *)getPhNumber;
+//-(NSNumber *)phNumber;
 //-(void)setPhNumber:(NSNumber *)tagPhNumber;
 
 @end

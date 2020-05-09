@@ -173,7 +173,7 @@ extern NSString *PhLevelDidChangeName;
 - (IBAction)turnOnUseOptimizedDrawing:(id)sender;
 
 // *** Rename Dialog Actions/Methods ***
-- (void)renamePolyWithSheet:(id)thePoly;
+- (void)renamePolyWithSheet:(__kindof LEMapStuffParent*)thePoly;
 - (IBAction)rdOkBtnAction:(id)sender;
 - (IBAction)rdCancelBtnAction:(id)sender;
 - (IBAction)rdRemoveBtnAction:(id)sender;

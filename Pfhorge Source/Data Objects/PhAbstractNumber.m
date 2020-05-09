@@ -116,7 +116,7 @@
 
 - (NSComparisonResult)compare:(id)object
 {
-    return [assignedNumber compare:[(PhAbstractNumber *)object getPhNumber]];
+    return [assignedNumber compare:[(PhAbstractNumber *)object phNumber]];
 }
 
 

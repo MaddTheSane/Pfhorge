@@ -315,7 +315,7 @@ enum {
 
 -(void)addSidesForLine:(LELine *)theLine;
 -(void)removeSidesFromLine:(LELine *)theLine;
--(void)setNameFor:(id)theObject to:(NSString *)theName;
+-(void)setNameFor:(__kindof LEMapStuffParent*)theObject to:(NSString *)theName;
 -(void)namePolygon:(LEPolygon *)thePoly to:(NSString *)theName;
 -(void)removeNameOfPolygon:(LEPolygon *)thePoly;
 
