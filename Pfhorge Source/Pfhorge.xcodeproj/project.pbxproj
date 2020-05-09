@@ -241,9 +241,9 @@
 		00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhObjectInspectorSubController.h; sourceTree = "<group>"; };
 		00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhObjectInspectorSubController.m; sourceTree = "<group>"; };
 		00CCECF30125C7647F000001 /* PhPrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPrefsController.h; sourceTree = "<group>"; };
-		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; usesTabs = 0; };
+		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; };
 		00D18BBF010A18747F000001 /* PhTextureRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTextureRepository.h; sourceTree = "<group>"; };
-		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; usesTabs = 0; };
+		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; };
 		00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLineInspectorController.h; sourceTree = "<group>"; };
 		00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLineInspectorController.m; sourceTree = "<group>"; };
 		00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPolyInspectorController.h; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		00F6628500E19BB67F000001 /* LEMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapObject.h; sourceTree = "<group>"; };
 		00F6628600E19BB67F000001 /* LEMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapObject.m; sourceTree = "<group>"; };
 		00FBE54800DBBE877F000001 /* LELevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelData.h; sourceTree = "<group>"; usesTabs = 1; };
-		00FBE54900DBBE877F000001 /* LELevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelData.m; sourceTree = "<group>"; usesTabs = 0; };
+		00FBE54900DBBE877F000001 /* LELevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelData.m; sourceTree = "<group>"; };
 		00FBF3A700EAC1717F000001 /* LEPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPaletteController.h; sourceTree = "<group>"; };
 		00FBF3A800EAC1717F000001 /* LEPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPaletteController.m; sourceTree = "<group>"; };
 		00FBF3AB00EACC4F7F000001 /* LEDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEDelegate.h; sourceTree = "<group>"; };
@@ -278,10 +278,10 @@
 		0101D448015C28157F000001 /* ContolPanelRef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ContolPanelRef.cpp; sourceTree = "<group>"; };
 		010314F600ED57F57F000001 /* LELevelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelWindowController.m; sourceTree = "<group>"; };
 		010314F700ED57F57F000001 /* LELevelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelWindowController.h; sourceTree = "<group>"; };
-		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; usesTabs = 0; };
+		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; };
 		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPolygon.m; sourceTree = "<group>"; };
 		011A1BEA00D3C7827F000001 /* LEMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMap.h; sourceTree = "<group>"; };
-		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; usesTabs = 0; };
+		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; };
 		011A1BEE00D3D8317F000001 /* LEMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapData.h; sourceTree = "<group>"; };
 		011A1BEF00D3D8317F000001 /* LEMapData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapData.m; sourceTree = "<group>"; };
 		0121ECA700DDCD937F000001 /* LELine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELine.h; sourceTree = "<group>"; };
@@ -383,9 +383,9 @@
 		F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InfoWindowCommander.h; sourceTree = "<group>"; };
 		F52AB18B01CA949A01A8A806 /* InfoWindowCommander.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InfoWindowCommander.m; sourceTree = "<group>"; };
 		F52BE6F7023C39CB0146BBD2 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; usesTabs = 0; };
+		F52BE6F8023C39CB0146BBD2 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
 		F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalSection.h; sourceTree = "<group>"; };
-		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSection.m; sourceTree = "<group>"; usesTabs = 0; };
+		F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalSection.m; sourceTree = "<group>"; };
 		F52E215801D03C100146BBD2 /* PhLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLayer.h; sourceTree = "<group>"; };
 		F52E215901D03C110146BBD2 /* PhLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLayer.m; sourceTree = "<group>"; };
 		F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefaultLayerController.h; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 		F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyOpenGLView.h; sourceTree = "<group>"; };
 		F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MyOpenGLView.mm; sourceTree = "<group>"; };
 		F53CCE400228BEF90146BBD2 /* Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
-		F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapesDataFormats.h; sourceTree = "<group>"; };
+		F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.h; path = ShapesDataFormats.h; sourceTree = "<group>"; usesTabs = 0; };
 		F53CCE420228BEF90146BBD2 /* ShapesReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapesReader.h; sourceTree = "<group>"; };
 		F53CCE430228BEF90146BBD2 /* ShapesReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapesReader.mm; sourceTree = "<group>"; };
 		F53CCE440228BEF90146BBD2 /* SimpleVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVec.h; sourceTree = "<group>"; };

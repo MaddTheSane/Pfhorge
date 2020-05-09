@@ -59,25 +59,25 @@ struct LevelCatalog {
 
 class MapFileCatalog {
 
-	// File reference number
+	//! File reference number
 	FSIORefNum RefNum;
 
-	// Map header
+	//! Map header
 	wad_header Header;
 	
-	// Map Version (either Marathon 1 or Marathon 2/oo):
+	//! Map Version (either Marathon 1 or Marathon 2/oo):
 	MarathonAssetVersion Version;
 
-	// Block of level catalogs
+	//! Block of level catalogs
 	simple_vector<LevelCatalog> LevelList;
 
-	// Readin OK?
+	//! Readin OK?
 	bool OK;
 	
-	// Current-level index
+	//! Current-level index
 	int LevelIndex;
 
-	// Current chunk for doing listing
+	//! Current chunk for doing listing
 	ChunkLink *CurrOutputChunk;
         
         NSData *theMapFileData;
@@ -99,58 +99,58 @@ public:
 	
 	MarathonAssetVersion GetVersion() {return Version;}
 	
-	// Return the header:
+	//! Return the header:
 	wad_header GetHeader() {return Header;}
 	
-	// How many levels?
+	//! How many levels?
 	int LevelCount() {return Header.wad_count;}
 	
-	// Set and get the current level index (0 to LevelCount()-1);
-	// "Set" returns whether the entered value did not
-	// have to be forced to within the range
+	//! Set and get the current level index (0 to LevelCount()-1);
+	//! "Set" returns whether the entered value did not
+	//! have to be forced to within the range
 	bool SetLevelIndex(int _LevelIndex);
 	int GetLevelIndex() {return LevelIndex;}
 
-	// These are for listing the chunk types and sizes
-	// This resets
+	//! These are for listing the chunk types and sizes
+	//! This resets
 	void ResetChunkListing();
-	// Advances to the next chunk; returns whether or not it could be done
+	//! Advances to the next chunk; returns whether or not it could be done
 	bool AdvanceToNextChunk();
-	// Find the chunk with this type; returns "false" if it could not be found
+	//! Find the chunk with this type; returns "false" if it could not be found
 	bool FindChunk(OSType Type);
 	
-	// Does the current chunk really exist?
+	//! Does the current chunk really exist?
 	bool CurrChunkExists() {return (CurrOutputChunk != 0);}
 	
-	// Gets current chunk features; will crash if the chunk doesn't exist
-	// What type
+	//! Gets current chunk features; will crash if the chunk doesn't exist
+	//! What type
 	OSType GetCurrChunkType() {return CurrOutputChunk->Type;}
-	// What length
+	//! What length
 	long GetCurrChunkLength() {return CurrOutputChunk->Length;}
-	// Load contents into array pointed at (must already be allocated)
+	//! Load contents into array pointed at (must already be allocated)
 	bool LoadCurrChunk(byte *ChkPtr);
-	// Return an array containing the loaded contents of the current chunk;
-	// the caller is responsible for disposing of it
+	//! Return an array containing the loaded contents of the current chunk;
+	//! the caller is responsible for disposing of it
 	byte *GetCurrChunk();
 	
-	// Support KL's API here
+	//! Support KL's API here
 	byte *GetChunk(OSType Type, int &Length);
 	
 	// Find the map-info struct for the current level
 	// static_data GetLevelInfo() {return LevelList[LevelIndex].Info;}
 	
-	// Create with a file to be opened and a progress-bar dialog-box resource ID.
-	// Make the latter zero to omit the progress bar.
+	//! Create with a file to be opened and a progress-bar dialog-box resource ID.
+	//! Make the latter zero to omit the progress bar.
 	MapFileCatalog(NSData *theMapRawData);
 	~MapFileCatalog();
 	
-	// The name of the map in Pascal-string form
+	//! The name of the map in Pascal-string form
 	Str31 MapName;
 };
 
 
-// This function reads a chunk into a vector
-// Returns whether or not the chunk was found
+//! This function reads a chunk into a vector
+//! Returns whether or not the chunk was found
 template <class T> bool
 	GetChunkIntoVector(MapFileCatalog &Cat, OSType Type, simple_vector<T> &Vec) {
 

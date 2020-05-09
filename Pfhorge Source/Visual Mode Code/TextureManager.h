@@ -41,26 +41,26 @@ const int ColorTableSize = 256;
 
 struct TextureTile {
 
-	// Flag for whether texture was loaded
+	//! Flag for whether texture was loaded
 	bool WasLoaded;
 
-	// OpenGL texture ID
+	//! OpenGL texture ID
 	GLuint ID;
 	
-	// Average color value:
+	//! Average color value:
 	GLfloat AvgColor[4];
 	
-	// Pixel data (color indices)
+	//! Pixel data (color indices)
 	GLubyte Pixels[MaraNumWTPixels];
 	
-	// Make current texture the rendering context
+	//! Make current texture the rendering context
 	void Use() {glBindTexture(GL_TEXTURE_2D,ID);}
 	
-	// Is the texture ID valid?
-	// Good for debugging
+	//! Is the texture ID valid?
+	//! Good for debugging
 	GLboolean IsValid() {return glIsTexture(ID);}
 	
-	// Texture priority:
+	//! Texture priority:
 	void SetPriority(GLclampf Priority) {glPrioritizeTextures(1,&ID,&Priority);}
 	GLclampf GetPriority() {GLclampf Priority; Use();
 		glGetTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_PRIORITY, &Priority);
@@ -75,41 +75,41 @@ struct TextureTile {
 
 struct TextureManager {
 	
-	// Color table in RGBA form (what OpenGL likes)
+	//! Color table in RGBA form (what OpenGL likes)
 	GLuint ColorTableList[NumWallTxtrSets][ColorTableSize];
 	
-	// Lists of texture tiles
+	//! Lists of texture tiles
 	simple_vector<TextureTile> TileList[NumWallTxtrSets];
 	
-	// Intermediate buffer for loading a texture tile into OpenGL
+	//! Intermediate buffer for loading a texture tile into OpenGL
 	simple_vector<GLuint> Intmd;
 	
-	// Resets a set's wall textures to "unloaded"
-	// In case it's necessary to reload
+	//! Resets a set's wall textures to "unloaded"
+	//! In case it's necessary to reload
 	void Reset(int its);
 	void ResetAll() {for (int its=0; its<NumWallTxtrSets; its++) Reset(its);}
 	
-	// Use the specified wall texture; load if necessary
-	// Returns whether it is in range
-	// Args: tile set, which tile in set
+	//! Use the specified wall texture; load if necessary
+	//! Returns whether it is in range
+	//! Args: tile set, which tile in set
 	bool Use(int its, int itl);
 	
-	// Get pointer to the average color: returns 0 if out of range
-	// Args: same as above
+	//! Get pointer to the average color: returns 0 if out of range
+	//! Args: same as above
 	GLfloat *GetAvgColor(int its, int itl);
 	
-	// Find the average colors for all the loaded texture sets
+	//! Find the average colors for all the loaded texture sets
 	void FindAverage(int its);
 	void FindAllAverages() {for (int its=0; its<NumWallTxtrSets; its++) FindAverage(its);}
 	
-	// Current texture priority
+	//! Current texture priority
 	GLclampf CurrentPriority;
 	
-	// Reset all the priorities: they will be in the right order,
-	// but as small as possible
+	//! Reset all the priorities: they will be in the right order,
+	//! but as small as possible
 	void ResetPriorities();
 	
-	// Closeup and distant render modes of surfaces
+	//! Closeup and distant render modes of surfaces
 	GLint CloseupRenderMode;
 	GLint DistantRenderMode;
 		

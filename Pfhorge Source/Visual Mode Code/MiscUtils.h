@@ -31,7 +31,7 @@ inline int irint(double x) {
 // The first arg is the input number,
 // and the second arg is the modulus base
 
-// Positive-range modular arithmetic
+//! Positive-range modular arithmetic
 inline int pos_mod(int i, int n) {
 	int m = i % n;
 	if (m < 0) m += n;

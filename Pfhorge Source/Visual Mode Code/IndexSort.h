@@ -14,14 +14,24 @@ class IndexSort {
 
 public:
 	// Constructor: give the number of items to sort
-	IndexSort(int _Size);
-	virtual ~IndexSort();
+	inline IndexSort(int _Size) {
+		Size = _Size;
+		if (Size <= 0) Size = 1; // Idiot-proofing
+		IndexList = new int[Size];
+		ResetIndexList();
+	}
+	virtual ~IndexSort() {
+		delete []IndexList;
+	}
 	
 	// What's the size?
 	int GetSize() {return Size;}
 	
 	// Reset the index list if one wants to do another sort
-	void ResetIndexList();
+	inline void ResetIndexList() {
+		for (int i=0; i<Size; i++)
+			Index(i) = i;
+	}
 	
 	// Index value: returns the index of the item with position Loc in sorted order
 	int &Index(int Loc) {return IndexList[Loc];}
@@ -33,19 +43,3 @@ public:
 	// Do the sorting! Subclass for each sort method supported.
 	virtual void Sort() = 0;
 };
-
-inline void IndexSort::ResetIndexList() {
-	for (int i=0; i<Size; i++)
-		Index(i) = i;
-}
-
-inline IndexSort::IndexSort(int _Size) {
-	Size = _Size;
-	if (Size <= 0) Size = 1; // Idiot-proofing
-	IndexList = new int[Size];
-	ResetIndexList();
-}
-
-inline IndexSort::~IndexSort() {
-	delete []IndexList;
-}

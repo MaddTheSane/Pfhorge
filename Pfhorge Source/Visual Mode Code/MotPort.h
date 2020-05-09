@@ -28,16 +28,16 @@ public:
 			1024
 		};
 		
-		// One-based to zero-based indexing
+		//! One-based to zero-based indexing
 		return MotionSpeedList[SpeedPopup];
 	}
 	
-	// Walk through walls into the void
+	//! Walk through walls into the void
 	bool WalkThruWallsCB;
 	
-	// Position (X, Y, Z):
+	//! Position (X, Y, Z):
 	Float_TFO PositionTF[3];
-	// Previous one (to revert to if desired)
+	//! Previous one (to revert to if desired)
 	float PrevPos[3];
 	
 	// Visibility-mode control: choice of
@@ -53,29 +53,29 @@ public:
 	
 	int VisModePopup;
 	
-	// Clip the rendering to the portals when doing portal rendering
+	//! Clip the rendering to the portals when doing portal rendering
 	bool ClipToPortalCB;
 	
-	// Jump from the void
+	//! Jump from the void
 	bool JumpFromVoidCB;
 	
-	// Do depth sorting when in portal-rendering mode
+	//! Do depth sorting when in portal-rendering mode
 	bool DepthSortCB;
 	
-	// Do Z-buffering
+	//! Do Z-buffering
 	bool ZBufferCB;
 	
-	// Render in reverseorder
+	//! Render in reverseorder
 	bool ReverseOrderCB;
 	
-	// Perform the dialog-box action
-	// Returns whether or not exited with OK (something got changed)
+	//! Perform the dialog-box action
+	//! Returns whether or not exited with OK (something got changed)
 	bool Do();
 	
-	// Set up the dialog box
+	//! Set up the dialog box
 	void Init();
 	
-	// Various extra routines
+	//! Various extra routines
 	void Defaults();
 	void Save();
 	void Restore();

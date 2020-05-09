@@ -2,6 +2,7 @@
 // interpreted by Loren Petrich
 
 #pragma once
+#include <CoreFoundation/CoreFoundation.h>
 
 
 #pragma pack(push, 2)
@@ -61,10 +62,10 @@ const int ShapesDirectory_Base = 4;
 const int ShapesDirectory_Step = 32;
 
 
-// Shapes subdirectory entry:
-// It contains the offset and size of a shapes chunk.
-// If the offset is -1, that means that
-// there is no corresponding shapes chunk.
+//! Shapes subdirectory entry:
+//! It contains the offset and size of a shapes chunk.
+//! If the offset is -1, that means that
+//! there is no corresponding shapes chunk.
 struct ShapesSubdirEntry {
 	int Offset;
 	int Size;
@@ -75,8 +76,8 @@ struct ShapesSubdirEntry {
 };
 
 
-// Shapes directory entry
-// There are two possible subdirectory entries.
+//! Shapes directory entry
+//! There are two possible subdirectory entries.
 struct ShapesDirEntry {
 	ShapesSubdirEntry SubdirList[NUMBER_OF_SHAPES_SUBCOLLECTIONS];
 	// Appears to be nothing significant after these
@@ -88,7 +89,7 @@ struct ShapesDirEntry {
 // with modifications noted as appropriate.
 
 
-// This is to get around "fixed" being in namespace "std"
+//! This is to get around "fixed" being in namespace "std"
 typedef int _fixed;
 
 // End of a lot of LP stuff
@@ -180,7 +181,7 @@ and low-level shapes are frames
 
 struct color_entry /* 8 bytes */
 {
-   short entry_number; /* ranges from 0 to color_count - 1 */
+   short entry_number; /*!< ranges from 0 to color_count - 1 */
    unsigned short red;
    unsigned short green;
    unsigned short blue;
@@ -276,46 +277,39 @@ Here is the dictionary from the file's view_count value to its true value:
 
 */
 
-enum /* low-level shape flags */
+/*! low-level shape flags */
+typedef CF_ENUM(unsigned short, low_level_shape_flags)
 {
+   //! indicates that the sprite is to be drawn from right to left
+   //! rather than left to right
    _lowShapeXMirror =    0x8000,
+   //! similar to _lowShapeXMirror, but affects drawing vertically
+   //! rather than horizontally. It doesn't seem to be implemented
    _lowShapeYMirror =    0x4000,
    _lowShapeKeyObscure = 0x2000
 };
 
-/*
-%_lowShapeXMirror: indicates that the sprite is to be drawn from right to left
-rather than left to right
-%_lowShapeYMirror: similar to _lowShapeXMirror, but affects drawing vertically
-rather than horizontally. It doesn't seem to be implemented
-%_lowShapeKeyObscure: ???
-*/
-
 struct low_level_shape /* 36 bytes */
 {
-   unsigned short flags;
+   low_level_shape_flags flags;
 
+   //! minimum light value that can be assigned to this
+   //! image. Used for "bright" sprites, such as explosions, that are never supposed to
+   //! be dark.
    _fixed minimum_light_intensity;
+   //! indicates which image is used to draw this low-level shape
    short image_index;
+   //! center of shape? Who knows..
    short x_origin, y_origin;
+   //! no idea..
    short x_key, y_key;
+   //! defines the bounding rectangle?
    short left, right, top, bottom;
+   //! no idea..
    short world_x_origin, world_y_origin;
 
    short unused[4];
 };
-
-/*
-%flags: see above
-%minimum_light_intensity: minimum light value that can be assigned to this
-image. Used for "bright" sprites, such as explosions, that are never supposed to
-be dark.
-%image_index: indicates which image is used to draw this low-level shape
-%x_origin, y_origin: center of shape? Who knows..
-%x_key, y_key: no idea..
-%left, top, right, bottom: defines the bounding rectangle?
-%world_x_origin, world_y_origin: no idea..
-*/
 
 /*
 

@@ -106,7 +106,7 @@ public:
 		NUM_FOG_TYPES
 	};
 	
-	// Were once popup-menu indices
+	//! Were once popup-menu indices
 	int
 		SelectRenderMode,
 		SelectPlatformState,
@@ -119,7 +119,7 @@ public:
 		SelectNearDistance,
 		SelectFarDistance;
 	
-	// Were once checkbox indices
+	//! Were once checkbox indices
 	bool
 		ShowTrans,		// Transparent
 		ShowLdscp,		// Landscape
@@ -133,13 +133,13 @@ public:
 	
 	float FogDepth;
 	
-	// Set up the dialog box
+	//! Set up the dialog box
 	void Init();
 	
-	// Set OpenGL stuff that can be set immediately
+	//! Set OpenGL stuff that can be set immediately
 	void SetImmediate();
 	
-	// Get OpenGL render-mode constants
+	//! Get OpenGL render-mode constants
 	GLint GetCloseupRenderMode();
 	GLint GetDistantRenderMode();
 };
