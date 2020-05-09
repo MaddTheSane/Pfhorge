@@ -73,6 +73,7 @@
     [theRecords addObject:ARecord];
     
     appDefaults = [NSDictionary dictionaryWithObject:theRecords forKey:PhDefaultLayers];
+	[theRecords release];
     
     [defaults registerDefaults:appDefaults];
 }

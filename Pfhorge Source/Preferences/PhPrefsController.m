@@ -102,7 +102,8 @@
     //[appDefaults setObject:theMutableColors forKey:PhPhorgeColors];
     
     [appDefaults addEntriesFromDictionary:theMutableColors];
-    
+	[theMutableColors release];
+	
      //Test...
     [appDefaults setObject:@"Default Registration Domain..." forKey:@"TEST"];
         

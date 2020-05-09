@@ -860,7 +860,7 @@
 
 - (IBAction)sideTextureOffsetMatrixAction:(id)sender
 {
-    struct side_texture_definition thePTex;
+	struct side_texture_definition thePTex = {0};
     struct side_texture_definition theSTex;
     struct side_texture_definition theTTex;
     

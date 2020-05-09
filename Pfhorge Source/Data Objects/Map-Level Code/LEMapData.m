@@ -146,6 +146,8 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         [theArchivedLevels addObject:entireMapData];
         [theLevelNamesEXP addObject:[theLevelNames objectAtIndex:(i - 1)]];
+		[entireMapData release];
+		[theLevelNames release];
         
         [currentLevel release];
         
@@ -986,9 +988,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     BOOL foundTheTag;
     long this_offset;
     //NSMutableArray *theDataToReturn = nil;
-    NSString *theTagAsString;
-    
-    theTagAsString = [[NSString alloc] init];
+//    NSString *theTagAsString;
+//    
+//    theTagAsString = [[NSString alloc] init];
     
     //Set the cursor to the first byte of the level
     theCursor = myLevelHeaders[theLevel-1].offsetToStart;
@@ -2653,9 +2655,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     BOOL GoOn, foundTheTag;
     long this_offset;
     //NSMutableArray *theDataToReturn = nil;
-    NSString *theTagAsString;
-    
-    theTagAsString = [[NSString alloc] init];
+//    NSString *theTagAsString;
+//
+//    theTagAsString = [[NSString alloc] init];
     
     //Set the cursor to the first byte of the level
     theCursor = myLevelHeaders[theLevel-1].offsetToStart;

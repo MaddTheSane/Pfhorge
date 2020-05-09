@@ -266,7 +266,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
         [theDrawView updateNameList:_layerMenu];
         
-        return theNewLayer;
+        return [theNewLayer autorelease];
     }
     else
         SEND_ERROR_MSG(@"I tried to add a unknown object class to level?");

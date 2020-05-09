@@ -63,6 +63,7 @@ enum	// side flags
 #define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
 
 NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
+static NSCursor *crosshairCursor = nil;
 
 @implementation LELevelWindowController
 
@@ -1176,15 +1177,12 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
     // Just set the correct cursor
     LEPaletteTool currentTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
     NSCursor *theCursor = nil;
-    static NSCursor *crosshairCursor = nil;
     
     
     if (!crosshairCursor) {
         NSImage *crosshairImage = [NSImage imageNamed:@"Cross"];
         NSSize imageSize = [crosshairImage size];
         crosshairCursor = [[NSCursor allocWithZone:[self zone]] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
-        [crosshairImage retain];
-        [crosshairCursor retain];
     }
     
     switch (currentTool)
@@ -1224,8 +1222,6 @@ NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
         NSImage *crosshairImage = [NSImage imageNamed:@"Cross"];
         NSSize imageSize = [crosshairImage size];
         crosshairCursor = [[NSCursor allocWithZone:[self zone]] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
-        [crosshairImage retain];
-        [crosshairCursor retain];
     }
 }
 

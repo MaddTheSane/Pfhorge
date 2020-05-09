@@ -484,7 +484,7 @@
     
     if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"])
     {
-        entireMapData = [LEMapData convertLevelToDataObject:(LELevelData *)theLevel];
+        [entireMapData setData:[LEMapData convertLevelToDataObject:(LELevelData *)theLevel]];
     }
     else
     {
@@ -509,7 +509,7 @@
         cameFromMarathonFormatedFile = NO;
     }
     
-    return entireMapData;
+    return [entireMapData autorelease];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError

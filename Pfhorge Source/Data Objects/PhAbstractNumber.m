@@ -104,6 +104,12 @@
     return self;
 }
 
+- (void)dealloc
+{
+	[assignedNumber release];
+	[super dealloc];
+}
+
 @synthesize phNumber=assignedNumber;
 
 //-(short) getIndex { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }

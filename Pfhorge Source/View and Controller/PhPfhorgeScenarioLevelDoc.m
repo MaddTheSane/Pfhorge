@@ -177,7 +177,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 {
     NSString	*fileName = nil;
     NSMutableArray *archivedLevels = nil;
-    NSMutableArray *levelNames = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray *levelNames = [NSMutableArray arrayWithCapacity:0];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *imageDir = [[self getFullPathForDirectory] stringByAppendingPathComponent:@"Images"];
     BOOL isDir = NO;
@@ -304,6 +304,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
             
             // Should be able to just release it now, but just in case..
             [fileResources autorelease];
+			[pathPathwaysApp release];
             
             NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
         }

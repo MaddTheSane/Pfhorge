@@ -959,7 +959,7 @@ enum // export data types
 {
     int i, j;
     
-    [self init];
+    self = [self init];
     
     if (self == nil)
         return nil;
@@ -1017,7 +1017,7 @@ enum // export data types
 {
     int i, j;
     
-    [self init];
+    self = [self init];
     
     if (self == nil)
         return nil;

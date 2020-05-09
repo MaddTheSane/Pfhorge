@@ -185,7 +185,7 @@ extern NSString *VMBackwardKey;
 
 - (NSString *)getKeyNameFromUnichar:(unichar)theUnichar
 {
-    NSString *theString =[[NSString alloc] initWithString:@"Set To: "];
+    NSString *theString = @"Set To: ";
     unichar theChar = theUnichar;
     
     if (theChar == 0xf700)
@@ -595,6 +595,7 @@ extern NSString *VMBackwardKey;
         
         //[pool release];
     }
+	[distantPast release];
     return c;
 }
 

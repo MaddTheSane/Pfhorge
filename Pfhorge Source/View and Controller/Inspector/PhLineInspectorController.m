@@ -352,7 +352,7 @@
     //IBOutlet id linePermutationTabView;
                     
                     {
-                        int objIndex = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]];
+                        NSInteger objIndex = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]];
                         
                         if (objIndex < 0)
                             [linePermutation selectItemAtIndex:-1];

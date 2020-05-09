@@ -48,7 +48,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     

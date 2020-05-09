@@ -26,7 +26,7 @@
 
 @class LEMap, LEMapDraw, LELevelData, LELevelWindowController;
 
-@interface PhColorListController : NSWindowController
+@interface PhColorListController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource>
 {
     IBOutlet id colorListDataSource;
     IBOutlet id colorListTable;

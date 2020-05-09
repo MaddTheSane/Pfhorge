@@ -344,8 +344,8 @@ NSString *PhNameOfObject = @"Name";
 // *** Data Source Messages ***
 
 - (BOOL)tableView:(NSTableView *)aTableView
-    shouldEditTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+shouldEditTableColumn:(NSTableColumn *)col
+			  row:(NSInteger)rowIndex
 {
     
     if ([[col identifier] isEqualToString:PhNumberOfObject])
@@ -367,14 +367,14 @@ NSString *PhNameOfObject = @"Name";
     [cell setBackgroundColor: [colors objectAtIndex:row]];
 }*/
 
-- (int)numberOfRowsInTableView:(NSTableView *)view
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)view
 {
     return [currentArray count];
 }
 
 - (id)tableView:(NSTableView *)view
-    objectValueForTableColumn:(NSTableColumn *)col
-    row:(int)row
+objectValueForTableColumn:(NSTableColumn *)col
+			row:(NSInteger)row
 {
     /*PhAbstractName **/ id theCurNameObj= [currentArray objectAtIndex:row];
     
@@ -398,9 +398,9 @@ NSString *PhNameOfObject = @"Name";
 }
 
 - (void)tableView:(NSTableView *)aTableView
-    setObjectValue:anObject
-    forTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+   setObjectValue:anObject
+   forTableColumn:(NSTableColumn *)col
+			  row:(NSInteger)rowIndex
 {
     //id theRecord;
     //PhAbstractName *theCurNameObj= [currentArray objectAtIndex:row];

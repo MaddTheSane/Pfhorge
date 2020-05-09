@@ -369,8 +369,8 @@
 		F51939C702AC7C150146BBD2 /* PhScenarioData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhScenarioData.h; sourceTree = "<group>"; };
 		F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhScenarioManagerController.m; sourceTree = "<group>"; };
 		F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhScenarioManagerController.h; sourceTree = "<group>"; };
-		F520388C024156C10146BBD2 /* TerminalEditorController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TerminalEditorController.h; sourceTree = "<group>"; };
-		F520388D024156C10146BBD2 /* TerminalEditorController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = TerminalEditorController.m; sourceTree = "<group>"; };
+		F520388C024156C10146BBD2 /* TerminalEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalEditorController.h; sourceTree = "<group>"; };
+		F520388D024156C10146BBD2 /* TerminalEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalEditorController.m; sourceTree = "<group>"; };
 		F520576902B503430146BBD2 /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		F520576A02B503430146BBD2 /* Resource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource.m; sourceTree = "<group>"; };
 		F521C1C302BBE0CA0146BBD2 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };

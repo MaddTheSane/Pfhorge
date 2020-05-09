@@ -121,7 +121,7 @@
     // short platformPolygonIndex = [platform polygonIndex];
     // short platformIndex =  [platform getIndex];
     
-    int platformTagMenuIndex = [self tagIndexNumberFromShort:[platform tag]];
+    NSInteger platformTagMenuIndex = [self tagIndexNumberFromShort:[platform tag]];
     
     
     NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] getIndex], [[[platform tagObject] getPhNumber] intValue]);

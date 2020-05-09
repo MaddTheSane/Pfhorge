@@ -249,7 +249,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 - (NSSet<__kindof LEMapStuffParent*> *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet<LEMapStuffParent*> *)excludeSet;
 - (void)updateRectCacheIn:(NSRect)aRect;
 - (NSSet<LELine*> *)listOfLinesWithin:(NSRect)aRect;
-- (NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject;
+- (nullable NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject;
 - (void)deselectObject:(id)theObj;
 - (BOOL)isObjectInSelections:(id)theObj;
 - (BOOL)isPointInSelection:(NSPoint)thePoint;

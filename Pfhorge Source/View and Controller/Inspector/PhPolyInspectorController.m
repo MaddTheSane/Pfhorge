@@ -324,7 +324,7 @@
 
 - (IBAction)polygonTypeAction:(id)sender
 {
-    int thePolyType = [sender indexOfSelectedItem];
+    LEPolygonType thePolyType = [sender indexOfSelectedItem];
     LEPolygon *thePolyInQuestion = curPoly; //((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
     LELevelData *theLevelData = [mainInspectorController currentLevel];
     LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];

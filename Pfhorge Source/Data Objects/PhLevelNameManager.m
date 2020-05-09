@@ -77,7 +77,7 @@
     
     int versionNum = 0;
     
-    [self init];
+    self = [self init];
     
     versionNum = decodeNumInt(coder);
     

@@ -1260,6 +1260,7 @@
 						/* copy method should automatically do this */
 					//[permutationObject copySettingsTo:tempPermutationObj];
 					[tempPermutationObj setPolygonObject:theTarget];
+					[tempPermutationObj autorelease];
 				}
             }
             else

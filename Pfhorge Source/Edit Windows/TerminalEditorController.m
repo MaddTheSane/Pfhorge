@@ -634,8 +634,10 @@
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-    if (![theSelectedObj isKindOfClass:[TerminalSection class]])
+	if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
+		[theTextAtriString release];
         return;
+	}
     
     theCellTagClickedOn = [[sender selectedCell] tag];
     
@@ -856,21 +858,23 @@
     NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-            NSAttributedString *attrStr = theTextAtriString; 
-            NSRange limitRange;
-            NSRange effectiveRange;
-            id attributeValue;
-            NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
-            NSFont *regFont = [NSFont fontWithName:@"Courier" size:12.0];
-            NSFont *fontToUse;
+	NSAttributedString *attrStr = theTextAtriString;
+	NSRange limitRange;
+	NSRange effectiveRange;
+	id attributeValue;
+	NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
+	NSFont *regFont = [NSFont fontWithName:@"Courier" size:12.0];
+	NSFont *fontToUse;
             
     NSLog(@"stylePopMAction");
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
     
-    if (![theSelectedObj isKindOfClass:[TerminalSection class]])
+	if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
+		[theTextAtriString release];
         return;
+	}
     
     switch ([sender indexOfSelectedItem])
     {

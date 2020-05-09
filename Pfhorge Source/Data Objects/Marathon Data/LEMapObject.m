@@ -79,7 +79,7 @@
     
     if (polygonObject != nil && [mainObjs containsObject:polygonObject])
     {
-        ExportObjIndex(polygonObject, (int)theIndex);
+        ExportObjIndex(polygonObject, theIndex);
     }
     else
     {
