@@ -804,12 +804,12 @@ static NSCursor *crosshairCursor = nil;
         [rdRemoveBtn setEnabled:NO];
         [rdTextInputTB setStringValue:[NSString
                 stringWithFormat:@"Poly %d",
-                [thePoly getIndex]]];
+                [thePoly index]]];
     }
     
     [rdMessageIT setStringValue:[NSString
                 stringWithFormat:@"Enter New Name For Polygon#%d",
-                [thePoly getIndex]]];
+                [thePoly index]]];
         // Open the sheet...
     [NSApp  beginSheet:rdSheet
             modalForWindow:mainWindow
@@ -1010,7 +1010,7 @@ static NSCursor *crosshairCursor = nil;
     int index = -1;
     
     if ([tmpNote group] != nil)
-        index = [[tmpNote group] getIndex];
+        index = [[tmpNote group] index];
     
     NSLog(@"index: %d", index);
     

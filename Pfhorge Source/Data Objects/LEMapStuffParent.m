@@ -54,7 +54,7 @@
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
-    return [self getIndex];
+    return [self index];
 }
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
@@ -291,7 +291,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Index: %d  ({[PDSuper]})", [self getIndex], nil];
+    return [NSString stringWithFormat:@"Index: %d  ({[PDSuper]})", [self index], nil];
 }
 
 -(void)copySettingsTo:(id)target
@@ -316,13 +316,13 @@
     [self moveBy32Point:theOffset];
 }
 
--(short) getIndex
+-(short) index
 {
-    NSLog(@"the abstract method -(short) getIndex in the super class was called...");
+    NSLog(@"the abstract method -(short) index in the super class was called...");
     return -1;
 }
 
--(short) getSpecialIndex { return [self getIndex]; }
+-(short) getSpecialIndex { return [self index]; }
 
 -(void) update
 {

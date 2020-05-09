@@ -138,7 +138,7 @@
         [lights addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
         
-        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj getIndex]];
+        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj index]];
         [theNewObj setPhName:theName];
         [lightNames addObject:theName];
         
@@ -157,7 +157,7 @@
         [media addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
         
-        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj getIndex]];
+        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj index]];
         [theNewObj setPhName:theName];
         [liquidNames addObject:theName];
         
@@ -176,7 +176,7 @@
         [ambientSounds addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
         
-        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj getIndex]];
+        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj index]];
         [theNewObj setPhName:theName];
         [ambientSoundNames addObject:theName];
         
@@ -195,7 +195,7 @@
         [randomSounds addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
         
-        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj getIndex]];
+        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj index]];
         [theNewObj setPhName:theName];
         [randomSoundNames addObject:theName];
         
@@ -225,7 +225,7 @@
         [platforms addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
         
-        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj getIndex]];
+        theName = [NSString localizedStringWithFormat:@"%d", [theNewObj index]];
         [theNewObj setPhName:theName];
         [platformNames addObject:theName];
         
@@ -404,7 +404,7 @@
     [platforms addObject:thePlatformToAdd];
     [self setUpArrayPointersFor:thePlatformToAdd];
     
-    theName = [NSString localizedStringWithFormat:@"%d", [thePlatformToAdd getIndex]];
+    theName = [NSString localizedStringWithFormat:@"%d", [thePlatformToAdd index]];
     [thePlatformToAdd setPhName:theName];
     [platformNames addObject:theName];
 }
@@ -503,7 +503,7 @@
         [self setUpArrayPointersFor:thePolyToAdd];        
         //[thePolyToAdd updateObjectsFromIndexes];
         
-        [thePolyToAdd setFloor_lightsourceObject:[lights objectAtIndex:0]];
+        [thePolyToAdd setFloorLightsourceObject:[lights objectAtIndex:0]];
         [thePolyToAdd setCeiling_lightsourceObject:[lights objectAtIndex:0]];
         [thePolyToAdd setMedia_lightsourceObject:[lights objectAtIndex:0]];
         
@@ -525,10 +525,10 @@
         numer = [polyLines objectEnumerator];
         while (thisObj = [numer nextObject])
         {
-            LEPolygon *poly1 = [thisObj getClockwisePolygonObject];
-            LEPolygon *poly2 = [thisObj getConterclockwisePolygonObject];
-            ///LEMapPoint *p1 = [thisObj getMapPoint1]; // Beta Point
-            ///LEMapPoint *p2 = [thisObj getMapPoint2]; // Alpha Point
+            LEPolygon *poly1 = [thisObj clockwisePolygonObject];
+            LEPolygon *poly2 = [thisObj conterclockwisePolygonObject];
+            ///LEMapPoint *p1 = [thisObj mapPoint1]; // Beta Point
+            ///LEMapPoint *p2 = [thisObj mapPoint2]; // Alpha Point
             LEPolygon *otherPoly;
             int result;
             //NSRect otherPolyRect;
@@ -655,8 +655,8 @@
     NSInteger countOfLineArray = [lineArray count];
     NSInteger i;
     
-    alphaPoint = [currentLine getMapPoint2];
-    betaPoint = [currentLine getMapPoint1];
+    alphaPoint = [currentLine mapPoint2];
+    betaPoint = [currentLine mapPoint1];
     
     //NSSet *theConnectedLines = [alphaPoint getLinesAttachedToMe]; 
     
@@ -675,13 +675,13 @@
             currentLine = thisMapLine;
             alphaPoint = nil;
             
-            if ([currentLine getMapPoint1] == betaPoint)
+            if ([currentLine mapPoint1] == betaPoint)
             {
-                alphaPoint = [currentLine getMapPoint2];
+                alphaPoint = [currentLine mapPoint2];
             }
-            else if ([currentLine getMapPoint2] == betaPoint)
+            else if ([currentLine mapPoint2] == betaPoint)
             {
-                alphaPoint = [currentLine getMapPoint1];
+                alphaPoint = [currentLine mapPoint1];
             }
             else
             {
@@ -697,8 +697,8 @@
         numer = [lineArray objectEnumerator];
         while (tmpLine = [numer nextObject])
         {
-            LEMapPoint *theCurPoint1 = [tmpLine getMapPoint1];
-            LEMapPoint *theCurPoint2 = [tmpLine getMapPoint2];
+            LEMapPoint *theCurPoint1 = [tmpLine mapPoint1];
+            LEMapPoint *theCurPoint2 = [tmpLine mapPoint2];
             
             if (tmpLine == currentLine)
                 continue;
@@ -783,7 +783,7 @@
         theXfromSlop = theY / slope;
         //NSLog(@"   IFIND theXfromSlop: %g", theXfromSlop);
     
-        //NSLog(@"   IFIND For Line %d  theX: %g theY: %g", [thisMapLine getIndex], theX, theY);
+        //NSLog(@"   IFIND For Line %d  theX: %g theY: %g", [thisMapLine index], theX, theY);
         if (0 < prevY) // Main Point Lower
         {
             if (theX >= theXfromSlop) //ok
@@ -874,9 +874,9 @@
 
 -(void)deleteLevelObject:(LEMapObject *)theLevelObjectToRemove
 {
-    int theObjType = [theLevelObjectToRemove getType];
+    int theObjType = [theLevelObjectToRemove type];
     
-    //NSLog(@"Can't Delete Map Object: %d. This feature not implmented yet!", [theLevelObjectToRemove getIndex]);
+    //NSLog(@"Can't Delete Map Object: %d. This feature not implmented yet!", [theLevelObjectToRemove index]);
     
     if (theObjType == _saved_monster)
         [self adjustInitalItemPlacmentBy:-1 forIndex:[theLevelObjectToRemove getObjTypeIndex] isMonster:YES];
@@ -949,8 +949,8 @@
 -(void)deleteLine:(LELine *)theLineToRemove
 {
     LELine *theLine = theLineToRemove;
-    LEPolygon *clockwisePoly = [theLine getClockwisePolygonObject];
-    LEPolygon *counterclockPoly = [theLine getConterclockwisePolygonObject];
+    LEPolygon *clockwisePoly = [theLine clockwisePolygonObject];
+    LEPolygon *counterclockPoly = [theLine conterclockwisePolygonObject];
     
     [theLine setClockwisePolygonObject:nil];
     [theLine setConterclockwisePolygonObject:nil];
@@ -970,8 +970,8 @@
     
     //NSLog(@"*deleteing line 2");
     
-    LESide *clockwiseSide = [theLine getClockwisePolygonSideObject];
-    LESide *counterclockSide = [theLine getCounterclockwisePolygonSideObject];
+    LESide *clockwiseSide = [theLine clockwisePolygonSideObject];
+    LESide *counterclockSide = [theLine counterclockwisePolygonSideObject];
     
     //Aobve Polygon Deletions should delete the sides, but just in case...
     if (clockwiseSide != nil)
@@ -1031,7 +1031,7 @@
     #endif
     // *** *** ***
     
-    if ([thePolyToRemove getType] == _polygon_is_platform)
+    if ([thePolyToRemove type] == _polygon_is_platform)
     {
         PhPlatform *thePlatform = [thePolyToRemove getPermutationObject];
         
@@ -1060,10 +1060,10 @@
     for(i = 0; i < vc; i++)
     {
         LELine *theLine = [thePolyToRemove getLineObject:i];
-        LEPolygon *clockwisePoly = [theLine getClockwisePolygonObject];
-        LEPolygon *counterclockPoly = [theLine getConterclockwisePolygonObject];
-        LESide *clockwiseSide = [theLine getClockwisePolygonSideObject];
-        LESide *counterclockSide = [theLine getCounterclockwisePolygonSideObject];
+        LEPolygon *clockwisePoly = [theLine clockwisePolygonObject];
+        LEPolygon *counterclockPoly = [theLine conterclockwisePolygonObject];
+        LESide *clockwiseSide = [theLine clockwisePolygonSideObject];
+        LESide *counterclockSide = [theLine counterclockwisePolygonSideObject];
         
         if (clockwisePoly == thePolyToRemove)
         {
@@ -1107,7 +1107,7 @@
     numer = [mapObjects objectEnumerator];
     while (thisObj = [numer nextObject])
     {
-        if ([thisObj getPolygonObject] == thePolyToRemove)
+        if ([thisObj polygonObject] == thePolyToRemove)
         {
             [thisObj setPolygonObject:nil];
             [self deleteLevelObject:thisObj];
@@ -1142,8 +1142,8 @@
             
             if (theLine != nil)
             {
-                LESide *clockwiseSide = [theLine getClockwisePolygonSideObject];
-                LESide *counterclockSide = [theLine getCounterclockwisePolygonSideObject];
+                LESide *clockwiseSide = [theLine clockwisePolygonSideObject];
+                LESide *counterclockSide = [theLine counterclockwisePolygonSideObject];
                 
                 if (clockwiseSide == thisObj)
                 {
@@ -1178,7 +1178,7 @@
     
     LEPolygon *poly = [thePlatformToRemove polygonObject];
     
-    if ([poly getType] == _polygon_is_platform)
+    if ([poly type] == _polygon_is_platform)
     {
         PhPlatform *thePlatform = [poly getPermutationObject];
         

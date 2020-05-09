@@ -320,7 +320,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Polygon Index: %d   Layer: %@", [self getIndex], [polyLayer getPhName], nil];
+    return [NSString stringWithFormat:@"Polygon Index: %d   Layer: %@", [self index], [polyLayer getPhName], nil];
 }
 
 
@@ -474,14 +474,14 @@
     
     //
     
-    NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: polygon %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
+        NSLog(@"BIG EXPORT ERROR: polygon %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -496,7 +496,7 @@
     int i = 0;
     short tmpShort;
     
-    NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     /*
     if (theNumber != NSNotFound)
@@ -713,7 +713,7 @@
     {
         if (useIndexNumbersInstead)
         {
-            NSLog(@"POLYGON: vertexObjects[%d]: %d", i, [vertexObjects[i] getIndex]);
+            NSLog(@"POLYGON: vertexObjects[%d]: %d", i, [vertexObjects[i] index]);
             [vertexObjects[i] setEncodeIndexNumbersInstead:YES];
             [lineObjects[i] setEncodeIndexNumbersInstead:YES];
             //[side_objects[i] setEncodeIndexNumbersInstead:YES];
@@ -1107,7 +1107,7 @@
     return NO;      
 }
 
--(short) getIndex { return [theMapPolysST indexOfObjectIdenticalTo:self]; }
+-(short) index { return [theMapPolysST indexOfObjectIdenticalTo:self]; }
 
 // ****************** Texture Methods ********************
 #pragma mark -
@@ -1213,7 +1213,7 @@
 {
     LEPolygon *theTarget = (LEPolygon *)target;
     id tempPermutationObj = nil;
-    int thePreviousType = [theTarget getType];
+    int thePreviousType = [theTarget type];
     
     [theTarget setMediaObject:media_object];
     [theTarget setMedia_lightsourceObject:media_lightsource_object];
@@ -1299,7 +1299,7 @@
     [theTarget setFloor_height_no_sides:floor_height];
     [theTarget setCeiling_height:ceiling_height];
     
-    [theTarget setFloor_lightsourceObject:floor_lightsource_object];
+    [theTarget setFloorLightsourceObject:floor_lightsource_object];
     [theTarget setCeiling_lightsourceObject:ceiling_lightsource_object];
     [theTarget setArea:area];
     [theTarget setFirst_objectObject:first_object_pointer];
@@ -1653,7 +1653,7 @@
         [lineObjects[i] caculateSides];
 }
 
--(void)setFloor_lightsource:(short)v 
+-(void)setFloorLightsource:(short)v 
 {
     //floor_lightsource_index = v; 
     if (v == -1)
@@ -1661,7 +1661,7 @@
     else if (everythingLoadedST)
         floor_lightsource_object = [theMapLightsST objectAtIndex:v];
 } //
--(void)setFloor_lightsourceObject:(id)v 
+-(void)setFloorLightsourceObject:(id)v 
 { 
     floor_lightsource_object = v; 
 } //
@@ -1823,8 +1823,8 @@
 // ************************************* Get Accsessors ********************************************************
 -(BOOL)getPolygonConcaveFlag { return polygonConcave; }
 
--(LEPolygonType)getType { return type; }
--(LEPolygonFlags)getFlags { return flags; }
+-(LEPolygonType)type { return type; }
+-(LEPolygonFlags)flags { return flags; }
 
 -(short)getPermutation
 {
@@ -1837,9 +1837,9 @@
     }
     
     /*if (permutationObject != nil)
-        NSLog(@"polygonPermutation index number: %d", [permutationObject getIndex]);*/
+        NSLog(@"polygonPermutation index number: %d", [permutationObject index]);*/
     
-    return (permutationObject == nil) ? (-1) : ([permutationObject getIndex]);
+    return (permutationObject == nil) ? (-1) : ([permutationObject index]);
 }
 -(short)getPermutationZero { return (permutationObject == nil) ? (0) : ([self getPermutation]); } // ***
 
@@ -1869,11 +1869,11 @@
 -(short)getTheVertexCount { // NSLog(@"RETURNING The Poly Vertex Count (poly): %d", vertexCount);
                             return vertexCountForPoly; }
 
--(short)getVertexIndexes:(short)i { return (vertexObjects[i] == nil) ? -1 : [vertexObjects[i] getIndex]; }
--(short)getLineIndexes:(short)i { return (lineObjects[i] == nil) ? -1 : [lineObjects[i] getIndex]; }
+-(short)getVertexIndexes:(short)i { return (vertexObjects[i] == nil) ? -1 : [vertexObjects[i] index]; }
+-(short)getLineIndexes:(short)i { return (lineObjects[i] == nil) ? -1 : [lineObjects[i] index]; }
 
--(short)getVertexIndexesZero:(short)i { return (vertexObjects[i] == nil) ? 0 : [vertexObjects[i] getIndex]; }  // ***
--(short)getLineIndexesZero:(short)i { return (lineObjects[i] == nil) ? 0 : [lineObjects[i] getIndex]; }  // ***
+-(short)getVertexIndexesZero:(short)i { return (vertexObjects[i] == nil) ? 0 : [vertexObjects[i] index]; }  // ***
+-(short)getLineIndexesZero:(short)i { return (lineObjects[i] == nil) ? 0 : [lineObjects[i] index]; }  // ***
 
 -(NSArray *)getVertexArray
 {
@@ -1900,11 +1900,11 @@
 -(NSString *)getFloor_height_decimal_string { return [[self getFloor_height_decimal] stringValue]; }
 -(NSString *)getCeiling_height_decimal_string { return [[self getCeiling_height_decimal] stringValue]; }
 
--(short)getFloor_lightsource_index { return (floor_lightsource_object == nil) ? -1 : [floor_lightsource_object getIndex]; }
--(short)getCeiling_lightsource_index { return (ceiling_lightsource_object == nil) ? -1 : [ceiling_lightsource_object getIndex]; }
+-(short)getFloor_lightsource_index { return (floor_lightsource_object == nil) ? -1 : [floor_lightsource_object index]; }
+-(short)getCeiling_lightsource_index { return (ceiling_lightsource_object == nil) ? -1 : [ceiling_lightsource_object index]; }
 
--(short)getFloor_lightsource_index_zero { return (floor_lightsource_object == nil) ? 0 : [floor_lightsource_object getIndex]; }  // ***
--(short)getCeiling_lightsource_index_zero { return (ceiling_lightsource_object == nil) ? 0 : [ceiling_lightsource_object getIndex]; }  // ***
+-(short)getFloor_lightsource_index_zero { return (floor_lightsource_object == nil) ? 0 : [floor_lightsource_object index]; }  // ***
+-(short)getCeiling_lightsource_index_zero { return (ceiling_lightsource_object == nil) ? 0 : [ceiling_lightsource_object index]; }  // ***
 
 -(id)getFloor_lightsource_object { return floor_lightsource_object; } // ---
 -(id)getCeiling_lightsource_object { return ceiling_lightsource_object; } // ---
@@ -1917,26 +1917,26 @@
 -(short)getFloor_transfer_mode { return floor_transfer_mode; }
 -(short)getCeiling_transfer_mode { return ceiling_transfer_mode; }
 
--(short)getAdjacent_polygon_indexes:(short)i { return (adjacent_polygon_objects[i] == nil) ? 0 : [adjacent_polygon_objects[i] getIndex]; }  // ***
+-(short)getAdjacent_polygon_indexes:(short)i { return (adjacent_polygon_objects[i] == nil) ? 0 : [adjacent_polygon_objects[i] index]; }  // ***
 -(id)getAdjacent_polygon_objects:(short)i { return adjacent_polygon_objects[i]; } //
 
--(short)getFirst_neighbor_index { return (first_neighbor_object == nil) ? -1 : [first_neighbor_object getIndex]; } //
+-(short)getFirst_neighbor_index { return (first_neighbor_object == nil) ? -1 : [first_neighbor_object index]; } //
 -(id)getFirst_neighbor_object { return first_neighbor_object; } // ---
 
 -(short)getNeighbor_count { return neighbor_count; }
 -(NSPoint)getCenter { return center; }
 
--(short)getSide_indexes:(short)i { return (side_objects[i] == nil) ? 0 : [side_objects[i] getIndex]; }  // ***
+-(short)getSide_indexes:(short)i { return (side_objects[i] == nil) ? 0 : [side_objects[i] index]; }  // ***
 -(id)getSide_objects:(short)i { return side_objects[i]; } //
 
 -(NSPoint)getFloor_origin { return floor_origin; }
 -(NSPoint)getCeiling_origin { return ceiling_origin; }
 
--(short)getMedia_index { return (media_object == nil) ? -1 : [media_object getIndex]; } //
--(short)getMedia_lightsource_index { return (media_lightsource_object == nil) ? 0 : [media_lightsource_object getIndex]; }  // ***
+-(short)getMedia_index { return (media_object == nil) ? -1 : [media_object index]; } //
+-(short)getMedia_lightsource_index { return (media_lightsource_object == nil) ? 0 : [media_lightsource_object index]; }  // ***
 -(short)getSound_source_indexes { return sound_source_indexes; } // *** WORK ON THIS ONE ***
--(short)getAmbient_sound_image_index { return (ambient_sound_image_object == nil) ? -1 : [ambient_sound_image_object getIndex]; } //
--(short)getRandom_sound_image_index { return (random_sound_image_object == nil) ? -1 : [random_sound_image_object getIndex]; } //
+-(short)getAmbient_sound_image_index { return (ambient_sound_image_object == nil) ? -1 : [ambient_sound_image_object index]; } //
+-(short)getRandom_sound_image_index { return (random_sound_image_object == nil) ? -1 : [random_sound_image_object index]; } //
 
 -(id)getMedia_object { return media_object; } // ---
 -(id)getMedia_lightsource_object { return media_lightsource_object; } // ---
@@ -2005,12 +2005,12 @@
                 leftMostPoint = vertexObjects[i];
                 //NSLog(@"Equal to leftMostX, point index: %d",
                 //[theMapPointsST indexOfObjectIdenticalTo:vertexObjects[i]]);
-                /*if ([vertexObjects[i] getY] != [leftMostPoint getY])
+                /*if ([vertexObjects[i] y] != [leftMostPoint y])
                 {
                     // Found It!!!
                     secondLeftMostPoint = vertexObjects[i];
                 }
-                else// if ([vertexObjects[i] getY] == [leftMostPoint getY])
+                else// if ([vertexObjects[i] y] == [leftMostPoint y])
                 {
                     //This may be illegal, ???
                     [self setPolygonConcaveFlag:NO];
@@ -2043,7 +2043,7 @@
     } // END FOR
     
     if (leftMostPoint == nil)
-      NSLog(@"Polygon %d had No Left Most Point???", [self getIndex]);
+      NSLog(@"Polygon %d had No Left Most Point???", [self index]);
         
   // NSLog(@"It's Point Indexes for leftMostPointIndex: %d", [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]);
     
@@ -2055,15 +2055,15 @@
     for (i = 0; i < vertexCountForPoly; i++)
     {
         BOOL foundTheLine = NO;
-      // NSLog(@"Tesing Line %d", [lineObjects[i] getIndex]);
-      // NSLog(@"It's Point Indexes are p1: %d p2: %d leftMostPointIndex: %d", [theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] getMapPoint1]], [theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] getMapPoint2]], [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]);
+      // NSLog(@"Tesing Line %d", [lineObjects[i] index]);
+      // NSLog(@"It's Point Indexes are p1: %d p2: %d leftMostPointIndex: %d", [theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] mapPoint1]], [theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] mapPoint2]], [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]);
         
-        if (([theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] getMapPoint1]] == [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]) || ([theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] getMapPoint2]] == [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]))
+        if (([theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] mapPoint1]] == [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]) || ([theMapPointsST indexOfObjectIdenticalTo:[lineObjects[i] mapPoint2]] == [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]))
         {
-            //NSLog(@"Line %d passed", [lineObjects[i] getIndex]);
+            //NSLog(@"Line %d passed", [lineObjects[i] index]);
             
             
-            if ([[lineObjects[i] getMapPoint1] getY] != [[lineObjects[i] getMapPoint2] getY])
+            if ([[lineObjects[i] mapPoint1] getY] != [[lineObjects[i] mapPoint2] getY])
             {
                 id theCurSecPoint;
                 
@@ -2073,17 +2073,17 @@
                   // NSLog(@"foundTheLine set to YES at Begining");
                 }
                 // *** See which point is the secondary point ***
-                if (leftMostPoint == [lineObjects[i] getMapPoint2])
+                if (leftMostPoint == [lineObjects[i] mapPoint2])
                 {
-                    theCurSecPoint = [lineObjects[i] getMapPoint1];
+                    theCurSecPoint = [lineObjects[i] mapPoint1];
                 }
-                else if  (leftMostPoint == [lineObjects[i] getMapPoint1])
+                else if  (leftMostPoint == [lineObjects[i] mapPoint1])
                 {
-                    theCurSecPoint = [lineObjects[i] getMapPoint2];
+                    theCurSecPoint = [lineObjects[i] mapPoint2];
                 }
                 else
                 {
-                    NSLog(@"ERROR, polygon %d is not concave due to programming logic mistake!", [self getIndex]);
+                    NSLog(@"ERROR, polygon %d is not concave due to programming logic mistake!", [self index]);
                     [self setPolygonConcaveFlag:NO];
                     return NO;
                 }
@@ -2098,7 +2098,7 @@
                     theMainPointY = [leftMostPoint getY];
                     gettingSlope = YES;
                     thePrevLine = lineObjects[i];
-                  // NSLog(@"Found a line 1 for slop check, line %d", [lineObjects[i] getIndex]);
+                  // NSLog(@"Found a line 1 for slop check, line %d", [lineObjects[i] index]);
                 }
                 else if ((topMost || bottomMost) && pointOneGotten && gettingSlope)
                 {
@@ -2122,7 +2122,7 @@
                         indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
                         currentLine = leftMostLine;
                         //foundTheLine = YES;
-                      // NSLog(@"1-1 Found a line, line %d", [leftMostLine getIndex]);
+                      // NSLog(@"1-1 Found a line, line %d", [leftMostLine index]);
                         break;
                     }
                     else // if (thisX == theXfromSlope)
@@ -2146,7 +2146,7 @@
                 indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
                 currentLine = leftMostLine;
                 //foundTheLine = YES;
-              // NSLog(@"1-1 Found a line, line %d", [leftMostLine getIndex]);
+              // NSLog(@"1-1 Found a line, line %d", [leftMostLine index]);
                 break;
             }
             
@@ -2156,21 +2156,21 @@
                     leftMostLine = lineObjects[i];
                     indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
                     currentLine = leftMostLine;
-                  // NSLog(@"2 Found a line(*), line %d", [leftMostLine getIndex]);
+                  // NSLog(@"2 Found a line(*), line %d", [leftMostLine index]);
                     break;
             }
             else if (pointOneGotten)
             {
                 //of the two lines from that point
                 //both are not qualified?
-                NSLog(@"Sorry, but could not determin if polygon %d was concave, the left most points lines were not qualified?", [self getIndex]);
+                NSLog(@"Sorry, but could not determin if polygon %d was concave, the left most points lines were not qualified?", [self index]);
                 //[self setPolygonConcaveFlag:NO];
                 //return NO;
                 leftMostLine = lineObjects[i];
                 indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
                 currentLine = leftMostLine;
                 foundTheLine = YES;
-                // NSLog(@"Found a line, line %d", [leftMostLine getIndex]);
+                // NSLog(@"Found a line, line %d", [leftMostLine index]);
                 break;
             }
             
@@ -2236,7 +2236,7 @@
             // [theMapPointsST indexOfObjectIdenticalTo:currentLineMainPoint]);
     // NSLog(@"currentLineSecondaryPoint index: %d",
             // [theMapPointsST indexOfObjectIdenticalTo:currentLineSecondaryPoint]);
-    // NSLog(@"currentLine: %d", [currentLine getIndex]);
+    // NSLog(@"currentLine: %d", [currentLine index]);
     
     //while (keepFollowingTheLines)
     for (i = 0; i < vertexCountForPoly; i++)
@@ -2257,8 +2257,8 @@
         numer = [polyLines objectEnumerator];
         while (tmpLine = [numer nextObject])
         {
-            if ((([tmpLine getMapPoint1] == currentLineMainPoint) || //Used to be [currentLine getMapPoint1]
-                ([tmpLine getMapPoint2] == currentLineMainPoint)) && //Used to be [currentLine getMapPoint2]
+            if ((([tmpLine mapPoint1] == currentLineMainPoint) || //Used to be [currentLine getMapPoint1]
+                ([tmpLine mapPoint2] == currentLineMainPoint)) && //Used to be [currentLine mapPoint2]
                     (tmpLine != currentLine))
             {
                 thisMapLine = tmpLine;
@@ -2400,15 +2400,15 @@
                     nextMainPointIndex = [theMapPointsST indexOfObjectIdenticalTo:theCurPoint];
                         
                     // NSLog(@"Lowest Line Index: %d  With Angle Of: %g", smallestLineIndex, smallestAngle);
-                }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint getX] >= [firstPoint getX])
+                }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint x] >= [firstPoint x])
                 else
                 {
                     /*if (slopeChecksOut)
                         NSLog(@"For polygon %d, line %d angle was not correct, not concave, theta: %f  slopeChecksOut TRUE",
-                            [self getIndex], [thisMapLine getIndex], theta);
+                            [self index], [thisMapLine index], theta);
                     else
                         NSLog(@"For polygon %d, line %d angle was not correct, not concave, theta: %f  slopeChecksOut FALSE",
-                            [self getIndex], [thisMapLine getIndex], theta);*/
+                            [self index], [thisMapLine index], theta);*/
                     [self setPolygonConcaveFlag:NO];
                     return NO; // It is not concave!!!
                 }
@@ -2437,7 +2437,7 @@
             }
             
             // *** the polygon is as far as I know concave! ***
-          // NSLog(@"Poly %d Concave M1", [self getIndex]);
+          // NSLog(@"Poly %d Concave M1", [self index]);
             [self setPolygonConcaveFlag:YES];
             return YES;
         }
@@ -2465,7 +2465,7 @@
     } // End while (keepFollowingTheLines)
     
     // *** the polygon is as far as I know concave! ***
-  // NSLog(@"Poly %d Concave M2", [self getIndex]);
+  // NSLog(@"Poly %d Concave M2", [self index]);
     [self setPolygonConcaveFlag:YES];
     return YES;
     

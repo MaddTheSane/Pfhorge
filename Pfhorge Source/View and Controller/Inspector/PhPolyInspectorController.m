@@ -129,7 +129,7 @@
     [floorTextureMenu selectItemAtIndex:((theFloorTextureChar)[1])];
     */
     
-    //[polyBox setTitle:[NSString stringWithFormat:@"Poly Index: %d", [thePoly getIndex]]];
+    //[polyBox setTitle:[NSString stringWithFormat:@"Poly Index: %d", [thePoly index]]];
     
     //GET_OBJECT_FLAG(o, b)
     
@@ -138,7 +138,7 @@
     
     [textureInspectorController updatePolyTextureMenus];
     
-    curPolyType = [thePoly getType];
+    curPolyType = [thePoly type];
     
     [type selectItemAtIndex:curPolyType];
     
@@ -328,7 +328,7 @@
     LEPolygon *thePolyInQuestion = curPoly; //((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
     LELevelData *theLevelData = [mainInspectorController currentLevel];
     LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
-    int theOldPolyType = [thePolyInQuestion getType];
+    int theOldPolyType = [thePolyInQuestion type];
     
     switch (thePolyType)
     {
@@ -407,7 +407,7 @@
     LEPolygon *thePolyInQuestion = curPoly;//((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
     LELevelData *theLevelData = [mainInspectorController currentLevel];
     ///LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
-    int thePolyType = [thePolyInQuestion getType];
+    int thePolyType = [thePolyInQuestion type];
     id thePerObj = nil;
     int thePermutation = [sender indexOfSelectedItem];
     //[[mainInspectorController getTheCurrentSelection] setPermutation:[sender intValue]];
@@ -451,7 +451,7 @@
     LEPolygon *thePolyInQuestion = curPoly;//((LEPolygon *)[mainInspectorController getTheCurrentSelection]);
     ///LELevelData *theLevelData = [mainInspectorController currentLevel];
     ///LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
-    int thePolyType = [thePolyInQuestion getType];
+    int thePolyType = [thePolyInQuestion type];
     id thePerObj = nil;
     //int thePermutation = [sender indexOfSelectedItem];
     //[[mainInspectorController getTheCurrentSelection] setPermutation:[sender intValue]];
@@ -477,7 +477,7 @@
 
 - (IBAction)floorLightAction:(id)sender
 {
-    [curPoly setFloor_lightsource:[sender indexOfSelectedItem]];
+    [curPoly setFloorLightsource:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)liauidLightAction:(id)sender

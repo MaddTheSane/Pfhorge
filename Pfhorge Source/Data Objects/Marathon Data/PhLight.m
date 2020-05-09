@@ -84,14 +84,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
+		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -101,7 +101,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Light: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Light: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     int i;
     
@@ -222,7 +222,7 @@
  
  // **************************  Overriden Standard Methods  *************************
 
--(short) getIndex { return [theMapLightsST indexOfObjectIdenticalTo:self]; }
+-(short) index { return [theMapLightsST indexOfObjectIdenticalTo:self]; }
 
 -(void)update
 {

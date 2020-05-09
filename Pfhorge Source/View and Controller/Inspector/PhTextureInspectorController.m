@@ -305,7 +305,7 @@
     
     if (fColl < 0 || (fColl > 4 && fColl < 10) || fColl > 13)
     {
-        NSLog(@"Collection Out Of Bounds For Floor of Polygon: %d", [thePoly getIndex]);
+        NSLog(@"Collection Out Of Bounds For Floor of Polygon: %d", [thePoly index]);
         
         [floorTextureNums selectItemAtIndex:-1];
     }
@@ -324,7 +324,7 @@
     
     if (cColl < 0 || (cColl > 4 && cColl < 10) || cColl > 13)
     {
-        NSLog(@"Collection Out Of Bounds For Ceiling of Polygon: %d", [thePoly getIndex]);
+        NSLog(@"Collection Out Of Bounds For Ceiling of Polygon: %d", [thePoly index]);
         
         [ceilingTextureNums selectItemAtIndex:-1];
     }
@@ -398,7 +398,7 @@
     // Check to make sure that this is actually a LELine...
     theCurrentLine = theCurrentSelection;//[mainInspectorController getTheCurrentSelection];
     
-    flags = [theCurrentSelection getFlags];
+    flags = [theCurrentSelection flags];
     
         // Cache the flags, to reduce call count...
         // Do I need these here?
@@ -409,8 +409,8 @@
     lTransparentSide 	= ((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? YES : NO);
     
         // Get the sides of the line...
-    cSide = [theCurrentSelection getClockwisePolygonSideObject];
-    ccSide = [theCurrentSelection getCounterclockwisePolygonSideObject];
+    cSide = [theCurrentSelection clockwisePolygonSideObject];
+    ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
     //NSLog(((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? @"TTRANSPARENT_SIDE: YES" : @"TTRANSPARENT_SIDE: NO"));
         // These are not managed by thie function...
     //[lineFlags deselectAllCells];
@@ -647,7 +647,7 @@
         if (pColl < 0 || (pColl > 4 && pColl < 10) || pColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Primary of Side: %d  Line: %d...",
-                    [side getIndex], [side getLine_index]);
+                    [side index], [side getLine_index]);
             
             [primaryTextureNums selectItemAtIndex:-1];
             doPriT = NO;
@@ -667,7 +667,7 @@
         if (sColl < 0 || (sColl > 4 && sColl < 10) || sColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Secondary of Side: %d  Line: %d...",
-                    [side getIndex], [side getLine_index]);
+                    [side index], [side getLine_index]);
             
             [secondaryTextureNums selectItemAtIndex:-1];
             doSecT = NO;
@@ -687,7 +687,7 @@
         if (tColl < 0 || (tColl > 4 && tColl < 10) || tColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Transperent of Side: %d  Line: %d...",
-                    [side getIndex], [side getLine_index]);
+                    [side index], [side getLine_index]);
             
             [transparentTextureNums selectItemAtIndex:-1];
             doTraT = NO;
@@ -906,7 +906,7 @@
 - (IBAction)sideTransparencyCheckBoxAction:(id)sender
 {
     BOOL checkBoxState = (([sender state] == NSOnState) ? YES : NO);// NSOffState NSOnState
-    unsigned short flags = [theCurrentLine getFlags];
+    unsigned short flags = [theCurrentLine flags];
     //((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? YES : NO);
     
     // GET_SELF_FLAG(LINE_HAS_TRANSPARENT_SIDE_BIT);

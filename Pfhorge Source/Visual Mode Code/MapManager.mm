@@ -446,18 +446,18 @@ void MapManager::DoGoto() {
 	{
 		for (LEMapObject *theMapObject in theMapObjects)
 		{
-			if ([theMapObject getType] == _saved_player)
+			if ([theMapObject type] == _saved_player)
 			{
 				// Use StartIndx itself to count down to the start point to be used
 				if (StartIndx == 0)
 				{
-					StartPoint.Angle = (360/float(512))*[theMapObject getFacing];
-					StartPoint.Polygon = [theMapObject getPolygonIndex];
-					StartPoint.loc.x = [theMapObject getX];
-					StartPoint.loc.y = [theMapObject getY];
-					StartPoint.loc.z = [theMapObject getZ] + PlayerEye;
-					LEPolygon *thePolygon = (LEPolygon *)[theMapObject getPolygonObject];
-					if (([theMapObject getFlags] & _map_object_hanging_from_ceiling) != 0)
+					StartPoint.Angle = (360/float(512))*[theMapObject facing];
+					StartPoint.Polygon = [theMapObject polygonIndex];
+					StartPoint.loc.x = [theMapObject x];
+					StartPoint.loc.y = [theMapObject y];
+					StartPoint.loc.z = [theMapObject z] + PlayerEye;
+					LEPolygon *thePolygon = (LEPolygon *)[theMapObject polygonObject];
+					if (([theMapObject flags] & _map_object_hanging_from_ceiling) != 0)
 						StartPoint.loc.z += [thePolygon getCeiling_height];
 					else
 						StartPoint.loc.z += [thePolygon getFloor_height];
@@ -615,7 +615,7 @@ void MapManager::ReloadLevel() {
 		for (int np=0; np<NPolygons; np++)
 		{
 			LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
-			if ([thePolygon getType] == _polygon_is_platform)
+			if ([thePolygon type] == _polygon_is_platform)
 			{
 				PhPlatform *thePlatform = [thePlatforms objectAtIndex:[thePolygon getPermutation]];
 				
@@ -850,20 +850,20 @@ void MapManager::ReloadLevel() {
 			LELine *theLine = [theLines objectAtIndex:[thePolygon getLineIndexes:iv]];
 			// jra 8-1-03
 			// Must be converted from "32" units to "1024" units
-			world_distance LineLength = ([theLine getLength]) * 16;
+			world_distance LineLength = ([theLine length]) * 16;
 			WallInfo &WInfo = PInfo.WInfoList[iv];
 			// Points, neighboring polygon, and side index
 			int PIndx0 = 0, PIndx1 = 0, NIndx = NONE, SIndx = NONE;
-			if (np == [theLine getClockwisePolygonIndex]) {
+			if (np == [theLine clockwisePolygonIndex]) {
 				PIndx0 = [theLine pointIndex1];
 				PIndx1 = [theLine pointIndex2];
-				NIndx = [theLine getConterclockwisePolygonIndex];
-				SIndx = [theLine getClockwisePolygonSideIndex];
-			} else if (np == [theLine getConterclockwisePolygonIndex]) {
+				NIndx = [theLine conterclockwisePolygonIndex];
+				SIndx = [theLine clockwisePolygonSideIndex];
+			} else if (np == [theLine conterclockwisePolygonIndex]) {
 				PIndx0 = [theLine pointIndex2];
 				PIndx1 = [theLine pointIndex1];
-				NIndx = [theLine getClockwisePolygonIndex];
-				SIndx = [theLine getCounterclockwisePolygonSideIndex];
+				NIndx = [theLine clockwisePolygonIndex];
+				SIndx = [theLine counterclockwisePolygonSideIndex];
 			}
 			WInfo.Neighbor = NIndx;
 			

@@ -81,6 +81,6 @@
 }
 
 -(short) getSpecialIndex { return [assignedNumber intValue]; }
--(short) getIndex { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }
+-(short) index { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }
 
 @end

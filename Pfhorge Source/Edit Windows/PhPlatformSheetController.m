@@ -104,7 +104,7 @@
     [platformInfoString appendString:@" - Polygon#"];
     [platformInfoString appendString:[[NSNumber numberWithShort:platformPolygonIndex] stringValue]];
     [platformInfoString appendString:@" - Platform#"];
-    [platformInfoString appendString:[[NSNumber numberWithShort:[platform getIndex]] stringValue]];
+    [platformInfoString appendString:[[NSNumber numberWithShort:[platform index]] stringValue]];
     
     [statusIT setStringValue:platformInfoString];
     [platformInfoString release];
@@ -119,12 +119,12 @@
     
     // [platform polygonObject];
     // short platformPolygonIndex = [platform polygonIndex];
-    // short platformIndex =  [platform getIndex];
+    // short platformIndex =  [platform index];
     
     NSInteger platformTagMenuIndex = [self tagIndexNumberFromShort:[platform tag]];
     
     
-    NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] getIndex], [[[platform tagObject] getPhNumber] intValue]);
+    NSLog(@"Platform Tag Index: %d  number: %d", [[platform tagObject] index], [[[platform tagObject] getPhNumber] intValue]);
     
     [self setupTitlesAndNames];
     
@@ -262,7 +262,7 @@
         return;
     }
     
-    NSLog(@"Saving Changes To Platform: %@   |-| Index: %d", [platform getPhName], [platform getIndex]);
+    NSLog(@"Saving Changes To Platform: %@   |-| Index: %d", [platform getPhName], [platform index]);
     
     [platform setType:[typeComboMenu indexOfSelectedItem]];
     [platform setSpeed:((short)([speedTB floatValue] * 30))];

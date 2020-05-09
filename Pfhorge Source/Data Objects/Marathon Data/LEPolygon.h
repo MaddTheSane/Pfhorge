@@ -242,8 +242,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(NSString *)getFloor_height_decimal_string;
 -(NSString *)getCeiling_height_decimal_string;
 
--(void)setFloor_lightsource:(short)v; //
--(void)setFloor_lightsourceObject:(id)v;
+-(void)setFloorLightsource:(short)v; //
+-(void)setFloorLightsourceObject:(id)v;
 
 -(void)setCeiling_lightsource:(short)v; //
 -(void)setCeiling_lightsourceObject:(id)v;
@@ -295,8 +295,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 // ********** Get **********
 -(BOOL)getPolygonConcaveFlag;
 
--(LEPolygonType)getType;
--(LEPolygonFlags)getFlags;
+-(LEPolygonType)type;
+-(LEPolygonFlags)flags;
 -(short)getPermutation;
 -(id)getPermutationObject;
 

@@ -116,7 +116,7 @@
     NSMutableString *infoString;
     // *** Set the name, etc. ***
     infoString = [[NSMutableString alloc] initWithString:@"Name: "];
-        //[infoString appendString:[[NSNumber numberWithShort:[curRandomSound getIndex]] stringValue]];
+        //[infoString appendString:[[NSNumber numberWithShort:[curRandomSound index]] stringValue]];
         //[infoString appendString:@" - Name: "];
         [infoString appendString:[curMedia getPhName]];
         [infoIT setStringValue:infoString];
@@ -140,7 +140,7 @@
     }
     
     [typeMenu selectItemAtIndex:[curMedia type]];
-    [tideLightMenu selectItemAtIndex:[[curMedia lightObject] getIndex]];
+    [tideLightMenu selectItemAtIndex:[[curMedia lightObject] index]];
     [transferModeMenu selectItemAtIndex:[curMedia transferMode]];
     
     [flowTB setIntValue:[curMedia currentMagnitude]];

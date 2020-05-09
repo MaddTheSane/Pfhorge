@@ -56,9 +56,9 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
     //! Mabye make these pointers to the polygons themselves???
     short highestAdjacentFloor, lowestAdjacentCeiling;
     
+    //short clockwisePolygonSideIndex, counterclockwisePolygonSideIndex;
     /*! the side definition facing the clockwise polygon which references this side,
         and the side definition facing the counterclockwise polygon (can be NONE (-1)) */
-    short clockwisePolygonSideIndex, counterclockwisePolygonSideIndex;
     LESide *clockwisePolygonSideObject, *counterclockwisePolygonSideObject;
     
     /*! a line can be owned by a clockwise polygon, a counterclockwise polygon,
@@ -94,70 +94,48 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 // ************************** Utilites *************************
 - (NSBezierPath *)clockwiseShadowPath;
 
-// ************************** Get Accsessors *************************
+// ************************** Accsessors *************************
 
-- (short)pointIndex1;
-- (short)pointIndex2;
-- (short)getP1;
-- (short)getP2;
-- (LEMapPoint *)getMapPoint1;
-- (LEMapPoint *)getMapPoint2;
+@property (nonatomic) short pointIndex1;
+@property (nonatomic) short pointIndex2;
+- (short)p1 API_DEPRECATED_WITH_REPLACEMENT("-pointIndex1", macos(10.0, 10.7));
+- (short)p2 API_DEPRECATED_WITH_REPLACEMENT("-pointIndex2", macos(10.0, 10.7));
+@property (nonatomic, assign) LEMapPoint *mapPoint1;
+@property (nonatomic, assign) LEMapPoint *mapPoint2;
 
-- (LELineFlags)getFlags;
+@property LELineFlags flags;
 
-- (short)getLength;
+@property short length;
 
-- (short)getAngle;		//!< 0-512 Marathon units from p1 to p2
-- (short)getFlippedAngle;	//!< From p2 to p1 ((getAngle+256)%512)
-- (short)getAzimuth;		//!< Degrees clockwise from vertical from p1 to p2
-- (short)getFlippedAzimuth;	//!< From p2 to p1 ((getAzimuth+180)%360)
+//! 0-512 Marathon units from p1 to p2
+@property short angle;
+//! From p2 to p1 ((getAngle+256)%512)
+@property (readonly) short flippedAngle;
+//! Degrees clockwise from vertical from p1 to p2
+@property short azimuth;
+//! From p2 to p1 ((getAzimuth+180)%360)
+@property (readonly) short flippedAzimuth;
 
-- (short)getHighestAdjacentFloor;
-- (short)getLowestAdjacentCeiling;
+@property short highestAdjacentFloor;
+@property short lowestAdjacentCeiling;
 
-- (short)getClockwisePolygonSideIndex;
-- (short)getCounterclockwisePolygonSideIndex;
+@property (nonatomic) short clockwisePolygonSideIndex;
+@property (nonatomic) short counterclockwisePolygonSideIndex;
 
-- (id)getClockwisePolygonSideObject;
-- (id)getCounterclockwisePolygonSideObject;
+@property (assign) id clockwisePolygonSideObject;
+@property (assign) id counterclockwisePolygonSideObject;
 
-- (short)getClockwisePolygonOwner;
-- (short)getConterclockwisePolygonOwner;
-- (short)getClockwisePolygonIndex;
-- (short)getConterclockwisePolygonIndex;
+@property (nonatomic) short clockwisePolygonOwner;
+@property (nonatomic) short conterclockwisePolygonOwner;
+@property (nonatomic) short clockwisePolygonIndex;
+@property (nonatomic) short conterclockwisePolygonIndex;
 
-- (LEPolygon *)getClockwisePolygonObject;
-- (LEPolygon *)getConterclockwisePolygonObject;
+@property (assign) LEPolygon *clockwisePolygonObject;
+@property (assign) LEPolygon *conterclockwisePolygonObject;
 
-// ************************** Set Accsessors *************************
-
-- (void)setPointIndex1:(short)s;
-- (void)setPointIndex2:(short)s;
-- (void)setP1:(short)s;
-- (void)setP2:(short)s;
-- (void)setMapPoint1:(LEMapPoint *)s;
-- (void)setMapPoint2:(LEMapPoint *)s;
+- (void)setP1:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setPointIndex1:", macos(10.0, 10.7));
+- (void)setP2:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setPointIndex2:", macos(10.0, 10.7));
 - (void)setMapPoint1:(LEMapPoint *)s1 mapPoint2:(LEMapPoint *)s2;
-- (void)setFlags:(LELineFlags)us;
-- (void)setLength:(short)s;
-- (void)setAngle:(short)s;		//!< 0-512 Marathon units from p1 to p2
-- (void)setAzimuth:(short)s;		//!< Degrees clockwise from vertical, p1 to p2
-- (void)setHighestAdjacentFloor:(short)s;
-- (void)setLowestAdjacentCeiling:(short)s;
-
-- (void)setClockwisePolygonSideIndex:(short)s;
-- (void)setCounterclockwisePolygonSideIndex:(short)s;
-
-- (void)setClockwisePolygonSideObject:(id)s; //
-- (void)setCounterclockwisePolygonSideObject:(id)s; //
-
-- (void)setClockwisePolygonOwner:(short)s;
-- (void)setConterclockwisePolygonOwner:(short)s;
-- (void)setClockwisePolygonIndex:(short)s;
-- (void)setConterclockwisePolygonIndex:(short)s;
-
-- (void)setClockwisePolygonObject:(LEPolygon *)s;
-- (void)setConterclockwisePolygonObject:(LEPolygon *)s;
 
 - (LEPolygon *)getPolyFromMe;
 - (BOOL)isThereAClockWiseLineAlpha:(LEMapPoint *)alphaPoint beta:(LEMapPoint *)betaPoint theLine:(LELine *)currentLine;

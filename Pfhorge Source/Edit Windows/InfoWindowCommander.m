@@ -94,12 +94,12 @@
     {
         [theInputBox setStringValue:[NSString
                 stringWithFormat:@"Object %d",
-                [theObjBeingEdited getIndex]]];
+                [theObjBeingEdited index]]];
     }
     
     [renameSheetMsgIT setStringValue:[NSString
                 stringWithFormat:@"Enter New Name For Object %d",
-                [theObjBeingEdited getIndex]]];
+                [theObjBeingEdited index]]];
     
         // Open the sheet...
     [NSApp  beginSheet:theSheet

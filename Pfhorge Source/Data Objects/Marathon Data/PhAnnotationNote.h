@@ -63,7 +63,7 @@
 - (void)set32X:(int)v;
 - (void)set32Y:(int)v;
 
--(NSPoint)as32Point API_DEPRECATED_WITH_REPLACEMENT("-locationAdjusted", macos(10.0, 10.7));
+-(NSPoint)as32Point;
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;

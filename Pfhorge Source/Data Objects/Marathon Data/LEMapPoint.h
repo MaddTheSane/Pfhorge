@@ -37,41 +37,37 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder;
 
--(id)initX32:(short)theX32 Y32:(short)theY32;
--(id)initX:(short)theX Y:(short)theY;
+- (instancetype)initX32:(short)theX32 Y32:(short)theY32;
+- (instancetype)initX:(short)theX Y:(short)theY;
 
 // Faster to use  setX:setY:  as a single message to
 // setting both, because there are a few things that need to be recaculated
 // and if you use  setX:  then a seperate  setY:  method, it will caculate it twice...
 -(void)setX:(short)theX Y:(short)theY;
--(void)setX:(short)theX;
--(void)setY:(short)theY;
--(void)setX32:(short)theX;
--(void)setY32:(short)theY;
 -(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
 -(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 
--(NSPoint)asPoint;
--(NSPoint)as32Point;
--(NSRect)as32Rect;
--(NSSet *)getLinesAttachedToMe;
--(NSArray *)linesAttachedToMeAsArray;
+@property (readonly) NSPoint asPoint;
+@property (readonly) NSPoint as32Point;
+@property (readonly) NSRect as32Rect;
+-(NSSet<LELine*> *)getLinesAttachedToMe;
+-(NSArray<LELine*> *)linesAttachedToMeAsArray;
 //-(void)scanForLineChanges;
 -(void)lineConnectedToMe:(LELine *)obj;
 -(void)lineDisconnectedFromMe:(LELine *)obj;
 
 -(void)tellLinesAttachedToMeToRecalc;
 
--(short)xgl;
--(short)ygl;
--(short)x32;
--(short)y32;
--(short)x;
--(short)y;
--(short)getX;
--(short)getY;
+@property (readonly) short xgl;
+@property (readonly) short ygl;
+@property (nonatomic) short x32;
+@property (nonatomic) short y32;
+@property (nonatomic) short x;
+@property (nonatomic) short y;
+-(short)getX API_DEPRECATED_WITH_REPLACEMENT("-x", macos(10.0, 10.7));
+-(short)getY API_DEPRECATED_WITH_REPLACEMENT("-y", macos(10.0, 10.7));
 
 -(void)scanAndUpdateLines;
 
@@ -81,10 +77,10 @@
 
 // High School Geometry Functions
 
--(LEMapPoint *)nearestMapPointInRange:(int)maxDist;
--(LEMapPoint *)nearestGridPointInRange:(int)maxDist;
+- (LEMapPoint *)nearestMapPointInRange:(int)maxDist;
+- (LEMapPoint *)nearestGridPointInRange:(int)maxDist;
 
--(short)distanceToPoint:(LEMapPoint *)target;
--(short)distanceToNSPoint:(NSPoint)target;
+- (short)distanceToPoint:(LEMapPoint *)target;
+- (short)distanceToNSPoint:(NSPoint)target;
 
 @end

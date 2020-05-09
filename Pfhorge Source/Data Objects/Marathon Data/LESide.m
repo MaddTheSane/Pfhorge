@@ -151,14 +151,14 @@
     [theData appendData:futureData];
     
 
-	NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+	NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -168,7 +168,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-	NSLog(@"Importing Side: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+	NSLog(@"Importing Side: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(type);
     ImportUnsignedShort(flags);
@@ -588,7 +588,7 @@
 
 }
 
--(short) getIndex
+-(short) index
 {
     return [theMapSidesST indexOfObjectIdenticalTo:self];
 }
@@ -691,7 +691,7 @@
             modfiedControlPanelType = (control_panel_type - pfhorOffset);
             break;
         default:
-            NSLog(@"When setting side#%d control_panel_type, encountered an unknown enviromental code...", [self getIndex]);
+            NSLog(@"When setting side#%d control_panel_type, encountered an unknown enviromental code...", [self index]);
             return;
             break;
     }
@@ -737,7 +737,7 @@
         }
     }
     
-   ///  NSLog(@"LESide#%d  effect: %d modPanelType: %d  orginalType: %d", [self getIndex], permutationEffects, modfiedControlPanelType, control_panel_type);
+   ///  NSLog(@"LESide#%d  effect: %d modPanelType: %d  orginalType: %d", [self index], permutationEffects, modfiedControlPanelType, control_panel_type);
     
     // Might want to point to the first object of whatever
     //  the permutation needs to point to?
@@ -827,7 +827,7 @@
     else if (everythingLoadedST)
         secondary_lightsource_object = [theMapLightsST objectAtIndex:v];
     
-    NSLog(@"setSecondary_lightsource_index Set To: %d   The Object Index: %d", v, [secondary_lightsource_object getIndex]);
+    NSLog(@"setSecondary_lightsource_index Set To: %d   The Object Index: %d", v, [secondary_lightsource_object index]);
 }
 -(void)setTransparent_lightsource_index:(short)v {
     //transparent_lightsource_index = v;
@@ -922,7 +922,7 @@
 -(short)getControl_panel_permutation
 {
     /*if (control_panel_permutation_object != nil)
-        NSLog(@"polygonPermutationNumber: %d", [control_panel_permutation_object getIndex]);*/
+        NSLog(@"polygonPermutationNumber: %d", [control_panel_permutation_object index]);*/
     
     return (control_panel_permutation_object != nil) ? ([control_panel_permutation_object getSpecialIndex]) : (0);
 }
@@ -934,15 +934,15 @@
 -(short)getSecondary_transfer_mode { return secondary_transfer_mode; }
 -(short)getTransparent_transfer_mode { return transparent_transfer_mode; }
         
--(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
--(short)getLine_index { return (line_object == nil) ? -1 : [line_object getIndex]; }
+-(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object index]; }
+-(short)getLine_index { return (line_object == nil) ? -1 : [line_object index]; }
 
 -(id)getpolygon_object { return polygon_object; }
 -(id)getline_object { return line_object; }
         
--(short)getPrimary_lightsource_index { return (primary_lightsource_object == nil) ? -1 : [primary_lightsource_object getIndex]; }
--(short)getSecondary_lightsource_index { return (secondary_lightsource_object == nil) ? -1 : [secondary_lightsource_object getIndex]; }
--(short)getTransparent_lightsource_index { return (transparent_lightsource_object == nil) ? -1 : [transparent_lightsource_object getIndex]; }
+-(short)getPrimary_lightsource_index { return (primary_lightsource_object == nil) ? -1 : [primary_lightsource_object index]; }
+-(short)getSecondary_lightsource_index { return (secondary_lightsource_object == nil) ? -1 : [secondary_lightsource_object index]; }
+-(short)getTransparent_lightsource_index { return (transparent_lightsource_object == nil) ? -1 : [transparent_lightsource_object index]; }
                 
 -(id)getprimary_lightsource_object { return primary_lightsource_object; }
 -(id)getsecondary_lightsource_object { return secondary_lightsource_object; }

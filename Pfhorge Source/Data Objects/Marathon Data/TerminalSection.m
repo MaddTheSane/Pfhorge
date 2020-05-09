@@ -167,7 +167,7 @@
     if (type == PhTerminalSectionTypeInMapTeleport)
     {
         permutationObject = [theMapPolysST objectAtIndex:permutation];
-        [theLELevelDataST namePolygon:permutationObject to:stringFromInt([permutationObject getIndex])];
+        [theLELevelDataST namePolygon:permutationObject to:stringFromInt([permutationObject index])];
     }
     else
         permutationObject = nil;
@@ -432,7 +432,7 @@
     if (type != PhTerminalSectionTypeInMapTeleport)
         theSection.permutation = permutation;
     else
-        theSection.permutation = [permutationObject getIndex];
+        theSection.permutation = [permutationObject index];
     
     baseOffsetOfText = (int)[theTextData length];
     

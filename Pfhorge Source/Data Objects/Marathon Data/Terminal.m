@@ -117,11 +117,11 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    //NSLog(@"Exporting Line: %d  -- Position: %d --- myData: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData length]);
+    //NSLog(@"Exporting Line: %d  -- Position: %d --- myData: %d", [self index], [index indexOfObjectIdenticalTo:self], [myData length]);
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -131,7 +131,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg
 {
-    //NSLog(@"Importing Line: %d  -- Position: %d  --- Length: %d", [self getIndex], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    //NSLog(@"Importing Line: %d  -- Position: %d  --- Length: %d", [self index], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     /*
     ImportShort(type);
@@ -320,6 +320,6 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     return [terminalData copy];
 }
 
--(short)getIndex { return [theTerminalsST indexOfObjectIdenticalTo:self]; }
+-(short)index { return [theTerminalsST indexOfObjectIdenticalTo:self]; }
 
 @end

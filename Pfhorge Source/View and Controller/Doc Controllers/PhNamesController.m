@@ -388,7 +388,7 @@ objectValueForTableColumn:(NSTableColumn *)col
     else
     {
         if ([[col identifier] isEqualToString:PhNumberOfObject])
-            return [NSNumber numberWithShort:[theCurNameObj getIndex]];
+            return [NSNumber numberWithShort:[theCurNameObj index]];
             
         else if ([[col identifier] isEqualToString:PhNameOfObject])
             return [theCurNameObj getPhName];

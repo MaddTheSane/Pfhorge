@@ -41,18 +41,18 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Line Index: %d", [self getIndex], nil];
+    return [NSString stringWithFormat:@"Line Index: %d", [self index], nil];
 }
 
 - (void)displayInfo
 {
     NSMutableString *tis = [[NSMutableString alloc] init];
     
-    [tis appendString:[NSString stringWithFormat:@"Line  : %d\n\n", [self getIndex], nil]];
-    [tis appendString:[NSString stringWithFormat:@"cPoly : %d\n", [clockwisePolygon getIndex], nil]];
-    [tis appendString:[NSString stringWithFormat:@"cSide : %d\n", [clockwisePolygonSideObject getIndex], nil]];
-    [tis appendString:[NSString stringWithFormat:@"ccPoly: %d\n", [conterclockwisePolygon getIndex], nil]];
-    [tis appendString:[NSString stringWithFormat:@"ccSide: %d\n\n", [counterclockwisePolygonSideObject getIndex], nil]];
+    [tis appendString:[NSString stringWithFormat:@"Line  : %d\n\n", [self index], nil]];
+    [tis appendString:[NSString stringWithFormat:@"cPoly : %d\n", [clockwisePolygon index], nil]];
+    [tis appendString:[NSString stringWithFormat:@"cSide : %d\n", [clockwisePolygonSideObject index], nil]];
+    [tis appendString:[NSString stringWithFormat:@"ccPoly: %d\n", [conterclockwisePolygon index], nil]];
+    [tis appendString:[NSString stringWithFormat:@"ccSide: %d\n\n", [counterclockwisePolygonSideObject index], nil]];
     [tis appendString:[NSString stringWithFormat:@"highestAdjacentFloor	: %d\n", highestAdjacentFloor, nil]];
     [tis appendString:[NSString stringWithFormat:@"lowestAdjacentCeiling	: %d\n", lowestAdjacentCeiling, nil]];
     
@@ -193,14 +193,14 @@
     [theData appendData:futureData];
     
     
-    NSLog(@"Exporting Line: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Line: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -210,7 +210,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Line: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Line: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportObj(mapPoint1);
     ImportObj(mapPoint2);
@@ -283,23 +283,23 @@
         
         if (hasClock)
         {
-            NSLog(@"hasClock was true #%d", [self getIndex]);
+            NSLog(@"hasClock was true #%d", [self index]);
             encodeObj(coder, clockwisePolygonSideObject);
         }
         else
         {
-            NSLog(@"hasClock was false, set to nil #%d", [self getIndex]);
+            NSLog(@"hasClock was false, set to nil #%d", [self index]);
             encodeObj(coder, nil);
         }
         
         if (hasCClock)
         {
-            NSLog(@"hasCClock was true #%d", [self getIndex]);
+            NSLog(@"hasCClock was true #%d", [self index]);
             encodeObj(coder, counterclockwisePolygonSideObject);
         }
         else
         {
-            NSLog(@"hasCClock was false, set to nil #%d", [self getIndex]);
+            NSLog(@"hasCClock was false, set to nil #%d", [self index]);
             encodeObj(coder, nil);
         }
     
@@ -378,14 +378,14 @@
     if (useIndexNumbersInstead)
     {
         if (clockwisePolygon == nil)
-            NSLog(@"clockwisePolygon was nil #%d", [self getIndex]);
+            NSLog(@"clockwisePolygon was nil #%d", [self index]);
         else
-            NSLog(@"clockwisePolygon was not nil #%d", [self getIndex]);
+            NSLog(@"clockwisePolygon was not nil #%d", [self index]);
         
         if (conterclockwisePolygon == nil)
-            NSLog(@"conterclockwisePolygon was nil #%d", [self getIndex]);
+            NSLog(@"conterclockwisePolygon was nil #%d", [self index]);
         else
-            NSLog(@"conterclockwisePolygon was not nil #%d", [self getIndex]);
+            NSLog(@"conterclockwisePolygon was not nil #%d", [self index]);
     }*/
     
     //useIndexNumbersInstead = NO;
@@ -676,7 +676,7 @@
     return NO; 
 }
  
--(short) getIndex
+-(short) index
 {
     return [theMapLinesST indexOfObjectIdenticalTo:self];
 }
@@ -824,13 +824,23 @@
 
 //LEPolygon *clockwisePolygon, *conterclockwisePolygon
 
--(short)pointIndex1 { return  (mapPoint1 == nil) ? -1 : [mapPoint1 getIndex]; }
--(short)pointIndex2 { return  (mapPoint2 == nil) ? -1 : [mapPoint2 getIndex]; }
--(short) getP1 { return  (mapPoint1 == nil) ? -1 : [mapPoint1 getIndex]; }
--(short) getP2 { return  (mapPoint2 == nil) ? -1 : [mapPoint2 getIndex]; }
--(LEMapPoint *) getMapPoint1 { return mapPoint1; }
--(LEMapPoint *) getMapPoint2 { return mapPoint2; }
--(LELineFlags) getFlags { return flags; }
+@synthesize pointIndex1=p1;
+-(short)pointIndex1 { return  (mapPoint1 == nil) ? -1 : [mapPoint1 index]; }
+@synthesize pointIndex2=p2;
+-(short)pointIndex2 { return  (mapPoint2 == nil) ? -1 : [mapPoint2 index]; }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingPointIndex1
+{
+	return [NSSet setWithObject:@"mapPoint1"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingPointIndex2
+{
+	return [NSSet setWithObject:@"mapPoint2"];
+}
+-(short) p1 { return [self pointIndex1]; }
+-(short) p2 { return [self pointIndex2]; }
+@synthesize mapPoint1;
+@synthesize mapPoint2;
+@synthesize flags;
 
 - (BOOL)getPermanentSetting:(int)settingToSet
 {
@@ -852,42 +862,59 @@
     }
 }
 
--(short) getLength { return _Length; }
+@synthesize length=_Length;
 
 // Angle of the line, 0-512 Marathon units, p1 to p2
--(short) getAngle { return _Angle; }
+@synthesize angle=_Angle;
 // From p2 to p1
--(short) getFlippedAngle { return (([self getAngle]+256)%512); }
+-(short) flippedAngle { return (([self angle]+256)%512); }
+
++(NSSet<NSString *> *)keyPathsForValuesAffectingFlippedAngle
+{
+	return [NSSet setWithObject:@"angle"];
+}
 
 // Degrees clockwise from vertical from p1 to p2
--(short) getAzimuth { return _Azimuth; }
+@synthesize azimuth=_Azimuth;
 // From p2 to p1
--(short) getFlippedAzimuth { return (([self getAzimuth]+180)%360); }
+-(short) flippedAzimuth { return (([self azimuth]+180)%360); }
 
--(short) getHighestAdjacentFloor { return highestAdjacentFloor; }
--(short) getLowestAdjacentCeiling { return lowestAdjacentCeiling; }
++(NSSet<NSString *> *)keyPathsForValuesAffectingFlippedAzimuth
+{
+	return [NSSet setWithObject:@"azimuth"];
+}
 
--(short) getClockwisePolygonSideIndex { return (clockwisePolygonSideObject == nil) ? -1 : [clockwisePolygonSideObject getIndex]; }
--(short) getCounterclockwisePolygonSideIndex { return (counterclockwisePolygonSideObject == nil) ? -1 : [counterclockwisePolygonSideObject getIndex]; }
+@synthesize highestAdjacentFloor;
+@synthesize lowestAdjacentCeiling;
 
--(id) getClockwisePolygonSideObject { return clockwisePolygonSideObject; }
--(id) getCounterclockwisePolygonSideObject { return counterclockwisePolygonSideObject; }
+@dynamic clockwisePolygonSideIndex;
+@dynamic counterclockwisePolygonSideIndex;
 
--(short) getClockwisePolygonOwner { return (clockwisePolygon == nil) ? -1 : [clockwisePolygon getIndex]; }
--(short) getConterclockwisePolygonOwner { return (conterclockwisePolygon == nil) ? -1 : [conterclockwisePolygon getIndex]; }
--(short) getClockwisePolygonIndex { return (clockwisePolygon == nil) ? -1 : [clockwisePolygon getIndex]; }
--(short) getConterclockwisePolygonIndex { return (conterclockwisePolygon == nil) ? -1 : [conterclockwisePolygon getIndex]; }
+-(short) clockwisePolygonSideIndex { return (clockwisePolygonSideObject == nil) ? -1 : [clockwisePolygonSideObject index]; }
+-(short) counterclockwisePolygonSideIndex { return (counterclockwisePolygonSideObject == nil) ? -1 : [counterclockwisePolygonSideObject index]; }
 
--(LEPolygon *) getClockwisePolygonObject { return clockwisePolygon; }
--(LEPolygon *) getConterclockwisePolygonObject { return conterclockwisePolygon; }
+@synthesize clockwisePolygonSideObject;
+@synthesize counterclockwisePolygonSideObject;
+@dynamic clockwisePolygonOwner;
+@dynamic conterclockwisePolygonOwner;
+@dynamic clockwisePolygonIndex;
+@dynamic conterclockwisePolygonIndex;
+
+-(short) clockwisePolygonOwner { return (clockwisePolygon == nil) ? -1 : [clockwisePolygon index]; }
+-(short) conterclockwisePolygonOwner { return (conterclockwisePolygon == nil) ? -1 : [conterclockwisePolygon index]; }
+-(short) clockwisePolygonIndex { return (clockwisePolygon == nil) ? -1 : [clockwisePolygon index]; }
+-(short) conterclockwisePolygonIndex { return (conterclockwisePolygon == nil) ? -1 : [conterclockwisePolygon index]; }
+
+@synthesize clockwisePolygonObject=clockwisePolygon;
+@synthesize conterclockwisePolygonObject=conterclockwisePolygon;
 
 // ********* Set Accsessor Methods ********* 
  #pragma mark -
 #pragma mark ********* Set Accsessor Methods *********
--(void) setPointIndex1:(short)s { [self setP1:s]; }
--(void) setPointIndex2:(short)s { [self setP2:s]; }
+-(void) setP1:(short)s { [self setP1:s]; }
+-(void) setP2:(short)s { [self setP2:s]; }
 
--(void) setP1:(short)s
+-(void) setPointIndex1:(short)s
 {
     //p1 = s;
     if (s == -1)
@@ -898,7 +925,7 @@
     [self recalc];
 }
 
--(void) setP2:(short)s
+-(void) setPointIndex2:(short)s
 {
     //p2 = s;
     if (s == -1)
@@ -997,13 +1024,9 @@
 }
 
 
--(void) setLength:(short)s { _Length = s; }
--(void) setAngle:(short)s { _Angle = s; }
--(void) setAzimuth:(short)s { _Azimuth = s; }
-
 // Mabye make these pointers to the polygons themselves???
--(void) setHighestAdjacentFloor:(short)s { highestAdjacentFloor = s; }
--(void) setLowestAdjacentCeiling:(short)s { lowestAdjacentCeiling = s; }
+//-(void) setHighestAdjacentFloor:(short)s { highestAdjacentFloor = s; }
+//-(void) setLowestAdjacentCeiling:(short)s { lowestAdjacentCeiling = s; }
 
 
 
@@ -1026,17 +1049,6 @@
         counterclockwisePolygonSideObject = nil;
     else if (everythingLoadedST)
         counterclockwisePolygonSideObject = [theMapSidesST objectAtIndex:s];
-}
-
-//	*** *** ***
-
--(void) setClockwisePolygonSideObject:(id)s
-{
-    clockwisePolygonSideObject = s;
-}
--(void) setCounterclockwisePolygonSideObject:(id)s
-{
-    counterclockwisePolygonSideObject = s;
 }
 
 //	--- --- ---
@@ -1077,18 +1089,6 @@
         conterclockwisePolygon = nil;
     else if (everythingLoadedST)
         conterclockwisePolygon = [theMapPolysST objectAtIndex:conterclockwisePolygonIndex];
-}
-
-//	*** *** ***
-
--(void) setClockwisePolygonObject:(LEPolygon *)s
-{
-    clockwisePolygon = s;
-}
-
--(void) setConterclockwisePolygonObject:(LEPolygon *)s
-{
-    conterclockwisePolygon = s;
 }
 
 //	--- --- ---
@@ -1176,7 +1176,7 @@
     //NSLog(@"Got Thought With Preperations For Polygon Filling...");
     
 
-    if ([self getClockwisePolygonOwner] == -1 || [self getConterclockwisePolygonOwner] == -1)
+    if ([self clockwisePolygonOwner] == -1 || [self conterclockwisePolygonOwner] == -1)
     {
         keepPolyFinding = NO;
         foundTheLine = YES;
@@ -1201,8 +1201,8 @@
     //point1 = [[theMapPoints objectAtIndex:[currentLine pointIndex1]] asPoint];
     //point2 = [[theMapPoints objectAtIndex:[currentLine pointIndex2]] asPoint];
     
-    tempLinePoint2 = [currentLine getMapPoint2];
-    tempLinePoint1 = [currentLine getMapPoint1];
+    tempLinePoint2 = [currentLine mapPoint2];
+    tempLinePoint1 = [currentLine mapPoint1];
     
     if ([self isThereAClockWiseLineAlpha:tempLinePoint2 beta:tempLinePoint1 theLine:currentLine])
     {
@@ -1271,10 +1271,10 @@
                 
                 //NSLog(@"Analyzing line: %d", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                 
-                if ([thisMapLine getClockwisePolygonOwner] != -1 && [thisMapLine getConterclockwisePolygonOwner] != -1)
+                if ([thisMapLine clockwisePolygonOwner] != -1 && [thisMapLine conterclockwisePolygonOwner] != -1)
                 {
                     // Might want to make sure of this in finnal lines instead, etc.???
-                    NSLog(@"Line# %d already has two polygons attached to it, can't make a third polygon from it.", [thisMapLine getIndex]);
+                    NSLog(@"Line# %d already has two polygons attached to it, can't make a third polygon from it.", [thisMapLine index]);
                     //return NO;
                     continue;
                 }
@@ -1432,7 +1432,7 @@
                                 //lastOtherVertex = GetLine( curLine ).GetVertex1();
                                 
                                 //NSLog(@"Lowest Line Index: %d  With Angle Of: %g", smallestLineIndex, smallestAngle);
-                        }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint getX] >= [firstPoint getX])
+                        }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint x] >= [firstPoint x])
     
                     } // End if (theCurPoint1 == firstPoint)
                 } // End if (currentLine != thisMapLine)
@@ -1609,10 +1609,10 @@
         
         //NSLog(@"Analyzing line: %d", [theLines indexOfObjectIdenticalTo:thisMapLine]);
         
-        if ([thisMapLine getClockwisePolygonOwner] != -1 && [thisMapLine getConterclockwisePolygonOwner] != -1)
+        if ([thisMapLine clockwisePolygonOwner] != -1 && [thisMapLine conterclockwisePolygonOwner] != -1)
         {
             // Might want to make sure of this in finnal lines instead, etc.???
-            NSLog(@"   IFIND Line# %d already has two polygons attached to it, can't make a third polygon from it, still checking...", [thisMapLine getIndex]);
+            NSLog(@"   IFIND Line# %d already has two polygons attached to it, can't make a third polygon from it, still checking...", [thisMapLine index]);
             //return NO;
             continue;
         }
@@ -1674,7 +1674,7 @@
         theXfromSlop = theY / slope;
         //NSLog(@"   IFIND theXfromSlop: %g", theXfromSlop);
     
-        //NSLog(@"   IFIND For Line %d  theX: %g theY: %g", [thisMapLine getIndex], theX, theY);
+        //NSLog(@"   IFIND For Line %d  theX: %g theY: %g", [thisMapLine index], theX, theY);
         if (0 < prevY) // Main Point Lower
         {
             if (theX >= theXfromSlop) //ok
@@ -1730,10 +1730,10 @@
     double a = 0, t = 0;
     double m = 0;
     
-    short x1 = [[self getMapPoint1] x32];
-    short y1 = [[self getMapPoint1] y32];
-    short x2 = [[self getMapPoint2] x32];
-    short y2 = [[self getMapPoint2] y32];
+    short x1 = [[self mapPoint1] x32];
+    short y1 = [[self mapPoint1] y32];
+    short x2 = [[self mapPoint2] x32];
+    short y2 = [[self mapPoint2] y32];
 
     short dX = x1-x2;
     short dY = y1-y2;

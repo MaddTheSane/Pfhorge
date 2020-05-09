@@ -366,14 +366,14 @@
         NSEnumerator *spenumer = [polys objectEnumerator];
         while (thePolyToCheck = [spenumer nextObject])
         {
-            switch ([thePolyToCheck getType])
+            switch ([thePolyToCheck type])
             {
                 case _polygon_is_platform_on_trigger:
                 case _polygon_is_platform_off_trigger:
                 case _polygon_is_teleporter:
                     thePolyPointedTo = [thePolyToCheck getPermutationObject];
                     // This Might Be able To Insert Nil Objects Into An Array...
-                    [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo getIndex])];
+                    [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo index])];
                     break;
                 default:
                     break;
@@ -394,7 +394,7 @@
                 case _cpanel_effects_polygon:
                     thePolyPointedTo = [theObj getControl_panel_permutation_object];
                     // This Might Be able To Insert Nil Objects Into An Array...
-                    [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo getIndex])];
+                    [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo index])];
                     break;
                 case _cpanel_effects_tag:
                     
@@ -570,7 +570,7 @@
             [namedPolyObjects addObject:theObj];
         }
         
-        if ([theObj getType] == _polygon_is_platform)
+        if ([theObj type] == _polygon_is_platform)
         {
             if ([[theObj getPermutationObject] polygonObject] != theObj)
             { // The polygon points to a platform which does not point back
@@ -1158,7 +1158,7 @@ enum // export data types
     defaultPolygon = [[LEPolygon alloc] init];
     [self setUpArrayPointersFor:defaultPolygon];
     [defaultPolygon setMedia_lightsource:0];
-    [defaultPolygon setFloor_lightsource:0];
+    [defaultPolygon setFloorLightsource:0];
     [defaultPolygon setCeiling_lightsource:0];
     
     

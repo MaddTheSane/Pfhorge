@@ -2034,7 +2034,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_lightsourceObject"];
         #endif
-        [theObj setFloor_lightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setFloorLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_lightsourceObject"];
         #endif
@@ -2829,8 +2829,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     { 
-	[self saveShort:[currentObj getX]];
-	[self saveShort:[currentObj getY]];
+	[self saveShort:[currentObj x]];
+	[self saveShort:[currentObj y]];
     }
     
     #ifdef useDebugingLogs
@@ -2855,16 +2855,16 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {                
-	[self saveShort:[currentObj getP1]];
-	[self saveShort:[currentObj getP2]];
-	[self saveUnsignedShort:[currentObj getFlags]];
-	[self saveShort:[currentObj getLength]];
-	[self saveShort:[currentObj getHighestAdjacentFloor]];
-	[self saveShort:[currentObj getLowestAdjacentCeiling]];
-	[self saveShort:[currentObj getClockwisePolygonSideIndex]];
-	[self saveShort:[currentObj getCounterclockwisePolygonSideIndex]];
-	[self saveShort:[currentObj getClockwisePolygonOwner]];
-	[self saveShort:[currentObj getConterclockwisePolygonOwner]];
+	[self saveShort:[currentObj p1]];
+	[self saveShort:[currentObj p2]];
+	[self saveUnsignedShort:[currentObj flags]];
+	[self saveShort:[currentObj length]];
+	[self saveShort:[currentObj highestAdjacentFloor]];
+	[self saveShort:[currentObj lowestAdjacentCeiling]];
+	[self saveShort:[currentObj clockwisePolygonSideIndex]];
+	[self saveShort:[currentObj counterclockwisePolygonSideIndex]];
+	[self saveShort:[currentObj clockwisePolygonOwner]];
+	[self saveShort:[currentObj conterclockwisePolygonOwner]];
 	
 	[self saveEmptyBytes:12]; //Skip the unused part of each line... :)
     }
@@ -2889,8 +2889,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {
-	[self saveShort:[currentObj getType]];
-	[self saveUnsignedShort:[currentObj getFlags]];
+	[self saveShort:[currentObj type]];
+	[self saveUnsignedShort:[currentObj flags]];
 	[self saveShort:[currentObj getPermutation]];
 	
 	[self saveShort:[currentObj getTheVertexCount]];
@@ -3011,14 +3011,14 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {
-	[self saveShort:[currentObj getType]];
+	[self saveShort:[currentObj type]];
 	[self saveShort:[currentObj getObjTypeIndex]];
-	[self saveShort:[currentObj getFacing]];
-	[self saveShort:[currentObj getPolygonIndex]];
-	[self saveShort:[currentObj getX]];
-	[self saveShort:[currentObj getY]];
-	[self saveShort:[currentObj getZ]];
-	[self saveUnsignedShort:[currentObj getMapFlags]];
+	[self saveShort:[currentObj facing]];
+	[self saveShort:[currentObj polygonIndex]];
+	[self saveShort:[currentObj x]];
+	[self saveShort:[currentObj y]];
+	[self saveShort:[currentObj z]];
+	[self saveUnsignedShort:[currentObj mapFlags]];
     }
     #ifdef useDebugingLogs
         NSLog(@"Saved %d map objects (Monsters, Items, Etc.).", objCount);
@@ -3305,7 +3305,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSEnumerator *numer = [theObjects objectEnumerator];
     while (currentObj = [numer nextObject])
     {
-	[self saveShort:[currentObj getFlags]];
+	[self saveShort:[currentObj flags]];
 	
 	[self saveShort:[currentObj initialCount]];
 	[self saveShort:[currentObj minimumCount]];

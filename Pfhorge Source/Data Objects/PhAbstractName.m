@@ -111,7 +111,7 @@
 
 -(NSString *)getPhName
 {
-    return (myName != nil) ? [[myName copy] autorelease] : [[NSNumber numberWithShort:[self getIndex]] stringValue];
+    return (myName != nil) ? [[myName copy] autorelease] : [[NSNumber numberWithShort:[self index]] stringValue];
 }
 
 -(BOOL)doIHaveAName
@@ -124,7 +124,7 @@
     NSScanner *scanner = [NSScanner scannerWithString:myName];
     int tmpInt = 0;
     BOOL gotInt = [scanner scanInt:&tmpInt];
-    int myIndex = [self getIndex];
+    int myIndex = [self index];
     
     // Should I use the trinary ? operator instead?
     
@@ -140,7 +140,7 @@
 
 - (void)resetNameToMyIndex
 {
-    [self setPhName:[numShort([self getIndex]) stringValue]];
+    [self setPhName:[numShort([self index]) stringValue]];
 }
 
 @end

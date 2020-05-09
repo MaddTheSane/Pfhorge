@@ -117,9 +117,9 @@
 
 -(void)copySettingsTo:(id)target;
 -(BOOL) uses:(id)theObj;
--(void) moveBy32Point:(NSPoint)theOffset;
--(void)moveBy32Point:(NSPoint)theOffset pointsAlreadyMoved:(NSMutableSet *)pointsAlreadyMoved;
--(short) getIndex;
+-(void)moveBy32Point:(NSPoint)theOffset;
+-(void)moveBy32Point:(NSPoint)theOffset pointsAlreadyMoved:(NSMutableSet<NSValue*> *)pointsAlreadyMoved;
+-(short) index;
 -(short) getSpecialIndex;
 -(void) update;
 -(void) updateIndexesNumbersFromObjects;

@@ -25,8 +25,8 @@
 #import <Foundation/Foundation.h>
 #import "LEMapStuffParent.h"
 
-enum	// map object types
-{
+//! map object types
+typedef NS_ENUM(short, LEMapObjectType) {
 	_saved_monster,		// .index is monster type
 	_saved_object,		// .index is scenery type
 	_saved_item,		// .index is item type
@@ -62,7 +62,8 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 
 @interface LEMapObject : LEMapStuffParent <NSCoding>
 {
-    short type, index, facing, polygonIndex, x, y, z, x32, y32;
+    short index, facing, polygonIndex, x, y, z, x32, y32;
+	LEMapObjectType type;
     id polygonObject;
     LEMapObjectFlags flags;
 }
@@ -77,34 +78,26 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 
 // Acessor Methods...
 
--(NSRect)as32Rect;
--(NSPoint)as32Point;
+@property (readonly) NSRect as32Rect;
+@property (readonly) NSPoint as32Point;
 
--(short)getX;
--(short)getY;
--(short)getZ;
--(short)x32;
--(short)y32;
--(short)getType;
+@property (nonatomic) short x;
+@property (nonatomic) short y;
+@property short z;
+@property (nonatomic) short x32;
+@property (nonatomic) short y32;
+@property (nonatomic) LEMapObjectType type;
 -(short)getObjTypeIndex;
--(short)getFacing;
--(short)getPolygonIndex;
-@property (assign, getter=getPolygonObject) id polygonObject;
--(LEMapObjectFlags)getFlags;
-@property (getter=getMapFlags) LEMapObjectFlags mapFlags;
+@property short facing;
+@property (nonatomic) short polygonIndex;
+@property (assign) id polygonObject;
+-(LEMapObjectFlags)flags;
+@property LEMapObjectFlags mapFlags;
 
 //-(void)moveBy32Point:(NSPoint)theOffset;
 
--(void)setZ:(short)s;
--(void)setX:(short)s;
--(void)setY:(short)s;
 -(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
 -(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
--(void)setX32:(short)s;
--(void)setY32:(short)s;
--(void)setType:(short)s;
 -(void)setIndex:(short)s;
--(void)setFacing:(short)s;
--(void)setPolygonIndex:(short)s;
 
 @end

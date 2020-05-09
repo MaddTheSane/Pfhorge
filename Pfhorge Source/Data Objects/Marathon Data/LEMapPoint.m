@@ -35,7 +35,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Point Index: %d    X/Y:(%d, %d)   AdjX/AdjY:(%d, %d)",[self getIndex], x, y, x32, y32, nil];
+    return [NSString stringWithFormat:@"Point Index: %d    X/Y:(%d, %d)   AdjX/AdjY:(%d, %d)",[self index], x, y, x32, y32, nil];
 }
 
 
@@ -77,14 +77,14 @@
     
 
     
-    NSLog(@"Exporting Point: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Point: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: point %d was not at the end of the index... myPosition = %ld", [self getIndex], (long)myPosition);
+        NSLog(@"BIG EXPORT ERROR: point %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -94,7 +94,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Point: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Point: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(x);
     ImportShort(y);
@@ -215,14 +215,18 @@
 // **************************  Regular Methods  *************************
 #pragma mark -
 #pragma mark ********* Regular Methods  *********
--(short) getIndex { return [theMapPointsST indexOfObjectIdenticalTo:self]; }
+-(short) index { return [theMapPointsST indexOfObjectIdenticalTo:self]; }
 
 -(NSRect)drawingBounds { return [self as32Rect]; }
 
 -(void)setX:(short)theX Y:(short)theY
 {
+	[self willChangeValueForKey:@"x"];
+	[self willChangeValueForKey:@"y"];
     x = theX; x32 = theX / 16;
     y = theY; y32 = theY / 16;
+	[self didChangeValueForKey:@"x"];
+	[self didChangeValueForKey:@"y"];
     [self tellLinesAttachedToMeToRecalc];
 }
 
@@ -241,15 +245,11 @@
 
 -(void)set32X:(short)theX
 {
-    //[undo setX32:x32];
-    x = theX * 16; x32 = theX;
-    [self tellLinesAttachedToMeToRecalc];
+	self.x32 = theX;
 }
 -(void)set32Y:(short)theY
 {
-    //[undo setY32:y32];
-    y = theY * 16; y32 = theY;
-    [self tellLinesAttachedToMeToRecalc];
+	self.y32 = theY;
 }
 
 -(void)setX32:(short)theX
@@ -289,8 +289,20 @@
 }
 
 -(NSPoint)asPoint { return NSMakePoint(x, y); }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAsPoint
+{
+	return [NSSet setWithObjects:@"x", @"y", nil];
+}
 -(NSPoint)as32Point { return NSMakePoint(x32, y32); }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Point
+{
+	return [NSSet setWithObjects:@"x32", @"y32", nil];
+}
 -(NSRect)as32Rect { return NSMakeRect(x32 - 3, y32 - 3, 6, 6); }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Rect
+{
+	return [NSSet setWithObjects:@"x32", @"y32", nil];
+}
 
 -(NSSet *)getLinesAttachedToMe
 {
@@ -344,11 +356,37 @@
 }
 
 -(short)xgl { return x/128; }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingXgl
+{
+	return [NSSet setWithObject:@"x"];
+}
+@dynamic xgl;
 -(short)ygl { return y/128; }
--(short)x32 { return x32; }
--(short)y32 { return y32; }
--(short)x { return x; }
--(short)y { return y; }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingYgl
+{
+	return [NSSet setWithObject:@"y"];
+}
+@dynamic ygl;
+@synthesize x32;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingX32
+{
+	return [NSSet setWithObject:@"x"];
+}
+@synthesize y32;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingY32
+{
+	return [NSSet setWithObject:@"y"];
+}
+@synthesize x;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingX
+{
+	return [NSSet setWithObject:@"x32"];
+}
+@synthesize y;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingY
+{
+	return [NSSet setWithObject:@"y32"];
+}
 -(short)getX { return x; }
 -(short)getY { return y; }
 
@@ -357,7 +395,7 @@
 - (NSScriptObjectSpecifier *)objectSpecifier
 {
     //NSArray *graphics = [[self document] graphics];
-    int index = [self getIndex];
+    int index = [self index];
     
     if (index != -1 && [theLELevelDataST levelDocument] != nil)
     {

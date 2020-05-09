@@ -112,7 +112,7 @@
 
 @synthesize phNumber=assignedNumber;
 
-//-(short) getIndex { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }
+//-(short) index { return [theLevelTagObjectsST indexOfObjectIdenticalTo:self]; }
 
 - (NSComparisonResult)compare:(id)object
 {

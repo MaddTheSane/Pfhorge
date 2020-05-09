@@ -85,14 +85,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-	NSLog(@"Exporting Platform: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+	NSLog(@"Exporting Platform: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -102,7 +102,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Platform: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Platform: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(type);
     ImportShort(speed);
@@ -195,12 +195,12 @@
     {
         //alreadyLogedResults = 37563;
         
-        //NSLog(@"fMin: %d - fMax: %d || cMin: %d - cMax: %d || f: %d | c: %D |%d|%d|| PolyIndex:%d", theDynamicData.minimum_floor_height, theDynamicData.maximum_floor_height, theDynamicData.minimum_ceiling_height, theDynamicData.maximum_ceiling_height, theDynamicData.floor_height, theDynamicData.ceiling_height, theDynamicData.type, 123, [self getIndex]);
+        //NSLog(@"fMin: %d - fMax: %d || cMin: %d - cMax: %d || f: %d | c: %D |%d|%d|| PolyIndex:%d", theDynamicData.minimum_floor_height, theDynamicData.maximum_floor_height, theDynamicData.minimum_ceiling_height, theDynamicData.maximum_ceiling_height, theDynamicData.floor_height, theDynamicData.ceiling_height, theDynamicData.type, 123, [self index]);
     }
     
     if (polygon_index >= ((int)[theMapPolysST count]) || polygon_index < 0)
     {
-       NSLog(@"*** ERROR: Platform#%d polygon pointer beyond bounds: %d *** ", [self getIndex], polygon_index);
+       NSLog(@"*** ERROR: Platform#%d polygon pointer beyond bounds: %d *** ", [self index], polygon_index);
        polygon_index = -1;
        polygon_object = nil;
     }
@@ -317,9 +317,9 @@
 {
     NSMutableString *tis = [[NSMutableString alloc] init];
     
-    [tis appendString:[NSString stringWithFormat:@"Info on Platform %d\n\n", [self getIndex]]];
+    [tis appendString:[NSString stringWithFormat:@"Info on Platform %d\n\n", [self index]]];
     
-    [tis appendString:[NSString stringWithFormat:@"Polygon Index: %d\n", [polygon_object getIndex], nil]];
+    [tis appendString:[NSString stringWithFormat:@"Polygon Index: %d\n", [polygon_object index], nil]];
     
     
     [tis appendString:@"Platform Type: "];
@@ -420,7 +420,7 @@
     [theTarget setTag:tag];
 }
 
--(short)getIndex { return [theMapPlatformsST indexOfObjectIdenticalTo:self]; }
+-(short)index { return [theMapPlatformsST indexOfObjectIdenticalTo:self]; }
 
 -(void) updateIndexesNumbersFromObjects
 {
@@ -451,7 +451,7 @@
 @synthesize maximumHeight=maximum_height;
 @synthesize minimumHeight=minimum_height;
 @synthesize staticFlags=static_flags;
-- (short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object getIndex]; }
+- (short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object index]; }
 @synthesize polygonObject=polygon_object;
 @synthesize tag;
 -(short)tag { return  (tagObject != nil) ? ([tagObject getSpecialIndex]) : (-1); }

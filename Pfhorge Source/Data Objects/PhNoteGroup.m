@@ -110,7 +110,7 @@
 
 @synthesize visible;
 
--(short)getIndex { return [theNoteTypesST indexOfObjectIdenticalTo:self]; }
+-(short)index { return [theNoteTypesST indexOfObjectIdenticalTo:self]; }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveColor
 {

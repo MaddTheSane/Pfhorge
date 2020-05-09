@@ -163,8 +163,8 @@
     {
         if ([[thisObj getPhNumber] isEqualToNumber:currentTagNumber])
         {
-            ///NSLog(@"Returning Tag Index: %d  tagsCount: %d currentTagNumber: %d TagNumber Returning: %d", [thisObj getIndex], [tags count], [currentTagNumber intValue], [[thisObj getPhNumber] intValue]);
-            return [thisObj getIndex];
+            ///NSLog(@"Returning Tag Index: %d  tagsCount: %d currentTagNumber: %d TagNumber Returning: %d", [thisObj index], [tags count], [currentTagNumber intValue], [[thisObj getPhNumber] intValue]);
+            return [thisObj index];
         }
     }
     
@@ -231,10 +231,10 @@
     }
     else if (theClass == [LELine class])
     {
-        if ([theObject getClockwisePolygonSideObject] != nil)
-            [cDefaultSide copySettingsTo:[theObject getClockwisePolygonSideObject]];
-        if ([theObject getCounterclockwisePolygonSideObject] != nil)
-            [ccDefaultSide copySettingsTo:[theObject getCounterclockwisePolygonSideObject]];
+        if ([theObject clockwisePolygonSideObject] != nil)
+            [cDefaultSide copySettingsTo:[theObject clockwisePolygonSideObject]];
+        if ([theObject counterclockwisePolygonSideObject] != nil)
+            [ccDefaultSide copySettingsTo:[theObject counterclockwisePolygonSideObject]];
     }
     else if (theClass == [LESide class])
     {
@@ -250,7 +250,7 @@
     }
     else if (theClass == [LEMapObject class])
     {
-        int theObjType = [theObject getType];
+        int theObjType = [theObject type];
         if (theObjType >= 0 && theObjType < _NUMBER_OF_OBJECT_TYPES)
         {
             [defaultObjects[theObjType] copySettingsTo:theObject];
@@ -272,20 +272,20 @@
     }
     else if (theClass == [LELine class])
     {
-        if ([theObject getClockwisePolygonSideObject] == nil)
+        if ([theObject clockwisePolygonSideObject] == nil)
             ccHasDefaultSide = NO;
         else
         {
-            [[theObject getCounterclockwisePolygonSideObject] copySettingsTo:ccDefaultSide];
+            [[theObject counterclockwisePolygonSideObject] copySettingsTo:ccDefaultSide];
             ccHasDefaultSide = YES;
             [ccDefaultSide copySettingsTo:defaultSide];
         }
         
-        if ([theObject getClockwisePolygonSideObject] == nil)
+        if ([theObject clockwisePolygonSideObject] == nil)
             cHasDefaultSide = NO;
         else
         {
-            [[theObject getClockwisePolygonSideObject] copySettingsTo:cDefaultSide];
+            [[theObject clockwisePolygonSideObject] copySettingsTo:cDefaultSide];
             cHasDefaultSide = YES;
             [cDefaultSide copySettingsTo:defaultSide];
         }
@@ -300,7 +300,7 @@
     }
     else if (theClass == [LEMapObject class])
     {
-        int theObjType = [theObject getType];
+        int theObjType = [theObject type];
         if (theObjType >= 0 && theObjType < _NUMBER_OF_OBJECT_TYPES)
         {
             [theObject copySettingsTo:defaultObjects[theObjType]];
@@ -355,10 +355,10 @@
     //          in LELine may call this function if
     //          noSides for that line is permently set...
     
-    LEPolygon *clockPoly = [theLine getClockwisePolygonObject];
-    LEPolygon *counterclockPoly = [theLine getConterclockwisePolygonObject];
-    LESide *clockSide = [theLine getClockwisePolygonSideObject];
-    LESide *counterclockSide = [theLine getCounterclockwisePolygonSideObject];
+    LEPolygon *clockPoly = [theLine clockwisePolygonObject];
+    LEPolygon *counterclockPoly = [theLine conterclockwisePolygonObject];
+    LESide *clockSide = [theLine clockwisePolygonSideObject];
+    LESide *counterclockSide = [theLine counterclockwisePolygonSideObject];
     NSLog(@"removeSidesFromLine 1 [LELevelData-Utilites->removeSidesFromLine]");
     if (clockSide != nil)
     {
@@ -433,49 +433,49 @@
     
     if ([theObject isKindOfClass:[PhLayer class]])
     {
-        [layerNames replaceObjectAtIndex:[theObject getIndex]
+        [layerNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_layerMenu];
         [theDrawView updateNameList:_layerMenu];
     }
     else if ([theObject isKindOfClass:[PhTag class]])
     {
-        [tagNames replaceObjectAtIndex:[theObject getIndex]
+        [tagNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_tagMenu];
         [theDrawView updateNameList:_tagMenu];
     }
     else if ([theObject isKindOfClass:[PhPlatform class]])
     {
-        [platformNames replaceObjectAtIndex:[theObject getIndex]
+        [platformNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_platformMenu];
         [theDrawView updateNameList:_platformMenu];
     }
     else if ([theObject isKindOfClass:[PhRandomSound class]])
     {
-        [randomSoundNames replaceObjectAtIndex:[theObject getIndex]
+        [randomSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_randomSoundMenu];
         [theDrawView updateNameList:_randomSoundMenu];
     }
     else if ([theObject isKindOfClass:[PhAmbientSound class]])
     {
-        [ambientSoundNames replaceObjectAtIndex:[theObject getIndex]
+        [ambientSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_ambientSoundMenu];
         [theDrawView updateNameList:_ambientSoundMenu];
     }
     else if ([theObject isKindOfClass:[PhMedia class]])
     {
-        [liquidNames replaceObjectAtIndex:[theObject getIndex]
+        [liquidNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_liquidMenu];
         [theDrawView updateNameList:_liquidMenu];
     }
     else if ([theObject isKindOfClass:[PhLight class]])
     {
-        [lightNames replaceObjectAtIndex:[theObject getIndex]
+        [lightNames replaceObjectAtIndex:[theObject index]
                              withObject:[[theName copy] autorelease]];
         [self refreshAllMenusOf:_lightMenu];
         [theDrawView updateNameList:_lightMenu];
@@ -587,21 +587,21 @@
         //short *theVertexes = [theObj getTheVertexes];
         
         
-        if ([thisPoly getType] == _polygon_is_platform)
+        if ([thisPoly type] == _polygon_is_platform)
         {
             if ([thisPoly getPermutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of reg platform with a nil permuation object...");
             }
         }
-        else if ([thisPoly getType] == _polygon_is_platform_on_trigger)
+        else if ([thisPoly type] == _polygon_is_platform_on_trigger)
         {
             if ([thisPoly getPermutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of on platform with a nil permuation object...");
             }
         }
-        else if ([thisPoly getType] == _polygon_is_platform_off_trigger)
+        else if ([thisPoly type] == _polygon_is_platform_off_trigger)
         {
             if ([thisPoly getPermutationObject] == nil)
             {
@@ -614,20 +614,20 @@
             id theVertex = [thisPoly getVertexObject:i];
             id theLine = [thisPoly getLineObject:i];
             
-            //NSLog(@"Polygon# %d  ---  Line# %d", [theObj getIndex], [theLine getIndex]);
+            //NSLog(@"Polygon# %d  ---  Line# %d", [theObj index], [theLine index]);
             
             //points, *lines
             
             if ([lines indexOfObjectIdenticalTo:theLine] == NSNotFound)
             {
-                NSLog(@"In Polygon# %d - pLine# %d - did not exsist in main array...", [thisPoly getIndex], i);
+                NSLog(@"In Polygon# %d - pLine# %d - did not exsist in main array...", [thisPoly index], i);
                 [thisPoly setLinesObject:nil i:i];
                 getRidOfPolygon = YES;
             }
             
             if ([points indexOfObjectIdenticalTo:theVertex] == NSNotFound)
             {
-                NSLog(@"In Polygon# %d - vertex# %d - did not exsist in main array...", [thisPoly getIndex], i);
+                NSLog(@"In Polygon# %d - vertex# %d - did not exsist in main array...", [thisPoly index], i);
                 [thisPoly setVertexWithObject:nil i:i];
                 getRidOfPolygon = YES;
             }
@@ -635,7 +635,7 @@
         
         if (getRidOfPolygon == YES)
         {
-            NSLog(@"Deleting Polygon# %d due to major fundamental problem...", [thisPoly getIndex]);
+            NSLog(@"Deleting Polygon# %d due to major fundamental problem...", [thisPoly index]);
             [self deletePolygon:thisPoly];
         }
     }
@@ -672,10 +672,10 @@
         numer = [tmpList1 objectEnumerator];
         while ((thisObj = [numer nextObject]))
         {
-            LEPolygon *poly1 = [thisObj getClockwisePolygonObject];
-            LEPolygon *poly2 = [thisObj getConterclockwisePolygonObject];
+            LEPolygon *poly1 = [thisObj clockwisePolygonObject];
+            LEPolygon *poly2 = [thisObj conterclockwisePolygonObject];
             //NSLog(@"BEFORE: Polygon Set LevelData Function Count: %d", [theObjects count]);
-            //NSLog(@"poly1 index: %d   poly2 index: %d", [poly1 getIndex], [poly2 getIndex]);
+            //NSLog(@"poly1 index: %d   poly2 index: %d", [poly1 index], [poly2 index]);
             if ((poly1 != nil) && (![theObjects containsObject:poly1]))
                 [theObjects addObject:poly1];
             if ((poly2 != nil) && (![theObjects containsObject:poly2]))
@@ -690,10 +690,10 @@
     else if ([theObj isKindOfClass:[LELine class]])
     {
         //NSMutableArray *points, *lines, *polys;
-        //LEPolygon *poly1 = [theObj getClockwisePolygonObject];
-        //LEPolygon *poly2 = [theObj getConterclockwisePolygonObject];
-        LEMapPoint *point1 = [theObj getMapPoint1];
-        LEMapPoint *point2 = [theObj getMapPoint2];
+        //LEPolygon *poly1 = [theObj clockwisePolygonObject];
+        //LEPolygon *poly2 = [theObj conterclockwisePolygonObject];
+        LEMapPoint *point1 = [theObj mapPoint1];
+        LEMapPoint *point2 = [theObj mapPoint2];
         
         [theObjects addObject:point1];
         [theObjects addObject:point2];
@@ -708,8 +708,8 @@
         numer = [tmpList1 objectEnumerator];
         while ((thisObj = [numer nextObject]))
         {
-            LEPolygon *poly1 = [thisObj getClockwisePolygonObject];
-            LEPolygon *poly2 = [thisObj getConterclockwisePolygonObject];
+            LEPolygon *poly1 = [thisObj clockwisePolygonObject];
+            LEPolygon *poly2 = [thisObj conterclockwisePolygonObject];
             
             if (poly1 != nil)
                 [theObjects addObject:poly1];
@@ -741,8 +741,8 @@
         numer = [tmpList1 objectEnumerator];
         while ((thisObj = [numer nextObject]))
         {
-            LEPolygon *poly1 = [thisObj getClockwisePolygonObject];
-            LEPolygon *poly2 = [thisObj getConterclockwisePolygonObject];
+            LEPolygon *poly1 = [thisObj clockwisePolygonObject];
+            LEPolygon *poly2 = [thisObj conterclockwisePolygonObject];
             
             if (poly1 != nil && poly1 != theObj)
                 [theObjects addObject:poly1];

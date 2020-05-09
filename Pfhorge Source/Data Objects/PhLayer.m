@@ -107,7 +107,7 @@
 }
 
 // ********* Overridden Methods *********
--(short) getIndex { return [theLayersST indexOfObjectIdenticalTo:self]; }
+-(short) index { return [theLayersST indexOfObjectIdenticalTo:self]; }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveColor
 {

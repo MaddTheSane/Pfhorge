@@ -81,7 +81,6 @@
 		AE3C14E10A04512100FBFFCD /* PhPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E1A1D4032E9D1F0146BBD2 /* PhPluginManager.h */; };
 		AE3C14E20A04512100FBFFCD /* PluginManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F521F7CB03302AB30146BBD2 /* PluginManagerInterface.h */; };
 		AE3C14E30A04512100FBFFCD /* PhTextureInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */; };
-		AE3C14E40A04512100FBFFCD /* LELine-SideCalc.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */; };
 		AE3C14E50A04512100FBFFCD /* PhDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = A52DB02404016BFC0046BBD2 /* PhDefs.h */; };
 		AE3C14E60A04512100FBFFCD /* PhData.h in Headers */ = {isa = PBXBuildFile; fileRef = A597FC2C045763B20046BBD2 /* PhData.h */; };
 		AE3C14E70A04512100FBFFCD /* PathwaysExchange.h in Headers */ = {isa = PBXBuildFile; fileRef = A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */; };
@@ -487,7 +486,6 @@
 		F58032D603E322530146BBD2 /* LELevelData-Utilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Utilites.m"; sourceTree = "<group>"; };
 		F58032D803E322660146BBD2 /* LELevelData-Objects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Objects.m"; sourceTree = "<group>"; };
 		F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LELevelData-Layers.m"; sourceTree = "<group>"; };
-		F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LELine-SideCalc.h"; sourceTree = "<group>"; };
 		F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LELine-SideCalc.m"; sourceTree = "<group>"; };
 		F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTextureInspectorController.h; sourceTree = "<group>"; };
 		F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureInspectorController.m; sourceTree = "<group>"; };
@@ -907,10 +905,9 @@
 		F5EFE97A01ADCA1A01A8A806 /* Marathon Data */ = {
 			isa = PBXGroup;
 			children = (
-				F5A17F2503B231030146BBD2 /* LELine-SideCalc.h */,
-				F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */,
 				0121ECA700DDCD937F000001 /* LELine.h */,
 				0121ECA800DDCD937F000001 /* LELine.m */,
+				F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */,
 				00F6628500E19BB67F000001 /* LEMapObject.h */,
 				00F6628600E19BB67F000001 /* LEMapObject.m */,
 				00FE5A0E00DC52C37F000001 /* LEMapPoint.h */,
@@ -1042,7 +1039,6 @@
 				AE3C14E10A04512100FBFFCD /* PhPluginManager.h in Headers */,
 				AE3C14E20A04512100FBFFCD /* PluginManagerInterface.h in Headers */,
 				AE3C14E30A04512100FBFFCD /* PhTextureInspectorController.h in Headers */,
-				AE3C14E40A04512100FBFFCD /* LELine-SideCalc.h in Headers */,
 				AE3C14E50A04512100FBFFCD /* PhDefs.h in Headers */,
 				AE3C14E60A04512100FBFFCD /* PhData.h in Headers */,
 				AE3C14E70A04512100FBFFCD /* PathwaysExchange.h in Headers */,

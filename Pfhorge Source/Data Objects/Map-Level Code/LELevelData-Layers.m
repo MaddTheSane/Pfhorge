@@ -209,7 +209,7 @@
                 id theVertex = [theObj getVertexObject:i];
                 id theLine = [theObj getLineObject:i];
                 
-                //NSLog(@"Polygon# %d  ---  Line# %d", [theObj getIndex], [theLine getIndex]);
+                //NSLog(@"Polygon# %d  ---  Line# %d", [theObj index], [theLine index]);
                 
                 if (notContain(layerLines, theLine))
                     [layerLines addObject:theLine];
@@ -222,7 +222,7 @@
         numer = [mapObjects objectEnumerator];
         while (theObj = [numer nextObject])
         {
-            if (contains(layerPolys, [theObj getPolygonObject]))
+            if (contains(layerPolys, [theObj polygonObject]))
                 [layerMapObjects addObject:theObj];
         }
         

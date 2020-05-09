@@ -728,21 +728,21 @@ enum {
     tmpBP2 = [NSBezierPath bezierPath];
     while (thisMapLine = [numer nextObject])
     {
-       /*if ([self mouse:[[thisMapLine getMapPoint1] as32Point] inRect:r] ||
-            [self mouse:[[thisMapLine getMapPoint2] as32Point] inRect:r]) { */
+       /*if ([self mouse:[[thisMapLine mapPoint1] as32Point] inRect:r] ||
+            [self mouse:[[thisMapLine mapPoint2] as32Point] inRect:r]) { */
        
              //[NSBezierPath strokeLineFromPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex1]] as32Point]
              //                          toPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex2]] as32Point]];
             
-            if ([thisMapLine getClockwisePolygonOwner] != -1 && [thisMapLine getConterclockwisePolygonOwner] != -1)
+            if ([thisMapLine clockwisePolygonOwner] != -1 && [thisMapLine conterclockwisePolygonOwner] != -1)
             {
-                [tmpBP2 moveToPoint:[[thisMapLine getMapPoint1] as32Point]];
-                [tmpBP2 lineToPoint:[[thisMapLine getMapPoint2] as32Point]];
+                [tmpBP2 moveToPoint:[[thisMapLine mapPoint1] as32Point]];
+                [tmpBP2 lineToPoint:[[thisMapLine mapPoint2] as32Point]];
             }
             else
             {
-                [tmpBP moveToPoint:[[thisMapLine getMapPoint1] as32Point]];
-                [tmpBP lineToPoint:[[thisMapLine getMapPoint2] as32Point]];
+                [tmpBP moveToPoint:[[thisMapLine mapPoint1] as32Point]];
+                [tmpBP lineToPoint:[[thisMapLine mapPoint2] as32Point]];
             }
     
        /* } */
@@ -864,7 +864,7 @@ enum {
              //[NSBezierPath strokeLineFromPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex1]] as32Point]
              //                          toPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex2]] as32Point]];
             
-            if ([thisMapLine getClockwisePolygonOwner] != -1 && [thisMapLine getConterclockwisePolygonOwner] != -1)
+            if ([thisMapLine clockwisePolygonOwner] != -1 && [thisMapLine conterclockwisePolygonOwner] != -1)
             {
                 [tmpBP2 moveToPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex1]] as32Point]];
                 [tmpBP2 lineToPoint:[[theMapPoints objectAtIndex:[thisMapLine pointIndex2]] as32Point]];
@@ -925,8 +925,8 @@ enum {
         numer = [selectedLines objectEnumerator];
         while (thisMapLine = [numer nextObject])
         { 
-            [NSBezierPath strokeLineFromPoint:[[thisMapLine getMapPoint1] as32Point]
-                                      toPoint:[[thisMapLine getMapPoint2] as32Point]];
+            [NSBezierPath strokeLineFromPoint:[[thisMapLine mapPoint1] as32Point]
+                                      toPoint:[[thisMapLine mapPoint2] as32Point]];
             
         }
         
@@ -1316,9 +1316,9 @@ enum {
     numer = [theMapObjects objectEnumerator];
     while (thisMapObject = [numer nextObject])
     {
-        //NSLog(@"*1* examining object: %d - %d", [thisMapObject getIndex], [theMapObjects indexOfObjectIdenticalTo:thisMapObject]);
+        //NSLog(@"*1* examining object: %d - %d", [thisMapObject index], [theMapObjects indexOfObjectIdenticalTo:thisMapObject]);
         //NSBez
-        switch ([thisMapObject getType])
+        switch ([thisMapObject type])
         {
             case _saved_monster:
                 if (!shouldDrawEnemyMonstersObjects)
@@ -1368,7 +1368,7 @@ enum {
             //x and y are the object's coordinates
             //NSBezierPath *theTriangle;
             //you know the angle
-            float angle = [thisMapObject getFacing] / 256.0 * 3.14159;
+            float angle = [thisMapObject facing] / 256.0 * 3.14159;
             ///NSPoint objPoints[3];
             NSPoint p1, p2, p3;
             
@@ -1480,7 +1480,7 @@ enum {
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getAmbient_sound_image_index]]] objectAtIndex:0];
                 break;
             case _drawLayers: //currentLevel
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[[thisPolygon polyLayer] getIndex]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[[thisPolygon polyLayer] index]]] objectAtIndex:0];
                 break;
             default:
                 NSLog(@"Unknown Number Drawing Mode In Number Poly Map Creation!");
@@ -1583,7 +1583,7 @@ enum {
         //If there is not at least 3 points, there can be no polygon as far as marathon is concerned (in theory) :)
         if (theCurrentVertexCount > 2) 
         {
-            int curPolyType = [thisPolygon getType];
+            int curPolyType = [thisPolygon type];
             
             if ((![thisPolygon getPolygonConcaveFlag]) && shouldDrawConvexPolyObjects)
                 polyDrawingMapPntr = invalidPolyDrawingMap;
@@ -1666,15 +1666,15 @@ enum {
     
     while ((thisLine = [numer nextObject]))
     {
-        if ([thisLine getClockwisePolygonObject] != nil && [thisLine getConterclockwisePolygonObject] != nil)
+        if ([thisLine clockwisePolygonObject] != nil && [thisLine conterclockwisePolygonObject] != nil)
         {
-            [joinedLineDrawingMap moveToPoint:[[thisLine getMapPoint1] as32Point]];
-            [joinedLineDrawingMap lineToPoint:[[thisLine getMapPoint2] as32Point]];
+            [joinedLineDrawingMap moveToPoint:[[thisLine mapPoint1] as32Point]];
+            [joinedLineDrawingMap lineToPoint:[[thisLine mapPoint2] as32Point]];
         }
         else
         {
-            [lineDrawingMap moveToPoint:[[thisLine getMapPoint1] as32Point]];
-            [lineDrawingMap lineToPoint:[[thisLine getMapPoint2] as32Point]];
+            [lineDrawingMap moveToPoint:[[thisLine mapPoint1] as32Point]];
+            [lineDrawingMap lineToPoint:[[thisLine mapPoint2] as32Point]];
         }
     }
 }
@@ -1812,7 +1812,7 @@ enum {
         
         for (PhAbstractName *thisObj in theArray)
         {
-            [tmpNumberList addObject:[NSNumber numberWithInt:[thisObj getIndex]]];
+            [tmpNumberList addObject:[NSNumber numberWithInt:[thisObj index]]];
             [tmpNameList addObject:[thisObj getPhName]];
         }
     } // end else
@@ -2179,7 +2179,7 @@ enum {
                 cPolyM = YES;
             else if ([thisObj isKindOfClass:[LEMapObject class]])
             {
-                switch ([thisObj getType])
+                switch ([thisObj type])
                 {
                     case _saved_monster:
                         cMonsterM = YES;
@@ -2219,7 +2219,7 @@ enum {
                 cPolyM = YES;
             else if ([thisObj isKindOfClass:[LEMapObject class]])
             {
-                switch ([thisObj getType])
+                switch ([thisObj type])
                 {
                     case _saved_monster:
                         cMonsterM = YES;
@@ -2375,7 +2375,7 @@ enum {
                         break;
                     case _drawFloorLights:
                         if (!optionDown)
-                            [curObj setFloor_lightsource:[selectedNumber shortValue]];
+                            [curObj setFloorLightsource:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj getFloor_lightsource_index]];
                         break;
@@ -3061,10 +3061,10 @@ enum {
                         theLine = newLine; //[[thePt linesAttachedToMeAsArray] objectAtIndex:0];
 
                         // get its azimuth
-                        curAz = [theLine getAzimuth];
+                        curAz = [theLine azimuth];
 
                         // and length
-                        tgtLength = [theLine getLength];
+                        tgtLength = [theLine length];
                         
                         // compare it to the list of angles
 			bestDiff = 1000;	// to trigger the first time
@@ -3731,7 +3731,7 @@ enum {
         while (thisMapLine = [numer nextObject])
         {
             //NSLog(@"1");
-            if ([thisMapLine getClockwisePolygonOwner] == -1 || [thisMapLine getConterclockwisePolygonOwner] == -1)
+            if ([thisMapLine clockwisePolygonOwner] == -1 || [thisMapLine conterclockwisePolygonOwner] == -1)
             {
                 //NSLog(@"2");
                 if ([thisMapLine LEhitTest:theCurPoint])
@@ -3761,30 +3761,30 @@ enum {
     
     //get The line disteance in world_units/32 from upper left corner of grid
     
-    point1 = [[currentLine getMapPoint1] asPoint];
-    point2 = [[currentLine getMapPoint2] asPoint];
+    point1 = [[currentLine mapPoint1] asPoint];
+    point2 = [[currentLine mapPoint2] asPoint];
     
     if (point1.y < point2.y)
     {
-        currentLineMainPoint = [currentLine getMapPoint1];
-        currentLineSecondaryPoint = [currentLine getMapPoint2];
+        currentLineMainPoint = [currentLine mapPoint1];
+        currentLineSecondaryPoint = [currentLine mapPoint2];
     }
     else if (point1.y > point2.y)
     {
-        currentLineMainPoint = [currentLine getMapPoint2];
-        currentLineSecondaryPoint = [currentLine getMapPoint1];
+        currentLineMainPoint = [currentLine mapPoint2];
+        currentLineSecondaryPoint = [currentLine mapPoint1];
     }
     else
     {
         if (point1.x > point2.x)
         {
-            currentLineMainPoint = [currentLine getMapPoint2];
-            currentLineSecondaryPoint = [currentLine getMapPoint1];
+            currentLineMainPoint = [currentLine mapPoint2];
+            currentLineSecondaryPoint = [currentLine mapPoint1];
         }
         else
         {
-            currentLineMainPoint = [currentLine getMapPoint1];
-            currentLineSecondaryPoint = [currentLine getMapPoint2];
+            currentLineMainPoint = [currentLine mapPoint1];
+            currentLineSecondaryPoint = [currentLine mapPoint2];
         }
     }
     
@@ -3829,8 +3829,8 @@ enum {
             numer = [theConnectedLines objectEnumerator];
             while (thisMapLine = [numer nextObject])
             { 
-                LEMapPoint *theCurPoint1 = [thisMapLine getMapPoint1];
-                LEMapPoint *theCurPoint2 = [thisMapLine getMapPoint2];
+                LEMapPoint *theCurPoint1 = [thisMapLine mapPoint1];
+                LEMapPoint *theCurPoint2 = [thisMapLine mapPoint2];
                 LEMapPoint *theCurPoint;
                 if (theCurPoint1 == currentLineMainPoint)
                 {
@@ -3843,10 +3843,10 @@ enum {
                 
                 //NSLog(@"Analyzing line: %d", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                 
-                if ([thisMapLine getClockwisePolygonOwner] != -1 && [thisMapLine getConterclockwisePolygonOwner] != -1)
+                if ([thisMapLine clockwisePolygonOwner] != -1 && [thisMapLine conterclockwisePolygonOwner] != -1)
                 {
                     // Might want to make sure of this in finnal lines instead, etc.???
-                    //NSLog(@"Line# %d already has two polygons attached to it, can't make a third polygon from it.", [thisMapLine getIndex]);
+                    //NSLog(@"Line# %d already has two polygons attached to it, can't make a third polygon from it.", [thisMapLine index]);
                     //return NO;
                     continue;
                 }
@@ -3970,7 +3970,7 @@ enum {
                                 //lastOtherVertex = GetLine( curLine ).GetVertex1();
                                 
                                 //NSLog(@"Lowest Line Index: %d  With Angle Of: %g", smallestLineIndex, smallestAngle);
-                        }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint getX] >= [firstPoint getX])
+                        }// End if ( theta <= 180.0 && theta < smallestAngle && [theCurPoint x] >= [firstPoint x])
     
                     } // End if (theCurPoint1 == firstPoint)
                 } // End if (currentLine != thisMapLine)

@@ -37,7 +37,7 @@
         polyField = [polygonObject getPhName];
         
     
-    return [NSString stringWithFormat:@"Object Index: %d   In Polygon: %@   Facing: %d   X/Y/Z:(%d, %d, %d)   AdjX/AdjY:(%d, %d)", [self getIndex], polyField, facing, x, y, z, x32, y32, nil];
+    return [NSString stringWithFormat:@"Object Index: %d   In Polygon: %@   Facing: %d   X/Y/Z:(%d, %d, %d)   AdjX/AdjY:(%d, %d)", [self index], polyField, facing, x, y, z, x32, y32, nil];
 }
 
  // **************************  Coding/Copy Protocal Methods  *************************
@@ -94,14 +94,14 @@
     [theData appendData:myData];
     [theData appendData:futureData];
     
-    NSLog(@"Exporting Map Object: %d  -- Position: %lu --- myData: %lu", [self getIndex], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Map Object: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ((int)[theIndex indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self getIndex], myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -111,7 +111,7 @@
 
 - (void)importWithIndex:(NSArray *)theIndex withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %ld", [self getIndex], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData getPosition]);
     
     ImportShort(type);
     ImportShort(index);
@@ -283,7 +283,7 @@
 #pragma mark -
 #pragma mark ********* Overriden Standard Methods *********
 
--(short)getIndex { return [theMapObjectsST indexOfObjectIdenticalTo:self]; }
+-(short)index { return [theMapObjectsST indexOfObjectIdenticalTo:self]; }
 
 -(void)updateIndexesNumbersFromObjects
 {
@@ -311,25 +311,49 @@
 #pragma mark ********* Get Accsessors  *********
 
 -(NSRect)as32Rect { return NSMakeRect(x32 - 2, y32 - 2, 4, 4); }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Rect
+{
+	return [NSSet setWithObjects:@"x32", @"y32", nil];
+}
 -(NSPoint)as32Point { return NSMakePoint(x32, y32); }
--(short)getZ { return z; }
--(short)getX { return x; }
--(short)getY { return y; }
--(short)x32 { return x32; }
--(short)y32 { return y32; }
--(short)getType { return type; }
++ (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Point
+{
+	return [NSSet setWithObjects:@"x32", @"y32", nil];
+}
+@synthesize z;
+@synthesize x;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingX
+{
+	return [NSSet setWithObject:@"x32"];
+}
+@synthesize y;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingY
+{
+	return [NSSet setWithObject:@"y32"];
+}
+@synthesize x32;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingX32
+{
+	return [NSSet setWithObject:@"x"];
+}
+@synthesize y32;
++ (NSSet<NSString *> *)keyPathsForValuesAffectingY32
+{
+	return [NSSet setWithObject:@"y"];
+}
+@synthesize type;
 -(short)getObjTypeIndex { return index; }
--(short)getFacing { return facing; }
--(short)getPolygonIndex { return (polygonObject == nil) ? -1 : [polygonObject getIndex]; }
+@synthesize facing;
+@dynamic polygonIndex;
+-(short)polygonIndex { return (polygonObject == nil) ? -1 : [polygonObject index]; }
 @synthesize polygonObject;
--(LEMapObjectFlags)getFlags { return flags; }
+-(LEMapObjectFlags)flags { return flags; }
 @synthesize mapFlags=flags;
 
 // *****************   Set Accsessors   *****************
 #pragma mark -
 #pragma mark ********* Set Accsessors  *********
 
--(void)setZ:(short)s { z = s; }
 -(void)setX:(short)s
 {
     x = s;
@@ -344,14 +368,12 @@
 
 -(void)set32X:(short)s
 {
-    x32 = s;
-    x = s * 16;
+	self.x32 = s;
 }
 
 -(void)set32Y:(short)s
 {
-    y32 = s;
-    y = s * 16;
+	self.y32 = s;
 }
 
 -(void)setX32:(short)s
@@ -366,7 +388,7 @@
     y = s * 16;
 }
 
--(void)setType:(short)s
+-(void)setType:(LEMapObjectType)s
 { // _saved_item _saved_monster
     
     if (type == s || _NUMBER_OF_OBJECT_TYPES <= s)
@@ -403,8 +425,6 @@
     
     index = s;
 } // make like --> getObjTypeIndex
-
--(void)setFacing:(short)s { facing = s; }
 
 -(void)setPolygonIndex:(short)s
 {

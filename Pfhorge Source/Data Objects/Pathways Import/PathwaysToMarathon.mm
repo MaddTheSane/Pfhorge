@@ -1186,7 +1186,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     // Use level's texture collection
                     [Pg resetTextureCollectionOnly];
                     [Pg setFloorTextureOnly:Txtrs[Env][WhichFloor]];
-                    [Pg setFloor_lightsource:Lights[WhichFloorLight]];
+                    [Pg setFloorLightsource:Lights[WhichFloorLight]];
                     [Pg setFloor_transfer_mode:Xfers[WhichFloorXfer]];
                     [Pg setCeilingTextureOnly:Txtrs[Env][WhichCeiling]];
                     [Pg setCeiling_lightsource:Lights[WhichCeilingLight]];
@@ -1250,8 +1250,8 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     for (int w=0; w<2; w++)
                     {
                         LESide *Sd = w > 0 ?
-                            [Ln getClockwisePolygonSideObject] :
-                            [Ln getCounterclockwisePolygonSideObject];
+                            [Ln clockwisePolygonSideObject] :
+                            [Ln counterclockwisePolygonSideObject];
                         if (Sd)
                         {
                             // Use level's texture collection
@@ -1302,7 +1302,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                             LEPolygon *Pg = (LEPolygon *)[Sd getpolygon_object];
                             if (Pg)
                             {
-                                if ([Pg getType] == _polygon_is_teleporter)
+                                if ([Pg type] == _polygon_is_teleporter)
                                 {
                                     Which = Tx_Teleport;
                                     WhichLight = Lt_Teleport;

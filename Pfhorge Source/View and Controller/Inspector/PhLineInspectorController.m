@@ -103,22 +103,22 @@
     unsigned short lineFlagsNumber;
     
     theCurrentSelection = [mainInspectorController getTheCurrentSelection];
-    lineFlagsNumber = [theCurrentSelection getFlags];
-    cPoly = [theCurrentSelection getClockwisePolygonObject];
-    ccPoly = [theCurrentSelection getConterclockwisePolygonObject];
+    lineFlagsNumber = [theCurrentSelection flags];
+    cPoly = [theCurrentSelection clockwisePolygonObject];
+    ccPoly = [theCurrentSelection conterclockwisePolygonObject];
     
-    [lineBox setTitle:[NSString stringWithFormat:@"Line Index: %d", [theCurrentSelection getIndex]]];
-    //[lineBox setTitle:[[NSNumber numberWithShort:[theCurrentSelection getIndex]] stringValue]];
+    [lineBox setTitle:[NSString stringWithFormat:@"Line Index: %d", [theCurrentSelection index]]];
+    //[lineBox setTitle:[[NSNumber numberWithShort:[theCurrentSelection index]] stringValue]];
     
-    lSolid 		= (([theCurrentSelection getFlags] & 0x4000) ? YES : NO);
-    lTransparent 	= (([theCurrentSelection getFlags] & 0x2000) ? YES : NO);
-    lLandscape 		= (([theCurrentSelection getFlags] & 0x1000) ? YES : NO);
+    lSolid 		= (([theCurrentSelection flags] & 0x4000) ? YES : NO);
+    lTransparent 	= (([theCurrentSelection flags] & 0x2000) ? YES : NO);
+    lLandscape 		= (([theCurrentSelection flags] & 0x1000) ? YES : NO);
     //lTransparentSide 	= (([theCurrentSelection flags] & 0x200) ? YES : NO);
     
     doNotAutoSetFlags	= [theCurrentSelection getPermanentSetting:_use_parmanent_settings];
     
-    cSide = [theCurrentSelection getClockwisePolygonSideObject];
-    ccSide = [theCurrentSelection getCounterclockwisePolygonSideObject];
+    cSide = [theCurrentSelection clockwisePolygonSideObject];
+    ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
     
     [lineFlags deselectAllCells];
     [emptyFlag setState:NSOffState];
@@ -612,8 +612,8 @@
         
         [theLine setPermanentSetting:_parmanent_no_sides to:NO];
         [theLevel addSidesForLine:theLine];
-        cSide = [theLine getClockwisePolygonSideObject];
-        ccSide = [theLine getCounterclockwisePolygonSideObject];
+        cSide = [theLine clockwisePolygonSideObject];
+        ccSide = [theLine counterclockwisePolygonSideObject];
     }
     else if ([sender state] == NSOnState)
     { // Was on, now off, delete side...

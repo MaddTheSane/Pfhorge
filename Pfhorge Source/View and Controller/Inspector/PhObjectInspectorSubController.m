@@ -89,11 +89,11 @@
 -(void)updateInterface
 {
     LEMapObject *theObj = [mainInspectorController getTheCurrentSelection];
-    unsigned short theFlags = [theObj getFlags];
+    unsigned short theFlags = [theObj flags];
     
-    //[objBox setTitle:[NSString stringWithFormat:@"Object Index: %d", [theObj getIndex]]];
+    //[objBox setTitle:[NSString stringWithFormat:@"Object Index: %d", [theObj index]]];
     
-    [objType selectItemAtIndex:[theObj getType]];
+    [objType selectItemAtIndex:[theObj type]];
     [self updateObjectKindMenu];
     //NSLog(@"Setting The Index...");
     
@@ -107,8 +107,8 @@
     }
     //NSLog(@"DONE: Setting The Index...");
     //[objItem setObjectValue:[objItem objectValueOfSelectedItem]];
-    [objAngle setObjectValue:[NSNumber numberWithShort:[theObj getFacing]]];
-    [objZHeight setObjectValue:[NSNumber numberWithShort:[theObj getZ]]];
+    [objAngle setObjectValue:[NSNumber numberWithShort:[theObj facing]]];
+    [objZHeight setObjectValue:[NSNumber numberWithShort:[theObj z]]];
         
     [objFlags deselectAllCells];
     
@@ -139,7 +139,7 @@
 -(void)updateObjectKindMenu
 {
     LEMapObject *theObj = [mainInspectorController getTheCurrentSelection];
-    int theObjType = [theObj getType];
+    int theObjType = [theObj type];
     ///int theObjIndex = [theObj getObjTypeIndex];
     
     [objItem removeAllItems];
@@ -219,10 +219,10 @@
 
     [objType selectItemAtIndex:[theObj type]];
     [self updateObjectKindMenu];
-    [objItem selectItemAtIndex:[theObj getIndex]];
+    [objItem selectItemAtIndex:[theObj index]];
     [objItem setObjectValue:[objItem objectValueOfSelectedItem]];
-    [objAngle setObjectValue:[[NSNumber numberWithShort:[theObj getFacing]] stringValue]];
-    [objZHeight setObjectValue:[[NSNumber numberWithShort:[theObj getZ]] stringValue]];
+    [objAngle setObjectValue:[[NSNumber numberWithShort:[theObj facing]] stringValue]];
+    [objZHeight setObjectValue:[[NSNumber numberWithShort:[theObj z]] stringValue]];
     
 */
 

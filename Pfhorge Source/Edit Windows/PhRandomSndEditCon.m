@@ -101,7 +101,7 @@
     NSMutableString *infoString;
     // *** Set the name, etc. ***
     infoString = [[NSMutableString alloc] initWithString:@"RandomSound#"];
-        [infoString appendString:[[NSNumber numberWithShort:[curRandomSound getIndex]] stringValue]];
+        [infoString appendString:[[NSNumber numberWithShort:[curRandomSound index]] stringValue]];
         [infoString appendString:@" - Name: "];
         [infoString appendString:[curRandomSound getPhName]];
         [infoIT setStringValue:infoString];

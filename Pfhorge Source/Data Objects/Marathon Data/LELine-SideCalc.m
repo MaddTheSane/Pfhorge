@@ -65,14 +65,14 @@
         if (i == 1)
         {
             if (clockPoly != nil)
-                theType = [clockPoly getType];
+                theType = [clockPoly type];
             else
                 continue;
         }
         else if (i == 2)
         {
             if (counterclockPoly != nil)
-                theType = [counterclockPoly getType];
+                theType = [counterclockPoly type];
             else
                 continue;
         }
@@ -148,7 +148,7 @@
                 if (polyLineNumber1 != -1)
                     [clockPoly setSidesObject:theNewSide i:polyLineNumber1];
                 else
-                    NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockPoly getIndex], [self getIndex]);
+                    NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockPoly index], [self index]);
             }
             
             [clockwisePolygonSideObject setType:_full_side]; 
@@ -177,7 +177,7 @@
                 if (polyLineNumber2 != -1)
                     [counterclockPoly setSidesObject:theNewSide i:polyLineNumber2];
                 else
-                    NSLog(@"Poly %d does not have a link to me (Line %d)?", [counterclockPoly getIndex], [self getIndex]);
+                    NSLog(@"Poly %d does not have a link to me (Line %d)?", [counterclockPoly index], [self index]);
             }
             
             [counterclockwisePolygonSideObject setType:_full_side];
@@ -206,7 +206,7 @@
         
         if (alreadySetPlatformFlag == YES)
         {
-            //NSLog(@"Platform Line Setup For Line#: %d", [self getIndex]);
+            //NSLog(@"Platform Line Setup For Line#: %d", [self index]);
             [self setupWithClockPlat:cPlat counterClockPlat:ccPlat];
         }
         else
@@ -274,7 +274,7 @@
                 cFMin = cPlatMin;
                 cCMin = half;
                 cCMax = cPlatMax;
-                //NSLog(@"Platform #%d - cPlatFloor && cPlatCeiling", [cPlat getIndex]);
+                //NSLog(@"Platform #%d - cPlatFloor && cPlatCeiling", [cPlat index]);
             }
             else if (cPlatFloor && !cPlatCeiling)
             { // c is floor
@@ -282,7 +282,7 @@
                 cCMax = cC;
                 cFMax = cPlatMax;
                 cFMin = cPlatMin;
-                //NSLog(@"Platform #%d - cPlatFloor && !cPlatCeiling", [cPlat getIndex]);
+                //NSLog(@"Platform #%d - cPlatFloor && !cPlatCeiling", [cPlat index]);
             }
             else if (!cPlatFloor && cPlatCeiling)
             { // c is ceiling
@@ -290,14 +290,14 @@
                 cFMin = cF;
                 cCMax = cPlatMax;
                 cCMin = cPlatMin;
-                //NSLog(@"Platform #%d - !cPlatFloor && cPlatCeiling", [cPlat getIndex]);
+                //NSLog(@"Platform #%d - !cPlatFloor && cPlatCeiling", [cPlat index]);
             }
             else if (!cPlatFloor && !cPlatCeiling)
             { // c is not floor or ceiling...
               // proably a major data error here...
               
                 // inform user, set the platform for floor automaticaly (the default)...
-                NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... c", [cPlat getIndex]);
+                NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... c", [cPlat index]);
                 
                 cCMax = cC;
                 cCMin = cC;
@@ -307,7 +307,7 @@
             else
             {
                 // Very Major Logic Error...
-                NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... c", [cPlat getIndex]);
+                NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... c", [cPlat index]);
             }
         }
         else
@@ -321,7 +321,7 @@
             cFMax = cF;
             cFMin = cF;
             
-            //NSLog(@"Platform #%d - cPlat == nil", [cPlat getIndex]);
+            //NSLog(@"Platform #%d - cPlat == nil", [cPlat index]);
         }
         
         
@@ -339,7 +339,7 @@
                 ccFMin = ccPlatMin;
                 ccCMin = half;
                 ccCMax = ccPlatMax;
-                //NSLog(@"Platform #%d - ccPlatFloor && ccPlatCeiling", [ccPlat getIndex]);
+                //NSLog(@"Platform #%d - ccPlatFloor && ccPlatCeiling", [ccPlat index]);
             }
             else if (ccPlatFloor && !ccPlatCeiling)
             { // cc is floor
@@ -347,7 +347,7 @@
                 ccCMax = ccC;
                 ccFMax = ccPlatMax;
                 ccFMin = ccPlatMin;
-                //NSLog(@"Platform #%d - ccPlatFloor && !ccPlatCeiling", [ccPlat getIndex]);
+                //NSLog(@"Platform #%d - ccPlatFloor && !ccPlatCeiling", [ccPlat index]);
             }
             else if (!ccPlatFloor && ccPlatCeiling)
             { // cc is ceiling
@@ -355,14 +355,14 @@
                 ccFMin = ccF;
                 ccCMax = ccPlatMax;
                 ccCMin = ccPlatMin;
-               // NSLog(@"Platform #%d - !ccPlatFloor && ccPlatCeiling", [ccPlat getIndex]);
+               // NSLog(@"Platform #%d - !ccPlatFloor && ccPlatCeiling", [ccPlat index]);
             }
             else if (!ccPlatFloor && !ccPlatCeiling)
             { // cc is not floor or ceiling...
               // proably a major data error here...
               
                 // inform user, set the platform for floor automaticaly (the default)...
-                //NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... cc", [ccPlat getIndex]);
+                //NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... cc", [ccPlat index]);
                 
                 ccCMin = ccC;
                 ccCMax = ccC;
@@ -372,7 +372,7 @@
             else
             {
                 // Very Major Logic Error...
-                //NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... cc", [ccPlat getIndex]);
+                //NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... cc", [ccPlat index]);
             }
         }
         else
@@ -386,7 +386,7 @@
             ccFMax = ccF;
             ccFMin = ccF;
             
-           //NSLog(@"Platform #%d - ccPlat == nil", [ccPlat getIndex]);
+           //NSLog(@"Platform #%d - ccPlat == nil", [ccPlat index]);
         }
     
         // [self setupAsNonPlatformLine]; // For Right Now...
@@ -596,7 +596,7 @@
     // •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
     
     
-    //NSLog(@"Line# %d  P-Path: %@", [self getIndex], path);
+    //NSLog(@"Line# %d  P-Path: %@", [self index], path);
     
     if (cLowSide && cHighSide)
     {
@@ -908,7 +908,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         {
             LESide *theNewSide = [theLELevelDataST addObjectWithDefaults:[LESide class]];
             
-            ///NSLog(@"theNewSide index: %d", [theNewSide getIndex]);
+            ///NSLog(@"theNewSide index: %d", [theNewSide index]);
             
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
@@ -926,7 +926,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         if (polyLineNumber != -1)
             [clockwisePolygon setSidesObject:clockwisePolygonSideObject i:polyLineNumber];
         else
-            NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon getIndex], [self getIndex]);
+            NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon index], [self index]);
         
         /*
         if ([clockwisePolygonSideObject flags] & _side_is_control_panel)
@@ -946,7 +946,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         {
             LESide *theNewSide = [theLELevelDataST addObjectWithDefaults:[LESide class]];
             
-            ///NSLog(@"theNewSide index: %d", [theNewSide getIndex]);
+            ///NSLog(@"theNewSide index: %d", [theNewSide index]);
             
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
@@ -964,7 +964,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         if (polyLineNumber != -1)
             [conterclockwisePolygon setSidesObject:counterclockwisePolygonSideObject i:polyLineNumber]; // *** NOTE: ??? ??? ??? Check This Out!!! ***
         else
-            NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon getIndex], [self getIndex]);
+            NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon index], [self index]);
         
         /*
         if ([counterclockwisePolygonSideObject flags] & _side_is_control_panel)
@@ -1004,7 +1004,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             LESide *theNewSide = [theLELevelDataST addObjectWithDefaults:[LESide class]];
             int polyLineNumber3 = [clockwisePolygon getLineNumberFor:self];
             
-            ///NSLog(@"theNewSide index: %d", [theNewSide getIndex]);
+            ///NSLog(@"theNewSide index: %d", [theNewSide index]);
             
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
@@ -1017,7 +1017,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             if (polyLineNumber3 != -1)
                 [clockwisePolygon setSidesObject:theNewSide i:polyLineNumber3];
             else
-                NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon getIndex], [self getIndex]);
+                NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon index], [self index]);
             
             //flags |= SOLID_LINE_BIT;
             
@@ -1033,7 +1033,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             LESide *theNewSide = [theLELevelDataST addObjectWithDefaults:[LESide class]];
             int polyLineNumber4 = [conterclockwisePolygon getLineNumberFor:self];
             
-            ///NSLog(@"theNewSide index: %d", [theNewSide getIndex]);
+            ///NSLog(@"theNewSide index: %d", [theNewSide index]);
             
             NSParameterAssert(theNewSide != nil);
             //NSParameterAssert(polyLineNumber4 != -1); // Handled Bellow...
@@ -1046,7 +1046,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             if (polyLineNumber4 != -1)
                 [conterclockwisePolygon setSidesObject:theNewSide i:polyLineNumber4];
             else
-                NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon getIndex], [self getIndex]);
+                NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon index], [self index]);
             
             //flags |= SOLID_LINE_BIT;
             

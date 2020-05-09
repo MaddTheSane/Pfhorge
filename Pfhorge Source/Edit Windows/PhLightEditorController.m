@@ -158,7 +158,7 @@
 {
     NSMutableString *infoString, *lightNameString;
     infoString = [[NSMutableString alloc] initWithString:@"Light#"];
-        [infoString appendString:[[NSNumber numberWithShort:[curLight getIndex]] stringValue]];
+        [infoString appendString:[[NSNumber numberWithShort:[curLight index]] stringValue]];
         [infoString appendString:@" - Name: "];
         [infoString appendString:[curLight getPhName]];
         [infoIT setStringValue:infoString];
