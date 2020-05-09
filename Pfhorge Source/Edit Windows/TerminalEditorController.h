@@ -30,32 +30,32 @@
 @interface TerminalEditorController : NSWindowController <NSOutlineViewDelegate, NSOutlineViewDataSource>
 {
     IBOutlet NSOutlineView *theTeriminalTableView;
-    IBOutlet id terminalTabView;
-    IBOutlet id menuTextTabView;
+    IBOutlet NSTabView *terminalTabView;
+    IBOutlet NSTabView *menuTextTabView;
     
-    IBOutlet id premutationMenu;
+    IBOutlet NSPopUpButton *premutationMenu;
     
-    IBOutlet id informationTextView;
-    IBOutlet id loginAndOffTextView;
-    IBOutlet id pictureTextView;
-    IBOutlet id noTextMsgTextView;
+    IBOutlet NSTextView *informationTextView;
+    IBOutlet NSTextView *loginAndOffTextView;
+    IBOutlet NSTextView *pictureTextView;
+    IBOutlet NSTextView *noTextMsgTextView;
     
     IBOutlet NSImageView *loginAndOffImageView;
     IBOutlet NSImageView *pictureImageView;
     
     // Text/Section Change Controls
     IBOutlet NSColorWell *currentColorCW;
-    IBOutlet id sectionTypesPopM;
-    IBOutlet id indexPopM;
-    IBOutlet id stylePopM;
+    IBOutlet NSPopUpButton *sectionTypesPopM;
+    IBOutlet NSPopUpButton *indexPopM;
+    IBOutlet NSPopUpButton *stylePopM;
     
-    IBOutlet id pictBitRatePM;
+    IBOutlet NSPopUpButton *pictBitRatePM;
     
-    IBOutlet id sheetWarningWindow;
+    IBOutlet NSWindow *sheetWarningWindow;
     
-    IBOutlet id sheetWarningSubjectMT;
-    IBOutlet id sheetWarningMessageMT;
-    IBOutlet id sheetWarningCancelBtn;
+    IBOutlet NSTextField *sheetWarningSubjectMT;
+    IBOutlet NSTextField *sheetWarningMessageMT;
+    IBOutlet NSButton *sheetWarningCancelBtn;
     
     LEMap *theMap;
     LELevelData *theLevel;

@@ -361,13 +361,13 @@ enum
 
 // *********************** EXTERN Variables ***********************
 // ********* Notifications *********
-extern NSString *const PhLevelDeallocatingNotification;
-extern NSString *const PhUserDidChangePrefs;
-extern NSString *const PhUserDidChangeNames;
-extern NSString *const LELevelChangedNotification;
-extern NSString *const LESelectionChangedNotification;
-extern NSString *const LEToolChangedNotification;
-extern NSString *const PhLevelStatusBarUpdate;
+extern NSNotificationName const PhLevelDeallocatingNotification;
+extern NSNotificationName const PhUserDidChangePrefs;
+extern NSNotificationName const PhUserDidChangeNames;
+extern NSNotificationName const LELevelChangedNotification;
+extern NSNotificationName const LESelectionChangedNotification;
+extern NSNotificationName const LEToolChangedNotification;
+extern NSNotificationName const PhLevelStatusBarUpdate;
 
 // ********* Visual Settings *********
 extern NSString *const VMKeySpeed;
@@ -514,5 +514,11 @@ extern NSString *const PhBackgroundColor; // = @"PhBackgroundColor";
 extern NSString *const PhWorldUnitGridColor; // = @"PhWorldUnitGridColor";
 extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
 extern NSString *const PhCenterWorldUnitGridColor;
+
+// * Terminal Keys *
+extern NSAttributedStringKey const PhBoldTerminalAttribute;
+extern NSAttributedStringKey const PhColorTerminalAttribute;
+extern NSAttributedStringKey const PhItalicTerminalAttribute;
+
 // *********************** End EXTERN Variables ***********************
 

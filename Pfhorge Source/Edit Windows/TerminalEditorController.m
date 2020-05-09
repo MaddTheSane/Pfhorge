@@ -675,7 +675,7 @@
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                 
                 @(theCellTagClickedOn),
-                @"PhColorTerminalAttribute",
+                PhColorTerminalAttribute,
                 
                 theTextColor,
                 NSForegroundColorAttributeName, nil]
@@ -704,12 +704,12 @@
             NSFontAttributeName,
             
             @"NO",
-            @"PhItalicTerminalAttribute",
+            PhItalicTerminalAttribute,
             
             @"NO",
-            @"PhBoldTerminalAttribute",
+            PhBoldTerminalAttribute,
             
-            @0,
+            @(NSUnderlineStyleNone),
             NSUnderlineStyleAttributeName, nil]
             
         range:[[self getTheCurrentTextView] selectedRange]];
@@ -743,7 +743,7 @@
             
             while (limitRange.length > 0)
             {
-                attributeValue = [attrStr attribute:@"PhItalicTerminalAttribute"
+                attributeValue = [attrStr attribute:PhItalicTerminalAttribute
                 atIndex:limitRange.location longestEffectiveRange:&effectiveRange
                 inRange:limitRange];
                 
@@ -759,7 +759,7 @@
                 [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                         
                         @"YES",
-                        @"PhBoldTerminalAttribute",
+                        PhBoldTerminalAttribute,
                         
                         fontToUse,
                         NSFontAttributeName, nil]
@@ -785,7 +785,7 @@
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
     
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            @1,
+            @(NSUnderlineStyleSingle),
             NSUnderlineStyleAttributeName, nil]
         range:[[self getTheCurrentTextView] selectedRange]];
         
@@ -838,7 +838,7 @@
                 NSFontAttributeName,
                 
                 @"YES",
-                @"PhItalicTerminalAttribute", nil]
+                PhItalicTerminalAttribute, nil]
                 
                 range:effectiveRange];
             
@@ -882,7 +882,7 @@
             break;
         case 2:
             [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            @1,
+            @(NSUnderlineStyleSingle),
             NSUnderlineStyleAttributeName, nil]
             range:[[self getTheCurrentTextView] selectedRange]];
             break;

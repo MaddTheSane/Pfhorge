@@ -188,6 +188,11 @@ NSString *const PhWorldUnitGridColor = @"PhWorldUnitGridColor";
 NSString *const PhSubWorldUnitGridColor = @"PhSubWorldUnitGridColor";
 NSString *const PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 
+// * Terminal Keys *
+NSString *const PhBoldTerminalAttribute = @"PhBoldTerminalAttribute";
+NSString *const PhColorTerminalAttribute = @"PhColorTerminalAttribute";
+NSString *const PhItalicTerminalAttribute = @"PhItalicTerminalAttribute";
+
 // *********************** End EXTERN Variables ***********************
 
 @implementation NSObject (SKTPerformExtras)
