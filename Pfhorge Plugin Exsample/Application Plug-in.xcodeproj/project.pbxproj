@@ -17,9 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5585B847246638BF001B6A8C /* Info-Application_Plug_in__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Application_Plug_in__Upgraded_.plist"; sourceTree = "<group>"; };
 		5585B848246638BF001B6A8C /* Application Plug-in.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Application Plug-in.plugin"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FA8A9D24663DE8005D33BB /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -58,8 +58,9 @@
 		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
-				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
 			);
 			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -76,27 +77,10 @@
 		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F5678A5C028AEAA901A80108 /* AppPlugin.m */,
 				F5678A5D028AEAA901A80108 /* AppPlugin.h */,
+				F5678A5C028AEAA901A80108 /* AppPlugin.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
-			);
-			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				089C1672FE841209C02AAC07 /* Foundation.framework */,
-				089C167FFE841241C02AAC07 /* AppKit.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
@@ -232,6 +216,7 @@
 		5585B831246638B8001B6A8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -267,6 +252,7 @@
 		5585B832246638B8001B6A8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -302,17 +288,16 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				CURRENT_PROJECT_VERSION = 0.1;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Info-Application_Plug_in__Upgraded_.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 0.1;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xmission.dragons.pfhorge.sample;
 				PRODUCT_NAME = "Application Plug-in";
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -330,14 +315,13 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				CURRENT_PROJECT_VERSION = 0.1;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Info-Application_Plug_in__Upgraded_.plist";
-				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 0.1;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xmission.dragons.pfhorge.sample;
 				PRODUCT_NAME = "Application Plug-in";
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
