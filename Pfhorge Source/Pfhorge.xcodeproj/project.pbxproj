@@ -130,7 +130,7 @@
 		AE3C151E0A04512100FBFFCD /* DefaultLayerEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */; };
 		AE3C15230A04512100FBFFCD /* OpenGLVisualMode.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */; };
 		AE3C15240A04512100FBFFCD /* Startup.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB9040439DC0046BBD2 /* Startup.xib */; };
-		AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.nib */; };
+		AE3C15280A04512100FBFFCD /* TerminalInterface.xib in Resources */ = {isa = PBXBuildFile; fileRef = F520388902414AD90146BBD2 /* TerminalInterface.xib */; };
 		AE3C15450A04512100FBFFCD /* MapManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.xib */; };
 		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */; };
 		AE3C15480A04512100FBFFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -323,7 +323,7 @@
 		557A9B39245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RandomSoundInterface.xib; sourceTree = "<group>"; };
 		557A9B3A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Startup.xib; sourceTree = "<group>"; };
 		557A9B3B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatusWin.xib; sourceTree = "<group>"; };
-		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/TerminalInterface.nib; sourceTree = "<group>"; };
+		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TerminalInterface.xib; sourceTree = "<group>"; };
 		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ToolPallette.xib; sourceTree = "<group>"; };
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
@@ -688,7 +688,7 @@
 				F54D4C5701CBF8C701A8A806 /* StatusWin.xib */,
 				F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */,
 				F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */,
-				F520388902414AD90146BBD2 /* TerminalInterface.nib */,
+				F520388902414AD90146BBD2 /* TerminalInterface.xib */,
 				A5EE9AB7040439D60046BBD2 /* MapManager.xib */,
 				F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */,
 				557A9B40245A922A00527063 /* Example Script.applescript */,
@@ -1150,7 +1150,7 @@
 				557A9B3F245A617B00527063 /* Media.xcassets in Resources */,
 				AE3C15230A04512100FBFFCD /* OpenGLVisualMode.xib in Resources */,
 				AE3C15240A04512100FBFFCD /* Startup.xib in Resources */,
-				AE3C15280A04512100FBFFCD /* TerminalInterface.nib in Resources */,
+				AE3C15280A04512100FBFFCD /* TerminalInterface.xib in Resources */,
 				AE3C15450A04512100FBFFCD /* MapManager.xib in Resources */,
 				AE3C15460A04512100FBFFCD /* ItemPlacementEditor.xib in Resources */,
 			);
@@ -1361,12 +1361,12 @@
 			name = Startup.xib;
 			sourceTree = "<group>";
 		};
-		F520388902414AD90146BBD2 /* TerminalInterface.nib */ = {
+		F520388902414AD90146BBD2 /* TerminalInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				557A9B3C245A519200527063 /* en */,
 			);
-			name = TerminalInterface.nib;
+			name = TerminalInterface.xib;
 			sourceTree = "<group>";
 		};
 		F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */ = {
