@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		089C1680FE841241C02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		1058C7AFFEA557BF11CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		5585B838246638BF001B6A8C /* AppPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F5678A5D028AEAA901A80108 /* AppPlugin.h */; };
+		5585B839246638BF001B6A8C /* PluginManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F50087890347B4C80146BBD2 /* PluginManagerInterface.h */; };
+		5585B83A246638BF001B6A8C /* PluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F500878B0347B4D10146BBD2 /* PluginProtocol.h */; };
+		5585B83C246638BF001B6A8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		5585B83D246638BF001B6A8C /* TextView.nib in Resources */ = {isa = PBXBuildFile; fileRef = F577C89F028CA07C01A80108 /* TextView.nib */; };
+		5585B83F246638BF001B6A8C /* AppPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5678A5C028AEAA901A80108 /* AppPlugin.m */; };
+		5585B841246638BF001B6A8C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		F500878A0347B4C80146BBD2 /* PluginManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F50087890347B4C80146BBD2 /* PluginManagerInterface.h */; };
+		F500878C0347B4D10146BBD2 /* PluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F500878B0347B4D10146BBD2 /* PluginProtocol.h */; };
+		F5678A5E028AEAA901A80108 /* AppPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F5678A5C028AEAA901A80108 /* AppPlugin.m */; };
+		F5678A5F028AEAA901A80108 /* AppPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F5678A5D028AEAA901A80108 /* AppPlugin.h */; };
+		F577C8A1028CA07C01A80108 /* TextView.nib in Resources */ = {isa = PBXBuildFile; fileRef = F577C89F028CA07C01A80108 /* TextView.nib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBundleTarget section */
+		089C1673FE841209C02AAC07 /* Application Plug-in */ = {
+			isa = PBXBundleTarget;
+			buildConfigurationList = 5585B82C246638B8001B6A8C /* Build configuration list for PBXBundleTarget "Application Plug-in" */;
+			buildPhases = (
+				089C1674FE841209C02AAC07 /* Headers */,
+				089C1675FE841209C02AAC07 /* Resources */,
+				089C1676FE841209C02AAC07 /* Sources */,
+				089C1677FE841209C02AAC07 /* Frameworks */,
+				089C1679FE841209C02AAC07 /* Rez */,
+			);
+			dependencies = (
+			);
+			name = "Application Plug-in";
+			productName = "Application Plug-in";
+			productReference = 014CEA410018CDE011CA2923 /* Application Plug-in.plugin */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Application Plug-in</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Written for MacHack 2002 by Rainer Brockerhoff</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>NSPrincipalClass</key>
+	<string>AppPlugin</string>
+</dict>
+</plist>
+";
+		};
+/* End PBXBundleTarget section */
+
+/* Begin PBXFileReference section */
+		014CEA410018CDE011CA2923 /* Application Plug-in.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "Application Plug-in.plugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		5585B847246638BF001B6A8C /* Info-Application_Plug_in__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Application_Plug_in__Upgraded_.plist"; sourceTree = "<group>"; };
+		5585B848246638BF001B6A8C /* Application Plug-in.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Application Plug-in.plugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F50087890347B4C80146BBD2 /* PluginManagerInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginManagerInterface.h; sourceTree = SOURCE_ROOT; };
+		F500878B0347B4D10146BBD2 /* PluginProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginProtocol.h; sourceTree = SOURCE_ROOT; };
+		F5678A5C028AEAA901A80108 /* AppPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppPlugin.m; sourceTree = "<group>"; };
+		F5678A5D028AEAA901A80108 /* AppPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppPlugin.h; sourceTree = "<group>"; };
+		F577C8A0028CA07C01A80108 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TextView.nib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		089C1677FE841209C02AAC07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1058C7AFFEA557BF11CA2CBB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5585B840246638BF001B6A8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5585B841246638BF001B6A8C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* Application Plug-in */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				F558585A028D4EAA01A80108 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+				5585B847246638BF001B6A8C /* Info-Application_Plug_in__Upgraded_.plist */,
+			);
+			name = "Application Plug-in";
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
+			);
+			name = "Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				F577C89F028CA07C01A80108 /* TextView.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F5678A5C028AEAA901A80108 /* AppPlugin.m */,
+				F5678A5D028AEAA901A80108 /* AppPlugin.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				014CEA410018CDE011CA2923 /* Application Plug-in.plugin */,
+				5585B848246638BF001B6A8C /* Application Plug-in.plugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F558585A028D4EAA01A80108 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F50087890347B4C80146BBD2 /* PluginManagerInterface.h */,
+				F500878B0347B4D10146BBD2 /* PluginProtocol.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		089C1674FE841209C02AAC07 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5678A5F028AEAA901A80108 /* AppPlugin.h in Headers */,
+				F500878A0347B4C80146BBD2 /* PluginManagerInterface.h in Headers */,
+				F500878C0347B4D10146BBD2 /* PluginProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5585B837246638BF001B6A8C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5585B838246638BF001B6A8C /* AppPlugin.h in Headers */,
+				5585B839246638BF001B6A8C /* PluginManagerInterface.h in Headers */,
+				5585B83A246638BF001B6A8C /* PluginProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5585B836246638BF001B6A8C /* Application Plug-in (Upgraded) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5585B843246638BF001B6A8C /* Build configuration list for PBXNativeTarget "Application Plug-in (Upgraded)" */;
+			buildPhases = (
+				5585B837246638BF001B6A8C /* Headers */,
+				5585B83B246638BF001B6A8C /* Resources */,
+				5585B83E246638BF001B6A8C /* Sources */,
+				5585B840246638BF001B6A8C /* Frameworks */,
+				5585B842246638BF001B6A8C /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Application Plug-in (Upgraded)";
+			productName = "Application Plug-in";
+			productReference = 5585B848246638BF001B6A8C /* Application Plug-in.plugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 5585B830246638B8001B6A8C /* Build configuration list for PBXProject "Application Plug-in" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = 089C166AFE841209C02AAC07 /* Application Plug-in */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5585B836246638BF001B6A8C /* Application Plug-in (Upgraded) */,
+				089C1673FE841209C02AAC07 /* Application Plug-in */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		089C1675FE841209C02AAC07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				089C1680FE841241C02AAC07 /* InfoPlist.strings in Resources */,
+				F577C8A1028CA07C01A80108 /* TextView.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5585B83B246638BF001B6A8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5585B83C246638BF001B6A8C /* InfoPlist.strings in Resources */,
+				5585B83D246638BF001B6A8C /* TextView.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		089C1679FE841209C02AAC07 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5585B842246638BF001B6A8C /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		089C1676FE841209C02AAC07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5678A5E028AEAA901A80108 /* AppPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5585B83E246638BF001B6A8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5585B83F246638BF001B6A8C /* AppPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F577C89F028CA07C01A80108 /* TextView.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F577C8A0028CA07C01A80108 /* English */,
+			);
+			name = TextView.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5585B82D246638B8001B6A8C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5585B82E246638B8001B6A8C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5585B82F246638B8001B6A8C /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Default;
+		};
+		5585B831246638B8001B6A8C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Development;
+		};
+		5585B832246638B8001B6A8C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Deployment;
+		};
+		5585B833246638B8001B6A8C /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Default;
+		};
+		5585B844246638BF001B6A8C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-Application_Plug_in__Upgraded_.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		5585B845246638BF001B6A8C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-Application_Plug_in__Upgraded_.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		5585B846246638BF001B6A8C /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-Application_Plug_in__Upgraded_.plist";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "Application Plug-in";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5585B82C246638B8001B6A8C /* Build configuration list for PBXBundleTarget "Application Plug-in" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5585B82D246638B8001B6A8C /* Development */,
+				5585B82E246638B8001B6A8C /* Deployment */,
+				5585B82F246638B8001B6A8C /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		5585B830246638B8001B6A8C /* Build configuration list for PBXProject "Application Plug-in" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5585B831246638B8001B6A8C /* Development */,
+				5585B832246638B8001B6A8C /* Deployment */,
+				5585B833246638B8001B6A8C /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		5585B843246638BF001B6A8C /* Build configuration list for PBXNativeTarget "Application Plug-in (Upgraded)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5585B844246638BF001B6A8C /* Development */,
+				5585B845246638BF001B6A8C /* Deployment */,
+				5585B846246638BF001B6A8C /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}
