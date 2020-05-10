@@ -458,9 +458,9 @@ void MapManager::DoGoto() {
 					StartPoint.loc.z = [theMapObject z] + PlayerEye;
 					LEPolygon *thePolygon = (LEPolygon *)[theMapObject polygonObject];
 					if (([theMapObject flags] & _map_object_hanging_from_ceiling) != 0)
-						StartPoint.loc.z += [thePolygon getCeiling_height];
+						StartPoint.loc.z += [thePolygon ceilingHeight];
 					else
-						StartPoint.loc.z += [thePolygon getFloor_height];
+						StartPoint.loc.z += [thePolygon floorHeight];
 					StartPointFound = true;
 				}
 				StartIndx--;
@@ -544,8 +544,8 @@ void MapManager::ReloadLevel() {
 	for (int np=0; np<NPolygons; np++)
 	{
 		LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
-		FloorHeights[np] = [thePolygon getFloor_height];
-		CeilingHeights[np] = [thePolygon getCeiling_height];
+		FloorHeights[np] = [thePolygon floorHeight];
+		CeilingHeights[np] = [thePolygon ceilingHeight];
 	}
 			
 	// Get the platforms
@@ -589,19 +589,19 @@ void MapManager::ReloadLevel() {
 		{
 			LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
 			int NumNeigbors = [thePolygon getTheVertexCount];
-			world_distance MinNgbrFloorHeight = [thePolygon getFloor_height];
-			world_distance MaxNgbrFloorHeight = [thePolygon getFloor_height];
-			world_distance MinNgbrCeilingHeight = [thePolygon getCeiling_height];
-			world_distance MaxNgbrCeilingHeight = [thePolygon getCeiling_height];
+			world_distance MinNgbrFloorHeight = [thePolygon floorHeight];
+			world_distance MaxNgbrFloorHeight = [thePolygon floorHeight];
+			world_distance MinNgbrCeilingHeight = [thePolygon ceilingHeight];
+			world_distance MaxNgbrCeilingHeight = [thePolygon ceilingHeight];
 			for (int i=0; i<NumNeigbors; i++)
 			{
-				LEPolygon *theNeighbor = [thePolygon getAdjacent_polygon_objects:i];
+				LEPolygon *theNeighbor = [thePolygon adjacentPolygonObjectAtIndex:i];
 				if (theNeighbor != nil)
 				{
-					world_distance FloorHeight = [theNeighbor getFloor_height];
+					world_distance FloorHeight = [theNeighbor floorHeight];
 					MinNgbrFloorHeight = min(MinNgbrFloorHeight,FloorHeight);
 					MaxNgbrFloorHeight = max(MaxNgbrFloorHeight,FloorHeight);
-					world_distance CeilingHeight = [theNeighbor getCeiling_height];
+					world_distance CeilingHeight = [theNeighbor ceilingHeight];
 					MinNgbrCeilingHeight = min(MinNgbrCeilingHeight,CeilingHeight);
 					MaxNgbrCeilingHeight = max(MaxNgbrCeilingHeight,CeilingHeight);
 				}
@@ -796,20 +796,20 @@ void MapManager::ReloadLevel() {
 		PInfo.CeilInfo.SetHeight(PCeiling);
 		
 		// Set the floor and ceiling textures, transfer modes, and lights
-		PInfo.FloorInfo.TxtrXfr = [thePolygon getFloor_transfer_mode];
-		PInfo.CeilInfo.TxtrXfr = [thePolygon getCeiling_transfer_mode];
+		PInfo.FloorInfo.TxtrXfr = [thePolygon floorTransferMode];
+		PInfo.CeilInfo.TxtrXfr = [thePolygon ceilingTransferMode];
 		PInfo.FloorInfo.Light = [thePolygon floorLightsourceIndex];
 		PInfo.CeilInfo.Light = [thePolygon ceilingLightsourceIndex];
 		
 		// These must come after setting the transfer mode
 		shape_descriptor ShD;
-		ShD = [thePolygon getFloor_texture];
+		ShD = [thePolygon floorTexture];
 		SetTexture(Version, PInfo.FloorInfo, ShD);
-		ShD = [thePolygon getCeiling_texture];
+		ShD = [thePolygon ceilingTexture];
 		SetTexture(Version, PInfo.CeilInfo, ShD);
 		
 		// Liquids only in Marathon 2/oo
-		PInfo.Liquid =  [thePolygon getMedia_index];
+		PInfo.Liquid =  [thePolygon mediaIndex];
 		
 		// Set up liquid surfaces
 		if (PInfo.Liquid != NONE) {
@@ -817,7 +817,7 @@ void MapManager::ReloadLevel() {
 			PInfo.LiquidBelowInfo.TxtrXfr = PInfo.LiquidAboveInfo.TxtrXfr =
 			Liquid.TransferMode;
 			PInfo.LiquidBelowInfo.Light = PInfo.LiquidAboveInfo.Light =
-			[thePolygon getMedia_lightsource_index];
+			[thePolygon mediaLightsourceIndex];
 			
 			// These must come after setting the transfer mode
 			SetTexture(Version, PInfo.LiquidBelowInfo, Liquid.Texture);
@@ -829,7 +829,7 @@ void MapManager::ReloadLevel() {
 			// Reverse the ceiling point order to get it facing the right way
 			// (clockwise inward)
 			
-			world_point2d &Point = PointList[[thePolygon getVertexIndexes:iv]];
+			world_point2d &Point = PointList[[thePolygon vertexIndexesAtIndex:iv]];
 			
 			VertexInfo &FloorVInfo = PInfo.FloorInfo.VInfoList[iv];
 			VertexInfo &CeilVInfo = PInfo.CeilInfo.VInfoList[(NSides-1)-iv];
@@ -847,7 +847,7 @@ void MapManager::ReloadLevel() {
 			LBelowVInfo.TxtrCoord[1] = LAboveVInfo.TxtrCoord[1] = TxtrNorm*Point.y;
 			
 			// The walls:
-			LELine *theLine = [theLines objectAtIndex:[thePolygon getLineIndexes:iv]];
+			LELine *theLine = [theLines objectAtIndex:[thePolygon lineIndexesAtIndex:iv]];
 			// jra 8-1-03
 			// Must be converted from "32" units to "1024" units
 			world_distance LineLength = ([theLine length]) * 16;

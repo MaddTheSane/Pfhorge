@@ -504,8 +504,8 @@
         //[thePolyToAdd updateObjectsFromIndexes];
         
         [thePolyToAdd setFloorLightsourceObject:[lights objectAtIndex:0]];
-        [thePolyToAdd setCeiling_lightsourceObject:[lights objectAtIndex:0]];
-        [thePolyToAdd setMedia_lightsourceObject:[lights objectAtIndex:0]];
+        [thePolyToAdd setCeilingLightsourceObject:[lights objectAtIndex:0]];
+        [thePolyToAdd setMediaLightsourceObject:[lights objectAtIndex:0]];
         
         if (currentLayer != nil)
             [thePolyToAdd setPolyLayer:currentLayer];
@@ -519,7 +519,7 @@
         
         // getLineObjects
         for(i = 0; i < c; i++)
-            [polyLines addObject:[thePolyToAdd getLineObject:i]];
+            [polyLines addObject:[thePolyToAdd lineObjectAtIndex:i]];
         
         i = -1;
         numer = [polyLines objectEnumerator];
@@ -537,13 +537,13 @@
             {
                 otherPoly = poly1;
                 i++;
-                [thePolyToAdd setAdjacent_polygonObject:otherPoly i:i];
+                [thePolyToAdd setAdjacentPolygonObject:otherPoly toIndex:i];
             }
             else if (poly2 != nil)
             {
                 otherPoly = poly2;
                 i++;
-                [thePolyToAdd setAdjacent_polygonObject:otherPoly i:i];
+                [thePolyToAdd setAdjacentPolygonObject:otherPoly toIndex:i];
             }
             else if (poly1 != nil && poly2 != nil)
             { // This line could already have two polygons???
@@ -554,7 +554,7 @@
             {
                 otherPoly = nil; 
                 //i++;
-                //[thePolyToAdd setAdjacent_polygonObject:otherPoly i:i];
+                //[thePolyToAdd setAdjacentPolygonObject:otherPoly i:i];
             }
             
             //p32n1 p32n2 newPolyRect
@@ -955,8 +955,8 @@
     [theLine setClockwisePolygonObject:nil];
     [theLine setConterclockwisePolygonObject:nil];
     
-    [clockwisePoly removeAssoticationOf:theLineToRemove];
-    [counterclockPoly removeAssoticationOf:theLineToRemove];
+    [clockwisePoly removeAssociationOfObject:theLineToRemove];
+    [counterclockPoly removeAssociationOfObject:theLineToRemove];
     
     //NSLog(@"*deleteing line 1");
     #ifdef showDebugDeletionsAndAddtions
@@ -1059,7 +1059,7 @@
     
     for(i = 0; i < vc; i++)
     {
-        LELine *theLine = [thePolyToRemove getLineObject:i];
+        LELine *theLine = [thePolyToRemove lineObjectAtIndex:i];
         LEPolygon *clockwisePoly = [theLine clockwisePolygonObject];
         LEPolygon *counterclockPoly = [theLine conterclockwisePolygonObject];
         LESide *clockwiseSide = [theLine clockwisePolygonSideObject];
@@ -1073,7 +1073,7 @@
         }
         else
         {
-            [clockwisePoly removeAssoticationOf:thePolyToRemove];
+            [clockwisePoly removeAssociationOfObject:thePolyToRemove];
         }
         
         if (counterclockPoly == thePolyToRemove)
@@ -1084,7 +1084,7 @@
         }
         else
         {
-            [counterclockPoly removeAssoticationOf:thePolyToRemove];
+            [counterclockPoly removeAssociationOfObject:thePolyToRemove];
         }
         
         

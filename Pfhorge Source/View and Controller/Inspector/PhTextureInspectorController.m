@@ -268,8 +268,8 @@
     // NOTE: Check to make surereturned object is a polygon!
     LEPolygon *thePoly = [mainInspectorController getTheCurrentSelection];
     
-    short ceilingTransferMode = [thePoly getCeiling_transfer_mode];
-    short floorTransferMode = [thePoly getFloor_transfer_mode];
+    short ceilingTransferMode = [thePoly ceilingTransferMode];
+    short floorTransferMode = [thePoly floorTransferMode];
 
     NSPoint ceilingOrigin = [thePoly ceilingOrigin];
     NSPoint floorOrigin = [thePoly floorOrigin];
@@ -873,7 +873,7 @@
     (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[1] = (char)([primaryTextureNums indexOfSelectedItem]);
     thePTex.textureNumber = [primaryTextureNums indexOfSelectedItem];
-    [baseSideRef setPrimary_texture:thePTex];
+    [baseSideRef setPrimaryTextureStruct:thePTex];
     
     theTexChar = (char *)&theSTex.texture;
     theSTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 3);
@@ -881,7 +881,7 @@
     (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[1] = (char)([secondaryTextureNums indexOfSelectedItem]);
     theSTex.textureNumber = [secondaryTextureNums indexOfSelectedItem];
-    [baseSideRef setSecondary_texture:theSTex];
+    [baseSideRef setSecondaryTextureStruct:theSTex];
     
     theTexChar = (char *)&theTTex.texture;
     theTTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 5);
@@ -889,7 +889,7 @@
     (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[1] = (char)([transparentTextureNums indexOfSelectedItem]);
     theTTex.textureNumber = [transparentTextureNums indexOfSelectedItem];
-    [baseSideRef setTransparent_texture:theTTex];
+    [baseSideRef setTransparentTextureStruct:theTTex];
 }
 
 - (IBAction)sideRadioBtnAction:(id)sender
@@ -1005,14 +1005,14 @@
 {
     char number = [sender indexOfSelectedItem];
     //[basePolyRef resetTextureCollectionOnly];
-    [basePolyRef setCeiling_transfer_mode:(number - 1)];
+    [basePolyRef setCeilingTransferMode:(number - 1)];
 }
 
 - (IBAction)floorModeMenuAction:(id)sender
 {
     char number = [sender indexOfSelectedItem];
     //[basePolyRef resetTextureCollectionOnly];
-    [basePolyRef setFloor_transfer_mode:(number - 1)];
+    [basePolyRef setFloorTransferMode:(number - 1)];
 }
 
 - (IBAction)polyTextureOffsetMatrixAction:(id)sender

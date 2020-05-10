@@ -822,14 +822,14 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                                 {NSLog(@"*** Broken Chain at %d,%d %d",x,y,n); continue;}
                             
                             LEMapPoint *Pt = SO[x+P.x][y+P.y].GetPoint(P.w);
-                            [Pg setVertexWithObject:Pt i:n];
+                            [Pg setVertexWithObject:Pt toIndex:n];
                          }
                         
                         for (int n=0; n<NumEdges; n++)
                         {
                             LnPtDef& L = SO[x][y].GetEdge(n);
                             LELine *Ln = SO[x+L.x][y+L.y].GetLine(L.w);
-                            [Pg setLinesObject:Ln i:n];
+                            [Pg setLinesObject:Ln toIndex:n];
                         }
                     }
                     else
@@ -842,19 +842,19 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                        {
                             const LnPtDef& P = D.Pts[n];
                             LEMapPoint *Pt = SO[x+P.x][y+P.y].GetPoint(P.w);
-                            [Pg setVertexWithObject:Pt i:n];
+                            [Pg setVertexWithObject:Pt toIndex:n];
                             
                             const LnPtDef& L = D.Lns[n];
                             LELine *Ln = SO[x+L.x][y+L.y].GetLine(L.w);
-                            [Pg setLinesObject:Ln i:n];
+                            [Pg setLinesObject:Ln toIndex:n];
                        }
                     }
                     
                     // Do this here because it's necessary for side setting
                     const short Ht_Floor = 0;
                     const short Ht_Ceiling = 1024;
-                    [Pg setFloor_height:Ht_Floor];
-                    [Pg setCeiling_height:Ht_Ceiling];
+                    [Pg setFloorHeight:Ht_Floor];
+                    [Pg setCeilingHeight:Ht_Ceiling];
                     
                     [level addPolygon:Pg];
                     if (k == 0)
@@ -1187,10 +1187,10 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     [Pg resetTextureCollectionOnly];
                     [Pg setFloorTextureOnly:Txtrs[Env][WhichFloor]];
                     [Pg setFloorLightsource:Lights[WhichFloorLight]];
-                    [Pg setFloor_transfer_mode:Xfers[WhichFloorXfer]];
+                    [Pg setFloorTransferMode:Xfers[WhichFloorXfer]];
                     [Pg setCeilingTextureOnly:Txtrs[Env][WhichCeiling]];
-                    [Pg setCeiling_lightsource:Lights[WhichCeilingLight]];
-                    [Pg setCeiling_transfer_mode:Xfers[WhichCeilingXfer]];
+                    [Pg setCeilingLightsource:Lights[WhichCeilingLight]];
+                    [Pg setCeilingTransferMode:Xfers[WhichCeilingXfer]];
                 }
             }
     

@@ -1989,12 +1989,12 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"[theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] i:i]"];
         #endif
-                [theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] i:i];
+                [theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] toIndex:i];
             }
             else
             {
                 theCursor += 2;
-                [theObj setVertexWithObject:nil i:i];
+                [theObj setVertexWithObject:nil toIndex:i];
             }
         }
         
@@ -2005,12 +2005,12 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"[theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:0]"];
         #endif
-                [theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:i]; //
+                [theObj setLinesObject:[self getShortObjectFrom:theLineArray] toIndex:i]; //
             }
             else
             {
                 theCursor += 2;
-                [theObj setLinesObject:nil i:i];
+                [theObj setLinesObject:nil toIndex:i];
             }
         }
         
@@ -2025,11 +2025,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_height:"];
         #endif
-        [theObj setFloor_height_no_sides:[self getShort]];
+        [theObj setFloorHeightNoSides:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_height:"];
         #endif
-        [theObj setCeiling_height_no_sides:[self getShort]];
+        [theObj setCeilingHeightNoSides:[self getShort]];
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_lightsourceObject"];
@@ -2038,7 +2038,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_lightsourceObject"];
         #endif
-        [theObj setCeiling_lightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setCeilingLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setArea"];
@@ -2048,28 +2048,28 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFirst_objectObject"];
         #endif
-        [theObj setFirst_objectObject:[self getShortZeroIsNilIfOverObjectFrom:theObjectArray]]; //
+        [theObj setFirstObjectObject:[self getShortZeroIsNilIfOverObjectFrom:theObjectArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFirst_exclusion_zone_index"];
         #endif
-        [theObj setFirst_exclusion_zone_index:[self getShort]];
+        [theObj setFirstExclusionZoneIndex:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setLine_exclusion_zone_count"];
         #endif
-        [theObj setLine_exclusion_zone_count:[self getShort]];
+        [theObj setLineExclusionZoneCount:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setPoint_exclusion_zone_count"];
         #endif
-        [theObj setPoint_exclusion_zone_count:[self getShort]];
+        [theObj setPointExclusionZoneCount:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_transfer_mode"];
         #endif
-        [theObj setFloor_transfer_mode:[self getShort]];
+        [theObj setFloorTransferMode:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_transfer_mode"];
         #endif
-        [theObj setCeiling_transfer_mode:[self getShort]];
+        [theObj setCeilingTransferMode:[self getShort]];
         
         for (i = 0; i < 8; i++)
         {
@@ -2078,12 +2078,12 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setAdjacent_polygonObject:[self getShortObjectFrom:thePolyArray] i:0]"];
         #endif
-                [theObj setAdjacent_polygonObject:[self getShortZeroIsNilIfOverObjectFrom:thePolyArray] i:i]; //
+                [theObj setAdjacentPolygonObject:[self getShortZeroIsNilIfOverObjectFrom:thePolyArray] toIndex:i]; //
             }
             else
             {
                 theCursor += 2;
-                [theObj setAdjacent_polygonObject:nil i:i];
+                [theObj setAdjacentPolygonObject:nil toIndex:i];
             }
         }
         
@@ -2102,7 +2102,7 @@ BOOL setupPointerArraysDurringLoading = YES;
             [self NSLogShortFromData:@"blank"];
         #endif
         theCursor += 2; // Skip the sound sources for right now...
-        //[theObj setFirst_neighborObject:[self getShortObjectFrom:thePolyArray]]; //
+        //[theObj setFirstNeighborObject:[self getShortObjectFrom:thePolyArray]]; //
         
         // I think this is the number of polygons
         // within One World Unit of polygon
@@ -2112,7 +2112,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setNeighbor_count"];
         #endif
-        [theObj setNeighbor_count:[self getShort]];
+        [theObj setNeighborCount:[self getShort]];
         
         #ifdef useDebugingLogs
             [self NSLogPointFromData:@"setCenter"];
@@ -2126,12 +2126,12 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setSidesObject:[self getShortObjectFrom:theSideArray] i:0]"];
         #endif
-                [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFrom:theSideArray] i:i]; //
+                [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFrom:theSideArray] toIndex:i]; //
             }
             else
             {
                 theCursor += 2;
-                [theObj setSidesObject:nil i:i];
+                [theObj setSidesObject:nil toIndex:i];
             }
         }
         
@@ -2151,9 +2151,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setMedia_lightsourceObject"];
         #endif
-        [theObj setMedia_lightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setMediaLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
         
-        //[theObj setSound_sources:[self getShort]]; // *** I am not sure about this one ***
+        //[theObj setSoundSources:[self getShort]]; // *** I am not sure about this one ***
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"blank"];
         #endif
@@ -2162,11 +2162,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setAmbient_soundObject"];
         #endif
-        [theObj setAmbient_soundObject:[self getShortObjectFrom:theAmbientArray]]; //
+        [theObj setAmbientSoundObject:[self getShortObjectFrom:theAmbientArray]]; //
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setRandom_soundObject"];
         #endif
-        [theObj setRandom_soundObject:[self getShortZeroIsNilIfOverObjectFrom:theRandomArray]]; //
+        [theObj setRandomSoundObject:[self getShortZeroIsNilIfOverObjectFrom:theRandomArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"blank"];
@@ -2256,7 +2256,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
         theTempSideTextureDefinition.textureNumber = [self getOneByteShort];
-        [theObj setPrimary_texture:theTempSideTextureDefinition];
+        [theObj setPrimaryTextureStruct:theTempSideTextureDefinition];
         
         theTempSideTextureDefinition.x0 = [self getShort];
         theTempSideTextureDefinition.y0 = [self getShort];
@@ -2267,7 +2267,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
         theTempSideTextureDefinition.textureNumber = [self getOneByteShort];
-        [theObj setSecondary_texture:theTempSideTextureDefinition];
+        [theObj setSecondaryTextureStruct:theTempSideTextureDefinition];
         
         theTempSideTextureDefinition.x0 = [self getShort];
         theTempSideTextureDefinition.y0 = [self getShort];
@@ -2278,7 +2278,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
         theTempSideTextureDefinition.textureNumber = [self getOneByteShort];
-        [theObj setTransparent_texture:theTempSideTextureDefinition];
+        [theObj setTransparentTextureStruct:theTempSideTextureDefinition];
         
         
         #ifdef useDebugingLogs
@@ -2894,54 +2894,54 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	[self saveShort:[currentObj getTheVertexCount]];
 	
-	[self saveShort:[currentObj getVertexIndexes:0]]; 
-	[self saveShort:[currentObj getVertexIndexes:1]]; 
-	[self saveShort:[currentObj getVertexIndexes:2]]; 
-	[self saveShort:[currentObj getVertexIndexes:3]]; 
-	[self saveShort:[currentObj getVertexIndexes:4]]; 
-	[self saveShort:[currentObj getVertexIndexes:5]]; 
-	[self saveShort:[currentObj getVertexIndexes:6]]; 
-	[self saveShort:[currentObj getVertexIndexes:7]];
+	[self saveShort:[currentObj vertexIndexesAtIndex:0]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:1]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:2]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:3]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:4]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:5]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:6]]; 
+	[self saveShort:[currentObj vertexIndexesAtIndex:7]];
 	
-	[self saveShort:[currentObj getLineIndexes:0]]; 
-	[self saveShort:[currentObj getLineIndexes:1]]; 
-	[self saveShort:[currentObj getLineIndexes:2]]; 
-	[self saveShort:[currentObj getLineIndexes:3]]; 
-	[self saveShort:[currentObj getLineIndexes:4]]; 
-	[self saveShort:[currentObj getLineIndexes:5]]; 
-	[self saveShort:[currentObj getLineIndexes:6]]; 
-	[self saveShort:[currentObj getLineIndexes:7]];
+	[self saveShort:[currentObj lineIndexesAtIndex:0]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:1]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:2]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:3]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:4]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:5]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:6]]; 
+	[self saveShort:[currentObj lineIndexesAtIndex:7]];
 	
-	[self saveShort:[currentObj getFloor_texture]];
-	[self saveShort:[currentObj getCeiling_texture]];
-	[self saveShort:[currentObj getFloor_height]];
-	[self saveShort:[currentObj getCeiling_height]];
+	[self saveShort:[currentObj floorTexture]];
+	[self saveShort:[currentObj ceilingTexture]];
+	[self saveShort:[currentObj floorHeight]];
+	[self saveShort:[currentObj ceilingHeight]];
 	[self saveShort:[currentObj floorLightsourceIndex]]; 
 	[self saveShort:[currentObj ceilingLightsourceIndex]]; 
 	
-	//[self saveLong:[currentObj getArea]];
+	//[self saveLong:[currentObj area]];
 	[self saveLong:0];
 	
-	//[self saveShort:[currentObj getFirst_object_index]]; 
-	//[self saveShort:[currentObj getFirst_exclusion_zone_index]];
-	//[self saveShort:[currentObj getLine_exclusion_zone_count]];
-	//[self saveShort:[currentObj getPoint_exclusion_zone_count]];
+	//[self saveShort:[currentObj firstObjectIndex]]; 
+	//[self saveShort:[currentObj firstExclusionZoneIndex]];
+	//[self saveShort:[currentObj lineExclusionZoneCount]];
+	//[self saveShort:[currentObj pointExclusionZoneCount]];
 	[self saveShort:-1]; 
 	[self saveShort:0];
 	[self saveShort:0];
 	[self saveShort:0];
 	
-	[self saveShort:[currentObj getFloor_transfer_mode]];
-	[self saveShort:[currentObj getCeiling_transfer_mode]];
+	[self saveShort:[currentObj floorTransferMode]];
+	[self saveShort:[currentObj ceilingTransferMode]];
 	
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:0]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:1]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:2]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:3]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:4]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:5]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:6]]; 
-	//[self saveShort:[currentObj getAdjacent_polygon_indexes:7]];
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:0]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:1]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:2]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:3]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:4]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:5]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:6]]; 
+	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:7]];
 	[self saveShort:0];
 	[self saveShort:0];
 	[self saveShort:0];
@@ -2963,14 +2963,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	// NSLog(@"\np\n");	*** 	***	***	***	***	***	***	***	***
 	
-	[self saveShort:[currentObj getSide_indexes:0]]; 
-	[self saveShort:[currentObj getSide_indexes:1]]; 
-	[self saveShort:[currentObj getSide_indexes:2]]; 
-	[self saveShort:[currentObj getSide_indexes:3]]; 
-	[self saveShort:[currentObj getSide_indexes:4]]; 
-	[self saveShort:[currentObj getSide_indexes:5]]; 
-	[self saveShort:[currentObj getSide_indexes:6]]; 
-	[self saveShort:[currentObj getSide_indexes:7]];
+	[self saveShort:[currentObj sideIndexesAtIndex:0]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:1]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:2]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:3]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:4]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:5]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:6]]; 
+	[self saveShort:[currentObj sideIndexesAtIndex:7]];
 	
 	[self saveShort:[currentObj floorOrigin].x];
 	[self saveShort:[currentObj floorOrigin].y];
@@ -2978,14 +2978,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj ceilingOrigin].x];
 	[self saveShort:[currentObj ceilingOrigin].y];
 	
-	[self saveShort:[currentObj getMedia_index]];
-	[self saveShort:[currentObj getMedia_lightsource_index]];
+	[self saveShort:[currentObj mediaIndex]];
+	[self saveShort:[currentObj mediaLightsourceIndex]];
 	
-	//[self saveShort:[currentObj getSound_source_indexes]];
+	//[self saveShort:[currentObj soundSourceIndexes]];
 	[self saveShort:0];
 	
-	[self saveShort:[currentObj getAmbient_sound_image_index]];
-	[self saveShort:[currentObj getRandom_sound_image_index]];
+	[self saveShort:[currentObj ambientSoundImageIndex]];
+	[self saveShort:[currentObj randomSoundImageIndex]];
 	
 	[self saveEmptyBytes:2]; //Skip the unused part... :)
     }

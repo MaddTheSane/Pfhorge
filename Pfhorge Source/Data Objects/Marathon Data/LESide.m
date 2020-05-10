@@ -416,21 +416,21 @@
     
     if (primary_texture.texture != -1) // define NONE and use NONE here
     {
-        [theTarget setPrimary_texture:primary_texture];
+        [theTarget setPrimaryTextureStruct:primary_texture];
         [theTarget setPrimary_transfer_mode:primary_transfer_mode];
         [theTarget setPrimary_lightsource_object:primary_lightsource_object];
     }
     
     if (secondary_texture.texture != -1) // define NONE and use NONE here
     {
-        [theTarget setSecondary_texture:secondary_texture];
+        [theTarget setSecondaryTextureStruct:secondary_texture];
         [theTarget setSecondary_transfer_mode:secondary_transfer_mode];
         [theTarget setSecondary_lightsource_object:secondary_lightsource_object];
     }
     
     if (transparent_texture.texture != -1) // define NONE and use NONE here
     {
-        [theTarget setTransparent_texture:transparent_texture];
+        [theTarget setTransparentTextureStruct:transparent_texture];
         [theTarget setTransparent_transfer_mode:transparent_transfer_mode];
         [theTarget setTransparent_lightsource_object:transparent_lightsource_object];
     }
@@ -472,9 +472,9 @@
     [copy setType:type];
     [copy setFlags:flags];
             
-    [copy setPrimary_texture:primary_texture];
-    [copy setSecondary_texture:secondary_texture];
-    [copy setTransparent_texture:transparent_texture];
+    [copy setPrimaryTextureStruct:primary_texture];
+    [copy setSecondaryTextureStruct:secondary_texture];
+    [copy setTransparentTextureStruct:transparent_texture];
     
     [copy setExclusion_zone:exclusion_zone];
             
@@ -660,9 +660,9 @@
 -(void)setType:(LESideType)v { type = v; }
 -(void)setFlags:(LESideFlags)v { flags = v; }
         
--(void)setPrimary_texture:(struct side_texture_definition)v { primary_texture = v; }
--(void)setSecondary_texture:(struct side_texture_definition)v { secondary_texture = v; }
--(void)setTransparent_texture:(struct side_texture_definition)v { transparent_texture = v; }
+-(void)setPrimaryTextureStruct:(struct side_texture_definition)v { primary_texture = v; }
+-(void)setSecondaryTextureStruct:(struct side_texture_definition)v { secondary_texture = v; }
+-(void)setTransparentTextureStruct:(struct side_texture_definition)v { transparent_texture = v; }
 
 -(void)setExclusion_zone:(struct side_exclusion_zone)v { exclusion_zone = v; }
         
@@ -952,7 +952,7 @@
 #pragma mark -
 #pragma mark ********* Other Useful Methods *********
 
--(short)getAdjustedControlPanelType
+-(short)adjustedControlPanelType
 {
     if ([self getFlagS:2] == NO)
         return -1; // This Side Is Noit A Control Panel

@@ -115,8 +115,8 @@
     /*
     NSPoint ceilingOrigin = [thePoly ceilingOrigin];
     NSPoint floorOrigin = [thePoly getFloor_origin];
-    short floorTexture = [thePoly getFloor_texture];
-    short ceilingTexture = [thePoly getCeiling_texture];
+    short floorTexture = [thePoly floorTexture];
+    short ceilingTexture = [thePoly ceilingTexture];
     char *theCeilingTextureChar = (char *)&ceilingTexture;
     char *theFloorTextureChar = (char *)&floorTexture;
     
@@ -133,7 +133,7 @@
     
     //GET_OBJECT_FLAG(o, b)
     
-    //[thePoly getRandom_sound_image_index];
+    //[thePoly randomSoundImageIndex];
     //IBOutlet id yandomSound;
     
     [textureInspectorController updatePolyTextureMenus];
@@ -240,19 +240,19 @@
             break;
     }
     
-    //[ceilingHeight setObjectValue:[[NSNumber numberWithFloat:([thePoly getCeiling_height] / (float)1024)] stringValue]];
-    //[floorHeight setObjectValue:[[NSNumber numberWithFloat:([thePoly getFloor_height] / (float)1024)] stringValue]];
+    //[ceilingHeight setObjectValue:[[NSNumber numberWithFloat:([thePoly ceilingHeight] / (float)1024)] stringValue]];
+    //[floorHeight setObjectValue:[[NSNumber numberWithFloat:([thePoly floorHeight] / (float)1024)] stringValue]];
     
-    [ceilingHeight setIntValue:[thePoly getCeiling_height]];
-    [floorHeight setIntValue:[thePoly getFloor_height]];
+    [ceilingHeight setIntValue:[thePoly ceilingHeight]];
+    [floorHeight setIntValue:[thePoly floorHeight]];
     
-    [liquid selectItemAtIndex:[thePoly getMedia_index] + 1];
-    [ambientSound selectItemAtIndex:[thePoly getAmbient_sound_image_index] + 1];
-    [yandomSound selectItemAtIndex:[thePoly getRandom_sound_image_index] + 1];
+    [liquid selectItemAtIndex:[thePoly mediaIndex] + 1];
+    [ambientSound selectItemAtIndex:[thePoly ambientSoundImageIndex] + 1];
+    [yandomSound selectItemAtIndex:[thePoly randomSoundImageIndex] + 1];
     
     [ceilingLight selectItemAtIndex:[thePoly ceilingLightsourceIndex]];
     [floorLight selectItemAtIndex:[thePoly floorLightsourceIndex]];
-    [liquidLight selectItemAtIndex:[thePoly getMedia_lightsource_index]];
+    [liquidLight selectItemAtIndex:[thePoly mediaLightsourceIndex]];
     
     [liquid setObjectValue:[liquid objectValueOfSelectedItem]];
     [ambientSound setObjectValue:[ambientSound objectValueOfSelectedItem]];
@@ -394,12 +394,12 @@
 
 - (IBAction)ceilingHeightAction:(id)sender
 {
-    [curPoly setCeiling_height:[sender intValue]];
+    [curPoly setCeilingHeight:[sender intValue]];
 }
 
 - (IBAction)floorHeightAction:(id)sender
 {
-    [curPoly setFloor_height:[sender intValue]];
+    [curPoly setFloorHeight:[sender intValue]];
 }
 
 - (IBAction)permutationAction:(id)sender
@@ -472,7 +472,7 @@
 
 - (IBAction)ceilingLightAction:(id)sender
 {
-    [curPoly setCeiling_lightsource:[sender indexOfSelectedItem]];
+    [curPoly setCeilingLightsource:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)floorLightAction:(id)sender
@@ -482,7 +482,7 @@
 
 - (IBAction)liauidLightAction:(id)sender
 {
-    [curPoly setMedia_lightsource:[sender indexOfSelectedItem]];
+    [curPoly setMediaLightsource:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)liquidAction:(id)sender
@@ -492,12 +492,12 @@
 
 - (IBAction)randomSoundAction:(id)sender
 {
-    [curPoly setRandom_sound:([sender indexOfSelectedItem]-1)];
+    [curPoly setRandomSound:([sender indexOfSelectedItem]-1)];
 }
 
 - (IBAction)ambientSoundAction:(id)sender
 {
-    [curPoly setAmbient_sound:([sender indexOfSelectedItem]-1)];
+    [curPoly setAmbientSound:([sender indexOfSelectedItem]-1)];
 }
 
 

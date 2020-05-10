@@ -454,7 +454,7 @@
     while (theObj = [numer nextObject]) // get next side object
     {
         NSNumber *theNumber = nil;
-        int theControlPanelType = [theObj getAdjustedControlPanelType];
+        int theControlPanelType = [theObj adjustedControlPanelType];
         
         switch (theControlPanelType)
         {
@@ -1156,9 +1156,9 @@ enum // export data types
     
     defaultPolygon = [[LEPolygon alloc] init];
     [self setUpArrayPointersFor:defaultPolygon];
-    [defaultPolygon setMedia_lightsource:0];
+    [defaultPolygon setMediaLightsource:0];
     [defaultPolygon setFloorLightsource:0];
-    [defaultPolygon setCeiling_lightsource:0];
+    [defaultPolygon setCeilingLightsource:0];
     
     
     defaultSide = [[LESide alloc] init];

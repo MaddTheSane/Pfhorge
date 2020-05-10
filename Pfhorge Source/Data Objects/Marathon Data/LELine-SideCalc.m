@@ -146,7 +146,7 @@
                 [self setClockwisePolygonSideObject:theNewSide];
                 
                 if (polyLineNumber1 != -1)
-                    [clockPoly setSidesObject:theNewSide i:polyLineNumber1];
+                    [clockPoly setSidesObject:theNewSide toIndex:polyLineNumber1];
                 else
                     NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockPoly index], [self index]);
             }
@@ -175,7 +175,7 @@
                 
                 [self setCounterclockwisePolygonSideObject:theNewSide];
                 if (polyLineNumber2 != -1)
-                    [counterclockPoly setSidesObject:theNewSide i:polyLineNumber2];
+                    [counterclockPoly setSidesObject:theNewSide toIndex:polyLineNumber2];
                 else
                     NSLog(@"Poly %d does not have a link to me (Line %d)?", [counterclockPoly index], [self index]);
             }
@@ -225,10 +225,10 @@
 
 -(void)setupWithClockPlat:(PhPlatform *)cPlat counterClockPlat:(PhPlatform *)ccPlat
 {
-        int cF = [clockwisePolygon getFloor_height];
-        int cC = [clockwisePolygon getCeiling_height];
-        int ccF = [conterclockwisePolygon getFloor_height];
-        int ccC = [conterclockwisePolygon getCeiling_height];
+        int cF = [clockwisePolygon floorHeight];
+        int cC = [clockwisePolygon ceilingHeight];
+        int ccF = [conterclockwisePolygon floorHeight];
+        int ccC = [conterclockwisePolygon ceilingHeight];
         
         int cPlatMax = [cPlat maximumHeight];
         int ccPlatMax = [ccPlat maximumHeight];
@@ -721,10 +721,10 @@
 
 -(void)setupAsNonPlatformLine
 {
-        int cF = [clockwisePolygon getFloor_height];
-        int cC = [clockwisePolygon getCeiling_height];
-        int ccF = [conterclockwisePolygon getFloor_height];
-        int ccC = [conterclockwisePolygon getCeiling_height];
+        int cF = [clockwisePolygon floorHeight];
+        int cC = [clockwisePolygon ceilingHeight];
+        int ccF = [conterclockwisePolygon floorHeight];
+        int ccC = [conterclockwisePolygon ceilingHeight];
         
         if (cF == ccF)
         {
@@ -924,7 +924,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         
         int polyLineNumber = [clockwisePolygon getLineNumberFor:self];
         if (polyLineNumber != -1)
-            [clockwisePolygon setSidesObject:clockwisePolygonSideObject i:polyLineNumber];
+            [clockwisePolygon setSidesObject:clockwisePolygonSideObject toIndex:polyLineNumber];
         else
             NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon index], [self index]);
         
@@ -962,7 +962,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         
         int polyLineNumber = [conterclockwisePolygon getLineNumberFor:self];
         if (polyLineNumber != -1)
-            [conterclockwisePolygon setSidesObject:counterclockwisePolygonSideObject i:polyLineNumber]; // *** NOTE: ??? ??? ??? Check This Out!!! ***
+            [conterclockwisePolygon setSidesObject:counterclockwisePolygonSideObject toIndex:polyLineNumber]; // *** NOTE: ??? ??? ??? Check This Out!!! ***
         else
             NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon index], [self index]);
         
@@ -1015,7 +1015,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             clockwisePolygonSideObject = theNewSide;
             
             if (polyLineNumber3 != -1)
-                [clockwisePolygon setSidesObject:theNewSide i:polyLineNumber3];
+                [clockwisePolygon setSidesObject:theNewSide toIndex:polyLineNumber3];
             else
                 NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon index], [self index]);
             
@@ -1044,7 +1044,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             counterclockwisePolygonSideObject = theNewSide;
             
             if (polyLineNumber4 != -1)
-                [conterclockwisePolygon setSidesObject:theNewSide i:polyLineNumber4];
+                [conterclockwisePolygon setSidesObject:theNewSide toIndex:polyLineNumber4];
             else
                 NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon index], [self index]);
             

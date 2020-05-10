@@ -188,9 +188,9 @@ typedef struct side_exclusion_zone
 -(void)setType:(LESideType)v;
 -(void)setFlags:(LESideFlags)v;
         
--(void)setPrimary_texture:(struct side_texture_definition)v;
--(void)setSecondary_texture:(struct side_texture_definition)v;
--(void)setTransparent_texture:(struct side_texture_definition)v;
+-(void)setPrimaryTextureStruct:(struct side_texture_definition)v;
+-(void)setSecondaryTextureStruct:(struct side_texture_definition)v;
+-(void)setTransparentTextureStruct:(struct side_texture_definition)v;
 
 -(void)setExclusion_zone:(struct side_exclusion_zone)v;
         
@@ -263,7 +263,7 @@ typedef struct side_exclusion_zone
 -(id)gettransparent_lightsource_object;
 
 //  ************************** Other Usful Methods *************************
--(short)getAdjustedControlPanelType;
+-(short)adjustedControlPanelType;
 
 // ************************** Inzlizations And Class Methods *************************
 

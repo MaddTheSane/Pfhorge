@@ -1459,13 +1459,13 @@ enum {
         switch (heightMode)
         {
             case _drawCeilingHeight:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getCeiling_height]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ceilingHeight]]] objectAtIndex:0];
                 break;
             case _drawFloorHeight:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getFloor_height]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon floorHeight]]] objectAtIndex:0];
                 break;
             case _drawLiquids:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getMedia_index]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon mediaIndex]]] objectAtIndex:0];
                 break;
             case _drawFloorLights:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon floorLightsourceIndex]]] objectAtIndex:0];
@@ -1474,10 +1474,10 @@ enum {
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ceilingLightsourceIndex]]] objectAtIndex:0];
                 break;
             case _drawLiquidLights:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getMedia_lightsource_index]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon mediaLightsourceIndex]]] objectAtIndex:0];
                 break;
             case _drawAmbientSounds:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getAmbient_sound_image_index]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ambientSoundImageIndex]]] objectAtIndex:0];
                 break;
             case _drawLayers: //currentLevel
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[[thisPolygon polyLayer] index]]] objectAtIndex:0];
@@ -1504,7 +1504,7 @@ enum {
         if (theCurrentVertexCount > 2) 
         {
             //NSLog(@"moving to point index: %d", theVertexes[0]);
-            [curDrawingMap moveToPoint:[[thisPolygon getVertexObject:0] as32Point]];
+            [curDrawingMap moveToPoint:[[thisPolygon vertexObjectAtIndex:0] as32Point]];
             for (i = 1; i < theCurrentVertexCount; i++)
             {
                 // theTmpPoint = [[theMapPoints objectAtIndex:theVertexes[i]] as32Point];
@@ -1513,7 +1513,7 @@ enum {
                 //theVertexes[i], [[theMapPoints objectAtIndex:theVertexes[i]] x32],
                 //[[theMapPoints objectAtIndex:theVertexes[i]] y32]);
                 
-                [curDrawingMap lineToPoint:[[thisPolygon getVertexObject:i] as32Point]];
+                [curDrawingMap lineToPoint:[[thisPolygon vertexObjectAtIndex:i] as32Point]];
             }
             [curDrawingMap closePath];
         }
@@ -1585,7 +1585,7 @@ enum {
         {
             int curPolyType = [thisPolygon type];
             
-            if ((![thisPolygon getPolygonConcaveFlag]) && shouldDrawConvexPolyObjects)
+            if ((![thisPolygon polygonConcaveFlag]) && shouldDrawConvexPolyObjects)
                 polyDrawingMapPntr = invalidPolyDrawingMap;
             
             else if (curPolyType == _polygon_is_normal)
@@ -1610,7 +1610,7 @@ enum {
                 polyDrawingMapPntr = polyDrawingMap;
             
             //NSLog(@"moving to point index: %d", theVertexes[0]);
-            [polyDrawingMapPntr moveToPoint:[[thisPolygon getVertexObject:0] as32Point]];
+            [polyDrawingMapPntr moveToPoint:[[thisPolygon vertexObjectAtIndex:0] as32Point]];
             for (i = 1; i < theCurrentVertexCount; i++)
             {
                 // theTmpPoint = [[theMapPoints objectAtIndex:theVertexes[i]] as32Point];
@@ -1619,7 +1619,7 @@ enum {
                 //theVertexes[i], [[theMapPoints objectAtIndex:theVertexes[i]] x32],
                 //[[theMapPoints objectAtIndex:theVertexes[i]] y32]);
                 
-                [polyDrawingMapPntr lineToPoint:[[thisPolygon getVertexObject:i] as32Point]];
+                [polyDrawingMapPntr lineToPoint:[[thisPolygon vertexObjectAtIndex:i] as32Point]];
             }
             [polyDrawingMapPntr closePath];
         }
@@ -1747,10 +1747,10 @@ enum {
             switch (heightMode)
             {
                 case _drawCeilingHeight:
-                    theNumber = [NSNumber numberWithShort:[thisPolygon getCeiling_height]];
+                    theNumber = [NSNumber numberWithShort:[thisPolygon ceilingHeight]];
                     break;
                 case _drawFloorHeight:
-                    theNumber = [NSNumber numberWithShort:[thisPolygon getFloor_height]];
+                    theNumber = [NSNumber numberWithShort:[thisPolygon floorHeight]];
                     break;
                 default:
                     SEND_ERROR_MSG(@"Unkown list query mode, #103.");
@@ -2357,21 +2357,21 @@ enum {
                 {
                     case _drawCeilingHeight:
                         if (!optionDown)
-                            [curObj setCeiling_height:[selectedNumber shortValue]];
+                            [curObj setCeilingHeight:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getCeiling_height]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj ceilingHeight]];
                         break;
                     case _drawFloorHeight:
                         if (!optionDown)
-                            [curObj setFloor_height:[selectedNumber shortValue]];
+                            [curObj setFloorHeight:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getFloor_height]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj floorHeight]];
                         break;
                     case _drawLiquids:
                         if (!optionDown)
                             [curObj setMediaIndex:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getMedia_index]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj mediaIndex]];
                         break;
                     case _drawFloorLights:
                         if (!optionDown)
@@ -2381,21 +2381,21 @@ enum {
                         break;
                     case _drawCeilingLights:
                         if (!optionDown)
-                            [curObj setCeiling_lightsource:[selectedNumber shortValue]];
+                            [curObj setCeilingLightsource:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj ceilingLightsourceIndex]];
                         break;
                     case _drawLiquidLights:
                         if (!optionDown)
-                            [curObj setMedia_lightsource:[selectedNumber shortValue]];
+                            [curObj setMediaLightsource:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getMedia_lightsource_index]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj mediaLightsourceIndex]];
                         break;
                     case _drawAmbientSounds:
                         if (!optionDown)
-                            [curObj setAmbient_sound:[selectedNumber shortValue]];
+                            [curObj setAmbientSound:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getAmbient_sound_image_index]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj ambientSoundImageIndex]];
                         break;
                     case _drawLayers: //currentLevel
                         if (!optionDown)
@@ -4061,28 +4061,28 @@ enum {
     {
         case 8:
             [theNewPolygon setV8:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:7]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:7]] i:7];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:7]] toIndex:7];
         case 7:
             [theNewPolygon setV7:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:6]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:6]] i:6];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:6]] toIndex:6];
         case 6:
             [theNewPolygon setV6:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:5]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:5]] i:5];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:5]] toIndex:5];
         case 5:
             [theNewPolygon setV5:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:4]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:4]] i:4];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:4]] toIndex:4];
         case 4:
             [theNewPolygon setV4:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:3]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:3]] i:3];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:3]] toIndex:3];
         case 3:
             [theNewPolygon setV3:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:2]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:2]] i:2];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:2]] toIndex:2];
         case 2:
             [theNewPolygon setV2:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:1]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:1]] i:1];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:1]] toIndex:1];
         case 1:
             [theNewPolygon setV1:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:0]]];
-            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:0]] i:0];
+            [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:0]] toIndex:0];
             break;
         case 0:
         default:

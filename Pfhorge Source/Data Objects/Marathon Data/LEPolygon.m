@@ -375,6 +375,8 @@
         case _polygon_is_hill:
             permutationObject = nil;
             break;
+		default:
+			break;
     }
     
     switch (type)
@@ -398,6 +400,8 @@
             //ExportObjPos(permutationObject);
             ExportObj(permutationObject);
             break;
+		default:
+			break;
     }
         
     ExportShort(vertexCountForPoly);
@@ -541,6 +545,8 @@
         case _polygon_is_platform:
             ImportObj(permutationObject);
             break;
+		default:
+			break;
     }
     
     
@@ -693,6 +699,8 @@
                 encodeObj(coder, permutationObject);
                 [permutationObject setEncodeIndexNumbersInstead:NO];
                 break;
+			default:
+				break;
         }
     }
     else
@@ -868,6 +876,8 @@
             case _polygon_is_platform:
                 permutationObject = decodeObj(coder);
                 break;
+			default:
+				break;
         }
     }
     else
@@ -1216,9 +1226,9 @@
     int thePreviousType = [theTarget type];
     
     [theTarget setMediaObject:media_object];
-    [theTarget setMedia_lightsourceObject:media_lightsource_object];
-    [theTarget setAmbient_soundObject:ambient_sound_image_object];
-    [theTarget setRandom_soundObject:random_sound_image_object];
+    [theTarget setMediaLightsourceObject:media_lightsource_object];
+    [theTarget setAmbientSoundObject:ambient_sound_image_object];
+    [theTarget setRandomSoundObject:random_sound_image_object];
     
     [theTarget setFloorOrigin:floor_origin];
     [theTarget setCeilingOrigin:ceiling_origin];
@@ -1296,15 +1306,15 @@
     [theTarget setFloorTexture:floor_texture];
     [theTarget setCeilingTexture:ceiling_texture];
     
-    [theTarget setFloor_height_no_sides:floor_height];
-    [theTarget setCeiling_height:ceiling_height];
+    [theTarget setFloorHeightNoSides:floor_height];
+    [theTarget setCeilingHeight:ceiling_height];
     
     [theTarget setFloorLightsourceObject:floor_lightsource_object];
-    [theTarget setCeiling_lightsourceObject:ceiling_lightsource_object];
+    [theTarget setCeilingLightsourceObject:ceiling_lightsource_object];
     [theTarget setArea:area];
-    [theTarget setFirst_objectObject:first_object_pointer];
-    [theTarget setFloor_transfer_mode:floor_transfer_mode];
-    [theTarget setCeiling_transfer_mode:ceiling_transfer_mode];
+    [theTarget setFirstObjectObject:first_object_pointer];
+    [theTarget setFloorTransferMode:floor_transfer_mode];
+    [theTarget setCeilingTransferMode:ceiling_transfer_mode];
     [theTarget setCenter:center];
 }
 
@@ -1362,7 +1372,7 @@
                 vertexObjects[i] = nil;
 }
 
--(void)removeAssoticationOf:(id)theObj
+-(void)removeAssociationOfObject:(id)theObj
 {
     int i;
     
@@ -1406,10 +1416,7 @@
 // ****************** Polygon Layer *********************
 #pragma mark -
 #pragma mark ********* Polygon Layer *********
--(PhLayer *)polyLayer
-{
-    return polyLayer;
-}
+@synthesize polyLayer;
 -(void)setPolyLayer:(PhLayer *)theLayer
 {
     if (polyLayer != nil)
@@ -1502,7 +1509,6 @@
 
 
 // ******************************** Set Accsessors **********************************
--(void)setPolygonConcaveFlag:(BOOL)v { polygonConcave = v; }
 
 -(void)setType:(LEPolygonType)v
 {
@@ -1519,7 +1525,6 @@
     }
 }
 
--(void)setFlags:(LEPolygonFlags)v { flags = v; }
 -(void)setPermutation:(short)v
 {
     /*if (type == _polygon_is_platform)
@@ -1527,7 +1532,7 @@
         
     }
     else*/
-    SEND_ERROR_MSG(@"An obsolet method setPermutation:(short)v was called in a polygon object, this is a possible error!");
+    SEND_ERROR_MSG(@"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!");
     //permutation = v;
 }
 
@@ -1594,17 +1599,17 @@
 
 -(void)setVertextCount:(short)vCount { vertexCountForPoly = vCount;}
 
--(void)setV1:(short)v { [self setVertexWith:v i:0];  } //
--(void)setV2:(short)v { [self setVertexWith:v i:1];  } //
--(void)setV3:(short)v { [self setVertexWith:v i:2];  } //
--(void)setV4:(short)v { [self setVertexWith:v i:3];  } //
--(void)setV5:(short)v { [self setVertexWith:v i:4];  } //
--(void)setV6:(short)v { [self setVertexWith:v i:5];  } //
--(void)setV7:(short)v { [self setVertexWith:v i:6];  } //
--(void)setV8:(short)v { [self setVertexWith:v i:7];  } //
+-(void)setV1:(short)v { [self setVertexWith:v toIndex:0];  } //
+-(void)setV2:(short)v { [self setVertexWith:v toIndex:1];  } //
+-(void)setV3:(short)v { [self setVertexWith:v toIndex:2];  } //
+-(void)setV4:(short)v { [self setVertexWith:v toIndex:3];  } //
+-(void)setV5:(short)v { [self setVertexWith:v toIndex:4];  } //
+-(void)setV6:(short)v { [self setVertexWith:v toIndex:5];  } //
+-(void)setV7:(short)v { [self setVertexWith:v toIndex:6];  } //
+-(void)setV8:(short)v { [self setVertexWith:v toIndex:7];  } //
 
 
--(void)setVertexWith:(short)v i:(short)i
+-(void)setVertexWith:(short)v toIndex:(short)i
 {
     //vertexIndexes[i] = v;
     if (v == -1)
@@ -1613,12 +1618,12 @@
         vertexObjects[i] = [theMapPointsST objectAtIndex:v];
 } //
 
--(void)setVertexWithObject:(id)v i:(short)i
+-(void)setVertexWithObject:(id)v toIndex:(short)i
 {
     vertexObjects[i] = v;
 } //
 
--(void)setLines:(short)v i:(short)i 
+-(void)setLines:(short)v toIndex:(short)i 
 {
     //lineIndexes[i] = v;
     
@@ -1627,25 +1632,23 @@
     else if (everythingLoadedST)
         lineObjects[i] = [theMapLinesST objectAtIndex:v];
 } //
--(void)setLinesObject:(id)v i:(short)i 
+-(void)setLinesObject:(id)v toIndex:(short)i 
 {
     
     lineObjects[i] = v;
 } //
--(void)setFloorTexture:(short)v { floor_texture = v; }
--(void)setCeilingTexture:(short)v { ceiling_texture = v; }
 
--(void)setFloor_height_no_sides:(short)v { floor_height = v; }
--(void)setCeiling_height_no_sides:(short)v { ceiling_height = v; }
+-(void)setFloorHeightNoSides:(short)v { floor_height = v; }
+-(void)setCeilingHeightNoSides:(short)v { ceiling_height = v; }
 
--(void)setFloor_height:(short)v
+-(void)setFloorHeight:(short)v
 {
     int i;
     floor_height = v;
     for (i = 0; i < vertexCountForPoly; i++)
         [lineObjects[i] caculateSides];
 }
--(void)setCeiling_height:(short)v
+-(void)setCeilingHeight:(short)v
 {
     int i;
     ceiling_height = v;
@@ -1661,12 +1664,8 @@
     else if (everythingLoadedST)
         floor_lightsource_object = [theMapLightsST objectAtIndex:v];
 } //
--(void)setFloorLightsourceObject:(id)v 
-{ 
-    floor_lightsource_object = v; 
-} //
 
--(void)setCeiling_lightsource:(short)v
+-(void)setCeilingLightsource:(short)v
 { 
     //ceiling_lightsource_index = v; 
     if (v == -1)
@@ -1674,15 +1673,8 @@
     else if (everythingLoadedST)
         ceiling_lightsource_object = [theMapLightsST objectAtIndex:v];
 } //
--(void)setCeiling_lightsourceObject:(id)v 
-{ 
-    ceiling_lightsource_object = v; 
-    
-} //
 
--(void)setArea:(int)v { area = v; }
-
--(void)setFirst_object:(short)v 
+-(void)setFirstObject:(short)v 
 { 
     //first_object_index = v; 
     if (v == -1)
@@ -1690,18 +1682,12 @@
     else if (everythingLoadedST)
         first_object_pointer = [theMapObjectsST objectAtIndex:v];
 } //
--(void)setFirst_objectObject:(id)v 
+-(void)setFirstObjectObject:(id)v 
 { 
     first_object_pointer = v; 
 } //
 
--(void)setFirst_exclusion_zone_index:(short)v { first_exclusion_zone_index = v; }
--(void)setLine_exclusion_zone_count:(short)v { line_exclusion_zone_count = v; }
--(void)setPoint_exclusion_zone_count:(short)v { point_exclusion_zone_count = v; }
--(void)setFloor_transfer_mode:(short)v { floor_transfer_mode = v; }
--(void)setCeiling_transfer_mode:(short)v { ceiling_transfer_mode = v; }
-
--(void)setAdjacent_polygon:(short)v i:(short)i 
+-(void)setAdjacentPolygon:(short)v toIndex:(short)i 
 { 
     //adjacent_polygon_indexes[i] = v; 
     if (v == -1)
@@ -1709,12 +1695,12 @@
     else if (everythingLoadedST)
         adjacent_polygon_objects[i] = [theMapPolysST objectAtIndex:v];
 } //
--(void)setAdjacent_polygonObject:(id)v i:(short)i 
+-(void)setAdjacentPolygonObject:(id)v toIndex:(short)i 
 { 
     adjacent_polygon_objects[i] = v; 
 } //
 
--(void)setFirst_neighbor:(short)v 
+-(void)setFirstNeighbor:(short)v 
 { 
     //first_neighbor_index = v; 
     if (v == -1)
@@ -1722,15 +1708,12 @@
     else if (everythingLoadedST)
         first_neighbor_object = [theMapPolysST objectAtIndex:v];
 } //
--(void)setFirst_neighborObject:(id)v 
+-(void)setFirstNeighborObject:(id)v 
 { 
     first_neighbor_object = v; 
 } //
 
--(void)setNeighbor_count:(short)v { neighbor_count = v; }
--(void)setCenter:(NSPoint)v { center = v; }
-
--(void)setSides:(short)v i:(short)i 
+-(void)setSides:(short)v toIndex:(short)i 
 {
     //side_indexes[i] = v; 
     
@@ -1742,16 +1725,13 @@
     else if (everythingLoadedST)
         side_objects[i] = [theMapSidesST objectAtIndex:v];
 } //
--(void)setSidesObject:(id)v i:(short)i 
+-(void)setSidesObject:(id)v toIndex:(short)i 
 { 
     side_objects[i] = nil;
     return;
     
     side_objects[i] = v; 
 } //
-
--(void)setFloorOrigin:(NSPoint)v { floor_origin = v; }
--(void)setCeilingOrigin:(NSPoint)v { ceiling_origin = v; }
 
 -(void)setMedia:(short)v { [self setMediaIndex:v]; }
 -(void)setMediaIndex:(short)v 
@@ -1768,7 +1748,7 @@
     
 } //
 
--(void)setMedia_lightsource:(short)v 
+-(void)setMediaLightsource:(short)v 
 { 
     //media_lightsource_index = v; 
     if (v == -1)
@@ -1776,22 +1756,22 @@
     else if (everythingLoadedST)
         media_lightsource_object = [theMapLightsST objectAtIndex:v];
 } //
--(void)setMedia_lightsourceObject:(id)v 
+-(void)setMediaLightsourceObject:(id)v 
 { 
     media_lightsource_object = v; 
     
 } //
 
--(void)setSound_sources:(short)v 
+-(void)setSoundSources:(short)v 
 { 
     sound_source_indexes = v;   // ******** FIRGURE THIS OUT SOMETIME *********
 } //
--(void)setSound_sourcesObject:(id)v 
+-(void)setSoundSourcesObject:(id)v 
 { 
     sound_source_objects = v;
 } //
 
--(void)setAmbient_sound:(short)v 
+-(void)setAmbientSound:(short)v 
 { 
     //ambient_sound_image_index = v; 
     if (v == -1)
@@ -1799,13 +1779,13 @@
     else if (everythingLoadedST)
         ambient_sound_image_object = [theAmbientSoundsST objectAtIndex:v];
 } //
--(void)setAmbient_soundObject:(id)v 
+-(void)setAmbientSoundObject:(id)v 
 { 
     ambient_sound_image_object = v; 
     
 } //
 
--(void)setRandom_sound:(short)v 
+-(void)setRandomSound:(short)v 
 { 
     //random_sound_image_index = v; 
     if (v == -1)
@@ -1813,7 +1793,7 @@
     else if (everythingLoadedST)
         random_sound_image_object = [theRandomSoundsST objectAtIndex:v];
 } //
--(void)setRandom_soundObject:(id)v 
+-(void)setRandomSoundObject:(id)v 
 { 
     random_sound_image_object = v; 
 
@@ -1821,10 +1801,9 @@
 
 
 // ************************************* Get Accsessors ********************************************************
--(BOOL)getPolygonConcaveFlag { return polygonConcave; }
-
--(LEPolygonType)type { return type; }
--(LEPolygonFlags)flags { return flags; }
+@synthesize polygonConcaveFlag=polygonConcave;
+@synthesize type;
+@synthesize flags;
 
 -(short)permutation
 {
@@ -1861,7 +1840,7 @@
     int i;
     
     for (i = 0; i < 8; i++)
-        vertexIndexes[i] = [self getVertexIndexes:i];
+        vertexIndexes[i] = [self vertexIndexesAtIndex:i];
     
     return vertexIndexes;
 }
@@ -1869,30 +1848,30 @@
 -(short)getTheVertexCount { // NSLog(@"RETURNING The Poly Vertex Count (poly): %d", vertexCount);
                             return vertexCountForPoly; }
 
--(short)getVertexIndexes:(short)i { return (vertexObjects[i] == nil) ? -1 : [vertexObjects[i] index]; }
--(short)getLineIndexes:(short)i { return (lineObjects[i] == nil) ? -1 : [lineObjects[i] index]; }
+-(short)vertexIndexesAtIndex:(short)i { return (vertexObjects[i] == nil) ? -1 : [vertexObjects[i] index]; }
+-(short)lineIndexesAtIndex:(short)i { return (lineObjects[i] == nil) ? -1 : [lineObjects[i] index]; }
 
 -(short)getVertexIndexesZero:(short)i { return (vertexObjects[i] == nil) ? 0 : [vertexObjects[i] index]; }  // ***
 -(short)getLineIndexesZero:(short)i { return (lineObjects[i] == nil) ? 0 : [lineObjects[i] index]; }  // ***
 
--(NSArray *)getVertexArray
+-(NSArray *)vertexArray
 {
     return [NSArray arrayWithObjects:vertexObjects count:vertexCountForPoly];
 }
--(id)getVertexObject:(short)i { return vertexObjects[i]; }
+-(id)vertexObjectAtIndex:(short)i { return vertexObjects[i]; }
 
--(NSArray *)getLineArray
+-(NSArray *)lineArray
 {
     return [NSArray arrayWithObjects:lineObjects count:vertexCountForPoly];
 }
--(id)getLineObject:(short)i { return lineObjects[i]; }
+-(id)lineObjectAtIndex:(short)i { return lineObjects[i]; }
 //-(id)getLineObjects { return lineObjects; }
+ 
+@synthesize floorTexture=floor_texture;
+@synthesize ceilingTexture=ceiling_texture;
 
--(short)getFloor_texture { return floor_texture; }
--(short)getCeiling_texture { return ceiling_texture; }
-
--(short)getFloor_height { return floor_height; }
--(short)getCeiling_height { return ceiling_height; }
+@synthesize floorHeight=floor_height;
+@synthesize ceilingHeight=ceiling_height; 
 
 -(NSDecimalNumber *)floorHeightAsDecimal { return [self divideAndRound:floor_height by:1024]; }
 -(NSDecimalNumber *)ceilingHeightAsDecimal { return [self divideAndRound:ceiling_height by:1024]; }
@@ -1906,37 +1885,37 @@
 -(short)getFloor_lightsource_index_zero { return (floor_lightsource_object == nil) ? 0 : [floor_lightsource_object index]; }  // ***
 -(short)getCeiling_lightsource_index_zero { return (ceiling_lightsource_object == nil) ? 0 : [ceiling_lightsource_object index]; }  // ***
 
--(id)floorLightsourceObject { return floor_lightsource_object; } // ---
--(id)ceilingLightsourceObject { return ceiling_lightsource_object; } // ---
+@synthesize floorLightsourceObject=floor_lightsource_object;
+@synthesize ceilingLightsourceObject=ceiling_lightsource_object;
 
--(int)getArea { return area; }
--(short)getFirst_object_index { return first_object_index; } //
--(short)getFirst_exclusion_zone_index { return first_exclusion_zone_index; }
--(short)getLine_exclusion_zone_count { return line_exclusion_zone_count; }
--(short)getPoint_exclusion_zone_count { return point_exclusion_zone_count; }
--(short)getFloor_transfer_mode { return floor_transfer_mode; }
--(short)getCeiling_transfer_mode { return ceiling_transfer_mode; }
+@synthesize area;
+@synthesize firstObjectIndex=first_object_index;
+@synthesize firstExclusionZoneIndex=first_exclusion_zone_index;
+@synthesize lineExclusionZoneCount=line_exclusion_zone_count;
+@synthesize pointExclusionZoneCount=point_exclusion_zone_count;
+@synthesize floorTransferMode=floor_transfer_mode;
+@synthesize ceilingTransferMode=ceiling_transfer_mode;
 
--(short)getAdjacent_polygon_indexes:(short)i { return (adjacent_polygon_objects[i] == nil) ? 0 : [adjacent_polygon_objects[i] index]; }  // ***
--(id)getAdjacent_polygon_objects:(short)i { return adjacent_polygon_objects[i]; } //
+-(short)adjacentPolygonIndexesAtIndex:(short)i { return (adjacent_polygon_objects[i] == nil) ? 0 : [adjacent_polygon_objects[i] index]; }  // ***
+-(id)adjacentPolygonObjectAtIndex:(short)i { return adjacent_polygon_objects[i]; } //
 
 -(short)firstNeighborIndex { return (first_neighbor_object == nil) ? -1 : [first_neighbor_object index]; } //
--(id)getFirst_neighbor_object { return first_neighbor_object; } // ---
+-(id)firstNeighborObject { return first_neighbor_object; } // ---
 
--(short)neighborCount { return neighbor_count; }
--(NSPoint)center { return center; }
+@synthesize neighborCount=neighbor_count;
+@synthesize center;
 
--(short)getSide_indexes:(short)i { return (side_objects[i] == nil) ? 0 : [side_objects[i] index]; }  // ***
--(id)getSide_objects:(short)i { return side_objects[i]; } //
+-(short)sideIndexesAtIndex:(short)i { return (side_objects[i] == nil) ? 0 : [side_objects[i] index]; }  // ***
+-(id)sideObjectAtIndex:(short)i { return side_objects[i]; } //
 
--(NSPoint)floorOrigin { return floor_origin; }
--(NSPoint)ceilingOrigin { return ceiling_origin; }
+@synthesize floorOrigin=floor_origin;
+@synthesize ceilingOrigin=ceiling_origin;
 
--(short)getMedia_index { return (media_object == nil) ? -1 : [media_object index]; } //
--(short)getMedia_lightsource_index { return (media_lightsource_object == nil) ? 0 : [media_lightsource_object index]; }  // ***
--(short)getSound_source_indexes { return sound_source_indexes; } // *** WORK ON THIS ONE ***
--(short)getAmbient_sound_image_index { return (ambient_sound_image_object == nil) ? -1 : [ambient_sound_image_object index]; } //
--(short)getRandom_sound_image_index { return (random_sound_image_object == nil) ? -1 : [random_sound_image_object index]; } //
+-(short)mediaIndex { return (media_object == nil) ? -1 : [media_object index]; } //
+-(short)mediaLightsourceIndex { return (media_lightsource_object == nil) ? 0 : [media_lightsource_object index]; }  // ***
+-(short)soundSourceIndexes { return sound_source_indexes; } // *** WORK ON THIS ONE ***
+-(short)ambientSoundImageIndex { return (ambient_sound_image_object == nil) ? -1 : [ambient_sound_image_object index]; } //
+-(short)randomSoundImageIndex { return (random_sound_image_object == nil) ? -1 : [random_sound_image_object index]; } //
 
 -(id)getMedia_object { return media_object; } // ---
 -(id)getMedia_lightsource_object { return media_lightsource_object; } // ---

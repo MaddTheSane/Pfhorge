@@ -107,8 +107,8 @@
         numer1 = [polys objectEnumerator];
         while (theObj1 = [numer1 nextObject])
         {
-            int floorHeight = [theObj1 getFloor_height];
-            int ceilingHeight = [theObj1 getCeiling_height];
+            int floorHeight = [theObj1 floorHeight];
+            int ceilingHeight = [theObj1 ceilingHeight];
             int layerNumber = 0;
             
             numer2 = [records objectEnumerator];
@@ -206,8 +206,8 @@
             
             for (i = 0; i < theVertexCount; i++)
             {
-                id theVertex = [theObj getVertexObject:i];
-                id theLine = [theObj getLineObject:i];
+                id theVertex = [theObj vertexObjectAtIndex:i];
+                id theLine = [theObj lineObjectAtIndex:i];
                 
                 //NSLog(@"Polygon# %d  ---  Line# %d", [theObj index], [theLine index]);
                 

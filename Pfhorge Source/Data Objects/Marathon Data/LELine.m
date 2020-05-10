@@ -1524,29 +1524,29 @@
     switch ([theNewPolyVectors count])
     {
         case 8:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:7] i:7];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:7] i:7];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:7] toIndex:7];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:7] toIndex:7];
         case 7:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:6] i:6];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:6] i:6];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:6] toIndex:6];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:6] toIndex:6];
         case 6:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:5] i:5];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:5] i:5];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:5] toIndex:5];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:5] toIndex:5];
         case 5:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:4] i:4];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:4] i:4];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:4] toIndex:4];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:4] toIndex:4];
         case 4:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:3] i:3];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:3] i:3];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:3] toIndex:3];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:3] toIndex:3];
         case 3:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:2] i:2];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:2] i:2];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:2] toIndex:2];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:2] toIndex:2];
         case 2:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:1] i:1];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:1] i:1];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:1] toIndex:1];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:1] toIndex:1];
         case 1:
-            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:0] i:0];
-            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:0] i:0];
+            [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:0] toIndex:0];
+            [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:0] toIndex:0];
             break;
         case 0:
             NSLog(@"getPolyFromMe vertex count durring poly acuire was zero???");

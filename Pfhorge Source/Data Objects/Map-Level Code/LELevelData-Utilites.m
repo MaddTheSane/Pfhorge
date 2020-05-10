@@ -369,7 +369,7 @@
         [clockSide setLine_object:nil];
         
         [theLine setClockwisePolygonSideObject:nil];
-        [clockPoly setSidesObject:nil i:polyLineNumber];
+        [clockPoly setSidesObject:nil toIndex:polyLineNumber];
         //NSLog(@"removeSidesFromLine 1a");
         [self deleteSide:clockSide];
     }
@@ -384,7 +384,7 @@
         [counterclockSide setLine_object:nil];
         
         [theLine setCounterclockwisePolygonSideObject:nil];
-        [counterclockPoly setSidesObject:nil i:polyLineNumber];
+        [counterclockPoly setSidesObject:nil toIndex:polyLineNumber];
         //NSLog(@"removeSidesFromLine 2a");
         [self deleteSide:counterclockSide];
     }
@@ -610,8 +610,8 @@
         
         for (i = 0; i < theVertexCount; i++)
         {
-            id theVertex = [thisPoly getVertexObject:i];
-            id theLine = [thisPoly getLineObject:i];
+            id theVertex = [thisPoly vertexObjectAtIndex:i];
+            id theLine = [thisPoly lineObjectAtIndex:i];
             
             //NSLog(@"Polygon# %d  ---  Line# %d", [theObj index], [theLine index]);
             
@@ -620,14 +620,14 @@
             if ([lines indexOfObjectIdenticalTo:theLine] == NSNotFound)
             {
                 NSLog(@"In Polygon# %d - pLine# %d - did not exsist in main array...", [thisPoly index], i);
-                [thisPoly setLinesObject:nil i:i];
+                [thisPoly setLinesObject:nil toIndex:i];
                 getRidOfPolygon = YES;
             }
             
             if ([points indexOfObjectIdenticalTo:theVertex] == NSNotFound)
             {
                 NSLog(@"In Polygon# %d - vertex# %d - did not exsist in main array...", [thisPoly index], i);
-                [thisPoly setVertexWithObject:nil i:i];
+                [thisPoly setVertexWithObject:nil toIndex:i];
                 getRidOfPolygon = YES;
             }
         }
@@ -726,13 +726,13 @@
         // getLineObjects
         
         for(i = 0; i < [theObj getTheVertexCount]; i++)
-            [tmpList1 addObject:[theObj getLineObject:i]];
+            [tmpList1 addObject:[theObj lineObjectAtIndex:i]];
         
         LEMapPoint *maraPoint = nil;
         
         for(i = 0; i < [theObj getTheVertexCount]; i++)
         {
-            maraPoint = [theObj getVertexObject:i];
+            maraPoint = [theObj vertexObjectAtIndex:i];
             [theObjects addObject:maraPoint];
             [theObjects unionSet:[maraPoint getLinesAttachedToMe]];
         }

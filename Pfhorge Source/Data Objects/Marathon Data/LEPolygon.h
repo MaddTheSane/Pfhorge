@@ -66,8 +66,8 @@ typedef NS_ENUM(short, LEPolygonType) {
     //! if success conditions are met, causes automatic transport to next level
     _polygon_is_automatic_exit,
     
-    // NOTE: New Marathon 1 types!!!
-    //   Add Support For These!
+    //! NOTE: New Marathon 1 types!!!
+    //!   Add Support For These!
     _polygon_is_minor_ouch,
     _polygon_is_major_ouch,
     _polygon_is_glue,
@@ -103,7 +103,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     
     short 	vertexCountForPoly;
     short 	vertexIndexes[ MAXIMUM_VERTICES_PER_POLYGON ];
-    __kindof LEMapStuffParent *vertexObjects[ MAXIMUM_VERTICES_PER_POLYGON ];
+    LEMapPoint *vertexObjects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     short	lineIndexes [ MAXIMUM_VERTICES_PER_POLYGON ];
     LELine	*lineObjects [ MAXIMUM_VERTICES_PER_POLYGON ];
@@ -116,7 +116,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     int	area;		// in world distance^2
     
     short	first_object_index; // index added, is it really an index?
-    __kindof LEMapStuffParent	*first_object_pointer; // added pointer for less confusion...
+    __unsafe_unretained __kindof LEMapStuffParent	*first_object_pointer; // added pointer for less confusion...
     
     /* precalculated impassibility information; each polygon has
     a list of lines and points that anything big (i.e. monsters
@@ -175,15 +175,15 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setFloorTextureCollectionOnly:(char)number;
 -(void)resetTextureCollectionOnly;
 -(void)setTextureCollectionOnly:(char)number;
--(char)ceilingTextureOnly;
--(char)floorTextureOnly;
--(char)ceilingTextureCollectionOnly;
--(char)floorTextureCollectionOnly;
+@property char ceilingTextureOnly;
+@property char floorTextureOnly;
+@property char ceilingTextureCollectionOnly;
+@property char floorTextureCollectionOnly;
 
 //! I would not recommend using this function any more, since the ceiling could be different.
 //! Before it was assumed that the floor and ceiling would be in the same colleciton,
 //! that assumtion can not be made anymore...
--(char)textureCollectionOnly;
+@property char textureCollectionOnly;
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
@@ -196,19 +196,14 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(int)getLineNumberFor:(LELine *)theLine;
 -(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight;
 -(void)thePolyMap:(NSBezierPath *)poly;
--(void)removeAssoticationOf:(id)theObj;
+-(void)removeAssociationOfObject:(__kindof LEMapStuffParent*)theObj;
 -(void)setAllAdjacentPolygonPointersToNil;
 
 // ****************** Polygon Layer *********************
--(PhLayer *)polyLayer;
--(void)setPolyLayer:(PhLayer *)theLayer;
+@property (nonatomic, assign) PhLayer *polyLayer;
 
 // ********************* Acessor Methods *********************
-// ********** Set **********
--(void)setPolygonConcaveFlag:(BOOL)v;
 
--(void)setType:(LEPolygonType)v;
--(void)setFlags:(LEPolygonFlags)v;
 -(void)setPermutation:(short)v;
 
 -(void)setPermutationObject:(id)theObject;
@@ -223,135 +218,134 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setV7:(short)v; //
 -(void)setV8:(short)v; //
 
--(void)setVertexWith:(short)v i:(short)i; //
--(void)setVertexWithObject:(id)v i:(short)i;
+-(void)setVertexWith:(short)v toIndex:(short)i; //
+-(void)setVertexWithObject:(LEMapPoint*)v toIndex:(short)i;
 
--(void)setLines:(short)v i:(short)i; //
--(void)setLinesObject:(id)v i:(short)i;
+-(void)setLines:(short)v toIndex:(short)i; //
+-(void)setLinesObject:(id)v toIndex:(short)i;
 
 -(void)setFloorTexture:(short)v;
 -(void)setCeilingTexture:(short)v;
 
--(void)setFloor_height_no_sides:(short)v;
--(void)setCeiling_height_no_sides:(short)v;
+-(void)setFloorHeightNoSides:(short)v;
+-(void)setCeilingHeightNoSides:(short)v;
 
--(void)setFloor_height:(short)v;
--(void)setCeiling_height:(short)v;
+-(void)setFloorHeight:(short)v;
+-(void)setCeilingHeight:(short)v;
 
--(NSDecimalNumber *)floorHeightAsDecimal;
--(NSDecimalNumber *)ceilingHeightAsDecimal;
+@property (readonly, copy) NSDecimalNumber *floorHeightAsDecimal;
+@property (readonly, copy) NSDecimalNumber *ceilingHeightAsDecimal;
 
--(NSString *)floorHeightAsDecimalString;
--(NSString *)ceilingHeightAsDecimalString;
+@property (readonly, copy) NSString *floorHeightAsDecimalString;
+@property (readonly, copy) NSString *ceilingHeightAsDecimalString;
 
 -(void)setFloorLightsource:(short)v; //
 -(void)setFloorLightsourceObject:(id)v;
 
--(void)setCeiling_lightsource:(short)v; //
--(void)setCeiling_lightsourceObject:(id)v;
+-(void)setCeilingLightsource:(short)v; //
+-(void)setCeilingLightsourceObject:(id)v;
 
 -(void)setArea:(int)v;
 
--(void)setFirst_object:(short)v; //
--(void)setFirst_objectObject:(id)v;
+-(void)setFirstObject:(short)v; //
+-(void)setFirstObjectObject:(id)v;
 
--(void)setFirst_exclusion_zone_index:(short)v;
--(void)setLine_exclusion_zone_count:(short)v;
--(void)setPoint_exclusion_zone_count:(short)v;
+-(void)setFirstExclusionZoneIndex:(short)v;
+-(void)setLineExclusionZoneCount:(short)v;
+-(void)setPointExclusionZoneCount:(short)v;
 
--(void)setFloor_transfer_mode:(short)v;
--(void)setCeiling_transfer_mode:(short)v;
+-(void)setFloorTransferMode:(short)v;
+-(void)setCeilingTransferMode:(short)v;
 
--(void)setAdjacent_polygon:(short)v i:(short)i; //
--(void)setAdjacent_polygonObject:(id)v i:(short)i;
+-(void)setAdjacentPolygon:(short)v toIndex:(short)i; //
+-(void)setAdjacentPolygonObject:(id)v toIndex:(short)i;
 
--(void)setFirst_neighbor:(short)v; //
--(void)setFirst_neighborObject:(id)v;
+-(void)setFirstNeighbor:(short)v; //
+-(void)setFirstNeighborObject:(id)v;
 
--(void)setNeighbor_count:(short)v;
--(void)setCenter:(NSPoint)v;
+-(void)setNeighborCount:(short)v;
 
--(void)setSides:(short)v i:(short)i; //
--(void)setSidesObject:(id)v i:(short)i;
+-(void)setSides:(short)v toIndex:(short)i; //
+-(void)setSidesObject:(id)v toIndex:(short)i;
 
 -(void)setFloorOrigin:(NSPoint)v;
 -(void)setCeilingOrigin:(NSPoint)v;
 
--(void)setMedia:(short)v; //
+-(void)setMedia:(short)v API_DEPRECATED_WITH_REPLACEMENT("-setMediaIndex:", macos(10.0, 10.7)); //
 -(void)setMediaIndex:(short)v; //
 -(void)setMediaObject:(id)v;
 
--(void)setMedia_lightsource:(short)v; //
--(void)setMedia_lightsourceObject:(id)v;
+-(void)setMediaLightsource:(short)v; //
+-(void)setMediaLightsourceObject:(id)v;
 
--(void)setSound_sources:(short)v; //
--(void)setSound_sourcesObject:(id)v;
+-(void)setSoundSources:(short)v; //
+-(void)setSoundSourcesObject:(id)v;
 
--(void)setAmbient_sound:(short)v; //
--(void)setAmbient_soundObject:(id)v;
+-(void)setAmbientSound:(short)v; //
+-(void)setAmbientSoundObject:(id)v;
 
--(void)setRandom_sound:(short)v; //
--(void)setRandom_soundObject:(id)v;
+-(void)setRandomSound:(short)v; //
+-(void)setRandomSoundObject:(id)v;
 
 
 // ********** Get **********
--(BOOL)getPolygonConcaveFlag;
+@property BOOL polygonConcaveFlag;
 
--(LEPolygonType)type;
--(LEPolygonFlags)flags;
--(short)permutation;
+@property (nonatomic) LEPolygonType type;
+@property LEPolygonFlags flags;
+@property short permutation;
 -(id)permutationObject;
 
 -(short *)getTheVertexes NS_RETURNS_INNER_POINTER; // might want to have this option avaliable for all c arrays in this object?
 -(short)getTheVertexCount;
 
--(short)getVertexIndexes:(short)i; //
--(short)getLineIndexes:(short)i; ///
--(NSArray *)getVertexArray;
--(id)getVertexObject:(short)i; ///
--(NSArray *)getLineArray;
--(id)getLineObject:(short)i; ///
+-(short)vertexIndexesAtIndex:(short)i; //
+-(short)lineIndexesAtIndex:(short)i; ///
+@property (readonly, copy) NSArray<LEMapPoint*> *vertexArray;
+-(LEMapPoint*)vertexObjectAtIndex:(short)i; ///
+@property (readonly, copy) NSArray<LELine*> *lineArray;
+-(LELine*)lineObjectAtIndex:(short)i; ///
 //-(id)getLineObjects; ///
 
--(short)getFloor_texture;
--(short)getCeiling_texture;
--(short)getFloor_height;
--(short)getCeiling_height;
+@property short floorTexture;
+@property short ceilingTexture;
+@property (nonatomic) short floorHeight;
+@property (nonatomic) short ceilingHeight;
 
--(short)floorLightsourceIndex; //
--(short)ceilingLightsourceIndex; //
--(id)floorLightsourceObject; //
--(id)ceilingLightsourceObject; //
+@property (readonly) short floorLightsourceIndex; //
+@property (readonly) short ceilingLightsourceIndex; //
+@property (assign) id floorLightsourceObject; //
+@property (assign) id ceilingLightsourceObject; //
 
--(int)getArea;
+@property int area;
 
--(short)getFirst_object_index; //
--(id)getFirst_neighbor_object; //
+@property (readonly) short firstObjectIndex; //
+-(id)firstNeighborObject; //
 
--(short)getFirst_exclusion_zone_index;
--(short)getLine_exclusion_zone_count;
--(short)getPoint_exclusion_zone_count;
--(short)getFloor_transfer_mode;
--(short)getCeiling_transfer_mode;
+@property short firstExclusionZoneIndex;
+@property short lineExclusionZoneCount;
+@property short pointExclusionZoneCount;
+@property short floorTransferMode;
+@property short ceilingTransferMode;
 
--(short)getAdjacent_polygon_indexes:(short)i; //
--(id)getAdjacent_polygon_objects:(short)i; //
+-(short)adjacentPolygonIndexesAtIndex:(short)i; //
+-(id)adjacentPolygonObjectAtIndex:(short)i; //
 
--(short)firstNeighborIndex; //
--(short)neighborCount;
--(NSPoint)center;
+@property (readonly) short firstNeighborIndex; //
+@property short neighborCount;
+@property (readwrite) NSPoint center;
 
--(short)getSide_indexes:(short)i; //
--(id)getSide_objects:(short)i; //
+-(short)sideIndexesAtIndex:(short)i; //
+-(id)sideObjectAtIndex:(short)i; //
 
--(NSPoint)floorOrigin;
--(NSPoint)ceilingOrigin;
+@property NSPoint floorOrigin;
+@property NSPoint ceilingOrigin;
 
--(short)getMedia_index; //
--(short)getMedia_lightsource_index; //
--(short)getSound_source_indexes; //
--(short)getAmbient_sound_image_index; //
--(short)getRandom_sound_image_index; //
+@property short mediaIndex; //
+@property (readonly) short mediaLightsourceIndex; //
+@property (readonly) short soundSourceIndexes; //
+@property (readonly) short ambientSoundImageIndex; //
+@property (readonly) short randomSoundImageIndex; //
 
 - (void)render;
 
