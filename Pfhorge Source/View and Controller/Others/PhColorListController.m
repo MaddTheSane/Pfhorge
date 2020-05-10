@@ -163,7 +163,7 @@
 
 // *********************** Other Methods ***********************
 - (void)setMainWindow:(NSWindow *)mainWindow {
-    NSWindowController *controller = [mainWindow delegate];
+    NSWindowController *controller = (id)[mainWindow delegate];
     //[mainWindow close];
     //return;
     

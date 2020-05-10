@@ -451,7 +451,7 @@
     }
     
     [theTarget setExclusion_zone:exclusion_zone];
-    [theTarget setAmbient_delta:ambient_delta];
+    [theTarget setAmbientDelta:ambient_delta];
     
     // Added this on 1/25/2003, why was it not included
     // a long time before? 
@@ -494,7 +494,7 @@
     [copy setSecondary_lightsource_object:secondary_lightsource_object];
     [copy setTransparent_lightsource_object:transparent_lightsource_object];
             
-    [copy setAmbient_delta:ambient_delta];
+    [copy setAmbientDelta:ambient_delta];
     
     return copy;
 }
@@ -657,7 +657,7 @@
     (theTTexChar)[0] = (0x11 + number);
 }
 
--(void)setType:(short)v { type = v; }
+-(void)setType:(LESideType)v { type = v; }
 -(void)setFlags:(LESideFlags)v { flags = v; }
         
 -(void)setPrimary_texture:(struct side_texture_definition)v { primary_texture = v; }
@@ -851,7 +851,7 @@
 
 //	--- --- ---
         
--(void)setAmbient_delta:(long)v { ambient_delta = v; }
+@synthesize ambientDelta=ambient_delta;
 
 // *****************   Get Accsessors   *****************
  #pragma mark -
@@ -904,7 +904,7 @@
     return [self primaryTextureCollection];
 }
 
--(short)type { return type; }
+-(LESideType)type { return type; }
 -(LESideFlags)flags { return flags; }
         
 -(struct side_texture_definition)getPrimary_texture { return primary_texture; }
@@ -947,8 +947,6 @@
 -(id)getprimary_lightsource_object { return primary_lightsource_object; }
 -(id)getsecondary_lightsource_object { return secondary_lightsource_object; }
 -(id)gettransparent_lightsource_object { return transparent_lightsource_object; }
-
--(int)getAmbient_delta { return ambient_delta; }
 
 //  ************************** Other Useful Methods *************************
 #pragma mark -

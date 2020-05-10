@@ -99,7 +99,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     LEPolygonFlags	flags; // used to be of type word
     
     short	permutation;
-    __kindof LEMapStuffParent	*permutationObject;
+    id		permutationObject;
     
     short 	vertexCountForPoly;
     short 	vertexIndexes[ MAXIMUM_VERTICES_PER_POLYGON ];
@@ -238,11 +238,11 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setFloor_height:(short)v;
 -(void)setCeiling_height:(short)v;
 
--(NSDecimalNumber *)getFloor_height_decimal;
--(NSDecimalNumber *)getCeiling_height_decimal;
+-(NSDecimalNumber *)floorHeightAsDecimal;
+-(NSDecimalNumber *)ceilingHeightAsDecimal;
 
--(NSString *)getFloor_height_decimal_string;
--(NSString *)getCeiling_height_decimal_string;
+-(NSString *)floorHeightAsDecimalString;
+-(NSString *)ceilingHeightAsDecimalString;
 
 -(void)setFloorLightsource:(short)v; //
 -(void)setFloorLightsourceObject:(id)v;
@@ -274,8 +274,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setSides:(short)v i:(short)i; //
 -(void)setSidesObject:(id)v i:(short)i;
 
--(void)setFloor_origin:(NSPoint)v;
--(void)setCeiling_origin:(NSPoint)v;
+-(void)setFloorOrigin:(NSPoint)v;
+-(void)setCeilingOrigin:(NSPoint)v;
 
 -(void)setMedia:(short)v; //
 -(void)setMediaIndex:(short)v; //
@@ -299,8 +299,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 -(LEPolygonType)type;
 -(LEPolygonFlags)flags;
--(short)getPermutation;
--(id)getPermutationObject;
+-(short)permutation;
+-(id)permutationObject;
 
 -(short *)getTheVertexes NS_RETURNS_INNER_POINTER; // might want to have this option avaliable for all c arrays in this object?
 -(short)getTheVertexCount;
@@ -318,10 +318,10 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(short)getFloor_height;
 -(short)getCeiling_height;
 
--(short)getFloor_lightsource_index; //
--(short)getCeiling_lightsource_index; //
--(id)getFloor_lightsource_object; //
--(id)getCeiling_lightsource_object; //
+-(short)floorLightsourceIndex; //
+-(short)ceilingLightsourceIndex; //
+-(id)floorLightsourceObject; //
+-(id)ceilingLightsourceObject; //
 
 -(int)getArea;
 
@@ -337,15 +337,15 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(short)getAdjacent_polygon_indexes:(short)i; //
 -(id)getAdjacent_polygon_objects:(short)i; //
 
--(short)getFirst_neighbor_index; //
--(short)getNeighbor_count;
--(NSPoint)getCenter;
+-(short)firstNeighborIndex; //
+-(short)neighborCount;
+-(NSPoint)center;
 
 -(short)getSide_indexes:(short)i; //
 -(id)getSide_objects:(short)i; //
 
--(NSPoint)getFloor_origin;
--(NSPoint)getCeiling_origin;
+-(NSPoint)floorOrigin;
+-(NSPoint)ceilingOrigin;
 
 -(short)getMedia_index; //
 -(short)getMedia_lightsource_index; //

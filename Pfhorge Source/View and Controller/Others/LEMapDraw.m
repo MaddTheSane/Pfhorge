@@ -1468,10 +1468,10 @@ enum {
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getMedia_index]]] objectAtIndex:0];
                 break;
             case _drawFloorLights:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getFloor_lightsource_index]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon floorLightsourceIndex]]] objectAtIndex:0];
                 break;
             case _drawCeilingLights:
-                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getCeiling_lightsource_index]]] objectAtIndex:0];
+                curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ceilingLightsourceIndex]]] objectAtIndex:0];
                 break;
             case _drawLiquidLights:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon getMedia_lightsource_index]]] objectAtIndex:0];
@@ -1895,7 +1895,7 @@ enum {
                         theName = [curNumber stringValue];
                         //theName = [[[NSDecimalNumber numberWithFloat:(([curNumber floatValue])/((float)1024))] decimalNumberByRoundingAccordingToBehavior:[currentLevel roundingSettings]] stringValue];
                         
-                        //getCeiling_height_decimal_string
+                        //ceilingHeightAsDecimalString
                         
                         break;
                     case _drawFloorHeight:
@@ -2094,10 +2094,10 @@ enum {
         numer = [selectedMapObjects objectEnumerator];
         while (curObj = [numer nextObject])
         {
-            [(LEMapObject *)undoWith(curObj) set32Y:[curObj y32]];
-            [(LEMapObject *)undoWith(curObj) set32X:[curObj x32]];
-            [(LEMapObject *)curObj set32Y:theLocation.y];
-            [(LEMapObject *)curObj set32X:theLocation.x];
+			[(LEMapObject *)undoWith(curObj) setY32:[curObj y32]];
+			[(LEMapObject *)undoWith(curObj) setX32:[curObj x32]];
+			[(LEMapObject *)curObj setY32:theLocation.y];
+			[(LEMapObject *)curObj setX32:theLocation.x];
         }
         
         numer = [selectedNotes objectEnumerator];
@@ -2316,7 +2316,7 @@ enum {
 - (void)mouseDownHeightMap:(NSEvent *)theEvent
 {
     //int theSelection = [[PhColorListController sharedColorListController] getSelection];
-    PhColorListController *theColorListController = colorListObject; //[PhColorListController sharedColorListController];
+    PhColorListControllerDrawer *theColorListController = colorListObject; //[PhColorListController sharedColorListController];
     NSNumber *selectedNumber = [theColorListController getSelectedNumber];
     // Get the mouse point and convert it to this view's cordinate system....
     NSPoint mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
@@ -2377,13 +2377,13 @@ enum {
                         if (!optionDown)
                             [curObj setFloorLightsource:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getFloor_lightsource_index]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj floorLightsourceIndex]];
                         break;
                     case _drawCeilingLights:
                         if (!optionDown)
                             [curObj setCeiling_lightsource:[selectedNumber shortValue]];
                         else
-                            selectedNumber = [NSNumber numberWithInt:[curObj getCeiling_lightsource_index]];
+                            selectedNumber = [NSNumber numberWithInt:[curObj ceilingLightsourceIndex]];
                         break;
                     case _drawLiquidLights:
                         if (!optionDown)
@@ -3689,7 +3689,7 @@ enum {
     NSPoint point1, point2;
     NSSet *theConnectedLines;
     LEPolygon *theNewPolygon;
-    NSMutableSet *thePossibleLeftMostLines = [self listOfLinesWithin:NSMakeRect(-2048, theCurPoint.y-1, (theCurPoint.x + 2048), 2)];
+    NSSet *thePossibleLeftMostLines = [self listOfLinesWithin:NSMakeRect(-2048, theCurPoint.y-1, (theCurPoint.x + 2048), 2)];
     
     //NSLog(@"Runing hit detection on polys...");
     numer = [[currentLevel layerPolys] reverseObjectEnumerator];
@@ -3864,10 +3864,10 @@ enum {
                         short newX, newY, newPrevX, newPrevY;
                         BOOL slopeChecksOut = NO;
         
-                        previousX = [currentLineSecondaryPoint getX] - [currentLineMainPoint getX];
-                        previousY = [currentLineSecondaryPoint getY] - [currentLineMainPoint getY];
-                        thisX = [theCurPoint getX] - [currentLineMainPoint getX];
-                        thisY = [theCurPoint getY] - [currentLineMainPoint getY];
+						previousX = [currentLineSecondaryPoint x] - [currentLineMainPoint x];
+						previousY = [currentLineSecondaryPoint y] - [currentLineMainPoint y];
+						thisX = [theCurPoint x] - [currentLineMainPoint x];
+						thisY = [theCurPoint y] - [currentLineMainPoint y];
                         prevX = previousX;
                         prevY = previousY;
                         theX = thisX;
@@ -4479,8 +4479,8 @@ enum {
         // gets default state for the specific object type...
         [currentLevel setToDefaultState:theNewObject];
         
-        [theNewObject set32X:(short)(pointToUse.x)];
-        [theNewObject set32Y:(short)(pointToUse.y)];
+		[theNewObject setX32:(short)(pointToUse.x)];
+		[theNewObject setY32:(short)(pointToUse.y)];
         //[theNewobject setIndex:0];
         //[theNewobject setFacing:0];
         

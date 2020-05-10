@@ -243,13 +243,13 @@
     {
         id theObj;
         [defaultPolygon copySettingsTo:theObject];
-        theObj = [theObject getPermutationObject];
+        theObj = [theObject permutationObject];
         if ([theObj class] == [PhPlatform class])
             [self addPlatform:theObj];
     }
     else if (theClass == [LEMapObject class])
     {
-        int theObjType = [theObject type];
+        int theObjType = [(LEMapObject*)theObject type];
         if (theObjType >= 0 && theObjType < _NUMBER_OF_OBJECT_TYPES)
         {
             [defaultObjects[theObjType] copySettingsTo:theObject];
@@ -299,7 +299,7 @@
     }
     else if (theClass == [LEMapObject class])
     {
-        int theObjType = [theObject type];
+        int theObjType = [(LEMapObject*)theObject type];
         if (theObjType >= 0 && theObjType < _NUMBER_OF_OBJECT_TYPES)
         {
             [theObject copySettingsTo:defaultObjects[theObjType]];
@@ -588,21 +588,21 @@
         
         if ([thisPoly type] == _polygon_is_platform)
         {
-            if ([thisPoly getPermutationObject] == nil)
+            if ([thisPoly permutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of reg platform with a nil permuation object...");
             }
         }
         else if ([thisPoly type] == _polygon_is_platform_on_trigger)
         {
-            if ([thisPoly getPermutationObject] == nil)
+            if ([thisPoly permutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of on platform with a nil permuation object...");
             }
         }
         else if ([thisPoly type] == _polygon_is_platform_off_trigger)
         {
-            if ([thisPoly getPermutationObject] == nil)
+            if ([thisPoly permutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of off platform with a nil permuation object...");
             }

@@ -512,8 +512,8 @@ void MapManager::ReloadLevel() {
 		LEMapPoint *thePoint;
 		while (thePoint = [en nextObject])
 		{
-			PointPtr->x = [thePoint getX];
-			PointPtr->y = [thePoint getY];
+			PointPtr->x = [thePoint x];
+			PointPtr->y = [thePoint y];
 			PointPtr++;
 		}
 	}
@@ -617,7 +617,7 @@ void MapManager::ReloadLevel() {
 			LEPolygon *thePolygon = [thePolygons objectAtIndex:np];
 			if ([thePolygon type] == _polygon_is_platform)
 			{
-				PhPlatform *thePlatform = [thePlatforms objectAtIndex:[thePolygon getPermutation]];
+				PhPlatform *thePlatform = [thePlatforms objectAtIndex:[thePolygon permutation]];
 				
 				// Adjust the heights to the platform ranges
 				short FloorHeight = FloorHeights[np];
@@ -798,8 +798,8 @@ void MapManager::ReloadLevel() {
 		// Set the floor and ceiling textures, transfer modes, and lights
 		PInfo.FloorInfo.TxtrXfr = [thePolygon getFloor_transfer_mode];
 		PInfo.CeilInfo.TxtrXfr = [thePolygon getCeiling_transfer_mode];
-		PInfo.FloorInfo.Light = [thePolygon getFloor_lightsource_index];
-		PInfo.CeilInfo.Light = [thePolygon getCeiling_lightsource_index];
+		PInfo.FloorInfo.Light = [thePolygon floorLightsourceIndex];
+		PInfo.CeilInfo.Light = [thePolygon ceilingLightsourceIndex];
 		
 		// These must come after setting the transfer mode
 		shape_descriptor ShD;
@@ -1011,9 +1011,9 @@ void MapManager::ReloadLevel() {
 		
 		// Doing the offsets requires that the base values of the vertices be set
 		NSPoint Origin;
-		Origin = [thePolygon getFloor_origin];
+		Origin = [thePolygon floorOrigin];
 		DoTxtrOffset(PInfo.FloorInfo, (short int)Origin.x, (short int)Origin.y);
-		Origin = [thePolygon getCeiling_origin];
+		Origin = [thePolygon ceilingOrigin];
 		DoTxtrOffset(PInfo.CeilInfo, (short int)Origin.x, (short int)Origin.y);
 		
 		// Likewise for trimming away unused liquid surfaces

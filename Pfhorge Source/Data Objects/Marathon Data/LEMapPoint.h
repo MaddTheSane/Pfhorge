@@ -53,7 +53,7 @@
 @property (readonly) NSPoint as32Point;
 @property (readonly) NSRect as32Rect;
 -(NSSet<LELine*> *)getLinesAttachedToMe;
--(NSArray<LELine*> *)linesAttachedToMeAsArray;
+@property (readonly, copy) NSArray<LELine*> *linesAttachedToMeAsArray;
 //-(void)scanForLineChanges;
 -(void)lineConnectedToMe:(LELine *)obj;
 -(void)lineDisconnectedFromMe:(LELine *)obj;

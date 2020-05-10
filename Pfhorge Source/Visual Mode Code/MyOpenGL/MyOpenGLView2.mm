@@ -22,6 +22,7 @@ _______________________________________________________________________________
 #import <Foundation/Foundation.h>
 #import "LEExtras.h"
 #import "LEPolygon.h"
+#import <GLKit/GLKit.h>
 
 // Here is my Map Viewer:
 
@@ -207,7 +208,7 @@ void SizeOpenGLScreen(int width, int height)            // Initialize The GL Win
                                                         // (view angle, aspect ration of the width to the height, 
                                                         //  The closest distance to the camera before it clips, 
                   // FOV        // Ratio                //  The farthest distance before it stops drawing)
-    gluPerspective(45.0f,(GLfloat)width/(GLfloat)height, 1.0f , 512.0f);
+	glMultMatrixf(GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0f), (GLfloat)width/(GLfloat)height, 1.0f, 512.0f).m);
 
     glMatrixMode(GL_MODELVIEW);                            // Select The Modelview Matrix
     glLoadIdentity();                                    // Reset The Modelview Matrix

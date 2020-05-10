@@ -731,10 +731,10 @@
         if (thisMapLine == currentLine)
             return _unknown;
         
-        previousX = [betaPoint getX] - [alphaPoint getX];
-        previousY = [betaPoint getY] - [alphaPoint getY];
-        thisX = [theCurPoint getX] - [betaPoint getX];
-        thisY = [theCurPoint getY] - [betaPoint getY];
+		previousX = [betaPoint x] - [alphaPoint x];
+		previousY = [betaPoint y] - [alphaPoint y];
+		thisX = [theCurPoint x] - [betaPoint x];
+		thisY = [theCurPoint y] - [betaPoint y];
         prevX = previousX;
         prevY = previousY;
         theX = thisX;
@@ -1033,7 +1033,7 @@
     
     if ([thePolyToRemove type] == _polygon_is_platform)
     {
-        PhPlatform *thePlatform = [thePolyToRemove getPermutationObject];
+        PhPlatform *thePlatform = [thePolyToRemove permutationObject];
         
         if ([thePlatform isKindOfClass:[PhPlatform class]])
         {
@@ -1180,7 +1180,7 @@
     
     if ([poly type] == _polygon_is_platform)
     {
-        PhPlatform *thePlatform = [poly getPermutationObject];
+        PhPlatform *thePlatform = [poly permutationObject];
         
         if (thePlatformToRemove == thePlatform)
         {
@@ -1196,7 +1196,7 @@
             LEPolygon *thisPoly = nil;
             while (thisPoly = [numer nextObject])
             {
-                if (thePlatformToRemove == [thisPoly getPermutationObject])
+                if (thePlatformToRemove == [thisPoly permutationObject])
                 {
                     // Same Object!!!
                     [thisPoly setPermutationObject:nil];

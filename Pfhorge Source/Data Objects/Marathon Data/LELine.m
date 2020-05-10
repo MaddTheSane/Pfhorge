@@ -911,8 +911,8 @@
 // ********* Set Accsessor Methods ********* 
  #pragma mark -
 #pragma mark ********* Set Accsessor Methods *********
--(void) setP1:(short)s { [self setP1:s]; }
--(void) setP2:(short)s { [self setP2:s]; }
+-(void) setP1:(short)s { [self setPointIndex1:s]; }
+-(void) setP2:(short)s { [self setPointIndex2:s]; }
 
 -(void) setPointIndex1:(short)s
 {
@@ -1292,10 +1292,10 @@
                         short newX, newY, newPrevX, newPrevY;
                         BOOL slopeChecksOut = NO;
         
-                        previousX = [currentLineSecondaryPoint getX] - [currentLineMainPoint getX];
-                        previousY = [currentLineSecondaryPoint getY] - [currentLineMainPoint getY];
-                        thisX = [theCurPoint getX] - [currentLineMainPoint getX];
-                        thisY = [theCurPoint getY] - [currentLineMainPoint getY];
+						previousX = [currentLineSecondaryPoint x] - [currentLineMainPoint x];
+						previousY = [currentLineSecondaryPoint y] - [currentLineMainPoint y];
+						thisX = [theCurPoint x] - [currentLineMainPoint x];
+						thisY = [theCurPoint y] - [currentLineMainPoint y];
                         prevX = previousX;
                         prevY = previousY;
                         theX = thisX;
@@ -1620,10 +1620,10 @@
         if (thisMapLine == currentLine)
             continue;
         
-        previousX = [betaPoint getX] - [alphaPoint getX];
-        previousY = [betaPoint getY] - [alphaPoint getY];
-        thisX = [theCurPoint getX] - [betaPoint getX];
-        thisY = [theCurPoint getY] - [betaPoint getY];
+		previousX = [betaPoint x] - [alphaPoint x];
+		previousY = [betaPoint y] - [alphaPoint y];
+		thisX = [theCurPoint x] - [betaPoint x];
+		thisY = [theCurPoint y] - [betaPoint y];
         prevX = previousX;
         prevY = previousY;
         theX = thisX;

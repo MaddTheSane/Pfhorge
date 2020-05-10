@@ -103,7 +103,7 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @property (nonatomic, assign) LEMapPoint *mapPoint1;
 @property (nonatomic, assign) LEMapPoint *mapPoint2;
 
-@property LELineFlags flags;
+@property (nonatomic) LELineFlags flags;
 
 @property short length;
 

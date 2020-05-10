@@ -114,16 +114,16 @@
 
 -(IBAction)deleteRecord:(id)sender
 {
-    NSEnumerator *enumerator = [tableView selectedRowEnumerator];
-    id index;
+    NSIndexSet *rowIndexes = [tableView selectedRowIndexes];
+    NSInteger index = [rowIndexes firstIndex];
     NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
-    while ( (index = [enumerator nextObject]) )
+    while ( (index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound)
     {
-        if ([index intValue] != (((int)[records count]) - 1))
+        if (index != (((int)[records count]) - 1))
         {
-            tempObject = [records objectAtIndex:[index intValue]]; // No modification, no problem
+            tempObject = [records objectAtIndex:index]; // No modification, no problem
             [tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
         }
         else
@@ -132,8 +132,8 @@
         }
     }
     
-    enumerator = [tempArray objectEnumerator];
-    while (index = [enumerator nextObject])
+    NSEnumerator *enumerator = [tempArray objectEnumerator];
+    for (id index in enumerator)
     {
         [records removeObjectIdenticalTo:index]; // we're golden
     }
@@ -173,8 +173,8 @@
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
-    NSEnumerator *enumerator = [tableView selectedRowEnumerator];
-    id index;
+    NSIndexSet *enumerator = [tableView selectedRowIndexes];
+    NSInteger index = [enumerator firstIndex];
    // NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
@@ -188,11 +188,11 @@
     NSNumber *cMax = [NSNumber numberWithInt:intCMax];
     NSNumber *cMin = [NSNumber numberWithInt:intCMin];
     
-    while ( (index = [enumerator nextObject]) )
+    while ( (index = [enumerator indexGreaterThanIndex:index]) != NSNotFound )
     {
-        if ([index intValue] != (((int)[records count]) - 1))
+        if (index != (((int)[records count]) - 1))
         {
-            tempObject = [records objectAtIndex:[index intValue]]; // No modification, no problem
+            tempObject = [records objectAtIndex:index]; // No modification, no problem
             //[tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
             //[record setObject:theName forKey:PhDefaultLayer_Name];
             [tempObject setObject:archive(cMax) forKey:PhDefaultLayer_CeilingMax];
@@ -217,18 +217,18 @@
 
 -(IBAction)changeName:(id)sender
 {
-    NSEnumerator *enumerator = [tableView selectedRowEnumerator];
-    id index;
+    NSIndexSet *rowIndexes = [tableView selectedRowIndexes];
+    NSInteger index = [rowIndexes firstIndex];
     //NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
     NSString *theName = [nameTB stringValue];
     
-    while ( (index = [enumerator nextObject]) )
+    while ( (index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound )
     {
-        if ([index intValue] != (((int)[records count]) - 1))
+        if (index != (((int)[records count]) - 1))
         {
-            tempObject = [records objectAtIndex:[index intValue]]; // No modification, no problem
+            tempObject = [records objectAtIndex:index]; // No modification, no problem
             //[tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
             [tempObject setObject:theName forKey:PhDefaultLayer_Name];
         }
@@ -295,12 +295,10 @@
     else
     {
         float floatValue = (float)(((float)[unarchive(theValue) floatValue]) / ((float)WORLD_ONE));
-        theValue = [NSNumber numberWithFloat:floatValue];
+        theValue = @(floatValue);
     }
     
     return theValue;
 }
-
-
 
 @end

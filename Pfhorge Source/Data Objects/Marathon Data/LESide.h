@@ -216,7 +216,7 @@ typedef struct side_exclusion_zone
 -(void)setSecondary_lightsource_object:(id)v;
 -(void)setTransparent_lightsource_object:(id)v;
         
--(void)setAmbient_delta:(long)v;
+@property int ambientDelta;
 
 // *****************   Get Accsessors   *****************
 -(char)primaryTexture;
@@ -261,8 +261,6 @@ typedef struct side_exclusion_zone
 -(id)getprimary_lightsource_object;
 -(id)getsecondary_lightsource_object;
 -(id)gettransparent_lightsource_object;
-
--(int)getAmbient_delta;
 
 //  ************************** Other Usful Methods *************************
 -(short)getAdjustedControlPanelType;

@@ -113,7 +113,7 @@
     curPoly = thePoly;
     
     /*
-    NSPoint ceilingOrigin = [thePoly getCeiling_origin];
+    NSPoint ceilingOrigin = [thePoly ceilingOrigin];
     NSPoint floorOrigin = [thePoly getFloor_origin];
     short floorTexture = [thePoly getFloor_texture];
     short ceilingTexture = [thePoly getCeiling_texture];
@@ -162,7 +162,7 @@
             [platformParametersBtn setEnabled:NO];
             [permutation setEnabled:YES];
             [theLevelData addMenu:permutation asA:_lightMenu];
-            [permutation selectItemAtIndex:[thePoly getPermutation]];
+            [permutation selectItemAtIndex:[thePoly permutation]];
             lastMenuTypeCache = _lightMenu;
             break;
         
@@ -171,7 +171,7 @@
         case _polygon_is_teleporter:
             [permutationTab selectTabViewItemAtIndex:0];
             
-            tmpObj = [thePoly getPermutationObject];
+            tmpObj = [thePoly permutationObject];
             [permutation setEnabled:YES];
             [platformParametersBtn setEnabled:NO];
             [theLevelData addMenu:permutation asA:_polyMenu];
@@ -191,7 +191,7 @@
         case _polygon_is_base:
             [permutationTab selectTabViewItemAtIndex:1];
             
-            tmpObj = [thePoly getPermutationObject];
+            tmpObj = [thePoly permutationObject];
             
             if (tmpObj != nil /*&& NOTE: test to make sure tmpObj is a NSNumber!!! */)
                 [permutationNumberTB setIntValue:[tmpObj intValue]];
@@ -208,7 +208,7 @@
             /*[permutation setEnabled:YES];
             [theLevelData addMenu:permutation asA:_platformMenu];
             lastMenuTypeCache = _platformMenu;
-            [permutation selectItemAtIndex:[thePoly getPermutation]];
+            [permutation selectItemAtIndex:[thePoly permutation]];
             [platformParametersBtn setEnabled:YES];
             break;*/
             [permutationTab selectTabViewItemAtIndex:0];
@@ -222,7 +222,7 @@
         case _polygon_is_automatic_exit:
             [permutationTab selectTabViewItemAtIndex:1];
             
-            tmpObj = [thePoly getPermutationObject];
+            tmpObj = [thePoly permutationObject];
             [permutationNumberTB setIntValue:[tmpObj intValue]];
             
             [platformParametersBtn setEnabled:NO];
@@ -250,8 +250,8 @@
     [ambientSound selectItemAtIndex:[thePoly getAmbient_sound_image_index] + 1];
     [yandomSound selectItemAtIndex:[thePoly getRandom_sound_image_index] + 1];
     
-    [ceilingLight selectItemAtIndex:[thePoly getCeiling_lightsource_index]];
-    [floorLight selectItemAtIndex:[thePoly getFloor_lightsource_index]];
+    [ceilingLight selectItemAtIndex:[thePoly ceilingLightsourceIndex]];
+    [floorLight selectItemAtIndex:[thePoly floorLightsourceIndex]];
     [liquidLight selectItemAtIndex:[thePoly getMedia_lightsource_index]];
     
     [liquid setObjectValue:[liquid objectValueOfSelectedItem]];
@@ -286,7 +286,7 @@
     //[[PhPlatformParametersWindowController sharedPlatformController] showSheet];
     LEPolygon *thePoly = curPoly;//[mainInspectorController getTheCurrentSelection];
     //LELevelData *theLevelData = [mainInspectorController currentLevel];
-    PhPlatform *thePolyPlatform = [thePoly getPermutationObject];
+    PhPlatform *thePolyPlatform = [thePoly permutationObject];
     PhPlatform *curPlat = nil;
     
     NSArray *thePlatforms = [[mainInspectorController currentLevel] getPlatforms];
@@ -377,7 +377,7 @@
     
     if (theOldPolyType == _polygon_is_platform && !(thePolyType == _polygon_is_platform))
     {
-        [theLevelData deletePlatform:[thePolyInQuestion getPermutationObject]];
+        [theLevelData deletePlatform:[thePolyInQuestion permutationObject]];
     }
     
     [thePolyInQuestion  setType:thePolyType];

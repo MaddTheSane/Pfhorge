@@ -109,12 +109,12 @@
                 
                 if (i == 1)
                 {
-                    cPlat = [clockPoly getPermutationObject];
+                    cPlat = [clockPoly permutationObject];
                     cPlatform = YES;
                 }
                 else if (i == 2)
                 {
-                    ccPlat = [counterclockPoly getPermutationObject];
+                    ccPlat = [counterclockPoly permutationObject];
                     ccPlatform = YES;
                 }
                

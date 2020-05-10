@@ -143,27 +143,27 @@
         [self updateMenu:pfhorMenu withImages:[textures getTextureCollection:_pfhor]];*/
         
         [primaryTexture setPullsDown:NO];
-        [[primaryTexture cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+        [[primaryTexture cell] setBezelStyle:NSBezelStyleRegularSquare];
         [[primaryTexture cell] setArrowPosition:NSPopUpArrowAtBottom];
         [[primaryTexture cell] setImagePosition:NSImageOnly];
 
         [secondaryTexture setPullsDown:NO];
-        [[secondaryTexture cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+        [[secondaryTexture cell] setBezelStyle:NSBezelStyleRegularSquare];
         [[secondaryTexture cell] setArrowPosition:NSPopUpArrowAtBottom];
         [[secondaryTexture cell] setImagePosition:NSImageOnly];
 
         [transparentTexture setPullsDown:NO];
-        [[transparentTexture cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+        [[transparentTexture cell] setBezelStyle:NSBezelStyleRegularSquare];
         [[transparentTexture cell] setArrowPosition:NSPopUpArrowAtBottom];
         [[transparentTexture cell] setImagePosition:NSImageOnly];
 
         [ceilingTexture setPullsDown:NO];
-        [[ceilingTexture cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+        [[ceilingTexture cell] setBezelStyle:NSBezelStyleRegularSquare];
         [[ceilingTexture cell] setArrowPosition:NSPopUpArrowAtBottom];
         [[ceilingTexture cell] setImagePosition:NSImageOnly];
 
         [floorTexture setPullsDown:NO];
-        [[floorTexture cell] setBezelStyle:NSSmallIconButtonBezelStyle];
+        [[floorTexture cell] setBezelStyle:NSBezelStyleRegularSquare];
         [[floorTexture cell] setArrowPosition:NSPopUpArrowAtBottom];
         [[floorTexture cell] setImagePosition:NSImageOnly];
     
@@ -271,8 +271,8 @@
     short ceilingTransferMode = [thePoly getCeiling_transfer_mode];
     short floorTransferMode = [thePoly getFloor_transfer_mode];
 
-    NSPoint ceilingOrigin = [thePoly getCeiling_origin];
-    NSPoint floorOrigin = [thePoly getFloor_origin];
+    NSPoint ceilingOrigin = [thePoly ceilingOrigin];
+    NSPoint floorOrigin = [thePoly floorOrigin];
     char floorTextureChar = [thePoly floorTextureOnly];
     char ceilingTextureChar = [thePoly ceilingTextureOnly];
     
@@ -1026,8 +1026,8 @@
     theNewCeilingOrigin.x = GetMatrixIntValue(sender, 1);
     theNewCeilingOrigin.y = GetMatrixIntValue(sender, 2);
     
-    [basePolyRef setCeiling_origin:theNewCeilingOrigin];
-    [basePolyRef setFloor_origin:theNewFloorOrigin];
+    [basePolyRef setCeilingOrigin:theNewCeilingOrigin];
+    [basePolyRef setFloorOrigin:theNewFloorOrigin];
 }
 
 @end

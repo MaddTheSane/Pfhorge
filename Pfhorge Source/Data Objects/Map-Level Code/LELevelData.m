@@ -371,7 +371,7 @@
                 case _polygon_is_platform_on_trigger:
                 case _polygon_is_platform_off_trigger:
                 case _polygon_is_teleporter:
-                    thePolyPointedTo = [thePolyToCheck getPermutationObject];
+                    thePolyPointedTo = [thePolyToCheck permutationObject];
                     // This Might Be able To Insert Nil Objects Into An Array...
                     [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo index])];
                     break;
@@ -561,8 +561,7 @@
     [namedPolyObjects removeAllObjects];
     [terminalNames removeAllObjects];
     
-    numer = [polys objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LEPolygon *theObj in polys)
     {
         if ([theObj doIHaveAName])
         {
@@ -572,10 +571,10 @@
         
         if ([theObj type] == _polygon_is_platform)
         {
-            if ([[theObj getPermutationObject] polygonObject] != theObj)
+            if ([[theObj permutationObject] polygonObject] != theObj)
             { // The polygon points to a platform which does not point back
               //   to the polygon...  This will fix that, hopefully...
-                [[theObj getPermutationObject] setPolygon_object:theObj];
+                [[theObj permutationObject] setPolygon_object:theObj];
             }
         }
     }

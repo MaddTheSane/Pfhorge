@@ -2138,11 +2138,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogPointFromData:@"setFloor_origin"];
         #endif
-        [theObj setFloor_origin:NSMakePoint([self getShort], [self getShort])];
+        [theObj setFloorOrigin:NSMakePoint([self getShort], [self getShort])];
         #ifdef useDebugingLogs
             [self NSLogPointFromData:@"setCeiling_origin"];
         #endif
-        [theObj setCeiling_origin:NSMakePoint([self getShort], [self getShort])];
+        [theObj setCeilingOrigin:NSMakePoint([self getShort], [self getShort])];
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setMediaObject"];
@@ -2351,7 +2351,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setAmbient_delta"];
         #endif
-        [theObj setAmbient_delta:[self getLong]];
+        [theObj setAmbientDelta:[self getLong]];
         
         theCursor+=2; // Skip the unused short
     }
@@ -2845,7 +2845,6 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     NSArray *theObjects = [level getTheLines];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
 	return;
@@ -2853,10 +2852,10 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveEntryHeader:'LINS' next_offset:[mapDataToSave length] length:(objCount * 32 /* line length */) offset:0];
     
     NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
+    for (LELine *currentObj in theObjects)
     {                
-	[self saveShort:[currentObj p1]];
-	[self saveShort:[currentObj p2]];
+		[self saveShort:[currentObj pointIndex1]];
+		[self saveShort:[currentObj pointIndex2]];
 	[self saveUnsignedShort:[currentObj flags]];
 	[self saveShort:[currentObj length]];
 	[self saveShort:[currentObj highestAdjacentFloor]];
@@ -2879,7 +2878,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 128)];
     NSArray *theObjects = [level getThePolys];
     long objCount = [theObjects count];
-    id currentObj = nil;
+    LEPolygon *currentObj = nil;
             
     if (objCount < 1)
 	return;
@@ -2891,7 +2890,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     {
 	[self saveShort:[currentObj type]];
 	[self saveUnsignedShort:[currentObj flags]];
-	[self saveShort:[currentObj getPermutation]];
+	[self saveShort:[currentObj permutation]];
 	
 	[self saveShort:[currentObj getTheVertexCount]];
 	
@@ -2917,8 +2916,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getCeiling_texture]];
 	[self saveShort:[currentObj getFloor_height]];
 	[self saveShort:[currentObj getCeiling_height]];
-	[self saveShort:[currentObj getFloor_lightsource_index]]; 
-	[self saveShort:[currentObj getCeiling_lightsource_index]]; 
+	[self saveShort:[currentObj floorLightsourceIndex]]; 
+	[self saveShort:[currentObj ceilingLightsourceIndex]]; 
 	
 	//[self saveLong:[currentObj getArea]];
 	[self saveLong:0];
@@ -2952,13 +2951,13 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:0];
 	[self saveShort:0];
 	
-	//[self saveShort:[currentObj getFirst_neighbor_index]]; 
-	//[self saveShort:[currentObj getNeighbor_count]];
+	//[self saveShort:[currentObj firstNeighborIndex]]; 
+	//[self saveShort:[currentObj neighborCount]];
 	[self saveShort:0]; 
 	[self saveShort:0];
 	
-	//[self saveShort:[currentObj getCenter].x];
-	//[self saveShort:[currentObj getCenter].y];
+	//[self saveShort:[currentObj center].x];
+	//[self saveShort:[currentObj center].y];
 	[self saveShort:0];
 	[self saveShort:0];
 	
@@ -2973,11 +2972,11 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getSide_indexes:6]]; 
 	[self saveShort:[currentObj getSide_indexes:7]];
 	
-	[self saveShort:[currentObj getFloor_origin].x];
-	[self saveShort:[currentObj getFloor_origin].y];
+	[self saveShort:[currentObj floorOrigin].x];
+	[self saveShort:[currentObj floorOrigin].y];
 	
-	[self saveShort:[currentObj getCeiling_origin].x];
-	[self saveShort:[currentObj getCeiling_origin].y];
+	[self saveShort:[currentObj ceilingOrigin].x];
+	[self saveShort:[currentObj ceilingOrigin].y];
 	
 	[self saveShort:[currentObj getMedia_index]];
 	[self saveShort:[currentObj getMedia_lightsource_index]];
@@ -3001,15 +3000,13 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 16)];
     NSArray *theObjects = [level theMapObjects];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
 	return;
 	
     [self saveEntryHeader:'OBJS' next_offset:[mapDataToSave length] length:(objCount * 16 /* objs length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
+    for (LEMapObject *currentObj in theObjects)
     {
 	[self saveShort:[currentObj type]];
 	[self saveShort:[currentObj getObjTypeIndex]];
@@ -3109,7 +3106,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getSecondary_lightsource_index]];
 	[self saveShort:[currentObj getTransparent_lightsource_index]];
 	
-	[self saveLong:[currentObj getAmbient_delta]];
+	[self saveLong:[currentObj ambientDelta]];
 	
 	[self saveEmptyBytes:2]; //Skip the unused part... :)
     }

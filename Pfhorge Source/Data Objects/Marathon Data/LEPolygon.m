@@ -388,7 +388,7 @@
         case _polygon_is_light_off_trigger:
         case _polygon_is_platform_off_trigger:
         case _polygon_is_teleporter:
-            ExportObjPos(permutationObject);
+            ExportObjPos(((LEMapStuffParent*)permutationObject));
             break;
         case _polygon_is_automatic_exit:
             tmpShort = [permutationObject shortValue];
@@ -1220,8 +1220,8 @@
     [theTarget setAmbient_soundObject:ambient_sound_image_object];
     [theTarget setRandom_soundObject:random_sound_image_object];
     
-    [theTarget setFloor_origin:floor_origin];
-    [theTarget setCeiling_origin:ceiling_origin];
+    [theTarget setFloorOrigin:floor_origin];
+    [theTarget setCeilingOrigin:ceiling_origin];
     
     [theTarget setType:type];
     [theTarget setFlags:flags];
@@ -1239,11 +1239,11 @@
         case _polygon_is_platform:
             if ([permutationObject class] == [PhPlatform class])
             {
-				if ([theTarget getPermutationObject] != nil)
+				if ([theTarget permutationObject] != nil)
 				{
-					if ([[theTarget getPermutationObject] class] == [PhPlatform class])
+					if ([[theTarget permutationObject] class] == [PhPlatform class])
 					{
-						tempPermutationObj = [theTarget getPermutationObject];
+						tempPermutationObj = [theTarget permutationObject];
 						[permutationObject copySettingsTo:tempPermutationObj];
 					}
 					else
@@ -1750,8 +1750,8 @@
     side_objects[i] = v; 
 } //
 
--(void)setFloor_origin:(NSPoint)v { floor_origin = v; }
--(void)setCeiling_origin:(NSPoint)v { ceiling_origin = v; }
+-(void)setFloorOrigin:(NSPoint)v { floor_origin = v; }
+-(void)setCeilingOrigin:(NSPoint)v { ceiling_origin = v; }
 
 -(void)setMedia:(short)v { [self setMediaIndex:v]; }
 -(void)setMediaIndex:(short)v 
@@ -1826,9 +1826,9 @@
 -(LEPolygonType)type { return type; }
 -(LEPolygonFlags)flags { return flags; }
 
--(short)getPermutation
+-(short)permutation
 {
-    ///SEND_ERROR_MSG(@"An obsolet method -(short)getPermutation was called in a polygon object, this is a possible error!");
+    ///SEND_ERROR_MSG(@"An obsolet method -(short)permutation was called in a polygon object, this is a possible error!");
     
     if ([permutationObject isKindOfClass:[NSNumber class]])
     {
@@ -1839,11 +1839,11 @@
     /*if (permutationObject != nil)
         NSLog(@"polygonPermutation index number: %d", [permutationObject index]);*/
     
-    return (permutationObject == nil) ? (-1) : ([permutationObject index]);
+    return (permutationObject == nil) ? (-1) : ([(LEMapStuffParent*)permutationObject index]);
 }
--(short)getPermutationZero { return (permutationObject == nil) ? (0) : ([self getPermutation]); } // ***
+-(short)getPermutationZero { return (permutationObject == nil) ? (0) : ([self permutation]); } // ***
 
--(id)getPermutationObject
+-(id)permutationObject
 {
     if (permutationObject == nil)
         return nil;
@@ -1894,20 +1894,20 @@
 -(short)getFloor_height { return floor_height; }
 -(short)getCeiling_height { return ceiling_height; }
 
--(NSDecimalNumber *)getFloor_height_decimal { return [self divideAndRound:floor_height by:1024]; }
--(NSDecimalNumber *)getCeiling_height_decimal { return [self divideAndRound:ceiling_height by:1024]; }
+-(NSDecimalNumber *)floorHeightAsDecimal { return [self divideAndRound:floor_height by:1024]; }
+-(NSDecimalNumber *)ceilingHeightAsDecimal { return [self divideAndRound:ceiling_height by:1024]; }
 
--(NSString *)getFloor_height_decimal_string { return [[self getFloor_height_decimal] stringValue]; }
--(NSString *)getCeiling_height_decimal_string { return [[self getCeiling_height_decimal] stringValue]; }
+-(NSString *)floorHeightAsDecimalString { return [[self floorHeightAsDecimal] stringValue]; }
+-(NSString *)ceilingHeightAsDecimalString { return [[self ceilingHeightAsDecimal] stringValue]; }
 
--(short)getFloor_lightsource_index { return (floor_lightsource_object == nil) ? -1 : [floor_lightsource_object index]; }
--(short)getCeiling_lightsource_index { return (ceiling_lightsource_object == nil) ? -1 : [ceiling_lightsource_object index]; }
+-(short)floorLightsourceIndex { return (floor_lightsource_object == nil) ? -1 : [floor_lightsource_object index]; }
+-(short)ceilingLightsourceIndex { return (ceiling_lightsource_object == nil) ? -1 : [ceiling_lightsource_object index]; }
 
 -(short)getFloor_lightsource_index_zero { return (floor_lightsource_object == nil) ? 0 : [floor_lightsource_object index]; }  // ***
 -(short)getCeiling_lightsource_index_zero { return (ceiling_lightsource_object == nil) ? 0 : [ceiling_lightsource_object index]; }  // ***
 
--(id)getFloor_lightsource_object { return floor_lightsource_object; } // ---
--(id)getCeiling_lightsource_object { return ceiling_lightsource_object; } // ---
+-(id)floorLightsourceObject { return floor_lightsource_object; } // ---
+-(id)ceilingLightsourceObject { return ceiling_lightsource_object; } // ---
 
 -(int)getArea { return area; }
 -(short)getFirst_object_index { return first_object_index; } //
@@ -1920,17 +1920,17 @@
 -(short)getAdjacent_polygon_indexes:(short)i { return (adjacent_polygon_objects[i] == nil) ? 0 : [adjacent_polygon_objects[i] index]; }  // ***
 -(id)getAdjacent_polygon_objects:(short)i { return adjacent_polygon_objects[i]; } //
 
--(short)getFirst_neighbor_index { return (first_neighbor_object == nil) ? -1 : [first_neighbor_object index]; } //
+-(short)firstNeighborIndex { return (first_neighbor_object == nil) ? -1 : [first_neighbor_object index]; } //
 -(id)getFirst_neighbor_object { return first_neighbor_object; } // ---
 
--(short)getNeighbor_count { return neighbor_count; }
--(NSPoint)getCenter { return center; }
+-(short)neighborCount { return neighbor_count; }
+-(NSPoint)center { return center; }
 
 -(short)getSide_indexes:(short)i { return (side_objects[i] == nil) ? 0 : [side_objects[i] index]; }  // ***
 -(id)getSide_objects:(short)i { return side_objects[i]; } //
 
--(NSPoint)getFloor_origin { return floor_origin; }
--(NSPoint)getCeiling_origin { return ceiling_origin; }
+-(NSPoint)floorOrigin { return floor_origin; }
+-(NSPoint)ceilingOrigin { return ceiling_origin; }
 
 -(short)getMedia_index { return (media_object == nil) ? -1 : [media_object index]; } //
 -(short)getMedia_lightsource_index { return (media_lightsource_object == nil) ? 0 : [media_lightsource_object index]; }  // ***
@@ -1983,25 +1983,25 @@
         return NO;
     }*/
     
-    leftMostX = [vertexObjects[0] getX];
-    greatestY = [vertexObjects[0] getY];
-    leastY = [vertexObjects[0] getY];
+	leftMostX = [vertexObjects[0] x];
+	greatestY = [vertexObjects[0] y];
+	leastY = [vertexObjects[0] y];
     leftMostPoint = vertexObjects[0];
     for (i = 1; i < vertexCountForPoly; i++)
     {
         if (vertexObjects[i] != nil)
         {
-            if ([vertexObjects[i] getX] < leftMostX)
+            if ([vertexObjects[i] x] < leftMostX)
             {
-                leftMostX = [vertexObjects[i] getX];
+                leftMostX = [vertexObjects[i] x];
                 leftMostPoint = vertexObjects[i];
                 //NSLog(@"Less Then to leftMostX, point index: %d",
                 //[theMapPointsST indexOfObjectIdenticalTo:vertexObjects[i]]);
                 ////NSLog(@"leftMostX: %d", leftMostX);
             }
-            else if ([vertexObjects[i] getX] == leftMostX)
+            else if ([vertexObjects[i] x] == leftMostX)
             {
-                leftMostX = [vertexObjects[i] getX];
+                leftMostX = [vertexObjects[i] x];
                 leftMostPoint = vertexObjects[i];
                 //NSLog(@"Equal to leftMostX, point index: %d",
                 //[theMapPointsST indexOfObjectIdenticalTo:vertexObjects[i]]);
@@ -2018,11 +2018,11 @@
                 }*/
             }
             
-            if ([vertexObjects[i] getY] > greatestY) // Get The Bottom Most Point...
-                greatestY = [vertexObjects[i] getY];
+			if ([vertexObjects[i] y] > greatestY) // Get The Bottom Most Point...
+				greatestY = [vertexObjects[i] y];
             
-            if ([vertexObjects[i] getY] < leastY) // Get The Top Most Point...
-                leastY = [vertexObjects[i] getY];
+			if ([vertexObjects[i] y] < leastY) // Get The Top Most Point...
+				leastY = [vertexObjects[i] y];
         }
         else if (vertexObjects[i] == nil)
         {
@@ -2047,8 +2047,8 @@
         
   // NSLog(@"It's Point Indexes for leftMostPointIndex: %d", [theMapPointsST indexOfObjectIdenticalTo:leftMostPoint]);
     
-    bottomMost = (BOOL)(greatestY == [leftMostPoint getY]);
-    topMost =  (BOOL)(leastY == [leftMostPoint getY]);
+	bottomMost = (BOOL)(greatestY == [leftMostPoint y]);
+	topMost =  (BOOL)(leastY == [leftMostPoint y]);
     
     //   See if the Left Point Object is the same object
     //   as one of the point objects for this line...
@@ -2063,7 +2063,7 @@
             //NSLog(@"Line %d passed", [lineObjects[i] index]);
             
             
-            if ([[lineObjects[i] mapPoint1] getY] != [[lineObjects[i] mapPoint2] getY])
+			if ([[lineObjects[i] mapPoint1] y] != [[lineObjects[i] mapPoint2] y])
             {
                 id theCurSecPoint;
                 
@@ -2092,10 +2092,10 @@
                 
                 if ((topMost || bottomMost) && !pointOneGotten && !gettingSlope)
                 {
-                    thePrevPointY = [theCurSecPoint getY];
-                    thePrevPointX = [theCurSecPoint getX];
-                    theMainPointX = [leftMostPoint getX];
-                    theMainPointY = [leftMostPoint getY];
+					thePrevPointY = [theCurSecPoint y];
+					thePrevPointX = [theCurSecPoint x];
+					theMainPointX = [leftMostPoint x];
+					theMainPointY = [leftMostPoint y];
                     gettingSlope = YES;
                     thePrevLine = lineObjects[i];
                   // NSLog(@"Found a line 1 for slop check, line %d", [lineObjects[i] index]);
@@ -2104,8 +2104,8 @@
                 {
                     double previousX = thePrevPointX - theMainPointX; //
                     double previousY = thePrevPointY - theMainPointY; //
-                    double thisX = [theCurSecPoint getX] - theMainPointX;
-                    double thisY = [theCurSecPoint getY] - theMainPointY; //
+					double thisX = [theCurSecPoint x] - theMainPointX;
+					double thisY = [theCurSecPoint y] - theMainPointY; //
                     
                     double slope = previousY / previousX;
                     double theXfromSlope = thisY / slope;
@@ -2298,10 +2298,10 @@
                 short newX, newY, newPrevX, newPrevY;
                 BOOL slopeChecksOut = NO;
 
-                previousX = [currentLineSecondaryPoint getX] - [currentLineMainPoint getX];
-                previousY = [currentLineSecondaryPoint getY] - [currentLineMainPoint getY];
-                thisX = [theCurPoint getX] - [currentLineMainPoint getX];
-                thisY = [theCurPoint getY] - [currentLineMainPoint getY];
+				previousX = [currentLineSecondaryPoint x] - [currentLineMainPoint x];
+				previousY = [currentLineSecondaryPoint y] - [currentLineMainPoint y];
+				thisX = [theCurPoint x] - [currentLineMainPoint x];
+				thisY = [theCurPoint y] - [currentLineMainPoint y];
                 prevX = previousX;
                 prevY = previousY;
                 theX = thisX;

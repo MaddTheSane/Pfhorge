@@ -370,13 +370,13 @@ static inline float4x4 matrix4MakeLookAt(float3 eye, float3 center, float3 up)
 void CCamera::Look()
 {
 	//TODO: test this code!
-//	float4x4 lookMatrix = matrix4MakeLookAt(m_vPosition, m_vView, m_vUpVector);
-//	::glMultMatrixf((GLfloat*)&lookMatrix);
+	float4x4 lookMatrix = matrix4MakeLookAt(m_vPosition, m_vView, m_vUpVector);
+	::glMultMatrixf((GLfloat*)&lookMatrix);
 //	glTranslatef(-m_vPosition.x, -m_vPosition.y, -m_vPosition.z);
     // Give openGL our camera position, then camera view, then camera up vector
-    gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z,
-              m_vView.x,     m_vView.y,     m_vView.z,  
-              m_vUpVector.x, m_vUpVector.y, m_vUpVector.z);
+//    gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z,
+//              m_vView.x,     m_vView.y,     m_vView.z,  
+//              m_vUpVector.x, m_vUpVector.y, m_vUpVector.z);
 }
 
 

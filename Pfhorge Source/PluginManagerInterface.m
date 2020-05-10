@@ -15,12 +15,12 @@
 
 @implementation PhPluginManager (ForPlugins)
 
-    // Use this to get the plugin manager...
-    + (PhPluginManager *)getThePluginManager
-    {
-        return [PhPluginManager sharedPhPluginManager];
-    }
-    
+// Use this to get the plugin manager...
++ (PhPluginManager *)getThePluginManager
+{
+	return [PhPluginManager sharedPhPluginManager];
+}
+
 //    // Currently Loaded Plugin Types...
 //    - (NSArray *)pluginClasses
 //    {
@@ -32,20 +32,20 @@
 //    {
 //        return pluginInstances;
 //    }
-    
-    // Lists the LEMap documents open,
-    //    in order of front to back...
-    - (NSArray<LEMap *> *)levelDocumentsOpen;
-    {
-        NSArray *theArray = [[NSDocumentController sharedDocumentController] documents];
-        return ([theArray count] < 1) ? nil : theArray;
-    }
-    
-    // Gives the front most LEMap level document...
-    -(LEMap *)currentDocument
-    {
-        return [[NSDocumentController sharedDocumentController] currentDocument];
-    }
+
+// Lists the LEMap documents open,
+//    in order of front to back...
+- (NSArray<LEMap *> *)levelDocumentsOpen;
+{
+	NSArray *theArray = [[NSDocumentController sharedDocumentController] documents];
+	return ([theArray count] < 1) ? nil : theArray;
+}
+
+// Gives the front most LEMap level document...
+-(LEMap *)currentDocument
+{
+	return [[NSDocumentController sharedDocumentController] currentDocument];
+}
 
 @end
 
