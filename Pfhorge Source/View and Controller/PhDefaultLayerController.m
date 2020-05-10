@@ -65,10 +65,10 @@
     NSLog(@"Registering the Layer Defaults");
     
     [ARecord setObject:@"Default Layer"				forKey:PhDefaultLayer_Name];
-    [ARecord setObject:archive(@-9216)	forKey:PhDefaultLayer_FloorMin];
-    [ARecord setObject:archive(@9216)	forKey:PhDefaultLayer_FloorMax];
-    [ARecord setObject:archive(@-9216)	forKey:PhDefaultLayer_CeilingMin];
-    [ARecord setObject:archive(@9216)	forKey:PhDefaultLayer_CeilingMax];
+    [ARecord setObject:@-9216	forKey:PhDefaultLayer_FloorMin];
+    [ARecord setObject:@9216	forKey:PhDefaultLayer_FloorMax];
+    [ARecord setObject:@-9216	forKey:PhDefaultLayer_CeilingMin];
+    [ARecord setObject:@9216	forKey:PhDefaultLayer_CeilingMax];
     
     [theRecords addObject:ARecord];
     
@@ -115,7 +115,7 @@
 -(IBAction)deleteRecord:(id)sender
 {
     NSIndexSet *rowIndexes = [tableView selectedRowIndexes];
-    NSInteger index = [rowIndexes firstIndex];
+    NSInteger index = 0;
     NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
@@ -163,10 +163,10 @@
     NSNumber *cMin = [NSNumber numberWithInt:intCMin];
     
     [record setObject:theName forKey:PhDefaultLayer_Name];
-    [record setObject:archive(cMax) forKey:PhDefaultLayer_CeilingMax];
-    [record setObject:archive(fMax) forKey:PhDefaultLayer_FloorMax];
-    [record setObject:archive(fMin) forKey:PhDefaultLayer_FloorMin];
-    [record setObject:archive(cMin) forKey:PhDefaultLayer_CeilingMin];
+    [record setObject:cMax forKey:PhDefaultLayer_CeilingMax];
+    [record setObject:fMax forKey:PhDefaultLayer_FloorMax];
+    [record setObject:fMin forKey:PhDefaultLayer_FloorMin];
+    [record setObject:cMin forKey:PhDefaultLayer_CeilingMin];
     
     return record;
 }
@@ -174,7 +174,7 @@
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
     NSIndexSet *enumerator = [tableView selectedRowIndexes];
-    NSInteger index = [enumerator firstIndex];
+    NSInteger index = 0;
    // NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
@@ -195,10 +195,10 @@
             tempObject = [records objectAtIndex:index]; // No modification, no problem
             //[tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
             //[record setObject:theName forKey:PhDefaultLayer_Name];
-            [tempObject setObject:archive(cMax) forKey:PhDefaultLayer_CeilingMax];
-            [tempObject setObject:archive(fMax) forKey:PhDefaultLayer_FloorMax];
-            [tempObject setObject:archive(fMin) forKey:PhDefaultLayer_FloorMin];
-            [tempObject setObject:archive(cMin) forKey:PhDefaultLayer_CeilingMin];
+            [tempObject setObject:cMax forKey:PhDefaultLayer_CeilingMax];
+            [tempObject setObject:fMax forKey:PhDefaultLayer_FloorMax];
+            [tempObject setObject:fMin forKey:PhDefaultLayer_FloorMin];
+            [tempObject setObject:cMin forKey:PhDefaultLayer_CeilingMin];
         }
         else
         {
@@ -218,7 +218,7 @@
 -(IBAction)changeName:(id)sender
 {
     NSIndexSet *rowIndexes = [tableView selectedRowIndexes];
-    NSInteger index = [rowIndexes firstIndex];
+    NSInteger index = 0;
     //NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
@@ -294,7 +294,7 @@
     }
     else
     {
-        float floatValue = (float)(((float)[unarchive(theValue) floatValue]) / ((float)WORLD_ONE));
+        float floatValue = (float)(((float)[theValue floatValue]) / ((float)WORLD_ONE));
         theValue = @(floatValue);
     }
     

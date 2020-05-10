@@ -272,7 +272,7 @@ static NSString *const PhNameOfObject = @"Name";
 
 - (int)getSelection { return [theTable selectedRow]; }
 
-- (BOOL)isSomthingSelected { return ([theTable selectedRowIndexes].count >= 0); }
+- (BOOL)isSomthingSelected { return ([theTable selectedRowIndexes].count > 0); }
 
 - (id)getSelectedObject
 {

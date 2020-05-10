@@ -36,6 +36,9 @@
 #import "LEExtras.h"
 
 #import "PhData.h"
+#import "PhMedia.h"
+#import "PhLight.h"
+#import "LESide.h"
 
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl.h>
@@ -1364,7 +1367,7 @@
             lineObjects[i] = nil;
 }
 
--(void)removePointAssotication:(LELine *)theLine
+-(void)removePointAssotication:(LEMapPoint *)theLine
 {
         int i;
         for(i = 0; i < vertexCountForPoly; i++)
@@ -1742,11 +1745,7 @@
     else if (everythingLoadedST)
         media_object = [theMediaST objectAtIndex:v];
 } //
--(void)setMediaObject:(id)v 
-{ 
-    media_object = v; 
-    
-} //
+@synthesize mediaObject=media_object;
 
 -(void)setMediaLightsource:(short)v 
 { 
@@ -1756,20 +1755,13 @@
     else if (everythingLoadedST)
         media_lightsource_object = [theMapLightsST objectAtIndex:v];
 } //
--(void)setMediaLightsourceObject:(id)v 
-{ 
-    media_lightsource_object = v; 
-    
-} //
+@synthesize mediaLightsourceObject=media_lightsource_object;
 
 -(void)setSoundSources:(short)v 
 { 
     sound_source_indexes = v;   // ******** FIRGURE THIS OUT SOMETIME *********
 } //
--(void)setSoundSourcesObject:(id)v 
-{ 
-    sound_source_objects = v;
-} //
+@synthesize soundSourcesObject=sound_source_objects;
 
 -(void)setAmbientSound:(short)v 
 { 
@@ -1779,11 +1771,7 @@
     else if (everythingLoadedST)
         ambient_sound_image_object = [theAmbientSoundsST objectAtIndex:v];
 } //
--(void)setAmbientSoundObject:(id)v 
-{ 
-    ambient_sound_image_object = v; 
-    
-} //
+@synthesize ambientSoundObject=ambient_sound_image_object;
 
 -(void)setRandomSound:(short)v 
 { 
@@ -1793,11 +1781,7 @@
     else if (everythingLoadedST)
         random_sound_image_object = [theRandomSoundsST objectAtIndex:v];
 } //
--(void)setRandomSoundObject:(id)v 
-{ 
-    random_sound_image_object = v; 
-
-} //
+@synthesize randomSoundObject=random_sound_image_object;
 
 
 // ************************************* Get Accsessors ********************************************************
@@ -1916,12 +1900,6 @@
 -(short)soundSourceIndexes { return sound_source_indexes; } // *** WORK ON THIS ONE ***
 -(short)ambientSoundImageIndex { return (ambient_sound_image_object == nil) ? -1 : [ambient_sound_image_object index]; } //
 -(short)randomSoundImageIndex { return (random_sound_image_object == nil) ? -1 : [random_sound_image_object index]; } //
-
--(id)getMedia_object { return media_object; } // ---
--(id)getMedia_lightsource_object { return media_lightsource_object; } // ---
--(id)getSound_source_objects { return sound_source_objects; } // ---  *** WORK ON THIS ONE ***
--(id)getAmbient_sound_image_object { return ambient_sound_image_object; } // ---
--(id)getRandom_sound_image_object { return random_sound_image_object; } // ---
 
 // **************************** Polygon Concave Verification ***********************************
 

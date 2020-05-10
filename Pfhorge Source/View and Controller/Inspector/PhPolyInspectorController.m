@@ -487,7 +487,7 @@
 
 - (IBAction)liquidAction:(id)sender
 {
-    [curPoly setMedia:([sender indexOfSelectedItem] - 1)];
+	[curPoly setMediaIndex:([sender indexOfSelectedItem] - 1)];
 }
 
 - (IBAction)randomSoundAction:(id)sender

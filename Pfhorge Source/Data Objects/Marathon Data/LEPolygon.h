@@ -85,7 +85,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 #import "PhAbstractName.h"
 
-@class PhLight;
+@class PhLight, LESide, PhMedia;
 
 @interface LEPolygon : PhAbstractName <NSCoding>
 {
@@ -111,7 +111,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     short	floor_texture, ceiling_texture; // shape_descriptor - short
     short	floor_height, ceiling_height; // world_distance
     short	floor_lightsource_index, ceiling_lightsource_index;
-    __unsafe_unretained __kindof LEMapStuffParent		*floor_lightsource_object, *ceiling_lightsource_object;
+    __unsafe_unretained PhLight		*floor_lightsource_object, *ceiling_lightsource_object;
     
     int	area;		// in world distance^2
     
@@ -142,13 +142,13 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     NSPoint	center; //!< world_point2d is a NSPoint for now...
     
     short	side_indexes[ MAXIMUM_VERTICES_PER_POLYGON ];
-    __kindof LEMapStuffParent	*side_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
+    LESide	*side_objects[ MAXIMUM_VERTICES_PER_POLYGON ];
     
     
     NSPoint	floor_origin, ceiling_origin; //!< world_point2d is a NSPoint for now...
     
     short	media_index;
-    __kindof LEMapStuffParent	*media_object;
+    PhMedia	*media_object;
     short	media_lightsource_index;
     __kindof LEMapStuffParent	*media_lightsource_object;
     
@@ -194,7 +194,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 // ******************** Utilties ***********************
 -(void)calculateSidesForAllLines;
 -(int)getLineNumberFor:(LELine *)theLine;
--(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight;
+-(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight;
 -(void)thePolyMap:(NSBezierPath *)poly;
 -(void)removeAssociationOfObject:(__kindof LEMapStuffParent*)theObj;
 -(void)setAllAdjacentPolygonPointersToNil;
@@ -222,7 +222,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setVertexWithObject:(LEMapPoint*)v toIndex:(short)i;
 
 -(void)setLines:(short)v toIndex:(short)i; //
--(void)setLinesObject:(id)v toIndex:(short)i;
+-(void)setLinesObject:(LELine*)v toIndex:(short)i;
 
 -(void)setFloorTexture:(short)v;
 -(void)setCeilingTexture:(short)v;
@@ -240,10 +240,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 @property (readonly, copy) NSString *ceilingHeightAsDecimalString;
 
 -(void)setFloorLightsource:(short)v; //
--(void)setFloorLightsourceObject:(id)v;
 
 -(void)setCeilingLightsource:(short)v; //
--(void)setCeilingLightsourceObject:(id)v;
 
 -(void)setArea:(int)v;
 
@@ -266,26 +264,26 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setNeighborCount:(short)v;
 
 -(void)setSides:(short)v toIndex:(short)i; //
--(void)setSidesObject:(id)v toIndex:(short)i;
+-(void)setSidesObject:(LESide*)v toIndex:(short)i;
 
 -(void)setFloorOrigin:(NSPoint)v;
 -(void)setCeilingOrigin:(NSPoint)v;
 
 -(void)setMedia:(short)v API_DEPRECATED_WITH_REPLACEMENT("-setMediaIndex:", macos(10.0, 10.7)); //
 -(void)setMediaIndex:(short)v; //
--(void)setMediaObject:(id)v;
+@property (assign) PhMedia *mediaObject;
 
 -(void)setMediaLightsource:(short)v; //
--(void)setMediaLightsourceObject:(id)v;
+@property (assign) id mediaLightsourceObject;
 
 -(void)setSoundSources:(short)v; //
--(void)setSoundSourcesObject:(id)v;
+@property (assign) id soundSourcesObject;
 
 -(void)setAmbientSound:(short)v; //
--(void)setAmbientSoundObject:(id)v;
+@property (assign) id ambientSoundObject;
 
 -(void)setRandomSound:(short)v; //
--(void)setRandomSoundObject:(id)v;
+@property (assign) id randomSoundObject;
 
 
 // ********** Get **********
@@ -314,8 +312,8 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 @property (readonly) short floorLightsourceIndex; //
 @property (readonly) short ceilingLightsourceIndex; //
-@property (assign) id floorLightsourceObject; //
-@property (assign) id ceilingLightsourceObject; //
+@property (assign) PhLight *floorLightsourceObject; //
+@property (assign) PhLight *ceilingLightsourceObject; //
 
 @property int area;
 
@@ -336,7 +334,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 @property (readwrite) NSPoint center;
 
 -(short)sideIndexesAtIndex:(short)i; //
--(id)sideObjectAtIndex:(short)i; //
+-(LESide*)sideObjectAtIndex:(short)i; //
 
 @property NSPoint floorOrigin;
 @property NSPoint ceilingOrigin;
