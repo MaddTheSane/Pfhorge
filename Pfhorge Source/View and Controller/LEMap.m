@@ -845,7 +845,7 @@
     
     if (theNewPoly == nil)
     {
-        SEND_ERROR_MSG(@"Sorry, but I could not fill a polygon with the line the apple script indicated (check the console)");
+        SEND_ERROR_MSG(@"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)");
         return nil;
     }
     

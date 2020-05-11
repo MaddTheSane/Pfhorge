@@ -313,7 +313,7 @@ static inline short loadShortFromNSData(NSData *dat, NSInteger offset)
 	return CFSwapInt16BigToHost(type);
 }
 
-static inline short loadIntFromNSData(NSData *dat, NSInteger offset)
+static inline int loadIntFromNSData(NSData *dat, NSInteger offset)
 {
 	int type;
 	[dat getBytes:&type range:NSMakeRange(offset, 4)];

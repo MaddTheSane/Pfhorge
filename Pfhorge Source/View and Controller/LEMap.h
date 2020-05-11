@@ -32,11 +32,6 @@
 
 @interface LEMap : NSDocument
 {
-    IBOutlet id comboLevelList;
-    IBOutlet id numberOut;
-    IBOutlet id theDrawer;
-    IBOutlet id levelDrawArea;
-    
     NSData *theRawMapData;
     LEMapData *theMap;
     LELevelData *theLevel;

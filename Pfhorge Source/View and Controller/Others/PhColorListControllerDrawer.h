@@ -26,22 +26,22 @@
 
 @class LEMap, LEMapDraw, LELevelData, LELevelWindowController;
 
-@interface PhColorListControllerDrawer : NSObject
+@interface PhColorListControllerDrawer : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 {
     IBOutlet id colorListDataSource;
-    IBOutlet id colorListTable;
-    IBOutlet id colorListTableHeader;
-    IBOutlet id colorListTableScrollView;
-    IBOutlet id status;
+    IBOutlet NSTableView *colorListTable;
+    IBOutlet NSTableColumn *colorListTableHeader;
+    IBOutlet NSScrollView *colorListTableScrollView;
+    IBOutlet NSTextField *status;
     
-    IBOutlet id drawViewDirect;
-    IBOutlet id windowContollerDirect;
-    IBOutlet id mainWindowDirect;
+    IBOutlet LEMapDraw *drawViewDirect;
+    IBOutlet LELevelWindowController *windowContollerDirect;
+    IBOutlet LELevelWindowController *mainWindowDirect;
     
-    IBOutlet id newHeightWindowSheet;
-    IBOutlet id newHeightTextBox;
+    IBOutlet NSPanel *newHeightWindowSheet;
+    IBOutlet NSTextField *newHeightTextBox;
     
-    IBOutlet id theDrawer;
+    IBOutlet NSDrawer *theDrawer;
     
     id 				theCurrentSelection;
     LEMap 			*currentLevelDocument;

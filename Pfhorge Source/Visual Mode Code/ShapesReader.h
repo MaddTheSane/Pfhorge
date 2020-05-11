@@ -44,7 +44,7 @@ struct ImageObject {
 	image_header Header;
 
 	//! Scan-start addresses
-	simple_vector<long> ScanStartList;
+	simple_vector<int> ScanStartList;
 	
 	//! Image data: this is color-index values
 	simple_vector<byte> Pixels;
@@ -61,19 +61,19 @@ struct ShapeObject {
 	simple_vector<color_entry> ColorList;
 	
 	//! List of sequence offsets
-	simple_vector<long> SequenceOffsetList;
+	simple_vector<int> SequenceOffsetList;
 	
 	//! List of sequences (high-level shapes)
 	simple_vector<SequenceObject> SequenceList;
 	
 	//! List of frame offsets
-	simple_vector<long> FrameOffsetList;
+	simple_vector<int> FrameOffsetList;
 	
 	//! List of frames (low-level shapes)
 	simple_vector<low_level_shape> FrameList;
 	
 	//! List of image offsets
-	simple_vector<long> ImageOffsetList;
+	simple_vector<int> ImageOffsetList;
 	
 	//! List of images
 	simple_vector<ImageObject> ImageList;
