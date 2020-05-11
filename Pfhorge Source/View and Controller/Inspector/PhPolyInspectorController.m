@@ -409,7 +409,7 @@
     ///LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
     int thePolyType = [thePolyInQuestion type];
     id thePerObj = nil;
-    int thePermutation = [sender indexOfSelectedItem];
+    NSInteger thePermutation = [sender indexOfSelectedItem];
     //[[mainInspectorController getTheCurrentSelection] setPermutation:[sender intValue]];
     
     switch (thePolyType)

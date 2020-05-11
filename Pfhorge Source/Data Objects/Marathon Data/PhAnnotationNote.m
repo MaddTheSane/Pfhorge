@@ -308,4 +308,8 @@
     return self;
 }
 
+- (void)setNoteType:(id)noteType
+{
+	NSLog(@"PhAnnotationNote got sent this noteType: %@", noteType);
+}
 @end

@@ -574,17 +574,17 @@
         
         /*
         struct side_texture_definition primaryTex; 	//= [baseSideRef primaryTexture];
-        struct side_texture_definition secondaryTex; 	//= [baseSideRef getSecondary_texture];
-        struct side_texture_definition transparentTex; 	//= [baseSideRef getTransparent_texture];
+        struct side_texture_definition secondaryTex; 	//= [baseSideRef secondaryTextureStruct];
+        struct side_texture_definition transparentTex; 	//= [baseSideRef transparentTextureStruct];
         */
         
         // NOTE: Need to do caching below!!!
         
         // Update the texture offset fields...
         
-        short pTransMode = [side getPrimary_transfer_mode];
-        short sTransMode = [side getSecondary_transfer_mode];
-        short tTransMode = [side getTransparent_transfer_mode];
+        short pTransMode = [side primaryTransferMode];
+        short sTransMode = [side secondaryTransferMode];
+        short tTransMode = [side transparentTransferMode];
         
         if (([primaryMode numberOfItems] - 1) > pTransMode && pTransMode >= 0)
             [primaryMode selectItemAtIndex:(pTransMode + 1)];
@@ -630,12 +630,12 @@
         
         [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:YES];
         
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 1, [side getPrimary_texture].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 2, [side getPrimary_texture].y0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 3, [side getSecondary_texture].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 4, [side getSecondary_texture].y0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 5, [side getTransparent_texture].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 6, [side getTransparent_texture].y0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 1, [side primaryTextureStruct].x0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 2, [side primaryTextureStruct].y0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 3, [side secondaryTextureStruct].x0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 4, [side secondaryTextureStruct].y0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 5, [side transparentTextureStruct].x0);
+        SetMatrixObjectValue(sideTextureOffsetMatrix, 6, [side transparentTextureStruct].y0);
         
         
         int pColl = [side primaryTextureCollection];

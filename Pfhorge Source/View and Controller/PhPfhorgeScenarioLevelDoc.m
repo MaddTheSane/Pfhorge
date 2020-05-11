@@ -36,8 +36,8 @@
 
 #import "PathwaysExchange.h"
 
-NSString *PhScenarioDeallocatingNotification = @"PhScenarioDeallocatingNotification";
-NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChangedNotification";
+NSString *const PhScenarioDeallocatingNotification = @"PhScenarioDeallocatingNotification";
+NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChangedNotification";
 
 @implementation PhPfhorgeScenarioLevelDoc
 
@@ -52,15 +52,15 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     NSLog(@"getPICTResourceIndex in the scenerio document called...");
     
-    fullImagePath  = [[[[self getFullPathForDirectory]
+    fullImagePath  = [[[[self fullPathForDirectory]
                             stringByAppendingPathComponent:@"Images/"]
                             stringByAppendingPathComponent:[@(PICTIndex) stringValue]]
-                                stringByAppendingPathExtension:@".pict"];
+                                stringByAppendingPathExtension:@"pict"];
     
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
     
     if (exsists && !isDir)
-        return [[[NSImage alloc] initWithData:[[NSFileManager defaultManager] contentsAtPath:fullImagePath]] autorelease];
+        return [[[NSImage alloc] initWithContentsOfFile:fullImagePath] autorelease];
     else
     {
         NSLog(@"image not found at: %@", fullImagePath);
@@ -144,7 +144,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
 
 - (IBAction)importPathwaysMap:(id)sender
 {
-    NSArray	*fileTypes	= [NSArray arrayWithObject:NSFileTypeForHFSTypeCode('maps')];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('maps')];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];
@@ -179,7 +179,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     NSMutableArray *archivedLevels = nil;
     NSMutableArray *levelNames = [NSMutableArray arrayWithCapacity:0];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *imageDir = [[self getFullPathForDirectory] stringByAppendingPathComponent:@"Images"];
+    NSString *imageDir = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images"];
     BOOL isDir = NO;
     
     BOOL exsists = NO;
@@ -209,7 +209,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         
         [self saveArrayOfNSDatas:archivedLevels
                    withFileNames:levelNames
-                         baseDir:[self getFullPathForDirectory]];
+                         baseDir:[self fullPathForDirectory]];
                          
         [progress setStatusText:@"Adding Level Names To Scenario Document..."];
         
@@ -260,7 +260,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     NSMutableArray 	*archivedLevels =[[NSMutableArray alloc] init];
     NSMutableArray 	*levelNames = [[NSMutableArray alloc] init];
     NSFileManager 	*fileManager = [NSFileManager defaultManager];
-    //NSString *imageDir = [[self getFullPathForDirectory] stringByAppendingString:@"Images/"];
+    //NSString *imageDir = [[self fullPathForDirectory] stringByAppendingString:@"Images/"];
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
@@ -332,7 +332,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         
         [self saveArrayOfNSDatas:archivedLevels
                    withFileNames:levelNames
-                         baseDir:[self getFullPathForDirectory]];
+                         baseDir:[self fullPathForDirectory]];
                          
         [progress setStatusText:@"Adding Level Names To Scenario Document..."];
         
@@ -367,7 +367,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     }
     else
     {
-        [scenarioData setProjectDirectory:[self getFullPathForDirectory]];
+        [scenarioData setProjectDirectory:[self fullPathForDirectory]];
         [scenarioData setTheScenarioDocument:self];
     }
 }
@@ -378,7 +378,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
         [self close];
     else if (scenarioData != nil && didSave == YES) // New Doc Did Get Saved...
     {
-        [scenarioData setProjectDirectory:[self getFullPathForDirectory]];
+        [scenarioData setProjectDirectory:[self fullPathForDirectory]];
         [scenarioData setTheScenarioDocument:self];
         
         [theScenarioDocumentWindowController setupDataSourceForLevelTable];
@@ -442,12 +442,13 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     [self reloadLevelTable:nil];
 }
 
-
-- (NSString *)getFullPathForDirectory
+- (NSURL *)fullPathURLForDirectory
 {
-    NSURL *myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent];
-        
-    return myFullFilePath.path;
+	return [[self fileURL] URLByDeletingLastPathComponent];
+}
+- (NSString *)fullPathForDirectory
+{
+    return self.fullPathURLForDirectory.path;
 }
 
 - (void)saveArrayOfNSDatas:(NSArray *)theDataObjs withFileNames:(NSArray *)theFileNames baseDir:(NSString *)basePath
@@ -492,7 +493,7 @@ NSString *PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChange
     
     NSLog(@"Scaning Image Folder FOr Resources Now...");
     
-    fullImageDirPath  = [[self getFullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
+    fullImageDirPath  = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
     
     exsists = [manager fileExistsAtPath:fullImageDirPath isDirectory:&isDir];
     

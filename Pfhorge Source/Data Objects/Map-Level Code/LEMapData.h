@@ -129,7 +129,7 @@ enum {
 + (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario;
 + (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNames;
 
-- (LEMapData *)initWithMapNSData:(NSData *)theMap;
+- (instancetype)initWithMapNSData:(NSData *)theMap;
 
 - (LELevelData *)getLevel:(short)levelToGet;
 - (LELevelData *)getLevel:(short)levelToGet log:(BOOL)logInfo;
@@ -148,10 +148,10 @@ enum {
 
 
 - (short)getShort;
--(id)getShortObjectFrom:(NSArray *)theArray;
--(id)getShortZeroIsNilIfOverObjectFrom:(NSArray *)theArray;
+- (id)getShortObjectFromArray:(NSArray *)theArray;
+- (id)getShortZeroIsNilIfOverObjectFromArray:(NSArray *)theArray;
 - (short)getUnsignedShort;
--(id)getUnsignedShortObjectFrom:(NSArray *)theArray;
+- (id)getUnsignedShortObjectFrom:(NSArray *)theArray;
 - (int)getLong;
 - (unsigned int)getUnsignedLong;
 - (id)getChar:(unsigned)theCharAmount;
@@ -177,61 +177,61 @@ enum {
 - (BOOL)initMainHeader;
 
 -(void)getThePointsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-                    regularPoints:(BOOL)regPointStyle;
-                    
+				 withLength:(long)theDataLength
+				  withLevel:(LELevelData *)curLevel
+			  regularPoints:(BOOL)regPointStyle;
+
 -(void)getTheLinesAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+				withLength:(long)theDataLength
+				 withLevel:(LELevelData *)curLevel;
 
 -(void)getThePolygonsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+				   withLength:(long)theDataLength
+					withLevel:(LELevelData *)curLevel;
 
 -(void)getTheMapObjectsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+					 withLength:(long)theDataLength
+					  withLevel:(LELevelData *)curLevel;
 
 -(void)getTheSidesAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+				withLength:(long)theDataLength
+				 withLevel:(LELevelData *)curLevel;
 
 -(void)getTheLightsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+				 withLength:(long)theDataLength
+				  withLevel:(LELevelData *)curLevel;
 
 -(void)getTheAnnotationsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+					  withLength:(long)theDataLength
+					   withLevel:(LELevelData *)curLevel;
 
 -(void)getTheMediaAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+				withLength:(long)theDataLength
+				 withLevel:(LELevelData *)curLevel;
 
 -(void)getTheAmbientSoundsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+						withLength:(long)theDataLength
+						 withLevel:(LELevelData *)curLevel;
 
 -(void)getTheStaticPlatformsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+						  withLength:(long)theDataLength
+						   withLevel:(LELevelData *)curLevel;
 
 -(void)getTheDynamicPlatformsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+						   withLength:(long)theDataLength
+							withLevel:(LELevelData *)curLevel;
 
 -(void)getTheItemPlacementAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+						withLength:(long)theDataLength
+						 withLevel:(LELevelData *)curLevel;
 
 -(void)getTheRandomSoundsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+					   withLength:(long)theDataLength
+						withLevel:(LELevelData *)curLevel;
 
 -(void)getTheTerminalsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel;
+					withLength:(long)theDataLength
+					 withLevel:(LELevelData *)curLevel;
 
 -(void)getTag:(long)theTag theLevel:(short)theLevel theCurrentLevelObject:(LELevelData *)curLevel;
 

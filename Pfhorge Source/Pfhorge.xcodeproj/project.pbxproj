@@ -176,10 +176,10 @@
 		AE3C15720A04512100FBFFCD /* LELevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBE54900DBBE877F000001 /* LELevelData.m */; };
 		AE3C15730A04512100FBFFCD /* PhAbstractNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */; };
 		AE3C15740A04512100FBFFCD /* PhLevelNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */; };
-		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F2021F01E90146BBD2 /* NDResourceFork.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
+		AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F2021F01E90146BBD2 /* NDResourceFork.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
 		AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F3021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F4021F01E90146BBD2 /* NDAppleScriptObject.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
 		AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */ = {isa = PBXBuildFile; fileRef = F532393101AF836201A8A806 /* PhAbstractName.m */; };
 		AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -191,8 +191,8 @@
 		AE3C15810A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = F530626A02A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.m */; };
 		AE3C15820A04512100FBFFCD /* PhScenarioManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */; };
 		AE3C15830A04512100FBFFCD /* PhScenarioData.m in Sources */ = {isa = PBXBuildFile; fileRef = F51939C602AC7C150146BBD2 /* PhScenarioData.m */; };
-		AE3C15840A04512100FBFFCD /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; };
+		AE3C15840A04512100FBFFCD /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
+		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
 		AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
 		AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; };
@@ -214,7 +214,7 @@
 		AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
 		AE3C159B0A04512100FBFFCD /* IndexHeapSort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */; };
 		AE3C159C0A04512100FBFFCD /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE400228BEF90146BBD2 /* Renderer.mm */; };
-		AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE430228BEF90146BBD2 /* ShapesReader.mm */; };
+		AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE430228BEF90146BBD2 /* ShapesReader.mm */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		AE3C159E0A04512100FBFFCD /* ViewOptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */; };
 		AE3C159F0A04512100FBFFCD /* ViewContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */; };
 		AE3C15A00A04512100FBFFCD /* TextureManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE490228BEF90146BBD2 /* TextureManager.mm */; };
@@ -570,7 +570,6 @@
 				F58032D303E31DF70146BBD2 /* Map\Level Code */,
 				F5EFE97A01ADCA1A01A8A806 /* Marathon Data */,
 				55D733452464F4A1008B33F6 /* Pathways Import */,
-				011A1BEE00D3D8317F000001 /* LEMapData.h */,
 				00FD2B8A00E806097F000001 /* LEMapStuffParent.h */,
 				00FD2B8B00E806097F000001 /* LEMapStuffParent.m */,
 				F532393001AF836201A8A806 /* PhAbstractName.h */,
@@ -896,6 +895,7 @@
 				F58032D603E322530146BBD2 /* LELevelData-Utilites.m */,
 				F58032D803E322660146BBD2 /* LELevelData-Objects.m */,
 				F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */,
+				011A1BEE00D3D8317F000001 /* LEMapData.h */,
 				011A1BEF00D3D8317F000001 /* LEMapData.m */,
 			);
 			name = "Map\\Level Code";

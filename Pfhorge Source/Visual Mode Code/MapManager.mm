@@ -977,30 +977,30 @@ void MapManager::ReloadLevel() {
 				WInfo.TransparentInfo.Light = [theSide getTransparent_lightsource_index];
 				
 				if (WInfo.IsFullLength) {
-					side_texture_definition Txtr = [theSide getSecondary_texture];
+					side_texture_definition Txtr = [theSide secondaryTextureStruct];
 					if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
 						WInfo.SecondaryPresent = false;
 				}
 				
-				side_texture_definition Txtr = [theSide getTransparent_texture];
+				side_texture_definition Txtr = [theSide transparentTextureStruct];
 				if (((Txtr.texture) & 0x00ff) == (NONE & 0x00ff))
 					WInfo.TransparentPresent = false;
 				
 				if (WInfo.PrimaryPresent) {
-					WInfo.PrimaryInfo.TxtrXfr = [theSide getPrimary_transfer_mode];
-					Txtr = [theSide getPrimary_texture];
+					WInfo.PrimaryInfo.TxtrXfr = [theSide primaryTransferMode];
+					Txtr = [theSide primaryTextureStruct];
 					SetWallTxtr(Version, WInfo.PrimaryInfo, Txtr);
 				}
 				
 				if (WInfo.SecondaryPresent) {
-					WInfo.SecondaryInfo.TxtrXfr = [theSide getSecondary_transfer_mode];
-					Txtr = [theSide getSecondary_texture];
+					WInfo.SecondaryInfo.TxtrXfr = [theSide secondaryTransferMode];
+					Txtr = [theSide secondaryTextureStruct];
 					SetWallTxtr(Version, WInfo.SecondaryInfo, Txtr);
 				}
 				
 				if (WInfo.TransparentPresent) {
-					WInfo.TransparentInfo.TxtrXfr = [theSide getTransparent_transfer_mode];
-					Txtr = [theSide getTransparent_texture];
+					WInfo.TransparentInfo.TxtrXfr = [theSide transparentTransferMode];
+					Txtr = [theSide transparentTextureStruct];
 					SetWallTxtr(Version, WInfo.TransparentInfo, Txtr);
 				}
 			}

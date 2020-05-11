@@ -85,7 +85,7 @@ enum /* display modes */
 - (void)levelDeallocating:(NSNotification *)notification;
 
 // *********************** Accsessor Methods ***********************
-- (int)getSelection;
+- (NSInteger)getSelection;
 - (BOOL)isSomthingSelected;
 - (id)getSelectedObject;
 - (NSString *)getSelectedName;

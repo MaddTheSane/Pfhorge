@@ -94,6 +94,9 @@
 @property (assign) LEPolygon *polygonObject;
 - (LEPolygon *)polygon API_DEPRECATED_WITH_REPLACEMENT("-polygonObject", macos(10.0, 10.7));
 
+
+- (void)setNoteType:(id)noteType;
+
 // ************************** Inzlizations And Class Methods *************************
 
 //+(void)setEverythingLoadedST:(BOOL)theChoice;

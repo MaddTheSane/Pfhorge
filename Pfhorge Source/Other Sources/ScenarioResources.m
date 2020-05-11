@@ -248,6 +248,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     NSString 		*fullPath;
     NSData 			*theData;
     NSFileManager	*fileManager = [NSFileManager defaultManager];
+	OSType 			osTyp = UTGetOSTypeFromString((CFStringRef)type);
+	NSNumber		*nsOSTyp = @(osTyp);
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
@@ -255,19 +257,19 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     array = [typeDict objectForKey:type];
     resEnum = [array objectEnumerator];
     
-    while (resource = [resEnum nextObject])
+    for (resource in resEnum)
     {
         handle = ASGetResource(type, [resource resID], filename);
         theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
         
-        [progress setInformationalText:[NSString stringWithFormat:@"Saving PICT Resource# %@...", [[resource resID] stringValue], nil]];
+        [progress setInformationalText:[NSString stringWithFormat:@"Saving '%@' Resource# %@...", type, [[resource resID] stringValue], nil]];
         
         fullPath = [baseDirPath stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:fileExt]];
         
         [fileManager createFileAtPath:fullPath
                              contents:theData
                         // May want to set creator code, etc...
-                           attributes:nil];
+						   attributes:@{NSFileHFSTypeCode: nsOSTyp}];
         DisposeHandle(handle);
     }
 }

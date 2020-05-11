@@ -35,7 +35,7 @@
 {
     NSData *theData = [NSArchiver archivedDataWithRootObject:assignedNumber];
     long length = [theData length];
-    ExportLong(length);
+    ExportLong((int)length);
     [myData appendData:theData];
     [super superClassExportWithIndex:index selfData:myData futureData:futureData mainObjects:mainObjs];
 }

@@ -171,7 +171,7 @@
     
     if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"])
     {
-        [entireMapData setData:[LEMapData convertLevelToDataObject:(LELevelData *)theLevel]];
+        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel]];
     }
     else
     {

@@ -192,7 +192,7 @@ typedef struct side_exclusion_zone
 -(void)setSecondaryTextureStruct:(struct side_texture_definition)v;
 -(void)setTransparentTextureStruct:(struct side_texture_definition)v;
 
--(void)setExclusion_zone:(struct side_exclusion_zone)v;
+-(void)setExclusionZone:(struct side_exclusion_zone)v;
         
 -(void)setControl_panel_type:(short)v;
 -(void)setControl_panel_permutation:(short)v;
@@ -229,14 +229,14 @@ typedef struct side_exclusion_zone
 
 -(char)textureCollection;
 
--(LESideType)type;
--(LESideFlags)flags;
+@property LESideType type;
+@property LESideFlags flags;
         
--(struct side_texture_definition)getPrimary_texture;
--(struct side_texture_definition)getSecondary_texture;
--(struct side_texture_definition)getTransparent_texture;
+@property struct side_texture_definition primaryTextureStruct;
+@property struct side_texture_definition secondaryTextureStruct;
+@property struct side_texture_definition transparentTextureStruct;
 
--(struct side_exclusion_zone)getExclusion_zone;
+@property struct side_exclusion_zone exclusionZone;
 
 -(int)getPermutationEffects;
 
@@ -244,9 +244,9 @@ typedef struct side_exclusion_zone
 -(short)getControl_panel_permutation;
 -(id)getControl_panel_permutation_object;
         
--(short)getPrimary_transfer_mode;
--(short)getSecondary_transfer_mode;
--(short)getTransparent_transfer_mode;
+-(short)primaryTransferMode;
+-(short)secondaryTransferMode;
+-(short)transparentTransferMode;
         
 -(short)getPolygon_index;
 -(short)getLine_index;

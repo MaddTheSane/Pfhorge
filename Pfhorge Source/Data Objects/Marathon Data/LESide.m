@@ -450,7 +450,7 @@
         [theTarget setControl_panel_permutation:0];
     }
     
-    [theTarget setExclusion_zone:exclusion_zone];
+    [theTarget setExclusionZone:exclusion_zone];
     [theTarget setAmbientDelta:ambient_delta];
     
     // Added this on 1/25/2003, why was it not included
@@ -476,7 +476,7 @@
     [copy setSecondaryTextureStruct:secondary_texture];
     [copy setTransparentTextureStruct:transparent_texture];
     
-    [copy setExclusion_zone:exclusion_zone];
+    [copy setExclusionZone:exclusion_zone];
             
     [copy setControl_panel_type:control_panel_type];
     [copy setControl_panel_permutation:control_panel_permutation];
@@ -656,15 +656,6 @@
     (theSTexChar)[0] = (0x11 + number);
     (theTTexChar)[0] = (0x11 + number);
 }
-
--(void)setType:(LESideType)v { type = v; }
--(void)setFlags:(LESideFlags)v { flags = v; }
-        
--(void)setPrimaryTextureStruct:(struct side_texture_definition)v { primary_texture = v; }
--(void)setSecondaryTextureStruct:(struct side_texture_definition)v { secondary_texture = v; }
--(void)setTransparentTextureStruct:(struct side_texture_definition)v { transparent_texture = v; }
-
--(void)setExclusion_zone:(struct side_exclusion_zone)v { exclusion_zone = v; }
         
 -(void)setControl_panel_type:(short)v
 {
@@ -904,14 +895,14 @@
     return [self primaryTextureCollection];
 }
 
--(LESideType)type { return type; }
--(LESideFlags)flags { return flags; }
+@synthesize type;
+@synthesize flags;
         
--(struct side_texture_definition)getPrimary_texture { return primary_texture; }
--(struct side_texture_definition)getSecondary_texture { return secondary_texture; }
--(struct side_texture_definition)getTransparent_texture { return transparent_texture; }
+@synthesize primaryTextureStruct=primary_texture;
+@synthesize secondaryTextureStruct=secondary_texture;
+@synthesize transparentTextureStruct=transparent_texture;
 
--(struct side_exclusion_zone)getExclusion_zone { return exclusion_zone; }
+@synthesize exclusionZone=exclusion_zone;
 
 -(int)getPermutationEffects
 {
@@ -930,9 +921,9 @@
 -(id)getControl_panel_permutation_object { return control_panel_permutation_object; }
 
         
--(short)getPrimary_transfer_mode { return primary_transfer_mode; }
--(short)getSecondary_transfer_mode { return secondary_transfer_mode; }
--(short)getTransparent_transfer_mode { return transparent_transfer_mode; }
+-(short)primaryTransferMode { return primary_transfer_mode; }
+-(short)secondaryTransferMode { return secondary_transfer_mode; }
+-(short)transparentTransferMode { return transparent_transfer_mode; }
         
 -(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object index]; }
 -(short)getLine_index { return (line_object == nil) ? -1 : [line_object index]; }

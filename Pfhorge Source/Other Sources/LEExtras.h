@@ -466,7 +466,7 @@ extern NSString *const PhEnableGridBool;
 
 // ********* Current Phorge Information *********
 
-extern const int currentVersionOfPfhorgeLevelData;
+extern const short currentVersionOfPfhorgeLevelData;
 
 extern NSString *const currentPhorgeVersion; // = @"0.3.0 alpha";
 

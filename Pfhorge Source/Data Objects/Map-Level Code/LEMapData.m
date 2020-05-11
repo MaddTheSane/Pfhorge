@@ -1201,17 +1201,17 @@ BOOL setupPointerArraysDurringLoading = YES;
     return theShort;
 }
 
--(id)getShortObjectFrom:(NSArray *)theArray
+-(id)getShortObjectFromArray:(NSArray *)theArray
 {
     short theShortNum;
-    int theArrayCount = [theArray count];
+    NSInteger theArrayCount = [theArray count];
     [mapData getBytes:&theShortNum range:NSMakeRange(theCursor,2)];
 	theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
     
     if ((theShortNum >= theArrayCount))
     {
-        NSLog(@"Bounding Error: %d   Array Count: %d", theShortNum, theArrayCount);
+		NSLog(@"Bounding Error: %d   Array Count: %ld", theShortNum, (long)theArrayCount);
         if (!alreadyGaveBoundingError)
             SEND_ERROR_MSG(@"Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array...");
         alreadyGaveBoundingError = YES;
@@ -1221,10 +1221,10 @@ BOOL setupPointerArraysDurringLoading = YES;
         return (theShortNum < 0) ? (nil) : ([theArray objectAtIndex:theShortNum]);
 }
 
--(id)getShortZeroIsNilIfOverObjectFrom:(NSArray *)theArray
+-(id)getShortZeroIsNilIfOverObjectFromArray:(NSArray *)theArray
 {
     short theShortNum;
-    int theArrayCount = [theArray count];
+    NSInteger theArrayCount = [theArray count];
     [mapData getBytes:&theShortNum range:NSMakeRange(theCursor,2)];
 	theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
@@ -1351,8 +1351,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length
 {
-    const char *theStringAsCString = [v UTF8String];
-    size_t theStringLength = strlen(theStringAsCString);
+    const char *theStringAsCString = [v UTF8String]; //FIXME: MacRoman?
+    ssize_t theStringLength = strlen(theStringAsCString);
     char nullChar = '\0';
     
     if (length < 0)
@@ -1404,7 +1404,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     [self saveUnsignedLong:0]; //myMainMapHeader.checksum];
     
-    [self saveLong:(size+128)];
+    [self saveLong:(int)(size+128)];
     
     //The Location Of The Number of Levels is byte 77
     [self saveShort:numberOfLevels];
@@ -1831,12 +1831,12 @@ BOOL setupPointerArraysDurringLoading = YES;
             [self NSLogShortFromData:@"setMapPoint1"];
         #endif
         
-        //[theObj setMapPoint1:[self getShortObjectFrom:thePointArray]];
+        //[theObj setMapPoint1:[self getShortObjectFromArray:thePointArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setMapPoint2"];
         #endif
         //[theObj setMapPoint2:];
-        [theObj setMapPoint1:[self getShortObjectFrom:thePointArray] mapPoint2:[self getShortObjectFrom:thePointArray]];
+        [theObj setMapPoint1:[self getShortObjectFromArray:thePointArray] mapPoint2:[self getShortObjectFromArray:thePointArray]];
         
         #ifdef useDebugingLogs
             [self NSLogUnsignedShortFromData:@"setFlags"];
@@ -1857,19 +1857,19 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setClockwisePolygonSideObject"];
         #endif
-        [theObj setClockwisePolygonSideObject:[self getShortObjectFrom:theSideArray]];
+        [theObj setClockwisePolygonSideObject:[self getShortObjectFromArray:theSideArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCounterclockwisePolygonSideObject"];
         #endif
-        [theObj setCounterclockwisePolygonSideObject:[self getShortObjectFrom:theSideArray]];
+        [theObj setCounterclockwisePolygonSideObject:[self getShortObjectFromArray:theSideArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setClockwisePolygonObject"];
         #endif
-        [theObj setClockwisePolygonObject:[self getShortObjectFrom:thePolyArray]];
+        [theObj setClockwisePolygonObject:[self getShortObjectFromArray:thePolyArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setConterclockwisePolygonObject"];
         #endif
-        [theObj setConterclockwisePolygonObject:[self getShortObjectFrom:thePolyArray]];
+        [theObj setConterclockwisePolygonObject:[self getShortObjectFromArray:thePolyArray]];
         
         theCursor += 12; //Skip the unused part of each line... :)
     }
@@ -1989,7 +1989,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"[theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] i:i]"];
         #endif
-                [theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] toIndex:i];
+                [theObj setVertexWithObject:[self getShortObjectFromArray:thePointArray] toIndex:i];
             }
             else
             {
@@ -2005,7 +2005,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"[theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:0]"];
         #endif
-                [theObj setLinesObject:[self getShortObjectFrom:theLineArray] toIndex:i]; //
+                [theObj setLinesObject:[self getShortObjectFromArray:theLineArray] toIndex:i]; //
             }
             else
             {
@@ -2034,11 +2034,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFloor_lightsourceObject"];
         #endif
-        [theObj setFloorLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setFloorLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setCeiling_lightsourceObject"];
         #endif
-        [theObj setCeilingLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setCeilingLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setArea"];
@@ -2048,7 +2048,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFirst_objectObject"];
         #endif
-        [theObj setFirstObjectObject:[self getShortZeroIsNilIfOverObjectFrom:theObjectArray]]; //
+        [theObj setFirstObjectObject:[self getShortZeroIsNilIfOverObjectFromArray:theObjectArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setFirst_exclusion_zone_index"];
@@ -2078,7 +2078,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setAdjacent_polygonObject:[self getShortObjectFrom:thePolyArray] i:0]"];
         #endif
-                [theObj setAdjacentPolygonObject:[self getShortZeroIsNilIfOverObjectFrom:thePolyArray] toIndex:i]; //
+                [theObj setAdjacentPolygonObject:[self getShortZeroIsNilIfOverObjectFromArray:thePolyArray] toIndex:i]; //
             }
             else
             {
@@ -2102,7 +2102,7 @@ BOOL setupPointerArraysDurringLoading = YES;
             [self NSLogShortFromData:@"blank"];
         #endif
         theCursor += 2; // Skip the sound sources for right now...
-        //[theObj setFirstNeighborObject:[self getShortObjectFrom:thePolyArray]]; //
+        //[theObj setFirstNeighborObject:[self getShortObjectFromArray:thePolyArray]]; //
         
         // I think this is the number of polygons
         // within One World Unit of polygon
@@ -2126,7 +2126,7 @@ BOOL setupPointerArraysDurringLoading = YES;
                 #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setSidesObject:[self getShortObjectFrom:theSideArray] i:0]"];
         #endif
-                [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFrom:theSideArray] toIndex:i]; //
+                [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFromArray:theSideArray] toIndex:i]; //
             }
             else
             {
@@ -2147,11 +2147,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setMediaObject"];
         #endif
-        [theObj setMediaObject:[self getShortObjectFrom:theMediaArray]]; //
+        [theObj setMediaObject:[self getShortObjectFromArray:theMediaArray]]; //
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setMedia_lightsourceObject"];
         #endif
-        [theObj setMediaLightsourceObject:[self getShortObjectFrom:theLightArray]]; //
+        [theObj setMediaLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
         
         //[theObj setSoundSources:[self getShort]]; // *** I am not sure about this one ***
         #ifdef useDebugingLogs
@@ -2162,11 +2162,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setAmbient_soundObject"];
         #endif
-        [theObj setAmbientSoundObject:[self getShortObjectFrom:theAmbientArray]]; //
+        [theObj setAmbientSoundObject:[self getShortObjectFromArray:theAmbientArray]]; //
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setRandom_soundObject"];
         #endif
-        [theObj setRandomSoundObject:[self getShortZeroIsNilIfOverObjectFrom:theRandomArray]]; //
+        [theObj setRandomSoundObject:[self getShortZeroIsNilIfOverObjectFromArray:theRandomArray]]; //
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"blank"];
@@ -2200,7 +2200,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         [theObj setIndex:[self getShort]];
         [theObj setFacing:[self getShort]];
-        [theObj setPolygonObject:[self getShortObjectFrom:thePolyArray]];
+        [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
         [theObj setX:[self getShort]];
         [theObj setY:[self getShort]];
         [theObj setZ:[self getShort]];
@@ -2302,7 +2302,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         theTempExclusionZone.e3.x = [self getShort];
         theTempExclusionZone.e3.y = [self getShort];
         
-        [theObj setExclusion_zone:theTempExclusionZone];
+        [theObj setExclusionZone:theTempExclusionZone];
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setControl_panel_type"];
@@ -2329,24 +2329,24 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setPolygon_object"];
         #endif
-        [theObj setPolygon_object:[self getShortObjectFrom:thePolyArray]];
+        [theObj setPolygon_object:[self getShortObjectFromArray:thePolyArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setLine_object"];
         #endif
-        [theObj setLine_object:[self getShortObjectFrom:theLineArray]];
+        [theObj setLine_object:[self getShortObjectFromArray:theLineArray]];
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setPrimary_lightsource_object"];
         #endif
-        [theObj setPrimary_lightsource_object:[self getShortObjectFrom:theLightArray]];
+        [theObj setPrimary_lightsource_object:[self getShortObjectFromArray:theLightArray]];
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setSecondary_lightsource_object"];
         #endif
-        [theObj setSecondary_lightsource_object:[self getShortObjectFrom:theLightArray]];
+        [theObj setSecondary_lightsource_object:[self getShortObjectFromArray:theLightArray]];
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setTransparent_lightsource_object"];
         #endif
-        [theObj setTransparent_lightsource_object:[self getShortObjectFrom:theLightArray]];
+        [theObj setTransparent_lightsource_object:[self getShortObjectFromArray:theLightArray]];
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setAmbient_delta"];
@@ -2418,7 +2418,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         
         [theObj setLocation:NSMakePoint([self getShort], [self getShort])];
-        [theObj setPolygonObject:[self getShortObjectFrom:thePolyArray]];
+        [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
         
         [theObj setText:[self getChar:64]];
     }
@@ -2446,7 +2446,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setType:[self getShort]];
         [theObj setFlags:[self getUnsignedShort]];
         
-        [theObj setLightObject:[self getShortObjectFrom:theLightArray]];
+        [theObj setLightObject:[self getShortObjectFromArray:theLightArray]];
         
         [theObj setCurrentDirection:[self getShort]];
         [theObj setCurrentMagnitude:[self getShort]];
@@ -2517,7 +2517,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setMaximumHeight:[self getShort]];
         [theObj setMinimumHeight:[self getShort]];
         [theObj setStaticFlags:[self getUnsignedLong]];
-        [theObj setPolygonObject:[self getShortObjectFrom:thePolyArray]];
+        [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
         [theObj setTag:[self getShort]];
         
         #ifdef useDebugingLogs
@@ -3045,7 +3045,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	// ***
 	
-	theTempSideTextureDefinition = [currentObj getPrimary_texture];
+	theTempSideTextureDefinition = [currentObj primaryTextureStruct];
 	
 	[self saveShort:theTempSideTextureDefinition.x0];
 	[self saveShort:theTempSideTextureDefinition.y0];
@@ -3057,7 +3057,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	// ---
 	
-	theTempSideTextureDefinition = [currentObj getSecondary_texture];
+	theTempSideTextureDefinition = [currentObj secondaryTextureStruct];
 	
 	[self saveShort:theTempSideTextureDefinition.x0];
 	[self saveShort:theTempSideTextureDefinition.y0];
@@ -3069,7 +3069,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	// ---
 	
-	theTempSideTextureDefinition = [currentObj getTransparent_texture];
+	theTempSideTextureDefinition = [currentObj transparentTextureStruct];
 	
 	[self saveShort:theTempSideTextureDefinition.x0];
 	[self saveShort:theTempSideTextureDefinition.y0];
@@ -3081,7 +3081,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 	
 	// ***
 	
-	theTempExclusionZone = [currentObj getExclusion_zone];
+	theTempExclusionZone = [currentObj exclusionZone];
 	
 	[self saveShort:theTempExclusionZone.e0.x];
 	[self saveShort:theTempExclusionZone.e0.y];
@@ -3095,9 +3095,9 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:[currentObj getControl_panel_type]];
 	[self saveShort:[currentObj getControl_panel_permutation]];
 		
-	[self saveShort:[currentObj getPrimary_transfer_mode]];
-	[self saveShort:[currentObj getSecondary_transfer_mode]];
-	[self saveShort:[currentObj getTransparent_transfer_mode]];
+	[self saveShort:[currentObj primaryTransferMode]];
+	[self saveShort:[currentObj secondaryTransferMode]];
+	[self saveShort:[currentObj transparentTransferMode]];
 	
 	[self saveShort:[currentObj getPolygon_index]];
 	[self saveShort:[currentObj getLine_index]];

@@ -172,7 +172,7 @@
 
 // *********************** Updater Methods ***********************
 
-- (int)getSelection { return [colorListTable selectedRow] - 1; }
+- (NSInteger)getSelection { return [colorListTable selectedRow] - 1; }
 
 - (NSNumber *)getSelectedNumber
 {

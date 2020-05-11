@@ -28,8 +28,8 @@
 #import "PhScenarioData.h"
 #import "PhScenarioManagerController.h"
 
-extern NSString *PhScenarioDeallocatingNotification;
-extern NSString *PhScenarioLevelNamesChangedNotification;
+extern NSNotificationName const PhScenarioDeallocatingNotification;
+extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
 
 @interface PhPfhorgeScenarioLevelDoc : NSDocument
 {
@@ -58,7 +58,8 @@ extern NSString *PhScenarioLevelNamesChangedNotification;
 - (void)document:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void *)contextInfo;
 
 // *** Utilites ***
-- (NSString *)getFullPathForDirectory;
+- (NSString *)fullPathForDirectory;
+- (NSURL *)fullPathURLForDirectory;
 - (void)saveArrayOfNSDatas:(NSArray<NSData*> *)theDataObjs withFileNames:(NSArray<NSString*> *)theFileNames baseDir:(NSString *)basePath;
 
 - (void)rescanProjectDirectoryNow;

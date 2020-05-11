@@ -168,9 +168,9 @@
     }
     else //if (baseSideRef != nil)
     {
-        //struct side_texture_definition primaryTex; 	//= [baseSideRef getPrimary_texture];
-        //struct side_texture_definition secondaryTex; 	//= [baseSideRef getSecondary_texture];
-        //struct side_texture_definition transparentTex; 	//= [baseSideRef getTransparent_texture];
+        //struct side_texture_definition primaryTex; 	//= [baseSideRef primaryTextureStruct];
+        //struct side_texture_definition secondaryTex; 	//= [baseSideRef secondaryTextureStruct];
+        //struct side_texture_definition transparentTex; 	//= [baseSideRef transparentTextureStruct];
         
         /*
 	_full_side,	// primary texture is mapped floor-to-ceiling
@@ -214,7 +214,7 @@
             BOOL enviromentChanged = NO;
             int controlPanelType = -1;
             int permutationEffects = 0;
-            int terminalIndex = -1;
+            NSInteger terminalIndex = -1;
             
             [lineIsControlPanel setState:NSOnState];
             
@@ -642,9 +642,9 @@
 // *** Texture UI Actions ***
 
 /*
-        struct side_texture_definition primaryTex 	= [cSide getPrimary_texture];
-        struct side_texture_definition secondaryTex 	= [cSide getSecondary_texture];
-        struct side_texture_definition transparentTex 	= [cSide getTransparent_texture];
+        struct side_texture_definition primaryTex 	= [cSide primaryTextureStruct];
+        struct side_texture_definition secondaryTex 	= [cSide secondaryTextureStruct];
+        struct side_texture_definition transparentTex 	= [cSide transparentTextureStruct];
         
         // Update the texture offset fields...
         SetMatrixObjectValue(textureOffsetMatrix, 1, primaryTex.x0);

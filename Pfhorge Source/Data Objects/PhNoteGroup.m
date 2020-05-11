@@ -93,7 +93,7 @@
 -(void)dealloc
 {
     NSEnumerator *numer = [notes objectEnumerator];
-    id thisObj = nil;
+    PhAnnotationNote *thisObj = nil;
     
     while (thisObj = [numer nextObject])
     {
