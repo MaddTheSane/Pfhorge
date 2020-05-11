@@ -23,6 +23,7 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 //View and Controller Classes...
+#include <tgmath.h>
 #import "LEMapDraw.h"
 #import "LEPaletteController.h"
 #import "LELevelWindowController.h"
@@ -1368,7 +1369,7 @@ enum {
             //x and y are the object's coordinates
             //NSBezierPath *theTriangle;
             //you know the angle
-            float angle = [thisMapObject facing] / 256.0 * 3.14159;
+            float angle = [thisMapObject facing] / 256.0 * M_PI;
             ///NSPoint objPoints[3];
             NSPoint p1, p2, p3;
             
@@ -1378,14 +1379,14 @@ enum {
             // marathon angles are between 0 and 512 degrees
             // we convert to radians here
             
-            p1.x = x + (short)(6.0 * cos(angle + (225.0 / 180.0 * 3.14159)));
-            p1.y = y + (short)(6.0 * sin(angle + (225.0 / 180.0 * 3.14159)));
+            p1.x = x + (short)(6.0 * cos(angle + (225.0 / 180.0 * M_PI)));
+            p1.y = y + (short)(6.0 * sin(angle + (225.0 / 180.0 * M_PI)));
             /* if you imagine the triangle point upwards, this is the bottom left (225
             degrees (out of 360) from north) 6 is the distance of the point from the
             centre */
             
-            p2.x = x + (short)(6.0 * cos(angle + (135.0 / 180.0 * 3.14159)));
-            p2.y = y + (short)(6.0 * sin(angle + (135.0 / 180.0 * 3.14159)));
+            p2.x = x + (short)(6.0 * cos(angle + (135.0 / 180.0 * M_PI)));
+            p2.y = y + (short)(6.0 * sin(angle + (135.0 / 180.0 * M_PI)));
             /* this is the bottom right */
             
             p3.x = x + (short)(8.0 * cos(angle));
@@ -3892,11 +3893,11 @@ enum {
                         tango = theta;
                         theta = acos(theta);
                         thetaRad = theta;
-                        theta = theta * 180.0 / 3.141593;
+                        theta = theta * 180.0 / M_PI;
                         alpha = asin(alpha);
-                        alpha = alpha * 180.0 / 3.141593;
+                        alpha = alpha * 180.0 / M_PI;
                         tango = atan(tango);
-                        tango = tango * 180.0 / 3.141593;
+                        tango = tango * 180.0 / M_PI;
                         //NSLog(@"Angleized Line Index: %d  Alpha: %g Tango: %g", [theLines indexOfObjectIdenticalTo:thisMapLine], alpha, tango);
                         xrot = theX * cos(thetaRad) - theY * sin(thetaRad);
                         yrot = theX * sin(thetaRad) + theY * cos(thetaRad);

@@ -35,7 +35,10 @@ _______________________________________________________________________________
 #import <ApplicationServices/ApplicationServices.h>
 
 //#import "InputHelpers.h"
-
+#include <cmath>
+using std::cos;
+using std::sin;
+using std::tan;
 
 #import <AppKit/AppKit.h>
 //#import "InputHelpers.h"
@@ -325,7 +328,7 @@ void Draw3DSGrid()
 
 void DrawSpiralTowers()
 {
-    const float PI = 3.14159f;                          // Create a constant for PI
+    const float PI = M_PI;                   	        // Create a constant for PI
     const float kIncrease = PI / 16.0f;                 // This is the angle we increase by in radians
     const float kMaxRotation = PI * 6;                  // This is 1080 degrees of rotation in radians (3 circles)
     float radius = 40;                                  // We start with a radius of 40 and decrease towards the center
@@ -414,8 +417,8 @@ static unsigned short SetColor(short ID, int Indx) {
     // Tell OpenGL where to point the camera
     g_Camera->Look();
 	
-			glPolygonOffset(1,1);
-			glEnable(GL_POLYGON_OFFSET_FILL);
+	glPolygonOffset(1,1);
+	glEnable(GL_POLYGON_OFFSET_FILL);
 	
     // Draw a grid so we can get a good idea of movement around the world       
     //Draw3DSGrid();
@@ -530,19 +533,19 @@ static unsigned short SetColor(short ID, int Indx) {
         type = [event type];
         switch (type) {
             // Mouse up/down
-            case NSLeftMouseDown:
-            case NSRightMouseDown:
-            case 25: // New undocumented 'other' mouse down
+            case NSEventTypeLeftMouseDown:
+            case NSEventTypeRightMouseDown:
+            case NSEventTypeOtherMouseDown:
                 MouseLoc = [event locationInWindow];
                 //M.VC.StartDrag(MouseLoc.x,MouseLoc.y);
                 MouseButtonPressed = YES;
                 break;
-            case NSLeftMouseUp:
-            case NSRightMouseUp:
-            case 26: // New undocumented 'other' mouse up
+            case NSEventTypeLeftMouseUp:
+            case NSEventTypeRightMouseUp:
+            case NSEventTypeOtherMouseUp:
                 MouseButtonPressed = NO;
                 break;
-            case NSSystemDefined:
+            case NSEventTypeSystemDefined:
 			/*
                 if ([event subtype] == 7) {
                     unsigned int buttonIndex;
@@ -560,10 +563,10 @@ static unsigned short SetColor(short ID, int Indx) {
                     previousMouseButtons = newMouseButtons;
                 }*/
                 break;
-            case NSMouseMoved:
-            case NSLeftMouseDragged:
-            case NSRightMouseDragged:
-            case 27: // New undocumented 'other' mouse dragged
+            case NSEventTypeMouseMoved:
+            case NSEventTypeLeftMouseDragged:
+            case NSEventTypeRightMouseDragged:
+            case NSEventTypeOtherMouseDragged:
                 // Ignore the contents of these events -- just use them as a trigger to call CoreGraphics
                 //CGGetLastMouseDelta(&deltaX, &deltaY);
                 //[dxField setIntValue: deltaX];
@@ -583,11 +586,11 @@ static unsigned short SetColor(short ID, int Indx) {
                     M.VC.SetView();
                 }*/
                 break;
-            case NSScrollWheel:
+            case NSEventTypeScrollWheel:
                 //[self _logString: [NSString stringWithFormat: @"SCROLL WHEEL dx=%f dy=%f dz=%f\n", [event deltaX], [event deltaY], [event deltaZ]]];
                 break;
-            case NSKeyDown:
-            case NSKeyUp:
+            case NSEventTypeKeyDown:
+            case NSEventTypeKeyUp:
                 {
                     NSString *characters;
                     unichar c;
@@ -750,37 +753,37 @@ static unsigned short SetColor(short ID, int Indx) {
                     }
                 }
                 break;
-            case NSFlagsChanged:
+            case NSEventTypeFlagsChanged:
                 newFlags = [event modifierFlags];
                 changed = newFlags ^ previousFlags;
                 
-                if (changed & NSAlphaShiftKeyMask) {
-                    down = newFlags & NSAlphaShiftKeyMask;
+                if (changed & NSEventModifierFlagCapsLock) {
+                    down = newFlags & NSEventModifierFlagCapsLock;
                     //[self _logString: down ? @"CAPS LOCK DOWN\n" : @"CAPS LOCK UP\n"];
                 }
                 
-                if (changed & NSShiftKeyMask) {
-                    down = newFlags & NSShiftKeyMask;
+                if (changed & NSEventModifierFlagShift) {
+                    down = newFlags & NSEventModifierFlagShift;
                     //[self _logString: down ? @"SHIFT DOWN\n" : @"SHIFT UP\n"];
                 }
                 
-                if (changed & NSControlKeyMask) {
-                    down = newFlags & NSControlKeyMask;
+                if (changed & NSEventModifierFlagControl) {
+                    down = newFlags & NSEventModifierFlagControl;
                     //[self _logString: down ? @"CONTROL DOWN\n" : @"CONTROL UP\n"];
                 }
                 
-                if (changed & NSAlternateKeyMask) {
-                    down = newFlags & NSAlternateKeyMask;
+                if (changed & NSEventModifierFlagOption) {
+                    down = newFlags & NSEventModifierFlagOption;
                     //[self _logString: down ? @"ALT DOWN\n" : @"ALT UP\n"];
                 }
                 
-                if (changed & NSCommandKeyMask) {
-                    down = newFlags & NSCommandKeyMask;
+                if (changed & NSEventModifierFlagCommand) {
+                    down = newFlags & NSEventModifierFlagCommand;
                     //[self _logString: down ? @"COMMAND DOWN\n" : @"COMMAND UP\n"];
                 }
                 
-                if (changed & NSNumericPadKeyMask) {
-                    down = newFlags & NSNumericPadKeyMask;
+                if (changed & NSEventModifierFlagNumericPad) {
+                    down = newFlags & NSEventModifierFlagNumericPad;
                     //[self _logString: down ? @"NUM LOCK DOWN\n" : @"NUM LOCK UP\n"];
                 }
 

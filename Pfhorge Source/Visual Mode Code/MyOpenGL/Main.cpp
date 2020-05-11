@@ -14,6 +14,7 @@
 
 #include "main.h"                                        // This includes our header file
 #include "Camera.h"
+#include <cmath>
 
 CCamera g_Camera;                                       // Define our camera object
 
@@ -155,7 +156,7 @@ void Draw3DSGrid()
 
 void DrawSpiralTowers()
 {
-    const float PI = 3.14159f;                          // Create a constant for PI
+    const float PI = M_PI;                          // Create a constant for PI
     const float kIncrease = PI / 16.0f;                 // This is the angle we increase by in radians
     const float kMaxRotation = PI * 6;                  // This is 1080 degrees of rotation in radians (3 circles)
     float radius = 40;                                  // We start with a radius of 40 and decrease towards the center

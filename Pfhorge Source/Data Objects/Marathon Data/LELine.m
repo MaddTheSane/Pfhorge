@@ -22,6 +22,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
+#include <tgmath.h>
 #import "LELine.h"
 #import "LEMapPoint.h"
 #import "LEPolygon.h"
@@ -1354,11 +1355,11 @@
                         tango = theta;
                         theta = acos(theta);
                         thetaRad = theta;
-                        theta = theta * 180.0 / 3.141593;
+                        theta = theta * 180.0 / M_PI;
                         alpha = asin(alpha);
-                        alpha = alpha * 180.0 / 3.141593;
+                        alpha = alpha * 180.0 / M_PI;
                         tango = atan(tango);
-                        tango = tango * 180.0 / 3.141593;
+                        tango = tango * 180.0 / M_PI;
                         //NSLog(@"Angleized Line Index: %d  Alpha: %g Tango: %g", [theLines indexOfObjectIdenticalTo:thisMapLine], alpha, tango);
                         xrot = theX * cos(thetaRad) - theY * sin(thetaRad);
                         yrot = theX * sin(thetaRad) + theY * cos(thetaRad);
@@ -1749,7 +1750,7 @@
     a = atan(((double)dY) / ((double)dX));
 
     // now it's degrees
-    a *= (180.0 / 3.141592654);
+    a *= (180.0 / M_PI);
     
     if(dX < 0)			// quadrant 1 or 2
     {

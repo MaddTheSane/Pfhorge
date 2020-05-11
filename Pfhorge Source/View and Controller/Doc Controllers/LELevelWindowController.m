@@ -1356,7 +1356,7 @@ static NSCursor *crosshairCursor = nil;
     if (returnCode != NSOKButton)
         return;
     
-    [[self document] exportToMarathonFormatAtPath:[sheet filename]];
+    [[self document] exportToMarathonFormatAtPath:[sheet URL].path];
 }
 
 - (void)savePanelDidEndForMapImport:(NSOpenPanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
