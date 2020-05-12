@@ -34,8 +34,9 @@
 {
     int tagVersionNumber = 1;
     [super encodeWithCoder:coder];
-    
-    encodeInt(coder, tagVersionNumber);
+	if (!coder.allowsKeyedCoding) {
+		encodeInt(coder, tagVersionNumber);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -44,7 +45,9 @@
     
     self = [super initWithCoder:coder];
     
-    loadingVersionNumber = decodeInt(coder);
+	if (!coder.allowsKeyedCoding) {
+		loadingVersionNumber = decodeInt(coder);
+	}
     
     return self;
 }

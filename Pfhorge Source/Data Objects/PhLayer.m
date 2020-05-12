@@ -33,21 +33,31 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:layerColor forKey:@"layerColor"];
+		[coder encodeObject:objectsInThisLayer forKey:@"objectsInThisLayer"];
+	} else {
     encodeNumInt(coder, 0);
     
     
     encodeObj(coder, layerColor);
     encodeObj(coder, objectsInThisLayer);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		layerColor = [[coder decodeObjectOfClass:[NSColor class] forKey:@"layerColor"] retain];
+		objectsInThisLayer = [[coder decodeObjectForKey:@"objectsInThisLayer"] retain];
+	} else {
     versionNum = decodeNumInt(coder);
     
     layerColor = decodeObjRetain(coder);
     objectsInThisLayer = decodeObjRetain(coder);
+	}
     
     return self;
 }

@@ -133,35 +133,74 @@
 {
     int tempInt;
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeShort(coder, type);
-    encodeUnsignedShort(coder, flags);
-    
-    encodeObj(coder, light_object);
-    
-    encodeShort(coder, current_direction);
-    encodeShort(coder, current_magnitude);
-    
-    encodeShort(coder, low);
-    encodeShort(coder, high);
-    
-    tempInt = origin.x;
-    encodeInt(coder, tempInt);
-    tempInt = origin.y;
-    encodeInt(coder, tempInt);
-    encodeShort(coder, height);
-    
-    encodeLong(coder, minimum_light_intensity);
-    encodeShort(coder, texture);
-    encodeShort(coder, transfer_mode);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:type forKey:@"type"];
+		[coder encodeInt:flags forKey:@"flags"];
+		
+		[coder encodeObject:light_object forKey:@"light_object"];
+		
+		[coder encodeInt:current_direction forKey:@"current_direction"];
+		[coder encodeInt:current_magnitude forKey:@"current_magnitude"];
+		
+		[coder encodeInt:low forKey:@"low"];
+		[coder encodeInt:high forKey:@"high"];
+		
+		[coder encodePoint:origin forKey:@"origin"];
+		[coder encodeInt:height forKey:@"height"];
+		
+		[coder encodeInt:minimum_light_intensity forKey:@"minimum_light_intensity"];
+		[coder encodeInt:texture forKey:@"texture"];
+		[coder encodeInt:transfer_mode forKey:@"transfer_mode"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		
+		encodeShort(coder, type);
+		encodeUnsignedShort(coder, flags);
+		
+		encodeObj(coder, light_object);
+		
+		encodeShort(coder, current_direction);
+		encodeShort(coder, current_magnitude);
+		
+		encodeShort(coder, low);
+		encodeShort(coder, high);
+		
+		tempInt = origin.x;
+		encodeInt(coder, tempInt);
+		tempInt = origin.y;
+		encodeInt(coder, tempInt);
+		encodeShort(coder, height);
+		
+		encodeLong(coder, minimum_light_intensity);
+		encodeShort(coder, texture);
+		encodeShort(coder, transfer_mode);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		type = [coder decodeIntForKey:@"type"];
+		flags = [coder decodeIntForKey:@"flags"];
+		
+		light_object = [coder decodeObjectForKey:@"light_object"];
+		
+		current_direction = [coder decodeIntForKey:@"current_direction"];
+		current_magnitude = [coder decodeIntForKey:@"current_magnitude"];
+		
+		low = [coder decodeIntForKey:@"low"];
+		high = [coder decodeIntForKey:@"high"];
+		
+		origin = [coder decodePointForKey:@"origin"];
+		height = [coder decodeIntForKey:@"height"];
+		
+		minimum_light_intensity = [coder decodeIntForKey:@"minimum_light_intensity"];
+		texture = [coder decodeIntForKey:@"texture"];
+		transfer_mode = [coder decodeIntForKey:@"transfer_mode"];
+	} else {
     versionNum = decodeNumInt(coder);
     
     type = decodeShort(coder);
@@ -182,6 +221,7 @@
     minimum_light_intensity = decodeInt(coder);
     texture = decodeShort(coder);
     transfer_mode = decodeShort(coder);
+	}
     
     return self;
 }

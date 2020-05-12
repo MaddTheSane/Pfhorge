@@ -66,7 +66,7 @@
         [progress setSecondStatusText:@"Archiving Level Into Binary Data..."];
         [progress increaseSecondProgressBy:5.0];
         
-        theLevelMapData = [NSArchiver archivedDataWithRootObject:currentLevel];
+        theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:currentLevel];
         
         [progress setSecondStatusText:@"Saving Level..."];
         [progress increaseSecondProgressBy:5.0];

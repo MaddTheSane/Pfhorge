@@ -29,6 +29,84 @@
 #define GET_LIGHT_FLAG(b) (flags & (b))
 #define SET_LIGHT_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
+@interface PhLightingFunctionSpecificationObject: NSObject <NSCoding>
+{
+	PhLightFunction function;
+
+	short period, delta_period;
+	int32_t	intensity, delta_intensity; // used to be a fixed type :)
+}
+@property PhLightFunction function;
+
+@property short period, deltaPeriod;
+@property int32_t	intensity, deltaIntensity;
+
+- (instancetype)initWithCStruct:(struct lighting_function_specification)cStruct;
+@property (readonly) struct lighting_function_specification cStruct;
+@end
+
+@implementation PhLightingFunctionSpecificationObject
+@synthesize function;
+@synthesize period;
+@synthesize deltaPeriod=delta_period;
+@synthesize intensity;
+@synthesize deltaIntensity=delta_intensity;
+
+-(instancetype)initWithCStruct:(struct lighting_function_specification)cStruct
+{
+	if (self = [super init]) {
+		function = cStruct.function;
+		period = cStruct.period;
+		delta_period = cStruct.delta_period;
+		intensity = cStruct.intensity;
+		delta_intensity = cStruct.delta_intensity;
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	if (!coder.allowsKeyedCoding) {
+		[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
+		return;
+	}
+	[coder encodeInt:function forKey:@"function"];
+	[coder encodeInt:period forKey:@"period"];
+	[coder encodeInt:delta_period forKey:@"deltaPeriod"];
+	[coder encodeInt:intensity forKey:@"intensity"];
+	[coder encodeInt:delta_intensity forKey:@"deltaIntensity"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+	if (self = [super init]) {
+		if (!coder.allowsKeyedCoding) {
+			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError userInfo:nil]];
+			[self release];
+			return nil;
+		}
+		function = [coder decodeIntForKey:@"function"];
+		period = [coder decodeIntForKey:@"period"];
+		delta_period = [coder decodeIntForKey:@"deltaPeriod"];
+		intensity = [coder decodeIntForKey:@"intensity"];
+		delta_intensity = [coder decodeIntForKey:@"deltaIntensity"];
+	}
+	return self;
+}
+
+- (struct lighting_function_specification)cStruct
+{
+	struct lighting_function_specification toRet;
+	toRet.function = function;
+	toRet.period = period;
+	toRet.delta_period = delta_period;
+	toRet.intensity = intensity;
+	toRet.delta_intensity = delta_intensity;
+	return toRet;
+}
+
+@end
+
 @implementation PhLight
 
  // **************************  Coding/Copy Protocal Methods  *************************
@@ -130,6 +208,21 @@
     int i;
     
     [super encodeWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:type forKey:@"type"];
+		[coder encodeInt:flags forKey:@"flags"];
+		
+		[coder encodeInt:phase forKey:@"phase"];
+
+		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:6];
+		for (i = 0; i < 6; i++) {
+			[tmp addObject:[[[PhLightingFunctionSpecificationObject alloc] initWithCStruct:light_states[i]] autorelease]];
+		}
+		[coder encodeObject:tmp forKey:@"light_states"];
+
+		[coder encodeInt:tag forKey:@"tag"];
+		[coder encodeObject:tagObject forKey:@"tagObject"];
+	} else {
     encodeNumInt(coder, 0);
     
     
@@ -149,6 +242,7 @@
      
     encodeShort(coder, tag);
     encodeObj(coder, tagObject);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -157,6 +251,21 @@
     
     int versionNum = 0;
     self = [super initWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		type = [coder decodeIntForKey:@"type"];
+		flags = [coder decodeIntForKey:@"flags"];
+		
+		phase = [coder decodeIntForKey:@"phase"];
+		NSArray *tmp = [coder decodeObjectForKey:@"light_states"];
+		for (i = 0; i < 6; i++)
+		{
+			PhLightingFunctionSpecificationObject *obj = tmp[i];
+			light_states[i] = obj.cStruct;
+		}
+		
+		tag = [coder decodeIntForKey:@"tag"];
+		tagObject = [coder decodeObjectForKey:@"tagObject"];
+	} else {
     versionNum = decodeNumInt(coder);
     
     type = decodeShort(coder);
@@ -175,6 +284,7 @@
      
     tag = decodeShort(coder);
     tagObject = decodeObj(coder);
+	}
     
     return self;
 }

@@ -91,43 +91,62 @@
 {
     int tempInt;
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 1);
-    
-    encodeShort(coder, type);
-    
-    tempInt = location.x;
-    encodeInt(coder, tempInt);
-    tempInt = location.y;
-    encodeInt(coder, tempInt);
-    
-    encodeObj(coder, polygon_object);
-    encodeObj(coder, text);
-    
-    encodeObj(coder, group);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:type forKey:@"type"];
+
+		[coder encodePoint:location forKey:@"location"];
+		
+		[coder encodeObject:polygon_object forKey:@"polygon_object"];
+		[coder encodeObject:text forKey:@"text"];
+		
+		[coder encodeObject:group forKey:@"group"];
+	} else {
+		encodeNumInt(coder, 1);
+		
+		encodeShort(coder, type);
+		
+		tempInt = location.x;
+		encodeInt(coder, tempInt);
+		tempInt = location.y;
+		encodeInt(coder, tempInt);
+		
+		encodeObj(coder, polygon_object);
+		encodeObj(coder, text);
+		
+		encodeObj(coder, group);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    type = decodeShort(coder);
-    
-    location.x = decodeInt(coder);
-    location.y = decodeInt(coder);
-    
-    polygon_object = decodeObj(coder);
-    text = decodeObjRetain(coder);
-    
-    if (versionNum > 0)
-    {
-        group = decodeObjRetain(coder);
-    }
-    else
-    {
-        group = nil;
-    }
+	if (coder.allowsKeyedCoding) {
+		type = [coder decodeIntForKey:@"type"];
+		
+		location = [coder decodePointForKey:@"location"];
+		
+		polygon_object = [coder decodeObjectForKey:@"polygon_object"];
+		text = [[coder decodeObjectForKey:@"text"] retain];
+		
+		group = [[coder decodeObjectForKey:@"group"] retain];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		type = decodeShort(coder);
+		
+		location.x = decodeInt(coder);
+		location.y = decodeInt(coder);
+		
+		polygon_object = decodeObj(coder);
+		text = decodeObjRetain(coder);
+		
+		if (versionNum > 0) {
+			group = decodeObjRetain(coder);
+		} else {
+			group = nil;
+		}
+	}
     
     return self;
 }

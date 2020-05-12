@@ -34,22 +34,34 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:noteColor forKey:@"noteColor"];
+		[coder encodeObject:notes forKey:@"notes"];
+		[coder encodeBool:visible forKey:@"visible"];
+	} else {
     encodeNumInt(coder, 0);
     
     encodeObj(coder, noteColor);
     encodeObj(coder, notes);
     encodeBOOL(coder, visible);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		noteColor = [[coder decodeObjectForKey:@"noteColor"] retain];
+		notes = [[coder decodeObjectForKey:@"notes"] retain];
+		visible = [coder decodeBoolForKey:@"visible"];
+	} else {
     versionNum = decodeNumInt(coder);
     
     noteColor = decodeObjRetain(coder);
     notes = decodeObjRetain(coder);
     visible = decodeBOOL(coder);
+	}
     
     return self;
 }

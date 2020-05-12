@@ -685,7 +685,7 @@
         int thePfhorgeDataSig3 = 42296737;
         thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
 
-        NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
+        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];

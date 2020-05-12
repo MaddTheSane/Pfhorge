@@ -29,6 +29,74 @@
 
 #import "PhData.h"
 
+@interface LESideTextureDefinition : NSObject <NSCoding>
+@property world_distance		x0, y0;
+@property shape_descriptor	texture;
+
+// These have been added, they are not a part of the orginal structure defintion...
+@property short textureCollection; //!< Obsolete... This was not in the orginal structure!
+@property short textureNumber; //!< Obsolete... This was not in the orginal structure!
+
++ (LESideTextureDefinition*)sideTextureFromCStruct:(side_texture_definition)cTyp;
+@property (readonly) side_texture_definition cStructSideTextureDefinition;
+
+@end
+
+@implementation LESideTextureDefinition
+
++ (LESideTextureDefinition *)sideTextureFromCStruct:(side_texture_definition)cTyp
+{
+	LESideTextureDefinition *toRet = [[LESideTextureDefinition alloc] init];
+	toRet.x0 = cTyp.x0;
+	toRet.y0 = cTyp.y0;
+	toRet.texture = cTyp.texture;
+	toRet.textureCollection = cTyp.textureCollection;
+	toRet.textureNumber = cTyp.textureNumber;
+
+	return [toRet autorelease];
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+	if (!coder.allowsKeyedCoding) {
+		[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
+		return;
+	}
+	[coder encodeInt:_x0 forKey:@"x0"];
+	[coder encodeInt:_y0 forKey:@"y0"];
+	[coder encodeInt:_texture forKey:@"texture"];
+	[coder encodeInt:_textureCollection forKey:@"textureCollection"];
+	[coder encodeInt:_textureNumber forKey:@"textureNumber"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+	if (self = [super init]) {
+		if (!coder.allowsKeyedCoding) {
+			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError userInfo:nil]];
+			[self release];
+			return nil;
+		}
+		_x0 = [coder decodeIntForKey:@"x0"];
+		_y0 = [coder decodeIntForKey:@"y0"];
+		_texture = [coder decodeIntForKey:@"texture"];
+		_textureCollection = [coder decodeIntForKey:@"textureCollection"];
+		_textureNumber = [coder decodeIntForKey:@"textureNumber"];
+	}
+	return self;
+}
+
+- (side_texture_definition)cStructSideTextureDefinition
+{
+	side_texture_definition toRet;
+	toRet.x0 = self.x0;
+	toRet.y0 = self.y0;
+	toRet.texture = self.texture;
+	toRet.textureCollection = self.textureCollection;
+	toRet.textureNumber = self.textureNumber;
+	return toRet;
+}
+
+@end
+
 #define GET_SIDE_FLAG(b) (flags & (b))
 #define SET_SIDE_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
@@ -242,6 +310,50 @@
     short tmpShort;
     
     [super encodeWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:type forKey:@"type"];
+		[coder encodeInt:flags forKey:@"flags"];
+		
+		[coder encodeConditionalObject:polygon_object forKey:@"polygon_object"];
+		[coder encodeConditionalObject:line_object forKey:@"line_object"];
+		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:primary_texture] forKey:@"primary_texture"];
+		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:secondary_texture] forKey:@"secondary_texture"];
+		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:transparent_texture] forKey:@"transparent_texture"];
+		[coder encodePoint:exclusion_zone.e0 forKey:@"exclusion_zone.e0"];
+		[coder encodePoint:exclusion_zone.e1 forKey:@"exclusion_zone.e1"];
+		[coder encodePoint:exclusion_zone.e2 forKey:@"exclusion_zone.e2"];
+		[coder encodePoint:exclusion_zone.e3 forKey:@"exclusion_zone.e3"];
+		
+		[coder encodeInt:control_panel_type forKey:@"control_panel_type"];
+		[coder encodeInt:control_panel_permutation forKey:@"control_panel_permutation"];
+		
+		[coder encodeInt:primary_transfer_mode forKey:@"primary_transfer_mode"];
+		[coder encodeInt:secondary_transfer_mode forKey:@"secondary_transfer_mode"];
+		[coder encodeInt:transparent_transfer_mode forKey:@"transparent_transfer_mode"];
+		
+		// If So, Should Already Have This On:
+		// setEncodeIndexNumbersInstead:YES];
+		[coder encodeConditionalObject:polygon_object forKey:@"polygon_object"];
+		[coder encodeConditionalObject:line_object forKey:@"line_object"];
+		if (useIndexNumbersInstead)
+		{
+			tmpShort = GetIndexAdv(primary_lightsource_object);
+			[coder encodeInt:tmpShort forKey:@"primary_lightsource_object index"];
+			tmpShort = GetIndexAdv(secondary_lightsource_object);
+			[coder encodeInt:tmpShort forKey:@"secondary_lightsource_object index"];
+			tmpShort = GetIndexAdv(transparent_lightsource_object);
+			[coder encodeInt:tmpShort forKey:@"transparent_lightsource_object index"];
+		}
+		else
+		{
+			[coder encodeObject:primary_lightsource_object forKey:@"primary_lightsource_object"];
+			[coder encodeObject:secondary_lightsource_object forKey:@"secondary_lightsource_object"];
+			[coder encodeObject:transparent_lightsource_object forKey:@"transparent_lightsource_object"];
+			[coder encodeObject:control_panel_permutation_object forKey:@"control_panel_permutation_object"];
+		}
+		
+		[coder encodeInt:ambient_delta forKey:@"ambient_delta"];
+	} else {
     encodeNumInt(coder, 0);
     
     encodeShort(coder, type);
@@ -301,6 +413,7 @@
     }
     
     encodeLong(coder, ambient_delta);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -310,7 +423,50 @@
     //NSLog(@"Side");
     
     self = [super initWithCoder:coder];
-    
+	if (coder.allowsKeyedCoding) {
+		type = [coder decodeIntForKey:@"type"];
+		flags = [coder decodeIntForKey:@"flags"];
+		
+		primary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"primary_texture"] cStructSideTextureDefinition];
+		secondary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"secondary_texture"] cStructSideTextureDefinition];
+		transparent_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"transparent_texture"] cStructSideTextureDefinition];
+		
+		exclusion_zone.e0 = [coder decodePointForKey:@"exclusion_zone.e0"];
+		exclusion_zone.e1 = [coder decodePointForKey:@"exclusion_zone.e1"];
+		exclusion_zone.e2 = [coder decodePointForKey:@"exclusion_zone.e2"];
+		exclusion_zone.e3 = [coder decodePointForKey:@"exclusion_zone.e3"];
+		
+		control_panel_type = [coder decodeIntForKey:@"control_panel_type"];
+		control_panel_permutation = [coder decodeIntForKey:@"control_panel_permutation"];
+		
+		primary_transfer_mode = [coder decodeIntForKey:@"primary_transfer_mode"];
+		secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
+		transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
+		
+		polygon_object = [coder decodeObjectForKey:@"polygon_object"];
+		line_object = [coder decodeObjectForKey:@"line_object"];
+		
+		if (useIndexNumbersInstead)
+		{
+			short tmpShort;
+			tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
+			primary_lightsource_object = [self getLightFromIndex:tmpShort];
+			tmpShort = [coder decodeIntForKey:@"secondary_lightsource_object index"];
+			secondary_lightsource_object = [self getLightFromIndex:tmpShort];
+			tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
+			transparent_lightsource_object = [self getLightFromIndex:tmpShort];
+		}
+		else
+		{
+			primary_lightsource_object = [coder decodeObjectForKey:@"primary_lightsource_object"];
+			secondary_lightsource_object = [coder decodeObjectForKey:@"secondary_lightsource_object"];
+			transparent_lightsource_object = [coder decodeObjectForKey:@"transparent_lightsource_object"];
+			control_panel_permutation_object = [coder decodeObjectForKey:@"control_panel_permutation_object"];
+		}
+		
+		ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
+
+	} else {
     if (self == nil)
         NSLog(@"************************************ Side - nil - 1...");
     
@@ -375,6 +531,7 @@
         NSLog(@"************************************ Side - nil - 2...");
         //return nil;
     }
+	}
     
     if (useIndexNumbersInstead)
         [theLELevelDataST addObjects:self];

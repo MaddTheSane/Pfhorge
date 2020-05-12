@@ -215,44 +215,75 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeShort(coder, type);
-    encodeShort(coder, speed);
-    encodeShort(coder, delay);
-    
-    encodeShort(coder, maximum_height);
-    encodeShort(coder, minimum_height);
-    
-    encodeUnsignedLong(coder, static_flags);
-    
-    encodeObj(coder, polygon_object);
-    
-    encodeShort(coder, tag);
-    encodeObj(coder, tagObject);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:type forKey:@"type"];
+		[coder encodeInt:speed forKey:@"speed"];
+		[coder encodeInt:delay forKey:@"delay"];
+
+		[coder encodeInt:maximum_height forKey:@"maximum_height"];
+		[coder encodeInt:minimum_height forKey:@"minimum_height"];
+
+		[coder encodeInt:static_flags forKey:@"static_flags"];
+		
+		[coder encodeObject:polygon_object forKey:@"polygon_object"];
+		
+		[coder encodeInt:tag forKey:@"tag"];
+		[coder encodeObject:tagObject forKey:@"tagObject"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		
+		encodeShort(coder, type);
+		encodeShort(coder, speed);
+		encodeShort(coder, delay);
+		
+		encodeShort(coder, maximum_height);
+		encodeShort(coder, minimum_height);
+		
+		encodeUnsignedLong(coder, static_flags);
+		
+		encodeObj(coder, polygon_object);
+		
+		encodeShort(coder, tag);
+		encodeObj(coder, tagObject);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    type = decodeShort(coder);
-    speed = decodeShort(coder);
-    delay = decodeShort(coder);
-    
-    maximum_height = decodeShort(coder);
-    minimum_height = decodeShort(coder);
-    
-    static_flags = decodeUnsignedInt(coder);
-    
-    polygon_object = decodeObj(coder);
-    
-    tag = decodeShort(coder);
-    tagObject = decodeObj(coder);
-    
+	if (coder.allowsKeyedCoding) {
+		type = [coder decodeIntForKey:@"type"];
+		speed = [coder decodeIntForKey:@"type"];
+		delay = [coder decodeIntForKey:@"type"];
+		
+		maximum_height = [coder decodeIntForKey:@"maximum_height"];
+		minimum_height = [coder decodeIntForKey:@"minimum_height"];
+		
+		static_flags = [coder decodeIntForKey:@"static_flags"];
+		
+		polygon_object = [coder decodeObjectForKey:@"polygon_object"];
+		
+		tag = [coder decodeIntForKey:@"tag"];
+		tagObject = [coder decodeObjectForKey:@"tagObject"];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		type = decodeShort(coder);
+		speed = decodeShort(coder);
+		delay = decodeShort(coder);
+		
+		maximum_height = decodeShort(coder);
+		minimum_height = decodeShort(coder);
+		
+		static_flags = decodeUnsignedInt(coder);
+		
+		polygon_object = decodeObj(coder);
+		
+		tag = decodeShort(coder);
+		tagObject = decodeObj(coder);
+	}
     if (useIndexNumbersInstead)
         [theLELevelDataST addPlatform:self];
     

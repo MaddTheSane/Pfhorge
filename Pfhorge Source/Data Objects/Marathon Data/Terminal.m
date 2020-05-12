@@ -150,27 +150,43 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeObj(coder, theSections);
-    
-    encodeUnsignedShort(coder, flags);
-    encodeShort(coder, lineCount);
-    encodeBOOL(coder, textEncoded);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:theSections forKey:@"theSections"];
+		
+		[coder encodeInt:flags forKey:@"flags"];
+		[coder encodeInt:lineCount forKey:@"lineCount"];
+		[coder encodeBool:textEncoded forKey:@"textEncoded"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		
+		encodeObj(coder, theSections);
+		
+		encodeUnsignedShort(coder, flags);
+		encodeShort(coder, lineCount);
+		encodeBOOL(coder, textEncoded);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    theSections = decodeObjRetain(coder);
-    
-    flags = decodeUnsignedShort(coder);
-    lineCount = decodeShort(coder);
-    textEncoded = decodeBOOL(coder);
+	if (coder.allowsKeyedCoding) {
+		theSections = [coder decodeObjectForKey:@"theSections"];
+		
+		flags = [coder decodeIntForKey:@"flags"];
+		lineCount = [coder decodeIntForKey:@"lineCount"];
+		textEncoded = [coder decodeBoolForKey:@"textEncoded"];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		theSections = decodeObjRetain(coder);
+		
+		flags = decodeUnsignedShort(coder);
+		lineCount = decodeShort(coder);
+		textEncoded = decodeBOOL(coder);
+	}
     
     /*if (useIndexNumbersInstead)
         [theLELevelDataST addPlatform:self];*/

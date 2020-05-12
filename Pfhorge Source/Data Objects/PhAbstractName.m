@@ -58,19 +58,26 @@
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeObj(coder, myName);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:myName forKey:@"PhAbstractName"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		encodeObj(coder, myName);
+	}
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    myName = decodeObjRetain(coder);
+	if (coder.allowsKeyedCoding) {
+		myName = [[coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"] copy];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		myName = decodeObjRetain(coder);
+	}
     
     return self;
 }

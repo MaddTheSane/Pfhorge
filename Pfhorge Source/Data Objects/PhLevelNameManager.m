@@ -56,7 +56,11 @@
     // Do I need to encode the NSObject super class?
     //[super encodeWithCoder:coder];
     
-    encodeNumInt(coder, 0);
+	if (coder.allowsKeyedCoding) {
+		
+	} else {
+		encodeNumInt(coder, 0);
+	}
     
     /*encodeObj(coder, tagNames);
     encodeObj(coder, platformNames);
@@ -79,7 +83,11 @@
     
     self = [self init];
     
-    versionNum = decodeNumInt(coder);
+	if (coder.allowsKeyedCoding) {
+		
+	} else {
+		versionNum = decodeNumInt(coder);
+	}
     
     /*tagNames = decodeObj(coder);
     platformNames = decodeObj(coder);

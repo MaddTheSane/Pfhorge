@@ -63,6 +63,7 @@ typedef NS_ENUM(short, PhLightFunction) {
 	_smooth__lighting_function,
 	//! intensity in [smooth_intensity(t),final_intensity]
 	_flicker_lighting_function,
+	
 	NUMBER_OF_LIGHTING_FUNCTIONS
 };
 

@@ -36,40 +36,68 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeObj(coder, theText);
-        // May want to encode loosely (Conditionaly)...
-    encodeConditionalObject(coder, permutationObject);
-    
-    encodeShort(coder, flags);
-    encodeShort(coder, type);
-    encodeShort(coder, permutation);
-    
-    encodeShort(coder, text_offset);
-    encodeShort(coder, text_length);
-    
-    encodeShort(coder, lines);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:theText forKey:@"theText"];
+		[coder encodeConditionalObject:permutationObject forKey:@"permutationObject"];
+		
+		[coder encodeInt:flags forKey:@"flags"];
+		[coder encodeInt:type forKey:@"type"];
+		[coder encodeInt:permutation forKey:@"permutation"];
+		
+		[coder encodeInt:text_offset forKey:@"textOffset"];
+		[coder encodeInt:text_length forKey:@"textLength"];
+
+		[coder encodeInt:lines forKey:@"lines"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		
+		encodeObj(coder, theText);
+		// May want to encode loosely (Conditionaly)...
+		encodeConditionalObject(coder, permutationObject);
+		
+		encodeShort(coder, flags);
+		encodeShort(coder, type);
+		encodeShort(coder, permutation);
+		
+		encodeShort(coder, text_offset);
+		encodeShort(coder, text_length);
+		
+		encodeShort(coder, lines);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    theText = decodeObjRetain(coder);
-    
+	if (coder.allowsKeyedCoding) {
+		theText = [coder decodeObjectForKey:@"theText"];
+		permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+
+		flags = [coder decodeIntForKey:@"flags"];
+		type = [coder decodeIntForKey:@"type"];
+		permutation = [coder decodeIntForKey:@"permutation"];
+		
+		text_offset = [coder decodeIntForKey:@"textOffset"];
+		text_length = [coder decodeIntForKey:@"textLength"];
+
+		lines = [coder decodeIntForKey:@"lines"];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		theText = decodeObjRetain(coder);
+		
         // May Need To Retain...
-    permutationObject = decodeObj(coder);
-    
-    flags = decodeShort(coder);
-    type = decodeShort(coder);
-    permutation = decodeShort(coder);
-    text_offset = decodeShort(coder);
-    text_length = decodeShort(coder);
-    lines = decodeShort(coder);
+		permutationObject = decodeObj(coder);
+		
+		flags = decodeShort(coder);
+		type = decodeShort(coder);
+		permutation = decodeShort(coder);
+		text_offset = decodeShort(coder);
+		text_length = decodeShort(coder);
+		lines = decodeShort(coder);
+	}
     
     /*if (useIndexNumbersInstead)
         [theLELevelDataST addPlatform:self];*/

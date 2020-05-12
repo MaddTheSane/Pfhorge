@@ -64,23 +64,26 @@
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
-    encodeNumInt(coder, 0);
-    
-    // Do I need to encode the NSObject super class?
-    //[super encodeWithCoder:coder];
-    encodeBOOL(coder, useIndexNumbersInstead); // 2
+	if (coder.allowsKeyedCoding) {
+		[coder encodeBool:useIndexNumbersInstead forKey:@"useIndexNumbersInstead"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		encodeBOOL(coder, useIndexNumbersInstead); // 2
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    // Do I need to decode the NSObject super class?
-    //self = [super initWithCoder:coder];
     int versionNum = 0;
     
     self = [super init];
-    
-    versionNum = decodeNumInt(coder);
-    useIndexNumbersInstead = decodeBOOL(coder); // 2
+	if (coder.allowsKeyedCoding) {
+		useIndexNumbersInstead = [coder decodeBoolForKey:@"useIndexNumbersInstead"];
+	} else {
+		versionNum = decodeNumInt(coder);
+		useIndexNumbersInstead = decodeBOOL(coder); // 2
+	}
     
     if (useIndexNumbersInstead)
     { // Get the ST's from the front map...

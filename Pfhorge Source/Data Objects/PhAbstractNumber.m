@@ -55,20 +55,26 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeObj(coder, assignedNumber);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:assignedNumber forKey:@"assignedNumber"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		encodeObj(coder, assignedNumber);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    assignedNumber = decodeObjRetain(coder);
-    
+	if (coder.allowsKeyedCoding) {
+		assignedNumber = [[coder decodeObjectForKey:@"assignedNumber"] retain];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		assignedNumber = decodeObjRetain(coder);
+	}
     return self;
 }
 

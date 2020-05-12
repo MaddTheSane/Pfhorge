@@ -233,6 +233,33 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:mapPoint1 forKey:@"mapPoint1"];
+		[coder encodeObject:mapPoint2 forKey:@"mapPoint2"];
+		
+		[coder encodeInt:flags forKey:@"LineFlags"];
+		
+		[coder encodeInt:_Length forKey:@"length"];
+		[coder encodeInt:highestAdjacentFloor forKey:@"highestAdjacentFloor"];
+		[coder encodeInt:lowestAdjacentCeiling forKey:@"lowestAdjacentCeiling"];
+
+        //encodeObject(coder, clockwisePolygonSideObject);
+        [coder encodeObject:clockwisePolygonSideObject forKey:@"clockwisePolygonSideObject"];
+        [coder encodeObject:counterclockwisePolygonSideObject forKey:@"counterclockwisePolygonSideObject"];
+        //encodeObject(coder, counterclockwisePolygonSideObject);
+        
+		[coder encodeConditionalObject:clockwisePolygon forKey:@"clockwisePolygon"];
+		[coder encodeConditionalObject:conterclockwisePolygon forKey:@"conterclockwisePolygon"];
+
+		// Below is verion 2 additions
+		[coder encodeBool:permanentNoSides forKey:@"permanentNoSides"];
+		
+		// Below is version 1 additions
+		[coder encodeBool:permanentSolidLine forKey:@"permanentSolidLine"];
+		[coder encodeBool:permanentLandscapeLine forKey:@"permanentLandscapeLine"];
+		[coder encodeBool:permanentTransparentLine forKey:@"permanentTransparentLine"];
+		[coder encodeBool:usePermanentSettings forKey:@"usePermanentSettings"];
+	} else {
     encodeNumInt(coder, 2);
     
     /*
@@ -326,12 +353,36 @@
     encodeBOOL(coder, permanentLandscapeLine);
     encodeBOOL(coder, permanentTransparentLine);
     encodeBOOL(coder, usePermanentSettings);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
+	if (coder.allowsKeyedCoding) {
+		mapPoint1 = [coder decodeObjectForKey:@"mapPoint1"];
+		mapPoint2 = [coder decodeObjectForKey:@"mapPoint2"];
+		flags = [coder decodeIntForKey:@"LineFlags"];
+		
+		_Length = [coder decodeIntForKey:@"length"];
+		highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
+		lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
+		
+		clockwisePolygonSideObject = [coder decodeObjectForKey:@"clockwisePolygonSideObject"];
+		counterclockwisePolygonSideObject = [coder decodeObjectForKey:@"counterclockwisePolygonSideObject"];
+		
+		
+		clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
+		conterclockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"conterclockwisePolygon"];
+
+		permanentNoSides = [coder decodeBoolForKey:@"permanentNoSides"];
+		
+		permanentSolidLine = [coder decodeBoolForKey:@"permanentSolidLine"];
+		permanentLandscapeLine = [coder decodeBoolForKey:@"permanentLandscapeLine"];
+		permanentTransparentLine = [coder decodeBoolForKey:@"permanentTransparentLine"];
+		usePermanentSettings = [coder decodeBoolForKey:@"usePermanentSettings"];
+	} else {
     versionNum = decodeNumInt(coder);
     
     mapPoint1 = decodeObj(coder);
@@ -390,6 +441,7 @@
     }*/
     
     //useIndexNumbersInstead = NO;
+	}
     return self;
 }
 

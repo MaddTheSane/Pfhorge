@@ -124,33 +124,56 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-    encodeNumInt(coder, 0);
-    
-    
-    encodeUnsignedShort(coder, flags);
-    
-    encodeShort(coder, initial_count);
-    encodeShort(coder, minimum_count);
-    encodeShort(coder, maximum_count);
-    
-    encodeShort(coder, random_count);
-    encodeUnsignedShort(coder, random_chance);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeInt:flags forKey:@"flags"];
+		encodeUnsignedShort(coder, flags);
+		
+		[coder encodeInt:initial_count forKey:@"initial_count"];
+		[coder encodeInt:minimum_count forKey:@"minimum_count"];
+		[coder encodeInt:maximum_count forKey:@"maximum_count"];
+		
+		[coder encodeInt:random_count forKey:@"random_count"];
+		[coder encodeInt:random_chance forKey:@"random_chance"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		
+		encodeUnsignedShort(coder, flags);
+		
+		encodeShort(coder, initial_count);
+		encodeShort(coder, minimum_count);
+		encodeShort(coder, maximum_count);
+		
+		encodeShort(coder, random_count);
+		encodeUnsignedShort(coder, random_chance);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    versionNum = decodeNumInt(coder);
-    
-    flags = decodeUnsignedShort(coder);
-    
-    initial_count = decodeShort(coder);
-    minimum_count = decodeShort(coder);
-    maximum_count = decodeShort(coder);
-    
-    random_count = decodeShort(coder);
-    random_chance = decodeUnsignedShort(coder);
+	if (coder.allowsKeyedCoding) {
+		flags = [coder decodeIntForKey:@"flags"];
+		
+		initial_count = [coder decodeIntForKey:@"initial_count"];
+		minimum_count = [coder decodeIntForKey:@"minimum_count"];
+		maximum_count = [coder decodeIntForKey:@"maximum_count"];
+		
+		random_count = [coder decodeIntForKey:@"random_count"];
+		random_chance = [coder decodeIntForKey:@"random_chance"];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		flags = decodeUnsignedShort(coder);
+		
+		initial_count = decodeShort(coder);
+		minimum_count = decodeShort(coder);
+		maximum_count = decodeShort(coder);
+		
+		random_count = decodeShort(coder);
+		random_chance = decodeUnsignedShort(coder);
+	}
     
     return self;
 }

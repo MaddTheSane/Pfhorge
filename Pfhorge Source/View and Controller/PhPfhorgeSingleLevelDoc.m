@@ -184,7 +184,7 @@
         int thePfhorgeDataSig3 = 42296737;
         thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
         
-        NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
+        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
@@ -211,6 +211,7 @@
     BOOL loadedOk = NO;
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
+    short oldVersionNumber = oldVersionOfPfhorgeLevelData;
     short thePfhorgeDataSig1 = 26743;
     unsigned short thePfhorgeDataSig2 = 34521;
     int thePfhorgeDataSig3 = 42296737;
@@ -249,7 +250,7 @@
     {
         SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,\
                                 export it in eariler, release candidate 1 release of pfhorge, then open it here.",
-                             @"Level Is To Old");
+                             @"Level Is Too Old");
         loadedOk = NO;
     }
     else if (theVersionNumberFromData > theVersionNumber &&
@@ -262,6 +263,27 @@
                              @"Level Is Too New");
         loadedOk = NO;
     }
+    else if (theVersionNumberFromData == oldVersionNumber &&
+        thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
+        thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
+    {
+        NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
+        theRawMapData = nil;
+        theLevel = [[NSUnarchiver unarchiveObjectWithData:
+                        [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
+        if (theLevel != nil)
+        {
+            loadedOk = YES;
+            cameFromMarathonFormatedFile = NO;
+            NSLog(@"theLevel != nil...");
+            [theLevel updateCounts];
+            [theLevel setLevelDocument:self];
+            [theLevel setMyUndoManager:[self undoManager]];
+            [theLevel setUpArrayPointersForEveryObject];
+            [theLevel setupDefaultObjects];
+        }
+    }
     else if (theVersionNumberFromData == theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
@@ -269,7 +291,7 @@
     {
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
-        theLevel = [[NSUnarchiver unarchiveObjectWithData:
+        theLevel = [[NSKeyedUnarchiver unarchiveObjectWithData:
                         [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
         if (theLevel != nil)
         {
