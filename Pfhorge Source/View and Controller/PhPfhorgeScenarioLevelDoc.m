@@ -395,12 +395,18 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
     // Implement to provide a persistent data representation of your document OR remove this and implement the file-wrapper or file path based save methods.
-    return [NSArchiver archivedDataWithRootObject:scenarioData];
+	if (@available(macOS 10.13, *)) {
+		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData requiringSecureCoding:NO error:outError];
+	} else {
+		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData];
+	}
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    // Implement to load a persistent data representation of your document OR remove this and implement the file-wrapper or file path based load methods.
-    scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
+    scenarioData = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+	if (!scenarioData) {
+		scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
+	}
     
     return (scenarioData == nil) ? (NO) : (YES);
 }

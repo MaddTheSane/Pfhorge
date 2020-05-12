@@ -18,23 +18,26 @@
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
-    /// encodeShort(coder, x);
-    
-    encodeNumInt(coder, 0);
-    
-    encodeObj(coder, levelFileNames);
+	if (coder.allowsKeyedCoding) {
+		[coder encodeObject:levelFileNames forKey:@"levelFileNames"];
+	} else {
+		encodeNumInt(coder, 0);
+		
+		encodeObj(coder, levelFileNames);
+	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super init];
-    
-    /// x = decodeShort(coder);
-    
-    versionNum = decodeNumInt(coder);
-    
-    levelFileNames = decodeObjRetain(coder);
+	if (coder.allowsKeyedCoding) {
+		levelFileNames = [[coder decodeObjectForKey:@"levelFileNames"] retain];
+	} else {
+		versionNum = decodeNumInt(coder);
+		
+		levelFileNames = decodeObjRetain(coder);
+	}
     
     return self;
 }
