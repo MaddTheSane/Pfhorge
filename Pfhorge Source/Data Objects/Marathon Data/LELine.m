@@ -57,12 +57,12 @@
     [tis appendString:[NSString stringWithFormat:@"highestAdjacentFloor	: %d\n", highestAdjacentFloor, nil]];
     [tis appendString:[NSString stringWithFormat:@"lowestAdjacentCeiling	: %d\n", lowestAdjacentCeiling, nil]];
     
-    [tis appendString:((flags & SOLID_LINE_BIT)		? @"SOLID_LINE_BIT		: YES\n" : @"SOLID_LINE_BIT\t\t: NO\n")];
-    [tis appendString:((flags & TRANSPARENT_LINE_BIT)		? @"TRANSPARENT_LINE		: YES\n" : @"TRANSPARENT_LINE\t\t\t: NO\n")];
-    [tis appendString:((flags & LANDSCAPE_LINE_BIT)		? @"LANDSCAPE_LINE_BIT	: YES\n" : @"LANDSCAPE_LINE_BIT	: NO\n")];
-    [tis appendString:((flags & ELEVATION_LINE_BIT)		? @"ELEVATION_LINE_BIT	: YES\n" : @"ELEVATION_LINE_BIT\t: NO\n")];
-    [tis appendString:((flags & VARIABLE_ELEVATION_LINE_BIT)	? @"VARIABLE_ELEVATION	: YES\n" : @"VARIABLE_ELEVATION	: NO\n")];
-    [tis appendString:((flags & LINE_HAS_TRANSPARENT_SIDE_BIT)	? @"TRANSPARENT_SIDE		: YES\n" : @"TRANSPARENT_SIDE\t\t: NO\n")];
+    [tis appendString:((flags & LELineSolid)		? @"LELineSolid		: YES\n" : @"LELineSolid\t\t: NO\n")];
+    [tis appendString:((flags & LELineTransparent)		? @"TRANSPARENT_LINE		: YES\n" : @"TRANSPARENT_LINE\t\t\t: NO\n")];
+    [tis appendString:((flags & LELineLandscape)		? @"LELineLandscape	: YES\n" : @"LELineLandscape	: NO\n")];
+    [tis appendString:((flags & LELineElevation)		? @"LELineElevation	: YES\n" : @"LELineElevation\t: NO\n")];
+    [tis appendString:((flags & LELineVariableElevation)	? @"VARIABLE_ELEVATION	: YES\n" : @"VARIABLE_ELEVATION	: NO\n")];
+    [tis appendString:((flags & LELineVariableHasTransparentSide)	? @"TRANSPARENT_SIDE		: YES\n" : @"TRANSPARENT_SIDE\t\t: NO\n")];
     [tis appendString:@"\n"];
     
     if (clockwisePolygonSideObject != nil)
@@ -473,16 +473,16 @@
             return GET_SIDE_FLAG(0x2000);
             break;
         case 3:
-            return GET_SIDE_FLAG(LANDSCAPE_LINE_BIT);
+            return GET_SIDE_FLAG(LELineLandscape);
             break;
         case 4:
-            return GET_SIDE_FLAG(ELEVATION_LINE_BIT);
+            return GET_SIDE_FLAG(LELineElevation);
             break;
         case 5:
-            return GET_SIDE_FLAG(VARIABLE_ELEVATION_LINE_BIT);
+            return GET_SIDE_FLAG(LELineVariableElevation);
             break;
         case 6:
-            return GET_SIDE_FLAG(LINE_HAS_TRANSPARENT_SIDE_BIT);
+            return GET_SIDE_FLAG(LELineVariableHasTransparentSide);
             break;
         default:
             NSLog(@"DEFAULT 2");
@@ -495,48 +495,48 @@
  {
     switch (theFlag)
     {
-        case SOLID_LINE_BIT:
+        case LELineSolid:
         case 1: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(SOLID_LINE_BIT, v);
+            SET_LINE_FLAG(LELineSolid, v);
             break;
-        case TRANSPARENT_LINE_BIT:
+        case LELineTransparent:
         case 2: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(TRANSPARENT_LINE_BIT, v);
+            SET_LINE_FLAG(LELineTransparent, v);
             break;
-        case LANDSCAPE_LINE_BIT:
+        case LELineLandscape:
         case 3: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(LANDSCAPE_LINE_BIT, v);
+            SET_LINE_FLAG(LELineLandscape, v);
             break;
-        case ELEVATION_LINE_BIT:
+        case LELineElevation:
         case 4: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(ELEVATION_LINE_BIT, v);
+            SET_LINE_FLAG(LELineElevation, v);
             break;
-        case VARIABLE_ELEVATION_LINE_BIT:
+        case LELineVariableElevation:
         case 5: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(VARIABLE_ELEVATION_LINE_BIT, v);
+            SET_LINE_FLAG(LELineVariableElevation, v);
             break;
-        case LINE_HAS_TRANSPARENT_SIDE_BIT:
+        case LELineVariableHasTransparentSide:
         case 6: // <-- is this such a good idea, could equal a flag???
-            SET_LINE_FLAG(LINE_HAS_TRANSPARENT_SIDE_BIT, v);
+            SET_LINE_FLAG(LELineVariableHasTransparentSide, v);
             break;
     }
     
     if (usePermanentSettings == YES)
     {
         if (permanentSolidLine == YES)
-            flags |= SOLID_LINE_BIT;
+            flags |= LELineSolid;
         else
-            flags &= ~SOLID_LINE_BIT;
+            flags &= ~LELineSolid;
         
         if (permanentLandscapeLine == YES)
-            flags |= LANDSCAPE_LINE_BIT;
+            flags |= LELineLandscape;
         else
-            flags &= ~LANDSCAPE_LINE_BIT;
+            flags &= ~LELineLandscape;
         
         if (permanentTransparentLine == YES)
-            flags |= TRANSPARENT_LINE_BIT;
+            flags |= LELineTransparent;
         else
-            flags &= ~TRANSPARENT_LINE_BIT;
+            flags &= ~LELineTransparent;
             
             
             // Should probably have caculateDies just return
@@ -895,19 +895,19 @@
 @synthesize mapPoint2;
 @synthesize flags;
 
-- (BOOL)getPermanentSetting:(int)settingToSet
+- (BOOL)getPermanentSetting:(LELinePermanentSettings)settingToSet
 {
     switch (settingToSet)
     {
-        case _use_parmanent_settings:
+        case LELinePermanentUse:
             return usePermanentSettings;
-        case _parmanent_solid:
+        case LELinePermanentSolid:
             return permanentSolidLine;
-        case _parmanent_transparent:
+        case LELinePermanentTransparent:
             return permanentTransparentLine;
-        case _parmanent_landscape:
+        case LELinePermanentLandscape:
             return permanentLandscapeLine;
-        case _parmanent_no_sides:
+        case LELinePermanentNoSides:
             return permanentNoSides;
         default:
             SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting...", @"Unknown parmanent setting...");
@@ -1035,39 +1035,39 @@
     if (usePermanentSettings == YES)
     {
         if (permanentSolidLine == YES)
-            flags |= SOLID_LINE_BIT;
+            flags |= LELineSolid;
         else
-            flags &= ~SOLID_LINE_BIT;
+            flags &= ~LELineSolid;
         
         if (permanentLandscapeLine == YES)
-            flags |= LANDSCAPE_LINE_BIT;
+            flags |= LELineLandscape;
         else
-            flags &= ~LANDSCAPE_LINE_BIT;
+            flags &= ~LELineLandscape;
         
         if (permanentTransparentLine == YES)
-            flags |= TRANSPARENT_LINE_BIT;
+            flags |= LELineTransparent;
         else
-            flags &= ~TRANSPARENT_LINE_BIT;
+            flags &= ~LELineTransparent;
     }
 }
 
-- (void)setPermanentSetting:(int)settingToSet to:(BOOL)value
+- (void)setPermanentSetting:(LELinePermanentSettings)settingToSet to:(BOOL)value
 {
     switch (settingToSet)
     {
-        case _use_parmanent_settings:
+        case LELinePermanentUse:
             usePermanentSettings = value;
             break;
-        case _parmanent_solid:
+        case LELinePermanentSolid:
             permanentSolidLine = value;
             break;
-        case _parmanent_transparent:
+        case LELinePermanentTransparent:
             permanentTransparentLine = value;
             break;
-        case _parmanent_landscape:
+        case LELinePermanentLandscape:
             permanentLandscapeLine = value;
             break;
-        case _parmanent_no_sides:
+        case LELinePermanentNoSides:
             permanentNoSides = value;
             break;
         default:

@@ -461,13 +461,13 @@
                     continue;
                 }
                 
-                if ([theObj getPhName] == nil)
+                if ([theObj phName] == nil)
                 {
                     NSLog(@"REPORT THIS PLEASE: *** [theObj getPhName] was nil in name caching... #2");
                     [theObj setPhName:@"Name Was Nil? 2"];
                     //continue;
                 }
-                [theNamesCacheArray addObject:[theObj getPhName]];
+                [theNamesCacheArray addObject:[theObj phName]];
                 j++;
             }
         }
@@ -646,7 +646,7 @@
         
         [self setUpArrayPointersFor:theTag]; // Setup Pointer To Other Arrays...
         [tags addObject:theTag];
-        [tagNames addObject:[theTag getPhName]];
+        [tagNames addObject:[theTag phName]];
         [theTag release];
     }*/
     
@@ -681,7 +681,7 @@
     {
         if ([theObj doIHaveAName])
         {
-            [polyNames addObject:[theObj getPhName]];
+            [polyNames addObject:[theObj phName]];
             [namedPolyObjects addObject:theObj];
         }
         
@@ -697,35 +697,35 @@
     
     numer = [lights objectEnumerator];
     while (theObj = [numer nextObject])
-        [lightNames addObject:[theObj getPhName]];
+        [lightNames addObject:[theObj phName]];
     
     numer = [media objectEnumerator];
     while (theObj = [numer nextObject])
-        [liquidNames addObject:[theObj getPhName]];
+        [liquidNames addObject:[theObj phName]];
     
     numer = [ambientSounds objectEnumerator];
     while (theObj = [numer nextObject])
-        [ambientSoundNames addObject:[theObj getPhName]];
+        [ambientSoundNames addObject:[theObj phName]];
     
     numer = [randomSounds objectEnumerator];
     while (theObj = [numer nextObject])
-        [randomSoundNames addObject:[theObj getPhName]];
+        [randomSoundNames addObject:[theObj phName]];
     
     numer = [platforms objectEnumerator];
     while (theObj = [numer nextObject])
-        [platformNames addObject:[theObj getPhName]];
+        [platformNames addObject:[theObj phName]];
     
     numer = [layersInLevel objectEnumerator];
     while (theObj = [numer nextObject])
-        [layerNames addObject:[theObj getPhName]];
+        [layerNames addObject:[theObj phName]];
     
     numer = [tags objectEnumerator];
     while (theObj = [numer nextObject])
-        [tagNames addObject:[theObj getPhName]];
+        [tagNames addObject:[theObj phName]];
 
     numer = [terimals objectEnumerator];
     while (theObj = [numer nextObject])
-        [terminalNames addObject:[theObj getPhName]];
+        [terminalNames addObject:[theObj phName]];
     
     [self refreshEveryMenu];
 }

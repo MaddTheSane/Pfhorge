@@ -1813,7 +1813,7 @@ enum {
         for (PhAbstractName *thisObj in theArray)
         {
             [tmpNumberList addObject:[NSNumber numberWithInt:[thisObj index]]];
-            [tmpNameList addObject:[thisObj getPhName]];
+            [tmpNameList addObject:[thisObj phName]];
         }
     } // end else
     

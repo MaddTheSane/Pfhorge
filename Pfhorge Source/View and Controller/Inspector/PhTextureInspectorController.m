@@ -405,22 +405,22 @@
     //lSolid 		= ([theCurrentSelection flags] & 0x4000);
     //lTransparent 	= ([theCurrentSelection flags] & 0x2000);
     
-    lLandscape 		= ((flags & LANDSCAPE_LINE_BIT) ? YES : NO);
-    lTransparentSide 	= ((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? YES : NO);
+    lLandscape 		= ((flags & LELineLandscape) ? YES : NO);
+    lTransparentSide 	= ((flags & LELineVariableHasTransparentSide) ? YES : NO);
     
         // Get the sides of the line...
     cSide = [theCurrentSelection clockwisePolygonSideObject];
     ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
-    //NSLog(((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? @"TTRANSPARENT_SIDE: YES" : @"TTRANSPARENT_SIDE: NO"));
+    //NSLog(((flags & LELineVariableHasTransparentSide) ? @"TTRANSPARENT_SIDE: YES" : @"TTRANSPARENT_SIDE: NO"));
         // These are not managed by thie function...
     //[lineFlags deselectAllCells];
     //[emptyFlag setState:NSOffState];
     //[lineControlPanelFlags deselectAllCells];
     
         // Do I need these here?
-    //if (lineFlagsNumber & SOLID_LINE_BIT)
+    //if (lineFlagsNumber & LELineSolid)
     //    SelectS(lineFlags, 1);
-    //if (lineFlagsNumber & TRANSPARENT_LINE_BIT)
+    //if (lineFlagsNumber & LELineTransparent)
      //   SelectS(lineFlags, 2);
      
     
@@ -907,14 +907,14 @@
 {
     BOOL checkBoxState = (([sender state] == NSOnState) ? YES : NO);// NSOffState NSOnState
     unsigned short flags = [theCurrentLine flags];
-    //((flags & LINE_HAS_TRANSPARENT_SIDE_BIT) ? YES : NO);
+    //((flags & LELineVariableHasTransparentSide) ? YES : NO);
     
-    // GET_SELF_FLAG(LINE_HAS_TRANSPARENT_SIDE_BIT);
+    // GET_SELF_FLAG(LELineVariableHasTransparentSide);
     
     // this uses the flags unsigned short above...
-    SET_SELF_FLAG(LINE_HAS_TRANSPARENT_SIDE_BIT, checkBoxState);
+    SET_SELF_FLAG(LELineVariableHasTransparentSide, checkBoxState);
     
-    //((checkBoxState) ? (flags |= (LINE_HAS_TRANSPARENT_SIDE_BIT)) : (flags &= ~(LINE_HAS_TRANSPARENT_SIDE_BIT));
+    //((checkBoxState) ? (flags |= (LELineVariableHasTransparentSide)) : (flags &= ~(LELineVariableHasTransparentSide));
     
     [theCurrentLine setFlags:flags];
     

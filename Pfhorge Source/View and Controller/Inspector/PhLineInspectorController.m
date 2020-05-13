@@ -115,7 +115,7 @@
     lLandscape 		= (([theCurrentSelection flags] & 0x1000) ? YES : NO);
     //lTransparentSide 	= (([theCurrentSelection flags] & 0x200) ? YES : NO);
     
-    doNotAutoSetFlags	= [theCurrentSelection getPermanentSetting:_use_parmanent_settings];
+    doNotAutoSetFlags	= [theCurrentSelection getPermanentSetting:LELinePermanentUse];
     
     cSide = [theCurrentSelection clockwisePolygonSideObject];
     ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
@@ -124,11 +124,11 @@
     [emptyFlag setState:NSOffState];
     [lineControlPanelFlags deselectAllCells];
     
-    if (lineFlagsNumber & SOLID_LINE_BIT)
+    if (lineFlagsNumber & LELineSolid)
         SelectS(lineFlags, 1);
-    if (lineFlagsNumber & TRANSPARENT_LINE_BIT)
+    if (lineFlagsNumber & LELineTransparent)
         SelectS(lineFlags, 2);
-    if (lineFlagsNumber & LANDSCAPE_LINE_BIT)
+    if (lineFlagsNumber & LELineLandscape)
         SelectS(lineFlags, 3);
     
     if (doNotAutoSetFlags == NO)
@@ -550,46 +550,46 @@
     
     LELine *curLine = [mainInspectorController getTheCurrentSelection];
     
-    //- (BOOL)getPermanentSetting:_use_parmanent_settings;
+    //- (BOOL)getPermanentSetting:LELinePermanentUse;
     //- (void)setPermanentSetting:(int)settingToSet to:(BOOL)value;
     
     if SState(sender, 4)
     {
-        [curLine setPermanentSetting:_use_parmanent_settings to:NO];
+        [curLine setPermanentSetting:LELinePermanentUse to:NO];
     }
     else
     {
-        [curLine setPermanentSetting:_use_parmanent_settings to:YES];
+        [curLine setPermanentSetting:LELinePermanentUse to:YES];
     }
     
     if SState(sender, 1)
     {
-        [curLine setPermanentSetting:_parmanent_solid to:YES];
+        [curLine setPermanentSetting:LELinePermanentSolid to:YES];
         theFlags |= 0x4000;
     }
     else
     {
-        [curLine setPermanentSetting:_parmanent_solid to:NO];
+        [curLine setPermanentSetting:LELinePermanentSolid to:NO];
     }
     
     if SState(sender, 2)
     {
-        [curLine setPermanentSetting:_parmanent_transparent to:YES];
+        [curLine setPermanentSetting:LELinePermanentTransparent to:YES];
         theFlags |= 0x2000;
     }
     else
     {
-        [curLine setPermanentSetting:_parmanent_transparent to:NO];
+        [curLine setPermanentSetting:LELinePermanentTransparent to:NO];
     }
     
     if SState(sender, 3)
     {
-        [curLine setPermanentSetting:_parmanent_landscape to:YES];
+        [curLine setPermanentSetting:LELinePermanentLandscape to:YES];
         theFlags |= 0x1000;
     }
     else
     {
-        [curLine setPermanentSetting:_parmanent_landscape to:NO];
+        [curLine setPermanentSetting:LELinePermanentLandscape to:NO];
     }
     
     // Use a button instead of a check box (or somthing)
@@ -600,24 +600,24 @@
     [curLine setFlags:theFlags];
 }
 
-// _parmanent_no_sides
+// LELinePermanentNoSides
 
 - (IBAction)emptyFlagAction:(id)sender
 {
     LELevelData *theLevel = [mainInspectorController currentLevel];
     LELine *theLine = [mainInspectorController getTheCurrentSelection];
     
-    if ([sender state] == NSOffState)
+    if ([sender state] == NSControlStateValueOff)
     { // Was off, now on, add side...
         
-        [theLine setPermanentSetting:_parmanent_no_sides to:NO];
+        [theLine setPermanentSetting:LELinePermanentNoSides to:NO];
         [theLevel addSidesForLine:theLine];
         cSide = [theLine clockwisePolygonSideObject];
         ccSide = [theLine counterclockwisePolygonSideObject];
     }
-    else if ([sender state] == NSOnState)
+    else if ([sender state] == NSControlStateValueOn)
     { // Was on, now off, delete side...
-        [theLine setPermanentSetting:_parmanent_no_sides to:YES];
+        [theLine setPermanentSetting:LELinePermanentNoSides to:YES];
         [theLevel removeSidesFromLine:theLine];
         cSide = nil;
         ccSide = nil;
@@ -626,7 +626,7 @@
     else
     {
         NSLog(@"The empty checkbox does not support mixed states at this time, it will be set to the NSOffState.");
-        [sender setState:NSOffState];
+        [sender setState:NSControlStateValueOff];
         return;
     }
     [self updateLineInterface];

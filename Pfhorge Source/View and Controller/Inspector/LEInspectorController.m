@@ -484,7 +484,7 @@
 #pragma mark ••••••••• Accsessors •••••••••
 
 -(id)getTheCurrentSelection { return theCurrentSelection; }
--(LELevelData *)currentLevel { return currentLevel; }
+@synthesize currentLevel;
 -(LEMapDraw *)getTheCurrentLevelDrawView { return currentLevelDrawView; }
 
 @end

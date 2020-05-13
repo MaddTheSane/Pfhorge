@@ -196,7 +196,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    return (item == nil) ? @"The Terminals" : (id)[item getPhName];
+    return (item == nil) ? @"The Terminals" : (id)[item phName];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
@@ -677,7 +677,7 @@
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                 
                 @(theCellTagClickedOn),
-                PhColorTerminalAttribute,
+                PhColorTerminalAttributeName,
                 
                 theTextColor,
                 NSForegroundColorAttributeName, nil]
@@ -706,10 +706,10 @@
             NSFontAttributeName,
             
             @"NO",
-            PhItalicTerminalAttribute,
+            PhItalicTerminalAttributeName,
             
             @"NO",
-            PhBoldTerminalAttribute,
+            PhBoldTerminalAttributeName,
             
             @(NSUnderlineStyleNone),
             NSUnderlineStyleAttributeName, nil]
@@ -745,7 +745,7 @@
             
             while (limitRange.length > 0)
             {
-                attributeValue = [attrStr attribute:PhItalicTerminalAttribute
+                attributeValue = [attrStr attribute:PhItalicTerminalAttributeName
                 atIndex:limitRange.location longestEffectiveRange:&effectiveRange
                 inRange:limitRange];
                 
@@ -761,7 +761,7 @@
                 [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                         
                         @"YES",
-                        PhBoldTerminalAttribute,
+                        PhBoldTerminalAttributeName,
                         
                         fontToUse,
                         NSFontAttributeName, nil]
@@ -840,7 +840,7 @@
                 NSFontAttributeName,
                 
                 @"YES",
-                PhItalicTerminalAttribute, nil]
+                PhItalicTerminalAttributeName, nil]
                 
                 range:effectiveRange];
             

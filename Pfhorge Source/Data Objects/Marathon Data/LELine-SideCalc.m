@@ -105,7 +105,7 @@
                 
                 // Only if the floor is moving, CHANGE THIS!!!
                 //if (alreadySetPlatformFlag == NO)
-                 //   flags |= VARIABLE_ELEVATION_LINE_BIT;
+                 //   flags |= LELineVariableElevation;
                 
                 if (i == 1)
                 {
@@ -153,7 +153,7 @@
             
             [clockwisePolygonSideObject setType:_full_side]; 
             
-            flags |= SOLID_LINE_BIT;
+            flags |= LELineSolid;
             
             if (counterclockwisePolygonSideObject != nil)
                 [theLELevelDataST deleteSide:counterclockwisePolygonSideObject];
@@ -182,7 +182,7 @@
             
             [counterclockwisePolygonSideObject setType:_full_side];
             
-            flags |= SOLID_LINE_BIT;
+            flags |= LELineSolid;
             
             if (clockwisePolygonSideObject != nil)
                 [theLELevelDataST deleteSide:clockwisePolygonSideObject];
@@ -645,17 +645,17 @@
     
     if (ccLowSide || cLowSide)
     {
-        flags |= VARIABLE_ELEVATION_LINE_BIT;
-        flags |= ELEVATION_LINE_BIT;
+        flags |= LELineVariableElevation;
+        flags |= LELineElevation;
     }
     
     /*if (ccLowSide || ccHighSide || cLowSide || cHighSide)
     {
-        flags |= TRANSPARENT_LINE_BIT;*/
+        flags |= LELineTransparent;*/
     
     // ••• ••• ••• ••• ••• ••• ••• ••• •••
     
-    flags |= TRANSPARENT_LINE_BIT;
+    flags |= LELineTransparent;
     
     // These should never be true, but just in case...
     
@@ -663,16 +663,16 @@
     {
         NSLog(@"WARNING: cc side in setupWithClockPlat is not low or high!!!");
         [self removeSideFor:_counter_clockwise];
-        flags |= SOLID_LINE_BIT;
-        flags &= ~TRANSPARENT_LINE_BIT;
+        flags |= LELineSolid;
+        flags &= ~LELineTransparent;
     }
     
     if (!cLowSide && !cHighSide)
     {
         NSLog(@"WARNING: c side in setupWithClockPlat is not low or high!!!");
         [self removeSideFor:_clockwise];
-        flags |= SOLID_LINE_BIT;
-        flags &= ~TRANSPARENT_LINE_BIT;
+        flags |= LELineSolid;
+        flags &= ~LELineTransparent;
     }*/
     
     
@@ -739,7 +739,7 @@
                 
                 [self removeSideFor:_counter_clockwise];
                 [self removeSideFor:_clockwise];
-                flags |= TRANSPARENT_LINE_BIT;
+                flags |= LELineTransparent;
             }
             else if (cC > ccC)
             {	//    
@@ -751,7 +751,7 @@
                 
                 [self setupSideFor:_clockwise asA:_high_side];
                 [self removeSideFor:_counter_clockwise];
-                flags |= TRANSPARENT_LINE_BIT;
+                flags |= LELineTransparent;
             }
             else if (cC < ccC)
             {	//    
@@ -763,7 +763,7 @@
                 
                 [self setupSideFor:_counter_clockwise asA:_high_side];
                 [self removeSideFor:_clockwise];
-                flags |= TRANSPARENT_LINE_BIT;
+                flags |= LELineTransparent;
             }
         } // END if (cF == ccF)
         else if (cC == ccC)
@@ -772,7 +772,7 @@
             {
                 [self removeSideFor:_counter_clockwise];
                 [self removeSideFor:_clockwise];
-                flags |= TRANSPARENT_LINE_BIT;
+                flags |= LELineTransparent;
             }
             else if (cF > ccF)
             {	//
@@ -784,8 +784,8 @@
                 
                 [self setupSideFor:_counter_clockwise asA:_low_side];
                 [self removeSideFor:_clockwise];
-                flags |= TRANSPARENT_LINE_BIT;
-                flags |= ELEVATION_LINE_BIT;
+                flags |= LELineTransparent;
+                flags |= LELineElevation;
             }
             else if (cF < ccF)
             {	//
@@ -798,8 +798,8 @@
                 [self setupSideFor:_clockwise asA:_low_side];
                 [self removeSideFor:_counter_clockwise];
                 
-                flags |= TRANSPARENT_LINE_BIT;
-                flags |= ELEVATION_LINE_BIT;
+                flags |= LELineTransparent;
+                flags |= LELineElevation;
             }
         } // END else if (cC == ccC)
         else /// if (cC != ccC && cF != ccF)
@@ -821,7 +821,7 @@
                 
                 [self setupSideFor:_clockwise asA:_full_side];
                 [self setupSideFor:_counter_clockwise asA:_full_side];
-                flags |= SOLID_LINE_BIT;
+                flags |= LELineSolid;
             }
             else if (cC > ccC)
             {
@@ -834,8 +834,8 @@
                     //          |---------
                     [self setupSideFor:_clockwise asA:_high_side];
                     [self setupSideFor:_counter_clockwise asA:_low_side];
-                    flags |= TRANSPARENT_LINE_BIT;
-                    flags |= ELEVATION_LINE_BIT;
+                    flags |= LELineTransparent;
+                    flags |= LELineElevation;
                 }
                 else /// if (cF < ccF)
                 {   //          |------------
@@ -847,8 +847,8 @@
                     //          |------------
                     [self setupSideFor:_clockwise asA:_split_side];
                     [self removeSideFor:_counter_clockwise];
-                    flags |= TRANSPARENT_LINE_BIT;
-                    flags |= ELEVATION_LINE_BIT;
+                    flags |= LELineTransparent;
+                    flags |= LELineElevation;
                 }
             }
             else /// if (cC < ccC)
@@ -862,8 +862,8 @@
                     //          |---------
                     [self setupSideFor:_clockwise asA:_low_side];
                     [self setupSideFor:_counter_clockwise asA:_high_side];
-                    flags |= TRANSPARENT_LINE_BIT;
-                    flags |= ELEVATION_LINE_BIT;
+                    flags |= LELineTransparent;
+                    flags |= LELineElevation;
                 }
                 else /// if (cF > ccF)
                 {   //          |------------
@@ -875,15 +875,15 @@
                     //          |------------
                     [self setupSideFor:_counter_clockwise asA:_split_side];
                     [self removeSideFor:_clockwise];
-                    flags |= TRANSPARENT_LINE_BIT;
-                    flags |= ELEVATION_LINE_BIT;
+                    flags |= LELineTransparent;
+                    flags |= LELineElevation;
                 }
             } // END else /// if (cC < ccC)
         } // END else /// if (cC != ccC && cF != ccF)
 
 }
 
-- (LESide *)setupSideFor:(int)sideDirection asA:(int)sideType
+- (LESide *)setupSideFor:(LESideDirection)sideDirection asA:(LESideType)sideType
 {
   // _clockwise
     //  _counter_clockwise
@@ -919,7 +919,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             clockwisePolygonSideObject = theNewSide;
             [clockwisePolygonSideObject setType:sideType];
             
-            //flags |= SOLID_LINE_BIT;
+            //flags |= LELineSolid;
         }
         
         int polyLineNumber = [clockwisePolygon getLineNumberFor:self];
@@ -957,7 +957,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             counterclockwisePolygonSideObject = theNewSide;
             [counterclockwisePolygonSideObject setType:sideType];
             
-            //flags |= SOLID_LINE_BIT;
+            //flags |= LELineSolid;
         }
         
         int polyLineNumber = [conterclockwisePolygon getLineNumberFor:self];
@@ -990,7 +990,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
     return nil;  
 }
 
--(LESide *)setupSideFor:(int)sideToReturn
+-(LESide *)setupSideFor:(LESideDirection)sideToReturn
 {
     // _clockwise
     //  _counter_clockwise
@@ -1019,7 +1019,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             else
                 NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockwisePolygon index], [self index]);
             
-            //flags |= SOLID_LINE_BIT;
+            //flags |= LELineSolid;
             
             return theNewSide;
         }
@@ -1048,7 +1048,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             else
                 NSLog(@"Poly %d does not have a link to me (Line %d)?", [conterclockwisePolygon index], [self index]);
             
-            //flags |= SOLID_LINE_BIT;
+            //flags |= LELineSolid;
             
             return theNewSide;
         }
@@ -1057,7 +1057,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
     return nil;
 }
 
--(void)removeSideFor:(int)sideDirectionToRemove
+-(void)removeSideFor:(LESideDirection)sideDirectionToRemove
 {
     if (sideDirectionToRemove == _clockwise)
     {

@@ -292,7 +292,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
         position += 12;
     }
     
-    NSLog(@"%@ grouping_count: %d  section objects: %lu", [self getPhName], grouping_count, (unsigned long)[theSections count]);
+    NSLog(@"%@ grouping_count: %d  section objects: %lu", [self phName], grouping_count, (unsigned long)[theSections count]);
     
     return self;
 }

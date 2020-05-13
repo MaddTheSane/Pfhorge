@@ -160,12 +160,12 @@
     infoString = [[NSMutableString alloc] initWithString:@"Light#"];
         [infoString appendString:[[NSNumber numberWithShort:[curLight index]] stringValue]];
         [infoString appendString:@" - Name: "];
-        [infoString appendString:[curLight getPhName]];
+        [infoString appendString:[curLight phName]];
         [infoIT setStringValue:infoString];
         [infoString release];
     
     lightNameString = [[NSMutableString alloc] initWithString:@"Current Name: "];
-        [lightNameString appendString:[curLight getPhName]];
+        [lightNameString appendString:[curLight phName]];
         [nameIT setStringValue:lightNameString];
         [lightNameString release];
     return;

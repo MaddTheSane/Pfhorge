@@ -188,9 +188,9 @@ NSString *const PhSubWorldUnitGridColor = @"PhSubWorldUnitGridColor";
 NSString *const PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 
 // * Terminal Keys *
-NSString *const PhBoldTerminalAttribute = @"PhBoldTerminalAttribute";
-NSString *const PhColorTerminalAttribute = @"PhColorTerminalAttribute";
-NSString *const PhItalicTerminalAttribute = @"PhItalicTerminalAttribute";
+NSString *const PhBoldTerminalAttributeName = @"PhBoldTerminalAttribute";
+NSString *const PhColorTerminalAttributeName = @"PhColorTerminalAttribute";
+NSString *const PhItalicTerminalAttributeName = @"PhItalicTerminalAttribute";
 
 // *********************** End EXTERN Variables ***********************
 

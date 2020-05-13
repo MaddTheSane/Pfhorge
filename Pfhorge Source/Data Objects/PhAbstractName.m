@@ -116,7 +116,7 @@
 
 @synthesize phName=myName;
 
--(NSString *)getPhName
+-(NSString *)phName
 {
     return (myName != nil) ? [[myName copy] autorelease] : [[NSNumber numberWithShort:[self index]] stringValue];
 }

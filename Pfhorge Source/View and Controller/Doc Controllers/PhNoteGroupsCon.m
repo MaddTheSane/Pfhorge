@@ -112,7 +112,7 @@
         }
         else if ([theColumIdentifier isEqualToString:@"group"])
         {
-            return [grp getPhName];
+            return [grp phName];
         }
         else
         {

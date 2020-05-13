@@ -88,7 +88,7 @@
 {
     if ([theObjBeingEdited doIHaveAName])
     {
-        [theInputBox setStringValue:[theObjBeingEdited getPhName]];
+        [theInputBox setStringValue:[theObjBeingEdited phName]];
     }
     else
     {

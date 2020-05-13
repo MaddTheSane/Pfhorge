@@ -797,7 +797,7 @@ static NSCursor *crosshairCursor = nil;
     if ([thePoly doIHaveAName])
     {
         [rdRemoveBtn setEnabled:YES];
-        [rdTextInputTB setStringValue:[thePoly getPhName]];
+        [rdTextInputTB setStringValue:[thePoly phName]];
     }
     else
     {
@@ -1002,7 +1002,7 @@ static NSCursor *crosshairCursor = nil;
     numer = [types objectEnumerator];
     while (obj = [numer nextObject])
     {
-        [noteGroupPM addItemWithTitle:[obj getPhName]];
+        [noteGroupPM addItemWithTitle:[obj phName]];
     }
     
     tmpNote = note;

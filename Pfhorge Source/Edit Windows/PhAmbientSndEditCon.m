@@ -105,7 +105,7 @@
     infoString = [[NSMutableString alloc] initWithString:@""];
         //[infoString appendString:[[NSNumber numberWithShort:[curRandomSound index]] stringValue]];
         //[infoString appendString:@" - Name: "];
-        [infoString appendString:[curSound getPhName]];
+        [infoString appendString:[curSound phName]];
         [infoIT setStringValue:infoString];
         [infoString release];
     

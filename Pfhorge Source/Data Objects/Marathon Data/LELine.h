@@ -24,22 +24,24 @@
 
 #import <Foundation/Foundation.h>
 #import "LEMapStuffParent.h"
+#import "LESide.h"
+#import "LEExtras.h"
 
-enum {
-    _use_parmanent_settings,
-    _parmanent_solid,
-    _parmanent_transparent,
-    _parmanent_landscape,
-    _parmanent_no_sides
+typedef NS_ENUM(int, LELinePermanentSettings) {
+    LELinePermanentUse,
+    LELinePermanentSolid,
+    LELinePermanentTransparent,
+    LELinePermanentLandscape,
+    LELinePermanentNoSides
 };
 
 typedef NS_OPTIONS(unsigned short, LELineFlags) {
-	SOLID_LINE_BIT = 0x4000,
-	TRANSPARENT_LINE_BIT = 0x2000,
-	LANDSCAPE_LINE_BIT = 0x1000,
-	ELEVATION_LINE_BIT = 0x800,
-	VARIABLE_ELEVATION_LINE_BIT = 0x400,
-	LINE_HAS_TRANSPARENT_SIDE_BIT = 0x200
+	LELineSolid = 0x4000,
+	LELineTransparent = 0x2000,
+	LELineLandscape = 0x1000,
+	LELineElevation = 0x800,
+	LELineVariableElevation = 0x400,
+	LELineVariableHasTransparentSide = 0x200
 };
 
 @class LEMapPoint, LEPolygon, LESide, PhPlatform, NSBezierPath;
@@ -88,8 +90,8 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 - (BOOL)getFlagSS:(short)v;
 - (void)setFlag:(unsigned short)theFlag to:(BOOL)v;
 
-- (BOOL)getPermanentSetting:(int)settingToSet;
-- (void)setPermanentSetting:(int)settingToSet to:(BOOL)value;
+- (BOOL)getPermanentSetting:(LELinePermanentSettings)settingToSet;
+- (void)setPermanentSetting:(LELinePermanentSettings)settingToSet to:(BOOL)value;
 
 // ************************** Utilites *************************
 - (NSBezierPath *)clockwiseShadowPath;
@@ -149,7 +151,7 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 - (void)caculateSides;
 - (void)setupWithClockPlat:(PhPlatform *)cPlat counterClockPlat:(PhPlatform *)ccPlat;
 - (void)setupAsNonPlatformLine;
-- (LESide *)setupSideFor:(int)sideDirection asA:(int)sideType;
-- (LESide *)setupSideFor:(int)sideToReturn;
-- (void)removeSideFor:(int)sideDirectionToRemove;
+- (LESide *)setupSideFor:(LESideDirection)sideDirection asA:(LESideType)sideType;
+- (LESide *)setupSideFor:(LESideDirection)sideToReturn;
+- (void)removeSideFor:(LESideDirection)sideDirectionToRemove;
 @end

@@ -249,8 +249,7 @@
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
 	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-				 NSFileHFSTypeCode: @((OSType)'sce2')
-	}];
+				 NSFileHFSTypeCode: @((OSType)'sce2')}];
     
     return YES;
 }
@@ -307,7 +306,7 @@
     
     if ([objectToEdit isKindOfClass:[PhLight class]])
     {
-            NSLog(@"Editing Light %@", [objectToEdit getPhName]);
+            NSLog(@"Editing Light %@", [objectToEdit phName]);
             editingWindowController = [[PhLightEditorController alloc]
                                             initWithLight:objectToEdit
                                             withLevel:theLevel
@@ -316,7 +315,7 @@
     }
     else if ([objectToEdit isKindOfClass:[PhMedia class]])
     {
-            NSLog(@"Editing Media Named: %@", [objectToEdit getPhName]);
+            NSLog(@"Editing Media Named: %@", [objectToEdit phName]);
             editingWindowController = [[PhLiquidEditCon alloc]
                                             initWithMedia:objectToEdit
                                             withLevel:theLevel
@@ -325,7 +324,7 @@
     }
     else if ([objectToEdit isKindOfClass:[PhAmbientSound class]])
     {
-            NSLog(@"Editing Ambient Sound %@", [objectToEdit getPhName]);
+            NSLog(@"Editing Ambient Sound %@", [objectToEdit phName]);
             editingWindowController = [[PhAmbientSndEditCon alloc]
                                             initWithSound:objectToEdit
                                             withLevel:theLevel
@@ -334,7 +333,7 @@
     }
     else if ([objectToEdit isKindOfClass:[PhRandomSound class]])
     {
-            NSLog(@"Editing Random Sound %@", [objectToEdit getPhName]);
+            NSLog(@"Editing Random Sound %@", [objectToEdit phName]);
             editingWindowController = [[PhRandomSndEditCon alloc]
                                             initWithSound:objectToEdit
                                             withLevel:theLevel
@@ -343,7 +342,7 @@
     }
     else if ([objectToEdit isKindOfClass:[PhPlatform class]])
     {
-            NSLog(@"Editing Platform Named: %@", [objectToEdit getPhName]);
+            NSLog(@"Editing Platform Named: %@", [objectToEdit phName]);
             editingWindowController = [[PhPlatformSheetController alloc]
                                             initWithPlatform:objectToEdit
                                             withLevel:theLevel

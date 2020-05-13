@@ -76,7 +76,7 @@
     
     numer = [terimals objectEnumerator];
     while (theObj = [numer nextObject])
-        [terminalNames addObject:[theObj getPhName]];
+        [terminalNames addObject:[theObj phName]];
     
     [self refreshAllMenusOf:_terminalMenu];
 }
@@ -179,7 +179,7 @@
     [tags addObject:theNewTag];
     [tags sortUsingSelector:@selector(compare:)];
     theTagNumber = [tags indexOfObjectIdenticalTo:theNewTag];
-    [tagNames insertObject:[theNewTag getPhName] atIndex:theTagNumber];
+    [tagNames insertObject:[theNewTag phName] atIndex:theTagNumber];
     
     [self setUpArrayPointersFor:theNewTag];
     

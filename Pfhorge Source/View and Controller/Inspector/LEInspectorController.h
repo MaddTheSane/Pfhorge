@@ -69,7 +69,7 @@
     LELevelWindowController	*currentMainWindowController;
 }
 // *********************** Class Methods ***********************
-+ (id)sharedInspectorController;
+@property (class, readonly, retain) LEInspectorController *sharedInspectorController;
 
 // *********************** Other Methods ***********************
 - (void)setMainWindow:(NSWindow *)mainWindow;
@@ -82,10 +82,10 @@
 
 // *********************** Updater Methods ***********************
 - (void)reset;
--(void)updateComboMenus;
+- (void)updateComboMenus;
 
 // *********************** Utilites ***********************
--(void)setTabMenusTo:(int)tabViewIndex;
+- (void)setTabMenusTo:(int)tabViewIndex;
 - (void)updateInterfaces;
 
 // *********************** Actions ***********************
@@ -100,6 +100,6 @@
 
 // *********************** Accsessors ***********************
 -(id)getTheCurrentSelection;
--(LELevelData *)currentLevel;
+@property (readonly, retain) LELevelData *currentLevel;
 -(LEMapDraw *)getTheCurrentLevelDrawView;
 @end

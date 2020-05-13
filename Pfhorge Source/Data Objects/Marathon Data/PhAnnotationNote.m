@@ -34,7 +34,7 @@
     NSString *polyField = @"[ N/A ]";
     
     if (polygon_object != nil)
-        polyField = [polygon_object getPhName];
+        polyField = [polygon_object phName];
         
     NSPoint regP = [self location];
     NSPoint adjP = [self locationAdjusted];

@@ -181,7 +181,7 @@
     // / NSLog(@"   term section flags: %d", flags);
     type = loadShortFromNSData(data, 2);
     [self setNameAndReturnStyleFromType];
-    // / NSLog(@"   term section type: %d   type name: %@", type, [self getPhName]);
+    // / NSLog(@"   term section type: %d   type name: %@", type, [self phName]);
     permutation = loadShortFromNSData(data, 4);
     // / NSLog(@"   term section permutation: %d", permutation);
     text_offset = loadShortFromNSData(data, 6);
@@ -296,13 +296,13 @@
                     NSFontAttributeName,
                     
                     italicValue,
-                    PhItalicTerminalAttribute,
+                    PhItalicTerminalAttributeName,
                     
                     boldValue,
-                    PhBoldTerminalAttribute,
+                    PhBoldTerminalAttributeName,
                     
                     colorValue,
-                    PhColorTerminalAttribute,
+                    PhColorTerminalAttributeName,
                     
                     @(underlineValue),
                     NSUnderlineStyleAttributeName,
@@ -498,15 +498,15 @@
         
         while (limitRange.length > 0)
         {
-            /*italicValue = [attrStr attribute:PhItalicTerminalAttribute
+            /*italicValue = [attrStr attribute:PhItalicTerminalAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];
             
-            boldValue = [attrStr attribute:PhBoldTerminalAttribute
+            boldValue = [attrStr attribute:PhBoldTerminalAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];*/
             
-            colorValue = [attrStr attribute:PhColorTerminalAttribute
+            colorValue = [attrStr attribute:PhColorTerminalAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];
             

@@ -353,7 +353,7 @@ enum
     _vm_texture_render_mode = 2
 };
 
-enum
+typedef NS_ENUM(int, LESideDirection)
 {
     _clockwise,
     _counter_clockwise
@@ -517,9 +517,9 @@ extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
 extern NSString *const PhCenterWorldUnitGridColor;
 
 // * Terminal Keys *
-extern NSAttributedStringKey const PhBoldTerminalAttribute;
-extern NSAttributedStringKey const PhColorTerminalAttribute;
-extern NSAttributedStringKey const PhItalicTerminalAttribute;
+extern NSAttributedStringKey const PhBoldTerminalAttributeName;
+extern NSAttributedStringKey const PhColorTerminalAttributeName;
+extern NSAttributedStringKey const PhItalicTerminalAttributeName;
 
 // *********************** End EXTERN Variables ***********************
 

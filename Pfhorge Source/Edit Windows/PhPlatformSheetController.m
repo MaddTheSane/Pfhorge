@@ -100,7 +100,7 @@
     short platformPolygonIndex = [platform polygonIndex];
     
     platformInfoString = [[NSMutableString alloc] initWithString:@"Level: Map - Name: "];
-    [platformInfoString appendString:[platform getPhName]];
+    [platformInfoString appendString:[platform phName]];
     [platformInfoString appendString:@" - Polygon#"];
     [platformInfoString appendString:[[NSNumber numberWithShort:platformPolygonIndex] stringValue]];
     [platformInfoString appendString:@" - Platform#"];
@@ -262,7 +262,7 @@
         return;
     }
     
-    NSLog(@"Saving Changes To Platform: %@   |-| Index: %d", [platform getPhName], [platform index]);
+    NSLog(@"Saving Changes To Platform: %@   |-| Index: %d", [platform phName], [platform index]);
     
     [platform setType:[typeComboMenu indexOfSelectedItem]];
     [platform setSpeed:((short)([speedTB floatValue] * 30))];

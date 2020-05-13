@@ -47,7 +47,7 @@
 
 - (void)reset;
 
--(void)updateInterface;
+- (void)updateInterface;
 - (void)updateObjectValuesOfComboMenus;
 
 -(void)updateObjectKindMenu;

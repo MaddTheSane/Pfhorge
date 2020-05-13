@@ -324,7 +324,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"Polygon Index: %d   Layer: %@", [self index], [polyLayer getPhName], nil];
+    return [NSString stringWithFormat:@"Polygon Index: %d   Layer: %@", [self index], [polyLayer phName], nil];
 }
 
 

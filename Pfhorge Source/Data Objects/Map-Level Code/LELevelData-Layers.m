@@ -263,7 +263,7 @@
 -(void)addLayer:(PhLayer *)theLayer
 {
     [layersInLevel addObject:theLayer];
-    [layerNames addObject:[theLayer getPhName]];
+    [layerNames addObject:[theLayer phName]];
     [self setUpArrayPointersFor:theLayer];
     
     [self refreshAllMenusOf:_layerMenu];

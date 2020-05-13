@@ -30,36 +30,36 @@
 
 @interface PhLiquidEditCon : InfoWindowCommander
 {
-    IBOutlet id infoIT;
-    IBOutlet id typeMenu;
-    IBOutlet id copyFromMenu;
-    IBOutlet id tideLightMenu;
-    IBOutlet id transferModeMenu;
+    IBOutlet NSTextField *infoIT;
+    IBOutlet NSPopUpButton *typeMenu;
+    IBOutlet NSPopUpButton *copyFromMenu;
+    IBOutlet NSPopUpButton *tideLightMenu;
+    IBOutlet NSPopUpButton *transferModeMenu;
     
-    IBOutlet id soundObstructedCB;
+    IBOutlet NSButton *soundObstructedCB;
     
-    IBOutlet id flowTB;
-    IBOutlet id angleTB;
-    IBOutlet id highTideMaxTB;
-    IBOutlet id lowTideMinTB;
+    IBOutlet NSFormCell *flowTB;
+    IBOutlet NSFormCell *angleTB;
+    IBOutlet NSFormCell *highTideMaxTB;
+    IBOutlet NSFormCell *lowTideMinTB;
     
-    IBOutlet id originXTB;
-    IBOutlet id originYTB;
-    IBOutlet id heightTB;
-    IBOutlet id minLightIntensityTB;
-    IBOutlet id textureTB;
+    IBOutlet NSFormCell *originXTB;
+    IBOutlet NSFormCell *originYTB;
+    IBOutlet NSFormCell *heightTB;
+    IBOutlet NSFormCell *minLightIntensityTB;
+    IBOutlet NSFormCell *textureTB;
     
     PhMedia	*curMedia;
 }
 
-- (id)initWithMedia:(id)theMedia
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc;
+- (instancetype)initWithMedia:(PhMedia*)theMedia
+					withLevel:(LELevelData *)theLevel
+			  withMapDocument:(LEMap *)theMapDoc;
 
 - (void)registerNotifcations;
 
--(void)refreshInterfaceFromData;
--(void)saveChanges;
+- (void)refreshInterfaceFromData;
+- (void)saveChanges;
 
 //- (IBAction)templateAction:(id)sender;
 - (IBAction)copyFromMenuAction:(id)sender;

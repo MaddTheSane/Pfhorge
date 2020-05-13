@@ -477,7 +477,7 @@
     
     if ([thePolyToAdd doIHaveAName] == YES)
     {
-        [self namePolygon:thePolyToAdd to:[thePolyToAdd getPhName]];
+        [self namePolygon:thePolyToAdd to:[thePolyToAdd phName]];
     }
 }
 
@@ -571,13 +571,13 @@
             
             if (otherPoly != nil)
             {
-                [thisObj setFlag:TRANSPARENT_LINE_BIT to:YES];
-                [thisObj setFlag:SOLID_LINE_BIT to:NO];
+                [thisObj setFlag:LELineTransparent to:YES];
+                [thisObj setFlag:LELineSolid to:NO];
             }
             else
             {
-                [thisObj setFlag:TRANSPARENT_LINE_BIT to:NO];
-                [thisObj setFlag:SOLID_LINE_BIT to:YES];
+                [thisObj setFlag:LELineTransparent to:NO];
+                [thisObj setFlag:LELineSolid to:YES];
             }*/
             
             
@@ -1093,7 +1093,7 @@
         // flags that tell the line not to autoset...
         [theLine caculateSides];
         //[theLine setFlags:0];
-        //[theLine setFlag:SOLID_LINE_BIT to:YES];
+        //[theLine setFlag:LELineSolid to:YES];
     }
     
     /*

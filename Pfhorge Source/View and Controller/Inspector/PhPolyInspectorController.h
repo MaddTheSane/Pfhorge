@@ -24,33 +24,34 @@
 
 #import <AppKit/AppKit.h>
 
-@class PhPlatformSheetController, LEPolygon;
+@class PhPlatformSheetController, LEPolygon, LEInspectorController;
+@class PhTextureInspectorController;
 
 @interface PhPolyInspectorController : NSWindowController {
-    IBOutlet id mainInspectorController;
-    IBOutlet id textureInspectorController;
+    IBOutlet LEInspectorController *mainInspectorController;
+    IBOutlet PhTextureInspectorController *textureInspectorController;
     
-    IBOutlet id textureWindow;
+    IBOutlet NSPanel *textureWindow;
     
-    IBOutlet id platformParametersBtn;
-    IBOutlet id ambientSound;
+    IBOutlet NSButton *platformParametersBtn;
+    IBOutlet NSComboBox *ambientSound;
     IBOutlet id polyBox;
-    IBOutlet id ceilingHeight;
-    IBOutlet id ceilingLight;
-    IBOutlet id floorHeight;
-    IBOutlet id floorLight;
-    IBOutlet id liquid;
-    IBOutlet id liquidLight;
-    IBOutlet id permutation;
-    IBOutlet id yandomSound;
-    IBOutlet id type;
+    IBOutlet NSTextField *ceilingHeight;
+    IBOutlet NSPopUpButton *ceilingLight;
+    IBOutlet NSTextField *floorHeight;
+    IBOutlet NSPopUpButton *floorLight;
+    IBOutlet NSComboBox *liquid;
+    IBOutlet NSPopUpButton *liquidLight;
+    IBOutlet NSPopUpButton *permutation;
+    IBOutlet NSComboBox *yandomSound;
+    IBOutlet NSPopUpButton *type;
     
     IBOutlet NSPopUpButton *ceilingTextureMenu;
     IBOutlet NSPopUpButton *floorTextureMenu;
     //IBOutlet id textureOffsetMatrix;
     
-    IBOutlet id permutationTab;
-    IBOutlet id permutationNumberTB;
+    IBOutlet NSTabView *permutationTab;
+    IBOutlet NSTextField *permutationNumberTB;
     
     PhPlatformSheetController *platformEditingWindowController;
     int lastMenuTypeCache;
@@ -60,7 +61,7 @@
 
 - (void)reset;
 
--(void)updateInterface;
+- (void)updateInterface;
 - (void)updateObjectValuesOfComboMenus;
 
 - (IBAction)platformParametersAction:(id)sender;

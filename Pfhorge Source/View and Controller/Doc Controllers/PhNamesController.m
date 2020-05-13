@@ -383,7 +383,7 @@ objectValueForTableColumn:(NSTableColumn *)col
             return [theCurNameObj phNumber];
             
         else if ([[col identifier] isEqualToString:PhNameOfObject])
-            return [theCurNameObj getPhName];
+            return [theCurNameObj phName];
     }
     else
     {
@@ -391,7 +391,7 @@ objectValueForTableColumn:(NSTableColumn *)col
             return [NSNumber numberWithShort:[theCurNameObj index]];
             
         else if ([[col identifier] isEqualToString:PhNameOfObject])
-            return [theCurNameObj getPhName];
+            return [theCurNameObj phName];
     }
     return nil;
 }

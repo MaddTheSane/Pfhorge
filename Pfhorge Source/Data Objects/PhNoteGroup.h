@@ -48,7 +48,7 @@
 
 @property (copy) NSColor *color;
 
--(NSArray *)objectsInThisLayer;
+-(NSArray<PhAnnotationNote*> *)objectsInThisLayer;
 
 -(void)addObject:(id)theObj;
 -(void)removeObject:(id)theObj;

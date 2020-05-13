@@ -74,14 +74,14 @@ enum {
     IBOutlet NSPopUpButton 	*ceilingMode;
     IBOutlet NSPopUpButton 	*floorMode;
     
-    IBOutlet id sideTextureOffsetMatrix;
-    IBOutlet id sideTextureRadioBtn;
-    IBOutlet id sideLightRadioBtn;
-    IBOutlet id sideControlRadioBtn;
+    IBOutlet NSMatrix *sideTextureOffsetMatrix;
+    IBOutlet NSMatrix *sideTextureRadioBtn;
+    IBOutlet NSMatrix *sideLightRadioBtn;
+    IBOutlet NSMatrix *sideControlRadioBtn;
     
-    IBOutlet id polyTextureOffsetMatrix;
+    IBOutlet NSMatrix *polyTextureOffsetMatrix;
     
-    IBOutlet id transparentTextureCheckBox;
+    IBOutlet NSButton *transparentTextureCheckBox;
     
     LELine *theCurrentLine;
     LESide *cSide, *ccSide, *baseSideRef;

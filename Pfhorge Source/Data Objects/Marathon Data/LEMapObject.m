@@ -34,7 +34,7 @@
     NSString *polyField = @"[ N/A ]";
     
     if (polygonObject != nil)
-        polyField = [polygonObject getPhName];
+        polyField = [polygonObject phName];
         
     
     return [NSString stringWithFormat:@"Object Index: %d   In Polygon: %@   Facing: %d   X/Y/Z:(%d, %d, %d)   AdjX/AdjY:(%d, %d)", [self index], polyField, facing, x, y, z, x32, y32, nil];

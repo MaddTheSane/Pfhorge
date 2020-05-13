@@ -39,7 +39,7 @@
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-@property (nonatomic, copy, getter=getPhName) NSString *phName;
+@property (nonatomic, copy) NSString *phName;
 @property (nonatomic, readonly) BOOL doIHaveAName;
 @property (nonatomic, readonly) BOOL doIHaveACustomName;
 - (void)resetNameToMyIndex;
