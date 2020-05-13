@@ -64,7 +64,7 @@
 - (LELevelData *)level;
 - (LEMapData *)getCurrentMapLoaded;
 - (LEMapDraw *)getMapDrawView;
-- (NSArray *)levelNames;
+- (NSArray<NSString*> *)levelNames;
 - (void)changeLevelNameFor:(int)theLevelIndex To:(NSString *)theNewName;
 
 - (BOOL)didIComeFromMarathonFormatedFile;

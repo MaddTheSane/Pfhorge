@@ -144,49 +144,49 @@
 #pragma mark ********* Level Info Flags *********
 
 -(BOOL)isEnvironmentNormal { return (environment_flags == 0)?(YES):(NO); }
--(BOOL)isEnvironmentVacuum { return GET_ENVIRONMENT_FLAG(_environment_vacuum); }
--(BOOL)isEnvironmentMagnetic { return GET_ENVIRONMENT_FLAG(_environment_magnetic); }
--(BOOL)isEnvironmentRebellion { return GET_ENVIRONMENT_FLAG(_environment_rebellion); }
--(BOOL)isEnvironmentLowGravity { return GET_ENVIRONMENT_FLAG(_environment_low_gravity); }
--(BOOL)isEnvironmentNetwork { return GET_ENVIRONMENT_FLAG(_environment_network); }
--(BOOL)isEnvironmentSinglePlayer { return GET_ENVIRONMENT_FLAG(_environment_single_player); }
+-(BOOL)isEnvironmentVacuum { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentVacuum); }
+-(BOOL)isEnvironmentMagnetic { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentMagnetic); }
+-(BOOL)isEnvironmentRebellion { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentRebellion); }
+-(BOOL)isEnvironmentLowGravity { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentLowGravity); }
+-(BOOL)isEnvironmentNetwork { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentNetwork); }
+-(BOOL)isEnvironmentSinglePlayer { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentSinglePlayer); }
 
--(BOOL)isMissionExtermination{ return GET_MISSION_FLAG(_mission_extermination); }
--(BOOL)isMissionExploration{ return GET_MISSION_FLAG(_mission_exploration); }
--(BOOL)isMissionRetrieval{ return GET_MISSION_FLAG(_mission_retrieval); }
--(BOOL)isMissionRepair{ return GET_MISSION_FLAG(_mission_repair); }
--(BOOL)isMissionRescue{ return GET_MISSION_FLAG(_mission_rescue); }
+-(BOOL)isMissionExtermination{ return GET_MISSION_FLAG(LELevelMissionExtermination); }
+-(BOOL)isMissionExploration{ return GET_MISSION_FLAG(LELevelMissionExploration); }
+-(BOOL)isMissionRetrieval{ return GET_MISSION_FLAG(LELevelMissionRetrieval); }
+-(BOOL)isMissionRepair{ return GET_MISSION_FLAG(LELevelMissionRepair); }
+-(BOOL)isMissionRescue{ return GET_MISSION_FLAG(LELevelMissionRescue); }
 
--(BOOL)isGameTypeSinglePlayer{ return GET_ENTRY_FLAG(_single_player_entry_point); }
--(BOOL)isGameTypeCooperative{ return GET_ENTRY_FLAG(_multiplayer_cooperative_entry_point); }
--(BOOL)isGameTypeMultiplayerCarnage{ return GET_ENTRY_FLAG(_multiplayer_carnage_entry_point); }
--(BOOL)isGameTypeCaptureTheFlag{ return GET_ENTRY_FLAG(_capture_the_flag_entry_point); }
--(BOOL)isGameTypeKingOfTheHill{ return GET_ENTRY_FLAG(_king_of_hill_entry_point); }
--(BOOL)isGameTypeDefense{ return GET_ENTRY_FLAG(_defense_entry_point); }
--(BOOL)isGameTypeRugby{ return GET_ENTRY_FLAG(_rugby_entry_point); }
+-(BOOL)isGameTypeSinglePlayer{ return GET_ENTRY_FLAG(LELevelEntryPointSinglePlayer); }
+-(BOOL)isGameTypeCooperative{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerCooperative); }
+-(BOOL)isGameTypeMultiplayerCarnage{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerCarnage); }
+-(BOOL)isGameTypeCaptureTheFlag{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerCaptureTheFlag); }
+-(BOOL)isGameTypeKingOfTheHill{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerKingOfTheHill); }
+-(BOOL)isGameTypeDefense{ return GET_ENTRY_FLAG(LELevelEntryPointDefense); }
+-(BOOL)isGameTypeRugby{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerRugby); }
 
 
--(void)setEnvironmentNormal { environment_flags = 0; }
--(void)setEnvironmentVacuum:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_vacuum, v); }
--(void)setEnvironmentMagnetic:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_magnetic, v); }
--(void)setEnvironmentRebellion:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_rebellion, v); }
--(void)setEnvironmentLowGravity:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_low_gravity, v); }
--(void)setEnvironmentNetwork:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_network, v); }
--(void)setEnvironmentSinglePlayer:(BOOL)v { SET_ENVIRONMENT_FLAG(_environment_single_player, v); }
+-(void)setEnvironmentNormal { environment_flags = LELevelEnvironmentNormal; }
+-(void)setEnvironmentVacuum:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentVacuum, v); }
+-(void)setEnvironmentMagnetic:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentMagnetic, v); }
+-(void)setEnvironmentRebellion:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentRebellion, v); }
+-(void)setEnvironmentLowGravity:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentLowGravity, v); }
+-(void)setEnvironmentNetwork:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentNetwork, v); }
+-(void)setEnvironmentSinglePlayer:(BOOL)v { SET_ENVIRONMENT_FLAG(LELevelEnvironmentSinglePlayer, v); }
 
--(void)setMissionExtermination:(BOOL)v { SET_MISSION_FLAG(_mission_extermination, v); }
--(void)setMissionExploration:(BOOL)v { SET_MISSION_FLAG(_mission_exploration, v); }
--(void)setMissionRetrieval:(BOOL)v { SET_MISSION_FLAG(_mission_retrieval, v); }
--(void)setMissionRepair:(BOOL)v { SET_MISSION_FLAG(_mission_repair, v); }
--(void)setMissionRescue:(BOOL)v { SET_MISSION_FLAG(_mission_rescue, v); }
+-(void)setMissionExtermination:(BOOL)v { SET_MISSION_FLAG(LELevelMissionExtermination, v); }
+-(void)setMissionExploration:(BOOL)v { SET_MISSION_FLAG(LELevelMissionExploration, v); }
+-(void)setMissionRetrieval:(BOOL)v { SET_MISSION_FLAG(LELevelMissionRetrieval, v); }
+-(void)setMissionRepair:(BOOL)v { SET_MISSION_FLAG(LELevelMissionRepair, v); }
+-(void)setMissionRescue:(BOOL)v { SET_MISSION_FLAG(LELevelMissionRescue, v); }
 
--(void)setGameTypeSinglePlayer:(BOOL)v { SET_ENTRY_FLAG(_single_player_entry_point, v); }
--(void)setGameTypeCooperative:(BOOL)v { SET_ENTRY_FLAG(_multiplayer_cooperative_entry_point, v); }
--(void)setGameTypeMultiplayerCarnage:(BOOL)v { SET_ENTRY_FLAG(_multiplayer_carnage_entry_point, v); }
--(void)setGameTypeCaptureTheFlag:(BOOL)v { SET_ENTRY_FLAG(_capture_the_flag_entry_point, v); }
--(void)setGameTypeKingOfTheHill:(BOOL)v { SET_ENTRY_FLAG(_king_of_hill_entry_point, v); }
--(void)setGameTypeDefense:(BOOL)v { SET_ENTRY_FLAG(_defense_entry_point, v); }
--(void)setGameTypeRugby:(BOOL)v { SET_ENTRY_FLAG(_rugby_entry_point, v); }
+-(void)setGameTypeSinglePlayer:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointSinglePlayer, v); }
+-(void)setGameTypeCooperative:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointMultiplayerCooperative, v); }
+-(void)setGameTypeMultiplayerCarnage:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointMultiplayerCarnage, v); }
+-(void)setGameTypeCaptureTheFlag:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointMultiplayerCaptureTheFlag, v); }
+-(void)setGameTypeKingOfTheHill:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointMultiplayerKingOfTheHill, v); }
+-(void)setGameTypeDefense:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointDefense, v); }
+-(void)setGameTypeRugby:(BOOL)v { SET_ENTRY_FLAG(LELevelEntryPointMultiplayerRugby, v); }
 
 
 // These are methods that we probably wouldn't bother with if we weren't scriptable.

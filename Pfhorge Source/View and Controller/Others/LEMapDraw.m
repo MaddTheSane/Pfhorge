@@ -75,8 +75,7 @@ enum {
 #define UpdateLevelStatusBar() [winController updateLevelInfoString]
 
 
-- (BOOL)newHeightSheetOpen { return newHeightSheetOpen; }
-- (void)setNewHeightSheetOpen:(BOOL)theValue { newHeightSheetOpen = theValue; }
+@synthesize newHeightSheetOpen;
 
 
 // *************************** Getting Information ***************************
@@ -554,13 +553,13 @@ enum {
 }
 
 @synthesize currentDrawingMode=drawingMode;
-- (NSArray *)getNumberList { return numberList; }
-- (NSArray *)getColorList { return colorList; }
-- (NSArray *)getNameList
+- (NSArray *)numberList { return numberList; }
+- (NSArray *)colorList { return colorList; }
+- (NSArray *)nameList
 {
     return nameList; 
 }
-- (NSArray *)getTableObjectList { return objsList; }
+- (NSArray *)tableObjectList { return objsList; }
 
 - (void)addNewHeight:(NSNumber *)theNewHeight
 {
@@ -2316,7 +2315,7 @@ enum {
 
 - (void)mouseDownHeightMap:(NSEvent *)theEvent
 {
-    //int theSelection = [[PhColorListController sharedColorListController] getSelection];
+    //int theSelection = [[PhColorListController sharedColorListController] selectionIndex];
     PhColorListControllerDrawer *theColorListController = colorListObject; //[PhColorListController sharedColorListController];
     NSNumber *selectedNumber = [theColorListController getSelectedNumber];
     // Get the mouse point and convert it to this view's cordinate system....
@@ -5538,7 +5537,7 @@ enum {
             if ([arrayTwo containsObject:obj2])
                 [self selectObject:obj2 byExtendingSelection:NO];
             else
-                return @"Platform's Polygon Not In Visable Layer";
+                return @"Platform's Polygon Not In Visible Layer";
             
             [self scrollRectToVisible:[self drawingBoundsForSelections]];
             
@@ -5561,7 +5560,7 @@ enum {
     if ([arrayTwo containsObject:obj1])
         [self selectObject:obj1 byExtendingSelection:NO];
     else
-        return @"Not In Visable Layer";
+        return @"Not In Visible Layer";
     
     [self scrollRectToVisible:[self drawingBoundsForSelections]];
     

@@ -1355,8 +1355,9 @@ static NSCursor *crosshairCursor = nil;
     
     if (returnCode != NSOKButton)
         return;
-    
-    [[self document] exportToMarathonFormatAtPath:[sheet URL].path];
+    //@"org.bungie.source.map"
+	[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
+    //[[self document] exportToMarathonFormatAtPath:[sheet URL].path];
 }
 
 - (void)savePanelDidEndForMapImport:(NSOpenPanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo

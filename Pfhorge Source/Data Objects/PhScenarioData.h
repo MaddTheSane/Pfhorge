@@ -52,7 +52,7 @@
 
 -(NSArray<NSString*> *)levelFileNames;
 -(void)scanProjectDirectory;
--(int)levelCount;
+@property (readonly) int levelCount;
 -(NSString *)getLevelNameForLevel:(int)levelNumber;
 -(NSString *)getLevelPathForLevel:(int)levelNumber;
 -(NSString *)getLevelPathForSelected;

@@ -51,16 +51,6 @@
 
 @implementation LELevelData (LevelDataAccsessors)
 
--(NSUndoManager *)myUndoManager
-{
-    return myUndoManager;
-}
-
--(void)setMyUndoManager:(NSUndoManager *)value
-{
-    myUndoManager = value;
-}
-
 - (NSArray *)getNoteTypes
 {
     return noteTypes;

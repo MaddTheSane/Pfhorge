@@ -585,28 +585,6 @@
 
 // ****************** NEW METHODS ******************
 
--(BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperationType originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
-{
-    //[self updateInternalData];
-    
-    NSString *pathToUse = [url.path copy];
-    /*
-    if (![[fullDocumentPath pathExtension] isEqualToString:@"pfhlev"])
-    {
-        [pathToUse release];
-        pathToUse = [[fullDocumentPath stringByAppendingPathExtension:@"pfhlev"] retain];
-    }*/
-    
-    [[NSFileManager defaultManager] createFileAtPath:pathToUse
-        contents:[self dataOfType:@"" error:NULL]
-        attributes:nil];
-    
-    // [wad saveToFile:fullDocumentPath oldFile:fullOriginalDocumentPath];
-    // [resources saveToFile:fullDocumentPath oldFile:fullOriginalDocumentPath];
-    
-    return YES;
-}
-
 -(NSDictionary<NSString *,id> *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
@@ -913,7 +891,7 @@
 			NSData *dat = [NSData dataWithBytes:&theKeyAsLong length:4];
             NSString *theTagAsString = [[NSString alloc] initWithData:dat encoding:NSMacOSRomanStringEncoding];
             NSLog(@"Perculer key in arguments: %@", theTagAsString);
-            NSLog(@"Here is the record description sent via apple script: %@", [args description]);
+            NSLog(@"Here is the record description sent via AppleScript: %@", [args description]);
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
                         @"Apple Script Error");
             return nil;
@@ -943,7 +921,7 @@
 
 - (void)addInPoints:(LEMapPoint *)point
 {
-    NSLog(@"addInPoints Apple Script Command Acknowleged!");
+    NSLog(@"addInPoints AppleScript Command Acknowleged!");
     [theLevel addObjects:point];
 }
 

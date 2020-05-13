@@ -284,10 +284,10 @@
             }
         }
         
-        numbers = [currentLevelDrawView getNumberList];
-        colors = [currentLevelDrawView getColorList];
-        names = [currentLevelDrawView getNameList];
-        objs = [currentLevelDrawView getTableObjectList];
+        numbers = [currentLevelDrawView numberList];
+        colors = [currentLevelDrawView colorList];
+        names = [currentLevelDrawView nameList];
+        objs = [currentLevelDrawView tableObjectList];
         
         levelInfoString = [[NSMutableString alloc] initWithString:
             [[NSNumber numberWithInteger:[numbers count]] stringValue]];

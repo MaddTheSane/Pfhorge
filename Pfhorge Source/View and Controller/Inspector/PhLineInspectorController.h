@@ -24,46 +24,46 @@
 
 #import <AppKit/AppKit.h>
 
-@class LESide, LELine;
+@class LESide, LELine, LEInspectorController, PhTextureInspectorController;
 
 @interface PhLineInspectorController : NSWindowController {
     
     // Outlet to the main inspector controller instance...
-    IBOutlet id mainInspectorController;
-    IBOutlet id textureInspectorController;
+    IBOutlet LEInspectorController *mainInspectorController;
+    IBOutlet PhTextureInspectorController *textureInspectorController;
     
-    IBOutlet id lightWindow;
+    IBOutlet NSPanel *lightWindow;
     
     // IBOutlet id  ??? ??? ???
     
     // Regular Line UI Outlets...
     IBOutlet id lineBox;
-    IBOutlet id lineIsControlPanel;
-    IBOutlet id lineControlPanelFlags;
-    IBOutlet id lineControlPanelType;
-    IBOutlet id lineFlags;
-    IBOutlet id emptyFlag;
+    IBOutlet NSButton *lineIsControlPanel;
+    IBOutlet NSMatrix *lineControlPanelFlags;
+    IBOutlet NSPopUpButton *lineControlPanelType;
+    IBOutlet NSMatrix *lineFlags;
+    IBOutlet NSButton *emptyFlag;
     
-    IBOutlet id linePermutation;
-    IBOutlet id linePermutationTextBox;
+    IBOutlet NSPopUpButton *linePermutation;
+    IBOutlet NSTextField *linePermutationTextBox;
     IBOutlet NSTabView *linePermutationTabView;
     
     // Light UI Outlets...
-    IBOutlet id linePrimaryLight;
-    IBOutlet id lineSecondaryLight;
-    IBOutlet id lineTransparentLight;
+    IBOutlet NSPopUpButton *linePrimaryLight;
+    IBOutlet NSPopUpButton *lineSecondaryLight;
+    IBOutlet NSPopUpButton *lineTransparentLight;
     
     // Texture UI Outlets...
-    IBOutlet id primaryTextureMenu;
-    IBOutlet id secondaryTextureMenu;
-    IBOutlet id transparentTextureMenu;
-    IBOutlet id textureOffsetMatrix;
+    IBOutlet NSPopUpButton *primaryTextureMenu;
+    IBOutlet NSPopUpButton *secondaryTextureMenu;
+    IBOutlet NSPopUpButton *transparentTextureMenu;
+    IBOutlet NSMatrix *textureOffsetMatrix;
     
     LELine *theCurrentSelection;
     LESide *cSide, *ccSide, *baseSideRef;
     
     int prevEnviroCode;
-    NSArray *theWaterNames, *theLavaNames, *theSewageNames, *thePfhorNames, *theJjaroNames;
+    NSArray<NSString*> *theWaterNames, *theLavaNames, *theSewageNames, *thePfhorNames, *theJjaroNames;
 }
 
 - (void)reset;

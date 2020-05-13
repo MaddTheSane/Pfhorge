@@ -192,7 +192,7 @@
 		AE3C15820A04512100FBFFCD /* PhScenarioManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F519A30F02AAFC0E0146BBD2 /* PhScenarioManagerController.m */; };
 		AE3C15830A04512100FBFFCD /* PhScenarioData.m in Sources */ = {isa = PBXBuildFile; fileRef = F51939C602AC7C150146BBD2 /* PhScenarioData.m */; };
 		AE3C15840A04512100FBFFCD /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = F520576A02B503430146BBD2 /* Resource.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
-		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations -fobjc-arc"; }; };
 		AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
 		AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
 		AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; };
@@ -471,7 +471,7 @@
 		F54738F6021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+NDCarbonUtilities.h"; path = "AppleScript Sources/NSURL+NDCarbonUtilities.h"; sourceTree = SOURCE_ROOT; };
 		F54738F7021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAppleEventDescriptor+NDAppleScriptObject.h"; path = "AppleScript Sources/NSAppleEventDescriptor+NDAppleScriptObject.h"; sourceTree = SOURCE_ROOT; };
 		F54738F8021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NDAppleScriptObject_Protocols.h; path = "AppleScript Sources/NDAppleScriptObject_Protocols.h"; sourceTree = SOURCE_ROOT; };
-		F547848D02B505FB0146BBD2 /* ScenarioResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioResources.m; sourceTree = "<group>"; };
+		F547848D02B505FB0146BBD2 /* ScenarioResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioResources.m; sourceTree = "<group>"; usesTabs = 0; };
 		F547848E02B505FB0146BBD2 /* ScenarioResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioResources.h; sourceTree = "<group>"; };
 		F54D4C3F01CBF6E401A8A806 /* PhRandomSndEditCon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PhRandomSndEditCon.h; sourceTree = "<group>"; };
 		F54D4C4001CBF6E401A8A806 /* PhRandomSndEditCon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PhRandomSndEditCon.m; sourceTree = "<group>"; };

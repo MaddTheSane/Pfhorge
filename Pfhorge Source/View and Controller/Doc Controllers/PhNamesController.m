@@ -270,7 +270,7 @@ static NSString *const PhNameOfObject = @"Name";
 #pragma mark -
 #pragma mark ********* Accsessor Methods *********
 
-- (NSInteger)getSelection { return [theTable selectedRow]; }
+- (NSInteger)selectionIndex { return [theTable selectedRow]; }
 
 - (BOOL)isSomthingSelected { return ([theTable selectedRowIndexes].count > 0); }
 
@@ -279,7 +279,7 @@ static NSString *const PhNameOfObject = @"Name";
     return [currentArray objectAtIndex:[theTable selectedRow]];
 }
 
-- (NSString *)getSelectedName
+- (NSString *)selectedName
 {
     return [[[currentNameArray objectAtIndex:[theTable selectedRow]] copy] autorelease];
 }

@@ -78,6 +78,7 @@
 @synthesize missionFlags=mission_flags;
 @synthesize environmentFlags=environment_flags;
 @synthesize entryPointFlags=entry_point_flags;
+@synthesize myUndoManager;
 
 -(void)setSongIndex:(short)v
 {

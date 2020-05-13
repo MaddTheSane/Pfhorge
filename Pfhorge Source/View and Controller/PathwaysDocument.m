@@ -365,6 +365,7 @@
 
 // ****************** NEW METHODS ******************
 
+#if 0
 - (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     //[self updateInternalData];
@@ -394,14 +395,20 @@
     
     return YES;
 }
+#endif
 
 -(NSDictionary<NSString *,id> *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)documentTypeName forSaveOperation:(NSSaveOperationType)saveOperationType originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
                             [super fileAttributesToWriteToURL:url ofType:documentTypeName forSaveOperation:saveOperationType originalContentsURL:absoluteOriginalContentsURL error:outError]];
-    
-	[dict setObject:@((OSType)'PfhL') forKey:NSFileHFSTypeCode];
-	[dict setObject:@((OSType)'PFrg') forKey:NSFileHFSCreatorCode];
+	if ([documentTypeName isEqualToString:@"org.bungie.source.map"]) {
+		[dict addEntriesFromDictionary:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+					 NSFileHFSTypeCode: @((OSType)'sce2')
+		}];
+	} else {
+		[dict setObject:@((OSType)'PfhL') forKey:NSFileHFSTypeCode];
+		[dict setObject:@((OSType)'PFrg') forKey:NSFileHFSCreatorCode];
+	}
 
     return dict;
 }

@@ -105,39 +105,36 @@ typedef NS_ENUM(short, LELevelEnvironmentCode) {
 };
 
 //! entry point types - this is per map level (long)
-typedef NS_OPTIONS(int, _entry_point_flag)
-{
-	_single_player_entry_point = 0x01,
-	_multiplayer_cooperative_entry_point = 0x02,
-	_multiplayer_carnage_entry_point = 0x04,
-	_capture_the_flag_entry_point = 0x08,
-	_king_of_hill_entry_point = 0x10,
-	_defense_entry_point= 0x20,
-	_rugby_entry_point= 0x40
+typedef NS_OPTIONS(int, LELevelEntryPointFlags) {
+	LELevelEntryPointSinglePlayer = 0x01,
+	LELevelEntryPointMultiplayerCooperative = 0x02,
+	LELevelEntryPointMultiplayerCarnage = 0x04,
+	LELevelEntryPointMultiplayerCaptureTheFlag = 0x08,
+	LELevelEntryPointMultiplayerKingOfTheHill = 0x10,
+	LELevelEntryPointDefense= 0x20,
+	LELevelEntryPointMultiplayerRugby= 0x40
 };
 
 //! mission flags
-typedef NS_OPTIONS(unsigned short, _mission_flag)
-{
-	_mission_none = 0x0000,
-	_mission_extermination = 0x0001,
-	_mission_exploration = 0x0002,
-	_mission_retrieval = 0x0004,
-	_mission_repair = 0x0008,
-	_mission_rescue = 0x0010
+typedef NS_OPTIONS(unsigned short, LELevelMissionFlags) {
+	LELevelMissionNone = 0x0000,
+	LELevelMissionExtermination = 0x0001,
+	LELevelMissionExploration = 0x0002,
+	LELevelMissionRetrieval = 0x0004,
+	LELevelMissionRepair = 0x0008,
+	LELevelMissionRescue = 0x0010
 };
 
 //! environment flags
-typedef NS_OPTIONS(unsigned short, _environment_flag)
-{
-	_environment_normal = 0x0000,
-	_environment_vacuum = 0x0001,
-	_environment_magnetic = 0x0002,
-	_environment_rebellion = 0x0004,
-	_environment_low_gravity = 0x0008,
+typedef NS_OPTIONS(unsigned short, LELevelEnvironmentFlags) {
+	LELevelEnvironmentNormal = 0x0000,
+	LELevelEnvironmentVacuum = 0x0001,
+	LELevelEnvironmentMagnetic = 0x0002,
+	LELevelEnvironmentRebellion = 0x0004,
+	LELevelEnvironmentLowGravity = 0x0008,
 	
-	_environment_network = 0x2000,
-	_environment_single_player = 0x4000
+	LELevelEnvironmentNetwork = 0x2000,
+	LELevelEnvironmentSinglePlayer = 0x4000
 };
 
 /* Game types! */
@@ -201,13 +198,13 @@ enum {
     LELevelEnvironmentCode	environment_code;
     short	physics_model;
     short	song_index;
-    _mission_flag	mission_flags;
-    _environment_flag	environment_flags;
+    LELevelMissionFlags	mission_flags;
+    LELevelEnvironmentFlags	environment_flags;
     
     short	unused[4];
     
     NSString	*level_name;
-    _entry_point_flag	entry_point_flags;
+    LELevelEntryPointFlags	entry_point_flags;
     
     //LESide *defaultSide;
     LELine *defaultLine;
@@ -227,10 +224,11 @@ enum {
     
     NSMutableDictionary *levelOptions;
     
-    NSMutableArray *noteTypes;
+    NSMutableArray<PhNoteGroup*> *noteTypes;
     
     NSUndoManager *myUndoManager;
 }
+@property (assign) NSUndoManager *myUndoManager;
 
 
 // **************  Inital Setup Methods  *************
@@ -254,10 +252,10 @@ enum {
 @property LELevelEnvironmentCode environmentCode;
 @property short physicsModel;
 @property (nonatomic) short songIndex;
-@property _mission_flag missionFlags;
-@property _environment_flag environmentFlags;
+@property LELevelMissionFlags missionFlags;
+@property LELevelEnvironmentFlags environmentFlags;
 @property (copy) NSString *levelName;
-@property _entry_point_flag entryPointFlags;
+@property LELevelEntryPointFlags entryPointFlags;
 
 @end
 
@@ -358,11 +356,8 @@ enum {
 @interface LELevelData (LevelDataAccsessors)
 // *****************  Level Data Accsessors  ****************
 
--(NSUndoManager *)myUndoManager;
--(void)setMyUndoManager:(NSUndoManager *)value;
-
-- (NSArray *)getNoteTypes;
-- (NSArray *)noteTypes;
+- (NSArray *)getNoteTypes API_DEPRECATED_WITH_REPLACEMENT("-noteTypes", macos(10.0, 10.7));
+- (NSArray<PhNoteGroup*> *)noteTypes;
 
 -(void)setLevelDocument:(LEMap *)theDocument;
 

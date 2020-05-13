@@ -227,10 +227,10 @@
             }
         }
         
-        numbers = [currentLevelDrawView getNumberList];
-        colors = [currentLevelDrawView getColorList];
-        names = [currentLevelDrawView getNameList];
-        objs = [currentLevelDrawView getTableObjectList];
+        numbers = [currentLevelDrawView numberList];
+        colors = [currentLevelDrawView colorList];
+        names = [currentLevelDrawView nameList];
+        objs = [currentLevelDrawView tableObjectList];
         
         levelInfoString = [[NSMutableString alloc] initWithString:
             [[NSNumber numberWithInteger:[numbers count]] stringValue]];
@@ -263,9 +263,9 @@
 // *********************** Table Updater Methods ***********************
 
 - (void)tableView:(NSTableView *)view
-    willDisplayCell:(id)cell
-    forTableColumn:(NSTableColumn *)col
-    row:(int)row
+  willDisplayCell:(id)cell
+   forTableColumn:(NSTableColumn *)col
+			  row:(NSInteger)row
 {
     if (row == 0)
         [cell setBackgroundColor:[NSColor whiteColor]];
@@ -277,7 +277,7 @@
     
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)view
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)view
 {
     if (names == nil)
         return 0;
@@ -286,8 +286,8 @@
 }
 
 - (id)tableView:(NSTableView *)view
-    objectValueForTableColumn:(NSTableColumn *)col
-    row:(int)row
+objectValueForTableColumn:(NSTableColumn *)col
+			row:(NSInteger)row
 {
     if (row == 0)
         return @"Double Click For New";
@@ -297,7 +297,7 @@
 
 - (BOOL)tableView:(NSTableView *)aTableView
     shouldEditTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+    row:(NSInteger)rowIndex
 {
     NSParameterAssert(rowIndex >= 0 && rowIndex < (((int)[names count]) + 1));
     //NSLog(@"editing somthing...");
@@ -376,9 +376,9 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView
-    setObjectValue:anObject
-    forTableColumn:(NSTableColumn *)col
-    row:(int)rowIndex
+   setObjectValue:anObject
+   forTableColumn:(NSTableColumn *)col
+			  row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
     SEND_ERROR_MSG(@"Color List Table Attempted To Set Object.");

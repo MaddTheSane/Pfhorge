@@ -18,7 +18,7 @@
 }
 
 - (void)awake;
-- (NSArray *)data;
+- (NSArray<PhNoteGroup*> *)data;
 - (PhNoteGroup *)entryAtIndex:(NSInteger)index;
 
 @end

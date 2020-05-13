@@ -126,7 +126,7 @@
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveColor
 {
-	return [NSSet setWithObject:@"layerColor"];
+	return [NSSet setWithObject:@"color"];
 }
 -(BOOL)doIHaveColor { return (noteColor != nil); }
 @synthesize color=noteColor;
@@ -141,7 +141,9 @@
     }
 }
 
--(void)removeObject:(id)theObj { [notes removeObject:theObj]; }
+-(void)removeObject:(id)theObj {
+	[notes removeObject:theObj];
+}
 -(BOOL)isObjectInHere:(id)theObj { return ([notes containsObject:theObj]); }
 
 @end

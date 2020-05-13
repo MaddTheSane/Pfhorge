@@ -161,11 +161,10 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 	BOOL newHeightSheetOpen;
 }
 
-- (BOOL)newHeightSheetOpen;
-- (void)setNewHeightSheetOpen:(BOOL)theValue;
+@property BOOL newHeightSheetOpen;
 
 // *** Getting Information ***
-- (nullable NSSet *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
+- (nullable NSSet<__kindof LEMapStuffParent*> *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
 
 // *** Draw View Methods ***
 - (void)setTheLevel:(nullable LELevelData *)theMapPoints;
@@ -183,10 +182,10 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 - (void)updateNameList:(int)theListFromNameManager; // 123 connected 321
 @property (nonatomic) LEMapDrawingMode currentDrawingMode;
 
-- (NSArray<NSNumber*> *)getNumberList;
-- (NSArray<NSColor*> *)getColorList;
-- (NSArray<NSString*> *)getNameList;
-- (NSArray<__kindof LEMapStuffParent*> *)getTableObjectList;
+- (NSArray<NSNumber*> *)numberList;
+- (NSArray<NSColor*> *)colorList;
+- (NSArray<NSString*> *)nameList;
+- (NSArray<__kindof LEMapStuffParent*> *)tableObjectList;
 
 - (void)addNewHeight:(NSNumber *)theNewHeight; // 123 connected 321
 

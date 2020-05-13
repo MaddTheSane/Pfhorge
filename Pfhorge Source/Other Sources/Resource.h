@@ -17,7 +17,7 @@
     BOOL	loaded;
     NSData	*data;
 }
-- (id)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName;
+- (instancetype)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName;
 
 - (NSComparisonResult)compare:(id)object;
 

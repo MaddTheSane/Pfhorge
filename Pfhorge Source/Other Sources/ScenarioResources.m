@@ -25,7 +25,6 @@
 - (BOOL)loadContentsOfFile:(NSString *)fileName
 {
     FSRef			fsref;
-    CFURLRef		url;
     FSCatalogInfo	catInfo;
     ResType			restype;
     Handle			resource;
@@ -40,11 +39,10 @@
     
     typeDict = [[NSMutableDictionary alloc] init];
         
-    url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)fileName, kCFURLPOSIXPathStyle, NO);
-    
-    CFURLGetFSRef(url, &fsref);
-    
-    CFRelease(url);
+    @autoreleasepool {
+        NSURL *url = [NSURL fileURLWithPath:fileName];
+        CFURLGetFSRef((CFURLRef)url, &fsref);
+    }
     
     FSGetCatalogInfo(&fsref, kFSCatInfoRsrcSizes, &catInfo, NULL, NULL, NULL);
     
@@ -74,7 +72,7 @@
                     type:CFBridgingRelease(UTCreateStringForOSType(restype))
                                               name:resName[0] != 0 ? CFBridgingRelease(CFStringCreateWithPascalString(kCFAllocatorDefault, resName, kCFStringEncodingMacRoman)) : nil];
                 
-                [array addObject:[res autorelease]];
+                [array addObject:res];
                 
                 ReleaseResource(resource);
                 
@@ -91,14 +89,6 @@
     }
     
     return YES;
-}
-
-- (void)dealloc
-{
-    [filename release];
-    [typeDict release];
-    
-    [super dealloc];
 }
 
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName
@@ -125,7 +115,6 @@
     FSCreateResFile(&parentfsref, string.length, uniBuffer, 0, NULL, &fsref, NULL);
     
     free(uniBuffer);
-    CFRelease(url);
     
     refNum = FSOpenResFile(&fsref, fsWrPerm);
     
@@ -184,7 +173,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     UseResFile(refNum);
     
-    resType = UTGetOSTypeFromString((CFStringRef)type);
+    resType = UTGetOSTypeFromString((__bridge CFStringRef)type);
     SetResLoad(YES);
     
     data = Get1Resource(resType, [resID unsignedShortValue]);
@@ -248,7 +237,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     NSString 		*fullPath;
     NSData 			*theData;
     NSFileManager	*fileManager = [NSFileManager defaultManager];
-	OSType 			osTyp = UTGetOSTypeFromString((CFStringRef)type);
+    OSType 			osTyp = UTGetOSTypeFromString((__bridge CFStringRef)type);
 	NSNumber		*nsOSTyp = @(osTyp);
     
     PhProgress *progress = [PhProgress sharedPhProgress];
