@@ -1341,6 +1341,7 @@ static NSCursor *crosshairCursor = nil;
         return;
     
     [theSavePanel setPrompt:@"Export"];
+	theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         [self savePanelDidEnd:theSavePanel returnCode:result contextInfo:NULL];
@@ -1355,9 +1356,9 @@ static NSCursor *crosshairCursor = nil;
     
     if (returnCode != NSOKButton)
         return;
-    //@"org.bungie.source.map"
-	[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
-    //[[self document] exportToMarathonFormatAtPath:[sheet URL].path];
+	
+	//[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
+    [[self document] exportToMarathonFormatAtPath:[sheet URL].path];
 }
 
 - (void)savePanelDidEndForMapImport:(NSOpenPanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
