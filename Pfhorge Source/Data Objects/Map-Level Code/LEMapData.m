@@ -1289,7 +1289,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 - (id)getChar:(unsigned)theCharAmount
- {
+{
     int theCharLength = theCharAmount;
     char theChar[theCharLength];
     const char *theCharConstPntr;
@@ -1304,13 +1304,13 @@ BOOL setupPointerArraysDurringLoading = YES;
         theChar[i] = theLetter;
     }
     theCharConstPntr = theChar;
-    theTmpCharString = @(theCharConstPntr); //length:theCharAmount];
+    theTmpCharString = [NSString stringWithCString:theCharConstPntr encoding:NSMacOSRomanStringEncoding]; //length:theCharAmount];
     
    return theTmpCharString;
 }
 
 - (short)getOneByteShort
- {
+{
     char theChar;
     
     //[mapData deserializeDataAt:&theLetter ofObjCType:@encode(char) atCursor:&theCursor context:nil];

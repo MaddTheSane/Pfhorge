@@ -333,8 +333,6 @@
 		
 		// If So, Should Already Have This On:
 		// setEncodeIndexNumbersInstead:YES];
-		[coder encodeConditionalObject:polygon_object forKey:@"polygon_object"];
-		[coder encodeConditionalObject:line_object forKey:@"line_object"];
 		if (useIndexNumbersInstead)
 		{
 			tmpShort = GetIndexAdv(primary_lightsource_object);

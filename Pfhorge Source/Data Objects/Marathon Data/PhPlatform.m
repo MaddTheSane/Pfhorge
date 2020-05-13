@@ -143,10 +143,10 @@
     BOOL fromFloor = NO;
     BOOL fromCeiling = NO;
     
-    [theData getBytes:&type range:NSMakeRange(locationOfBytes, 2)];
-    [theData getBytes:&static_flags range:NSMakeRange(locationOfBytes+2, 4)];
-    [theData getBytes:&speed range:NSMakeRange(locationOfBytes+6, 2)];
-    [theData getBytes:&delay range:NSMakeRange(locationOfBytes+8, 2)];
+	type = loadShortFromNSData(theData, locationOfBytes);
+	static_flags = loadIntFromNSData(theData, locationOfBytes+2);
+	speed = loadShortFromNSData(theData, locationOfBytes+6);
+	delay = loadShortFromNSData(theData, locationOfBytes+8);
     
     if (static_flags & _platform_comes_from_floor)
         fromFloor = YES;
@@ -156,29 +156,29 @@
     
     if (fromFloor && !fromCeiling)
     {
-        [theData getBytes:&minimum_height range:NSMakeRange(locationOfBytes+10, 2)];
-        [theData getBytes:&maximum_height range:NSMakeRange(locationOfBytes+12, 2)];
+		minimum_height = loadShortFromNSData(theData, locationOfBytes+10);
+		maximum_height = loadShortFromNSData(theData, locationOfBytes+12);
     }
     else if (fromCeiling && !fromFloor)
     {
-        [theData getBytes:&minimum_height range:NSMakeRange(locationOfBytes+14, 2)];
-        [theData getBytes:&maximum_height range:NSMakeRange(locationOfBytes+16, 2)];
+		minimum_height = loadShortFromNSData(theData, locationOfBytes+14);
+		maximum_height = loadShortFromNSData(theData, locationOfBytes+16);
     }
     else if (fromCeiling && fromFloor)
     {
-        [theData getBytes:&minimum_height range:NSMakeRange(locationOfBytes+10, 2)];
-        [theData getBytes:&maximum_height range:NSMakeRange(locationOfBytes+16, 2)];
+		minimum_height = loadShortFromNSData(theData, locationOfBytes+10);
+		maximum_height = loadShortFromNSData(theData, locationOfBytes+16);
     }
     else // if (!fromCeiling && !fromFloor)
     {
        NSLog(@"*** ERROR: Problem With Map Data Importing: Dynamic Platfrom is neither floor or ceiling... ***");
-        [theData getBytes:&minimum_height range:NSMakeRange(locationOfBytes+10, 2)]; // floor
-        [theData getBytes:&maximum_height range:NSMakeRange(locationOfBytes+12, 2)]; // floor
+		minimum_height = loadShortFromNSData(theData, locationOfBytes+10); // floor
+		maximum_height = loadShortFromNSData(theData, locationOfBytes+12); // floor
     }
     
     
-    [theData getBytes:&polygon_index range:NSMakeRange(locationOfBytes+18, 2)];
-    [theData getBytes:&tag range:NSMakeRange(locationOfBytes+94, 2)];
+	polygon_index = loadShortFromNSData(theData, locationOfBytes+18);
+	tag = loadShortFromNSData(theData, locationOfBytes+94);
     
     [self setTag:tag];
     

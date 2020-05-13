@@ -20,6 +20,7 @@
 MapFileCatalog::MapFileCatalog(NSData *theMapRawData)///: ///PB(///PB_ID)
 {
         
+	//TODO: byteswap!
 	// Start the progress bar:
 	//////PB.SetTitle("\pReading Map File Info...");
 	///PB.BkgdColor.red = 0;

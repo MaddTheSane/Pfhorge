@@ -574,6 +574,7 @@
 
 - (void)testOutChecksum:(NSData *)theData
 {
+	// TODO: byteswap!
     NSMutableData *newData = [[NSMutableData alloc] init];
     unsigned int oldCheckSum1;
     unsigned int oldCheckSum2;
