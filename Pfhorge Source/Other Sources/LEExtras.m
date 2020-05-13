@@ -259,9 +259,9 @@ NSPoint LEAddToPoint(NSPoint point1, float theSum) {
 }*/
 
 
-// ********************** Apple Script Stuff **********************
+// ********************** AppleScript Stuff **********************
 #pragma mark -
-#pragma mark ********* Apple Script Stuff *********
+#pragma mark ********* AppleScript Stuff *********
 
 @implementation SendTarget
 
@@ -328,7 +328,7 @@ void createAndExecuteScriptObject( NSString * aPath )
 	else
 	{
 		/*
-		 * This shows creating a script object from a compiled apple script file,
+		 * This shows creating a script object from a compiled AppleScript file,
 		 */
 		NSLog(@"Geting Script...");
 		theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfFile:aPath];

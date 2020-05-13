@@ -166,7 +166,7 @@
 			<direct-parameter type="specifier" description="the object for the command"/>
 			<parameter name="at" code="Pltp" type="record" description="after &apos;at&apos; define a point."/>
 		</command>
-		<command name="refresh" code="PmapPRAR" description="Recaculates Drawing Maps And Refreshes Entire Display (Don&apos;t use this often just use at end of apple script, etc. If used often it will run considerably slower)...">
+		<command name="refresh" code="PmapPRAR" description="Recaculates Drawing Maps And Refreshes Entire Display (Don&apos;t use this often just use at end of AppleScript, etc. If used often it will run considerably slower)...">
 			<direct-parameter type="specifier" description="the object for the command"/>
 		</command>
 		<class-extension extends="application" description="Pfhorge&apos;s top level scripting object">

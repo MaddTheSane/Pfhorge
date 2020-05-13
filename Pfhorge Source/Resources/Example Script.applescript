@@ -4,7 +4,7 @@
 -- This script will create a new map and put five polygons
 -- in the center of it...
 
--- I have very limited support for apple script, I plan
+-- I have very limited support for AppleScript, I plan
 -- to put more into latter...
 
 -- Remember that index numbers for points, lines, etc. start at zero

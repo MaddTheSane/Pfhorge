@@ -993,7 +993,7 @@ static NSCursor *crosshairCursor = nil;
     if ([self isSheetAlreadyOpen])
         return;
     
-    NSArray *types = [[[self document] getCurrentLevelLoaded] getNoteTypes];
+	NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
     
     [noteGroupPM removeAllItems];
     
@@ -1038,7 +1038,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)closeNoteEditorSheet:(id)sender
 {
     [tmpNote setText:[noteTextTB stringValue]];
-    NSArray *types = [[[self document] getCurrentLevelLoaded] getNoteTypes];
+	NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
     NSInteger index = [noteGroupPM indexOfSelectedItem];
     
     if (index > 0)

@@ -881,7 +881,7 @@
         else if ([theKeyNumber unsignedIntValue] == 'usrf')
         {
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when useing lineToPoint where num can be from -32768 to 32768.",
-                                 @"Apple Script Error");
+                                 @"AppleScript Error");
             return nil;
         }
         else
@@ -893,7 +893,7 @@
             NSLog(@"Perculer key in arguments: %@", theTagAsString);
             NSLog(@"Here is the record description sent via AppleScript: %@", [args description]);
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
-                        @"Apple Script Error");
+                        @"AppleScript Error");
             return nil;
         }
     }
@@ -930,7 +930,7 @@
     
     NSArray *thePoints = [self points];
     
-    NSLog(@"insertInPoints Apple Script Command Acknowleged!");
+    NSLog(@"insertInPoints AppleScript Command Acknowleged!");
     
     if (index == [thePoints count]) {
         [self addInPoints:point];

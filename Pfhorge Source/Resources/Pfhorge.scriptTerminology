@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
-<plist version="0.9">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>Classes</key>
 	<dict>
@@ -69,7 +69,7 @@
 		<key>NSApplication</key>
 		<dict>
 			<key>Description</key>
-			<string>Pfhorge's top level scripting object</string>
+			<string>Pfhorge&apos;s top level scripting object</string>
 			<key>Name</key>
 			<string>application</string>
 			<key>PluralName</key>
@@ -128,20 +128,20 @@
 				<key>plocation</key>
 				<dict>
 					<key>Description</key>
-					<string>after 'at' define a point.</string>
+					<string>after &apos;at&apos; define a point.</string>
 					<key>Name</key>
 					<string>at</string>
 				</dict>
 			</dict>
 			<key>Description</key>
-			<string>This creates a new point from last point in 'points' to a new point.</string>
+			<string>This creates a new point from last point in &apos;points&apos; to a new point.</string>
 			<key>Name</key>
 			<string>lineToPoint</string>
 		</dict>
 		<key>RecalcAndRefresh</key>
 		<dict>
 			<key>Description</key>
-			<string>Recaculates Drawing Maps And Refreshes Entire Display (Don't use this often just use at end of apple script, etc. If used often it will run considerably slower)...</string>
+			<string>Recaculates Drawing Maps And Refreshes Entire Display (Don&apos;t use this often just use at end of AppleScript, etc. If used often it will run considerably slower)...</string>
 			<key>Name</key>
 			<string>refresh</string>
 		</dict>
