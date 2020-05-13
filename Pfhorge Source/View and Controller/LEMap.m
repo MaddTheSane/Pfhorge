@@ -477,7 +477,7 @@
         [progress increaseProgressBy:5.0];
         
         // Transfer Level Names
-        currentLevelNames = [[theMap getLevelNames] copy];
+        currentLevelNames = [[theMap levelNames] copy];
         
         [theLevelDocumentWindowController mapLoaded];
         [[NSNotificationCenter defaultCenter] postNotificationName:LELevelChangedNotification object:theLevel];

@@ -142,8 +142,6 @@ NSString *const PhEnableGridBool = @"PhEnableGridBool";
 const short oldVersionOfPfhorgeLevelData = 6;
 const short currentVersionOfPfhorgeLevelData = 7;
 
-NSString *const currentPhorgeVersion = @"0.3.0 alpha";
-
 NSString *const PhPrefVersion = @"PhPrefVersion";
 NSString *const PhPhorgePrefVersion = @"PhPhorgePrefVersion";
 NSString *const PhPhorgeColors = @"PhPhorgeColors";

@@ -47,7 +47,7 @@
     return [self checkP];
 }
 
-- (NSData *)getSubDataLength:(NSInteger)theLength
+- (NSData *)getSubDataWithLength:(NSInteger)theLength
 {
     [self checkP];
     NSData *subData = [theData subdataWithRange:NSMakeRange(position, theLength)];
@@ -135,7 +135,7 @@
 
 - (long)length { return [theData length]; };
 
-- (long)getPosition { return position; };
+@synthesize currentPosition=position;
 
 - (BOOL)checkP
 {

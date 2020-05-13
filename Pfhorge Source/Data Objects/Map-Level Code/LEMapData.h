@@ -144,7 +144,7 @@ enum {
 - (NSInteger)getByteCountForLevel:(LELevelData *)level;
 
 - (long)getNumberOfLevels;
-- (NSMutableArray<NSString*> *)getLevelNames;
+- (NSMutableArray<NSString*> *)levelNames;
 
 
 - (short)getShort;

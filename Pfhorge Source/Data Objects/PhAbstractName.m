@@ -48,7 +48,7 @@
     int length;
     
     ImportInt(length);
-    theData = [myData getSubDataLength:length];
+    theData = [myData getSubDataWithLength:length];
     myName = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
     
     [super superClassImportWithIndex:index withData:myData useOrginals:useOrg];

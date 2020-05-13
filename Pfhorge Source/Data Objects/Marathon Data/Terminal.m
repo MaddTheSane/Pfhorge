@@ -131,7 +131,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg
 {
-    //NSLog(@"Importing Line: %d  -- Position: %d  --- Length: %d", [self index], [index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    //NSLog(@"Importing Line: %d  -- Position: %d  --- Length: %d", [self index], [index indexOfObjectIdenticalTo:self], [myData currentPosition]);
     
     /*
     ImportShort(type);

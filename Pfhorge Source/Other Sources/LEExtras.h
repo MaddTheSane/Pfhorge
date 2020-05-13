@@ -471,8 +471,6 @@ extern const short oldVersionOfPfhorgeLevelData;
 
 extern const short currentVersionOfPfhorgeLevelData;
 
-extern NSString *const currentPhorgeVersion; // = @"0.3.0 alpha";
-
 extern NSString *const PhPrefVersion; // = @"PhPrefVersion";
 extern NSString *const PhPhorgePrefVersion; // = @"PhPhorgePrefVersion";
 extern NSString *const PhPhorgeColors; // = @"PhPhorgeColors";

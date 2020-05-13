@@ -111,7 +111,7 @@
 
 - (void)importWithIndex:(NSArray *)theIndex withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-    NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Map Object: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], [myData currentPosition]);
     
     ImportShort(type);
     ImportShort(index);

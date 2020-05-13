@@ -173,7 +173,7 @@
         theMap = nil;
         
         //theMap = [[LEMapData alloc] initWithMapNSData:theRawMapData];
-        //[comboLevelList addItemsWithObjectValues:[theMap getLevelNames]];
+        //[comboLevelList addItemsWithObjectValues:[theMap levelNames]];
         //theLevel = [theMap getLevel:1];
         
         
@@ -226,7 +226,7 @@
     
     if (theLevel != nil)
     {
-        //currentLevelNames = [[theMap getLevelNames] copy];
+        //currentLevelNames = [[theMap levelNames] copy];
         [theLevel setLevelDocument:self];
         //currentLevelNames = [[NSMutableArray alloc] initWithCapacity:1];
         //[currentLevelNames addObject:[theLevel levelName]];
@@ -256,7 +256,7 @@
         theMap = nil;
         
         //theMap = [[LEMapData alloc] initWithMapNSData:theRawMapData];
-        //[comboLevelList addItemsWithObjectValues:[theMap getLevelNames]];
+        //[comboLevelList addItemsWithObjectValues:[theMap levelNames]];
         //theLevel = [theMap getLevel:1];
         
         pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData];

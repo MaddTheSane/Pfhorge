@@ -24,7 +24,7 @@
 - (BOOL)skipObj;
 - (BOOL)skipLengthLong;
 
--(NSData *)getSubDataLength:(NSInteger)theLength;
+-(NSData *)getSubDataWithLength:(NSInteger)theLength;
 
 - (byte)getByte;
 - (short)getShort;
@@ -34,7 +34,7 @@
 - (unsigned long)getUnsignedLong;
 - (unsigned int)getUnsignedInt;
 
-- (long)getPosition;
+@property (readonly) NSInteger currentPosition;
 
 - (BOOL)checkP;
 - (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;

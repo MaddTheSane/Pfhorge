@@ -504,7 +504,7 @@
     int i = 0;
     short tmpShort;
     
-    NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData getPosition]);
+    NSLog(@"Importing Polygon: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData currentPosition]);
     
     /*
     if (theNumber != NSNotFound)

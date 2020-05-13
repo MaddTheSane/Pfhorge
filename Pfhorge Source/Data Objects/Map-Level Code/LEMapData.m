@@ -87,7 +87,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     // NOTE: Check for (theTmpMarathonMap == nil)
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] initWithMapNSData:theData];
     long numberOfLevels = [theTmpMarathonMap getNumberOfLevels];
-    NSMutableArray *theLevelNames = [theTmpMarathonMap getLevelNames];
+    NSMutableArray *theLevelNames = [theTmpMarathonMap levelNames];
     int i = 0;
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
@@ -1182,7 +1182,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     return myMainMapHeader.numberOfLevels;
 }
 
-- (NSMutableArray *)getLevelNames
+- (NSMutableArray *)levelNames
 {
     return levelNames;
 }
