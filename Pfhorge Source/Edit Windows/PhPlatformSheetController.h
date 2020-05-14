@@ -29,42 +29,42 @@
 
 @interface PhPlatformSheetController : InfoWindowCommander
 {
-    IBOutlet id theWindow;
+    IBOutlet NSWindow *theWindow;
     
-    IBOutlet id statusIT;
+    IBOutlet NSTextField *statusIT;
     
-    IBOutlet id tagComboMenu;
-    IBOutlet id copyFromComboMenu;
-    IBOutlet id typeComboMenu;
+    IBOutlet NSPopUpButton *tagComboMenu;
+    IBOutlet NSPopUpButton *copyFromComboMenu;
+    IBOutlet NSPopUpButton *typeComboMenu;
     
-    IBOutlet id speedTB;
-    IBOutlet id delayTB;
-    IBOutlet id minHeightTB;
-    IBOutlet id maxHeightTB;
+    IBOutlet NSFormCell *speedTB;
+    IBOutlet NSFormCell *delayTB;
+    IBOutlet NSTextField *minHeightTB;
+    IBOutlet NSTextField *maxHeightTB;
     
-    IBOutlet id autoCalcMinCB;
-    IBOutlet id autoCalcMaxCB;
-    IBOutlet id platformIsADoorCB;
-    IBOutlet id floorToCeilingCB;
+    IBOutlet NSButton *autoCalcMinCB;
+    IBOutlet NSButton *autoCalcMaxCB;
+    IBOutlet NSButton *platformIsADoorCB;
+    IBOutlet NSButton *floorToCeilingCB;
     
-    IBOutlet id initiallyCBMatrix;
-    IBOutlet id controllableByCBMatrix;
-    IBOutlet id hitsObstructionCBMatrix;
-    IBOutlet id activatesCBMatrix;
-    IBOutlet id deactivatesCBMatrix;
-    IBOutlet id otherOptionsCBMatrix;
+    IBOutlet NSMatrix *initiallyCBMatrix;
+    IBOutlet NSMatrix *controllableByCBMatrix;
+    IBOutlet NSMatrix *hitsObstructionCBMatrix;
+    IBOutlet NSMatrix *activatesCBMatrix;
+    IBOutlet NSMatrix *deactivatesCBMatrix;
+    IBOutlet NSMatrix *otherOptionsCBMatrix;
     
-    IBOutlet id extendsFromRBMatrix;
-    IBOutlet id deactivatesRBMatrix;
+    IBOutlet NSMatrix *extendsFromRBMatrix;
+    IBOutlet NSMatrix *deactivatesRBMatrix;
     
     
     
     PhPlatform *platform;
 }
 
-- (id)initWithPlatform:(PhPlatform *)thePlatform
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc;
+- (instancetype)initWithPlatform:(PhPlatform *)thePlatform
+					   withLevel:(LELevelData *)theLevel
+				 withMapDocument:(LEMap *)theMapDoc;
 
 -(void)refreshFromPlatformData;
 -(void)saveChanges;

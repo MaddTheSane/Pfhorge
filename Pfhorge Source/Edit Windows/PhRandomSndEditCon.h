@@ -31,30 +31,30 @@
 
 @interface PhRandomSndEditCon : InfoWindowCommander
 {
-    IBOutlet id infoIT;
-    IBOutlet id typeMenu;
-    IBOutlet id directionTB;
-    IBOutlet id directionDeltaTB;
-    IBOutlet id volumeTB;
-    IBOutlet id volumeDeltaTB;
-    IBOutlet id periodTB;
-    IBOutlet id periodDeltaTB;
-    IBOutlet id pitchTB;
-    IBOutlet id pitchDeltaTB;
-    IBOutlet id phaseTB;
-    IBOutlet id nonDirectionalCB;
+    IBOutlet NSTextField *infoIT;
+    IBOutlet NSPopUpButton *typeMenu;
+    IBOutlet NSFormCell *directionTB;
+    IBOutlet NSFormCell *directionDeltaTB;
+    IBOutlet NSFormCell *volumeTB;
+    IBOutlet NSFormCell *volumeDeltaTB;
+    IBOutlet NSFormCell *periodTB;
+    IBOutlet NSFormCell *periodDeltaTB;
+    IBOutlet NSFormCell *pitchTB;
+    IBOutlet NSFormCell *pitchDeltaTB;
+    IBOutlet NSFormCell *phaseTB;
+    IBOutlet NSButton *nonDirectionalCB;
     
     PhRandomSound	*curRandomSound;
 }
 
-- (id)initWithSound:(id)theSound
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc;
+- (instancetype)initWithSound:(PhRandomSound*)theSound
+					withLevel:(LELevelData *)theLevel
+			  withMapDocument:(LEMap *)theMapDoc;
 
 - (void)registerNotifcations;
 
--(void)refreshInterfaceFromData;
--(void)saveChanges;
+- (void)refreshInterfaceFromData;
+- (void)saveChanges;
 
 - (IBAction)templateAction:(id)sender;
 - (IBAction)copyFromMenuAction:(id)sender;

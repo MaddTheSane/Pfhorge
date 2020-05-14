@@ -253,7 +253,7 @@ DQ
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="55" userLabel="RenameSheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="155" y="283" width="367" height="127"/>
+            <rect key="contentRect" x="155" y="283" width="367" height="134"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="54">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
@@ -318,7 +318,7 @@ Gw
                     <constraint firstAttribute="trailing" secondItem="59" secondAttribute="trailing" constant="20" symbolic="YES" id="qi7-7P-ocK"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="139" y="437"/>
+            <point key="canvasLocation" x="138.5" y="440"/>
         </window>
     </objects>
 </document>
