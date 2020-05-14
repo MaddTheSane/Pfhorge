@@ -23,6 +23,8 @@ _______________________________________________________________________________
 #import "LEExtras.h"
 #import "LEPolygon.h"
 #import <GLKit/GLKit.h>
+#include "GLMain.h"
+#include "Camera.h"
 
 // Here is my Map Viewer:
 
@@ -44,39 +46,12 @@ using std::tan;
 //#import "InputHelpers.h"
 
 #include <IOKit/IOKitLib.h>
-#if 0
-//#import <drivers/event_status_driver.h>
-#else
-// TJW - The definition of NXMouseScaling is not present in the public headers right now.
-//       Copied in from Darwin.   Also, event_status_driver.h imports two headers that
-//       don't exist in public builds (one of which contains this typedef).
-
-#if 0
-#define NX_MAXMOUSESCALINGS 20
-
-typedef struct evsioMouseScaling        /* Match old struct names in kernel */
-{
-    int numScaleLevels;
-    short scaleThresholds[NX_MAXMOUSESCALINGS];
-    short scaleFactors[NX_MAXMOUSESCALINGS];
-} NXMouseScaling;
-#endif
-
+#include <IOKit/hidsystem/IOHIDLib.h>
+#include <IOKit/hidsystem/event_status_driver.h>
 extern "C" {
-typedef mach_port_t NXEventHandle;
-
-extern NXEventHandle NXOpenEventStatus(void);
-extern void NXCloseEventStatus(NXEventHandle handle);
-
 extern void NXSetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling);
 extern void NXGetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling);
-
-extern double NXKeyRepeatInterval(NXEventHandle handle);
-extern double NXKeyRepeatThreshold(NXEventHandle handle);
-extern void NXSetKeyRepeatInterval(NXEventHandle handle, double seconds);
-extern void NXSetKeyRepeatThreshold(NXEventHandle handle, double threshold);
 }
-#endif
 
 
 static BOOL mouseScalingEnabled = YES;
@@ -95,6 +70,7 @@ void SetMouseScalingEnabled(BOOL enabled)
     
     // Set or restore the scaling
     if (enabled) {
+		//::IOHIDSetMouseAcceleration(nil, 0);
         //NXSetMouseScaling(eventStatus, &originalMouseScaling);
     } else {
         // Save the old scaling value
@@ -371,7 +347,9 @@ static unsigned short SetColor(short ID, int Indx) {
 	return (unsigned short)irint(65535*fval);
 }
 */
-@implementation MyOpenGLView
+@implementation MyOpenGLView {
+	CCamera *g_Camera;
+}
 
 -(id)init
 {

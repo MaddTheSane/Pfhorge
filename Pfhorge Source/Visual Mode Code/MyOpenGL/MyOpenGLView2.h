@@ -6,9 +6,6 @@
 #import <OpenGL/glu.h>
 #import "LELevelData.h"
 
-#include "GLMain.h"
-#include "Camera.h"
-
 enum {
     wireframedPolys = 0,
     coloredPolys = 1,
@@ -23,8 +20,6 @@ enum {
     
     LELevelData *theLevelData;
     NSString *thePathToShapesFile;
-	
-	CCamera *g_Camera;
 }
 
 - (void)Init;

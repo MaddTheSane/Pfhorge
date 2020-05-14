@@ -24,7 +24,7 @@
 
 
 #import "OpenGLVisualModeController.h"
-#import "MyOpenGLView.h"
+#import "MyOpenGLView2.h"
 #include "LEExtras.h"
 
 @implementation OpenGLVisualModeController
