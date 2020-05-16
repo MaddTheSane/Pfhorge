@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <simd/simd.h>
+
 typedef unsigned short word;
 typedef unsigned char byte;
 typedef byte boolean;
@@ -20,15 +22,9 @@ const int NONE = -1;
 
 
 //! This is a plain PNTS point
-typedef struct world_point2d
-{
-   world_distance x, y;
-} world_point2d;
+typedef simd_short2 world_point2d;
 
-typedef struct world_point3d
-{
-   world_distance x, y, z;
-} world_point3d;
+typedef simd_short3 world_point3d;
 
 
 enum /* transfer modes (for sides and polygons) */

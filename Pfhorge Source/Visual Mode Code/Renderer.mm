@@ -52,6 +52,23 @@ short MapManager::IsInsideVCPN(float x, float y, float z) {
 }
 
 
+short MapManager::IsInsideVCPN(simd::float3 pos)
+{
+	// Sanity check
+	if (VC.MemberOf == NONE) return NONE;
+
+	PolygonInfo &PInfo = PInfoList[VC.MemberOf];
+	if (PInfo.IsInside(pos)) return VC.MemberOf;
+	
+	for (int iw=0; iw<PInfo.WInfoList.get_len(); iw++) {
+		short Ngbr = PInfo.WInfoList[iw].Neighbor;
+		if (Ngbr == NONE) continue;
+		if (PInfoList[Ngbr].IsInside(pos)) return Ngbr;
+	}
+	
+	return NONE;
+}
+
 void MapManager::FindOtherPolygon(int Dir) {
 
 	// Sanity check
@@ -59,26 +76,26 @@ void MapManager::FindOtherPolygon(int Dir) {
 
 	if (Dir > 0) {
 		for (int ip=VC.MemberOf+1; ip<PInfoList.get_len(); ip++) {
-			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
+			if (PInfoList[ip].IsInside(VC.pos)) {
 				VC.MemberOf = ip;
 				return;
 			}
 		}
 		for (int ip = 0; ip<VC.MemberOf; ip++) {
-			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
+			if (PInfoList[ip].IsInside(VC.pos)) {
 				VC.MemberOf = ip;
 				return;
 			}
 		}
 	} else if (Dir < 0) {
 		for (int ip=VC.MemberOf-1; ip>=0; ip--) {
-			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
+			if (PInfoList[ip].IsInside(VC.pos)) {
 				VC.MemberOf = ip;
 				return;
 			}
 		}
 		for (long ip=PInfoList.get_len()-1; ip>VC.MemberOf; ip--) {
-			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
+			if (PInfoList[ip].IsInside(VC.pos)) {
 				VC.MemberOf = ip;
 				return;
 			}
@@ -99,18 +116,16 @@ void MapManager::UpdateViewCtxtDoVis() {
 	
 	if (UpdatePosition) {
 		// This is for setting a position to a start-point position
-		VC.x = StartPoint.loc.x;
-		VC.y = StartPoint.loc.y;
-		VC.z = StartPoint.loc.z;
+		VC.pos = simd_float(StartPoint.loc);
 		VC.Save();
 		VC.MemberOf = StartPoint.Polygon;
 		VC.YawAngle = StartPoint.Angle;
 		VC.PitchAngle = 0;
 		VC.SetView();
 		UpdatePosition = false;
-	} else if (PInfoList[VC.MemberOf].IsInside(VC.xprev,VC.yprev,VC.zprev)) {
+	} else if (PInfoList[VC.MemberOf].IsInside(VC.posPrev)) {
 		// Does new position land inside of itself or neighboring polygon?
-		short Ngbr = IsInsideVCPN(VC.x,VC.y,VC.z);
+		short Ngbr = IsInsideVCPN(VC.pos);
 		if (Ngbr != NONE)
 			VC.MemberOf = Ngbr;
 		else {
@@ -118,28 +133,22 @@ void MapManager::UpdateViewCtxtDoVis() {
 			// The loops here are deliberately finite.
 			for (int it=0; it<NumBinaryIters; it++) {
 				// Find the farthest point that can be jumped into
-				float x1 = VC.x;
-				float y1 = VC.y;
-				float z1 = VC.z;
+				simd::float3 val1 = VC.pos;
 				for(int ita=0; ita<NumBinaryIters; ita++) {
 					// Move that point to the previous point
-					x1 = (VC.xprev + x1)/2;
-					y1 = (VC.yprev + y1)/2;
-					z1 = (VC.zprev + z1)/2;
+					val1 = (VC.posPrev + val1)/2;
 					// Check it
-					Ngbr = IsInsideVCPN(x1,y1,z1);
+					Ngbr = IsInsideVCPN(val1);
 					if (Ngbr != NONE) break;
 				}
 				// Just in case...
 				if (Ngbr == NONE) break;
 				
 				// Move previous point to that point
-				VC.xprev = x1;
-				VC.yprev = y1;
-				VC.zprev = z1;
+				VC.posPrev = val1;
 				VC.MemberOf = Ngbr;
 				// Check on target point
-				 Ngbr = IsInsideVCPN(VC.x,VC.y,VC.z);
+				 Ngbr = IsInsideVCPN(VC.pos);
 				 if (Ngbr != NONE) {
 				 	VC.MemberOf = Ngbr;
 				 	break;
@@ -151,9 +160,7 @@ void MapManager::UpdateViewCtxtDoVis() {
 				// Move back to previous position
 				// if had been unable to walk through the wall
 				if (Ngbr == NONE) {
-					VC.x = VC.xprev;
-					VC.y = VC.yprev;
-					VC.z = VC.zprev;
+					VC.pos = VC.posPrev;
 				}
 			} // Don't change final position if one can walk through walls
 		}
@@ -161,7 +168,7 @@ void MapManager::UpdateViewCtxtDoVis() {
 		// This is if the viewpoint is jumping from the void
 		// into whatever polygon is at its location
 		for (int ip=0; ip<PInfoList.get_len(); ip++) {
-			if (PInfoList[ip].IsInside(VC.x,VC.y,VC.z)) {
+			if (PInfoList[ip].IsInside(VC.pos)) {
 				VC.MemberOf = ip;
 				break;
 			}
@@ -209,15 +216,15 @@ void MapManager::DoPortals() {
 	
 	// Set up the screen portal:
 	PortalInfo ScreenPortal;
-	GLdouble PosVec[3];
+	simd::float3 PosVec;
 	VC.FindPosition(0,0,PosVec);
-	copy_3d(PosVec,ScreenPortal.PVList[0].Vertex);
+	ScreenPortal.PVList[0].Vertex = PosVec;
 	VC.FindPosition(VC.Width-1,0,PosVec);
-	copy_3d(PosVec,ScreenPortal.PVList[1].Vertex);
+	ScreenPortal.PVList[1].Vertex = PosVec;
 	VC.FindPosition(VC.Width-1,VC.Height-1,PosVec);
-	copy_3d(PosVec,ScreenPortal.PVList[2].Vertex);
+	ScreenPortal.PVList[2].Vertex = PosVec;
 	VC.FindPosition(0,VC.Height-1,PosVec);
-	copy_3d(PosVec,ScreenPortal.PVList[3].Vertex);
+	ScreenPortal.PVList[3].Vertex = PosVec;
 	ScreenPortal.Update();
 	
 	// Set up the first visible polygon: the currently-resident one
@@ -257,8 +264,8 @@ void MapManager::DoPortals() {
 				
 				// Test for the wall's normal being toward the viewpoint
 				float WallViewProd = 
-					(VC.x - WInfo.StartPoint.x)*WInfo.InwardDir.x +
-						(VC.y - WInfo.StartPoint.y)*WInfo.InwardDir.y;
+					(VC.pos.x - WInfo.StartPoint.x)*WInfo.InwardDir.x +
+						(VC.pos.y - WInfo.StartPoint.y)*WInfo.InwardDir.y;
 				
 				if (WallViewProd <= 0) continue;
 				
@@ -268,9 +275,7 @@ void MapManager::DoPortals() {
 				for (int iv=0; iv<NumPortalVertices; iv++) {
 					simd::short3 InpVert = PtlSurf.VInfoList[iv].Vert;
 					simd::float3 &Vertex = Portal.PVList[iv].Vertex;
-					Vertex[0] = InpVert[0] - VC.x;
-					Vertex[1] = InpVert[1] - VC.y;
-					Vertex[2] = InpVert[2] - VC.z;
+					Vertex = simd_float(InpVert) - VC.pos;
 				}
 				Portal.Update();
 			
@@ -657,7 +662,7 @@ void MapManager::DoRender(int RenderMode, bool DoDoubleSided) {
 					scalmult_3d(1.0,ClipPlane,ClipPlane);
 					// Clipping plane passes through viewpoint;
 					// adjust with the third point
-					ClipPlane[3] = - (ClipPlane[0]*VC.x + ClipPlane[1]*VC.y + ClipPlane[2]*VC.z);
+					ClipPlane[3] = - (ClipPlane[0]*VC.pos.x + ClipPlane[1]*VC.pos.y + ClipPlane[2]*VC.pos.z);
 					glClipPlane(GL_CLIP_PLANE0 + ipln,ClipPlane);
 				}
 			}

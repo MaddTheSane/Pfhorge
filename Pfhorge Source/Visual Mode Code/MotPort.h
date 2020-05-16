@@ -3,6 +3,7 @@
 #pragma once
 
 #include "TextFieldObject.h"
+#include <simd/simd.h>
 
 
 class MotPort {
@@ -36,9 +37,9 @@ public:
 	bool WalkThruWallsCB;
 	
 	//! Position (X, Y, Z):
-	double PositionTF[3];
+	simd::double3 PositionTF;
 	//! Previous one (to revert to if desired)
-	float PrevPos[3];
+	simd::float3 PrevPos;
 	
 	// Visibility-mode control: choice of
 	// All polygons

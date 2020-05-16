@@ -125,12 +125,7 @@ void CCamera::PositionCamera(float positionX, float positionY, float positionZ,
     auto vView      = simd_make_float3(viewX, viewY, viewZ);
     auto vUpVector  = simd_make_float3(upVectorX, upVectorY, upVectorZ);
 
-    // The code above just makes it cleaner to set the variables.
-    // Otherwise we would have to set each variable x y and z.
-
-    m_vPosition = vPosition;                    // Assign the position
-    m_vView     = vView;                        // Assign the view
-    m_vUpVector = vUpVector;                    // Assign the up vector
+	PositionCamera(vPosition, vView, vUpVector);
 }
 
 

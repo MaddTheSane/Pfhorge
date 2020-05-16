@@ -165,6 +165,10 @@ public:
 	//! Returns which one, or NONE if none
 	short IsInsideVCPN(float x, float y, float z);
 	
+	//! Is point inside the view context's polygon or its neighbors?
+	//! Returns which one, or NONE if none
+	short IsInsideVCPN(simd::float3 pos);
+
 	//! Find other polygon at current location;
 	//! argument is which direction to look (+ is forward, - is backward, 0 is do nothing)
 	//! Search will wrap around the list if necessary

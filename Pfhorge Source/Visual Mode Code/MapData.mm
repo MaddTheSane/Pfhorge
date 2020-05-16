@@ -97,6 +97,24 @@ void PolygonInfo::FindMinMax() {
 	}
 }
 
+bool PolygonInfo::IsInside(simd::float3 pos)
+{
+	if (pos.x < XMin) return false;
+	if (pos.x > XMax) return false;
+	if (pos.y < YMin) return false;
+	if (pos.y > YMax) return false;
+	if (pos.z < FloorHeight) return false;
+	if (pos.z > CeilingHeight) return false;
+
+	for (int iw=0; iw<WInfoList.get_len(); iw++) {
+		const WallInfo &WInfo = WInfoList[iw];
+		const world_point2d &SP = WInfo.StartPoint;
+		const world_point2d &ID = WInfo.InwardDir;
+		if (((pos.x-SP.x)*ID.x + (pos.y-SP.y)*ID.y) < 0) return false;
+	}
+	return true;
+}
+
 // Test for being inside
 bool PolygonInfo::IsInside(float x, float y, float z) {
 

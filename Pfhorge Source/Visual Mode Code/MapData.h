@@ -167,6 +167,9 @@ struct PolygonInfo {
 	
 	//! Test for being inside
 	bool IsInside(float x, float y, float z);
+
+	//! Test for being inside
+	bool IsInside(simd::float3 pos);
 	
 	//! Here is some stuff on that portal
 	//! The map polygon that looks into this current polygon

@@ -16,10 +16,13 @@ public:
     //! Our camera constructor
     CCamera();  
 
-    //! These are are data access functions for our camera's private data
+    //! These are our data access functions for our camera's private data
     simd::float3 Position() {   return m_vPosition;     }
+    //! These are our data access functions for our camera's private data
     simd::float3 View()     {   return m_vView;         }
+    //! These are our data access functions for our camera's private data
     simd::float3 UpVector() {   return m_vUpVector;     }
+    //! These are our data access functions for our camera's private data
     simd::float3 Strafe()   {   return m_vStrafe;       }
     
     //! This changes the position, view, and up vector of the camera.
@@ -28,6 +31,16 @@ public:
                         float viewX,     float viewY,     float viewZ,
                         float upVectorX, float upVectorY, float upVectorZ);
 
+    //! This changes the position, view, and up vector of the camera.
+    //! This is primarily used for initialization
+    inline void PositionCamera(simd::float3 position,
+							   simd::float3 view,
+							   simd::float3 upVector) {
+		m_vPosition = position;                    // Assign the position
+		m_vView     = view;                        // Assign the view
+		m_vUpVector = upVector;                    // Assign the up vector
+	}
+
     //! This rotates the camera's view around the position depending on the values passed in.
     void RotateView(float angle, float X, float Y, float Z);
 
@@ -35,7 +48,7 @@ public:
     void SetViewByMouse(); 
 
     //! This rotates the camera around a point (I.E. your character).
-    void RotateAroundPoint(simd::float3 vCenter, float X, float Y, float Z);
+    //void RotateAroundPoint(simd::float3 vCenter, float X, float Y, float Z);
 
     //! This strafes the camera left or right depending on the speed (+/-)
     void StrafeCamera(float speed);

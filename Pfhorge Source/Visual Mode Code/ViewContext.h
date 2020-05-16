@@ -6,6 +6,7 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #include <GLUT/glut.h>
+#include <simd/simd.h>
 
 
 struct ViewContext {
@@ -20,14 +21,14 @@ struct ViewContext {
 	GLfloat FOV_Size;
 	
 	//! Position
-	GLfloat x, y, z;
+	simd::float3 pos;
 	
 	//! Previous position
-	GLfloat xprev, yprev, zprev;
+	simd::float3 posPrev;
 	
 	//! Save/restore position:
-	void Save() {xprev = x; yprev = y; zprev = z;}
-	void Restore() {x = xprev; y = yprev; z = zprev;}
+	void Save() {posPrev = pos;}
+	void Restore() {pos = posPrev;}
 	
 	//! Horizontal-turning angle in degrees
 	GLfloat YawAngle;
@@ -62,8 +63,20 @@ struct ViewContext {
 	
 	//! Find position relative of screen point relative to viewpoint
 	//! The final flag indicates whether in world coords or screen-projection coords
-	bool FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool InWorldCoords = true);
-	
+	inline bool FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool InWorldCoords = true) {
+		simd::float3 tmpPos;
+		bool success = FindPosition(Scrn_x, Scrn_y, tmpPos, InWorldCoords);
+		PosVec[0] = tmpPos.x;
+		PosVec[1] = tmpPos.y;
+		PosVec[2] = tmpPos.z;
+
+		return success;
+	}
+
+	//! Find position relative of screen point relative to viewpoint
+	//! The final flag indicates whether in world coords or screen-projection coords
+	bool FindPosition(int Scrn_x, int Scrn_y, simd::float3 &PosVec, bool InWorldCoords = true);
+
 	//! Start mouse drag
 	bool StartDrag(int Scrn_x, int Scrn_y);
 	

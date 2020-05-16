@@ -1055,9 +1055,9 @@ bool MapManager::DoMotPort() {
 	
 	// Get position from view context
 	// and put it into motion/portals dialog
-	MP.PositionTF[0] = VC.x/float(WORLD_ONE);
-	MP.PositionTF[1] = VC.y/float(WORLD_ONE);
-	MP.PositionTF[2] = VC.z/float(WORLD_ONE);
+	MP.PositionTF[0] = VC.pos.x/float(WORLD_ONE);
+	MP.PositionTF[1] = VC.pos.y/float(WORLD_ONE);
+	MP.PositionTF[2] = VC.pos.z/float(WORLD_ONE);
 	//for (int ic=0; ic<3; ic++)
 	//	MP.PositionTF[ic].SetValue();
 	
@@ -1066,9 +1066,9 @@ bool MapManager::DoMotPort() {
 		// and put it into view context
 		//for (int ic=0; ic<3; ic++)
 		//	MP.PositionTF[ic].GetValue();
-		VC.x = MP.PositionTF[0]*float(WORLD_ONE);
-		VC.y = MP.PositionTF[1]*float(WORLD_ONE);
-		VC.z = MP.PositionTF[2]*float(WORLD_ONE);
+		VC.pos.x = MP.PositionTF[0]*float(WORLD_ONE);
+		VC.pos.y = MP.PositionTF[1]*float(WORLD_ONE);
+		VC.pos.z = MP.PositionTF[2]*float(WORLD_ONE);
 		VC.SetView();
 	}
 	return false;

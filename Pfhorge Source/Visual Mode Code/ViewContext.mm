@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include "MiscUtils.h"
+#import <GLKit/GLKit.h>
 
 #include "ViewContext.h"
 
@@ -12,7 +13,8 @@ const double PI = 4*atan(1.0);
 
 ViewContext::ViewContext() {
 	Width = Height = Near = Far = FOV_Size = 1;
-	x = y = z = YawAngle = PitchAngle = 0;
+	pos = simd_make_float3(0, 0, 0);
+	YawAngle = PitchAngle = 0;
 	VertLookMode = VertLookMarathon;
 	MemberOf = -1; // NONE
 }
@@ -66,7 +68,7 @@ void ViewContext::SetView() {
 	glRotatef(-YawAngle,0,0,1);
 	
 	// Move the viewpoint
-	glTranslatef(-x,-y,-z);
+	glTranslatef(-pos.x,-pos.y,-pos.z);
 	
 	// Return to "standard" matrix mode (modelview)
 	glMatrixMode(GL_MODELVIEW);
@@ -87,23 +89,22 @@ void ViewContext::FindDirs() {
 }
 
 
-// Find the view vector corresponding to the screen position
-bool ViewContext::FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool InWorldCoords) {
-
+bool ViewContext::FindPosition(int Scrn_x, int Scrn_y, simd::float3 &PosVec, bool InWorldCoords)
+{
 	// Find the point position corresponding to the view vector
 		
 	// Get the other view stuff
 	GLint ViewportDump[4];
-	GLdouble ProjMatDump[16];
-	GLdouble MVMatDump[16];
+	GLKMatrix4 ProjMatDump;
+	GLKMatrix4 MVMatDump;
 	glGetIntegerv(GL_VIEWPORT,ViewportDump);
-	glGetDoublev(GL_PROJECTION_MATRIX,ProjMatDump);
+	glGetFloatv(GL_PROJECTION_MATRIX,ProjMatDump.m);
 	if (!InWorldCoords) {
 		glMatrixMode(GL_MODELVIEW);
 		glPushMatrix();
 		glLoadIdentity();
 	}
-	glGetDoublev(GL_MODELVIEW_MATRIX,MVMatDump);
+	glGetFloatv(GL_MODELVIEW_MATRIX,MVMatDump.m);
 	if (!InWorldCoords) {
 		glPopMatrix();
 	}
@@ -113,13 +114,16 @@ bool ViewContext::FindPosition(int Scrn_x, int Scrn_y, GLdouble *PosVec, bool In
 	// instead of OpenGL's bottom left: (Height-1) - double(Scrn_y)
 	// No need to do that anymore, since the code now uses Cocoa's internal coordinate system,
 	// which is just like OpenGL's
-	if (gluUnProject(double(Scrn_x) , double(Scrn_y), 0,
-					MVMatDump, ProjMatDump, ViewportDump,
-					PosVec, PosVec+1, PosVec+2) == GL_FALSE) return false;
+	bool success;
+	GLKVector3 outVar = GLKMathUnproject(GLKVector3Make(Scrn_x, Scrn_y, 0), MVMatDump, ProjMatDump, ViewportDump, &success);
+	PosVec.x = outVar.x;
+	PosVec.y = outVar.y;
+	PosVec.z = outVar.z;
+	if (!success) {
+		return false;
+	}
 	if (InWorldCoords) {
-            PosVec[0] -= x;
-            PosVec[1] -= y;
-            PosVec[2] -= z;
+		PosVec -= pos;
 	}
 	return true;
 }
