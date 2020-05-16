@@ -36,7 +36,7 @@ public:
 	bool WalkThruWallsCB;
 	
 	//! Position (X, Y, Z):
-	Float_TFO PositionTF[3];
+	double PositionTF[3];
 	//! Previous one (to revert to if desired)
 	float PrevPos[3];
 	

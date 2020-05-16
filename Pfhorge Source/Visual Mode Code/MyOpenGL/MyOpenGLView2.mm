@@ -327,7 +327,7 @@ void DrawSpiralTowers()
 
 // Fog translation: slider position (0 to 1) to actual depth
 static float FogSliderToActualDepth(float Position)
-    {return MIN_FOG*pow((MAX_FOG/MIN_FOG),Position);}
+    {return MIN_FOG*std::pow((MAX_FOG/MIN_FOG),Position);}
 
 /*
 static bool SetBool(short ID, int Indx) {
