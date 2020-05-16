@@ -306,8 +306,6 @@
 		A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyOpenGLView2.mm; sourceTree = "<group>"; };
 		A5902CB4069F718C00B4AB92 /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
 		A5902CB5069F718C00B4AB92 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		A5902CD2069F71AD00B4AB92 /* Init.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Init.cpp; sourceTree = "<group>"; };
-		A5902CE3069F71B300B4AB92 /* Main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Main.cpp; sourceTree = "<group>"; };
 		A5902CF4069F71B700B4AB92 /* GLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMain.h; sourceTree = "<group>"; };
 		A59437B504B018070046BBD2 /* PathwaysExchange.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PathwaysExchange.mm; sourceTree = "<group>"; };
 		A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathwaysMapSaveData.h; sourceTree = "<group>"; };
@@ -670,8 +668,6 @@
 			isa = PBXGroup;
 			children = (
 				A5902CF4069F71B700B4AB92 /* GLMain.h */,
-				A5902CE3069F71B300B4AB92 /* Main.cpp */,
-				A5902CD2069F71AD00B4AB92 /* Init.cpp */,
 				A5902CB5069F718C00B4AB92 /* Camera.h */,
 				A5902CB4069F718C00B4AB92 /* Camera.mm */,
 				A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */,
