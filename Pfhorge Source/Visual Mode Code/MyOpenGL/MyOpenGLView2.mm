@@ -31,33 +31,28 @@ _______________________________________________________________________________
 // For now, I'll try to test basic OpenGL rendering and viewing -- and navigation.
 
 #include <math.h>
-//#include "MapManager.h"
-//#include "KeyControls.h"
+#include <ApplicationServices/ApplicationServices.h>
 
-#import <ApplicationServices/ApplicationServices.h>
-
-//#import "InputHelpers.h"
 #include <cmath>
 using std::cos;
 using std::sin;
 using std::tan;
 
-#import <AppKit/AppKit.h>
-//#import "InputHelpers.h"
+#import <Cocoa/Cocoa.h>
 
 #include <IOKit/IOKitLib.h>
 #include <IOKit/hidsystem/IOHIDLib.h>
 #include <IOKit/hidsystem/event_status_driver.h>
 extern "C" {
-extern void NXSetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling);
-extern void NXGetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling);
+extern void NXSetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling) UNAVAILABLE_ATTRIBUTE;
+extern void NXGetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling) UNAVAILABLE_ATTRIBUTE;
 }
 
 
 static BOOL mouseScalingEnabled = YES;
 static NXMouseScaling originalMouseScaling;
 
-void SetMouseScalingEnabled(BOOL enabled)
+static void SetMouseScalingEnabled(BOOL enabled)
 {
     NXEventHandle eventStatus;
     NXMouseScaling newScaling;
@@ -91,7 +86,7 @@ static BOOL           keyboardRepeatEnabled = YES;
 static double         originalKeyboardRepeatInterval;
 static double         originalKeyboardRepeatThreshold;
 
-void SetKeyboardRepeatEnabled(BOOL enabled)
+static void SetKeyboardRepeatEnabled(BOOL enabled)
 {
     NXEventHandle eventStatus;
     
@@ -111,8 +106,8 @@ void SetKeyboardRepeatEnabled(BOOL enabled)
         originalKeyboardRepeatThreshold = NXKeyRepeatThreshold(eventStatus);
 
         // No repeat events for 40 days and 40 nights
-        NXSetKeyRepeatInterval(eventStatus, 3456000.0f);
-        NXSetKeyRepeatThreshold(eventStatus, 3456000.0f);
+        NXSetKeyRepeatInterval(eventStatus, 3456000.0);
+        NXSetKeyRepeatThreshold(eventStatus, 3456000.0);
     }
 
     NXCloseEventStatus(eventStatus);
@@ -131,8 +126,7 @@ const GLfloat YawStep = 10;
 const GLfloat PitchStep = 10;
 
 // Vertical Panning
-const double PI = 4*atan(1.0);
-const GLfloat VertPanLimit = tan((PI/180)*30);
+const GLfloat VertPanLimit = tan((M_PI/180)*30);
 const GLfloat PanStep = VertPanLimit/3;
 
 
@@ -795,7 +789,7 @@ static unsigned short SetColor(short ID, int Indx) {
     
     // Restore input system settings
     SetMouseScalingEnabled(YES);
-    SetKeyboardRepeatEnabled(YES);
+    //SetKeyboardRepeatEnabled(YES);
     
     [super dealloc];
 }
