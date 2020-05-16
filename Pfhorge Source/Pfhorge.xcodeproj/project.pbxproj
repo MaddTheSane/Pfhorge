@@ -93,23 +93,7 @@
 		AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */; };
 		AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */; };
 		AE3C14F40A04512100FBFFCD /* HeaderFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */; };
-		AE3C14F50A04512100FBFFCD /* IndexHeapSort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */; };
-		AE3C14F60A04512100FBFFCD /* IndexSort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2D0228BEF90146BBD2 /* IndexSort.h */; };
-		AE3C14F70A04512100FBFFCD /* ShapesDataFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */; };
-		AE3C14F80A04512100FBFFCD /* ShapesReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE420228BEF90146BBD2 /* ShapesReader.h */; };
-		AE3C14F90A04512100FBFFCD /* SimpleVec.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE440228BEF90146BBD2 /* SimpleVec.h */; };
-		AE3C14FA0A04512100FBFFCD /* SmartPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE450228BEF90146BBD2 /* SmartPtr.h */; };
-		AE3C14FD0A04512100FBFFCD /* ViewOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */; };
-		AE3C14FE0A04512100FBFFCD /* ViewContext.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4B0228BEF90146BBD2 /* ViewContext.h */; };
-		AE3C14FF0A04512100FBFFCD /* Vector3D.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE4A0228BEF90146BBD2 /* Vector3D.h */; };
-		AE3C15000A04512100FBFFCD /* TextureManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE480228BEF90146BBD2 /* TextureManager.h */; };
-		AE3C15010A04512100FBFFCD /* TextFieldObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE470228BEF90146BBD2 /* TextFieldObject.h */; };
-		AE3C15020A04512100FBFFCD /* MapData.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE310228BEF90146BBD2 /* MapData.h */; };
 		AE3C15030A04512100FBFFCD /* MapDataFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE330228BEF90146BBD2 /* MapDataFormats.h */; };
-		AE3C15040A04512100FBFFCD /* MapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE340228BEF90146BBD2 /* MapManager.h */; };
-		AE3C15050A04512100FBFFCD /* MapReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE360228BEF90146BBD2 /* MapReader.h */; };
-		AE3C15060A04512100FBFFCD /* MiscUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE390228BEF90146BBD2 /* MiscUtils.h */; };
-		AE3C15080A04512100FBFFCD /* MotPort.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE3C0228BEF90146BBD2 /* MotPort.h */; };
 		AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */; };
 		AE3C150B0A04512100FBFFCD /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902CB5069F718C00B4AB92 /* Camera.h */; };
 		AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -213,15 +197,6 @@
 		AE3C15960A04512100FBFFCD /* trigTables.c in Sources */ = {isa = PBXBuildFile; fileRef = A5CBB2CC04D630590046BBD2 /* trigTables.c */; };
 		AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */; };
 		AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
-		AE3C159B0A04512100FBFFCD /* IndexHeapSort.cc in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */; };
-		AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE430228BEF90146BBD2 /* ShapesReader.mm */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
-		AE3C159E0A04512100FBFFCD /* ViewOptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */; };
-		AE3C159F0A04512100FBFFCD /* ViewContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */; };
-		AE3C15A00A04512100FBFFCD /* TextureManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE490228BEF90146BBD2 /* TextureManager.mm */; };
-		AE3C15A10A04512100FBFFCD /* MapData.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE320228BEF90146BBD2 /* MapData.mm */; };
-		AE3C15A20A04512100FBFFCD /* MapManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE350228BEF90146BBD2 /* MapManager.mm */; };
-		AE3C15A30A04512100FBFFCD /* MapReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE370228BEF90146BBD2 /* MapReader.mm */; };
-		AE3C15A50A04512100FBFFCD /* MotPort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE3D0228BEF90146BBD2 /* MotPort.mm */; };
 		AE3C15A70A04512100FBFFCD /* MyOpenGLView2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */; };
 		AE3C15A80A04512100FBFFCD /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = A5902CB4069F718C00B4AB92 /* Camera.mm */; };
 		AE3C15A90A04512100FBFFCD /* OpenGLVisualModeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */; };
@@ -734,6 +709,23 @@
 		55D6BB8A245B93D5003FC04C /* Legacy/Unused */ = {
 			isa = PBXGroup;
 			children = (
+				F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */,
+				F53CCE330228BEF90146BBD2 /* MapDataFormats.h */,
+				55F0080424637C27007BB0F3 /* MarathonVersions.h */,
+				F53CCE390228BEF90146BBD2 /* MiscUtils.h */,
+				F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */,
+				F53CCE440228BEF90146BBD2 /* SimpleVec.h */,
+				F53CCE450228BEF90146BBD2 /* SmartPtr.h */,
+				F53CCE470228BEF90146BBD2 /* TextFieldObject.h */,
+				F53CCE4A0228BEF90146BBD2 /* Vector3D.h */,
+				F53CCE4B0228BEF90146BBD2 /* ViewContext.h */,
+				F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */,
+				F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */,
+				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
+				F53CCE3C0228BEF90146BBD2 /* MotPort.h */,
+				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
+				F53CCE420228BEF90146BBD2 /* ShapesReader.h */,
+				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
 				F53CCE230228BEF80146BBD2 /* ActionAdapter.h */,
 				F53CCE240228BEF80146BBD2 /* CheckBox.h */,
 				F53CCE250228BEF80146BBD2 /* ColorSwatch.h */,
@@ -742,16 +734,27 @@
 				F53CCE270228BEF80146BBD2 /* DBControl.h */,
 				F53CCE280228BEF90146BBD2 /* GetFullPathObject.h */,
 				F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */,
+				F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */,
+				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */,
+				F53CCE2D0228BEF90146BBD2 /* IndexSort.h */,
 				F53CCE2E0228BEF90146BBD2 /* InputHelpers.h */,
 				F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */,
 				A514D906080ACBE500F94B8E /* KeyControls.h */,
 				A514D90A080ACBF200F94B8E /* KeyControls.mm */,
+				F53CCE310228BEF90146BBD2 /* MapData.h */,
+				F53CCE320228BEF90146BBD2 /* MapData.mm */,
+				F53CCE340228BEF90146BBD2 /* MapManager.h */,
+				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
+				F53CCE360228BEF90146BBD2 /* MapReader.h */,
+				F53CCE370228BEF90146BBD2 /* MapReader.mm */,
 				F53CCE3A0228BEF90146BBD2 /* MoreFilesExtract.h */,
 				F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */,
 				F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */,
 				F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */,
 				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
 				F53CCE460228BEF90146BBD2 /* stl_algobase.h */,
+				F53CCE480228BEF90146BBD2 /* TextureManager.h */,
+				F53CCE490228BEF90146BBD2 /* TextureManager.mm */,
 				F53CCE220228BEF80146BBD2 /* xKeyControls.h */,
 				F53CCE300228BEF90146BBD2 /* xKeyControls.mm */,
 				F53CCE380228BEF90146BBD2 /* xMapViewerMain.mm */,
@@ -854,36 +857,8 @@
 			isa = PBXGroup;
 			children = (
 				A5902C88069F70DC00B4AB92 /* MyOpenGL */,
-				F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */,
-				F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */,
-				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */,
-				F53CCE2D0228BEF90146BBD2 /* IndexSort.h */,
-				F53CCE310228BEF90146BBD2 /* MapData.h */,
-				F53CCE320228BEF90146BBD2 /* MapData.mm */,
-				F53CCE330228BEF90146BBD2 /* MapDataFormats.h */,
-				55F0080424637C27007BB0F3 /* MarathonVersions.h */,
-				F53CCE340228BEF90146BBD2 /* MapManager.h */,
-				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
-				F53CCE360228BEF90146BBD2 /* MapReader.h */,
-				F53CCE370228BEF90146BBD2 /* MapReader.mm */,
-				F53CCE390228BEF90146BBD2 /* MiscUtils.h */,
-				F53CCE3C0228BEF90146BBD2 /* MotPort.h */,
-				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
 				F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */,
 				F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */,
-				F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */,
-				F53CCE420228BEF90146BBD2 /* ShapesReader.h */,
-				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
-				F53CCE440228BEF90146BBD2 /* SimpleVec.h */,
-				F53CCE450228BEF90146BBD2 /* SmartPtr.h */,
-				F53CCE470228BEF90146BBD2 /* TextFieldObject.h */,
-				F53CCE480228BEF90146BBD2 /* TextureManager.h */,
-				F53CCE490228BEF90146BBD2 /* TextureManager.mm */,
-				F53CCE4A0228BEF90146BBD2 /* Vector3D.h */,
-				F53CCE4B0228BEF90146BBD2 /* ViewContext.h */,
-				F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */,
-				F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */,
-				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
 			);
 			path = "Visual Mode Code";
 			sourceTree = "<group>";
@@ -1053,23 +1028,7 @@
 				AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */,
 				AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */,
 				AE3C14F40A04512100FBFFCD /* HeaderFormats.h in Headers */,
-				AE3C14F50A04512100FBFFCD /* IndexHeapSort.h in Headers */,
-				AE3C14F60A04512100FBFFCD /* IndexSort.h in Headers */,
-				AE3C14F70A04512100FBFFCD /* ShapesDataFormats.h in Headers */,
-				AE3C14F80A04512100FBFFCD /* ShapesReader.h in Headers */,
-				AE3C14F90A04512100FBFFCD /* SimpleVec.h in Headers */,
-				AE3C14FA0A04512100FBFFCD /* SmartPtr.h in Headers */,
-				AE3C14FD0A04512100FBFFCD /* ViewOptions.h in Headers */,
-				AE3C14FE0A04512100FBFFCD /* ViewContext.h in Headers */,
-				AE3C14FF0A04512100FBFFCD /* Vector3D.h in Headers */,
-				AE3C15000A04512100FBFFCD /* TextureManager.h in Headers */,
-				AE3C15010A04512100FBFFCD /* TextFieldObject.h in Headers */,
-				AE3C15020A04512100FBFFCD /* MapData.h in Headers */,
 				AE3C15030A04512100FBFFCD /* MapDataFormats.h in Headers */,
-				AE3C15040A04512100FBFFCD /* MapManager.h in Headers */,
-				AE3C15050A04512100FBFFCD /* MapReader.h in Headers */,
-				AE3C15060A04512100FBFFCD /* MiscUtils.h in Headers */,
-				AE3C15080A04512100FBFFCD /* MotPort.h in Headers */,
 				AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */,
 				AE3C150B0A04512100FBFFCD /* Camera.h in Headers */,
 			);
@@ -1253,15 +1212,6 @@
 				AE3C15960A04512100FBFFCD /* trigTables.c in Sources */,
 				AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */,
 				AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */,
-				AE3C159B0A04512100FBFFCD /* IndexHeapSort.cc in Sources */,
-				AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */,
-				AE3C159E0A04512100FBFFCD /* ViewOptions.mm in Sources */,
-				AE3C159F0A04512100FBFFCD /* ViewContext.mm in Sources */,
-				AE3C15A00A04512100FBFFCD /* TextureManager.mm in Sources */,
-				AE3C15A10A04512100FBFFCD /* MapData.mm in Sources */,
-				AE3C15A20A04512100FBFFCD /* MapManager.mm in Sources */,
-				AE3C15A30A04512100FBFFCD /* MapReader.mm in Sources */,
-				AE3C15A50A04512100FBFFCD /* MotPort.mm in Sources */,
 				AE3C15A70A04512100FBFFCD /* MyOpenGLView2.mm in Sources */,
 				AE3C15A80A04512100FBFFCD /* Camera.mm in Sources */,
 				AE3C15A90A04512100FBFFCD /* OpenGLVisualModeController.m in Sources */,
