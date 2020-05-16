@@ -146,7 +146,7 @@
         NSLog(@"Added PhLight object with index #%d", [theNewObj getIndex]);
         #endif
         [theNewObj release];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_lightMenu];
         return theNewObj;
     }
@@ -165,7 +165,7 @@
         NSLog(@"Added PhMedia object with index #%d", [theNewObj getIndex]);
         #endif
         [theNewObj release];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_liquidMenu];
         return theNewObj;
     }
@@ -184,7 +184,7 @@
         NSLog(@"Added PhAmbientSound object with index #%d", [theNewObj getIndex]);
         #endif
         [theNewObj release];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_ambientSoundMenu];
         return theNewObj;
     }
@@ -203,7 +203,7 @@
         NSLog(@"Added PhRandomSound object with index #%d", [theNewObj getIndex]);
         #endif
         [theNewObj release];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_randomSoundMenu];
         return theNewObj;
     }
@@ -233,7 +233,7 @@
         NSLog(@"Added PhPlatform object with index #%d", [theNewObj getIndex]);
         #endif
         [theNewObj release];
-        ///[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        ///[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         return theNewObj;
     }
     else if (theClass == [PhAnnotationNote class])
@@ -255,7 +255,7 @@
         #ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhTag object with index #%d", [theNewTag getIndex]);
         #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         return theNewTag;
     }
     else if (theClass == [PhLayer class])
@@ -263,7 +263,7 @@
         PhLayer *theNewLayer = [[PhLayer alloc] initWithName:@"Untitled Layer"];
         [self addLayer:theNewLayer];
         [self setUpArrayPointersFor:theNewLayer];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_layerMenu];
         
         return [theNewLayer autorelease];
@@ -372,11 +372,11 @@
     }
     
     [[NSNotificationCenter defaultCenter]
-            postNotificationName:PhLevelStatusBarUpdate
+            postNotificationName:PhLevelStatusBarUpdateNotification
             object:self];
     
     // ????????
-    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
 }
 
 -(PhTag *)addNewTagWithNumber:(NSNumber *)theTagNumber

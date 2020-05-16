@@ -101,13 +101,9 @@ static void CalculateFrameRate()
 
 CCamera::CCamera()
 {
-    simd::float3 vZero = simd_make_float3(0.0, 0.0, 0.0);       // Init a vVector to 0 0 0 for our position
-    simd::float3 vView = simd_make_float3(0.0, 1.0, 0.5);       // Init a starting view vVector (looking up and out the screen)
-    simd::float3 vUp   = simd_make_float3(0.0, 0.0, 1.0);       // Init a standard up vVector (Rarely ever changes)
-
-    m_vPosition = vZero;                    // Init the position to zero
-    m_vView     = vView;                    // Init the view to a std starting view
-    m_vUpVector = vUp;                      // Init the UpVector
+    m_vPosition = simd_make_float3(0.0, 0.0, 0.0);      // Init a vVector to 0 0 0 for our position
+    m_vView = simd_make_float3(0.0, 1.0, 0.5);          // Init a starting view vVector (looking up and out the screen)
+    m_vUpVector   = simd_make_float3(0.0, 0.0, 1.0);    // Init a standard up vVector (Rarely ever changes)
 }
 
 

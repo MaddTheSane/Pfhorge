@@ -264,7 +264,7 @@ extern NSString *VMBackwardKey;
     // Not nessary to alert prefs changes, becuase the above two prefs are not cached somewhere,
     // they are checked for in the prefs every time they are used...
     //
-    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)anglerSnapToMatrixAction:(id)sender
@@ -275,7 +275,7 @@ extern NSString *VMBackwardKey;
     // Not nessary to alert prefs changes, becuase the above two prefs are not cached somewhere,
     // they are checked for in the prefs every time they are used...
     //
-    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 
@@ -292,7 +292,7 @@ extern NSString *VMBackwardKey;
     
     [preferences setInteger:[snapToPointLengthSlider intValue] forKey:PhSnapToPointsLength];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)chooseScriptFolder:(id)scriptFolder
@@ -313,12 +313,12 @@ extern NSString *VMBackwardKey;
 -(IBAction)enableGridCB:(id)sender
 {
     [preferences setBool:[sender state] forKey:PhEnableGridBool];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)gridFactorChanged:(id)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
     return;
 }
 
@@ -352,25 +352,25 @@ extern NSString *VMBackwardKey;
             break;
     }
     [self loadAndSetGridPrefUI];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)snapToGridCB:(id)sender
 {
     [preferences setBool:[sender state] forKey:PhSnapToGridBool];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)enableAntialiasingCheckboxAction:(id)sender
 {
     [preferences setBool:[sender state] forKey:PhEnableAntialiasing];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)enableObjectOutliningAction:(id)sender
 {
     [preferences setBool:[sender state] forKey:PhEnableObjectOutling];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 #pragma mark -

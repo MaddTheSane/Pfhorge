@@ -57,7 +57,7 @@
     /*[[NSNotificationCenter defaultCenter]
             addObserver:self
             selector:@selector(setupTagMenu)
-            name:PhUserDidChangeNames
+            name:PhUserDidChangeNamesNotification
             object:nil];*/
     
     return self;

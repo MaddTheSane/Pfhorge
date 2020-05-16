@@ -43,7 +43,7 @@
     NSMutableDictionary *theMutableColors;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *appDefaults = [NSMutableDictionary
-        dictionaryWithObject:@"050" forKey:PhPhorgePrefVersion];
+        dictionaryWithObject:@"051" forKey:PhPhorgePrefVersion];
     
     theMutableColors = [[NSMutableDictionary alloc] initWithCapacity:30];
     
@@ -378,7 +378,7 @@
     //NSLog(@"Crashing at point 1...");
     
     NSLog(@"Sending PhUserDidChangePrefs Notication...");
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
     NSLog(@"Sent!");
     /*
     [numberTable addEntriesFromDictionary:
@@ -448,7 +448,7 @@
     [worldUnitGridColor setColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:1.0 alpha:1.0]];
     [subWorldUnitGridColor setColor:[NSColor colorWithCalibratedRed:0.75 green:0.75 blue:0.75 alpha:1.0]];
     
-    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 @end

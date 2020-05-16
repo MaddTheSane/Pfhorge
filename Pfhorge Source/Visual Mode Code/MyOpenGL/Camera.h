@@ -33,9 +33,9 @@ public:
 
     //! This changes the position, view, and up vector of the camera.
     //! This is primarily used for initialization
-    inline void PositionCamera(simd::float3 position,
-							   simd::float3 view,
-							   simd::float3 upVector) {
+    inline void PositionCamera(const simd::float3 &position,
+							   const simd::float3 &view,
+							   const simd::float3 &upVector) {
 		m_vPosition = position;                    // Assign the position
 		m_vView     = view;                        // Assign the view
 		m_vUpVector = upVector;                    // Assign the up vector

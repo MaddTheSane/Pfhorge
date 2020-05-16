@@ -99,7 +99,7 @@
     [(NSPanel *)[self window] setBecomesKeyOnlyIfNeeded:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAllPhNameData:)
-        name:PhUserDidChangeNames object:nil];
+        name:PhUserDidChangeNamesNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) 	name:NSWindowDidBecomeMainNotification object:nil];
     

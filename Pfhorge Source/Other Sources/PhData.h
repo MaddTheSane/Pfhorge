@@ -15,7 +15,7 @@
     NSInteger position;
 }
 
-- (id)initWithSomeData:(NSData *)value;
+- (instancetype)initWithSomeData:(NSData *)value;
 
 - (BOOL)setP:(long)value;
 - (BOOL)addP:(long)value;
@@ -36,7 +36,7 @@
 
 @property (readonly) NSInteger currentPosition;
 
-- (BOOL)checkP;
+- (BOOL)checkPosition;
 - (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;
 - (id)getObjectFromIndexUsingLast:(NSArray *)theIndex;
 

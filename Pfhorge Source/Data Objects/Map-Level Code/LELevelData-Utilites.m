@@ -140,7 +140,7 @@
     
     NSLog(@"layerNames: %@", [layerNames description]);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
     [[theLevelDocument getMapDrawView] updateNameList:_layerMenu];
     [self recaculateTheCurrentLayer];
     
@@ -480,7 +480,7 @@
         [theDrawView updateNameList:_lightMenu];
     }
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
 }
 
 
@@ -514,7 +514,7 @@
     
     [self refreshAllMenusOf:_polyMenu];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
 }
 
 -(void)removeNameOfPolygon:(LEPolygon *)thePoly

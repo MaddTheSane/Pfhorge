@@ -967,7 +967,7 @@ enum // export data types
     #ifdef useDebugingLogs
         NSLog(@"Done Importing...");
     #endif
-    // - (void)checkP;
+    // - (void)checkPosition;
     // [getObjectFromIndex:(NSArray *)theIndex;
     
     
@@ -1126,7 +1126,7 @@ enum // export data types
     [self setupDefaultObjects];
     
     [self refreshEveryMenu];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
     
     return self;
 }
@@ -1183,7 +1183,7 @@ enum // export data types
     [self setupDefaultObjects];
     
     [self refreshEveryMenu];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
     
     return self;
 }
@@ -1245,7 +1245,7 @@ enum // export data types
     environment_flags = 0;
     
     [self refreshEveryMenu];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNames object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
     
     /*
     NSLog(@"**************************** TESTING FOR NILL ****************************");

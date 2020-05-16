@@ -58,7 +58,7 @@
     
 
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateObjectValuesOfComboMenus)
-    //    name:PhUserDidChangeNames object:nil];
+    //    name:PhUserDidChangeNamesNotification object:nil];
     
     prevEnviroCode = -1; // Change to NONE sometime!!!
     return self;

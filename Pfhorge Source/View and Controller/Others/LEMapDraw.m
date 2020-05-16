@@ -371,7 +371,7 @@ enum {
 - (void)registerNotificationsNow
 {
     // Use this to send prefs changed notifcations from other places...
-    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
         
     //Set default NSBezier Stuff...
     [NSBezierPath setDefaultLineWidth:0];
@@ -384,7 +384,7 @@ enum {
     [self prefsChanged];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prefsChanged)
-        name:PhUserDidChangePrefs object:nil];
+        name:PhUserDidChangePreferencesNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(undoHappened)
         name:NSUndoManagerDidUndoChangeNotification object:nil];
@@ -4896,7 +4896,7 @@ enum {
     if (num > 0 && num < 8)
 	{
 		[winController updateMapManagerInterface];
-		[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePrefs object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 	}
 	
     // Handle the event we got

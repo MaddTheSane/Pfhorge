@@ -61,7 +61,7 @@
     platformEditingWindowController = nil;
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateObjectValuesOfComboMenus)
-    //    name:PhUserDidChangeNames object:nil];
+    //    name:PhUserDidChangeNamesNotification object:nil];
     
     curPoly = nil;
     

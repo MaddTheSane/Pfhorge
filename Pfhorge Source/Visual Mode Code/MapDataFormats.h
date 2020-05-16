@@ -27,8 +27,8 @@ typedef simd_short2 world_point2d;
 typedef simd_short3 world_point3d;
 
 
-enum /* transfer modes (for sides and polygons) */
-{
+/* transfer modes (for sides and polygons) */
+enum {
    tNormal,
    tFadeToBlack,
    tInvisible,

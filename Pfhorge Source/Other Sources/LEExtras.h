@@ -103,8 +103,6 @@ extern unsigned eightBytesCount;*/
 #define GET_OBJECTNUM_FLAG(o, b, f) ([(o) getFlag:(f)] & (b))
 #define SET_OBJECTNUM_FLAG(o, b, v, f) ((v) ? [(o) setFlag:(f) with:([(o) getFlag] | (b))] : [(o) setFlag:(f) with:([(o) getFlag] & ~(b))])
 
-#define OPEN_SHEET(s, w) ([NSApp beginSheet:(s) modalForWindow:(w) modalDelegate:self didEndSelector:NULL contextInfo:nil])
-
 #define GetTagOfSelected(o) [[(o) selectedCell] tag]
 #define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
 #define SelectS(o, t) ([(o) selectCellWithTag:(t)])
@@ -362,12 +360,12 @@ typedef NS_ENUM(int, LESideDirection)
 // *********************** EXTERN Variables ***********************
 // ********* Notifications *********
 extern NSNotificationName const PhLevelDeallocatingNotification;
-extern NSNotificationName const PhUserDidChangePrefs;
-extern NSNotificationName const PhUserDidChangeNames;
+extern NSNotificationName const PhUserDidChangePreferencesNotification;
+extern NSNotificationName const PhUserDidChangeNamesNotification;
 extern NSNotificationName const LELevelChangedNotification;
 extern NSNotificationName const LESelectionChangedNotification;
 extern NSNotificationName const LEToolChangedNotification;
-extern NSNotificationName const PhLevelStatusBarUpdate;
+extern NSNotificationName const PhLevelStatusBarUpdateNotification;
 
 // ********* Visual Settings *********
 extern NSString *const VMKeySpeed;
@@ -517,9 +515,9 @@ extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
 extern NSString *const PhCenterWorldUnitGridColor;
 
 // * Terminal Keys *
-extern NSAttributedStringKey const PhBoldTerminalAttributeName;
-extern NSAttributedStringKey const PhColorTerminalAttributeName;
-extern NSAttributedStringKey const PhItalicTerminalAttributeName;
+extern NSAttributedStringKey const PhTerminalBoldAttributeName NS_SWIFT_NAME(PhTerminalBold);
+extern NSAttributedStringKey const PhTerminalColorAttributeName NS_SWIFT_NAME(PhTerminalColor);
+extern NSAttributedStringKey const PhTerminalItalicAttributeName NS_SWIFT_NAME(PhTerminalItalic);
 
 // *********************** End EXTERN Variables ***********************
 

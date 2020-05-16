@@ -58,7 +58,7 @@
     //[self setWindowFrameAutosaveName:@"Inspector4"];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateObjectValuesOfComboMenus)
-    //    name:PhUserDidChangeNames object:nil];
+    //    name:PhUserDidChangeNamesNotification object:nil];
         
     return self;
 }

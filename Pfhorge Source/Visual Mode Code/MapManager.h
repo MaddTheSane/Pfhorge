@@ -30,14 +30,13 @@ struct StartPointInfo {
 };
 
 
-// Details of lights and liquids
-
+//! Details of lights and liquids
 struct LightInfo {
 	GLfloat L[ViewOptions::NUM_LIGHT_VALUES];	//!< List of precalculated light values
 	GLfloat CurrL;								//!< Current light value
 };
 
-
+//! Details of lights and liquids
 struct LiquidInfo {
 	short Type;					//!< Liquid's type
 	short ControlLight;			//!< The liquid's control light

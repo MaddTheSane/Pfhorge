@@ -19,8 +19,10 @@ typedef unsigned int WadDataType;
 
 /* ------------- file structures */
 struct wad_header { /* 128 bytes */
-	short version;									/* Used internally */
-	short data_version;								/* Used by the data.. */
+	/*! Used internally */
+	short version;
+	/*! Used by the data.. */
+	short data_version;
 	char file_name[MAXIMUM_WADFILE_NAME_LENGTH];
 	uint32_t checksum;
 	long directory_offset;
@@ -28,39 +30,50 @@ struct wad_header { /* 128 bytes */
 	short application_specific_directory_data_size;
 	short entry_header_size;
 	short directory_entry_base_size;
-	uint32_t parent_checksum;	/* If non-zero, this is the checksum of our parent, and we are simply modifications! */
+	/*! If non-zero, this is the checksum of our parent, and we are simply modifications! */
+	uint32_t parent_checksum;
 	short unused[20];
 };
 
-// Marathon 2/oo version
+//! Marathon 2/∞ version of the directory entry
 struct directory_entry { /* 10 bytes */
-	int32_t offset_to_start; /* From start of file */
-	int32_t length; /* Of total level */
-	short index; /* For inplace modification of the wadfile! */
+	/*! From start of file */
+	int32_t offset_to_start;
+	/*! length of total level */
+	int32_t length;
+	/*! For inplace modification of the wadfile! */
+	short index;
 };
 
-// Marathon 1 version
+//! Marathon 1 version of the directory entry
 struct directory_entry_1 { /* 8 bytes */
-	int32_t offset_to_start; /* From start of file */
-	int32_t length; /* Of total level */
+	/*! From start of file */
+	int32_t offset_to_start;
+	/*! Of total level */
+	int32_t length;
 };
 
 
-// Marathon 2/oo version
+//! Marathon 2/∞ version of entry header
 struct entry_header { /* 16 bytes */
 	WadDataType tag;
-	int32_t next_offset; /* From current file location-> ie directory_entry.offset_to_start+next_offset */
-	int32_t length; /* Of entry */
-	int32_t offset; /* Offset for inplace expansion of data */
+	/*! From current file location-> ie directory_entry.offset_to_start+next_offset */
+	int32_t next_offset;
+	/*! length of entry */
+	int32_t length;
+	/*! Offset for inplace expansion of data */
+	int32_t offset;
 
 	/* Data follows */
 };
 
-// Marathon 1 version
+//! Marathon 1 version of entry header
 struct entry_header_1 { /* 12 bytes */
 	WadDataType tag;
-	int32_t next_offset; /* From current file location-> ie directory_entry.offset_to_start+next_offset */
-	int32_t length; /* Of entry */
+	/*! From current file location-> ie directory_entry.offset_to_start+next_offset */
+	int32_t next_offset;
+	/*! length of entry */
+	int32_t length;
 
 	/* Data follows */
 };

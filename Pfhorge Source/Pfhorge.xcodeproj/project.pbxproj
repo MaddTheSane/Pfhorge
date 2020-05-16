@@ -213,8 +213,7 @@
 		AE3C15960A04512100FBFFCD /* trigTables.c in Sources */ = {isa = PBXBuildFile; fileRef = A5CBB2CC04D630590046BBD2 /* trigTables.c */; };
 		AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */; };
 		AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */; };
-		AE3C159B0A04512100FBFFCD /* IndexHeapSort.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */; };
-		AE3C159C0A04512100FBFFCD /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE400228BEF90146BBD2 /* Renderer.mm */; };
+		AE3C159B0A04512100FBFFCD /* IndexHeapSort.cc in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */; };
 		AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE430228BEF90146BBD2 /* ShapesReader.mm */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		AE3C159E0A04512100FBFFCD /* ViewOptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */; };
 		AE3C159F0A04512100FBFFCD /* ViewContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */; };
@@ -419,7 +418,7 @@
 		F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = GetFullPathObject.mm; sourceTree = "<group>"; };
 		F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HeaderFormats.h; sourceTree = "<group>"; };
 		F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IndexHeapSort.h; sourceTree = "<group>"; };
-		F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = IndexHeapSort.mm; sourceTree = "<group>"; };
+		F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = IndexHeapSort.cc; sourceTree = "<group>"; };
 		F53CCE2D0228BEF90146BBD2 /* IndexSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IndexSort.h; sourceTree = "<group>"; };
 		F53CCE2E0228BEF90146BBD2 /* InputHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InputHelpers.h; sourceTree = "<group>"; };
 		F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InputHelpers.m; sourceTree = "<group>"; };
@@ -751,6 +750,7 @@
 				F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */,
 				F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */,
 				F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */,
+				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
 				F53CCE460228BEF90146BBD2 /* stl_algobase.h */,
 				F53CCE220228BEF80146BBD2 /* xKeyControls.h */,
 				F53CCE300228BEF90146BBD2 /* xKeyControls.mm */,
@@ -856,7 +856,7 @@
 				A5902C88069F70DC00B4AB92 /* MyOpenGL */,
 				F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */,
 				F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */,
-				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.mm */,
+				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */,
 				F53CCE2D0228BEF90146BBD2 /* IndexSort.h */,
 				F53CCE310228BEF90146BBD2 /* MapData.h */,
 				F53CCE320228BEF90146BBD2 /* MapData.mm */,
@@ -871,7 +871,6 @@
 				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
 				F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */,
 				F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */,
-				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
 				F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */,
 				F53CCE420228BEF90146BBD2 /* ShapesReader.h */,
 				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
@@ -1254,8 +1253,7 @@
 				AE3C15960A04512100FBFFCD /* trigTables.c in Sources */,
 				AE3C15970A04512100FBFFCD /* PhNoteGroup.m in Sources */,
 				AE3C15980A04512100FBFFCD /* PhNoteGroupsCon.m in Sources */,
-				AE3C159B0A04512100FBFFCD /* IndexHeapSort.mm in Sources */,
-				AE3C159C0A04512100FBFFCD /* Renderer.mm in Sources */,
+				AE3C159B0A04512100FBFFCD /* IndexHeapSort.cc in Sources */,
 				AE3C159D0A04512100FBFFCD /* ShapesReader.mm in Sources */,
 				AE3C159E0A04512100FBFFCD /* ViewOptions.mm in Sources */,
 				AE3C159F0A04512100FBFFCD /* ViewContext.mm in Sources */,

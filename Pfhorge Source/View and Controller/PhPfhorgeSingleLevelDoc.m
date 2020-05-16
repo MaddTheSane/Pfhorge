@@ -107,7 +107,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                           selector:@selector(updateLevelStringIfCorrectLevel:)
-                                          name:PhLevelStatusBarUpdate
+                                          name:PhLevelStatusBarUpdateNotification
                                           object:nil];
 }
 

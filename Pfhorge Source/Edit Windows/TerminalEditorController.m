@@ -677,7 +677,7 @@
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                 
                 @(theCellTagClickedOn),
-                PhColorTerminalAttributeName,
+                PhTerminalColorAttributeName,
                 
                 theTextColor,
                 NSForegroundColorAttributeName, nil]
@@ -706,10 +706,10 @@
             NSFontAttributeName,
             
             @"NO",
-            PhItalicTerminalAttributeName,
+            PhTerminalItalicAttributeName,
             
             @"NO",
-            PhBoldTerminalAttributeName,
+            PhTerminalBoldAttributeName,
             
             @(NSUnderlineStyleNone),
             NSUnderlineStyleAttributeName, nil]
@@ -745,7 +745,7 @@
             
             while (limitRange.length > 0)
             {
-                attributeValue = [attrStr attribute:PhItalicTerminalAttributeName
+                attributeValue = [attrStr attribute:PhTerminalItalicAttributeName
                 atIndex:limitRange.location longestEffectiveRange:&effectiveRange
                 inRange:limitRange];
                 
@@ -761,7 +761,7 @@
                 [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                         
                         @"YES",
-                        PhBoldTerminalAttributeName,
+                        PhTerminalBoldAttributeName,
                         
                         fontToUse,
                         NSFontAttributeName, nil]
@@ -840,7 +840,7 @@
                 NSFontAttributeName,
                 
                 @"YES",
-                PhItalicTerminalAttributeName, nil]
+                PhTerminalItalicAttributeName, nil]
                 
                 range:effectiveRange];
             

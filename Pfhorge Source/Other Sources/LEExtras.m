@@ -35,12 +35,12 @@ unsigned eightBytesCount = 8;*/
 // *********************** EXTERN Variables ***********************
 // ********* Notifications *********
 NSString *const PhLevelDeallocatingNotification = @"PhLevelDeallocatingNotification";
-NSString *const PhUserDidChangePrefs = @"PhUserDidChangePref";
-NSString *const PhUserDidChangeNames = @"PhUserDidChangeName";
+NSString *const PhUserDidChangePreferencesNotification = @"PhUserDidChangePref";
+NSString *const PhUserDidChangeNamesNotification = @"PhUserDidChangeName";
 NSString *const LELevelChangedNotification = @"LELevelChangedNotification";
 NSString *const LESelectionChangedNotification = @"LESelectionChangedNotification";
 NSString *const LEToolChangedNotification = @"LEToolChangedNotification";
-NSString *const PhLevelStatusBarUpdate = @"PhLevelStatusBarUpdate";
+NSString *const PhLevelStatusBarUpdateNotification = @"PhLevelStatusBarUpdate";
 
 // ********* Visual Settings *********
 NSString *const VMKeySpeed = @"VMKeySpeed";
@@ -188,9 +188,9 @@ NSString *const PhSubWorldUnitGridColor = @"PhSubWorldUnitGridColor";
 NSString *const PhCenterWorldUnitGridColor = @"PhCenterWorldUnitGridColor";
 
 // * Terminal Keys *
-NSString *const PhBoldTerminalAttributeName = @"PhBoldTerminalAttribute";
-NSString *const PhColorTerminalAttributeName = @"PhColorTerminalAttribute";
-NSString *const PhItalicTerminalAttributeName = @"PhItalicTerminalAttribute";
+NSString *const PhTerminalBoldAttributeName = @"PhBoldTerminalAttribute";
+NSString *const PhTerminalColorAttributeName = @"PhColorTerminalAttribute";
+NSString *const PhTerminalItalicAttributeName = @"PhItalicTerminalAttribute";
 
 // *********************** End EXTERN Variables ***********************
 

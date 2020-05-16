@@ -32,11 +32,11 @@
     [super dealloc];
 }
 
-- (BOOL)setP:(long)value { position = value; return [self checkP]; }
-- (BOOL)addP:(long)value { position += value; return [self checkP]; }
-- (BOOL)subP:(long)value { position -= value; return [self checkP]; }
+- (BOOL)setP:(long)value { position = value; return [self checkPosition]; }
+- (BOOL)addP:(long)value { position += value; return [self checkPosition]; }
+- (BOOL)subP:(long)value { position -= value; return [self checkPosition]; }
 
-- (BOOL)skipObj { [self addP:4]; return [self checkP]; }
+- (BOOL)skipObj { [self addP:4]; return [self checkPosition]; }
 
 - (BOOL)skipLengthLong
 {
@@ -44,12 +44,12 @@
     
     [self addP:theLength];
     
-    return [self checkP];
+    return [self checkPosition];
 }
 
 - (NSData *)getSubDataWithLength:(NSInteger)theLength
 {
-    [self checkP];
+    [self checkPosition];
     NSData *subData = [theData subdataWithRange:NSMakeRange(position, theLength)];
     [self addP:theLength];
     return subData;
@@ -58,7 +58,7 @@
 - (BOOL)getBool
 {
     long value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 4)];
     position += 4;
     return value;
@@ -67,7 +67,7 @@
 - (byte)getByte
 {
     byte value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 1)];
     position += 1;
     return value;
@@ -76,7 +76,7 @@
 - (short)getShort
 {
     short value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 2)];
 	value = CFSwapInt16BigToHost(value);
     position += 2;
@@ -86,7 +86,7 @@
 - (long)getLong
 {
     long value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
 	value = CFSwapInt64BigToHost(value);
     position += 8;
@@ -96,7 +96,7 @@
 - (int)getInt
 {
     int value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 4)];
 	value = CFSwapInt32BigToHost(value);
     position += 4;
@@ -106,7 +106,7 @@
 - (unsigned short)getUnsignedShort
 {
     unsigned short value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 2)];
 	value = CFSwapInt16HostToBig(value);
     position += 2;
@@ -116,7 +116,7 @@
 - (unsigned long)getUnsignedLong
 {
     unsigned long value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
 	value = CFSwapInt64HostToBig(value);
     position += 8;
@@ -126,7 +126,7 @@
 - (unsigned int)getUnsignedInt
 {
     unsigned int value;
-    [self checkP];
+    [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 4)];
 	value = CFSwapInt32HostToBig(value);
     position += 4;
@@ -137,7 +137,7 @@
 
 @synthesize currentPosition=position;
 
-- (BOOL)checkP
+- (BOOL)checkPosition
 {
     if (position >= ((long)[theData length]))
     {

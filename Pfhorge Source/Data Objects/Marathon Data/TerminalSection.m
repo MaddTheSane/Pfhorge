@@ -296,13 +296,13 @@
                     NSFontAttributeName,
                     
                     italicValue,
-                    PhItalicTerminalAttributeName,
+                    PhTerminalItalicAttributeName,
                     
                     boldValue,
-                    PhBoldTerminalAttributeName,
+                    PhTerminalBoldAttributeName,
                     
                     colorValue,
-                    PhColorTerminalAttributeName,
+                    PhTerminalColorAttributeName,
                     
                     @(underlineValue),
                     NSUnderlineStyleAttributeName,
@@ -498,15 +498,15 @@
         
         while (limitRange.length > 0)
         {
-            /*italicValue = [attrStr attribute:PhItalicTerminalAttributeName
+            /*italicValue = [attrStr attribute:PhTerminalItalicAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];
             
-            boldValue = [attrStr attribute:PhBoldTerminalAttributeName
+            boldValue = [attrStr attribute:PhTerminalBoldAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];*/
             
-            colorValue = [attrStr attribute:PhColorTerminalAttributeName
+            colorValue = [attrStr attribute:PhTerminalColorAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
             inRange:limitRange];
             

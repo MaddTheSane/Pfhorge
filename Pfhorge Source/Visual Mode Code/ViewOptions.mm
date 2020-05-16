@@ -13,6 +13,7 @@
 
 static void NS_To_RGB(RGBColor& C, NSColor *NSC)
 {
+	NSC = [NSC colorUsingColorSpace:[NSColorSpace sRGBColorSpace]];
     C.red = (unsigned short)(65535 * ([NSC redComponent]));
     C.green = (unsigned short)(65535 * ([NSC greenComponent]));
     C.blue = (unsigned short)(65535 * ([NSC blueComponent]));
@@ -20,6 +21,7 @@ static void NS_To_RGB(RGBColor& C, NSColor *NSC)
 
 void ViewOptions::Init() {
     
+	@autoreleasepool {
 	NSColor *theCeilingColor = getArchColor(VMCeilingColor);
 	NSColor *theWallColor = getArchColor(VMWallColor);
 	NSColor *theFloorColor = getArchColor(VMFloorColor);
@@ -39,6 +41,7 @@ void ViewOptions::Init() {
 	NS_To_RGB(LdscpSwatch,theLandscapeColor);
 	NS_To_RGB(InvldSwatch,theInvalidSurfaceColor);
 	NS_To_RGB(WireSwatch,theWireColor);
+	}
 	
 	SelectRenderMode = Render_Textured;
 	SelectPlatformState = Platform_Contracted;
