@@ -88,5 +88,5 @@ struct ViewContext {
 
 private:
 	//! This stuff is for doing mouse dragging:
-	GLdouble SavedPosition[3];
+	simd::float3 SavedPosition;
 };

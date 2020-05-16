@@ -3,12 +3,16 @@
 #include <math.h>
 #include "MiscUtils.h"
 #import <GLKit/GLKit.h>
+#include <cmath>
 
 #include "ViewContext.h"
 
 #include "SimpleVec.h"
 
-const double PI = 4*atan(1.0);
+using std::atan2;
+using std::sin;
+using std::cos;
+using std::tan;
 
 
 ViewContext::ViewContext() {
@@ -35,7 +39,7 @@ void ViewContext::SetView() {
 	
 	// Find how much vertical panning (Marathon mode)
 	GLfloat vertpan = 0;
-	const GLfloat VertPanLimit = tan((PI/180)*30);
+	const GLfloat VertPanLimit = tan(((GLfloat)M_PI/180)*30);
 	if (VertLookMode == VertLookMarathon) {
 		PitchAngle = min(PitchAngle,VertPanLimit);
 		PitchAngle = max(PitchAngle,-VertPanLimit);
@@ -78,9 +82,9 @@ void ViewContext::SetView() {
 // Find the (horizontal) directions corresponding to the yaw angle
 void ViewContext::FindDirs() {
 	// Degrees to randians
-	double angrad = (PI/180)*YawAngle;
-	double c = cos(angrad);
-	double s = sin(angrad);
+	GLfloat angrad = (M_PI/180)*YawAngle;
+	GLfloat c = cos(angrad);
+	GLfloat s = sin(angrad);
 	
 	Forward_x = c;
 	Forward_y = s;
@@ -135,22 +139,22 @@ bool ViewContext::StartDrag(int Scrn_x, int Scrn_y) {
 
 // Drag to this spot
 bool ViewContext::DragTo(int Scrn_x, int Scrn_y) {
-	GLdouble CurrentPosition[3];
+	simd::float3 CurrentPosition;
 	if (!FindPosition(Scrn_x, Scrn_y, CurrentPosition, VertLookMode==VertLookMarathon)) return false;
 	
 	// Find what angle to drag by
 	
-	GLdouble CPx = CurrentPosition[0];
-	GLdouble CPy = CurrentPosition[1];
-	GLdouble CPz = CurrentPosition[2];
-	GLdouble SPx = SavedPosition[0];
-	GLdouble SPy = SavedPosition[1];
-	GLdouble SPz = SavedPosition[2];
+	GLfloat CPx = CurrentPosition.x;
+	GLfloat CPy = CurrentPosition.y;
+	GLfloat CPz = CurrentPosition.z;
+	GLfloat SPx = SavedPosition.x;
+	GLfloat SPy = SavedPosition.y;
+	GLfloat SPz = SavedPosition.z;
 	
 	switch(VertLookMode) {
 		case VertLookMarathon:
 		{
-			YawAngle -= (180/PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy);
+			YawAngle -= (180/M_PI)*atan2(CPy*SPx - CPx*SPy, CPx*SPx + CPy*SPy);
 			// Really the vertical shift
 			PitchAngle -= (CPz - SPz)/Near;
 		}
@@ -159,10 +163,9 @@ bool ViewContext::DragTo(int Scrn_x, int Scrn_y) {
 			
 		case VertLookThirdGen:
 		{
-			YawAngle -= (180/PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPz*SPz);
-			PitchAngle -= (180/PI)*atan2(CPz*SPy - CPy*SPz, CPy*SPy + CPz*SPz);
-			for (int c=0; c<3; c++)
-				SavedPosition[c] = CurrentPosition[c];
+			YawAngle -= (180/M_PI)*atan2(CPz*SPx - CPx*SPz, CPx*SPx + CPz*SPz);
+			PitchAngle -= (180/M_PI)*atan2(CPz*SPy - CPy*SPz, CPy*SPy + CPz*SPz);
+			SavedPosition = CurrentPosition;
 			
 			/*
 			 // A crude approximate solution -- attempts to find the exact solution

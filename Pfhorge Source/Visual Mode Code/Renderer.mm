@@ -216,15 +216,10 @@ void MapManager::DoPortals() {
 	
 	// Set up the screen portal:
 	PortalInfo ScreenPortal;
-	simd::float3 PosVec;
-	VC.FindPosition(0,0,PosVec);
-	ScreenPortal.PVList[0].Vertex = PosVec;
-	VC.FindPosition(VC.Width-1,0,PosVec);
-	ScreenPortal.PVList[1].Vertex = PosVec;
-	VC.FindPosition(VC.Width-1,VC.Height-1,PosVec);
-	ScreenPortal.PVList[2].Vertex = PosVec;
-	VC.FindPosition(0,VC.Height-1,PosVec);
-	ScreenPortal.PVList[3].Vertex = PosVec;
+	VC.FindPosition(0,0,ScreenPortal.PVList[0].Vertex);
+	VC.FindPosition(VC.Width-1,0,ScreenPortal.PVList[1].Vertex);
+	VC.FindPosition(VC.Width-1,VC.Height-1,ScreenPortal.PVList[2].Vertex);
+	VC.FindPosition(0,VC.Height-1,ScreenPortal.PVList[3].Vertex);
 	ScreenPortal.Update();
 	
 	// Set up the first visible polygon: the currently-resident one
