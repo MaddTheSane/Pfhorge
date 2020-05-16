@@ -27,7 +27,7 @@
 @interface PhLayer : PhAbstractName <NSCoding>
 {
     NSColor *layerColor;
-    NSMutableArray *objectsInThisLayer;
+    NSMutableArray<__kindof LEMapStuffParent*> *objectsInThisLayer;
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
@@ -40,10 +40,10 @@
 
 @property (copy) NSColor *layerColor;
 
--(NSArray *)objectsInThisLayer;
+-(NSArray<__kindof LEMapStuffParent*> *)objectsInThisLayer;
 
--(void)addObjectToLayer:(id)theObj;
--(void)removeObjectFromLayer:(id)theObj;
--(BOOL)isObjectInLayer:(id)theObj;
+-(void)addObjectToLayer:(__kindof LEMapStuffParent*)theObj;
+-(void)removeObjectFromLayer:(__kindof LEMapStuffParent*)theObj;
+-(BOOL)isObjectInLayer:(__kindof LEMapStuffParent*)theObj;
 
 @end

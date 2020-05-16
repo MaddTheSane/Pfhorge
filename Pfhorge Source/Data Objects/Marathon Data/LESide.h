@@ -25,6 +25,7 @@
 #import <Foundation/Foundation.h>
 #import "LEMapStuffParent.h"
 #import "PhTypesStructresEnums.h"
+#include "shapes-structs.h"
 
 enum {
     _cpanel_effects_light = 1,

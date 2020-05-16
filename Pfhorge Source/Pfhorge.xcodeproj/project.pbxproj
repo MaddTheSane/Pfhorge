@@ -92,8 +92,6 @@
 		AE3C14EC0A04512100FBFFCD /* trigTables.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CBB2CD04D630590046BBD2 /* trigTables.h */; };
 		AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */; };
 		AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */; };
-		AE3C14F40A04512100FBFFCD /* HeaderFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */; };
-		AE3C15030A04512100FBFFCD /* MapDataFormats.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE330228BEF90146BBD2 /* MapDataFormats.h */; };
 		AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */; };
 		AE3C150B0A04512100FBFFCD /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902CB5069F718C00B4AB92 /* Camera.h */; };
 		AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -249,7 +247,6 @@
 		00FD2B8B00E806097F000001 /* LEMapStuffParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapStuffParent.m; sourceTree = "<group>"; };
 		00FE5A0E00DC52C37F000001 /* LEMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapPoint.h; sourceTree = "<group>"; };
 		00FE5A0F00DC52C37F000001 /* LEMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapPoint.m; sourceTree = "<group>"; };
-		0101D448015C28157F000001 /* ContolPanelRef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = ContolPanelRef.cpp; sourceTree = "<group>"; };
 		010314F600ED57F57F000001 /* LELevelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelWindowController.m; sourceTree = "<group>"; };
 		010314F700ED57F57F000001 /* LELevelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelWindowController.h; sourceTree = "<group>"; };
 		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; };
@@ -304,9 +301,6 @@
 		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
 		55D7334324640306008B33F6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		55F0080424637C27007BB0F3 /* MarathonVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarathonVersions.h; sourceTree = "<group>"; };
-		A514D906080ACBE500F94B8E /* KeyControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = KeyControls.h; sourceTree = "<group>"; };
-		A514D90A080ACBF200F94B8E /* KeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = KeyControls.mm; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
 		A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView2.h; sourceTree = "<group>"; };
 		A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyOpenGLView2.mm; sourceTree = "<group>"; };
@@ -383,51 +377,6 @@
 		F536BD5F02824AA40146BBD2 /* extractbitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extractbitmap.m; sourceTree = "<group>"; };
 		F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhAbstractNumber.h; sourceTree = "<group>"; };
 		F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhAbstractNumber.m; sourceTree = "<group>"; };
-		F53CCE220228BEF80146BBD2 /* xKeyControls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xKeyControls.h; sourceTree = "<group>"; };
-		F53CCE230228BEF80146BBD2 /* ActionAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ActionAdapter.h; sourceTree = "<group>"; };
-		F53CCE240228BEF80146BBD2 /* CheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CheckBox.h; sourceTree = "<group>"; };
-		F53CCE250228BEF80146BBD2 /* ColorSwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ColorSwatch.h; sourceTree = "<group>"; };
-		F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = ColorSwatch.mm; sourceTree = "<group>"; };
-		F53CCE270228BEF80146BBD2 /* DBControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = DBControl.h; sourceTree = "<group>"; };
-		F53CCE280228BEF90146BBD2 /* GetFullPathObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GetFullPathObject.h; sourceTree = "<group>"; };
-		F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = GetFullPathObject.mm; sourceTree = "<group>"; };
-		F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HeaderFormats.h; sourceTree = "<group>"; };
-		F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IndexHeapSort.h; sourceTree = "<group>"; };
-		F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = IndexHeapSort.cc; sourceTree = "<group>"; };
-		F53CCE2D0228BEF90146BBD2 /* IndexSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IndexSort.h; sourceTree = "<group>"; };
-		F53CCE2E0228BEF90146BBD2 /* InputHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = InputHelpers.h; sourceTree = "<group>"; };
-		F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = InputHelpers.m; sourceTree = "<group>"; };
-		F53CCE300228BEF90146BBD2 /* xKeyControls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = xKeyControls.mm; sourceTree = "<group>"; };
-		F53CCE310228BEF90146BBD2 /* MapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MapData.h; sourceTree = "<group>"; };
-		F53CCE320228BEF90146BBD2 /* MapData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MapData.mm; sourceTree = "<group>"; };
-		F53CCE330228BEF90146BBD2 /* MapDataFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MapDataFormats.h; sourceTree = "<group>"; };
-		F53CCE340228BEF90146BBD2 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MapManager.h; sourceTree = "<group>"; };
-		F53CCE350228BEF90146BBD2 /* MapManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MapManager.mm; sourceTree = "<group>"; };
-		F53CCE360228BEF90146BBD2 /* MapReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MapReader.h; sourceTree = "<group>"; };
-		F53CCE370228BEF90146BBD2 /* MapReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MapReader.mm; sourceTree = "<group>"; };
-		F53CCE380228BEF90146BBD2 /* xMapViewerMain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = xMapViewerMain.mm; sourceTree = "<group>"; };
-		F53CCE390228BEF90146BBD2 /* MiscUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MiscUtils.h; sourceTree = "<group>"; };
-		F53CCE3A0228BEF90146BBD2 /* MoreFilesExtract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MoreFilesExtract.h; sourceTree = "<group>"; };
-		F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MoreFilesExtract.mm; sourceTree = "<group>"; };
-		F53CCE3C0228BEF90146BBD2 /* MotPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MotPort.h; sourceTree = "<group>"; };
-		F53CCE3D0228BEF90146BBD2 /* MotPort.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MotPort.mm; sourceTree = "<group>"; };
-		F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyOpenGLView.h; sourceTree = "<group>"; };
-		F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = MyOpenGLView.mm; sourceTree = "<group>"; };
-		F53CCE400228BEF90146BBD2 /* Renderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
-		F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.h; path = ShapesDataFormats.h; sourceTree = "<group>"; usesTabs = 0; };
-		F53CCE420228BEF90146BBD2 /* ShapesReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapesReader.h; sourceTree = "<group>"; };
-		F53CCE430228BEF90146BBD2 /* ShapesReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShapesReader.mm; sourceTree = "<group>"; };
-		F53CCE440228BEF90146BBD2 /* SimpleVec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleVec.h; sourceTree = "<group>"; };
-		F53CCE450228BEF90146BBD2 /* SmartPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartPtr.h; sourceTree = "<group>"; };
-		F53CCE460228BEF90146BBD2 /* stl_algobase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stl_algobase.h; sourceTree = "<group>"; };
-		F53CCE470228BEF90146BBD2 /* TextFieldObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldObject.h; sourceTree = "<group>"; };
-		F53CCE480228BEF90146BBD2 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
-		F53CCE490228BEF90146BBD2 /* TextureManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TextureManager.mm; sourceTree = "<group>"; };
-		F53CCE4A0228BEF90146BBD2 /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
-		F53CCE4B0228BEF90146BBD2 /* ViewContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewContext.h; sourceTree = "<group>"; };
-		F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewContext.mm; sourceTree = "<group>"; };
-		F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOptions.h; sourceTree = "<group>"; };
-		F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewOptions.mm; sourceTree = "<group>"; };
 		F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = OpenGLVisualModeController.h; sourceTree = "<group>"; };
 		F53CCE820228C0510146BBD2 /* OpenGLVisualModeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = OpenGLVisualModeController.m; sourceTree = "<group>"; };
 		F53CCE870228C81D0146BBD2 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = System/Library/Frameworks/AGL.framework; sourceTree = SDKROOT; };
@@ -701,66 +650,8 @@
 				F534C02D021DDA5F0146BBD2 /* AppleScript Sources */,
 				F500878E0347B88B0146BBD2 /* Shapes Decoder */,
 				F500878F0347B8F80146BBD2 /* Plugin Files */,
-				55D6BB8A245B93D5003FC04C /* Legacy/Unused */,
 			);
 			name = "Source Code";
-			sourceTree = "<group>";
-		};
-		55D6BB8A245B93D5003FC04C /* Legacy/Unused */ = {
-			isa = PBXGroup;
-			children = (
-				F53CCE2A0228BEF90146BBD2 /* HeaderFormats.h */,
-				F53CCE330228BEF90146BBD2 /* MapDataFormats.h */,
-				55F0080424637C27007BB0F3 /* MarathonVersions.h */,
-				F53CCE390228BEF90146BBD2 /* MiscUtils.h */,
-				F53CCE410228BEF90146BBD2 /* ShapesDataFormats.h */,
-				F53CCE440228BEF90146BBD2 /* SimpleVec.h */,
-				F53CCE450228BEF90146BBD2 /* SmartPtr.h */,
-				F53CCE470228BEF90146BBD2 /* TextFieldObject.h */,
-				F53CCE4A0228BEF90146BBD2 /* Vector3D.h */,
-				F53CCE4B0228BEF90146BBD2 /* ViewContext.h */,
-				F53CCE4C0228BEF90146BBD2 /* ViewContext.mm */,
-				F53CCE4D0228BEF90146BBD2 /* ViewOptions.h */,
-				F53CCE4E0228BEF90146BBD2 /* ViewOptions.mm */,
-				F53CCE3C0228BEF90146BBD2 /* MotPort.h */,
-				F53CCE3D0228BEF90146BBD2 /* MotPort.mm */,
-				F53CCE420228BEF90146BBD2 /* ShapesReader.h */,
-				F53CCE430228BEF90146BBD2 /* ShapesReader.mm */,
-				F53CCE230228BEF80146BBD2 /* ActionAdapter.h */,
-				F53CCE240228BEF80146BBD2 /* CheckBox.h */,
-				F53CCE250228BEF80146BBD2 /* ColorSwatch.h */,
-				F53CCE260228BEF80146BBD2 /* ColorSwatch.mm */,
-				0101D448015C28157F000001 /* ContolPanelRef.cpp */,
-				F53CCE270228BEF80146BBD2 /* DBControl.h */,
-				F53CCE280228BEF90146BBD2 /* GetFullPathObject.h */,
-				F53CCE290228BEF90146BBD2 /* GetFullPathObject.mm */,
-				F53CCE2B0228BEF90146BBD2 /* IndexHeapSort.h */,
-				F53CCE2C0228BEF90146BBD2 /* IndexHeapSort.cc */,
-				F53CCE2D0228BEF90146BBD2 /* IndexSort.h */,
-				F53CCE2E0228BEF90146BBD2 /* InputHelpers.h */,
-				F53CCE2F0228BEF90146BBD2 /* InputHelpers.m */,
-				A514D906080ACBE500F94B8E /* KeyControls.h */,
-				A514D90A080ACBF200F94B8E /* KeyControls.mm */,
-				F53CCE310228BEF90146BBD2 /* MapData.h */,
-				F53CCE320228BEF90146BBD2 /* MapData.mm */,
-				F53CCE340228BEF90146BBD2 /* MapManager.h */,
-				F53CCE350228BEF90146BBD2 /* MapManager.mm */,
-				F53CCE360228BEF90146BBD2 /* MapReader.h */,
-				F53CCE370228BEF90146BBD2 /* MapReader.mm */,
-				F53CCE3A0228BEF90146BBD2 /* MoreFilesExtract.h */,
-				F53CCE3B0228BEF90146BBD2 /* MoreFilesExtract.mm */,
-				F53CCE3E0228BEF90146BBD2 /* MyOpenGLView.h */,
-				F53CCE3F0228BEF90146BBD2 /* MyOpenGLView.mm */,
-				F53CCE400228BEF90146BBD2 /* Renderer.mm */,
-				F53CCE460228BEF90146BBD2 /* stl_algobase.h */,
-				F53CCE480228BEF90146BBD2 /* TextureManager.h */,
-				F53CCE490228BEF90146BBD2 /* TextureManager.mm */,
-				F53CCE220228BEF80146BBD2 /* xKeyControls.h */,
-				F53CCE300228BEF90146BBD2 /* xKeyControls.mm */,
-				F53CCE380228BEF90146BBD2 /* xMapViewerMain.mm */,
-			);
-			name = Legacy/Unused;
-			path = "Legacy-unused";
 			sourceTree = "<group>";
 		};
 		55D733452464F4A1008B33F6 /* Pathways Import */ = {
@@ -1027,8 +918,6 @@
 				AE3C14EC0A04512100FBFFCD /* trigTables.h in Headers */,
 				AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */,
 				AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */,
-				AE3C14F40A04512100FBFFCD /* HeaderFormats.h in Headers */,
-				AE3C15030A04512100FBFFCD /* MapDataFormats.h in Headers */,
 				AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */,
 				AE3C150B0A04512100FBFFCD /* Camera.h in Headers */,
 			);

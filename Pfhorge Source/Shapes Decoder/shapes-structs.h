@@ -163,8 +163,8 @@ struct collection_header {		// 32 bytes
 	word	flags;
 	
 	// used only in the file
-	int	offset, length;		// for 8 bit screen
-	int	offset16, length16;	// for 16/32 bit and OpenGL
+	int	offset, length;		//!< for 8 bit screen
+	int	offset16, length16;	//!< for 16/32 bit and OpenGL
 	
 	// stuff used in the past for holding pointers to coll data, unused in file
 //	short	unused[6];
@@ -172,7 +172,18 @@ struct collection_header {		// 32 bytes
 typedef struct collection_header collection_header;
 
 
-typedef short shape_descriptor;	/* [clut.3] [collection.5] [shape.8] */
+/*! [clut.3] [collection.5] [shape.8] */
+typedef short shape_descriptor;
+//struct shape_descriptor_s {
+//	unsigned char clut: 3;
+//	unsigned char collection: 5;
+//	unsigned char shape: 8;
+//};
+//
+//typedef union shape_descriptor {
+//	struct shape_descriptor_s u;
+//	short v;
+//} shape_descriptor;
 
 enum {	/* animation types */
 	_animated1= 1,
