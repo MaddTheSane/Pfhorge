@@ -16,14 +16,14 @@
 #include "GLMain.h"
 #include "Camera.h"
 #include <sys/times.h>
-#import <OpenGL/OpenGL.h>
-#import <OpenGL/gl.h>
-#import <OpenGL/glu.h>
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 #import <Foundation/Foundation.h>
 #import "LEExtras.h"
 #include <cmath>
-#import <ApplicationServices/ApplicationServices.h>
-#import <AppKit/AppKit.h>
+#include <ApplicationServices/ApplicationServices.h>
+#import <Cocoa/Cocoa.h>
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
 
 // We increased the speed a bit from the Camera Strafing Tutorial
@@ -37,7 +37,7 @@ static float g_FrameInterval = 0.0f;
 
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
 
-extern bool upPressed , downPressed, leftPressed , rightPressed;
+//extern bool upPressed , downPressed, leftPressed , rightPressed;
 
 using namespace simd;
 
@@ -330,8 +330,6 @@ void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool ri
     CalculateFrameRate();
 
 /////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
-
-
 }
 
 
@@ -341,13 +339,13 @@ static inline float4x4 matrix4MakeLookAt(float3 eye, float3 center, float3 up)
     float3 n = normalize(eye - center);
     float3 u = normalize(cross(up, n));
     float3 v = cross(n, u);
-	float4x4 m((float4){u.x, v.x, n.x, 0.0f},
-						  (float4){u.y, v.y, n.y, 0.0f},
-						  (float4){u.z, v.z, n.z, 0.0f},
-						  (float4){dot(-u, eye),
-		dot(-v, eye),
-		dot(-n, eye),
-		1.0f });
+	float4x4 m(simd_make_float4(u.x, v.x, n.x, 0.0f),
+			   simd_make_float4(u.y, v.y, n.y, 0.0f),
+			   simd_make_float4(u.z, v.z, n.z, 0.0f),
+			   simd_make_float4(dot(-u, eye),
+								dot(-v, eye),
+								dot(-n, eye),
+								1.0f));
     return m;
 }
 
