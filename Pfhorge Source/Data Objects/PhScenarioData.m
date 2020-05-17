@@ -196,7 +196,7 @@
     [theScenarioDocument reloadLevelTable:self];
 }
 
--(int)levelCount { return ([levelFileNames count]); }
+-(int)levelCount { return (int)([levelFileNames count]); }
 
 -(NSString *)getLevelNameForLevel:(int)levelNumber { return [levelFileNames objectAtIndex:levelNumber]; }
 -(NSString *)getLevelPathForLevel:(int)levelNumber { return [projectDir stringByAppendingPathComponent:[[levelFileNames objectAtIndex:levelNumber] stringByAppendingPathExtension:@"pfhlev"]]; }
@@ -271,24 +271,23 @@
 }
 
 - (void)tableView:(NSTableView *)view
-    willDisplayCell:(id)cell
-    forTableColumn:(NSTableColumn *)col
-    row:(NSInteger)row
+  willDisplayCell:(id)cell
+   forTableColumn:(NSTableColumn *)col
+			  row:(NSInteger)row
 {
     //[cell setBackgroundColor: [colors objectAtIndex:row]];
     
     //[cell setForegroundColor: [colors objectAtIndex:row]];
 }
 
-- (BOOL)tableView:(NSTableView *)tableView writeRows:(NSArray*)rows toPasteboard:(NSPasteboard*)pboard
+- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
 {
-    id obj = [rows objectAtIndex:0];
-    int rowNumber = [(NSNumber *)obj intValue];
+    NSInteger rowNumber = [rowIndexes firstIndex];
     
     //NSData *theData = [NSArchiver archivedDataWithRootObject:obj];
     draggedLevel = [levelFileNames objectAtIndex:rowNumber];
     // Don't retain since this is just holding temporaral drag information,
-    // and it is only used during a drag!  We could put this in the pboard actually.
+    // and it is only used during a drag!  TODO: We could put this in the pboard actually.
     
     // Provide data for our custom type, and simple NSStrings.
     [pboard declareTypes:[NSArray arrayWithObjects:@"PfhorgeScenarioLevelsTableData", nil] owner:self];
@@ -361,8 +360,3 @@
 }
 
 @end
-
-
-
-
-

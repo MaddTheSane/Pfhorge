@@ -109,7 +109,7 @@
     }
     else
     {
-        return [preferences integerForKey:key];
+        return (int)[preferences integerForKey:key];
     }
         
     return -1;

@@ -1269,11 +1269,11 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                                 break;
                                 
                             case Ln_Y:
-                                break;
                                 if (PL.SectorList[SectorAddr(x,y)].WallList[PID_Sector::Wall_X].Type ==
                                     PID_Wall::Wall_FancyCorners)
                                         Which = Tx_FancyWall;
-                                 
+								 break;
+
                             case Ln_XNear_YNear:
                             case Ln_XFar_YNear:
                             case Ln_XNear_YFar:

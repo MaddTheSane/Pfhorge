@@ -108,7 +108,7 @@
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
     long tmpLong = 0;
     //int i = 0;
     
@@ -117,7 +117,7 @@
         return theNumber;
     }
     
-    int myPosition = [index count];
+    NSInteger myPosition = [index count];
     
     [index addObject:self];
     
@@ -224,9 +224,9 @@
     [myData release];
     [futureData release];
     
-    if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
+    if ([index indexOfObjectIdenticalTo:self] != myPosition)
     {
-        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
+		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }

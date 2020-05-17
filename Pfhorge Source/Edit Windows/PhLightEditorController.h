@@ -93,7 +93,7 @@
     IBOutlet NSSlider *secondaryInactiveIntesitySlider;
     IBOutlet NSSlider *secondaryInactiveIntesityChngSlider;
     
-    IBOutlet id theLightPhases[6][7];
+    id theLightPhases[6][7];
     __unsafe_unretained PhLight *curLight;
 }
 

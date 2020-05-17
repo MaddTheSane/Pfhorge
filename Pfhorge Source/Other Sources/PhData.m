@@ -187,7 +187,7 @@
     int length = [self getByte];
     
     unsigned char theChar[length];
-    const char *theCharConstPntr;
+    const unsigned char *theCharConstPntr;
     int i;
     NSString *theTmpCharString;
     
@@ -201,7 +201,7 @@
     }
     
     theCharConstPntr = theChar;
-    theTmpCharString = @(theCharConstPntr); //length:theCharAmount];
+    theTmpCharString = [NSString stringWithCString:(const char*)theCharConstPntr encoding:NSMacOSRomanStringEncoding]; //length:theCharAmount];
     
     return theTmpCharString;
 }

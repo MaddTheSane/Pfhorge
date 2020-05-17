@@ -192,6 +192,9 @@ NSString *const PhTerminalBoldAttributeName = @"PhBoldTerminalAttribute";
 NSString *const PhTerminalColorAttributeName = @"PhColorTerminalAttribute";
 NSString *const PhTerminalItalicAttributeName = @"PhItalicTerminalAttribute";
 
+// * Pasteboard types *
+NSString *const PhorgeSelectionDataPasteboardType = @"PhorgeSelectionData";
+
 // *********************** End EXTERN Variables ***********************
 
 @implementation NSObject (SKTPerformExtras)

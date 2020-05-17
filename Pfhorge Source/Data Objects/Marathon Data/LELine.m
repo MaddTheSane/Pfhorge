@@ -284,7 +284,7 @@
     encodeShort(coder, highestAdjacentFloor);
     encodeShort(coder, lowestAdjacentCeiling);
     
-    if (/*!useIndexNumbersInstead*/ YES)
+    if (/*!useIndexNumbersInstead*/ /* DISABLES CODE */ (YES))
     {
         //encodeObject(coder, clockwisePolygonSideObject);
         [coder encodeObject:clockwisePolygonSideObject];

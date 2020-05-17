@@ -23,7 +23,7 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 #import "ErrorNotificationWinController.h"
 #import "NDAppleScriptObject.h"
 #import "NSAppleEventDescriptor+NDAppleScriptObject.h"
@@ -78,7 +78,7 @@ extern unsigned eightBytesCount;*/
 
 #define GetIndexAdv(obj) (obj != nil) ? [(LEMapStuffParent*)(obj) index] : -1
 
-#define FileAttributes(fmngr, path) [(fmngr) fileAttributesAtPath:(path) traverseLink:YES]
+#define FileAttributes(fmngr, path) [(fmngr) attributesOfItemAtPath:(path) error:NULL]
 #define IsPathDirectory(fmngr, path) [[FileAttributes(fmngr, path) fileType] isEqualToString:NSFileTypeDirectory]
 
 #define Antialiasing_ON YES
@@ -116,7 +116,7 @@ extern unsigned eightBytesCount;*/
 #define SSetEnabled(m, t, v) [[(m) cellWithTag:(t)] setEnabled:(v)]
 
 
-// Other Usful Data Micro Functions
+#pragma mark Other Usful Data Micro Functions
 #define numInt(v)				[NSNumber numberWithInt:(v)]
 #define numInteger(v)			[NSNumber numberWithInteger:(v)]
 #define numShort(v)				[NSNumber numberWithShort:(v)]
@@ -272,7 +272,7 @@ static inline unsigned short decodeUnsignedShort(NSCoder *coder)
 
 //encodeBytes:(const void *)address length:(unsigned)numBytes
 
-// Preferences Micro Functions
+#pragma mark Preferences Micro Functions
 #define preferences 				[NSUserDefaults standardUserDefaults]
 #define prefBool(key)				[preferences boolForKey:(key)]
 #define archive(Obj) 				[NSKeyedArchiver archivedDataWithRootObject:(Obj)]
@@ -290,7 +290,7 @@ static inline id unarchive(NSData *Obj) {
 #define activateArchColor(colorKey) 		[(NSColor*)unarchive(prefColor(colorKey)) set]
 #define archColorWithAlpha(colorKey, alpha) 	[[getArchColor(colorKey) colorWithAlphaComponent:(alpha)] set];
 
-// Undo Stuff...
+#pragma mark Undo Stuff...
 #define undo                                    [myUndoManager prepareWithInvocationTarget:self]
 #define undoWith(t)                             [myUndoManager prepareWithInvocationTarget:(t)]
 
@@ -342,7 +342,7 @@ void createAndExecuteScriptObject( NSString * aPath );
 //int LECompareLines(id line1, id line2, NSPoint thePoint);
 //int LEDistanceOfLine(NSRect theBoundsOfLine);
 
-// *********************** Enums  ***********************
+#pragma mark Enums
 
 enum
 {
@@ -357,8 +357,8 @@ typedef NS_ENUM(int, LESideDirection)
     _counter_clockwise
 };
 
-// *********************** EXTERN Variables ***********************
-// ********* Notifications *********
+#pragma mark - EXTERN Variables
+#pragma mark Notifications
 extern NSNotificationName const PhLevelDeallocatingNotification;
 extern NSNotificationName const PhUserDidChangePreferencesNotification;
 extern NSNotificationName const PhUserDidChangeNamesNotification;
@@ -367,7 +367,7 @@ extern NSNotificationName const LESelectionChangedNotification;
 extern NSNotificationName const LEToolChangedNotification;
 extern NSNotificationName const PhLevelStatusBarUpdateNotification;
 
-// ********* Visual Settings *********
+#pragma mark Visual Settings
 extern NSString *const VMKeySpeed;
 extern NSString *const VMMouseSpeed;
 extern NSString *const VMInvertMouse;
@@ -417,7 +417,7 @@ extern NSString *const VMVerticalLook;
 extern NSString *const VMFieldOfView;
 extern NSString *const VMVisibilityMode;
 
-// ********* Default Layer Settings *********
+#pragma mark Default Layer Settings
 extern NSString *const PhDefaultLayers;
 extern NSString *const PhDefaultLayer_Name;
 extern NSString *const PhDefaultLayer_FloorMin;
@@ -425,7 +425,7 @@ extern NSString *const PhDefaultLayer_FloorMax;
 extern NSString *const PhDefaultLayer_CeilingMin;
 extern NSString *const PhDefaultLayer_CeilingMax;
 
-// ********* General Settings *********
+#pragma mark General Settings
 extern NSString *const PhEnableAntialiasing;
 extern NSString *const PhEnableObjectOutling;
 extern NSString *const PhDrawOnlyLayerPoints;
@@ -443,7 +443,7 @@ extern NSString *const PhUseIsometricAngleSnap;
 extern NSString *const PhSnapFromPoints;
 extern NSString *const PhSnapFromLength;
 
-// ********* Object Type Visability Settings *********
+#pragma mark Object Type Visability Settings
 extern NSString *const PhEnableObjectItem;
 extern NSString *const PhEnableObjectPlayer;
 extern NSString *const PhEnableObjectEnemyMonster;
@@ -451,18 +451,18 @@ extern NSString *const PhEnableObjectSceanry;
 extern NSString *const PhEnableObjectSound;
 extern NSString *const PhEnableObjectGoal;
 
-// ********* Polygon Color Visability Settings *********
+#pragma mark Polygon Color Visability Settings
 extern NSString *const PhEnablePlatfromPolyColoring;
 extern NSString *const PhEnableConvexPolyColoring;
 extern NSString *const PhEnableZonePolyColoring;
 extern NSString *const PhEnableTeleporterExitPolyColoring;
 extern NSString *const PhEnableHillPolyColoring;
 
-// ********* Grid Settings *********
+#pragma mark Grid Settings
 extern NSString *const PhGridFactor;
 extern NSString *const PhEnableGridBool;
 
-// ********* Current Phorge Information *********
+#pragma mark Current Phorge Information
 
 //! Version that used questionable use of NSArchiver
 extern const short oldVersionOfPfhorgeLevelData;
@@ -473,7 +473,7 @@ extern NSString *const PhPrefVersion; // = @"PhPrefVersion";
 extern NSString *const PhPhorgePrefVersion; // = @"PhPhorgePrefVersion";
 extern NSString *const PhPhorgeColors; // = @"PhPhorgeColors";
 
-// ********* PhPhorgeColors Strings *********
+#pragma mark PhPhorgeColors Strings
 extern NSString *const PhPolygonRegularColor; // = @"PhPolygonRegularColor";
 extern NSString *const PhPolygonSelectedColor; // = @"PhPolygonSelectedColor";
 extern NSString *const PhPolygonPlatformColor; // = @"PhPolygonPlatformColor";
@@ -514,10 +514,13 @@ extern NSString *const PhWorldUnitGridColor; // = @"PhWorldUnitGridColor";
 extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
 extern NSString *const PhCenterWorldUnitGridColor;
 
-// * Terminal Keys *
+#pragma mark Terminal Keys
 extern NSAttributedStringKey const PhTerminalBoldAttributeName NS_SWIFT_NAME(PhTerminalBold);
 extern NSAttributedStringKey const PhTerminalColorAttributeName NS_SWIFT_NAME(PhTerminalColor);
 extern NSAttributedStringKey const PhTerminalItalicAttributeName NS_SWIFT_NAME(PhTerminalItalic);
+
+#pragma mark Pasteboard types
+extern NSPasteboardType const PhorgeSelectionDataPasteboardType NS_SWIFT_NAME(PhorgeSelectionData);
 
 // *********************** End EXTERN Variables ***********************
 

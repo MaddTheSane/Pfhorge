@@ -2027,11 +2027,6 @@
 
 -(void)setSides:(short)v toIndex:(short)i 
 {
-    //side_indexes[i] = v; 
-    
-    side_objects[i] = nil;
-    return;
-    
     if (v == -1)
         side_objects[i] = nil;
     else if (everythingLoadedST)
@@ -2039,10 +2034,7 @@
 } //
 -(void)setSidesObject:(id)v toIndex:(short)i 
 { 
-    side_objects[i] = nil;
-    return;
-    
-    side_objects[i] = v; 
+    side_objects[i] = v;
 } //
 
 -(void)setMedia:(short)v { [self setMediaIndex:v]; }

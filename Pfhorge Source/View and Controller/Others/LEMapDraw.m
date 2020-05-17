@@ -50,14 +50,16 @@
 // Trig tables for PhSin etc fast functions
 #import "trigTables.h"
 
-enum {
+typedef NS_ENUM(short, LEEDrawMode) {
     LEEDrawNothing = 0,
     LEEDrawLineConnected = 1,
     LEEDrawLineNotConnected,
 };
 
 //This Class...
-@implementation LEMapDraw
+@implementation LEMapDraw {
+	LEEDrawMode currentDrawingMode;
+}
 
 /* These images are displayed as markers on the rulers. */
 //static NSImage *leftImage;
@@ -576,7 +578,7 @@ enum {
     NSInteger i = 0;
     NSInteger tmpNumberListCorrectedCount = 0;
     
-    NSNumber *negitiveNum = [NSNumber numberWithShort:((short)(-1))];
+    NSNumber *negitiveNum = @((short)(-1));
     
     ///NSArray *theStuff;
     
@@ -2041,8 +2043,7 @@ enum {
 }
 
 // *************************** Moving/Dragging Methods ***************************
-#pragma mark -
-#pragma mark ********* Moving/Dragging Methods *********
+#pragma mark - Moving/Dragging Methods
 
 -(void)recenterViewToPoint:(NSPoint)newctr
 {
@@ -2070,8 +2071,6 @@ enum {
 
 - (void)moveSelectedTo:(NSPoint)theLocation
 {
-    
-    
     if ([selectedPoints count] > 0 || [selectedMapObjects count] > 0 || [selectedNotes count] > 0)
     {
         /*BOOL cPolyM = NO, cMonsterM = NO, cItemM = NO, cPlayerM = NO,
@@ -3029,7 +3028,7 @@ enum {
                         }
                     } // END if (snapToNearestPoint || snapToGrid)
 
-		    // Snap-to-angle?
+					// Snap-to-angle?
                     else if(snapToAngle && currentTool == LEPaletteToolLine)
                     {
                         // assumptions this code makes:
@@ -3046,12 +3045,12 @@ enum {
                         short tX, tY;
                         LELine *theLine;
                         LEMapPoint *thePt;
-			NSEnumerator *numer;
-			NSNumber *cur;
-			short bestAz = 0;
-			short bestDiff;
-
-			// move the point to where it WOULD be
+						NSEnumerator *numer;
+						NSNumber *cur;
+						short bestAz = 0;
+						short bestDiff;
+						
+						// move the point to where it WOULD be
                         // so as to force the line to recompute where it WOULD be
                         // so as to get the length & azimuth it WOULD have
                         [self moveSelectedTo:curPoint];
@@ -3067,19 +3066,19 @@ enum {
                         tgtLength = [theLine length];
                         
                         // compare it to the list of angles
-			bestDiff = 1000;	// to trigger the first time
-			numer = [snapAzs objectEnumerator];
-
-			while(cur = [numer nextObject])
-			{   
-			    if(abs([cur shortValue] - curAz) < bestDiff)
-			    {
-				bestAz = [cur shortValue];
-				bestDiff = abs(bestAz - curAz);
-			    }
-			}
-
-			tgtAz = bestAz;
+						bestDiff = 1000;	// to trigger the first time
+						numer = [snapAzs objectEnumerator];
+						
+						while(cur = [numer nextObject])
+						{
+							if(abs([cur shortValue] - curAz) < bestDiff)
+							{
+								bestAz = [cur shortValue];
+								bestDiff = abs(bestAz - curAz);
+							}
+						}
+						
+						tgtAz = bestAz;
 
                         // force it to that angle @ its current length
                         
@@ -3307,42 +3306,40 @@ enum {
     NSPoint start = [theEvent locationInWindow];//[self convertPoint:[theEvent locationInWindow] fromView:nil];
     NSPoint before = NSZeroPoint;
     NSRect origVisibleRect = [self visibleRect];
-    while (keepOn)
-    {
-        theEvent = [[self window] nextEventMatchingMask: NSLeftMouseUpMask | NSLeftMouseDraggedMask];
-        switch ([theEvent type])
-        {
+    while (keepOn) {
+        theEvent = [[self window] nextEventMatchingMask: NSEventMaskLeftMouseUp | NSEventMaskLeftMouseDragged];
+        switch ([theEvent type]) {
             case NSLeftMouseDragged:
-                {
-                    NSPoint now = [theEvent locationInWindow];//[self convertPoint:[theEvent locationInWindow] fromView:nil];
-                    if (! NSEqualPoints(now, before))
-                    {
-                        NSSize delta;
-                        NSRect curVisibleRect;
-                        delta.width = start.x - now.x;
-                        delta.height = now.y - start.y;
-                        
-                        
-                        curVisibleRect = origVisibleRect;
-                        NSPoint tmp = curVisibleRect.origin;
-                        NSPoint org = tmp;//[self convertPoint:tmp fromView:nil];
-                        
-                        org.x += delta.width;
-                        //org.y += before.y - start.y;
-                        org.y += delta.height;
-                        //[self scrollBy:curVisibleRect.origin];
-                        //[self scrollRectToVisible:curVisibleRect];
-                        [self scrollPoint:org];
-                        [self display];
-                        /*
-                        org.y += delta.height;
-                        [self scrollPoint:org];
-                        [self display];*/
-                        
-                        before = now;
-                    }
-                    break;
-                }
+			{
+				NSPoint now = [theEvent locationInWindow];//[self convertPoint:[theEvent locationInWindow] fromView:nil];
+				if (! NSEqualPoints(now, before))
+				{
+					NSSize delta;
+					NSRect curVisibleRect;
+					delta.width = start.x - now.x;
+					delta.height = now.y - start.y;
+					
+					
+					curVisibleRect = origVisibleRect;
+					NSPoint tmp = curVisibleRect.origin;
+					NSPoint org = tmp;//[self convertPoint:tmp fromView:nil];
+					
+					org.x += delta.width;
+					//org.y += before.y - start.y;
+					org.y += delta.height;
+					//[self scrollBy:curVisibleRect.origin];
+					//[self scrollRectToVisible:curVisibleRect];
+					[self scrollPoint:org];
+					[self display];
+					/*
+					 org.y += delta.height;
+					 [self scrollPoint:org];
+					 [self display];*/
+					
+					before = now;
+				}
+				break;
+			}
             case NSLeftMouseUp:
             default:
                 keepOn = NO;
@@ -3352,7 +3349,7 @@ enum {
 	//[self setNeedsDisplay:YES];
 }
 
-- (void)mouseScrollingStaringAt:(NSPoint)mouseLoc
+- (void)mouseScrollingStaringAtPoint:(NSPoint)mouseLoc
 {
     NSRect visibleRect = NSMakeRect(0, 0, 0, 0);
     NSPoint curPoint = mouseLoc;
@@ -3380,13 +3377,13 @@ enum {
         
         switch ([theEvent type]) 
         {    
-            case NSPeriodic:   //    *** NSPeriodic ***
+            case NSEventTypePeriodic:   //    *** NSPeriodic ***
                 shouldNotGetNewObjectsForTiledCache = NO;
                 if (autoscrollEvent) [self autoscroll:autoscrollEvent];
                 [self scrollBy:mouseOffset];
                 break;
         
-            case NSLeftMouseDragged:   //    *** NSLeftMouseDragged ***
+            case NSEventTypeLeftMouseDragged:   //    *** NSLeftMouseDragged ***
                 [self scrollBy:mouseOffset];
         
                 if (![self mouse:curPoint inRect:visibleRect])
@@ -3413,7 +3410,7 @@ enum {
                 [self displayIfNeeded];
                 break;
         
-            case NSLeftMouseUp:   //    *** NSLeftMouseUp ***
+            case NSEventTypeLeftMouseUp:   //    *** NSLeftMouseUp ***
                 
                 shouldNotGetNewObjectsForTiledCache = NO;
                 
@@ -3440,11 +3437,7 @@ enum {
 {
     // Ignoring the mouseLoc for right now, will use that soon though...
     
-    id thisObj;
-    NSEnumerator *numer = [selections objectEnumerator];
-    
-    while ((thisObj = [numer nextObject]))
-    {
+    for (id thisObj in selections) {
         [currentLevel makeDefault:thisObj];
     }
     
@@ -3455,11 +3448,7 @@ enum {
 {
     // Ignoring the mouseLoc for right now, will use that soon though...
     
-    id thisObj;
-    NSEnumerator *numer = [selections objectEnumerator];
-    
-    while ((thisObj = [numer nextObject]))
-    {
+    for (id thisObj in selections) {
         [currentLevel setToDefaultState:thisObj];
     }
     
@@ -3470,9 +3459,11 @@ enum {
 {
     NSEnumerator *numer;
     BOOL foundSelection = NO;
-    NSSet *theMapPoints, *thePolys, *theLines, *theMapObjects;
-    NSSet *theNotes = nil;
-    id curObj;
+    NSSet<LEMapPoint*> *theMapPoints;
+    NSSet<LEPolygon*> *thePolys;
+    NSSet<LELine*> *theLines;
+    NSSet<LEMapObject*> *theMapObjects;
+    NSSet<PhAnnotationNote*> *theNotes = nil;
     BOOL pointInsideAlreadySelectedObject = NO;
 
     // Prepeare The Stuff... :)   Draconic... --:=>
@@ -3494,26 +3485,19 @@ enum {
     
     // selectedNotes LEhitTest
     
-    if (boolArrayOptions[_mapoptions_select_notes] == YES)
-    {
+    if (boolArrayOptions[_mapoptions_select_notes] == YES) {
         //NSLog(@"Runing hit detection on notes...");
-        numer = [theNotes objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
+        for (PhAnnotationNote *curObj in theNotes) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
             //{
-                if ([curObj LEhitTest:mouseLoc])
-                {
+                if ([curObj LEhitTest:mouseLoc]) {
                     BOOL objInSelections = [self isObjectInSelections:curObj];
                     
                     NSLog(@"Found a note: %@", [curObj text]);
                     
-                    if (!shiftDown && !objInSelections)
-                    {
+                    if (!shiftDown && !objInSelections) {
                         [self clearSelections];
-                    }
-                    else if (shiftDown && objInSelections)
-                    {
+                    } else if (shiftDown && objInSelections) {
                         [self deselectObject:curObj];
                         return YES;
                     }
@@ -3539,11 +3523,8 @@ enum {
     
     if (boolArrayOptions[_mapoptions_select_points] == YES)
     {	//NSLog(@"Looking For Points...");
-        numer = [theMapPoints objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
-            if ([self mouse:mouseLoc inRect:[curObj as32Rect]])
-            {
+        for (LEMapPoint *curObj in theMapPoints) {
+            if ([self mouse:mouseLoc inRect:[curObj as32Rect]]) {
                 BOOL objInSelections = [self isObjectInSelections:curObj];
                 
                 if (!shiftDown && !objInSelections)
@@ -3572,19 +3553,13 @@ enum {
     if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_objects] == YES)
     {
         //NSLog(@"Runing hit detection on level objects...");
-        numer = [theMapObjects objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
-            if ([self mouse:mouseLoc inRect:[curObj as32Rect]])
-            {
+        for (LEMapObject *curObj in theMapObjects) {
+            if ([self mouse:mouseLoc inRect:[curObj as32Rect]]) {
                 BOOL objInSelections = [self isObjectInSelections:curObj];
                 
-                if (!shiftDown && !objInSelections)
-                {
+                if (!shiftDown && !objInSelections) {
                     [self clearSelections];
-                }
-                else if (shiftDown && objInSelections)
-                {
+                } else if (shiftDown && objInSelections) {
                     [self deselectObject:curObj];
                     return YES;
                 }
@@ -3602,21 +3577,15 @@ enum {
     if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_lines] == YES)
     {
         //NSLog(@"Runing hit detection on lines...");
-        numer = [theLines objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
+        for (LELine *curObj in theLines) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
             //{
-                if ([curObj LEhitTest:mouseLoc])
-                {
+                if ([curObj LEhitTest:mouseLoc]) {
                     BOOL objInSelections = [self isObjectInSelections:curObj];
                     
-                    if (!shiftDown && !objInSelections)
-                    {
+                    if (!shiftDown && !objInSelections) {
                         [self clearSelections];
-                    }
-                    else if (shiftDown && objInSelections)
-                    {
+                    } else if (shiftDown && objInSelections) {
                         [self deselectObject:curObj];
                         return YES;
                     }
@@ -3636,21 +3605,15 @@ enum {
     if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_polygons] == YES)
     {
         //NSLog(@"Runing hit detection on polys...");
-        numer = [thePolys objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
+        for (LEPolygon *curObj in thePolys) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
             //{
-                if ([curObj LEhitTest:mouseLoc])
-                {
+                if ([curObj LEhitTest:mouseLoc]) {
                     BOOL objInSelections = [self isObjectInSelections:curObj];
                     
-                    if (!shiftDown && !objInSelections)
-                    {
+                    if (!shiftDown && !objInSelections) {
                         [self clearSelections];
-                    }
-                    else if (shiftDown && objInSelections)
-                    {
+                    } else if (shiftDown && objInSelections) {
                         [self deselectObject:curObj];
                         return YES;
                     }
@@ -5509,7 +5472,7 @@ enum {
     return [theTmpRectLines copy];
 }
         
-- (NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject
+- (NSString *)gotoAndSelectIndex:(int)theIndex ofType:(LEMapGoToType)typeOfPfhorgeObject
 {
     NSArray *arrayOne = nil, *arrayTwo = nil;
     id obj1 = nil, obj2 = nil;
@@ -5970,7 +5933,7 @@ enum {
 #pragma mark ********* For Changing/Getting Settings *********
 //COUNT_OF_BOOL_ARRAY_OPTIONS
 
-- (BOOL)setBoolOptionsFor:(int)theSetting to:(BOOL)value
+- (BOOL)setBoolOptionsFor:(LEMapDrawOption)theSetting to:(BOOL)value
 {
     if (theSetting < 0 || theSetting >= COUNT_OF_BOOL_ARRAY_OPTIONS)
         return NO;
@@ -5980,7 +5943,7 @@ enum {
     return YES;
 }
 
-- (BOOL)boolOptionsFor:(int)theSetting
+- (BOOL)boolOptionsFor:(LEMapDrawOption)theSetting
 {
     if (theSetting < 0 || theSetting >= COUNT_OF_BOOL_ARRAY_OPTIONS)
         return NO;
@@ -6029,7 +5992,7 @@ enum {
         //id curObj = nil;
         //NSEnumerator *numer = [selections objectEnumerator];
         NSData *theLevelMapData = nil;
-       /* int theChangeCount = */ [thePasteboard declareTypes:[NSArray arrayWithObjects:@"PhorgeSelectionData", nil]
+       /* int theChangeCount = */ [thePasteboard declareTypes:[NSArray arrayWithObjects:PhorgeSelectionDataPasteboardType, nil]
                                 owner:nil];
         
        // numer = [selections objectEnumerator];
@@ -6047,7 +6010,7 @@ enum {
         //while (curObj = [numer nextObject])
         //    [curObj setEncodeIndexNumbersInstead:NO];
         
-        [thePasteboard setData:theLevelMapData forType:@"PhorgeSelectionData"];
+        [thePasteboard setData:theLevelMapData forType:PhorgeSelectionDataPasteboardType];
     }
     
     return;
@@ -6084,16 +6047,16 @@ enum {
     NSPasteboard *thePasteboard = [NSPasteboard generalPasteboard];
     NSArray *theTypes = [thePasteboard types];
     
-    if ([theTypes containsObject:@"PhorgeSelectionData"])
+    if ([theTypes containsObject:PhorgeSelectionDataPasteboardType])
     {
         NSSet *theSelections = nil;
         id curObj = nil;
         NSEnumerator *numer = nil;
         
         NSLog(@"Type was found, begining to unarchive and paste data...");
-        //theSelections = [[NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:@"PhorgeSelectionData"]]] retain];
+        //theSelections = [[NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:PhorgeSelectionDataPasteboardType]]] retain];
         
-        theSelections = [currentLevel importObjects:[thePasteboard dataForType:@"PhorgeSelectionData"]];
+        theSelections = [currentLevel importObjects:[thePasteboard dataForType:PhorgeSelectionDataPasteboardType]];
         
         // Clear Any Old Selections
         [self clearSelections];
@@ -6165,7 +6128,7 @@ enum {
     [self zoomBy:ZOOMOUTFACTOR];
 }
 
--(void)zoomBy:(float)zoomfactor;
+-(void)zoomBy:(CGFloat)zoomfactor;
 {
     NSRect tempRect;
     NSRect oldBounds;

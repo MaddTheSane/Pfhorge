@@ -144,7 +144,7 @@
     if (/*indexOfObject*/ nil == currentLayer)
         return 0;
     else
-        return [layersInLevel indexOfObjectIdenticalTo:currentLayer] + 1;
+        return (int)([layersInLevel indexOfObjectIdenticalTo:currentLayer] + 1);
 }
 
 -(void)recaculateTheCurrentLayer

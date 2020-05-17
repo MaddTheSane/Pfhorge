@@ -328,7 +328,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 - (NSMutableData *)saveLevelAndGetMapNSData:(LELevelData *)level levelToSaveIn:(short)levelToSaveIn
 {
-    long projectedLevelByteCount = [self getByteCountForLevel:level];
+    NSInteger projectedLevelByteCount = [self getByteCountForLevel:level];
     long levelLength;
     NSMutableData *levelData;
     NSMutableData *levelHeaderData;
@@ -338,7 +338,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     #ifdef useDebugingLogs
         NSLog(@"save projectedLevelByteCount: %d", projectedLevelByteCount);
     #endif
-    mapDataToSave = [[NSMutableData alloc] initWithCapacity:500 * 1000];
+    mapDataToSave = [[NSMutableData alloc] initWithCapacity:MAX(projectedLevelByteCount, 500 * 1000)];
     
     //   -(void)saveTag:(long)theTag theLevelNumber:(short)levelNumber theLevelData:(LELevelData *)level
     
@@ -1138,11 +1138,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         if (foundTheTag)
         {
             int i;
-            NSString *theTmpTagString = CFBridgingRelease(UTCreateStringForOSType(tag));
+            //NSString *theTmpTagString = CFBridgingRelease(UTCreateStringForOSType(tag));
             [theArray removeAllObjects];
             
             #ifdef useDebugingLogs
-                NSLog(@"   PreAllocating %d objects for tag '%@'", amountOfObjects, theTmpTagString);
+                NSLog(@"   PreAllocating %d objects for tag '%@'", amountOfObjects, CFBridgingRelease(UTCreateStringForOSType(tag)));
             #endif
             
             for (i = 0; i < amountOfObjects; i++)

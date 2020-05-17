@@ -535,7 +535,7 @@
 			);
 			name = LevEd;
 			sourceTree = "<group>";
-			usesTabs = 1;
+			usesTabs = 0;
 		};
 		2A37F4ABFDCFA73011CA2CEA /* View and Controller */ = {
 			isa = PBXGroup;

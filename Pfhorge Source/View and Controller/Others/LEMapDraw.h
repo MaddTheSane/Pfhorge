@@ -29,8 +29,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-enum // BOOL Options Array Numbers
-{
+//! BOOL Options Array Numbers
+typedef NS_ENUM(int, LEMapDrawOption) {
     _mapoptions_select_points = 0,
     _mapoptions_select_lines,
     _mapoptions_select_objects,
@@ -39,8 +39,8 @@ enum // BOOL Options Array Numbers
     COUNT_OF_BOOL_ARRAY_OPTIONS
 };
 
-enum // Pfhorge Go To Object Types
-{
+//! Pfhorge Go To Object Types
+typedef NS_ENUM(int, LEMapGoToType) {
     _goto_polygon = 0,
     _goto_object,
     _goto_platform,
@@ -76,7 +76,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
     _drawLayers
 };
 
-@class LEMapPoint, LELine;
+@class LEMapPoint, LELine, LEMapObject, PhAnnotationNote;
 @class LELevelWindowController, PhColorListControllerDrawer;
 
 @interface LEMapDraw : NSView
@@ -95,7 +95,6 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 	BOOL alreadySentToolUnavalbeMsg;
 	
 	LEMapDrawingMode drawingMode;
-	short currentDrawingMode;
 	
 	//NSMutableArray *rects;
 	//ColorRect *selectedItem;
@@ -111,19 +110,19 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 	
 	NSMutableSet<LELine*> *selectedLines;
 	NSMutableSet<LEPolygon*> *selectedPolys;
-	NSMutableSet *selectedPoints;
-	NSMutableSet *selectedMapObjects;
-	NSMutableSet *selectedNotes;
-	NSMutableSet *selections;
-	NSMutableSet *affectedBySelections;
-	NSMutableSet *includeInBounds;
+	NSMutableSet<LEMapPoint*> *selectedPoints;
+	NSMutableSet<LEMapObject*> *selectedMapObjects;
+	NSMutableSet<PhAnnotationNote*> *selectedNotes;
+	NSMutableSet<__kindof LEMapStuffParent*> *selections;
+	NSMutableSet<__kindof LEMapStuffParent*> *affectedBySelections;
+	NSMutableSet<__kindof LEMapStuffParent*> *includeInBounds;
 	
 	// Rect Cache Lists
-	NSMutableSet *rectPolys;
-	NSMutableSet *rectLines;
-	NSMutableSet *rectPoints;
-	NSMutableSet *rectObjects;
-	NSMutableSet *rectNotes;
+	NSMutableSet<LEPolygon*> *rectPolys;
+	NSMutableSet<LELine*> *rectLines;
+	NSMutableSet<LEMapPoint*> *rectPoints;
+	NSMutableSet<LEMapObject*> *rectObjects;
+	NSMutableSet<PhAnnotationNote*> *rectNotes;
 	
 	// Special Pointers for line tool...
 	LEMapPoint *startPoint, *endPoint;
@@ -132,7 +131,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 	// List Stuff
 	NSMutableDictionary<NSNumber*,id> *numberTable;
 	NSMutableArray<NSNumber*> *numberList;
-	NSMutableArray *numberDrawingMaps;
+	NSMutableArray<NSBezierPath*> *numberDrawingMaps;
 	NSMutableArray<NSColor*> *colorList;
 	NSMutableArray<NSString*> *nameList;
 	NSMutableArray *objsList;
@@ -164,7 +163,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 @property BOOL newHeightSheetOpen;
 
 // *** Getting Information ***
-- (nullable NSSet<__kindof LEMapStuffParent*> *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // MAKE THIS APPLESCRIPTABLE!!!
+- (nullable NSSet<__kindof LEMapStuffParent*> *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted; // TODO: MAKE THIS APPLESCRIPTABLE!!!
 
 // *** Draw View Methods ***
 - (void)setTheLevel:(nullable LELevelData *)theMapPoints;
@@ -214,7 +213,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 - (void)mouseDownHeightMap:(NSEvent *)theEvent;
 - (void)mouseDownNormal:(NSEvent *)theEvent;
 - (void)dragScroll:(NSEvent *)theEvent;
-- (void)mouseScrollingStaringAt:(NSPoint)mouseLoc;
+- (void)mouseScrollingStaringAtPoint:(NSPoint)mouseLoc;
 
 - (BOOL)useSamplerTool:(NSPoint)mouseLoc;
 - (BOOL)useBrushTool:(NSPoint)mouseLoc;
@@ -232,8 +231,8 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 
 // *************************** For Changing/Getting Settings ***************************
 
-- (BOOL)setBoolOptionsFor:(int)theSetting to:(BOOL)value;
-- (BOOL)boolOptionsFor:(int)theSetting;
+- (BOOL)setBoolOptionsFor:(LEMapDrawOption)theSetting to:(BOOL)value;
+- (BOOL)boolOptionsFor:(LEMapDrawOption)theSetting;
 
 // ********* Utilities *********
 -(BOOL)isThereAPolyAt:(NSPoint)mouseLoc;
@@ -248,7 +247,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 - (NSSet<__kindof LEMapStuffParent*> *)getRectCacheObjectsIn:(NSRect)aRect ofSelectionType:(int)selectionType exclude:(NSSet<LEMapStuffParent*> *)excludeSet;
 - (void)updateRectCacheIn:(NSRect)aRect;
 - (NSSet<LELine*> *)listOfLinesWithin:(NSRect)aRect;
-- (nullable NSString *)gotoAndSelectIndex:(int)theIndex ofType:(int)typeOfPfhorgeObject;
+- (nullable NSString *)gotoAndSelectIndex:(int)theIndex ofType:(LEMapGoToType)typeOfPfhorgeObject;
 - (void)deselectObject:(id)theObj;
 - (BOOL)isObjectInSelections:(id)theObj;
 - (BOOL)isPointInSelection:(NSPoint)thePoint;
@@ -271,7 +270,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 
 - (IBAction)zoomIn:(nullable id)sender;
 - (IBAction)zoomOut:(nullable id)sender;
-- (void)zoomBy:(float)zoomfactor;
+- (void)zoomBy:(CGFloat)zoomfactor;
 - (IBAction)zoomNormal:(nullable id)sender;
 
 - (IBAction)redrawEverything:(nullable id)sender;
