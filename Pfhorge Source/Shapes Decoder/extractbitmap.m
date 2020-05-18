@@ -185,7 +185,7 @@ NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned
 	}
 	// scrivi la dimensione del file
 	
-	file_size = (int)[f length];
+	file_size = CFSwapInt32HostToLittle((int)[f length]);
 	[f replaceBytesInRange:NSMakeRange(2, 4) withBytes:&file_size];
 	
 	return [f copy];
@@ -193,16 +193,14 @@ NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned
 
 void write_word(unsigned short w, NSMutableData *theData)
 {
-	write_c(w & 0x00ff, theData);
-	write_c(w >> 8, theData);
+	w = CFSwapInt16HostToLittle(w);
+	[theData appendBytes:&w length:2];
 }
 
 void write_dword(unsigned int w, NSMutableData *theData)
 {
-	write_c(w & 0xff, theData);
-	write_c((w >> 8) & 0xff, theData);
-	write_c((w >> 16) & 0xff, theData);
-	write_c((w >> 24) & 0xff, theData);
+	w = CFSwapInt32HostToLittle(w);
+	[theData appendBytes:&w length:4];
 }
 
 void write_c(unsigned char w, NSMutableData *theData)

@@ -4233,13 +4233,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
     [currentLevel addObjects:theNewPoint]; // Need to do this though LELevel object!!!
     [rectPoints addObject:theNewPoint];
     
-    theNewPoint = nil;
+    //theNewPoint = nil;
     
     theNewLine = [[LELine alloc] init];
     [currentLevel addObjects:theNewLine]; // Need to do this though LELevel object!!!
     [rectLines addObject:theNewLine];
     
-    theNewLine = nil;
+    //theNewLine = nil;
     
     [theNewLine setMapPoint1:pointToStartFrom];
     [theNewLine setMapPoint2:theNewPoint];

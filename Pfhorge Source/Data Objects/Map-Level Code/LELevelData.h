@@ -195,7 +195,7 @@ enum {
     short unsigned objectCount, lineCount, pointCount, lightCount, polygonCount;
     short unsigned ambientSoundCount, randomSoundCount, platformCount, liquidCount;
     
-    LELevelEnvironmentCode	environment_code;
+    short	environment_code;
     short	physics_model;
     short	song_index;
     LELevelMissionFlags	mission_flags;
@@ -249,7 +249,7 @@ enum {
 
 // ***************** Level Information Accessors  ****************
 
-@property LELevelEnvironmentCode environmentCode;
+@property short environmentCode;
 @property short physicsModel;
 @property (nonatomic) short songIndex;
 @property LELevelMissionFlags missionFlags;

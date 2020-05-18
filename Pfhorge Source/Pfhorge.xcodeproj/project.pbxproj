@@ -687,6 +687,7 @@
 			);
 			path = "Shapes Decoder";
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		F500878F0347B8F80146BBD2 /* Plugin Files */ = {
 			isa = PBXGroup;

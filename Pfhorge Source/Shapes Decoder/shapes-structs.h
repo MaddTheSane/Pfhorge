@@ -5,7 +5,7 @@
 
 typedef unsigned char	byte;
 typedef unsigned short	word;
-typedef int32_t		fixed;
+typedef int32_t			fixed;
 typedef unsigned char	pixel8;
 #define NONE	-1
 #define MAX_COLLECTIONS	32

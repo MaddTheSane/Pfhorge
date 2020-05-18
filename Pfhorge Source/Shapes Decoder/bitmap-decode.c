@@ -242,7 +242,7 @@ int GetBELong(unsigned char **p)
 
 int GetNumberOfBitmapsInCollection(int coll, int *theBitmapCount)
 {
-	byte		*p;
+	byte	*p;
 	int		bitmapCount;
 	int		err = 0;
 	
@@ -254,7 +254,7 @@ int GetNumberOfBitmapsInCollection(int coll, int *theBitmapCount)
 	p = colls[coll] + 26;
 	bitmapCount = GET_SHORT(p);
 	
-	(*theBitmapCount) = bitmapCount;
+	*theBitmapCount = bitmapCount;
 	
 	return 0;
 }

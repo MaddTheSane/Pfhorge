@@ -721,8 +721,16 @@
 			[coder encodeObject:tmpLine forKey:@"lineObjects"];
 			
 			if (!useIndexNumbersInstead) {
-				NSArray *tmpAdj = [NSArray arrayWithObjects:adjacent_polygon_objects count:vertexCountForPoly];
-				NSArray *tmpSide = [NSArray arrayWithObjects:side_objects count:vertexCountForPoly];
+				NSMutableDictionary *tmpAdj = [NSMutableDictionary dictionary];
+				NSMutableDictionary *tmpSide = [NSMutableDictionary dictionary];
+				for (int i = 0; i < vertexCountForPoly; i++) {
+					if (adjacent_polygon_objects[i]) {
+						[tmpAdj setObject:adjacent_polygon_objects[i] forKey:@(i)];
+					}
+					if (side_objects[i]) {
+						[tmpSide setObject:side_objects[i] forKey:@(i)];
+					}
+				}
 				[coder encodeObject:tmpAdj forKey:@"adjacent_polygon_objects"];
 				[coder encodeObject:tmpSide forKey:@"side_objects"];
 			}
@@ -1036,11 +1044,11 @@
 			}
 			
 			if (!useIndexNumbersInstead) {
-				NSArray *tmpAdj = [coder decodeObjectForKey:@"adjacent_polygon_objects"];
-				NSArray *tmpSide = [coder decodeObjectForKey:@"side_objects"];
+				NSDictionary *tmpAdj = [coder decodeObjectForKey:@"adjacent_polygon_objects"];
+				NSDictionary *tmpSide = [coder decodeObjectForKey:@"side_objects"];
 				for (int i = 0; i<vertexCountForPoly; i++) {
-					adjacent_polygon_objects[i]=tmpAdj[i];
-					side_objects[i]=tmpSide[i];
+					adjacent_polygon_objects[i]=tmpAdj[@(i)];
+					side_objects[i]=tmpSide[@(i)];
 				}
 			}
 		}

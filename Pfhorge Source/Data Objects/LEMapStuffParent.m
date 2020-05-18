@@ -117,7 +117,9 @@
  #pragma mark -
 #pragma mark ********* Object Settings *********
 
--(void)setEncodeIndexNumbersInstead:(BOOL)theChoice { useIndexNumbersInstead = theChoice; }
+-(void)setEncodeIndexNumbersInstead:(BOOL)theChoice {
+    useIndexNumbersInstead = theChoice;
+}
 
  // **************************  Advanced Accsess To Level Objects  *************************
  #pragma mark -
