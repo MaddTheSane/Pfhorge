@@ -74,9 +74,6 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    // Do I need to decode the NSObject super class?
-    //self = [super initWithCoder:coder];
-    
     //self = [super init];
     
     int versionNum = 0;

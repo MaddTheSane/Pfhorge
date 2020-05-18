@@ -3799,53 +3799,37 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         //    [theLines indexOfObjectIdenticalTo:thisMapLine], theta, xrot, yrot);
                         
                         
-                        if (theta != 180.0)
-                        {
+                        if (theta != 180.0) {
                             //NSLog(@"For Line %d  theX: %g theY: %g", [theLines indexOfObjectIdenticalTo:thisMapLine], theX, theY);
-                            if (0 < prevY) // Main Point Lower
-                            {
-                                if (theX >= theXfromSlop) //ok
-                                {
+                            if (0 < prevY) {// Main Point Lower
+                                if (theX >= theXfromSlop) { //ok
                                     //NSLog(@"For Line %d  (1) ", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                                     slopeChecksOut = YES;
                                 }
-                            }
-                            else if (0 > prevY) // Main Point Higher
-                            {
-                                if (theX <= theXfromSlop) //ok
-                                {
+                            } else if (0 > prevY) { // Main Point Higher
+                                if (theX <= theXfromSlop) { //ok
                                     //NSLog(@"For Line %d  (2) ", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                                     slopeChecksOut = YES;
                                 }
-                            }
-                            else // equals
-                            {
-                                if (0 > prevX) // Main Point Higher
-                                {
-                                    if (theY >= prevY) //ok
-                                    {
+                            } else { // equals
+                                if (0 > prevX) { // Main Point Higher
+                                    if (theY >= prevY) { //ok
                                         //NSLog(@"For Line %d  (3) ", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                                         slopeChecksOut = YES;
                                     }
-                                }
-                                else if (prevX > 0) // Main Point Higher
-                                {
-                                    if (theY <= prevY) //ok
-                                    {
+                                } else if (prevX > 0) { // Main Point Higher
+                                    if (theY <= prevY) { //ok
                                         //NSLog(@"For Line %d  (4) ", [theLines indexOfObjectIdenticalTo:thisMapLine]);
                                         slopeChecksOut = YES;
                                     }
                                 }
                             }
-                        }
-                        else if (theta == 180.0)
-                        {
+                        } else if (theta == 180.0) {
                             slopeChecksOut = YES;
                         }
                         
                         
-                        if ( theta <= 180.0 && theta < smallestAngle && slopeChecksOut)
-                        {
+                        if ( theta <= 180.0 && theta < smallestAngle && slopeChecksOut) {
                             smallestLine = thisMapLine;
                             smallestLineIndex = [theLines indexOfObjectIdenticalTo:thisMapLine];
                             smallestAngle = theta;
@@ -3866,8 +3850,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             //We have found the next line to follow...
             NSLog(@"FINNAL Lowest Line Index: %ld  With Angle Of: %g", (long)smallestLineIndex, smallestAngle);
             
-            if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
-            {
+            if (smallestLineIndex < 0 || smallestLine == nil) { // Proably -1, means it did not find a line that passed all the tests...
                 SEND_ERROR_MSG(@"One of the lines was not concave.");
                 return NO;
             }
@@ -3876,8 +3859,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 // Test to see and confirm that the line it choose is the same
                 // as the first line that was found...
                 //NSLog(@"Second Phase Almost Complete...");
-                if (smallestLine != [theNewPolyLines objectAtIndex:0])
-                {
+                if (smallestLine != [theNewPolyLines objectAtIndex:0]) {
                     SEND_ERROR_MSG(@"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!");
                     return NO;
                 }
@@ -3886,15 +3868,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 
                 keepFollowingTheLines = NO;
                 NSLog(@"Second Phase Of Fill Polygon Method Found A Polygon!!!");
-            }
-            else
-            {
+            } else {
                 // Need to see if the next main point is the same point as the first one...
-                if ([theNewPolyVectors objectAtIndex:0] == nextMainPoint)
-                {
+                if ([theNewPolyVectors objectAtIndex:0] == nextMainPoint) {
                     // Will there be more then 8 vectors/lines in this poly?
-                    if ([theNewPolyVectors count] > 8)
-                    {
+                    if ([theNewPolyVectors count] > 8) {
                         SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
                         return NO;
                     }
@@ -3910,12 +3888,9 @@ typedef NS_ENUM(short, LEEDrawMode) {
                     currentLine = smallestLine;
                     
                     lastLineToTest = YES;
-                }
-                else
-                { // Polygon Not Yet Completed...
+                } else { // Polygon Not Yet Completed...
                     // Will there be more then 8 vectors/lines in this poly?
-                    if ([theNewPolyVectors count] > 7)
-                    {
+                    if ([theNewPolyVectors count] > 7) {
                         SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
                         return NO;
                     }
@@ -3944,8 +3919,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     [theNewPolygon setVertextCount:[theNewPolyVectors count]];
     
-    switch ([theNewPolyVectors count])
-    {
+    switch ([theNewPolyVectors count]) {
         case 8:
             [theNewPolygon setV8:[theMapPoints indexOfObjectIdenticalTo:[theNewPolyVectors objectAtIndex:7]]];
             [theNewPolygon setLines:[theLines indexOfObjectIdenticalTo:[theNewPolyLines objectAtIndex:7]] toIndex:7];
@@ -3990,13 +3964,10 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     NSLog(@"the new polygon hit test ok!");
     // Add the new polygon to the level...
-    if (theNewPolygon == nil)
-    {
+    if (theNewPolygon == nil) {
         SEND_ERROR_MSG(@"theNewPolygon was nil, ERROR");
         return NO;
-    }
-    else
-    {
+    } else {
         //*rectPolys, *rectLines, *rectPoints, *rectObjects;
         [currentLevel addObjects:theNewPolygon];
         [rectPolys addObject:theNewPolygon];
@@ -4058,18 +4029,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // Clicked directly on an existing point
     
-    LEMapPoint *curPoint;
-    NSMutableArray *theMapPoints;
-    theMapPoints = [currentLevel getThePoints];
+    NSMutableArray *theMapPoints = [currentLevel getThePoints];
     
-    NSEnumerator *numer;
-    numer = [theMapPoints reverseObjectEnumerator];
+    NSEnumerator *numer = [theMapPoints reverseObjectEnumerator];
     
-    while (curPoint = [numer nextObject])	// iterate points
-    {
+    for (LEMapPoint *curPoint in numer) {	// iterate points
         // clicked directly on this point?          \/ returns drawable rect
-        if ([self mouse:mouseLoc inRect:[curPoint as32Rect]])
-        {
+        if ([self mouse:mouseLoc inRect:[curPoint as32Rect]]) {
             // look out - only one point will be considered like this!!!
             // but that's ok because that's how the old behavior worked anyway
             // if anybody really cares they're welcome to add a check here to
@@ -4081,8 +4047,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     // Snap-from-points
-    if(pointToStartFrom == nil)	// didn't get one yet
-    {
+    if(pointToStartFrom == nil)	{// didn't get one yet
         BOOL snapFromNearestPoint = [currentLevel settingAsBool:PhSnapFromPoints];
         
         int snapFromPointLength = [currentLevel settingAsInt:PhSnapFromLength];
@@ -4096,28 +4061,24 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     // Snap-from-grid
-    if(pointToStartFrom == nil)	// didn't get one yet
-    {
+    if(pointToStartFrom == nil)	{ // didn't get one yet
         BOOL snapFromGrid = NO;
         snapFromGrid = YES; // [currentLevel settingAsBool:PhSnapFromGridBool];
         
         // if user holds shift key down as they click, we switch the snap-from-grid behavior
         // this makes it easy for a user to switchi between on-grid and off-grid drawing.
-        if(controlKeyDown)
-        {
+        if (controlKeyDown) {
             snapFromGrid = !snapFromGrid;
         }
         
         int snapFromGridLength = 0;
         snapFromGridLength = 16; // [currentLevel settingAsInt:PhSnapFromGridLength];
-        if(snapFromGrid)	// should we snap from grid points?
-        {
+        if(snapFromGrid) {	// should we snap from grid points?
             // find closest grid point within max snap from distance
             pointToStartFrom = [curMousePoint nearestGridPointInRange:snapFromGridLength];
             
             // the point doesn't exist yet, so create it and add it to the level
-            if(pointToStartFrom)	// it might return nil, if the dist is too small
-            {
+            if(pointToStartFrom) {	// it might return nil, if the dist is too small
                 // This will retain the point.
                 [currentLevel addObjects:pointToStartFrom];
                 
@@ -4130,8 +4091,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     // Create new point
-    if(pointToStartFrom == nil)	// still didn't get one yet
-    {
+    if(pointToStartFrom == nil) {	// still didn't get one yet
         // all of the above failed - so create a new point at the mouse click
         // Need to release this after adding it to the level
         pointToStartFrom = [[LEMapPoint alloc] init];
@@ -4210,26 +4170,20 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     LEMapPoint *pointToStartFrom = nil;
     
-    LEMapPoint *curMousePoint;
-    curMousePoint = [[LEMapPoint alloc] initX32:mouseLoc.x Y32:mouseLoc.y];
+    LEMapPoint *curMousePoint = [[LEMapPoint alloc] initX32:mouseLoc.x Y32:mouseLoc.y];
     // encapsulation break! It needs to know how to get to the current level
     // so we tell it.
     [curMousePoint setTheLELevelDataST:currentLevel];
     
     // Clicked directly on an existing point
     
-    LEMapPoint *curPoint;
-    NSMutableArray *theMapPoints;
-    theMapPoints = [currentLevel getThePoints];
+    NSMutableArray *theMapPoints = [currentLevel getThePoints];
     
-    NSEnumerator *numer;
-    numer = [theMapPoints reverseObjectEnumerator];
+    NSEnumerator *numer = [theMapPoints reverseObjectEnumerator];
     
-    while (curPoint = [numer nextObject])	// iterate points
-    {
+    for (LEMapPoint *curPoint in numer) {	// iterate points
         // clicked directly on this point?          \/ returns drawable rect
-        if ([self mouse:mouseLoc inRect:[curPoint as32Rect]])
-        {
+        if ([self mouse:mouseLoc inRect:[curPoint as32Rect]]) {
             // look out - only one point will be considered like this!!!
             // but that's ok because that's how the old behavior worked anyway
             // if anybody really cares they're welcome to add a check here to
@@ -4240,39 +4194,34 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     // Snap-from-points
-    if(pointToStartFrom == nil)	// didn't get one yet
-    {
+    if(pointToStartFrom == nil) {	// didn't get one yet
         BOOL snapFromNearestPoint = NO;
         snapFromNearestPoint = YES; // [currentLevel settingAsBool:PhSnapFromPoints];
         
         int snapFromPointLength = 0;
         snapFromPointLength = 16; // [currentLevel settingAsInt:PhSnapFromPointsLength];
         
-        if(snapFromNearestPoint)	// should we snap from points?
-        {
+        if(snapFromNearestPoint) {	// should we snap from points?
             // find closest point within max snap from distance
             pointToStartFrom = [curMousePoint nearestMapPointInRange:snapFromPointLength];
         }
     }
     
     // Snap-from-grid
-    if(pointToStartFrom == nil)	// didn't get one yet
-    {
+    if(pointToStartFrom == nil) {	// didn't get one yet
         BOOL snapFromGrid = NO;
         snapFromGrid = YES; // [currentLevel settingAsBool:PhSnapFromGridBool];
         
         // if user holds shift key down as they click, we switch the snap-from-grid behavior
         // this makes it easy for a user to switchi between on-grid and off-grid drawing.
-        if(controlKeyDown)
-        {
+        if (controlKeyDown) {
             snapFromGrid = !snapFromGrid;
         }
         
         int snapFromGridLength = 0;
         snapFromGridLength = 16; // [currentLevel settingAsInt:PhSnapFromGridLength];
         
-        if(snapFromGrid)	// should we snap from grid points?
-        {
+        if(snapFromGrid) {	// should we snap from grid points?
             // find closest grid point within max snap from distance
             pointToStartFrom = [curMousePoint nearestGridPointInRange:snapFromGridLength];
         }
@@ -4334,13 +4283,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     /*if (!shiftDown)
         [self clearSelections];*/
     
-    if (thePoly != nil)
-    {
+    if (thePoly != nil) {
         theNewObject = [currentLevel addObjectWithDefaults:[LEMapObject class]];
         [rectObjects addObject:theNewObject];
         
-        switch (tool)
-        {
+        switch (tool) {
             case LEPaletteToolMonster:
                 [theNewObject setType:_saved_monster];
                 break;
@@ -4383,9 +4330,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [self setNeedsDisplayInRect:[theNewObject drawingBounds]];
         
         return YES;
-    }
-    else
-    {
+    } else {
         SEND_ERROR_MSG(@"Sorry, but you need to have a polygon where you click.");
         return NO;
     }
@@ -4397,10 +4342,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
 {
     [self recenterViewToPoint:mouseLoc];
 
-    if(optionDown)
+    if (optionDown) {
         [self zoomOut:self];
-    else
+    } else {
         [self zoomIn:self];
+    }
     
     return YES;
 }
@@ -4442,31 +4388,25 @@ typedef NS_ENUM(short, LEEDrawMode) {
         NSPoint thePoint = NSZeroPoint;
         LEPolygon *poly = nil;
         
-        while ((theMapObj = [objsCopy anyObject]))
-        {
+        while ((theMapObj = [objsCopy anyObject])) {
             theMapObj = [objsCopy anyObject];
             thePoint = [theMapObj as32Point];
             poly = [self findPolygonAtPoint:thePoint];
             [theMapObj setPolygonObject:poly];
             [objsCopy removeObject:theMapObj];
             
-            if (poly == nil /*!polyWasFoundForObject*/)
-            {
+            if (poly == nil /*!polyWasFoundForObject*/) {
                 [theMapObj setPolygonObject:nil];
                 polyWasNotFoundForAtLeastOneObject = YES;
-            }
-            else
-            {
+            } else {
                 // This will change the orginal set, this will make a copy
                 // easily, and this should work for anything that responds to the
                 // objectEnumerator message, so you don't have to worry about which
                 // collection object your numerating though...
                 pNumer = [[[objsCopy objectEnumerator] allObjects] objectEnumerator];
-                while (theMapObj = [pNumer nextObject])
-                {
+                while (theMapObj = [pNumer nextObject]) {
                     thePoint = [theMapObj as32Point];
-                    if ([poly LEhitTest:thePoint])
-                    {
+                    if ([poly LEhitTest:thePoint]) {
                         [theMapObj setPolygonObject:poly];
                         //polyWasFoundForObject = YES;
                         [objsCopy removeObject:theMapObj];
@@ -4483,8 +4423,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 - (void)checkSelectedNotes
 {
-    if ([selectedNotes count] > 0)
-    {
+    if ([selectedNotes count] > 0) {
         NSMutableSet *objsCopy = [selectedNotes mutableCopy];
         NSEnumerator *pNumer = nil;
         //BOOL polyWasFoundForObject = NO;
@@ -4504,8 +4443,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         NSPoint thePoint = NSZeroPoint;
         LEPolygon *poly = nil;
         
-        while ((theNote = [objsCopy anyObject]))
-        {
+        while ((theNote = [objsCopy anyObject])) {
             theNote = [objsCopy anyObject];
             // could be: [theNote locationAdjusted]
             thePoint = [theNote locationAdjusted];
@@ -4513,13 +4451,10 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [theNote setPolygonObject:poly];
             [objsCopy removeObject:theNote];
             
-            if (poly == nil /*!polyWasFoundForObject*/)
-            {
+            if (poly == nil /*!polyWasFoundForObject*/) {
                 [theNote setPolygonObject:nil];
                 polyWasNotFoundForAtLeastOneObject = YES;
-            }
-            else
-            {
+            } else {
                 // This will change the orginal set, this will make a copy
                 // easily, and this should work for anything that responds to the
                 // objectEnumerator message, so you don't have to worry about which

@@ -235,7 +235,6 @@
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-    defaultRoundingBehavior = [[NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:3 raiseOnExactness:NO raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES] retain];
 
 	if (coder.allowsKeyedCoding) {
 		environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
@@ -245,34 +244,35 @@
 		environment_flags = [coder decodeIntForKey:LELevelDataenvironment_flagsCoderKey];
 		entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
 
-		points = [[coder decodeObjectForKey:LELevelDataPointsCoderKey] retain];
-		lines = [[coder decodeObjectForKey:LELevelDataLinesCoderKey] retain];
-		polys = [[coder decodeObjectForKey:LELevelDataPolysCoderKey] retain];
-		mapObjects = [[coder decodeObjectForKey:LELevelDatamapObjectsCoderKey] retain];
-		sides = [[coder decodeObjectForKey:LELevelDatasidesCoderKey] retain];
-		lights = [[coder decodeObjectForKey:LELevelDatalightsCoderKey] retain];
-		notes = [[coder decodeObjectForKey:LELevelDatanotesCoderKey] retain];
-		media = [[coder decodeObjectForKey:LELevelDatamediaCoderKey] retain];
-		ambientSounds = [[coder decodeObjectForKey:LELevelDataambientSoundsCoderKey] retain];
-		randomSounds = [[coder decodeObjectForKey:LELevelDatarandomSoundsCoderKey] retain];
-		itemPlacement = [[coder decodeObjectForKey:LELevelDataitemPlacementCoderKey] retain];
-		platforms = [[coder decodeObjectForKey:LELevelDataplatformsCoderKey] retain];
+        // Objects are already inited due to -init being called by the super's -initWithCoder:
+		[points setArray:[coder decodeObjectForKey:LELevelDataPointsCoderKey]];
+        [lines setArray:[coder decodeObjectForKey:LELevelDataLinesCoderKey]];
+		[polys setArray:[coder decodeObjectForKey:LELevelDataPolysCoderKey]];
+        [mapObjects setArray:[coder decodeObjectForKey:LELevelDatamapObjectsCoderKey]];
+		[sides setArray:[coder decodeObjectForKey:LELevelDatasidesCoderKey]];
+		[lights setArray:[coder decodeObjectForKey:LELevelDatalightsCoderKey]];
+		[notes setArray:[coder decodeObjectForKey:LELevelDatanotesCoderKey]];
+		[media setArray:[coder decodeObjectForKey:LELevelDatamediaCoderKey]];
+		[ambientSounds setArray:[coder decodeObjectForKey:LELevelDataambientSoundsCoderKey]];
+		[randomSounds setArray:[coder decodeObjectForKey:LELevelDatarandomSoundsCoderKey]];
+		[itemPlacement setArray:[coder decodeObjectForKey:LELevelDataitemPlacementCoderKey]];
+		[platforms setArray:[coder decodeObjectForKey:LELevelDataplatformsCoderKey]];
 		
-		terimals = [[coder decodeObjectForKey:LELevelDataterimalsCoderKey] retain];
+		[terimals setArray:[coder decodeObjectForKey:LELevelDataterimalsCoderKey]];
 		
-		layersInLevel = [[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey] retain];
+		[layersInLevel setArray:[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey]];
 		currentLayer = [[coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey] retain];
-		layerPoints = [[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey] retain];
-		layerLines = [[coder decodeObjectForKey:LELevelDatalayerLinesCoderKey] retain];
-		layerPolys = [[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey] retain];
-		layerMapObjects = [[coder decodeObjectForKey:LELevelDatalayerMapObjectsCoderKey] retain];
+		[layerPoints setArray:[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey]];
+        [layerLines setArray:[coder decodeObjectForKey:LELevelDatalayerLinesCoderKey]];
+		[layerPolys setArray:[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey]];
+		[layerMapObjects setArray:[coder decodeObjectForKey:LELevelDatalayerMapObjectsCoderKey]];
 			
-		tags = [[coder decodeObjectForKey:LELevelDatatagsCoderKey] retain];
+		[tags setArray:[coder decodeObjectForKey:LELevelDatatagsCoderKey]];
 		
-		level_name = [[coder decodeObjectForKey:LELevelDatalevel_nameCoderKey] retain];
+		self.levelName = [coder decodeObjectForKey:LELevelDatalevel_nameCoderKey];
 		
-		noteTypes = [[coder decodeObjectForKey:LELevelDatanoteTypesCoderKey] retain];
-		layerNotes = [[coder decodeObjectForKey:LELevelDatalayerNotesCoderKey] retain];
+        [noteTypes setArray:[coder decodeObjectForKey:LELevelDatanoteTypesCoderKey]];
+        [layerNotes setArray:[coder decodeObjectForKey:LELevelDatalayerNotesCoderKey]];
 		
         [self havePointsScanForLines];
 	} else {
@@ -290,46 +290,46 @@
     //linesThatIBelongTo = decodeObj(coder);
     //NSLog(@"1");
     
-    
-    points = decodeObjRetain(coder);
+    // Objects are already inited due to -init being called by the super's -initWithCoder:
+    [points setArray:decodeObj(coder)];
     //NSLog(@"2");
-    lines = decodeObjRetain(coder);
+    [lines setArray:decodeObj(coder)];
     //NSLog(@"3");
-    polys = decodeObjRetain(coder);
+    [polys setArray:decodeObj(coder)];
     //NSLog(@"4");
-    mapObjects = decodeObjRetain(coder);
+    [mapObjects setArray:decodeObj(coder)];
     //NSLog(@"5");
-    sides = decodeObjRetain(coder);
+    [sides setArray:decodeObj(coder)];
     //NSLog(@"6");
-    lights = decodeObjRetain(coder);
+    [lights setArray:decodeObj(coder)];
     //NSLog(@"7");
-    notes = decodeObjRetain(coder);
+    [notes setArray:decodeObj(coder)];
     //NSLog(@"8");
-    media = decodeObjRetain(coder);
+    [media setArray:decodeObj(coder)];
     //NSLog(@"9");
-    ambientSounds = decodeObjRetain(coder);
+    [ambientSounds setArray:decodeObj(coder)];
     //NSLog(@"10");
-    randomSounds = decodeObjRetain(coder);
+    [randomSounds setArray:decodeObj(coder)];
     //NSLog(@"11");
-    itemPlacement = decodeObjRetain(coder);
+    [itemPlacement setArray:decodeObj(coder)];
     //NSLog(@"12");
-    platforms = decodeObjRetain(coder);
+    [platforms setArray:decodeObj(coder)];
     //NSLog(@"13");
     
-    terimals = decodeObjRetain(coder);
+    [terimals setArray:decodeObj(coder)];
     //NSLog(@"14");
     
-    layersInLevel = decodeObjRetain(coder);
+    [layersInLevel setArray:decodeObj(coder)];
     //NSLog(@"15");
     currentLayer = decodeObjRetain(coder);
     //NSLog(@"16");
-    layerPoints = decodeObjRetain(coder);
+    [layerPoints setArray:decodeObj(coder)];
     //NSLog(@"17");
-    layerLines = decodeObjRetain(coder);
+    [layerLines setArray:decodeObj(coder)];
     //NSLog(@"18");
-    layerPolys = decodeObjRetain(coder);
+    [layerPolys setArray:decodeObj(coder)];
     //NSLog(@"19");
-    layerMapObjects = decodeObjRetain(coder);
+    [layerMapObjects setArray:decodeObj(coder)];
     //NSLog(@"20");
     
     //namedPolyObjects = decodeObj(coder);
@@ -340,21 +340,17 @@
     layerMapObjects = [[NSMutableArray alloc] initWithCapacity:0];
     namedPolyObjects = [[NSMutableArray alloc] initWithCapacity:0];*/
     
-    tags = decodeObjRetain(coder);
+    [tags setArray:decodeObj(coder)];
     
-    level_name = decodeObjRetain(coder);
+    self.levelName = decodeObj(coder);
     
     [self setUpArrayPointersForEveryObject];
     
     if (versionNum > 0) // this is if versionNum == 1...
-       { noteTypes = decodeObjRetain(coder); }
-    else
-       { noteTypes = [[NSMutableArray alloc] init]; }
+       { [noteTypes setArray:decodeObj(coder)]; }
     
     if (versionNum > 1)
-       { layerNotes = decodeObjRetain(coder); }
-    else
-       { layerNotes = [[NSMutableArray alloc] init]; }
+    { [layerNotes setArray:decodeObj(coder)]; }
     
     if (versionNum > 2)
     {

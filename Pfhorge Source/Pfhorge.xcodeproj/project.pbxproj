@@ -250,7 +250,7 @@
 		010314F600ED57F57F000001 /* LELevelWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelWindowController.m; sourceTree = "<group>"; };
 		010314F700ED57F57F000001 /* LELevelWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelWindowController.h; sourceTree = "<group>"; };
 		0112096A00DEC9357F000001 /* LEPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = LEPolygon.h; sourceTree = "<group>"; tabWidth = 8; };
-		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPolygon.m; sourceTree = "<group>"; };
+		0112096B00DEC9357F000001 /* LEPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPolygon.m; sourceTree = "<group>"; usesTabs = 0; };
 		011A1BEA00D3C7827F000001 /* LEMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMap.h; sourceTree = "<group>"; };
 		011A1BEB00D3C7827F000001 /* LEMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMap.m; sourceTree = "<group>"; };
 		011A1BEE00D3D8317F000001 /* LEMapData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapData.h; sourceTree = "<group>"; };

@@ -1978,7 +1978,7 @@
 
 -(void)setFloorLightsource:(short)v 
 {
-    //floor_lightsource_index = v; 
+    //floor_lightsource_index = v;
     if (v == -1)
         floor_lightsource_object = nil;
     else if (everythingLoadedST)
@@ -1986,8 +1986,8 @@
 } //
 
 -(void)setCeilingLightsource:(short)v
-{ 
-    //ceiling_lightsource_index = v; 
+{
+    //ceiling_lightsource_index = v;
     if (v == -1)
         ceiling_lightsource_object = nil;
     else if (everythingLoadedST)
@@ -1995,20 +1995,20 @@
 } //
 
 -(void)setFirstObject:(short)v 
-{ 
-    //first_object_index = v; 
+{
+    //first_object_index = v;
     if (v == -1)
         first_object_pointer = nil;
     else if (everythingLoadedST)
         first_object_pointer = [theMapObjectsST objectAtIndex:v];
 } //
 -(void)setFirstObjectObject:(id)v 
-{ 
+{
     first_object_pointer = v; 
 } //
 
 -(void)setAdjacentPolygon:(short)v toIndex:(short)i 
-{ 
+{
     //adjacent_polygon_indexes[i] = v; 
     if (v == -1)
         adjacent_polygon_objects[i] = nil;
@@ -2016,12 +2016,12 @@
         adjacent_polygon_objects[i] = [theMapPolysST objectAtIndex:v];
 } //
 -(void)setAdjacentPolygonObject:(id)v toIndex:(short)i 
-{ 
+{
     adjacent_polygon_objects[i] = v; 
 } //
 
 -(void)setFirstNeighbor:(short)v 
-{ 
+{
     //first_neighbor_index = v; 
     if (v == -1)
         first_neighbor_object = nil;
@@ -2029,8 +2029,8 @@
         first_neighbor_object = [theMapPolysST objectAtIndex:v];
 } //
 -(void)setFirstNeighborObject:(id)v 
-{ 
-    first_neighbor_object = v; 
+{
+    first_neighbor_object = v;
 } //
 
 -(void)setSides:(short)v toIndex:(short)i 
@@ -2041,14 +2041,14 @@
         side_objects[i] = [theMapSidesST objectAtIndex:v];
 } //
 -(void)setSidesObject:(id)v toIndex:(short)i 
-{ 
+{
     side_objects[i] = v;
 } //
 
 -(void)setMedia:(short)v { [self setMediaIndex:v]; }
 -(void)setMediaIndex:(short)v 
-{ 
-    //media_index = v; 
+{
+    //media_index = v;
     if (v == -1)
         media_object = nil;
     else if (everythingLoadedST)

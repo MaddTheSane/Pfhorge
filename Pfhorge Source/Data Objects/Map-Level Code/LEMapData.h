@@ -143,7 +143,7 @@ enum {
 
 - (NSInteger)getByteCountForLevel:(LELevelData *)level;
 
-- (long)getNumberOfLevels;
+@property (readonly) long numberOfLevels;
 - (NSMutableArray<NSString*> *)levelNames;
 
 
@@ -154,7 +154,7 @@ enum {
 - (id)getUnsignedShortObjectFrom:(NSArray *)theArray;
 - (int)getLong;
 - (unsigned int)getUnsignedLong;
-- (id)getChar:(unsigned)theCharAmount;
+- (NSString*)getChar:(unsigned)theCharAmount;
 - (short)getOneByteShort;
 
 - (void)saveData:(NSData *)theData;

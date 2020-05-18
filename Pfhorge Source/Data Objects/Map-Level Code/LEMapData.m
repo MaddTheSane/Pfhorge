@@ -86,7 +86,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 {
     // NOTE: Check for (theTmpMarathonMap == nil)
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] initWithMapNSData:theData];
-    long numberOfLevels = [theTmpMarathonMap getNumberOfLevels];
+    long numberOfLevels = [theTmpMarathonMap numberOfLevels];
     NSMutableArray *theLevelNames = [theTmpMarathonMap levelNames];
     int i = 0;
     
@@ -1177,7 +1177,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #pragma mark -
 #pragma mark ********* Basic Data Accsessor Functions *********
 
-- (long)getNumberOfLevels
+- (long)numberOfLevels
 {
     return myMainMapHeader.numberOfLevels;
 }
@@ -1288,25 +1288,19 @@ BOOL setupPointerArraysDurringLoading = YES;
     return theUnsignedLong;
 }
 
-- (id)getChar:(unsigned)theCharAmount
+- (NSString*)getChar:(unsigned)theCharAmount
 {
-    int theCharLength = theCharAmount;
-    char theChar[theCharLength];
-    const char *theCharConstPntr;
-    int i;
-    NSString *theTmpCharString;
-    for (i = 0; i < theCharLength; i++)
-    {
-        char theLetter;
-        //[mapData deserializeDataAt:&theLetter ofObjCType:@encode(char) atCursor:&theCursor context:nil];
-        [mapData getBytes:&theLetter range:NSMakeRange(theCursor,1)];
-        theCursor++;
-        theChar[i] = theLetter;
+    NSData *strData = [mapData subdataWithRange:NSMakeRange(theCursor, theCharAmount)];
+    theCursor += theCharAmount;
+    NSString *theTmpCharString = [[NSString alloc] initWithData:strData encoding:NSMacOSRomanStringEncoding];
+    NSRange range = [theTmpCharString rangeOfString:@"\0"];
+    if (range.location != NSNotFound) {
+        NSString *theTrimmedCharString = [theTmpCharString substringToIndex:range.location];
+        [theTmpCharString release];
+        return theTrimmedCharString;
     }
-    theCharConstPntr = theChar;
-    theTmpCharString = [NSString stringWithCString:theCharConstPntr encoding:NSMacOSRomanStringEncoding]; //length:theCharAmount];
     
-   return theTmpCharString;
+    return [theTmpCharString autorelease];
 }
 
 - (short)getOneByteShort
@@ -1437,7 +1431,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //NSLog(@"initMainHeader");
     [self initMainHeader];
     
-    levelNames = [NSMutableArray arrayWithCapacity:[self getNumberOfLevels]];
+    levelNames = [NSMutableArray arrayWithCapacity:[self numberOfLevels]];
     [levelNames retain];
     
     // get the indvidual level headers...
@@ -1545,7 +1539,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     //NSLog(@"initMainHeader");
     [self initMainHeader];
     
-    levelNames = [NSMutableArray arrayWithCapacity:[self getNumberOfLevels]];
+    levelNames = [NSMutableArray arrayWithCapacity:[self numberOfLevels]];
     [levelNames retain];
     
     // get the indvidual level headers...
@@ -1565,14 +1559,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 - (BOOL)initBasicLevelInfo
 {
     int i;
-    environment_flags = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    environment_code = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    physics_model = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    song_index = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    mission_flags = (short *) malloc (sizeof(short) * [self getNumberOfLevels]);
-    entry_point_flags = (int *) malloc (sizeof(int) * [self getNumberOfLevels]);
+    environment_flags = (short *) malloc (sizeof(short) * [self numberOfLevels]);
+    environment_code = (short *) malloc (sizeof(short) * [self numberOfLevels]);
+    physics_model = (short *) malloc (sizeof(short) * [self numberOfLevels]);
+    song_index = (short *) malloc (sizeof(short) * [self numberOfLevels]);
+    mission_flags = (short *) malloc (sizeof(short) * [self numberOfLevels]);
+    entry_point_flags = (int *) malloc (sizeof(int) * [self numberOfLevels]);
     
-    for (i = 0; i < [self getNumberOfLevels]; i++)
+    for (i = 0; i < [self numberOfLevels]; i++)
     {
         BOOL GoOn;
         long this_offset;
@@ -1675,10 +1669,10 @@ BOOL setupPointerArraysDurringLoading = YES;
     theCursor = myMainMapHeader.mapSize;
     
     // Allocate the memory nessary to hold the header information for all the levels...
-    myLevelHeaders = (struct SLevelHeader *) malloc (sizeof(struct SLevelHeader) * [self getNumberOfLevels]);
+    myLevelHeaders = (struct SLevelHeader *) malloc (sizeof(struct SLevelHeader) * [self numberOfLevels]);
     
     // Fill out all the array of structures with the header information from the file...
-    for (i = 0; i < [self getNumberOfLevels]; i++)
+    for (i = 0; i < [self numberOfLevels]; i++)
     {
         myLevelHeaders[i].offsetToStart = [self getLong];
         //NSLog(@"offsetToStart for level %d: %d ", i+1, myLevelHeaders[i].offsetToStart);
@@ -2002,9 +1996,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         {
             if (i < vertextCount)
             {
-                #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"[theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:0]"];
-        #endif
+#ifdef useDebugingLogs
+                [self NSLogShortFromData:@"[theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:0]"];
+#endif
                 [theObj setLinesObject:[self getShortObjectFromArray:theLineArray] toIndex:i]; //
             }
             else

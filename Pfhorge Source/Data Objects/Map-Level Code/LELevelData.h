@@ -180,7 +180,7 @@ enum {
     NSMutableArray<PhPlatform*> *platforms;
     
     NSMutableArray<PhLayer*>  *layersInLevel;
-    PhLayer	    *currentLayer;
+	PhLayer	    *currentLayer;
     // Should make these sets...
 	NSMutableArray<LEMapPoint*>  *layerPoints;
 	NSMutableArray<LELine*>  *layerLines;
@@ -209,7 +209,7 @@ enum {
     //LESide *defaultSide;
     LELine *defaultLine;
     
-    LEMap *theLevelDocument;
+    __unsafe_unretained LEMap *theLevelDocument;
     
     // *** Default Object Pointers ***
     LEMapObject *defaultObjects[_NUMBER_OF_OBJECT_TYPES];
