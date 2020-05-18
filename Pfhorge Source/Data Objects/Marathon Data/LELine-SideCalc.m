@@ -140,8 +140,8 @@
                 NSParameterAssert(theNewSide != nil);
                 //NSParameterAssert(polyLineNumber1 != -1);
                 
-                [theNewSide setPolygon_object:clockPoly];
-                [theNewSide setLine_object:self];
+                [theNewSide setPolygonObject:clockPoly];
+                [theNewSide setLineObject:self];
                 
                 [self setClockwisePolygonSideObject:theNewSide];
                 
@@ -170,8 +170,8 @@
                 NSParameterAssert(theNewSide != nil);
                 //NSParameterAssert(polyLineNumber2 != -1);
                 
-                [theNewSide setPolygon_object:counterclockPoly];
-                [theNewSide setLine_object:self];
+                [theNewSide setPolygonObject:counterclockPoly];
+                [theNewSide setLineObject:self];
                 
                 [self setCounterclockwisePolygonSideObject:theNewSide];
                 if (polyLineNumber2 != -1)
@@ -913,8 +913,8 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
             
-            [theNewSide setPolygon_object:clockwisePolygon];
-            [theNewSide setLine_object:self];
+            [theNewSide setPolygonObject:clockwisePolygon];
+            [theNewSide setLineObject:self];
             
             clockwisePolygonSideObject = theNewSide;
             [clockwisePolygonSideObject setType:sideType];
@@ -951,8 +951,8 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
             
-            [theNewSide setPolygon_object:conterclockwisePolygon];
-            [theNewSide setLine_object:self];
+            [theNewSide setPolygonObject:conterclockwisePolygon];
+            [theNewSide setLineObject:self];
             
             counterclockwisePolygonSideObject = theNewSide;
             [counterclockwisePolygonSideObject setType:sideType];
@@ -1009,8 +1009,8 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSParameterAssert(theNewSide != nil);
             // NSParameterAssert(polyLineNumber3 != -1); // Handled Bellow...
             
-            [theNewSide setPolygon_object:clockwisePolygon];
-            [theNewSide setLine_object:self];
+            [theNewSide setPolygonObject:clockwisePolygon];
+            [theNewSide setLineObject:self];
             
             clockwisePolygonSideObject = theNewSide;
             
@@ -1038,8 +1038,8 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             NSParameterAssert(theNewSide != nil);
             //NSParameterAssert(polyLineNumber4 != -1); // Handled Bellow...
             
-            [theNewSide setPolygon_object:conterclockwisePolygon];
-            [theNewSide setLine_object:self];
+            [theNewSide setPolygonObject:conterclockwisePolygon];
+            [theNewSide setLineObject:self];
             
             counterclockwisePolygonSideObject = theNewSide;
             

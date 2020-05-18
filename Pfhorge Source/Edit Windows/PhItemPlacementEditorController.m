@@ -113,7 +113,7 @@
         name:NSOutlineViewSelectionDidChangeNotification object:nil];*/
     
     /*[theTeriminalTableView registerForDraggedTypes:[NSArray 				
-        arrayWithObjects:@"PfhorgeTerminalSectionData", nil]];*/
+        arrayWithObjects:PfhorgeTerminalSectionDataPasteboardType, nil]];*/
     
     [self updateUserInterface];
 }

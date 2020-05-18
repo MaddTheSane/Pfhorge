@@ -33,7 +33,7 @@
 
 - (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs
 {
-    NSData *theData = [NSArchiver archivedDataWithRootObject:assignedNumber];
+    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:assignedNumber];
     long length = [theData length];
     ExportLong((int)length);
     [myData appendData:theData];
@@ -47,7 +47,10 @@
     
     ImportInt(length);
     theData = [myData getSubDataWithLength:length];
-    assignedNumber = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
+    assignedNumber = [[NSKeyedUnarchiver unarchiveObjectWithData:theData] retain];
+    if (!assignedNumber) {
+        assignedNumber = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
+    }
     
     [super superClassImportWithIndex:index withData:myData useOrginals:useOrg];
 }

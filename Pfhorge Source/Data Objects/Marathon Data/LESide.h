@@ -117,6 +117,8 @@ typedef struct side_exclusion_zone
 	NSPoint	e0, e1, e2, e3;
 }side_exclusion_zone;
 
+@class PhLight, LEPolygon, LELine;
+
 @interface LESide : LEMapStuffParent <NSCopying, NSCoding>
 {
 	// struct side_data // 64 bytes
@@ -132,7 +134,7 @@ typedef struct side_exclusion_zone
 	struct side_exclusion_zone	exclusion_zone;
 	
 	//! only valid if side->flags & _side_is_control_panel
-	LESideControlPanelType		control_panel_type;
+	short		control_panel_type;
 	short		control_panel_permutation; //platform index, light source index, etc...
 	__kindof LEMapStuffParent	*control_panel_permutation_object;
 	
@@ -143,19 +145,18 @@ typedef struct side_exclusion_zone
 	short		transparent_transfer_mode;
 	
 	short		polygon_index, line_index;
-	__kindof LEMapStuffParent	*polygon_object, *line_object;
+	LEPolygon	*polygon_object;
+	LELine		*line_object;
 	
 	short		primary_lightsource_index;
 	short		secondary_lightsource_index;
 	short		transparent_lightsource_index;
 	
-	__kindof LEMapStuffParent	*primary_lightsource_object;
-	__kindof LEMapStuffParent	*secondary_lightsource_object;
-	__kindof LEMapStuffParent	*transparent_lightsource_object;
+	PhLight *primary_lightsource_object;
+	PhLight *secondary_lightsource_object;
+	PhLight *transparent_lightsource_object;
 	
 	int		ambient_delta;
-	
-	short		unused[1];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
@@ -167,68 +168,53 @@ typedef struct side_exclusion_zone
 - (id)copyWithZone:(NSZone *)zone;
 
 // ************************** Utilties **************************
--(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight;
+- (void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight;
 
 // ************************** Flag Accssors *************************
 
--(BOOL)getFlagS:(short)theFlag;
--(void)setFlag:(unsigned short)theFlag to:(BOOL)v;
+- (BOOL)getFlagS:(short)theFlag;
+- (void)setFlag:(unsigned short)theFlag to:(BOOL)v;
 
 // *****************   Set Accsessors   *****************
--(void)setPrimaryTexture:(char)number;
--(void)setSecondaryTexture:(char)number;
--(void)setTransparentTexture:(char)number;
+- (void)setPrimaryTexture:(char)number;
+- (void)setSecondaryTexture:(char)number;
+- (void)setTransparentTexture:(char)number;
 
--(void)setPrimaryTextureCollection:(char)number;
--(void)setSecondaryTextureCollection:(char)number;
--(void)setTransparentTextureCollection:(char)number;
+- (void)setPrimaryTextureCollection:(char)number;
+- (void)setSecondaryTextureCollection:(char)number;
+- (void)setTransparentTextureCollection:(char)number;
 
--(void)resetTextureCollection;
--(void)setTextureCollection:(char)number;
-
--(void)setType:(LESideType)v;
--(void)setFlags:(LESideFlags)v;
+- (void)resetTextureCollection;
+- (void)setTextureCollection:(char)number;
         
--(void)setPrimaryTextureStruct:(struct side_texture_definition)v;
--(void)setSecondaryTextureStruct:(struct side_texture_definition)v;
--(void)setTransparentTextureStruct:(struct side_texture_definition)v;
+- (void)setPrimaryTextureStruct:(struct side_texture_definition)v;
+- (void)setSecondaryTextureStruct:(struct side_texture_definition)v;
+- (void)setTransparentTextureStruct:(struct side_texture_definition)v;
 
--(void)setExclusionZone:(struct side_exclusion_zone)v;
+- (void)setExclusionZone:(struct side_exclusion_zone)v;
         
--(void)setControl_panel_type:(short)v;
--(void)setControl_panel_permutation:(short)v;
--(void)setControl_panel_permutation_object:(id)v;
-        
--(void)setPrimary_transfer_mode:(short)v;
--(void)setSecondary_transfer_mode:(short)v;
--(void)setTransparent_transfer_mode:(short)v;
-        
--(void)setPolygon_index:(short)v;
--(void)setLine_index:(short)v;
+- (void)setControlPanelType:(short)v;
+- (void)setControlPanelPermutation:(short)v;
 
--(void)setPolygon_object:(id)v;
--(void)setLine_object:(id)v;
+- (void)setPolygonIndex:(short)v;
+- (void)setLineIndex:(short)v;
         
--(void)setPrimary_lightsource_index:(short)v;
--(void)setSecondary_lightsource_index:(short)v;
--(void)setTransparent_lightsource_index:(short)v;
-
--(void)setPrimary_lightsource_object:(id)v;
--(void)setSecondary_lightsource_object:(id)v;
--(void)setTransparent_lightsource_object:(id)v;
+- (void)setPrimaryLightsourceIndex:(short)v;
+- (void)setSecondaryLightsourceIndex:(short)v;
+- (void)setTransparentLightsourceIndex:(short)v;
         
 @property int ambientDelta;
 
 // *****************   Get Accsessors   *****************
--(char)primaryTexture;
--(char)secondaryTexture;
--(char)transparentTexture;
+- (char)primaryTexture;
+- (char)secondaryTexture;
+- (char)transparentTexture;
 
--(char)primaryTextureCollection;
--(char)secondaryTextureCollection;
--(char)transparentTextureCollection;
+- (char)primaryTextureCollection;
+- (char)secondaryTextureCollection;
+- (char)transparentTextureCollection;
 
--(char)textureCollection;
+- (char)textureCollection;
 
 @property LESideType type;
 @property LESideFlags flags;
@@ -239,32 +225,32 @@ typedef struct side_exclusion_zone
 
 @property struct side_exclusion_zone exclusionZone;
 
--(int)getPermutationEffects;
+- (int)permutationEffects;
 
--(short)getControl_panel_type;
--(short)getControl_panel_permutation;
--(id)getControl_panel_permutation_object;
+@property (nonatomic) short controlPanelType;
+-(short)controlPanelPermutation;
+@property (assign) __kindof LEMapStuffParent *controlPanelPermutationObject;
         
--(short)primaryTransferMode;
--(short)secondaryTransferMode;
--(short)transparentTransferMode;
+@property short primaryTransferMode;
+@property short secondaryTransferMode;
+@property short transparentTransferMode;
         
--(short)getPolygon_index;
--(short)getLine_index;
+-(short)polygonIndex;
+-(short)lineIndex;
 
--(id)getpolygon_object;
--(id)getline_object;
+@property (assign) LEPolygon *polygonObject;
+@property (assign) LELine *lineObject;
         
--(short)getPrimary_lightsource_index;
--(short)getSecondary_lightsource_index;
--(short)getTransparent_lightsource_index;
+-(short)primaryLightsourceIndex;
+-(short)secondaryLightsourceIndex;
+-(short)transparentLightsourceIndex;
                 
--(id)getprimary_lightsource_object;
--(id)getsecondary_lightsource_object;
--(id)gettransparent_lightsource_object;
+@property (assign) PhLight *primaryLightsourceObject;
+@property (assign) PhLight *secondaryLightsourceObject;
+@property (assign) PhLight *transparentLightsourceObject;
 
 //  ************************** Other Usful Methods *************************
--(short)adjustedControlPanelType;
+@property (readonly) short adjustedControlPanelType;
 
 // ************************** Inzlizations And Class Methods *************************
 

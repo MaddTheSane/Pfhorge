@@ -3457,7 +3457,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 -(BOOL)useArrowTool:(NSPoint)mouseLoc clickCount:(NSInteger)count
 {
-    NSEnumerator *numer;
     BOOL foundSelection = NO;
     NSSet<LEMapPoint*> *theMapPoints;
     NSSet<LEPolygon*> *thePolys;
@@ -4474,9 +4473,9 @@ typedef NS_ENUM(short, LEEDrawMode) {
     [self recenterViewToPoint:mouseLoc];
 
     if(optionDown)
-	[self zoomOut:self];
+        [self zoomOut:self];
     else
-	[self zoomIn:self];
+        [self zoomIn:self];
     
     return YES;
 }
@@ -4797,8 +4796,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 - (LEPolygon*)findPolygonAtPoint:(NSPoint)point
 {
-    NSEnumerator *numer;
-    NSArray *thePolys;
+    NSEnumerator<LEPolygon*> *numer;
+    NSArray<LEPolygon*> *thePolys;
     
     thePolys = [currentLevel layerPolys];
     numer = [thePolys reverseObjectEnumerator];
@@ -4896,7 +4895,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     {
         //case NSKeyDown:
         //case NSKeyUp:
-        case NSFlagsChanged:
+        case NSEventTypeFlagsChanged:
            // NSLog(@"NSFlagged Changed Up, Repeat: %@", (([event isARepeat]) ? @"YES" : @"NO"));
            // break;
         default:
@@ -5031,14 +5030,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 -(BOOL)isThereAPolyAt:(NSPoint)mouseLoc
 {
-    NSEnumerator *numer;
-    NSSet *thePolys;
-    id curObj;
+    NSSet<LEPolygon*> *thePolys;
     
     thePolys = rectPolys;//[currentLevel layerPolys];
     //NSLog(@"Runing hit detection on polys...");
-    numer = [thePolys objectEnumerator];
-    while (curObj = [numer nextObject])
+    for (LEPolygon *curObj in thePolys)
     {
         //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
         //{
@@ -5054,14 +5050,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 -(BOOL)isThereAPointAt:(NSPoint)mouseLoc
 {
-    NSEnumerator *numer;
-    NSSet *theMapPoints;
-    id curObj;
+    NSSet<LEMapPoint*> *theMapPoints;
     
     theMapPoints = rectPoints;//[currentLevel layerPoints];
     
-    numer = [theMapPoints objectEnumerator];
-    while (curObj = [numer nextObject])
+    for (LEMapPoint *curObj in theMapPoints)
     {
         if ([self mouse:mouseLoc inRect:[curObj as32Rect]])
         {
@@ -5074,14 +5067,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 -(BOOL)isThereALineAt:(NSPoint)mouseLoc
 {
-    NSEnumerator *numer;
-    NSSet *theLines;
-    id curObj;
+    NSSet<LELine*> *theLines;
     
     theLines = rectLines;//[currentLevel layerLines];
     //NSLog(@"Runing hit detection on lines...");
-    numer = [theLines objectEnumerator];
-    while (curObj = [numer nextObject])
+    for (LELine *curObj in theLines)
     {
         //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
         //{
@@ -5096,18 +5086,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 -(BOOL)isThereAObjectAt:(NSPoint)mouseLoc
 {
-    NSEnumerator *numer;
-    NSSet *theMapObjects;
-    id curObj;
+    NSSet<LEMapObject*> *theMapObjects;
     
     theMapObjects = rectObjects;//[currentLevel layerMapObjects];
     
     //NSLog(@"Runing hit detection on level objects...");
-    numer = [theMapObjects objectEnumerator];
-    while (curObj = [numer nextObject])
-    {
-        if ([self mouse:mouseLoc inRect:[curObj as32Rect]])
-        {
+    for (LEMapObject *curObj in theMapObjects) {
+        if ([self mouse:mouseLoc inRect:[curObj as32Rect]]) {
             return YES;
         }
     }
@@ -5121,8 +5106,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSRect vis = [self visibleRect];
     NSPoint theOrigin = vis.origin;
     
-    theOrigin.x = theOrigin.x + aPoint.x;
-    theOrigin.y = theOrigin.y + aPoint.y;
+    theOrigin.x += aPoint.x;
+    theOrigin.y += aPoint.y;
     
     //NSLog(@"Scroll By: (%g, %g)", aPoint.x, aPoint.y);
     
@@ -5300,8 +5285,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSEnumerator *numer;
     NSMutableSet *rectSet = [[NSMutableSet alloc] init];
     
-    switch(selectionType)
-    {
+    switch(selectionType) {
         case _point_selections:
             if (boolArrayOptions[_mapoptions_select_points])
             {
@@ -5477,8 +5461,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSArray *arrayOne = nil, *arrayTwo = nil;
     id obj1 = nil, obj2 = nil;
 
-    switch(typeOfPfhorgeObject)
-    {
+    switch(typeOfPfhorgeObject) {
         case _goto_polygon:
             arrayOne = [currentLevel getThePolys];
             arrayTwo = [currentLevel layerPolys];
@@ -5537,13 +5520,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
     [selections removeObject:theObj];
     
     if (theClass == [LEMapPoint class])
-	[selectedPoints removeObject:theObj];
+        [selectedPoints removeObject:theObj];
         
     else if (theClass == [LELine class])
         [selectedLines removeObject:theObj];
         
     else if (theClass == [LEPolygon class])
-	[selectedPolys removeObject:theObj];
+        [selectedPolys removeObject:theObj];
         
     else if (theClass == [LEMapObject class])
         [selectedMapObjects removeObject:theObj];
@@ -5562,9 +5545,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 - (BOOL)isPointInSelection:(NSPoint)thePoint
 {
-    NSEnumerator *numer = nil;//[selections objectEnumerator];
-    id thisObj = nil;
-    
     if (selections == nil)
         return NO;
     
@@ -5576,12 +5556,10 @@ typedef NS_ENUM(short, LEEDrawMode) {
     // selectedPolys
     
     
-    numer = [selections objectEnumerator];
-    
-    while ((thisObj = [numer nextObject]))
-    {
-        if ([thisObj LEhitTest:thePoint])
+    for (LEMapStuffParent *thisObj in selections) {
+        if ([thisObj LEhitTest:thePoint]) {
             return YES;
+        }
     }
     
     return NO;
@@ -5792,22 +5770,22 @@ typedef NS_ENUM(short, LEEDrawMode) {
 {
     NSEventModifierFlags newFlags = [theEvent modifierFlags];
 
-    if (newFlags & NSAlphaShiftKeyMask)
+    if (newFlags & NSEventModifierFlagCapsLock)
         capsLockDown = YES;
     else
         capsLockDown = NO;
 
-    if (newFlags & NSShiftKeyMask)
+    if (newFlags & NSEventModifierFlagShift)
         shiftDown = YES;
     else
         shiftDown = NO;
 
-    if (newFlags & NSControlKeyMask)
+    if (newFlags & NSEventModifierFlagControl)
         controlKeyDown = YES;
     else
         controlKeyDown = NO;
 
-    if (newFlags & NSAlternateKeyMask)
+    if (newFlags & NSEventModifierFlagOption)
         optionDown = YES;
     else
         optionDown = NO;
@@ -6012,34 +5990,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         [thePasteboard setData:theLevelMapData forType:PhorgeSelectionDataPasteboardType];
     }
-    
-    return;
-    
-    
-    if ([selections count] > 0)
-    {
-        NSPasteboard *thePasteboard = [NSPasteboard generalPasteboard];
-        id curObj = nil;
-        NSEnumerator *numer = nil;//[selections objectEnumerator];
-        NSData *theLevelMapData = nil;
-       /* int theChangeCount = */ [thePasteboard declareTypes:[NSArray arrayWithObjects:@"PhorgeSelectionData", nil]
-                                owner:nil];
-        
-        numer = [selections objectEnumerator];
-        
-        NSLog(@"Count of selections: %lu", (unsigned long)[selections count]);
-        
-        while (curObj = [numer nextObject])
-            [curObj setEncodeIndexNumbersInstead:YES];
-        
-        theLevelMapData = [NSArchiver archivedDataWithRootObject:[selections allObjects]];
-        
-        numer = [selections objectEnumerator];
-        while (curObj = [numer nextObject])
-            [curObj setEncodeIndexNumbersInstead:NO];
-        
-        [thePasteboard setData:theLevelMapData forType:@"PhorgeSelectionData"];
-    }
 }
 
 - (IBAction)paste:(id)sender
@@ -6050,8 +6000,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
     if ([theTypes containsObject:PhorgeSelectionDataPasteboardType])
     {
         NSSet *theSelections = nil;
-        id curObj = nil;
-        NSEnumerator *numer = nil;
         
         NSLog(@"Type was found, begining to unarchive and paste data...");
         //theSelections = [[NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:PhorgeSelectionDataPasteboardType]]] retain];
@@ -6063,8 +6011,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         // Don't you need to add it to the level first???
         
-        numer = [theSelections objectEnumerator];
-        while (curObj = [numer nextObject])
+        for (id curObj in theSelections)
         {
             [self selectObject:curObj byExtendingSelection:YES];
         }
@@ -6072,42 +6019,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //Update the selctions set...
         [self updateTheSelections];
         //[theSelections release]; // autoreleased...
-        
-        [self setNeedsDisplayInRect:[self drawingBoundsForSelections]];
-    }
-
-    return;
-    
-    if ([theTypes containsObject:@"PhorgeSelectionData"])
-    {
-        NSSet *theSelections = nil;
-        id curObj = nil;
-        NSEnumerator *numer = nil;
-        
-        NSLog(@"Type was found, begining to unarchive and paste data...");
-        theSelections = [NSSet setWithArray:[NSUnarchiver unarchiveObjectWithData:[thePasteboard dataForType:@"PhorgeSelectionData"]]];
-        
-        // Clear Any Old Selections
-        [self clearSelections];
-        
-        // Don;t YOu need to add it to the level first???
-        
-        numer = [theSelections objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
-            if ([curObj isKindOfClass:[LEMapPoint class]])
-                [selectedPoints addObject:curObj];
-            else if ([curObj isKindOfClass:[LELine class]])
-                [selectedLines addObject:curObj];
-            else if ([curObj isKindOfClass:[LEPolygon class]])
-                [selectedPolys addObject:curObj];
-            else if ([curObj isKindOfClass:[LEMapObject class]])
-                [selectedMapObjects addObject:curObj];
-            else
-                NSLog(@"Unknown Object In Paste Data...");
-        }
-        //Update the selctions set...
-        [self updateTheSelections];
         
         [self setNeedsDisplayInRect:[self drawingBoundsForSelections]];
     }

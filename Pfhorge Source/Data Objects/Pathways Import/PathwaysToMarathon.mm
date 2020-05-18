@@ -1299,7 +1299,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                                 break;
                             }
                             
-                            LEPolygon *Pg = (LEPolygon *)[Sd getpolygon_object];
+                            LEPolygon *Pg = (LEPolygon *)[Sd polygonObject];
                             if (Pg)
                             {
                                 if ([Pg type] == _polygon_is_teleporter)
@@ -1311,8 +1311,8 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                             }
                             
                             [Sd setPrimaryTexture:Txtrs[Env][Which]];
-                            [Sd setPrimary_lightsource_index:Lights[WhichLight]];
-                            [Sd setPrimary_transfer_mode:Xfers[WhichXfer]];
+                            [Sd setPrimaryLightsourceIndex:Lights[WhichLight]];
+                            [Sd setPrimaryTransferMode:Xfers[WhichXfer]];
                        }                        
                     }
                 }

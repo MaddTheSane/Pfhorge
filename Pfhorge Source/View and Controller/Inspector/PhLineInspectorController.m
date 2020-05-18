@@ -43,6 +43,9 @@
 #import "LEPolygon.h"
 #import "LELine.h"
 #import "LESide.h"
+#import "PhTag.h"
+#import "PhLight.h"
+#import "Terminal.h"
 
 //Other Classes...
 #import "LEExtras.h"
@@ -201,9 +204,9 @@
         sCanBeDestroyed			= [baseSideRef getFlagS:6];
         sOnlyToggledByProjectiles	= [baseSideRef getFlagS:7];
 	
-        //[linePrimaryLight selectItemAtIndex:[baseSideRef getPrimary_lightsource_index]];
-        //[lineSecondaryLight selectItemAtIndex:[baseSideRef getSecondary_lightsource_index]];
-        //[lineTransparentLight selectItemAtIndex:[baseSideRef getTransparent_lightsource_index]];
+        //[linePrimaryLight selectItemAtIndex:[baseSideRef primaryLightsourceIndex]];
+        //[lineSecondaryLight selectItemAtIndex:[baseSideRef secondaryLightsourceIndex]];
+        //[lineTransparentLight selectItemAtIndex:[baseSideRef transparentLightsourceIndex]];
         
         //[linePrimaryLight setObjectValue:[linePrimaryLight objectValueOfSelectedItem]];
         //[lineSecondaryLight  setObjectValue:[lineSecondaryLight objectValueOfSelectedItem]];
@@ -235,7 +238,7 @@
             if (sOnlyToggledByProjectiles)
                 SelectS(lineControlPanelFlags, 6);
                 
-            ///NSLog(@"Control Panel Type: %d", [baseSideRef getControl_panel_type]);
+            ///NSLog(@"Control Panel Type: %d", [baseSideRef controlPanelType]);
             
             if (prevEnviroCode != [[mainInspectorController currentLevel] environmentCode])
             {
@@ -255,28 +258,28 @@
             {
                 case _water:
                     if (enviromentChanged) [lineControlPanelType addItemsWithTitles:theWaterNames];
-                    controlPanelType = ([baseSideRef getControl_panel_type] - waterOffset);
+                    controlPanelType = ([baseSideRef controlPanelType] - waterOffset);
                     [lineControlPanelType selectItemAtIndex:controlPanelType];
                     break;
                 case _lava:
                     if (enviromentChanged) [lineControlPanelType addItemsWithTitles:theLavaNames];
-                    controlPanelType = ([baseSideRef getControl_panel_type] - lavaOffset);
+                    controlPanelType = ([baseSideRef controlPanelType] - lavaOffset);
                     [lineControlPanelType selectItemAtIndex:controlPanelType];
                     break;
                 case _sewage:
                     if (enviromentChanged) [lineControlPanelType addItemsWithTitles:theSewageNames];
-                    controlPanelType = ([baseSideRef getControl_panel_type] - sewageOffset);
+                    controlPanelType = ([baseSideRef controlPanelType] - sewageOffset);
                     [lineControlPanelType selectItemAtIndex:controlPanelType];
                     break;
                 case _jjaro:
                     if (enviromentChanged) [lineControlPanelType addItemsWithTitles:thePfhorNames];
-                    controlPanelType = ([baseSideRef getControl_panel_type] - jjaroOffset);
+                    controlPanelType = ([baseSideRef controlPanelType] - jjaroOffset);
                     ///NSLog(@"lineControlPanelType: %d", controlPanelType);
                     [lineControlPanelType selectItemAtIndex:controlPanelType];
                     break;
                 case _pfhor:
                     if (enviromentChanged) [lineControlPanelType addItemsWithTitles:theJjaroNames];
-                    controlPanelType = ([baseSideRef getControl_panel_type] - pfhorOffset);
+                    controlPanelType = ([baseSideRef controlPanelType] - pfhorOffset);
                     [lineControlPanelType selectItemAtIndex:controlPanelType];
                     break;
                 default:
@@ -336,12 +339,12 @@
                 case _cpanel_effects_tag:
                     [theLevelData addMenu:linePermutation asA:_tagMenu];
                     [linePermutation selectItemAtIndex:[[theLevelData getTags]
-                        indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]]];
+                        indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_light:
                     [theLevelData addMenu:linePermutation asA:_lightMenu];
                     [linePermutation selectItemAtIndex:[[theLevelData getLights]
-                        indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]]];
+                        indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_polygon:
                     [theLevelData addMenu:linePermutation asA:_polyMenu];
@@ -352,7 +355,7 @@
     //IBOutlet id linePermutationTabView;
                     
                     {
-                        NSInteger objIndex = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]];
+                        NSInteger objIndex = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]];
                         
                         if (objIndex < 0)
                             [linePermutation selectItemAtIndex:-1];
@@ -363,11 +366,11 @@
                     // Got to get the index from the names polygon list...
                     
                     //[linePermutation selectItemAtIndex:[[theLevelData getThePolys]
-                        //indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]]];
+                        //indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_terminal:
                     terminalIndex = [[theLevelData getTerminals] 
-                                indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]];
+                                indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]];
                     
                     [theLevelData addMenu:linePermutation asA:_terminalMenu];
                     
@@ -387,7 +390,7 @@
                     break;
             }
             
-            //[linePermutation setObjectValue:[[NSNumber numberWithShort:[baseSideRef getControl_panel_permutation]] stringValue]];
+            //[linePermutation setObjectValue:[[NSNumber numberWithShort:[baseSideRef controlPanelPermutation]] stringValue]];
         }
         else
         {
@@ -405,7 +408,7 @@
     //[lineSecondaryLight  setObjectValue:[lineSecondaryLight objectValueOfSelectedItem]];
     //[lineTransparentLight  setObjectValue:[lineTransparentLight objectValueOfSelectedItem]];
     //[lineControlPanelType setObjectValue:[lineControlPanelType objectValueOfSelectedItem]];
-    //[linePermutation setObjectValue:[[NSNumber numberWithShort:[baseSideRef getControl_panel_permutation]] stringValue]];
+    //[linePermutation setObjectValue:[[NSNumber numberWithShort:[baseSideRef controlPanelPermutation]] stringValue]];
 }
 
 - (void)saveControlPanelFlags
@@ -446,10 +449,10 @@
     {
         [baseSideRef setFlags:0];
         //[ccSide setFlags:0];
-        [baseSideRef setControl_panel_permutation_object:nil];
-        //[ccSide setControl_panel_permutation_object:nil];
-        [baseSideRef setControl_panel_type:0];
-        //[ccSide setControl_panel_type:0];
+        [baseSideRef setControlPanelPermutationObject:nil];
+        //[ccSide setControlPanelPermutationObject:nil];
+        [baseSideRef setControlPanelType:0];
+        //[ccSide setControlPanelType:0];
         
         [lineControlPanelFlags setEnabledOfMatrixCellsTo:NO];
         [lineControlPanelType setEnabled:NO];
@@ -464,24 +467,24 @@
     switch ([[mainInspectorController currentLevel] environmentCode])
     {
         case _water:
-            [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + waterOffset)];
-            //[ccSide  setControl_panel_type:([sender indexOfSelectedItem] + waterOffset)];
+            [baseSideRef  setControlPanelType:([sender indexOfSelectedItem] + waterOffset)];
+            //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + waterOffset)];
             break;
         case _lava:
-            [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + lavaOffset)];
-            //[ccSide  setControl_panel_type:([sender indexOfSelectedItem] + lavaOffset)];
+            [baseSideRef  setControlPanelType:([sender indexOfSelectedItem] + lavaOffset)];
+            //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + lavaOffset)];
             break;
         case _sewage:
-            [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + sewageOffset)];
-            //[ccSide  setControl_panel_type:([sender indexOfSelectedItem] + sewageOffset)];
+            [baseSideRef  setControlPanelType:([sender indexOfSelectedItem] + sewageOffset)];
+            //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + sewageOffset)];
             break;
         case _jjaro:
-            [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + jjaroOffset)];
-            //[ccSide  setControl_panel_type:([sender indexOfSelectedItem] + jjaroOffset)];
+            [baseSideRef  setControlPanelType:([sender indexOfSelectedItem] + jjaroOffset)];
+            //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + jjaroOffset)];
             break;
         case _pfhor:
-            [baseSideRef  setControl_panel_type:([sender indexOfSelectedItem] + pfhorOffset)];
-            //[ccSide  setControl_panel_type:([sender indexOfSelectedItem] + pfhorOffset)];
+            [baseSideRef  setControlPanelType:([sender indexOfSelectedItem] + pfhorOffset)];
+            //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + pfhorOffset)];
             break;
         default:
             SEND_ERROR_MSG(@"ERROR: An unknown contol panel type Attempted to be selected...");
@@ -495,18 +498,18 @@
 {
     LELevelData *theLevelData = [mainInspectorController currentLevel];
     
-    switch([baseSideRef getPermutationEffects])
+    switch([baseSideRef permutationEffects])
     {
         case 0:
             [linePermutation selectItemAtIndex:-1];
             [linePermutation removeAllItems];
             break;
         case _cpanel_effects_tag:
-            [baseSideRef setControl_panel_permutation_object:
+            [baseSideRef setControlPanelPermutationObject:
                 [[theLevelData getTags] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         case _cpanel_effects_light:
-            [baseSideRef setControl_panel_permutation_object:
+            [baseSideRef setControlPanelPermutationObject:
                 [[theLevelData getLights] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         case _cpanel_effects_polygon:
@@ -520,18 +523,18 @@
                 NSInteger objIndex = [sender indexOfSelectedItem];
                 
                 if (objIndex < 0)
-                    [baseSideRef setControl_panel_permutation_object:nil];
+                    [baseSideRef setControlPanelPermutationObject:nil];
                 else
-                    [baseSideRef setControl_panel_permutation_object:[[theLevelData namedPolyObjects] objectAtIndex:objIndex]];
+                    [baseSideRef setControlPanelPermutationObject:[[theLevelData namedPolyObjects] objectAtIndex:objIndex]];
             }
             
             // Got to get the index from the names polygon list...
             
             //[linePermutation selectItemAtIndex:[[theLevelData getThePolys]
-                //indexOfObjectIdenticalTo:[baseSideRef getControl_panel_permutation_object]]];
+                //indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
             break;
         case _cpanel_effects_terminal:
-            [baseSideRef setControl_panel_permutation_object:
+            [baseSideRef setControlPanelPermutationObject:
                 [[theLevelData getTerminals] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         default:

@@ -339,13 +339,13 @@ static inline float4x4 matrix4MakeLookAt(float3 eye, float3 center, float3 up)
     float3 n = normalize(eye - center);
     float3 u = normalize(cross(up, n));
     float3 v = cross(n, u);
-	float4x4 m(simd_make_float4(u.x, v.x, n.x, 0.0f),
-			   simd_make_float4(u.y, v.y, n.y, 0.0f),
-			   simd_make_float4(u.z, v.z, n.z, 0.0f),
-			   simd_make_float4(dot(-u, eye),
-								dot(-v, eye),
-								dot(-n, eye),
-								1.0f));
+    float4x4 m(simd_make_float4(u.x, v.x, n.x, 0.0f),
+               simd_make_float4(u.y, v.y, n.y, 0.0f),
+               simd_make_float4(u.z, v.z, n.z, 0.0f),
+               simd_make_float4(dot(-u, eye),
+                                dot(-v, eye),
+                                dot(-n, eye),
+                                1.0f));
     return m;
 }
 

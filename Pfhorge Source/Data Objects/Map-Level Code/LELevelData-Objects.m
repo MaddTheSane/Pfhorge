@@ -122,9 +122,9 @@
         // Why is this setting lights, when the default settings
         // were just copyed over to the new side?
         
-        //[theNewSide setPrimary_lightsource_object:[lights objectAtIndex:0]];
-        //[theNewSide setSecondary_lightsource_object:[lights objectAtIndex:0]];
-        //[theNewSide setTransparent_lightsource_object:[lights objectAtIndex:0]];
+        //[theNewSide setPrimaryLightsourceObject:[lights objectAtIndex:0]];
+        //[theNewSide setSecondaryLightsourceObject:[lights objectAtIndex:0]];
+        //[theNewSide setTransparentLightsourceObject:[lights objectAtIndex:0]];
         #ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added LESide object with index #%d", [theNewSide getIndex]);
         #endif
@@ -982,8 +982,8 @@
         [theLine setClockwisePolygonSideObject:nil];
         //NSLog(@"*deleteing line 2 c");
         
-        [clockwiseSide setPolygon_object:nil];
-        [clockwiseSide setLine_object:nil];
+        [clockwiseSide setPolygonObject:nil];
+        [clockwiseSide setLineObject:nil];
     }
     //NSLog(@"*deleteing line 3");
     if ((counterclockSide != nil) && (counterclockSide != clockwiseSide))
@@ -991,8 +991,8 @@
         //[sides removeObjectIdenticalTo:counterclockSide];
         [theLine setCounterclockwisePolygonSideObject:nil]; 
         
-        [counterclockSide setPolygon_object:nil];
-        [counterclockSide setLine_object:nil];
+        [counterclockSide setPolygonObject:nil];
+        [counterclockSide setLineObject:nil];
     }
     //NSLog(@"*deleteing line 4");
     
@@ -1002,10 +1002,10 @@
     numer = [sides objectEnumerator];
     while (thisObj = [numer nextObject])
     {
-        if ([thisObj getline_object] == theLineToRemove)
+        if ([thisObj lineObject] == theLineToRemove)
         {
-            [thisObj setLine_object:nil];
-            [thisObj setPolygon_object:nil];
+            [thisObj setLineObject:nil];
+            [thisObj setPolygonObject:nil];
             [self deleteSide:thisObj];
         }
     }
@@ -1119,7 +1119,7 @@
     {
         if ([thisObj polygonObject] == thePolyToRemove)
         {
-            [thisObj setPolygon_object:nil];
+            [thisObj setPolygonObject:nil];
         }
     }
     
@@ -1128,7 +1128,7 @@
     {
         if ([thisObj polygonObject] == thePolyToRemove)
         {
-            [thisObj setPolygon_object:nil];
+            [thisObj setPolygonObject:nil];
             [self deletePlatform:thisObj];
         }
     }
@@ -1136,9 +1136,9 @@
     numer = [sides objectEnumerator];
     while (thisObj = [numer nextObject])
     {
-        if ([thisObj getpolygon_object] == thePolyToRemove)
+        if ([thisObj polygonObject] == thePolyToRemove)
         {
-            LELine *theLine = [thisObj getline_object];
+            LELine *theLine = [thisObj lineObject];
             
             if (theLine != nil)
             {
@@ -1155,8 +1155,8 @@
                 }
             }
             
-            [thisObj setLine_object:nil];
-            [thisObj setPolygon_object:nil];
+            [thisObj setLineObject:nil];
+            [thisObj setPolygonObject:nil];
             [self deleteSide:thisObj];
         }
     }

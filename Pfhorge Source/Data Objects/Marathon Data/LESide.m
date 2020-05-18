@@ -25,7 +25,9 @@
 #import "LESide.h"
 #import "LEExtras.h"
 #import "LELevelData.h"
+#import "LELine.h"
 #import "PhTag.h"
+#import "PhLight.h"
 
 #import "PhData.h"
 
@@ -219,14 +221,14 @@
     [theData appendData:futureData];
     
 
-	NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
+    NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
     [myData release];
     [futureData release];
     
     if ([index indexOfObjectIdenticalTo:self] != myPosition)
     {
-		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
+        NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
     }
@@ -236,7 +238,7 @@
 
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr
 {
-	NSLog(@"Importing Side: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData currentPosition]);
+    NSLog(@"Importing Side: %d  -- Position: %lu  --- Length: %ld", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], [myData currentPosition]);
     
     ImportShort(type);
     ImportUnsignedShort(flags);
@@ -310,107 +312,107 @@
     short tmpShort;
     
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeInt:type forKey:@"type"];
-		[coder encodeInt:flags forKey:@"flags"];
-		
-		[coder encodeConditionalObject:polygon_object forKey:@"polygon_object"];
-		[coder encodeConditionalObject:line_object forKey:@"line_object"];
-		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:primary_texture] forKey:@"primary_texture"];
-		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:secondary_texture] forKey:@"secondary_texture"];
-		[coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:transparent_texture] forKey:@"transparent_texture"];
-		[coder encodePoint:exclusion_zone.e0 forKey:@"exclusion_zone.e0"];
-		[coder encodePoint:exclusion_zone.e1 forKey:@"exclusion_zone.e1"];
-		[coder encodePoint:exclusion_zone.e2 forKey:@"exclusion_zone.e2"];
-		[coder encodePoint:exclusion_zone.e3 forKey:@"exclusion_zone.e3"];
-		
-		[coder encodeInt:control_panel_type forKey:@"control_panel_type"];
-		[coder encodeInt:control_panel_permutation forKey:@"control_panel_permutation"];
-		
-		[coder encodeInt:primary_transfer_mode forKey:@"primary_transfer_mode"];
-		[coder encodeInt:secondary_transfer_mode forKey:@"secondary_transfer_mode"];
-		[coder encodeInt:transparent_transfer_mode forKey:@"transparent_transfer_mode"];
-		
-		// If So, Should Already Have This On:
-		// setEncodeIndexNumbersInstead:YES];
-		if (useIndexNumbersInstead)
-		{
-			tmpShort = GetIndexAdv(primary_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"primary_lightsource_object index"];
-			tmpShort = GetIndexAdv(secondary_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"secondary_lightsource_object index"];
-			tmpShort = GetIndexAdv(transparent_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"transparent_lightsource_object index"];
-		}
-		else
-		{
-			[coder encodeObject:primary_lightsource_object forKey:@"primary_lightsource_object"];
-			[coder encodeObject:secondary_lightsource_object forKey:@"secondary_lightsource_object"];
-			[coder encodeObject:transparent_lightsource_object forKey:@"transparent_lightsource_object"];
-			[coder encodeObject:control_panel_permutation_object forKey:@"control_panel_permutation_object"];
-		}
-		
-		[coder encodeInt:ambient_delta forKey:@"ambient_delta"];
-	} else {
-    encodeNumInt(coder, 0);
-    
-    encodeShort(coder, type);
-    encodeUnsignedShort(coder, flags);
-    
-    encodeShort(coder, primary_texture.x0);
-    encodeShort(coder, primary_texture.y0);
-    encodeShort(coder, primary_texture.texture);
-    encodeShort(coder, primary_texture.textureCollection);
-    encodeShort(coder, primary_texture.textureNumber);
-    
-    encodeShort(coder, secondary_texture.x0);
-    encodeShort(coder, secondary_texture.y0);
-    encodeShort(coder, secondary_texture.texture);// Seperate this into two chars
-    encodeShort(coder, secondary_texture.textureCollection);
-    encodeShort(coder, secondary_texture.textureNumber);
-    
-    encodeShort(coder, transparent_texture.x0);
-    encodeShort(coder, transparent_texture.y0);
-    encodeShort(coder, transparent_texture.texture);
-    encodeShort(coder, transparent_texture.textureCollection);
-    encodeShort(coder, transparent_texture.textureNumber);
-    
-    
-    [coder encodePoint:exclusion_zone.e0];
-    [coder encodePoint:exclusion_zone.e1];
-    [coder encodePoint:exclusion_zone.e2];
-    [coder encodePoint:exclusion_zone.e3];
-    
-    encodeShort(coder, control_panel_type);
-    encodeShort(coder, control_panel_permutation);
-    
-    encodeShort(coder, primary_transfer_mode);
-    encodeShort(coder, secondary_transfer_mode);
-    encodeShort(coder, transparent_transfer_mode);
-    
-    // If So, Should Already Have This On:
-    // setEncodeIndexNumbersInstead:YES];
-    encodeConditionalObject(coder, polygon_object);
-    encodeConditionalObject(coder, line_object);
-    
-    if (useIndexNumbersInstead)
-    {
-        tmpShort = GetIndexAdv(primary_lightsource_object);
-        encodeShort(coder, tmpShort);
-        tmpShort = GetIndexAdv(secondary_lightsource_object);
-        encodeShort(coder, tmpShort);
-        tmpShort = GetIndexAdv(transparent_lightsource_object);
-        encodeShort(coder, tmpShort);
-    }
-    else
-    {
-        encodeObj(coder, primary_lightsource_object);
-        encodeObj(coder, secondary_lightsource_object);
-        encodeObj(coder, transparent_lightsource_object);
-        encodeObj(coder, control_panel_permutation_object);
-    }
-    
-    encodeLong(coder, ambient_delta);
+    if (coder.allowsKeyedCoding) {
+        [coder encodeInt:type forKey:@"type"];
+        [coder encodeInt:flags forKey:@"flags"];
+        
+        [coder encodeConditionalObject:polygon_object forKey:@"polygon_object"];
+        [coder encodeConditionalObject:line_object forKey:@"line_object"];
+        [coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:primary_texture] forKey:@"primary_texture"];
+        [coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:secondary_texture] forKey:@"secondary_texture"];
+        [coder encodeObject:[LESideTextureDefinition sideTextureFromCStruct:transparent_texture] forKey:@"transparent_texture"];
+        [coder encodePoint:exclusion_zone.e0 forKey:@"exclusion_zone.e0"];
+        [coder encodePoint:exclusion_zone.e1 forKey:@"exclusion_zone.e1"];
+        [coder encodePoint:exclusion_zone.e2 forKey:@"exclusion_zone.e2"];
+        [coder encodePoint:exclusion_zone.e3 forKey:@"exclusion_zone.e3"];
+        
+        [coder encodeInt:control_panel_type forKey:@"control_panel_type"];
+        [coder encodeInt:control_panel_permutation forKey:@"control_panel_permutation"];
+        
+        [coder encodeInt:primary_transfer_mode forKey:@"primary_transfer_mode"];
+        [coder encodeInt:secondary_transfer_mode forKey:@"secondary_transfer_mode"];
+        [coder encodeInt:transparent_transfer_mode forKey:@"transparent_transfer_mode"];
+        
+        // If So, Should Already Have This On:
+        // setEncodeIndexNumbersInstead:YES];
+        if (useIndexNumbersInstead)
+        {
+            tmpShort = GetIndexAdv(primary_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"primary_lightsource_object index"];
+            tmpShort = GetIndexAdv(secondary_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"secondary_lightsource_object index"];
+            tmpShort = GetIndexAdv(transparent_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"transparent_lightsource_object index"];
+        }
+        else
+        {
+            [coder encodeObject:primary_lightsource_object forKey:@"primary_lightsource_object"];
+            [coder encodeObject:secondary_lightsource_object forKey:@"secondary_lightsource_object"];
+            [coder encodeObject:transparent_lightsource_object forKey:@"transparent_lightsource_object"];
+            [coder encodeObject:control_panel_permutation_object forKey:@"control_panel_permutation_object"];
+        }
+        
+        [coder encodeInt:ambient_delta forKey:@"ambient_delta"];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        encodeShort(coder, type);
+        encodeUnsignedShort(coder, flags);
+        
+        encodeShort(coder, primary_texture.x0);
+        encodeShort(coder, primary_texture.y0);
+        encodeShort(coder, primary_texture.texture);
+        encodeShort(coder, primary_texture.textureCollection);
+        encodeShort(coder, primary_texture.textureNumber);
+        
+        encodeShort(coder, secondary_texture.x0);
+        encodeShort(coder, secondary_texture.y0);
+        encodeShort(coder, secondary_texture.texture);// Seperate this into two chars
+        encodeShort(coder, secondary_texture.textureCollection);
+        encodeShort(coder, secondary_texture.textureNumber);
+        
+        encodeShort(coder, transparent_texture.x0);
+        encodeShort(coder, transparent_texture.y0);
+        encodeShort(coder, transparent_texture.texture);
+        encodeShort(coder, transparent_texture.textureCollection);
+        encodeShort(coder, transparent_texture.textureNumber);
+        
+        
+        [coder encodePoint:exclusion_zone.e0];
+        [coder encodePoint:exclusion_zone.e1];
+        [coder encodePoint:exclusion_zone.e2];
+        [coder encodePoint:exclusion_zone.e3];
+        
+        encodeShort(coder, control_panel_type);
+        encodeShort(coder, control_panel_permutation);
+        
+        encodeShort(coder, primary_transfer_mode);
+        encodeShort(coder, secondary_transfer_mode);
+        encodeShort(coder, transparent_transfer_mode);
+        
+        // If So, Should Already Have This On:
+        // setEncodeIndexNumbersInstead:YES];
+        encodeConditionalObject(coder, polygon_object);
+        encodeConditionalObject(coder, line_object);
+        
+        if (useIndexNumbersInstead)
+        {
+            tmpShort = GetIndexAdv(primary_lightsource_object);
+            encodeShort(coder, tmpShort);
+            tmpShort = GetIndexAdv(secondary_lightsource_object);
+            encodeShort(coder, tmpShort);
+            tmpShort = GetIndexAdv(transparent_lightsource_object);
+            encodeShort(coder, tmpShort);
+        }
+        else
+        {
+            encodeObj(coder, primary_lightsource_object);
+            encodeObj(coder, secondary_lightsource_object);
+            encodeObj(coder, transparent_lightsource_object);
+            encodeObj(coder, control_panel_permutation_object);
+        }
+        
+        encodeLong(coder, ambient_delta);
 	}
 }
 
@@ -421,115 +423,115 @@
     //NSLog(@"Side");
     
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		type = [coder decodeIntForKey:@"type"];
-		flags = [coder decodeIntForKey:@"flags"];
-		
-		primary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"primary_texture"] cStructSideTextureDefinition];
-		secondary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"secondary_texture"] cStructSideTextureDefinition];
-		transparent_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"transparent_texture"] cStructSideTextureDefinition];
-		
-		exclusion_zone.e0 = [coder decodePointForKey:@"exclusion_zone.e0"];
-		exclusion_zone.e1 = [coder decodePointForKey:@"exclusion_zone.e1"];
-		exclusion_zone.e2 = [coder decodePointForKey:@"exclusion_zone.e2"];
-		exclusion_zone.e3 = [coder decodePointForKey:@"exclusion_zone.e3"];
-		
-		control_panel_type = [coder decodeIntForKey:@"control_panel_type"];
-		control_panel_permutation = [coder decodeIntForKey:@"control_panel_permutation"];
-		
-		primary_transfer_mode = [coder decodeIntForKey:@"primary_transfer_mode"];
-		secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
-		transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
-		
-		polygon_object = [coder decodeObjectForKey:@"polygon_object"];
-		line_object = [coder decodeObjectForKey:@"line_object"];
-		
-		if (useIndexNumbersInstead)
-		{
-			short tmpShort;
-			tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
-			primary_lightsource_object = [self getLightFromIndex:tmpShort];
-			tmpShort = [coder decodeIntForKey:@"secondary_lightsource_object index"];
-			secondary_lightsource_object = [self getLightFromIndex:tmpShort];
-			tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
-			transparent_lightsource_object = [self getLightFromIndex:tmpShort];
-		}
-		else
-		{
-			primary_lightsource_object = [coder decodeObjectForKey:@"primary_lightsource_object"];
-			secondary_lightsource_object = [coder decodeObjectForKey:@"secondary_lightsource_object"];
-			transparent_lightsource_object = [coder decodeObjectForKey:@"transparent_lightsource_object"];
-			control_panel_permutation_object = [coder decodeObjectForKey:@"control_panel_permutation_object"];
-		}
-		
-		ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
-
-	} else {
-    if (self == nil)
-        NSLog(@"************************************ Side - nil - 1...");
-    
-    versionNum = decodeNumInt(coder);
-    
-    type = decodeShort(coder);
-    flags = decodeUnsignedShort(coder);
-    
-    primary_texture.x0 = decodeShort(coder);
-    primary_texture.y0 = decodeShort(coder);
-    primary_texture.texture = decodeShort(coder);
-    primary_texture.textureCollection = decodeShort(coder);
-    primary_texture.textureNumber = decodeShort(coder);
-    
-    secondary_texture.x0 = decodeShort(coder);
-    secondary_texture.y0 = decodeShort(coder);
-    secondary_texture.texture = decodeShort(coder);
-    secondary_texture.textureCollection = decodeShort(coder);
-    secondary_texture.textureNumber = decodeShort(coder);
-    
-    transparent_texture.x0 = decodeShort(coder);
-    transparent_texture.y0 = decodeShort(coder);
-    transparent_texture.texture = decodeShort(coder);
-    transparent_texture.textureCollection = decodeShort(coder);
-    transparent_texture.textureNumber = decodeShort(coder);
-    
-    
-    exclusion_zone.e0 = [coder decodePoint];
-    exclusion_zone.e1 = [coder decodePoint];
-    exclusion_zone.e2 = [coder decodePoint];
-    exclusion_zone.e3 = [coder decodePoint];
-    
-    control_panel_type = decodeShort(coder);
-    control_panel_permutation = decodeShort(coder);
-    
-    primary_transfer_mode = decodeShort(coder);
-    secondary_transfer_mode = decodeShort(coder);
-    transparent_transfer_mode = decodeShort(coder);
-    
-    polygon_object = decodeObj(coder);
-    line_object = decodeObj(coder);
-    
-    if (useIndexNumbersInstead)
-    {
-        primary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        secondary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        transparent_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-    }
-    else
-    {
-        primary_lightsource_object = decodeObj(coder);
-        secondary_lightsource_object = decodeObj(coder);
-        transparent_lightsource_object = decodeObj(coder);
-        control_panel_permutation_object = decodeObj(coder);
-    }
-    
-    ambient_delta = decodeLong(coder);
-    
-    if (polygon_object == nil || line_object == nil)
-    {
+    if (coder.allowsKeyedCoding) {
+        type = [coder decodeIntForKey:@"type"];
+        flags = [coder decodeIntForKey:@"flags"];
+        
+        primary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"primary_texture"] cStructSideTextureDefinition];
+        secondary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"secondary_texture"] cStructSideTextureDefinition];
+        transparent_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"transparent_texture"] cStructSideTextureDefinition];
+        
+        exclusion_zone.e0 = [coder decodePointForKey:@"exclusion_zone.e0"];
+        exclusion_zone.e1 = [coder decodePointForKey:@"exclusion_zone.e1"];
+        exclusion_zone.e2 = [coder decodePointForKey:@"exclusion_zone.e2"];
+        exclusion_zone.e3 = [coder decodePointForKey:@"exclusion_zone.e3"];
+        
+        control_panel_type = [coder decodeIntForKey:@"control_panel_type"];
+        control_panel_permutation = [coder decodeIntForKey:@"control_panel_permutation"];
+        
+        primary_transfer_mode = [coder decodeIntForKey:@"primary_transfer_mode"];
+        secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
+        transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
+        
+        polygon_object = [coder decodeObjectForKey:@"polygon_object"];
+        line_object = [coder decodeObjectForKey:@"line_object"];
+        
+        if (useIndexNumbersInstead)
+        {
+            short tmpShort;
+            tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
+            primary_lightsource_object = [self getLightFromIndex:tmpShort];
+            tmpShort = [coder decodeIntForKey:@"secondary_lightsource_object index"];
+            secondary_lightsource_object = [self getLightFromIndex:tmpShort];
+            tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
+            transparent_lightsource_object = [self getLightFromIndex:tmpShort];
+        }
+        else
+        {
+            primary_lightsource_object = [coder decodeObjectForKey:@"primary_lightsource_object"];
+            secondary_lightsource_object = [coder decodeObjectForKey:@"secondary_lightsource_object"];
+            transparent_lightsource_object = [coder decodeObjectForKey:@"transparent_lightsource_object"];
+            control_panel_permutation_object = [coder decodeObjectForKey:@"control_panel_permutation_object"];
+        }
+        
+        ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
+        
+    } else {
+        if (self == nil)
+            NSLog(@"************************************ Side - nil - 1...");
+        
+        versionNum = decodeNumInt(coder);
+        
+        type = decodeShort(coder);
+        flags = decodeUnsignedShort(coder);
+        
+        primary_texture.x0 = decodeShort(coder);
+        primary_texture.y0 = decodeShort(coder);
+        primary_texture.texture = decodeShort(coder);
+        primary_texture.textureCollection = decodeShort(coder);
+        primary_texture.textureNumber = decodeShort(coder);
+        
+        secondary_texture.x0 = decodeShort(coder);
+        secondary_texture.y0 = decodeShort(coder);
+        secondary_texture.texture = decodeShort(coder);
+        secondary_texture.textureCollection = decodeShort(coder);
+        secondary_texture.textureNumber = decodeShort(coder);
+        
+        transparent_texture.x0 = decodeShort(coder);
+        transparent_texture.y0 = decodeShort(coder);
+        transparent_texture.texture = decodeShort(coder);
+        transparent_texture.textureCollection = decodeShort(coder);
+        transparent_texture.textureNumber = decodeShort(coder);
+        
+        
+        exclusion_zone.e0 = [coder decodePoint];
+        exclusion_zone.e1 = [coder decodePoint];
+        exclusion_zone.e2 = [coder decodePoint];
+        exclusion_zone.e3 = [coder decodePoint];
+        
+        control_panel_type = decodeShort(coder);
+        control_panel_permutation = decodeShort(coder);
+        
+        primary_transfer_mode = decodeShort(coder);
+        secondary_transfer_mode = decodeShort(coder);
+        transparent_transfer_mode = decodeShort(coder);
+        
+        polygon_object = decodeObj(coder);
+        line_object = decodeObj(coder);
+        
+        if (useIndexNumbersInstead)
+        {
+            primary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            secondary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            transparent_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+        }
+        else
+        {
+            primary_lightsource_object = decodeObj(coder);
+            secondary_lightsource_object = decodeObj(coder);
+            transparent_lightsource_object = decodeObj(coder);
+            control_panel_permutation_object = decodeObj(coder);
+        }
+        
+        ambient_delta = decodeLong(coder);
+        
+        if (polygon_object == nil || line_object == nil)
+        {
             if (self == nil)
-        NSLog(@"************************************ Side - nil - 2...");
-        //return nil;
+                NSLog(@"************************************ Side - nil - 2...");
+            //return nil;
+        }
     }
-	}
     
     if (useIndexNumbersInstead)
         [theLELevelDataST addObjects:self];
@@ -572,22 +574,22 @@
     if (primary_texture.texture != -1) // define NONE and use NONE here
     {
         [theTarget setPrimaryTextureStruct:primary_texture];
-        [theTarget setPrimary_transfer_mode:primary_transfer_mode];
-        [theTarget setPrimary_lightsource_object:primary_lightsource_object];
+        [theTarget setPrimaryTransferMode:primary_transfer_mode];
+        [theTarget setPrimaryLightsourceObject:primary_lightsource_object];
     }
     
     if (secondary_texture.texture != -1) // define NONE and use NONE here
     {
         [theTarget setSecondaryTextureStruct:secondary_texture];
-        [theTarget setSecondary_transfer_mode:secondary_transfer_mode];
-        [theTarget setSecondary_lightsource_object:secondary_lightsource_object];
+        [theTarget setSecondaryTransferMode:secondary_transfer_mode];
+        [theTarget setSecondaryLightsourceObject:secondary_lightsource_object];
     }
     
     if (transparent_texture.texture != -1) // define NONE and use NONE here
     {
         [theTarget setTransparentTextureStruct:transparent_texture];
-        [theTarget setTransparent_transfer_mode:transparent_transfer_mode];
-        [theTarget setTransparent_lightsource_object:transparent_lightsource_object];
+        [theTarget setTransparentTransferMode:transparent_transfer_mode];
+        [theTarget setTransparentLightsourceObject:transparent_lightsource_object];
     }
     
     // Should I? Proably, I will see what happens (the dragon, me)...
@@ -596,13 +598,13 @@
     // Should I also inlucd control panel settings? We will se waht happens...
     if (flags & _side_is_control_panel)
     {
-        [theTarget setControl_panel_type:control_panel_type];
-        [theTarget setControl_panel_permutation:control_panel_permutation];
+        [theTarget setControlPanelType:control_panel_type];
+        [theTarget setControlPanelPermutation:control_panel_permutation];
     }
     else
     {
-        [theTarget setControl_panel_type:0];
-        [theTarget setControl_panel_permutation:0];
+        [theTarget setControlPanelType:0];
+        [theTarget setControlPanelPermutation:0];
     }
     
     [theTarget setExclusionZone:exclusion_zone];
@@ -633,21 +635,21 @@
     
     [copy setExclusionZone:exclusion_zone];
             
-    [copy setControl_panel_type:control_panel_type];
-    [copy setControl_panel_permutation:control_panel_permutation];
+    [copy setControlPanelType:control_panel_type];
+    [copy setControlPanelPermutation:control_panel_permutation];
             
-    [copy setPrimary_transfer_mode:primary_transfer_mode];
-    [copy setSecondary_transfer_mode:secondary_transfer_mode];
-    [copy setTransparent_transfer_mode:transparent_transfer_mode];
-            
-    
-    [copy setPolygon_object:polygon_object];
-    [copy setLine_object:line_object];
+    [copy setPrimaryTransferMode:primary_transfer_mode];
+    [copy setSecondaryTransferMode:secondary_transfer_mode];
+    [copy setTransparentTransferMode:transparent_transfer_mode];
             
     
-    [copy setPrimary_lightsource_object:primary_lightsource_object];
-    [copy setSecondary_lightsource_object:secondary_lightsource_object];
-    [copy setTransparent_lightsource_object:transparent_lightsource_object];
+    [copy setPolygonObject:polygon_object];
+    [copy setLineObject:line_object];
+            
+    
+    [copy setPrimaryLightsourceObject:primary_lightsource_object];
+    [copy setSecondaryLightsourceObject:secondary_lightsource_object];
+    [copy setTransparentLightsourceObject:transparent_lightsource_object];
             
     [copy setAmbientDelta:ambient_delta];
     
@@ -812,7 +814,7 @@
     (theTTexChar)[0] = (0x11 + number);
 }
         
--(void)setControl_panel_type:(short)v
+-(void)setControlPanelType:(short)v
 {
     int enviroCode = [theLELevelDataST environmentCode];
     int modfiedControlPanelType = -1;
@@ -891,7 +893,7 @@
     control_panel_permutation = -1;
 }
 
--(void)setControl_panel_permutation:(short)v
+-(void)setControlPanelPermutation:(short)v
 {
     NSArray *theObjectArray = nil;
     control_panel_permutation = v;
@@ -927,23 +929,19 @@
     return;
 }
 
--(void)setControl_panel_permutation_object:(id)v { control_panel_permutation_object = v; }
-
+@synthesize controlPanelPermutationObject=control_panel_permutation_object;
         
--(void)setPrimary_transfer_mode:(short)v { primary_transfer_mode = v; }
--(void)setSecondary_transfer_mode:(short)v { secondary_transfer_mode = v; }
--(void)setTransparent_transfer_mode:(short)v { transparent_transfer_mode = v; }
 
 //	--- --- ---
 
--(void)setPolygon_index:(short)v {
+-(void)setPolygonIndex:(short)v {
     //polygon_index = v;
     if (v == -1)
         polygon_object = nil;
     else if (everythingLoadedST)
         polygon_object = [theMapLightsST objectAtIndex:v];
 }
--(void)setLine_index:(short)v {
+-(void)setLineIndex:(short)v {
     //line_index = v; 
     if (v == -1)
         line_object = nil;
@@ -953,19 +951,19 @@
 
 //	*** *** ***
 
--(void)setPolygon_object:(id)v { polygon_object = v; }
--(void)setLine_object:(id)v { line_object = v; }
+@synthesize polygonObject=polygon_object;
+@synthesize lineObject=line_object;
 
 // 	--- --- ---
 
--(void)setPrimary_lightsource_index:(short)v {
+-(void)setPrimaryLightsourceIndex:(short)v {
     //primary_lightsource_index = v;
     if (v == -1)
         primary_lightsource_object = nil;
     else if (everythingLoadedST)
         primary_lightsource_object = [theMapLightsST objectAtIndex:v];
 }
--(void)setSecondary_lightsource_index:(short)v {
+-(void)setSecondaryLightsourceIndex:(short)v {
     //secondary_lightsource_index = v;
     
     if (v == -1)
@@ -975,7 +973,7 @@
     
     NSLog(@"setSecondary_lightsource_index Set To: %d   The Object Index: %d", v, [secondary_lightsource_object index]);
 }
--(void)setTransparent_lightsource_index:(short)v {
+-(void)setTransparentLightsourceIndex:(short)v {
     //transparent_lightsource_index = v;
     if (v == -1)
         transparent_lightsource_object = nil;
@@ -983,24 +981,12 @@
         transparent_lightsource_object = [theMapLightsST objectAtIndex:v];
 }
 
-//		 *** *** ***
-
--(void)setPrimary_lightsource_object:(id)v {
-    primary_lightsource_object = v;
-}
--(void)setSecondary_lightsource_object:(id)v {
-    secondary_lightsource_object = v;
-}
--(void)setTransparent_lightsource_object:(id)v {
-    transparent_lightsource_object = v;
-}
-
 //	--- --- ---
         
 @synthesize ambientDelta=ambient_delta;
 
 // *****************   Get Accsessors   *****************
- #pragma mark -
+#pragma mark -
 #pragma mark ********* Get Accsessors *********
 
 -(char)primaryTexture
@@ -1059,13 +1045,13 @@
 
 @synthesize exclusionZone=exclusion_zone;
 
--(int)getPermutationEffects
+-(int)permutationEffects
 {
     return permutationEffects;
 }
-  
--(short)getControl_panel_type { return control_panel_type; }
--(short)getControl_panel_permutation
+
+@synthesize controlPanelType=control_panel_type;
+-(short)controlPanelPermutation
 {
     /*if (control_panel_permutation_object != nil)
         NSLog(@"polygonPermutationNumber: %d", [control_panel_permutation_object index]);*/
@@ -1073,26 +1059,21 @@
     return (control_panel_permutation_object != nil) ? ([control_panel_permutation_object getSpecialIndex]) : (0);
 }
 
--(id)getControl_panel_permutation_object { return control_panel_permutation_object; }
-
         
--(short)primaryTransferMode { return primary_transfer_mode; }
--(short)secondaryTransferMode { return secondary_transfer_mode; }
--(short)transparentTransferMode { return transparent_transfer_mode; }
+@synthesize primaryTransferMode=primary_transfer_mode;
+@synthesize secondaryTransferMode=secondary_transfer_mode;
+@synthesize transparentTransferMode=transparent_transfer_mode;
         
--(short)getPolygon_index { return (polygon_object == nil) ? -1 : [polygon_object index]; }
--(short)getLine_index { return (line_object == nil) ? -1 : [line_object index]; }
-
--(id)getpolygon_object { return polygon_object; }
--(id)getline_object { return line_object; }
+-(short)polygonIndex { return (polygon_object == nil) ? -1 : [polygon_object index]; }
+-(short)lineIndex { return (line_object == nil) ? -1 : [line_object index]; }
         
--(short)getPrimary_lightsource_index { return (primary_lightsource_object == nil) ? -1 : [primary_lightsource_object index]; }
--(short)getSecondary_lightsource_index { return (secondary_lightsource_object == nil) ? -1 : [secondary_lightsource_object index]; }
--(short)getTransparent_lightsource_index { return (transparent_lightsource_object == nil) ? -1 : [transparent_lightsource_object index]; }
+-(short)primaryLightsourceIndex { return (primary_lightsource_object == nil) ? -1 : [primary_lightsource_object index]; }
+-(short)secondaryLightsourceIndex { return (secondary_lightsource_object == nil) ? -1 : [secondary_lightsource_object index]; }
+-(short)transparentLightsourceIndex { return (transparent_lightsource_object == nil) ? -1 : [transparent_lightsource_object index]; }
                 
--(id)getprimary_lightsource_object { return primary_lightsource_object; }
--(id)getsecondary_lightsource_object { return secondary_lightsource_object; }
--(id)gettransparent_lightsource_object { return transparent_lightsource_object; }
+@synthesize primaryLightsourceObject=primary_lightsource_object;
+@synthesize secondaryLightsourceObject=secondary_lightsource_object;
+@synthesize transparentLightsourceObject=transparent_lightsource_object;
 
 //  ************************** Other Useful Methods *************************
 #pragma mark -
@@ -1101,7 +1082,7 @@
 -(short)adjustedControlPanelType
 {
     if ([self getFlagS:2] == NO)
-        return -1; // This Side Is Noit A Control Panel
+        return -1; // This Side Is Not A Control Panel
     
     if (control_panel_type < 10 && control_panel_type >= 0) // water
     {

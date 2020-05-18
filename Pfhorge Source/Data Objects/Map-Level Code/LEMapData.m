@@ -2307,46 +2307,46 @@ BOOL setupPointerArraysDurringLoading = YES;
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setControl_panel_type"];
         #endif
-        [theObj setControl_panel_type:[self getShort]];
+        [theObj setControlPanelType:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setControl_panel_permutation"];
         #endif
-        [theObj setControl_panel_permutation:[self getShort]];
+        [theObj setControlPanelPermutation:[self getShort]];
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setPrimary_transfer_mode"];
         #endif
-        [theObj setPrimary_transfer_mode:[self getShort]];
+        [theObj setPrimaryTransferMode:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setSecondary_transfer_mode"];
         #endif
-        [theObj setSecondary_transfer_mode:[self getShort]];
+        [theObj setSecondaryTransferMode:[self getShort]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setTransparent_transfer_mode"];
         #endif
-        [theObj setTransparent_transfer_mode:[self getShort]];
+        [theObj setTransparentTransferMode:[self getShort]];
         
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setPolygon_object"];
         #endif
-        [theObj setPolygon_object:[self getShortObjectFromArray:thePolyArray]];
+        [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
         #ifdef useDebugingLogs
             [self NSLogShortFromData:@"setLine_object"];
         #endif
-        [theObj setLine_object:[self getShortObjectFromArray:theLineArray]];
+        [theObj setLineObject:[self getShortObjectFromArray:theLineArray]];
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setPrimary_lightsource_object"];
         #endif
-        [theObj setPrimary_lightsource_object:[self getShortObjectFromArray:theLightArray]];
+        [theObj setPrimaryLightsourceObject:[self getShortObjectFromArray:theLightArray]];
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setSecondary_lightsource_object"];
         #endif
-        [theObj setSecondary_lightsource_object:[self getShortObjectFromArray:theLightArray]];
+        [theObj setSecondaryLightsourceObject:[self getShortObjectFromArray:theLightArray]];
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setTransparent_lightsource_object"];
         #endif
-        [theObj setTransparent_lightsource_object:[self getShortObjectFromArray:theLightArray]];
+        [theObj setTransparentLightsourceObject:[self getShortObjectFromArray:theLightArray]];
         
         #ifdef useDebugingLogs
             [self NSLogLongFromData:@"setAmbient_delta"];
@@ -3092,19 +3092,19 @@ BOOL setupPointerArraysDurringLoading = YES;
 	[self saveShort:theTempExclusionZone.e3.x];
 	[self saveShort:theTempExclusionZone.e3.y];
 		
-	[self saveShort:[currentObj getControl_panel_type]];
-	[self saveShort:[currentObj getControl_panel_permutation]];
+	[self saveShort:[currentObj controlPanelType]];
+	[self saveShort:[currentObj controlPanelPermutation]];
 		
 	[self saveShort:[currentObj primaryTransferMode]];
 	[self saveShort:[currentObj secondaryTransferMode]];
 	[self saveShort:[currentObj transparentTransferMode]];
 	
-	[self saveShort:[currentObj getPolygon_index]];
-	[self saveShort:[currentObj getLine_index]];
+	[self saveShort:[currentObj polygonIndex]];
+	[self saveShort:[currentObj lineIndex]];
 	
-	[self saveShort:[currentObj getPrimary_lightsource_index]];
-	[self saveShort:[currentObj getSecondary_lightsource_index]];
-	[self saveShort:[currentObj getTransparent_lightsource_index]];
+	[self saveShort:[currentObj primaryLightsourceIndex]];
+	[self saveShort:[currentObj secondaryLightsourceIndex]];
+	[self saveShort:[currentObj transparentLightsourceIndex]];
 	
 	[self saveLong:[currentObj ambientDelta]];
 	

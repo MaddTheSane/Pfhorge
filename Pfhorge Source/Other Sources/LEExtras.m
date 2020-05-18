@@ -194,6 +194,7 @@ NSString *const PhTerminalItalicAttributeName = @"PhItalicTerminalAttribute";
 
 // * Pasteboard types *
 NSString *const PhorgeSelectionDataPasteboardType = @"PhorgeSelectionData";
+NSString *const PfhorgeTerminalSectionDataPasteboardType = @"PfhorgeTerminalSectionData";
 
 // *********************** End EXTERN Variables ***********************
 

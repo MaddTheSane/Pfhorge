@@ -80,6 +80,21 @@
 @synthesize entryPointFlags=entry_point_flags;
 @synthesize myUndoManager;
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentFlags
+{
+    return [NSSet setWithObjects:@"environmentVacuum", @"environmentMagnetic", @"environmentRebellion", @"environmentLowGravity", @"environmentNetwork", @"environmentSinglePlayer", nil];
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionFlags
+{
+    return [NSSet setWithObjects:@"missionExtermination", @"missionExploration", @"missionRetrieval", @"missionRepair", @"missionRescue", nil];
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEntryPointFlags
+{
+    return [NSSet setWithObjects:@"gameTypeSinglePlayer", @"gameTypeCooperative", @"gameTypeMultiplayerCarnage", @"gameTypeCaptureTheFlag", @"gameTypeKingOfTheHill", @"gameTypeDefense", @"gameTypeRugby", nil];
+}
+
 -(void)setSongIndex:(short)v
 {
     if (v > 3 || v < 0)
@@ -499,7 +514,7 @@
         spenumer = [sides objectEnumerator];
         while (theObj = [spenumer nextObject])
         {
-            switch ([theObj getPermutationEffects])
+            switch ([theObj permutationEffects])
             {
                 case 0:
                     
@@ -508,7 +523,7 @@
                     
                     break;
                 case _cpanel_effects_polygon:
-                    thePolyPointedTo = [theObj getControl_panel_permutation_object];
+                    thePolyPointedTo = [theObj controlPanelPermutationObject];
                     // This Might Be able To Insert Nil Objects Into An Array...
                     [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo index])];
                     break;
@@ -575,13 +590,13 @@
         switch (theControlPanelType)
         {
             case _panel_tagSwitch:
-                theNumber = [NSNumber numberWithShort:[theObj getControl_panel_permutation]];
+                theNumber = [NSNumber numberWithShort:[theObj controlPanelPermutation]];
                 break;
             case _panel_chipInserton:
-                theNumber = [NSNumber numberWithShort:[theObj getControl_panel_permutation]];
+                theNumber = [NSNumber numberWithShort:[theObj controlPanelPermutation]];
                 break;
             case _panel_wires:
-                theNumber = [NSNumber numberWithShort:[theObj getControl_panel_permutation]];
+                theNumber = [NSNumber numberWithShort:[theObj controlPanelPermutation]];
                 break;
         }
         
@@ -690,7 +705,7 @@
             if ([[theObj permutationObject] polygonObject] != theObj)
             { // The polygon points to a platform which does not point back
               //   to the polygon...  This will fix that, hopefully...
-                [[theObj permutationObject] setPolygon_object:theObj];
+                [[theObj permutationObject] setPolygonObject:theObj];
             }
         }
     }
@@ -1279,9 +1294,9 @@ enum // export data types
     
     defaultSide = [[LESide alloc] init];
     [self setUpArrayPointersFor:defaultSide];
-    [defaultSide setPrimary_lightsource_index:0];
-    [defaultSide setSecondary_lightsource_index:0];
-    [defaultSide setTransparent_lightsource_index:0];
+    [defaultSide setPrimaryLightsourceIndex:0];
+    [defaultSide setSecondaryLightsourceIndex:0];
+    [defaultSide setTransparentLightsourceIndex:0];
     
     cDefaultSide  = [[LESide alloc] init];
     ccDefaultSide =[[LESide alloc] init];

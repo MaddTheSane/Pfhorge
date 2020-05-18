@@ -101,8 +101,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionChanged:)
         name:NSOutlineViewSelectionDidChangeNotification object:nil];
     
-    [theTeriminalTableView registerForDraggedTypes:[NSArray 				
-        arrayWithObjects:@"PfhorgeTerminalSectionData", nil]];
+    [theTeriminalTableView registerForDraggedTypes:@[PfhorgeTerminalSectionDataPasteboardType]];
     
     [self selectionChanged:nil];
 }
@@ -218,10 +217,10 @@
         // and it is only used during a drag!  We could put this in the pboard actually.
         
         // Provide data for our custom type, and simple NSStrings.
-        [pboard declareTypes:[NSArray arrayWithObjects:@"PfhorgeTerminalSectionData", nil] owner:self];
+        [pboard declareTypes:@[PfhorgeTerminalSectionDataPasteboardType] owner:self];
         
         // the actual data doesn't matter since DragDropSimplePboardType drags aren't recognized by anyone but us!.
-        [pboard setData:theData forType:@"PfhorgeTerminalSectionData"];
+        [pboard setData:theData forType:PfhorgeTerminalSectionDataPasteboardType];
         return YES;
     }
     else

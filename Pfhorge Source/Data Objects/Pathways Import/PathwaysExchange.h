@@ -26,8 +26,8 @@
 - (id)initWithData:(NSData *)theData;
 - (id)initWithData:(NSData *)theData resourceData:(NSData *)dpin128Data;
 
-- (int)levelCount;
-- (NSArray<NSString*> *)levelNames;
+@property (readonly) int levelCount;
+@property (readonly, copy) NSArray<NSString*> *levelNames;
 - (LELevelData *)getPIDLevel:(int)levNum;
 
 @end

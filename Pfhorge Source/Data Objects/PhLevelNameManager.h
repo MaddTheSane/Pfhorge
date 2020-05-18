@@ -45,7 +45,7 @@ enum {
     // This is a cache of names that get updated
     // when needed to reflect the current names for
     // the diffrent objects that they keep track of...
-    NSMutableArray  *tagNames, *platformNames, *lightNames,
+    NSMutableArray<NSString*>  *tagNames, *platformNames, *lightNames,
                     *ambientSoundNames, *randomSoundNames,
                     *liquidNames, *layerNames, *polyNames,
                     *levelNames, *terminalNames;
@@ -74,7 +74,7 @@ enum {
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void) encodeWithCoder:(NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 
 
@@ -83,12 +83,12 @@ enum {
 
 
 // ************ Menu Name Managment ************
--(void)addMenu:(id)theMenuUIO asA:(int)menuKind;
--(void)removeMenu:(id)theMenuUIO thatsA:(int)menuKind;
--(void)removeMenu:(id)theMenuUIO;
--(void)refreshAllMenusOf:(int)menuKind;
--(void)refreshEveryMenu;
--(void)refreshTheMenu:(id)theMenuUIO thatsA:(int)menuKind;
+- (void)addMenu:(id)theMenuUIO asA:(int)menuKind;
+- (void)removeMenu:(id)theMenuUIO thatsA:(int)menuKind;
+- (void)removeMenu:(id)theMenuUIO;
+- (void)refreshAllMenusOf:(int)menuKind;
+- (void)refreshEveryMenu;
+- (void)refreshTheMenu:(id)theMenuUIO thatsA:(int)menuKind;
 - (NSMutableSet *)getMenuArrayUsingType:(int)menuKind;
 - (NSMutableArray *)getNameArrayUsingType:(int)menuKind;
 

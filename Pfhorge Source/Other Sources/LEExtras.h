@@ -521,6 +521,7 @@ extern NSAttributedStringKey const PhTerminalItalicAttributeName NS_SWIFT_NAME(P
 
 #pragma mark Pasteboard types
 extern NSPasteboardType const PhorgeSelectionDataPasteboardType NS_SWIFT_NAME(PhorgeSelectionData);
+extern NSPasteboardType const PfhorgeTerminalSectionDataPasteboardType NS_SWIFT_NAME(PfhorgeTerminalSectionData);
 
 // *********************** End EXTERN Variables ***********************
 

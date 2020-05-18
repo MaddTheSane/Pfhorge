@@ -64,9 +64,9 @@
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 // **************************  Coding/Copy Protocal Methods  *************************
-- (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs;
+- (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet<__kindof LEMapStuffParent*> *)mainObjs;
 - (void)superClassImportWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg;
-- (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs;
+- (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet<__kindof LEMapStuffParent*> *)mainObjs;
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr;
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -82,8 +82,7 @@
 -(id)getPolygonFromIndex:(short)theIndex;
 
  // **************************  Basic Accsess To Level Objects  *************************
--(NSUndoManager *)myUndoManager;
--(void)setMyUndoManager:(NSUndoManager *)value;
+@property (assign) NSUndoManager *myUndoManager;
  
 -(void)setEverythingLoadedST:(BOOL)theChoice;
 

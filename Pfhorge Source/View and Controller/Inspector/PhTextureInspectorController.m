@@ -602,9 +602,9 @@
             [transparentMode selectItemAtIndex:-1];
 
         
-        short pLight = [side getPrimary_lightsource_index];
-        short sLight = [side getSecondary_lightsource_index];
-        short tLight = [side getTransparent_lightsource_index];
+        short pLight = [side primaryLightsourceIndex];
+        short sLight = [side secondaryLightsourceIndex];
+        short tLight = [side transparentLightsourceIndex];
         
         if ([primaryLight numberOfItems] > pLight && pLight >= 0)
             [primaryLight selectItemAtIndex:pLight];
@@ -647,7 +647,7 @@
         if (pColl < 0 || (pColl > 4 && pColl < 10) || pColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Primary of Side: %d  Line: %d...",
-                    [side index], [side getLine_index]);
+                    [side index], [side lineIndex]);
             
             [primaryTextureNums selectItemAtIndex:-1];
             doPriT = NO;
@@ -667,7 +667,7 @@
         if (sColl < 0 || (sColl > 4 && sColl < 10) || sColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Secondary of Side: %d  Line: %d...",
-                    [side index], [side getLine_index]);
+                    [side index], [side lineIndex]);
             
             [secondaryTextureNums selectItemAtIndex:-1];
             doSecT = NO;
@@ -687,7 +687,7 @@
         if (tColl < 0 || (tColl > 4 && tColl < 10) || tColl > 13)
         {
             NSLog(@"Collection Out Of Bounds For Transperent of Side: %d  Line: %d...",
-                    [side index], [side getLine_index]);
+                    [side index], [side lineIndex]);
             
             [transparentTextureNums selectItemAtIndex:-1];
             doTraT = NO;
@@ -831,7 +831,7 @@
     //[baseSideRef resetTextureCollection];
     
     if (number > 0)
-        [baseSideRef setPrimary_transfer_mode:(number - 1)];
+        [baseSideRef setPrimaryTransferMode:(number - 1)];
     else
         [self updateLineTextureAndLightMenus];
 }
@@ -842,7 +842,7 @@
     //[baseSideRef resetTextureCollection];
     
     if (number > 0)
-        [baseSideRef setSecondary_transfer_mode:(number - 1)];
+        [baseSideRef setSecondaryTransferMode:(number - 1)];
     else
         [self updateLineTextureAndLightMenus];
 }
@@ -853,7 +853,7 @@
     //[baseSideRef resetTextureCollection];
     
     if (number > 0)
-        [baseSideRef setTransparent_transfer_mode:(number - 1)];
+        [baseSideRef setTransparentTransferMode:(number - 1)];
     else
         [self updateLineTextureAndLightMenus];
 }
@@ -927,17 +927,17 @@
 
 - (IBAction)primaryLightAction:(id)sender
 {
-    [baseSideRef  setPrimary_lightsource_index:[sender indexOfSelectedItem]];
+    [baseSideRef  setPrimaryLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)secondaryLightAction:(id)sender
 {
-    [baseSideRef  setSecondary_lightsource_index:[sender indexOfSelectedItem]];
+    [baseSideRef  setSecondaryLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)transparentLightAction:(id)sender
 {
-    [baseSideRef  setTransparent_lightsource_index:[sender indexOfSelectedItem]];
+    [baseSideRef  setTransparentLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 

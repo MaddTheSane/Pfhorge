@@ -365,8 +365,8 @@
         
         NSParameterAssert(polyLineNumber != -1);
         
-        [clockSide setPolygon_object:nil];
-        [clockSide setLine_object:nil];
+        [clockSide setPolygonObject:nil];
+        [clockSide setLineObject:nil];
         
         [theLine setClockwisePolygonSideObject:nil];
         [clockPoly setSidesObject:nil toIndex:polyLineNumber];
@@ -380,8 +380,8 @@
         
         NSParameterAssert(polyLineNumber != -1);
         
-        [counterclockSide setPolygon_object:nil];
-        [counterclockSide setLine_object:nil];
+        [counterclockSide setPolygonObject:nil];
+        [counterclockSide setLineObject:nil];
         
         [theLine setCounterclockwisePolygonSideObject:nil];
         [counterclockPoly setSidesObject:nil toIndex:polyLineNumber];
@@ -552,16 +552,16 @@
     numer = [sides objectEnumerator];
     while (thisSide = [numer nextObject])
     {
-        //getControl_panel_type
+        //controlPanelType
         
         if ([thisSide flags] & _side_is_control_panel)
         {
-            NSLog(@"Control Panel Flags: %d   -   Line Index: %d", [thisSide flags], [thisSide getLine_index]);
+            NSLog(@"Control Panel Flags: %d   -   Line Index: %d", [thisSide flags], [thisSide lineIndex]);
         }
         
-        if ([thisSide getPermutationEffects] == _cpanel_effects_polygon)
+        if ([thisSide permutationEffects] == _cpanel_effects_polygon)
         {
-            if ([thisSide getControl_panel_permutation_object] == nil)
+            if ([thisSide controlPanelPermutationObject] == nil)
             {
                 if ([thisSide flags] & _side_is_control_panel)
                 {

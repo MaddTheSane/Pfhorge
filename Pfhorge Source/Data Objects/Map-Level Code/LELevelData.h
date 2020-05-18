@@ -159,7 +159,7 @@ enum {
        LESide, PhLayer, PhLight, PhTag, LEMap, Terminal,
        TerminalSection, PhNoteGroup, PhRandomSound, PhMedia,
        PhAnnotationNote, PhItemPlacement, PhAmbientSound;
-
+@class PhLayer;
 // *****************  Class Blue Print  *****************
 // #pragma mark ********* Class Blue Print *********
 
@@ -186,8 +186,8 @@ enum {
 	NSMutableArray<LELine*>  *layerLines;
 	NSMutableArray<LEPolygon*>  *layerPolys;
 	NSMutableArray<LEMapObject*>  *layerMapObjects;
-	NSMutableArray  *layerNotes;
-    NSMutableArray  *namedPolyObjects;
+	NSMutableArray<PhAnnotationNote*>  *layerNotes;
+    NSMutableArray<LEPolygon*>  *namedPolyObjects;
     NSMutableArray<PhTag*>  *tags;
     
     NSMutableArray<Terminal*> *terimals;
@@ -386,14 +386,14 @@ enum {
 -(NSMutableArray<LEPolygon*> *)getThePolys;
 -(NSMutableArray<LEMapObject*> *)theMapObjects;
 
--(NSArray *)layerNotes;
+-(NSArray<PhAnnotationNote*> *)layerNotes;
 -(NSMutableArray<LEMapPoint*> *)layerPoints;
 -(NSMutableArray<LELine*> *)layerLines;
 -(NSMutableArray<LEPolygon*> *)layerPolys;
--(NSMutableArray *)layerMapObjects;
+-(NSMutableArray<LEMapObject *> *)layerMapObjects;
 
--(NSMutableArray *)layersInLevel;
--(NSMutableArray *)namedPolyObjects;
+-(NSMutableArray<PhLayer*> *)layersInLevel;
+-(NSMutableArray<LEPolygon*> *)namedPolyObjects;
 
 -(NSMutableArray<LESide*> *)sides;
 -(NSMutableArray<PhLight*> *)getLights;

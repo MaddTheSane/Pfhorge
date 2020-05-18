@@ -143,7 +143,7 @@
 #pragma mark -
 #pragma mark ********* Level Info Flags *********
 
--(BOOL)isEnvironmentNormal { return (environment_flags == 0)?(YES):(NO); }
+-(BOOL)isEnvironmentNormal { return (environment_flags == LELevelEnvironmentNormal)?(YES):(NO); }
 -(BOOL)isEnvironmentVacuum { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentVacuum); }
 -(BOOL)isEnvironmentMagnetic { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentMagnetic); }
 -(BOOL)isEnvironmentRebellion { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentRebellion); }
@@ -151,11 +151,61 @@
 -(BOOL)isEnvironmentNetwork { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentNetwork); }
 -(BOOL)isEnvironmentSinglePlayer { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentSinglePlayer); }
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentNormal
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentVacuum
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentMagnetic
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentRebellion
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentLowGravity
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentNetwork
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentSinglePlayer
+{
+    return [NSSet setWithObject:@"environmentFlags"];
+}
+
 -(BOOL)isMissionExtermination{ return GET_MISSION_FLAG(LELevelMissionExtermination); }
 -(BOOL)isMissionExploration{ return GET_MISSION_FLAG(LELevelMissionExploration); }
 -(BOOL)isMissionRetrieval{ return GET_MISSION_FLAG(LELevelMissionRetrieval); }
 -(BOOL)isMissionRepair{ return GET_MISSION_FLAG(LELevelMissionRepair); }
 -(BOOL)isMissionRescue{ return GET_MISSION_FLAG(LELevelMissionRescue); }
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionExtermination
+{
+    return [NSSet setWithObject:@"missionFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionExploration
+{
+    return [NSSet setWithObject:@"missionFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionRetrieval
+{
+    return [NSSet setWithObject:@"missionFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionRepair
+{
+    return [NSSet setWithObject:@"missionFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingMissionRescue
+{
+    return [NSSet setWithObject:@"missionFlags"];
+}
 
 -(BOOL)isGameTypeSinglePlayer{ return GET_ENTRY_FLAG(LELevelEntryPointSinglePlayer); }
 -(BOOL)isGameTypeCooperative{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerCooperative); }
@@ -164,6 +214,35 @@
 -(BOOL)isGameTypeKingOfTheHill{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerKingOfTheHill); }
 -(BOOL)isGameTypeDefense{ return GET_ENTRY_FLAG(LELevelEntryPointDefense); }
 -(BOOL)isGameTypeRugby{ return GET_ENTRY_FLAG(LELevelEntryPointMultiplayerRugby); }
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeSinglePlayer
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeCooperative
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeMultiplayerCarnage
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeCaptureTheFlag
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeKingOfTheHill
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeDefense
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
++ (NSSet<NSString *> *)keyPathsForValuesAffectingGameTypeRugby
+{
+    return [NSSet setWithObject:@"entryPointFlags"];
+}
 
 
 -(void)setEnvironmentNormal { environment_flags = LELevelEnvironmentNormal; }

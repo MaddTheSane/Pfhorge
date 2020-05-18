@@ -179,8 +179,7 @@
  #pragma mark -
 #pragma mark ********* Basic Accsess To Level Objects *********
 
--(NSUndoManager *)myUndoManager { return myUndoManager; }
--(void)setMyUndoManager:(NSUndoManager *)value { myUndoManager = value; };
+@synthesize myUndoManager;
 
 -(void)setTheNoteTypesST:(NSArray *)theNSArray { theNoteTypesST = theNSArray; }
 
