@@ -233,8 +233,8 @@
 }
 
 -(id)tableView:(NSTableView *)aTableView
-    objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(NSInteger)rowIndex 
+objectValueForTableColumn:(NSTableColumn *)aTableColumn
+           row:(NSInteger)rowIndex
 {
     if ([[aTableColumn identifier] isEqualToString:@"#"])
         return @(rowIndex);
@@ -244,8 +244,8 @@
 
 
 - (BOOL)tableView:(NSTableView *)aTableView
-    shouldEditTableColumn:(NSTableColumn *)col
-    row:(NSInteger)rowIndex
+shouldEditTableColumn:(NSTableColumn *)col
+              row:(NSInteger)rowIndex
 {
     ///NSParameterAssert(rowIndex >= 0 && rowIndex < [names count]);
     
@@ -261,9 +261,9 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView
-    setObjectValue:anObject
-    forTableColumn:(NSTableColumn *)col
-    row:(NSInteger)rowIndex
+   setObjectValue:anObject
+   forTableColumn:(NSTableColumn *)col
+              row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
     SEND_ERROR_MSG(@"Level List Table (Senerio) Attempted To Set Object.");
@@ -273,7 +273,7 @@
 - (void)tableView:(NSTableView *)view
   willDisplayCell:(id)cell
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)row
+              row:(NSInteger)row
 {
     //[cell setBackgroundColor: [colors objectAtIndex:row]];
     

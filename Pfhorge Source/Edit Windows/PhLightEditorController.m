@@ -184,7 +184,7 @@
     
     //unsigned short theFlags = [light flags];
     int i;
-    int lightTagMenuIndex = [self tagIndexNumberFromShort:[curLight tag]];
+    NSInteger lightTagMenuIndex = [self tagIndexNumberFromShort:[curLight tag]];
     
     [self setupTitlesAndNames];
     

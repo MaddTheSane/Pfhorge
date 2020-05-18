@@ -1217,11 +1217,10 @@ static NSCursor *crosshairCursor = nil;
 
 - (void)loadUpCursors
 {
-    static NSCursor *crosshairCursor = nil;
     if (!crosshairCursor) {
         NSImage *crosshairImage = [NSImage imageNamed:@"Cross"];
         NSSize imageSize = [crosshairImage size];
-        crosshairCursor = [[NSCursor allocWithZone:[self zone]] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
+        crosshairCursor = [[NSCursor alloc] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
     }
 }
 

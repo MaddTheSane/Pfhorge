@@ -428,8 +428,10 @@ static unsigned short SetColor(short ID, int Indx) {
         Quit(1);
     }*/
 
-	g_Camera = new CCamera();
-	NSLog(@"***Made Camera 3***");
+    if (!g_Camera) {
+        g_Camera = new CCamera();
+        NSLog(@"***Made Camera 3***");
+    }
 
     // *Hint* We will put all our game init stuff here
     // Some things include loading models, textures and network initialization

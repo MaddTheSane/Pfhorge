@@ -32,7 +32,6 @@
 {
     IBOutlet MyOpenGLView *OpenGLViewOGLV;
     
-    NSData *mapData;
     LELevelData *levelData;
 }
 
