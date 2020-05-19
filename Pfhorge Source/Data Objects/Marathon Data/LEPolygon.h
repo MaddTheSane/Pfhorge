@@ -89,7 +89,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 @interface LEPolygon : PhAbstractName <NSCoding>
 {
-    PhLayer *polyLayer;
+    __unsafe_unretained PhLayer *polyLayer;
     
     // Program Polygonal Stuff
     BOOL polygonConcave;
@@ -111,7 +111,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     short	floor_texture, ceiling_texture; // shape_descriptor - short
     short	floor_height, ceiling_height; // world_distance
     short	floor_lightsource_index, ceiling_lightsource_index;
-    __unsafe_unretained PhLight		*floor_lightsource_object, *ceiling_lightsource_object;
+    __unsafe_unretained PhLight		*floor_lightsource_object, __unsafe_unretained *ceiling_lightsource_object;
     
     int	area;		// in world distance^2
     
@@ -136,7 +136,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     
     // a list of polygons withing WORLD_ONE of us
     short	first_neighbor_index;
-    __kindof LEMapStuffParent	*first_neighbor_object;
+    __unsafe_unretained __kindof LEMapStuffParent	*first_neighbor_object;
     short	neighbor_count;
     
     NSPoint	center; //!< world_point2d is a NSPoint for now...
@@ -148,23 +148,21 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
     NSPoint	floor_origin, ceiling_origin; //!< world_point2d is a NSPoint for now...
     
     short	media_index;
-    PhMedia	*media_object;
+    __unsafe_unretained PhMedia	*media_object;
     short	media_lightsource_index;
-    __kindof LEMapStuffParent	*media_lightsource_object;
+    __unsafe_unretained __kindof LEMapStuffParent	*media_lightsource_object;
     
     /*! NONE terminated list of _saved_sound_source indexes
     which must be checked while a listener is inside this
     polygon (can be none) */
     short	sound_source_indexes; //???
-    __kindof LEMapStuffParent	*sound_source_objects; //???
+    __unsafe_unretained __kindof LEMapStuffParent	*sound_source_objects; //???
     
     // either can be NONE
     short	ambient_sound_image_index;
-    __kindof LEMapStuffParent	*ambient_sound_image_object;
+    __unsafe_unretained __kindof LEMapStuffParent	*ambient_sound_image_object;
     short	random_sound_image_index;
-    __kindof LEMapStuffParent	*random_sound_image_object;
-    
-    short	unused[1];
+    __unsafe_unretained __kindof LEMapStuffParent	*random_sound_image_object;
 }
 
 

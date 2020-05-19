@@ -118,7 +118,7 @@
 		AE3C15480A04512100FBFFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		AE3C15490A04512100FBFFCD /* LEMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FE5A0F00DC52C37F000001 /* LEMapPoint.m */; };
 		AE3C154A0A04512100FBFFCD /* LELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0121ECA800DDCD937F000001 /* LELine.m */; };
-		AE3C154B0A04512100FBFFCD /* LEPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0112096B00DEC9357F000001 /* LEPolygon.m */; };
+		AE3C154B0A04512100FBFFCD /* LEPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0112096B00DEC9357F000001 /* LEPolygon.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154C0A04512100FBFFCD /* LEMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F6628600E19BB67F000001 /* LEMapObject.m */; };
 		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; };
 		AE3C154E0A04512100FBFFCD /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };

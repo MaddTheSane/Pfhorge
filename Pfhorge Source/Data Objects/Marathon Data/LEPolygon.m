@@ -484,11 +484,7 @@
     
     NSLog(@"Exporting Polygon: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
-    [myData release];
-    [futureData release];
-    
-    if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
-    {
+    if ([index indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: polygon %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
@@ -526,8 +522,7 @@
     //ImportObj(permutationObject);
     
 
-    switch (type)
-    {
+    switch (type) {
         /*case _polygon_is_base:
             tmpShort = 0;
             encodeShort(coder, tmpShort);
@@ -544,7 +539,6 @@
         case _polygon_is_automatic_exit:
             ImportShort(tmpShort);
             permutationObject = numShort(tmpShort);
-            [permutationObject retain];
             break;
         case _polygon_is_platform:
             ImportObj(permutationObject);
@@ -1408,8 +1402,6 @@
     // /    [permutationObject release];
     
     permutationObject = nil;
-    
-    [super dealloc];
 }
 
 -(BOOL)uses:(id)theObj
@@ -1590,7 +1582,6 @@
 						/* copy method should automatically do this */
 					//[permutationObject copySettingsTo:tempPermutationObj];
 					[tempPermutationObj setPolygonObject:theTarget];
-					[tempPermutationObj autorelease];
 				}
             }
             else
@@ -1860,7 +1851,6 @@
 {
     if ([permutationObject isKindOfClass:[NSNumber class]])
     {
-        [permutationObject release];
         permutationObject = nil;
     }
     else if ([permutationObject isKindOfClass:[PhPlatform class]])
@@ -2122,7 +2112,7 @@
     
     if ([permutationObject isKindOfClass:[NSNumber class]])
     {
-        return [[permutationObject copy] autorelease];
+        return [permutationObject copy];
     }
     
     return permutationObject;
