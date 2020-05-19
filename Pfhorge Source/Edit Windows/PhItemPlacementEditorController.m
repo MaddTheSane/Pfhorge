@@ -29,6 +29,7 @@
 
 #import "LEMap.h"
 #import "LELevelData.h"
+#import "LELevelData-private.h"
 
 #import "PhPfhorgeSingleLevelDoc.h"
 

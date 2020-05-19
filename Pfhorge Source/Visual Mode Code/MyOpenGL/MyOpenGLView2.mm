@@ -400,7 +400,7 @@ static unsigned short SetColor(short ID, int Indx) {
 	
 	glLineWidth(1);
 	
-	[[theLevelData getThePolys]  makeObjectsPerformSelector:@selector(render)];
+	[[theLevelData polygons]  makeObjectsPerformSelector:@selector(render)];
 	
     // Swap the backbuffers to the foreground
     //SDL_GL_SwapBuffers();

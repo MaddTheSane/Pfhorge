@@ -26,6 +26,7 @@
 #import "TerminalEditorController.h"
 #import "LEMap.h"
 #import "LELevelData.h"
+#import "LELevelData-private.h"
 
 #import "PhPfhorgeSingleLevelDoc.h"
 
@@ -306,7 +307,7 @@
         
         if (theTerm == nil)
         {
-            NSMutableArray *terminals = [theLevel getTerminals];
+            NSArray *terminals = [theLevel terminals];
             if ([terminals count] <= 0)
             {
                 SEND_ERROR_MSG(@"Must have a terminal to add sections to first. 103");
@@ -325,7 +326,7 @@
         
         [theNewSection setType:[(TerminalSection *)theSelectedObj type]];
         
-        if (((int)[destArray count]) <= theSelectedItemsIndex)
+        if (([destArray count]) <= theSelectedItemsIndex)
             [destArray addObject:theNewSection];
         else
             [destArray insertObject:theNewSection atIndex:theSelectedItemsIndex];
@@ -368,7 +369,7 @@
     else
         rowNumberForItem = 0;
     
-    if (((int)[terminals count]) <= rowNumberForItem || rowNumberForItem < 0)
+    if (([terminals count]) <= rowNumberForItem || rowNumberForItem < 0)
         [terminals addObject:theNewTerminal];
     else
         [terminals insertObject:theNewTerminal atIndex:rowNumberForItem];

@@ -58,7 +58,7 @@
 
 - (NSArray *)noteTypes
 {
-    return noteTypes;
+    return [noteTypes copy];
 }
 
 
@@ -175,33 +175,33 @@
 // I will be making more and expanding the add and delete methods soon.
 
 
--(NSMutableArray *)getThePoints { return points; }
+-(NSArray *)points { return [points copy]; }
 //-(NSArray *)points { return points; }
 
--(NSMutableArray *)getTheLines { return lines; }
--(NSMutableArray *)getThePolys { return polys; }
--(NSMutableArray *)theMapObjects { return mapObjects; }
+-(NSArray *)lines { return [lines copy]; }
+-(NSArray *)polygons { return [polys copy]; }
+-(NSArray *)theMapObjects { return [mapObjects copy]; }
 
--(NSArray *)layerNotes { return layerNotes; }
--(NSMutableArray *)layerPoints { return layerPoints; }
--(NSMutableArray *)layerLines { return layerLines; }
--(NSMutableArray *)layerPolys { return layerPolys; }
--(NSMutableArray *)layerMapObjects { return layerMapObjects; }
+-(NSArray *)layerNotes { return [layerNotes copy]; }
+-(NSArray *)layerPoints { return [layerPoints copy]; }
+-(NSArray *)layerLines { return [layerLines copy]; }
+-(NSArray *)layerPolys { return [layerPolys copy]; }
+-(NSArray *)layerMapObjects { return [layerMapObjects copy]; }
 
--(NSMutableArray *)layersInLevel { return layersInLevel; }
--(NSMutableArray *)namedPolyObjects { return namedPolyObjects; }
+-(NSArray *)layersInLevel { return [layersInLevel copy]; }
+-(NSArray *)namedPolyObjects { return [namedPolyObjects copy]; }
 
--(NSMutableArray *)sides { return sides; }
--(NSMutableArray *)getLights { return lights; }
--(NSMutableArray *)getNotes { return notes; }
--(NSMutableArray *)getMedia { return media; }
--(NSMutableArray *)getAmbientSounds { return ambientSounds; }
--(NSMutableArray *)getRandomSounds { return randomSounds; }
--(NSMutableArray *)getItemPlacement { return itemPlacement; }
--(NSMutableArray *)getPlatforms { return platforms; }
+-(NSArray *)sides { return [sides copy]; }
+-(NSArray *)lights { return [lights copy]; }
+-(NSArray *)notes { return [notes copy]; }
+-(NSArray *)media { return [media copy]; }
+-(NSArray *)ambientSounds { return [ambientSounds copy]; }
+-(NSArray *)randomSounds { return [randomSounds copy]; }
+-(NSArray *)itemPlacement { return [itemPlacement copy]; }
+-(NSArray *)platforms { return [platforms copy]; }
 
--(NSMutableArray *)getTags { return tags; }
+-(NSArray *)tags { return [tags copy]; }
 
--(NSMutableArray *)getTerminals { return terimals; }
+-(NSArray *)terminals { return [terimals copy]; }
 
 @end

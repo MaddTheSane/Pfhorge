@@ -807,10 +807,10 @@
 // ***************************** Scripting Support Methods *****************************
 #pragma mark -
 #pragma mark ********* Scripting Support Methods *******
--(NSArray *)points { return [theLevel getThePoints]; }
--(NSArray *)lines { return [theLevel getTheLines]; }
+-(NSArray *)points { return [theLevel points]; }
+-(NSArray *)lines { return [theLevel lines]; }
 -(NSArray *)objects { return [theLevel theMapObjects]; }
--(NSArray *)polygons { return [theLevel getThePolys]; }
+-(NSArray *)polygons { return [theLevel polygons]; }
 
 - (id)handleFillWithLine:(NSScriptCommand *)command
 {
@@ -818,7 +818,7 @@
     int lineNum = [[args objectForKey:@"linenum"] intValue];
     LEPolygon *theNewPoly;
     NSLog(@"handleFillWithLine");
-    theNewPoly = [[[theLevel getTheLines] objectAtIndex:lineNum] getPolyFromMe];
+    theNewPoly = [[[theLevel lines] objectAtIndex:lineNum] getPolyFromMe];
     
     if (theNewPoly == nil)
     {
@@ -836,7 +836,7 @@
     NSDictionary *args = [command evaluatedArguments];
     int p1num = [[args objectForKey:@"pointone"] intValue];
     int p2num = [[args objectForKey:@"pointtwo"] intValue];
-    NSArray *thePoints = [theLevel getThePoints];
+    NSArray *thePoints = [theLevel points];
     LEMapPoint *pointOne = [thePoints objectAtIndex:p1num];
     LEMapPoint *pointTwo = [thePoints objectAtIndex:p2num];
     LELine *theNewLine = [[LELine alloc] init];
@@ -898,7 +898,7 @@
     }
     
     theNewPoint = [[LEMapPoint alloc] initX:xLoc Y:yLoc];
-    theExsistingPoint = [[theLevel getThePoints] lastObject];
+    theExsistingPoint = [[theLevel points] lastObject];
     theNewLine = [[LELine alloc] init];
     
     NSLog(@"Called handleLineToNewPoint with new point location:  x:%d  y:%d", xLoc, yLoc);

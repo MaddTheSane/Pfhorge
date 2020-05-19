@@ -722,7 +722,7 @@ static NSCursor *crosshairCursor = nil;
 
 - (IBAction)mapManagerPerfOverrideDrawerAction:(id)sender
 {
-    int menuSelection = [gridFactorMenu indexOfSelectedItem];
+    NSInteger menuSelection = [gridFactorMenu indexOfSelectedItem];
     LELevelData *theCurrentLevel = [[self document] getCurrentLevelLoaded];
     float theGridFactor = 0.00;
     
@@ -738,8 +738,7 @@ static NSCursor *crosshairCursor = nil;
     [theCurrentLevel setSettingFor:PhEnableObjectItem asBool:SState(objectVisabilityCheckboxes, _mm_item_vis)];
     [theCurrentLevel setSettingFor:PhEnableObjectGoal asBool:SState(objectVisabilityCheckboxes, _mm_goal_vis)];
     
-    switch(menuSelection)
-    {
+    switch(menuSelection) {
         case _mm_1_8:
             theGridFactor = 0.125;
             break;

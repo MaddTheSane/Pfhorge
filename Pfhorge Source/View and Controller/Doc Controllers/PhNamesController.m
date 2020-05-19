@@ -68,28 +68,25 @@ static NSString *const PhNameOfObject = @"Name";
 {
     editingWindowController = nil;
     
-    if (currentDisplayMode == _display_polys)
-    {
+    if (currentDisplayMode == _display_polys) {
         SEND_ERROR_MSG(@"Can't Edit Polygons Here (Use General Inspector)");
         return;
-    }
-    else if (currentDisplayMode == _display_layers)
-    {
+    } else if (currentDisplayMode == _display_layers) {
         SEND_ERROR_MSG(@"Ability to edit the color of the layer comming soon!");
         return;
     }
     
-    if ([self isSomthingSelected])
+    if ([self isSomthingSelected]) {
         [[theLevelWindowControllerOutlet document] openEditWindowForObject:[self getSelectedObject]];
-    else
+    } else {
         SEND_ERROR_MSG(@"Sorry, but you need to select something first...");
+    }
 }
 
 - (IBAction)defaultBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet..."); }
 - (IBAction)deleteBtnAction:(id)sender
 {
-    if (currentDisplayMode == _display_polys && [self isSomthingSelected])
-    {
+    if (currentDisplayMode == _display_polys && [self isSomthingSelected]) {
         [theLevelDataObject removeNameOfPolygon:[self getSelectedObject]];
         [self reloadDataFromLevel];
         return;
@@ -111,24 +108,23 @@ static NSString *const PhNameOfObject = @"Name";
 - (IBAction)addBtnAction:(id)sender
 {
     /* use addObjectWithDefaults:(Class)theClass */
-   switch(currentDisplayMode)
-    {
+    switch(currentDisplayMode) {
         case _display_tags:
             [theLevelDataObject addObjectWithDefaults:[PhTag class]];
             break;
-	case _display_lights:
-	    [theLevelDataObject addObjectWithDefaults:[PhLight class]];
+        case _display_lights:
+            [theLevelDataObject addObjectWithDefaults:[PhLight class]];
             break;
-	case _display_ambient_sounds:
+        case _display_ambient_sounds:
             [theLevelDataObject addObjectWithDefaults:[PhAmbientSound class]];
             break;
-	case _display_random_sounds:
+        case _display_random_sounds:
             [theLevelDataObject addObjectWithDefaults:[PhRandomSound class]];
             break;
-	case _display_liquids:
+        case _display_liquids:
             [theLevelDataObject addObjectWithDefaults:[PhMedia class]];
             break;
-	case _display_platforms:
+        case _display_platforms:
             [theLevelDataObject addObjectWithDefaults:[PhPlatform class]];
             break;
         case _display_polys:
@@ -137,7 +133,7 @@ static NSString *const PhNameOfObject = @"Name";
         case _display_layers:
             [theLevelDataObject addObjectWithDefaults:[PhLayer class]];
             break;
-	default:
+        default:
             SEND_ERROR_MSG(@"Can't Add More Of These Yet...");
             return;
     }
@@ -175,8 +171,7 @@ static NSString *const PhNameOfObject = @"Name";
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    if (editingWindowController != nil)
-        [editingWindowController release];
+    [editingWindowController release];
     
     [super dealloc];
 }
@@ -222,30 +217,29 @@ static NSString *const PhNameOfObject = @"Name";
     // Set the mode
     currentDisplayMode = theRequestedDisplayMode;
     
-    switch(currentDisplayMode)
-    {
+    switch (currentDisplayMode) {
         case _display_tags:
-            currentArray = [theLevelData getTags];
+            currentArray = [theLevelData tags];
             currentNameArray = [theLevelData getTagNames];
             break;
-	case _display_lights:
-	    currentArray = [theLevelData getLights];
+        case _display_lights:
+            currentArray = [theLevelData lights];
             currentNameArray = [theLevelData getLightNames];
             break;
-	case _display_ambient_sounds:
-	    currentArray = [theLevelData getAmbientSounds];
+        case _display_ambient_sounds:
+            currentArray = [theLevelData ambientSounds];
             currentNameArray = [theLevelData getAmbientSoundNames];
             break;
-	case _display_random_sounds:
-            currentArray = [theLevelData getRandomSounds];
+        case _display_random_sounds:
+            currentArray = [theLevelData randomSounds];
             currentNameArray = [theLevelData getRandomSoundNames];
             break;
-	case _display_liquids:
-	    currentArray = [theLevelData getMedia];
+        case _display_liquids:
+            currentArray = [theLevelData media];
             currentNameArray = [theLevelData getLiquidNames];
             break;
-	case _display_platforms:
-            currentArray = [theLevelData getPlatforms];
+        case _display_platforms:
+            currentArray = [theLevelData platforms];
             currentNameArray = [theLevelData getPlatformNames];
             break;
         case _display_polys:
@@ -256,7 +250,7 @@ static NSString *const PhNameOfObject = @"Name";
             currentArray = [theLevelData layersInLevel];
             currentNameArray = [theLevelData getLayerNames];
             break;
-	default:
+        default:
             SEND_ERROR_MSG(@"Unkown Edit Item Currently Selected!");
             currentArray = nil;
             currentNameArray = nil;
@@ -345,7 +339,7 @@ static NSString *const PhNameOfObject = @"Name";
 
 - (BOOL)tableView:(NSTableView *)aTableView
 shouldEditTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)rowIndex
+              row:(NSInteger)rowIndex
 {
     if ([[col identifier] isEqualToString:PhNumberOfObject])
         return NO;
@@ -373,25 +367,22 @@ shouldEditTableColumn:(NSTableColumn *)col
 
 - (id)tableView:(NSTableView *)view
 objectValueForTableColumn:(NSTableColumn *)col
-			row:(NSInteger)row
+            row:(NSInteger)row
 {
     __kindof LEMapStuffParent	*theCurNameObj= [currentArray objectAtIndex:row];
     
-    if (currentDisplayMode == _display_tags)
-    {
-        if ([[col identifier] isEqualToString:PhNumberOfObject])
+    if (currentDisplayMode == _display_tags) {
+        if ([[col identifier] isEqualToString:PhNumberOfObject]) {
             return [theCurNameObj phNumber];
-            
-        else if ([[col identifier] isEqualToString:PhNameOfObject])
+        } else if ([[col identifier] isEqualToString:PhNameOfObject]) {
             return [theCurNameObj phName];
-    }
-    else
-    {
-        if ([[col identifier] isEqualToString:PhNumberOfObject])
+        }
+    } else {
+        if ([[col identifier] isEqualToString:PhNumberOfObject]) {
             return [NSNumber numberWithShort:[theCurNameObj index]];
-            
-        else if ([[col identifier] isEqualToString:PhNameOfObject])
+        } else if ([[col identifier] isEqualToString:PhNameOfObject]) {
             return [theCurNameObj phName];
+        }
     }
     return nil;
 }
@@ -399,12 +390,12 @@ objectValueForTableColumn:(NSTableColumn *)col
 - (void)tableView:(NSTableView *)aTableView
    setObjectValue:anObject
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)rowIndex
+              row:(NSInteger)rowIndex
 {
     //id theRecord;
     //PhAbstractName *theCurNameObj= [currentArray objectAtIndex:row];
     
-    NSParameterAssert(rowIndex >= 0 && rowIndex < ((int)[currentArray count]));
+    NSParameterAssert(rowIndex >= 0 && rowIndex < ([currentArray count]));
      
 	if ([[col identifier] isEqualToString:PhNameOfObject]) {
         [theLevelDataObject setNameFor:[currentArray objectAtIndex:rowIndex] to:anObject];
@@ -417,11 +408,6 @@ objectValueForTableColumn:(NSTableColumn *)col
             return;
 		}
     }
-    
-    return;
 }
-
-
-
 
 @end

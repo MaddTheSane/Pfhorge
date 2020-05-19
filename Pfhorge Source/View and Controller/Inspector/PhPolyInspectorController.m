@@ -107,7 +107,7 @@
     
     LEPolygon *thePoly = [mainInspectorController getTheCurrentSelection];
     LELevelData *theLevelData = [mainInspectorController currentLevel];
-    int curPolyType;
+    LEPolygonType curPolyType;
     id tmpObj;
     
     curPoly = thePoly;
@@ -153,8 +153,7 @@
     [theLevelData removeMenu:permutation];
     
     
-    switch (curPolyType)
-    {
+    switch (curPolyType) {
         case _polygon_is_light_on_trigger:
         case _polygon_is_light_off_trigger:
             [permutationTab selectTabViewItemAtIndex:0];
@@ -165,7 +164,7 @@
             [permutation selectItemAtIndex:[thePoly permutation]];
             lastMenuTypeCache = _lightMenu;
             break;
-        
+            
         case _polygon_is_platform_on_trigger:
         case _polygon_is_platform_off_trigger:
         case _polygon_is_teleporter:
@@ -187,16 +186,17 @@
                 [permutation selectItemAtIndex:-1];
             
             break;
-        
+            
         case _polygon_is_base:
             [permutationTab selectTabViewItemAtIndex:1];
             
             tmpObj = [thePoly permutationObject];
             
-            if (tmpObj != nil /*&& NOTE: test to make sure tmpObj is a NSNumber!!! */)
+            if (tmpObj != nil /*&& NOTE: test to make sure tmpObj is a NSNumber!!! */) {
                 [permutationNumberTB setIntValue:[tmpObj intValue]];
-            else
+            } else {
                 [permutationNumberTB setIntValue:-1];
+            }
             
             [platformParametersBtn setEnabled:NO];
             [permutation selectItemAtIndex:-1];
@@ -287,17 +287,12 @@
     LEPolygon *thePoly = curPoly;//[mainInspectorController getTheCurrentSelection];
     //LELevelData *theLevelData = [mainInspectorController currentLevel];
     PhPlatform *thePolyPlatform = [thePoly permutationObject];
-    PhPlatform *curPlat = nil;
     
-    NSArray *thePlatforms = [[mainInspectorController currentLevel] getPlatforms];
+    NSArray *thePlatforms = [[mainInspectorController currentLevel] platforms];
     
-    NSEnumerator *numer = [thePlatforms objectEnumerator];
-    while (curPlat = [numer nextObject])
-    {
-        if ([curPlat polygonObject] == thePoly)
-        {
-            if (curPlat != thePolyPlatform)
-            {
+    for (PhPlatform *curPlat in thePlatforms) {
+        if ([curPlat polygonObject] == thePoly) {
+            if (curPlat != thePolyPlatform) {
                 NSLog(@"WARNING: the polygon did not point back to correct platform, I am fixing this...");
                 [thePoly setPermutationObject:curPlat];
             }
@@ -341,7 +336,7 @@
             break;
         case _polygon_is_light_off_trigger:
         case _polygon_is_light_on_trigger:
-            if ([[theLevelData getLights] count] < 1)
+            if ([[theLevelData lights] count] < 1)
             {
                 SEND_ERROR_MSG_TITLE(@"Sorry, but there are no lights to choose for this level.",
                                      @"Can't Change Type");
@@ -349,7 +344,7 @@
                 return;
             }
             
-            [thePolyInQuestion setPermutationObject:[[theLevelData getLights] objectAtIndex:0]];
+            [thePolyInQuestion setPermutationObject:[[theLevelData lights] objectAtIndex:0]];
             break;
         case _polygon_is_platform_on_trigger:
         case _polygon_is_platform_off_trigger:
@@ -421,16 +416,16 @@
                 //  called - (IBAction)permutationNumberTBAction:(id)sender
             break;
         case _polygon_is_platform:
-            thePerObj = [[theLevelData getPlatforms] objectAtIndex:thePermutation];
+            thePerObj = [[theLevelData platforms] objectAtIndex:thePermutation];
             break;
         case _polygon_is_light_on_trigger:
-            thePerObj = [[theLevelData getLights] objectAtIndex:thePermutation];
+            thePerObj = [[theLevelData lights] objectAtIndex:thePermutation];
             break;
         case _polygon_is_platform_on_trigger:
             thePerObj = [[theLevelData namedPolyObjects] objectAtIndex:thePermutation];
             break;
         case _polygon_is_light_off_trigger:
-            thePerObj = [[theLevelData getLights] objectAtIndex:thePermutation];
+            thePerObj = [[theLevelData lights] objectAtIndex:thePermutation];
             break;
         case _polygon_is_platform_off_trigger:
             thePerObj = [[theLevelData namedPolyObjects] objectAtIndex:thePermutation];

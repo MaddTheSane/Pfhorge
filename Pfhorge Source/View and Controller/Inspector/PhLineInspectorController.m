@@ -338,12 +338,12 @@
                     break;
                 case _cpanel_effects_tag:
                     [theLevelData addMenu:linePermutation asA:_tagMenu];
-                    [linePermutation selectItemAtIndex:[[theLevelData getTags]
+                    [linePermutation selectItemAtIndex:[[theLevelData tags]
                         indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_light:
                     [theLevelData addMenu:linePermutation asA:_lightMenu];
-                    [linePermutation selectItemAtIndex:[[theLevelData getLights]
+                    [linePermutation selectItemAtIndex:[[theLevelData lights]
                         indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_polygon:
@@ -369,7 +369,7 @@
                         //indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_terminal:
-                    terminalIndex = [[theLevelData getTerminals] 
+                    terminalIndex = [[theLevelData terminals] 
                                 indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]];
                     
                     [theLevelData addMenu:linePermutation asA:_terminalMenu];
@@ -506,11 +506,11 @@
             break;
         case _cpanel_effects_tag:
             [baseSideRef setControlPanelPermutationObject:
-                [[theLevelData getTags] objectAtIndex:[sender indexOfSelectedItem]]];
+                [[theLevelData tags] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         case _cpanel_effects_light:
             [baseSideRef setControlPanelPermutationObject:
-                [[theLevelData getLights] objectAtIndex:[sender indexOfSelectedItem]]];
+                [[theLevelData lights] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         case _cpanel_effects_polygon:
             //[linePermutation selectItemAtIndex:-1];
@@ -535,7 +535,7 @@
             break;
         case _cpanel_effects_terminal:
             [baseSideRef setControlPanelPermutationObject:
-                [[theLevelData getTerminals] objectAtIndex:[sender indexOfSelectedItem]]];
+                [[theLevelData terminals] objectAtIndex:[sender indexOfSelectedItem]]];
             break;
         default:
             [linePermutation selectItemAtIndex:-1];

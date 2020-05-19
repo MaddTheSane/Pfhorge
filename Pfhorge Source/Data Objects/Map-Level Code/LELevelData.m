@@ -25,6 +25,7 @@
 #import "LEMapStuffParent.h"
 
 #import "LELevelData.h"
+#import "LELevelData-private.h"
 #import "LEMapDraw.h"
 #import "LEMap.h"
 
@@ -79,6 +80,38 @@
 @synthesize environmentFlags=environment_flags;
 @synthesize entryPointFlags=entry_point_flags;
 @synthesize myUndoManager;
+
+- (NSMutableArray<PhItemPlacement *> *)getItemPlacement
+{
+    return itemPlacement;
+}
+
+-(NSMutableArray *)getThePoints { return points; }
+//-(NSArray *)points { return points; }
+
+-(NSMutableArray *)getTheLines { return lines; }
+-(NSMutableArray *)getThePolys { return polys; }
+-(NSMutableArray *)getTheMapObjects { return mapObjects; }
+
+-(NSMutableArray *)getLayerPoints { return layerPoints; }
+-(NSMutableArray *)getLayerLines { return layerLines; }
+-(NSMutableArray *)getLayerPolys { return layerPolys; }
+-(NSMutableArray *)getLayerMapObjects { return layerMapObjects; }
+
+-(NSMutableArray *)getLayersInLevel { return layersInLevel; }
+-(NSMutableArray *)getNamedPolyObjects { return namedPolyObjects; }
+
+-(NSMutableArray *)getSides { return sides; }
+-(NSMutableArray *)getLights { return lights; }
+-(NSMutableArray *)getNotes { return notes; }
+-(NSMutableArray *)getMedia { return media; }
+-(NSMutableArray *)getAmbientSounds { return ambientSounds; }
+-(NSMutableArray *)getRandomSounds { return randomSounds; }
+-(NSMutableArray *)getPlatforms { return platforms; }
+
+-(NSMutableArray *)getTags { return tags; }
+
+-(NSMutableArray *)getTerminals { return terimals; }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingEnvironmentFlags
 {
@@ -143,7 +176,7 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark Coding/Copy Protocal Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [self resetAdjacentPolygonAssociations];
@@ -1082,7 +1115,7 @@ enum // export data types
 
 // ***************************  Intial Setup And Deallocation ***************************
 #pragma mark -
-#pragma mark ********* Intial Setup And Deallocation *********
+#pragma mark Intial Setup And Deallocation
 
 
 -(LELevelData *)initForNewPathwaysPIDLevel

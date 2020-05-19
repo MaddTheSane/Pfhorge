@@ -158,7 +158,7 @@
 
 -(void)saveChanges
 {
-    NSArray *theLights = [mapLevel getLights];
+    NSArray *theLights = [mapLevel lights];
     NSLog(@"Saving Media Changes...");
     
     if (curMedia == nil || mapLevel == nil || theLights == nil)

@@ -110,26 +110,26 @@
         return;
     }
     
-    [points addObjectsFromArray:[theLevelToImport getThePoints]];
-    [lines addObjectsFromArray:[theLevelToImport getTheLines]];
-    [polys addObjectsFromArray:[theLevelToImport getThePolys]];
+    [points addObjectsFromArray:[theLevelToImport points]];
+    [lines addObjectsFromArray:[theLevelToImport lines]];
+    [polys addObjectsFromArray:[theLevelToImport polygons]];
     [mapObjects addObjectsFromArray:[theLevelToImport theMapObjects]];
-    [lights addObjectsFromArray:[theLevelToImport getLights]];
+    [lights addObjectsFromArray:[theLevelToImport lights]];
     [sides addObjectsFromArray:[theLevelToImport sides]];
-    [notes addObjectsFromArray:[theLevelToImport getNotes]];
-    [media addObjectsFromArray:[theLevelToImport getMedia]];
-    [ambientSounds addObjectsFromArray:[theLevelToImport getAmbientSounds]];
-    [randomSounds addObjectsFromArray:[theLevelToImport getRandomSounds]];
+    [notes addObjectsFromArray:[theLevelToImport notes]];
+    [media addObjectsFromArray:[theLevelToImport media]];
+    [ambientSounds addObjectsFromArray:[theLevelToImport ambientSounds]];
+    [randomSounds addObjectsFromArray:[theLevelToImport randomSounds]];
     
     // *** NOTE: Should a replace them? There are only
     //		   suposed to be 128 as far as I know...
-    //[itemPlacement addObjectsFromArray:[theLevelToImport getThePoints]];
+    //[itemPlacement addObjectsFromArray:[theLevelToImport points]];
     
-    [platforms addObjectsFromArray:[theLevelToImport getPlatforms]];
+    [platforms addObjectsFromArray:[theLevelToImport platforms]];
     
     [layersInLevel addObjectsFromArray:[theLevelToImport layersInLevel]];
-    [tags addObjectsFromArray:[theLevelToImport getTags]];
-    [terimals addObjectsFromArray:[theLevelToImport getTerminals]];
+    [tags addObjectsFromArray:[theLevelToImport tags]];
+    [terimals addObjectsFromArray:[theLevelToImport terminals]];
     
     [self setUpArrayNamesForEveryObject];
     [self setUpArrayPointersForEveryObject];
@@ -149,7 +149,7 @@
 
 - (NSInteger)tagIndexNumberFromTagNumber:(short)tagNumber
 {
-    //NSArray *theLevelTags = [self getTags]; //phNumber
+    //NSArray *theLevelTags = [self tags]; //phNumber
     NSEnumerator *numer;
     NSNumber *currentTagNumber = [NSNumber numberWithShort:tagNumber];
     PhTag *theNewTag = nil;

@@ -147,7 +147,7 @@
         withLevel:(LELevelData *)levelDataObj
 {
     int fontLength = (int)[fontData length];
-    int newTextLength = 0;
+    NSInteger newTextLength = 0;
     int i = 0;
     NSMutableParagraphStyle *theParagraphStyle; /* = [[NSMutableParagraphStyle alloc] init]; */
     

@@ -72,7 +72,7 @@ typedef NS_ENUM(short, _data_type_export) {
 
 
 // **************************  Level Info Enumerations  *************************
-//#pragma mark ********* Level Info Enumerations *********
+#pragma mark Level Info Enumerations
 
 enum /* clockwise/counterclockwise line result*/
 {
@@ -161,7 +161,7 @@ enum {
        PhAnnotationNote, PhItemPlacement, PhAmbientSound;
 @class PhLayer;
 // *****************  Class Blue Print  *****************
-// #pragma mark ********* Class Blue Print *********
+#pragma mark Class Blueprint
 
 @interface LELevelData : PhLevelNameManager <NSCoding>
 {
@@ -231,11 +231,11 @@ enum {
 @property (assign) NSUndoManager *myUndoManager;
 
 
-// **************  Inital Setup Methods  *************
+#pragma mark Inital Setup Methods
 -(void)compileAndSetNameArraysFromLevel;
 -(void)setUpArrayNamesForEveryObject;
 
-// **************  Coding/Copy Protocal Methods  *************
+#pragma mark Coding/Copy Protocal Methods
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 
@@ -247,7 +247,7 @@ enum {
 - (NSData *)exportObjects:(NSSet<__kindof LEMapStuffParent*> *)objects;
 - (NSSet<__kindof LEMapStuffParent*> *)importObjects:(NSData *)theData;
 
-// ***************** Level Information Accessors  ****************
+#pragma mark Level Information Accessors
 
 @property short environmentCode;
 @property short physicsModel;
@@ -260,10 +260,11 @@ enum {
 @end
 
 // ••••••••••••••••••••••••••• OBJECT MANIPULATION •••••••••••••••••••••••••••
+#pragma mark - Object Manipulation
 
 @interface LELevelData (LevelDataObjectManipulation)
 
-// *************** Adding Objects To Level Array Methods ***************
+#pragma mark Adding Objects To Level Array Methods
 
 -(id)addObjectWithDefaults:(Class)theClass;
 -(void)addObjects:(id)objectToAdd;
@@ -279,7 +280,7 @@ enum {
     // ### Move following method to Pfhorge Independit Utility Functions ###
 -(int)whatIsDirectionalRelationshipForLine:(LELine *)theLine relitiveTo:(NSArray *)lineArray;
 
-// ****************** Deleteing Objects From Level Array Methods ******************
+#pragma mark Deleteing Objects From Level Array Methods
 
 -(void)deleteObject:(id)objectToDelete;
 -(void)deleteLevelObject:(LEMapObject *)theLevelObjectToRemove;
@@ -293,10 +294,11 @@ enum {
 @end
 
 // ••••••••••••••••••••••••••• UTILTIES •••••••••••••••••••••••••••
+#pragma mark - Utilities
 
 @interface LELevelData (LevelDataUtilites)
 
-// ********* some additonal public utilites *********
+#pragma mark some additonal public utilites
 
 - (void)havePointsScanForLines;
 
@@ -334,10 +336,11 @@ enum {
 @end
 
 // ••••••••••••••••••••••••••• LAYERS •••••••••••••••••••••••••••
+#pragma mark - Layers
 
 @interface LELevelData (LevelLayers)
 
-// **************** Layer Data Agirithms ****************
+#pragma mark Layer Data Algorithms
 
 -(void)setupLayersForNewPIDLevel;
 -(void)setupLayers;
@@ -352,9 +355,10 @@ enum {
 @end
 
 // ••••••••••••••••••••••••••• DATA ACCSESSORS •••••••••••••••••••••••••••
+#pragma mark - Data Accessors
 
 @interface LELevelData (LevelDataAccsessors)
-// *****************  Level Data Accsessors  ****************
+#pragma mark Level Data Accsessors
 
 - (NSArray *)getNoteTypes API_DEPRECATED_WITH_REPLACEMENT("-noteTypes", macos(10.0, 10.7));
 - (NSArray<PhNoteGroup*> *)noteTypes;
@@ -380,41 +384,41 @@ enum {
 // I will be making more and expanding the add and delete methods soon.
 
 
--(NSMutableArray<LEMapPoint*> *)getThePoints;
-//-(NSArray *)points;
--(NSMutableArray<LELine*> *)getTheLines;
--(NSMutableArray<LEPolygon*> *)getThePolys;
--(NSMutableArray<LEMapObject*> *)theMapObjects;
+-(NSArray<LEMapPoint*> *)points;
+-(NSArray<LELine*> *)lines;
+-(NSArray<LEPolygon*> *)polygons;
+-(NSArray<LEMapObject*> *)theMapObjects;
 
 -(NSArray<PhAnnotationNote*> *)layerNotes;
--(NSMutableArray<LEMapPoint*> *)layerPoints;
--(NSMutableArray<LELine*> *)layerLines;
--(NSMutableArray<LEPolygon*> *)layerPolys;
--(NSMutableArray<LEMapObject *> *)layerMapObjects;
+-(NSArray<LEMapPoint*> *)layerPoints;
+-(NSArray<LELine*> *)layerLines;
+-(NSArray<LEPolygon*> *)layerPolys;
+-(NSArray<LEMapObject *> *)layerMapObjects;
 
--(NSMutableArray<PhLayer*> *)layersInLevel;
--(NSMutableArray<LEPolygon*> *)namedPolyObjects;
+-(NSArray<PhLayer*> *)layersInLevel;
+-(NSArray<LEPolygon*> *)namedPolyObjects;
 
--(NSMutableArray<LESide*> *)sides;
--(NSMutableArray<PhLight*> *)getLights;
--(NSMutableArray<PhAnnotationNote*> *)getNotes;
--(NSMutableArray<PhMedia*> *)getMedia;
--(NSMutableArray<PhAmbientSound*> *)getAmbientSounds;
--(NSMutableArray<PhRandomSound*> *)getRandomSounds;
--(NSMutableArray<PhItemPlacement*> *)getItemPlacement;
--(NSMutableArray<PhPlatform*> *)getPlatforms;
+-(NSArray<LESide*> *)sides;
+-(NSArray<PhLight*> *)lights;
+-(NSArray<PhAnnotationNote*> *)notes;
+-(NSArray<PhMedia*> *)media;
+-(NSArray<PhAmbientSound*> *)ambientSounds;
+-(NSArray<PhRandomSound*> *)randomSounds;
+-(NSArray<PhItemPlacement*> *)itemPlacement;
+-(NSArray<PhPlatform*> *)platforms;
 
--(NSMutableArray<PhTag*> *)getTags;
+-(NSArray<PhTag*> *)tags;
 
--(NSMutableArray<Terminal*> *)getTerminals;
+-(NSArray<Terminal*> *)terminals;
 
 @end
 
 // ••••••••••••••••••••••••••• LEVEL SETTINGS •••••••••••••••••••••••••••
+#pragma mark - Level Settings
 
 @interface LELevelData (LevelSettings)
 
-// **************** Level Specific Settings ****************
+#pragma mark Level Specific Settings
 -(NSDecimalNumberHandler *)roundingSettings;
 
 -(NSMutableDictionary *)getLevelOptionDictionary;
@@ -429,7 +433,7 @@ enum {
 
 -(void)copyOptionsFromPrefs;
 
-// ****************** Level Information Flag Accsessors  ****************
+#pragma mark Level Information Flag Accsessors
 
 @property (nonatomic, readonly, getter=isEnvironmentNormal) BOOL environmentNormal;
 -(void)setEnvironmentNormal;

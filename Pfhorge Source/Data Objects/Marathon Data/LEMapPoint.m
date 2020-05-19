@@ -429,11 +429,8 @@
 
 -(LEMapPoint *)nearestMapPointInRange:(int)maxDist
 {
-    LEMapPoint *curPoint;
-
-    id theMapPoints = [theLELevelDataST getThePoints];
-    NSEnumerator *numer;
-    numer = [theMapPoints reverseObjectEnumerator];
+    NSArray<LEMapPoint*> *theMapPoints = [theLELevelDataST points];
+    NSEnumerator<LEMapPoint*> *numer = [theMapPoints reverseObjectEnumerator];
 
     int bestDist = 50000;
     LEMapPoint *bestPoint = nil;
@@ -447,25 +444,21 @@
     // and release it our selves latter one.  BUT we only need this point temprarly,
     // so there is no need to do a retain and release...
     
-    while (curPoint = (LEMapPoint *)[numer nextObject])
-    {
-	theDist = [curPoint distanceToPoint:self];
-
-	if(theDist > maxDist)
-	{
-	    continue;
-	}
-
-	if (theDist < bestDist)
-	{
-	    bestDist = theDist;
-	    bestPoint = curPoint;
-	}
+    for (LEMapPoint *curPoint in numer) {
+        theDist = [curPoint distanceToPoint:self];
+        
+        if(theDist > maxDist) {
+            continue;
+        }
+        
+        if (theDist < bestDist) {
+            bestDist = theDist;
+            bestPoint = curPoint;
+        }
     }
 
-    if(bestPoint == nil)	// found none
-    {
-	return nil;
+    if (bestPoint == nil) {	// found none
+        return nil;
     }
     
     

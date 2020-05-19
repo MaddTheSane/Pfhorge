@@ -34,6 +34,7 @@
 
 //Data Classes...
 #import "LELevelData.h"
+#import "LELevelData-private.h"
 #import "LEMapPoint.h"
 #import "LELine.h"
 #import "LEPolygon.h"
@@ -695,8 +696,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //[curDrawingMap stroke];
     }
     
-    theMapPoints = [currentLevel getThePoints];
-    theMapLines = [currentLevel getTheLines];
+    theMapPoints = [currentLevel points];
+    theMapLines = [currentLevel lines];
     
     r.origin.x = aRect.origin.x - 100;
     r.origin.y = aRect.origin.y - 100;
@@ -771,12 +772,12 @@ typedef NS_ENUM(short, LEEDrawMode) {
     if ([currentLevel settingAsBool:PhDrawOnlyLayerPoints]) {
         theMapPoints = [currentLevel layerPoints];
     } else {
-        theMapPoints = [currentLevel getThePoints];
+        theMapPoints = [currentLevel points];
     }
     
-    theMapLines = [currentLevel getTheLines];
+    theMapLines = [currentLevel lines];
     //theMapObjects = [currentLevel theMapObjects];
-    theMapPolys = [currentLevel getThePolys];
+    theMapPolys = [currentLevel polygons];
     
     //Set default NSBezier Stuff...
     [NSBezierPath setDefaultLineWidth:0];
@@ -1183,7 +1184,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 {
     //NSLog(@"A");
     
-    //numer = [[currentLevel getNotes] objectEnumerator];
+    //numer = [[currentLevel notes] objectEnumerator];
     for (PhAnnotationNote *note in rectNotes) {
         PhNoteGroup *grp = [note group];
         NSColor *color = nil;
@@ -1671,11 +1672,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     //numberTable = NSMutableDictionary;
     
     
-    theMapPoints = [currentLevel getThePoints];
-    thePolys = [currentLevel getThePolys];
-    theAmbientSounds = [currentLevel getAmbientSounds];
-    theLights = [currentLevel getLights];
-    theLiquids = [currentLevel getMedia];
+    theMapPoints = [currentLevel points];
+    thePolys = [currentLevel polygons];
+    theAmbientSounds = [currentLevel ambientSounds];
+    theLights = [currentLevel lights];
+    theLiquids = [currentLevel media];
     theLevelLayerArray = [currentLevel layersInLevel];
     //getRandomSounds
     //getPlatforms
@@ -2259,7 +2260,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSNumber *selectedNumber = [theColorListController getSelectedNumber];
     // Get the mouse point and convert it to this view's cordinate system....
     NSPoint mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    NSArray *thePolys = [currentLevel getThePolys];
+    NSArray *thePolys = [currentLevel polygons];
     NSEnumerator *numer;
     id curObj;
     BOOL foundSelection = NO;
@@ -2404,7 +2405,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     //BOOL foundSelection = NO;
     NSEvent *autoscrollEvent = nil;
-    NSMutableArray *theMapPoints, *thePolys, *theLines, *theMapObjects;
+    NSArray *theMapPoints, *thePolys, *theLines, *theMapObjects;
     NSRect oldDrawingBounds;
     id curObj;
     //NSMutableString *levelInfoString;
@@ -2447,9 +2448,9 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // ************************************ May want to make these get the rect caches, and not the layer caches... ************************************
     
-    theMapPoints = [currentLevel getThePoints];
-    thePolys = [currentLevel getThePolys];
-    theLines = [currentLevel getTheLines];
+    theMapPoints = [currentLevel points];
+    thePolys = [currentLevel polygons];
+    theLines = [currentLevel lines];
     theMapObjects = [currentLevel theMapObjects];
     
     // Make the current drawing mode nothing...
@@ -2845,7 +2846,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                     {
                         NSEnumerator *numer;
                         NSArray *mapPointsArray;
-                        NSMutableArray *thePointsInRange = [[NSMutableArray alloc] initWithCapacity:0];
+                        //NSMutableArray *thePointsInRange = [[NSMutableArray alloc] initWithCapacity:0];
                         LEMapPoint *theSelectedP = endPoint; //[selectedPoints anyObject]; // *** MAKE SURE YOU MAKE IT MULTIPOINT FRENDLY!!! ***
                         id curObj;
                         
@@ -3404,7 +3405,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     theMapObjects = rectObjects; //[currentLevel layerMapObjects];
     
     // Will probably want to filter this out in the future...
-    theNotes = rectNotes;//[currentLevel getNotes];
+    theNotes = rectNotes;//[currentLevel notes];
     
     if ([self isPointInSelection:mouseLoc])
         pointInsideAlreadySelectedObject = YES;
@@ -3573,7 +3574,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     BOOL lastLineToTest = NO;
     NSInteger indexOfLineFound;
     //int dis1, dis2;
-    NSMutableArray *theMapPoints, *theLines, *theNewPolyLines, *theNewPolyVectors;
+    NSArray *theMapPoints, *theLines;
+    NSMutableArray *theNewPolyLines, *theNewPolyVectors;
     //NSMutableArray *theMapObjects, *thePolys;
     LEMapPoint *currentLineMainPoint, *currentLineSecondaryPoint;
     //LEMapPoint *curPoint;
@@ -3601,8 +3603,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // Prepeare The Stuff... :)   Draconic... --:=>
     
-    theMapPoints = [currentLevel getThePoints];
-    theLines = [currentLevel getTheLines];
+    theMapPoints = [currentLevel points];
+    theLines = [currentLevel lines];
     
     theNewPolyLines = [NSMutableArray arrayWithCapacity:8];
     theNewPolyVectors = [NSMutableArray arrayWithCapacity:8];
@@ -4029,7 +4031,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // Clicked directly on an existing point
     
-    NSMutableArray *theMapPoints = [currentLevel getThePoints];
+    NSArray *theMapPoints = [currentLevel points];
     
     NSEnumerator *numer = [theMapPoints reverseObjectEnumerator];
     
@@ -5218,7 +5220,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         if ([preferences boolForKey:PhDrawOnlyLayerPoints]) {
             numer = [[currentLevel layerPoints] objectEnumerator];
         } else {
-            numer = [[currentLevel getThePoints] objectEnumerator];
+            numer = [[currentLevel points] objectEnumerator];
         }
         
         //numer = [[currentLevel layerPoints] objectEnumerator];
@@ -5272,7 +5274,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
     switch(typeOfPfhorgeObject) {
         case _goto_polygon:
-            arrayOne = [currentLevel getThePolys];
+            arrayOne = [currentLevel polygons];
             arrayTwo = [currentLevel layerPolys];
             break;
         case _goto_object:
@@ -5280,7 +5282,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             arrayTwo = [currentLevel layerMapObjects];
             break;
         case _goto_platform:
-            arrayOne = [currentLevel getPlatforms];
+            arrayOne = [currentLevel platforms];
             
             if ([arrayOne count] <= theIndex)
                 return @"Platform Index Beyond Bounds";
@@ -5298,11 +5300,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
             
             return nil;
         case _goto_line:
-            arrayOne = [currentLevel getTheLines];
+            arrayOne = [currentLevel lines];
             arrayTwo = [currentLevel layerLines];
             break;
         case _goto_point:
-            arrayOne = [currentLevel getThePoints];
+            arrayOne = [currentLevel points];
             arrayTwo = [currentLevel layerPoints];
             break;
     }
