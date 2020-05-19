@@ -1574,8 +1574,7 @@
     
     // Check to make sure the the count is greater then three sometime...
     
-    switch ([theNewPolyVectors count])
-    {
+    switch ([theNewPolyVectors count]) {
         case 8:
             [theNewPolygon setVertexWithObject:[theNewPolyVectors objectAtIndex:7] toIndex:7];
             [theNewPolygon setLinesObject:[theNewPolyLines objectAtIndex:7] toIndex:7];
@@ -1641,8 +1640,7 @@
     }
     
     //previousLine = nil; // Just to make sure...
-    numer = [theConnectedLines objectEnumerator];
-    while (thisMapLine = [numer nextObject])
+    for (thisMapLine in theConnectedLines)
     {
         double previousX, previousY, thisX, thisY;
         double prevX, prevY, theX, theY;
@@ -1651,12 +1649,9 @@
         LEMapPoint *theCurPoint2 = [theMapPointsST objectAtIndex:[thisMapLine pointIndex2]];
         LEMapPoint *theCurPoint;
         
-        if (theCurPoint1 == alphaPoint)
-        {
+        if (theCurPoint1 == alphaPoint) {
             theCurPoint = theCurPoint2;
-        }
-        else
-        {
+        } else {
             theCurPoint = theCurPoint1;
         }
         
@@ -1772,8 +1767,7 @@
 {
     // There's no point doing anything if
     // either one is nil...
-    if (mapPoint1 == nil || mapPoint2 == nil)
-    {
+    if (mapPoint1 == nil || mapPoint2 == nil) {
         //_Length = 0;
         //_Angle = 0;
         //_Azimuth = 0;
@@ -1806,52 +1800,52 @@
     
     if(dX < 0)			// quadrant 1 or 2
     {
-	if(dY > 0)		// quadrant 1
-	{
-	    // a will be negative, 90-0
-	    t = 90.0 + a;
-	}
-	else if (dY < 0)	// quadrant 2
-	{
-	    // a will be positive, 0-90
-	    t = 90.0 + a;
-	}
-	else			// rightwards
-	{
-	    t = 90.0;
-	}
+        if(dY > 0)		// quadrant 1
+        {
+            // a will be negative, 90-0
+            t = 90.0 + a;
+        }
+        else if (dY < 0)	// quadrant 2
+        {
+            // a will be positive, 0-90
+            t = 90.0 + a;
+        }
+        else			// rightwards
+        {
+            t = 90.0;
+        }
     }
     else if(dX > 0)		// quadrant 3 or 4
     {
-	if(dY < 0)		// quadrant 3
-	{
-	    // a will be negative, 90-0
-	    t = 270.0 + a;
-	}
-	else if(dY > 0)		// quadrant 4
-	{
-	    // a will be positive, 0-90
-	    t = 270.0 + a;
-	}
-	else			// leftwards
-	{
-	    t = 270.0;
-	}
+        if(dY < 0)		// quadrant 3
+        {
+            // a will be negative, 90-0
+            t = 270.0 + a;
+        }
+        else if(dY > 0)		// quadrant 4
+        {
+            // a will be positive, 0-90
+            t = 270.0 + a;
+        }
+        else			// leftwards
+        {
+            t = 270.0;
+        }
     }
     else			// straight up or down
     {
-	if(dY > 0)		// straight up
-	{
-	    t = 0.0;
-	}
-	else if(dY < 0 )	// straight down
-	{
-	    t = 180.0;
-	}
-	else			// p1 = p2 = zero length line!!
-	{
-//	    NSLog(@"Oops! This is a zero length line, which should have been caught elsewhere!");
-	}
+        if(dY > 0)		// straight up
+        {
+            t = 0.0;
+        }
+        else if(dY < 0 )	// straight down
+        {
+            t = 180.0;
+        }
+        else			// p1 = p2 = zero length line!!
+        {
+            //NSLog(@"Oops! This is a zero length line, which should have been caught elsewhere!");
+        }
     }
 
     [self setAzimuth:(short)t];
@@ -1867,8 +1861,7 @@
     
     // From rightwards
     m += 90.0;
-    if(m >= 360.0)
-    {
+    if(m >= 360.0) {
 		m -= 360.0; // <-- it's like % but i can guarantee it'll never go over 720
 	}				// so no need to worry about not being enough
 	

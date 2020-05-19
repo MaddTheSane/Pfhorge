@@ -61,7 +61,7 @@
     {
         int theType;
         i++;
-    
+        
         if (i == 1)
         {
             if (clockPoly != nil)
@@ -100,12 +100,12 @@
             case _polygon_must_be_explored:
             case _polygon_is_automatic_exit:
                 break;
-            
+                
             case _polygon_is_platform: // Do Platfrom Side Calculations...
                 
                 // Only if the floor is moving, CHANGE THIS!!!
                 //if (alreadySetPlatformFlag == NO)
-                 //   flags |= LELineVariableElevation;
+                //   flags |= LELineVariableElevation;
                 
                 if (i == 1)
                 {
@@ -117,10 +117,10 @@
                     ccPlat = [counterclockPoly permutationObject];
                     ccPlatform = YES;
                 }
-               
+                
                 alreadySetPlatformFlag = YES;
                 break;
-            
+                
             default:
                 break;
         } // END switch (theType)
@@ -151,7 +151,7 @@
                     NSLog(@"Poly %d does not have a link to me (Line %d)?", [clockPoly index], [self index]);
             }
             
-            [clockwisePolygonSideObject setType:_full_side]; 
+            [clockwisePolygonSideObject setType:_full_side];
             
             flags |= LELineSolid;
             
@@ -213,8 +213,8 @@
         {
             [self setupAsNonPlatformLine];
         }
-         
-     } // END else After NOT if (clockPoly == nil || counterclockPoly == nil)
+        
+    } // END else After NOT if (clockPoly == nil || counterclockPoly == nil)
     
     
     //Make sure parmanent flags are followed...
@@ -225,171 +225,171 @@
 
 -(void)setupWithClockPlat:(PhPlatform *)cPlat counterClockPlat:(PhPlatform *)ccPlat
 {
-        int cF = [clockwisePolygon floorHeight];
-        int cC = [clockwisePolygon ceilingHeight];
-        int ccF = [conterclockwisePolygon floorHeight];
-        int ccC = [conterclockwisePolygon ceilingHeight];
-        
-        int cPlatMax = [cPlat maximumHeight];
-        int ccPlatMax = [ccPlat maximumHeight];
-        
-        int cPlatMin = [cPlat minimumHeight];
-        int ccPlatMin = [ccPlat minimumHeight];
-        
-        if (cPlatMax == -1)
-            cPlatMax = cC;
-        if (cPlatMin == -1)
-            cPlatMin = cF;
-        if (ccPlatMin == -1)
-            ccPlatMin = ccF;
-        if (ccPlatMax == -1)
-            ccPlatMax = ccC;
-        
-        
-        //if 
-        
-        unsigned long ccPlatFlags = [ccPlat staticFlags];
-        unsigned long cPlatFlags = [cPlat staticFlags];
-        
-        BOOL cPlatFloor = ((cPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
-        BOOL cPlatCeiling = ((cPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
-        BOOL ccPlatFloor = ((ccPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
-        BOOL ccPlatCeiling = ((ccPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
-
-        int cCMax = 0, cCMin = 0, cFMax = 0, cFMin = 0; 
-        int ccCMax = 0, ccCMin = 0, ccFMax = 0, ccFMin = 0;
-        
-        
-        
-        // ••• ••• ••• Clock Wise Information ••• ••• •••
-        
-        
-        
-        if (cPlat != nil)
-        {
-            if (cPlatFloor && cPlatCeiling) 
-            { // c is both
-                int half = (((cPlatMax - cPlatMin) / 2) + cPlatMin);
-                cFMax = half;
-                cFMin = cPlatMin;
-                cCMin = half;
-                cCMax = cPlatMax;
-                //NSLog(@"Platform #%d - cPlatFloor && cPlatCeiling", [cPlat index]);
-            }
-            else if (cPlatFloor && !cPlatCeiling)
-            { // c is floor
-                cCMin = cC;
-                cCMax = cC;
-                cFMax = cPlatMax;
-                cFMin = cPlatMin;
-                //NSLog(@"Platform #%d - cPlatFloor && !cPlatCeiling", [cPlat index]);
-            }
-            else if (!cPlatFloor && cPlatCeiling)
-            { // c is ceiling
-                cFMax = cF;
-                cFMin = cF;
-                cCMax = cPlatMax;
-                cCMin = cPlatMin;
-                //NSLog(@"Platform #%d - !cPlatFloor && cPlatCeiling", [cPlat index]);
-            }
-            else if (!cPlatFloor && !cPlatCeiling)
-            { // c is not floor or ceiling...
-              // proably a major data error here...
-              
-                // inform user, set the platform for floor automaticaly (the default)...
-                NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... c", [cPlat index]);
-                
-                cCMax = cC;
-                cCMin = cC;
-                cFMax = cF;
-                cFMin = cF;
-            }
-            else
-            {
-                // Very Major Logic Error...
-                NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... c", [cPlat index]);
-            }
+    int cF = [clockwisePolygon floorHeight];
+    int cC = [clockwisePolygon ceilingHeight];
+    int ccF = [conterclockwisePolygon floorHeight];
+    int ccC = [conterclockwisePolygon ceilingHeight];
+    
+    int cPlatMax = [cPlat maximumHeight];
+    int ccPlatMax = [ccPlat maximumHeight];
+    
+    int cPlatMin = [cPlat minimumHeight];
+    int ccPlatMin = [ccPlat minimumHeight];
+    
+    if (cPlatMax == -1)
+        cPlatMax = cC;
+    if (cPlatMin == -1)
+        cPlatMin = cF;
+    if (ccPlatMin == -1)
+        ccPlatMin = ccF;
+    if (ccPlatMax == -1)
+        ccPlatMax = ccC;
+    
+    
+    //if
+    
+    unsigned long ccPlatFlags = [ccPlat staticFlags];
+    unsigned long cPlatFlags = [cPlat staticFlags];
+    
+    BOOL cPlatFloor = ((cPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
+    BOOL cPlatCeiling = ((cPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
+    BOOL ccPlatFloor = ((ccPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
+    BOOL ccPlatCeiling = ((ccPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
+    
+    int cCMax = 0, cCMin = 0, cFMax = 0, cFMin = 0;
+    int ccCMax = 0, ccCMin = 0, ccFMax = 0, ccFMin = 0;
+    
+    
+    
+    // ••• ••• ••• Clock Wise Information ••• ••• •••
+    
+    
+    
+    if (cPlat != nil)
+    {
+        if (cPlatFloor && cPlatCeiling)
+        { // c is both
+            int half = (((cPlatMax - cPlatMin) / 2) + cPlatMin);
+            cFMax = half;
+            cFMin = cPlatMin;
+            cCMin = half;
+            cCMax = cPlatMax;
+            //NSLog(@"Platform #%d - cPlatFloor && cPlatCeiling", [cPlat index]);
         }
-        else
-        {
-            cPlatFloor = NO;
-            cPlatCeiling = NO;
-            cPlatFlags = 0;
+        else if (cPlatFloor && !cPlatCeiling)
+        { // c is floor
+            cCMin = cC;
+            cCMax = cC;
+            cFMax = cPlatMax;
+            cFMin = cPlatMin;
+            //NSLog(@"Platform #%d - cPlatFloor && !cPlatCeiling", [cPlat index]);
+        }
+        else if (!cPlatFloor && cPlatCeiling)
+        { // c is ceiling
+            cFMax = cF;
+            cFMin = cF;
+            cCMax = cPlatMax;
+            cCMin = cPlatMin;
+            //NSLog(@"Platform #%d - !cPlatFloor && cPlatCeiling", [cPlat index]);
+        }
+        else if (!cPlatFloor && !cPlatCeiling)
+        { // c is not floor or ceiling...
+            // proably a major data error here...
+            
+            // inform user, set the platform for floor automaticaly (the default)...
+            NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... c", [cPlat index]);
             
             cCMax = cC;
             cCMin = cC;
             cFMax = cF;
             cFMin = cF;
-            
-            //NSLog(@"Platform #%d - cPlat == nil", [cPlat index]);
-        }
-        
-        
-        
-        // ••• ••• ••• Counter-Clock Wise Information ••• ••• •••
-        
-        
-    
-        if (ccPlat != nil)
-        {
-            if (ccPlatFloor && ccPlatCeiling) 
-            { // cc is both
-                int half = (((ccPlatMax - ccPlatMin) / 2) + ccPlatMin);
-                ccFMax = half;
-                ccFMin = ccPlatMin;
-                ccCMin = half;
-                ccCMax = ccPlatMax;
-                //NSLog(@"Platform #%d - ccPlatFloor && ccPlatCeiling", [ccPlat index]);
-            }
-            else if (ccPlatFloor && !ccPlatCeiling)
-            { // cc is floor
-                ccCMin = ccC;
-                ccCMax = ccC;
-                ccFMax = ccPlatMax;
-                ccFMin = ccPlatMin;
-                //NSLog(@"Platform #%d - ccPlatFloor && !ccPlatCeiling", [ccPlat index]);
-            }
-            else if (!ccPlatFloor && ccPlatCeiling)
-            { // cc is ceiling
-                ccFMax = ccF;
-                ccFMin = ccF;
-                ccCMax = ccPlatMax;
-                ccCMin = ccPlatMin;
-               // NSLog(@"Platform #%d - !ccPlatFloor && ccPlatCeiling", [ccPlat index]);
-            }
-            else if (!ccPlatFloor && !ccPlatCeiling)
-            { // cc is not floor or ceiling...
-              // proably a major data error here...
-              
-                // inform user, set the platform for floor automaticaly (the default)...
-                //NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... cc", [ccPlat index]);
-                
-                ccCMin = ccC;
-                ccCMax = ccC;
-                ccFMax = ccF;
-                ccFMin = ccF;
-            }
-            else
-            {
-                // Very Major Logic Error...
-                //NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... cc", [ccPlat index]);
-            }
         }
         else
         {
-            ccPlatFloor = NO;
-            ccPlatCeiling = NO;
-            ccPlatFlags = 0;
+            // Very Major Logic Error...
+            NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... c", [cPlat index]);
+        }
+    }
+    else
+    {
+        cPlatFloor = NO;
+        cPlatCeiling = NO;
+        cPlatFlags = 0;
+        
+        cCMax = cC;
+        cCMin = cC;
+        cFMax = cF;
+        cFMin = cF;
+        
+        //NSLog(@"Platform #%d - cPlat == nil", [cPlat index]);
+    }
+    
+    
+    
+    // ••• ••• ••• Counter-Clock Wise Information ••• ••• •••
+    
+    
+    
+    if (ccPlat != nil)
+    {
+        if (ccPlatFloor && ccPlatCeiling)
+        { // cc is both
+            int half = (((ccPlatMax - ccPlatMin) / 2) + ccPlatMin);
+            ccFMax = half;
+            ccFMin = ccPlatMin;
+            ccCMin = half;
+            ccCMax = ccPlatMax;
+            //NSLog(@"Platform #%d - ccPlatFloor && ccPlatCeiling", [ccPlat index]);
+        }
+        else if (ccPlatFloor && !ccPlatCeiling)
+        { // cc is floor
+            ccCMin = ccC;
+            ccCMax = ccC;
+            ccFMax = ccPlatMax;
+            ccFMin = ccPlatMin;
+            //NSLog(@"Platform #%d - ccPlatFloor && !ccPlatCeiling", [ccPlat index]);
+        }
+        else if (!ccPlatFloor && ccPlatCeiling)
+        { // cc is ceiling
+            ccFMax = ccF;
+            ccFMin = ccF;
+            ccCMax = ccPlatMax;
+            ccCMin = ccPlatMin;
+            // NSLog(@"Platform #%d - !ccPlatFloor && ccPlatCeiling", [ccPlat index]);
+        }
+        else if (!ccPlatFloor && !ccPlatCeiling)
+        { // cc is not floor or ceiling...
+            // proably a major data error here...
+            
+            // inform user, set the platform for floor automaticaly (the default)...
+            //NSLog(@"Platform #%d Has Neither Floor Or Celining Flags Set... cc", [ccPlat index]);
             
             ccCMin = ccC;
             ccCMax = ccC;
             ccFMax = ccF;
             ccFMin = ccF;
-            
-           //NSLog(@"Platform #%d - ccPlat == nil", [ccPlat index]);
         }
+        else
+        {
+            // Very Major Logic Error...
+            //NSLog(@"Very Major Logic Error For Platform #%d, in caculatSides... cc", [ccPlat index]);
+        }
+    }
+    else
+    {
+        ccPlatFloor = NO;
+        ccPlatCeiling = NO;
+        ccPlatFlags = 0;
+        
+        ccCMin = ccC;
+        ccCMax = ccC;
+        ccFMax = ccF;
+        ccFMin = ccF;
+        
+        //NSLog(@"Platform #%d - ccPlat == nil", [ccPlat index]);
+    }
     
-        // [self setupAsNonPlatformLine]; // For Right Now...
+    // [self setupAsNonPlatformLine]; // For Right Now...
     
     
     
@@ -974,9 +974,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         */
         
         return clockwisePolygonSideObject;
-    }
-    else
-    {
+    } else {
         return nil;
     }
     

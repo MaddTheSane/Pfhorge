@@ -103,8 +103,6 @@ enum	// media sounds
 	int 	minimum_light_intensity; // ??? Object ???
 	short 	texture;
 	short 	transfer_mode;
-
-	short	unused[2];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************

@@ -235,7 +235,7 @@
 		00F4A78B00F7E1DA7F000001 /* LEInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEInspectorController.m; sourceTree = "<group>"; };
 		00F6628500E19BB67F000001 /* LEMapObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapObject.h; sourceTree = "<group>"; };
 		00F6628600E19BB67F000001 /* LEMapObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapObject.m; sourceTree = "<group>"; };
-		00FBE54800DBBE877F000001 /* LELevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelData.h; sourceTree = "<group>"; usesTabs = 1; };
+		00FBE54800DBBE877F000001 /* LELevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELevelData.h; sourceTree = "<group>"; };
 		00FBE54900DBBE877F000001 /* LELevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELevelData.m; sourceTree = "<group>"; };
 		00FBF3A700EAC1717F000001 /* LEPaletteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPaletteController.h; sourceTree = "<group>"; };
 		00FBF3A800EAC1717F000001 /* LEPaletteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPaletteController.m; sourceTree = "<group>"; };
@@ -805,7 +805,7 @@
 			);
 			path = "Marathon Data";
 			sourceTree = "<group>";
-			usesTabs = 1;
+			usesTabs = 0;
 		};
 		F5EFE97D01ADCAB901A8A806 /* Others */ = {
 			isa = PBXGroup;

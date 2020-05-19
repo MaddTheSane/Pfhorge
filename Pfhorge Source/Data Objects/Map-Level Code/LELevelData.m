@@ -236,46 +236,46 @@
     int versionNum = 0;
     self = [super initWithCoder:coder];
 
-	if (coder.allowsKeyedCoding) {
-		environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
-		physics_model = [coder decodeIntForKey:LELevelDataphysics_modelCoderKey];
-		song_index = [coder decodeIntForKey:LELevelDatasong_indexCoderKey];
-		mission_flags = [coder decodeIntForKey:LELevelDatamission_flagsCoderKey];
-		environment_flags = [coder decodeIntForKey:LELevelDataenvironment_flagsCoderKey];
-		entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
-
+    if (coder.allowsKeyedCoding) {
+        environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
+        physics_model = [coder decodeIntForKey:LELevelDataphysics_modelCoderKey];
+        song_index = [coder decodeIntForKey:LELevelDatasong_indexCoderKey];
+        mission_flags = [coder decodeIntForKey:LELevelDatamission_flagsCoderKey];
+        environment_flags = [coder decodeIntForKey:LELevelDataenvironment_flagsCoderKey];
+        entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
+        
         // Objects are already inited due to -init being called by the super's -initWithCoder:
-		[points setArray:[coder decodeObjectForKey:LELevelDataPointsCoderKey]];
+        [points setArray:[coder decodeObjectForKey:LELevelDataPointsCoderKey]];
         [lines setArray:[coder decodeObjectForKey:LELevelDataLinesCoderKey]];
-		[polys setArray:[coder decodeObjectForKey:LELevelDataPolysCoderKey]];
+        [polys setArray:[coder decodeObjectForKey:LELevelDataPolysCoderKey]];
         [mapObjects setArray:[coder decodeObjectForKey:LELevelDatamapObjectsCoderKey]];
-		[sides setArray:[coder decodeObjectForKey:LELevelDatasidesCoderKey]];
-		[lights setArray:[coder decodeObjectForKey:LELevelDatalightsCoderKey]];
-		[notes setArray:[coder decodeObjectForKey:LELevelDatanotesCoderKey]];
-		[media setArray:[coder decodeObjectForKey:LELevelDatamediaCoderKey]];
-		[ambientSounds setArray:[coder decodeObjectForKey:LELevelDataambientSoundsCoderKey]];
-		[randomSounds setArray:[coder decodeObjectForKey:LELevelDatarandomSoundsCoderKey]];
-		[itemPlacement setArray:[coder decodeObjectForKey:LELevelDataitemPlacementCoderKey]];
-		[platforms setArray:[coder decodeObjectForKey:LELevelDataplatformsCoderKey]];
-		
-		[terimals setArray:[coder decodeObjectForKey:LELevelDataterimalsCoderKey]];
-		
-		[layersInLevel setArray:[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey]];
-		currentLayer = [[coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey] retain];
-		[layerPoints setArray:[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey]];
+        [sides setArray:[coder decodeObjectForKey:LELevelDatasidesCoderKey]];
+        [lights setArray:[coder decodeObjectForKey:LELevelDatalightsCoderKey]];
+        [notes setArray:[coder decodeObjectForKey:LELevelDatanotesCoderKey]];
+        [media setArray:[coder decodeObjectForKey:LELevelDatamediaCoderKey]];
+        [ambientSounds setArray:[coder decodeObjectForKey:LELevelDataambientSoundsCoderKey]];
+        [randomSounds setArray:[coder decodeObjectForKey:LELevelDatarandomSoundsCoderKey]];
+        [itemPlacement setArray:[coder decodeObjectForKey:LELevelDataitemPlacementCoderKey]];
+        [platforms setArray:[coder decodeObjectForKey:LELevelDataplatformsCoderKey]];
+        
+        [terimals setArray:[coder decodeObjectForKey:LELevelDataterimalsCoderKey]];
+        
+        [layersInLevel setArray:[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey]];
+        currentLayer = [[coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey] retain];
+        [layerPoints setArray:[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey]];
         [layerLines setArray:[coder decodeObjectForKey:LELevelDatalayerLinesCoderKey]];
-		[layerPolys setArray:[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey]];
-		[layerMapObjects setArray:[coder decodeObjectForKey:LELevelDatalayerMapObjectsCoderKey]];
-			
-		[tags setArray:[coder decodeObjectForKey:LELevelDatatagsCoderKey]];
-		
-		self.levelName = [coder decodeObjectForKey:LELevelDatalevel_nameCoderKey];
-		
+        [layerPolys setArray:[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey]];
+        [layerMapObjects setArray:[coder decodeObjectForKey:LELevelDatalayerMapObjectsCoderKey]];
+        
+        [tags setArray:[coder decodeObjectForKey:LELevelDatatagsCoderKey]];
+        
+        self.levelName = [coder decodeObjectForKey:LELevelDatalevel_nameCoderKey];
+        
         [noteTypes setArray:[coder decodeObjectForKey:LELevelDatanoteTypesCoderKey]];
         [layerNotes setArray:[coder decodeObjectForKey:LELevelDatalayerNotesCoderKey]];
-		
+        
         [self havePointsScanForLines];
-	} else {
+    } else {
     versionNum = decodeNumInt(coder);
     
     //NSLog(@"1");

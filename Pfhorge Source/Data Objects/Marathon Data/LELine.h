@@ -142,6 +142,9 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 - (LEPolygon *)getPolyFromMe;
 - (BOOL)isThereAClockWiseLineAlpha:(LEMapPoint *)alphaPoint beta:(LEMapPoint *)betaPoint theLine:(LELine *)currentLine;
 
+//! Recalculate length, azimuth, angle
+//! Should be called whenever one of these changes
+//! Called by \c LEMapPoint to the lines it is part of, when it moves
 -(void)recalc;
 
 @end
