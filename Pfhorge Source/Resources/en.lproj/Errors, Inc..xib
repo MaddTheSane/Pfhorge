@@ -24,12 +24,11 @@
             <rect key="contentRect" x="70" y="553" width="420" height="131"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="7">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="131"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="117"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                        <rect key="frame" x="263" y="12" width="143" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                        <rect key="frame" x="333" y="13" width="73" height="32"/>
                         <buttonCell key="cell" type="push" title="Darn!" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="59">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -41,23 +40,24 @@ DQ
                             <action selector="genericOkButtonHit:" target="-2" id="57"/>
                         </connections>
                     </button>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                        <rect key="frame" x="24" y="51" width="64" height="64"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="29">
+                        <rect key="frame" x="24" y="37" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="64" id="jI8-ln-eyB"/>
+                            <constraint firstAttribute="width" constant="64" id="yrh-cY-PQD"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="60"/>
                     </imageView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                        <rect key="frame" x="104" y="99" width="290" height="17"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                        <rect key="frame" x="104" y="86" width="91" height="16"/>
                         <textFieldCell key="cell" alignment="left" title="Generic Error" id="61">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="44">
-                        <rect key="frame" x="104" y="43" width="290" height="47"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="44">
+                        <rect key="frame" x="104" y="49" width="298" height="28"/>
                         <textFieldCell key="cell" alignment="left" title="Dang, the error message did not make it this far :(, I have no idea what kind of error occurred!" id="62">
                             <font key="font" metaFont="message" size="11"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -65,6 +65,20 @@ DQ
                         </textFieldCell>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="1xY-b6-cJT"/>
+                    <constraint firstItem="29" firstAttribute="leading" secondItem="7" secondAttribute="leading" constant="24" id="DjB-Ex-nHd"/>
+                    <constraint firstItem="44" firstAttribute="top" secondItem="43" secondAttribute="bottom" constant="9" id="KX5-Z6-tr9"/>
+                    <constraint firstItem="12" firstAttribute="top" secondItem="44" secondAttribute="bottom" constant="8" symbolic="YES" id="L5Q-Fc-6oj"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="29" secondAttribute="trailing" constant="8" symbolic="YES" id="L6r-r4-VoN"/>
+                    <constraint firstItem="43" firstAttribute="leading" secondItem="29" secondAttribute="trailing" constant="18" id="PrT-Rh-s6q"/>
+                    <constraint firstItem="43" firstAttribute="leading" secondItem="44" secondAttribute="leading" id="UEy-Gk-5sV"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="20" symbolic="YES" id="ffI-7y-iVW"/>
+                    <constraint firstAttribute="trailing" secondItem="44" secondAttribute="trailing" constant="20" symbolic="YES" id="nDQ-Uo-3s8"/>
+                    <constraint firstItem="29" firstAttribute="top" secondItem="7" secondAttribute="top" constant="16" id="sxa-9V-Xew"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="43" secondAttribute="trailing" constant="20" symbolic="YES" id="tmG-Ie-GHZ"/>
+                    <constraint firstItem="43" firstAttribute="top" secondItem="7" secondAttribute="top" constant="15" id="ww6-DB-ycR"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="23"/>

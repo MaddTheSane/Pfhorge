@@ -70,17 +70,15 @@ BOOL setupPointerArraysDurringLoading = YES;
 + (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel
 {
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] init];
-    NSMutableData *theMaraAlephFormatedData = [[theTmpMarathonMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1] retain];
-    [theTmpMarathonMap release];
-    return [theMaraAlephFormatedData autorelease];
+    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1];
+    return theMaraAlephFormatedData;
 }
 
 + (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario
 {
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] init];
-    NSMutableData *theMaraAlephFormatedData = [[theTmpMarathonMap mergeScenario:theScenario] retain];
-    [theTmpMarathonMap release];
-    return [theMaraAlephFormatedData autorelease];
+    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap mergeScenario:theScenario];
+    return theMaraAlephFormatedData;
 }
 
 + (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNamesEXP
@@ -99,7 +97,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
     int thePfhorgeDataSig3 = 42296737;
     thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
-
+    
     NSMutableArray *theArchivedLevels = [[NSMutableArray alloc] initWithCapacity:numberOfLevels];
     
     PhProgress *progress = [PhProgress sharedPhProgress];
@@ -107,8 +105,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [progress setMaxProgress:(numberOfLevels+1)];
     [progress setProgressPostion:0.0];
     
-    for (i = 1; i <= numberOfLevels; i++)
-    {
+    for (i = 1; i <= numberOfLevels; i++) {
         LELevelData *currentLevel;
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:12];
@@ -123,8 +120,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [progress useSecondBarOnly:YES];
         currentLevel = [theTmpMarathonMap getLevel:i log:NO];
         [progress useSecondBarOnly:NO];
-        if (currentLevel == nil)
-        {
+        if (currentLevel == nil) {
             SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels...",
                                  @"Converting Error");
             continue;
@@ -147,15 +143,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         [theArchivedLevels addObject:entireMapData];
         [theLevelNamesEXP addObject:[theLevelNames objectAtIndex:(i - 1)]];
-		[entireMapData release];
-		[theLevelNames release];
-        
-        [currentLevel release];
         
         [progress increaseProgressBy:1.0];
     }
     
-    return [theArchivedLevels autorelease];
+    return theArchivedLevels;
 }
 
 // ***************************** init/dealloc methods *****************************
@@ -183,11 +175,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     if ( theMapp != nil ) {
         mapData = theMapp;
-        [mapData retain];
-    }
-    else {
+    } else {
         //numberOfLevels = 909;
-        [self autorelease];
         return nil;
     }
     
@@ -210,28 +199,27 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSMutableData *levelHeaderData = [[NSMutableData alloc] initWithCapacity:0];
     
     
-    ///   mapDataToSave 
-      
+    ///   mapDataToSave
+    
     for (i = 0; i < levelCount; i++)
     {
         NSString *fileName = [scenarioData getLevelPathForLevel:i];
         NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
         NSMutableData *tempData = [[NSMutableData alloc] initWithCapacity:200000];
         
-        theLevel =	[[NSUnarchiver unarchiveObjectWithData:
-                        [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]] retain];
+        theLevel =	[NSUnarchiver unarchiveObjectWithData:
+                     [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]];
         
         mapDataToSave = tempData;
         [self exportLevelDataToMarathonFormat:theLevel];
         
         mapDataToSave = levelHeaderData;
-        [self saveLevelHeaders:theLevel 
-                usingMapDataSize:[tempData length]
-                usingLocation:([levelData length] + 128)
-		forLevelIndex:i];
+        [self saveLevelHeaders:theLevel
+              usingMapDataSize:[tempData length]
+                 usingLocation:([levelData length] + 128)
+                 forLevelIndex:i];
         
         [levelData appendData:tempData];
-        [tempData release];
     }
     
     mapDataToSave = mainHeaderData;
@@ -242,30 +230,26 @@ BOOL setupPointerArraysDurringLoading = YES;
     [mainHeaderData appendData:levelData];
     [mainHeaderData appendData:levelHeaderData];
     
-    [levelData release];
-    [levelHeaderData release];
-    
-    
-    #ifdef useDebugingLogs
-        NSLog(@"Returning Merged Map File");
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Returning Merged Map File");
+#endif
     unsigned char *buffer = [mainHeaderData mutableBytes];
     long theLength = [mainHeaderData length];
     unsigned long theChecksum = calculate_data_crc(buffer, theLength);
     // at 68 for 4 bytes...
-    #ifdef useDebugingLogs
-        NSLog(@"Checksum Im Merge: %d", theChecksum);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Checksum Im Merge: %d", theChecksum);
+#endif
     NSRange checksumRange = {68, 4};
     [mainHeaderData replaceBytesInRange:checksumRange withBytes:&theChecksum];
     
-    return [mainHeaderData autorelease];
+    return mainHeaderData;
 }
 
 - (void)exportLevelDataToMarathonFormat:(LELevelData *)level
 {
     //int levelToSaveIn = 1;
-
+    
     //   Get the points into this level... ('PNTS')
     //[self saveTag:'PNTS' theLevelNumber:levelToSaveIn theLevelData:level];
     [self savePointsForLevel:level];
@@ -304,7 +288,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     // *** New ***
     
-     //   Get the platforms (like the wind) into this level... ('plat')
+    //   Get the platforms (like the wind) into this level... ('plat')
     //[self saveTag:'plat' theLevelNumber:levelToSaveIn theLevelData:level];
     [self savePlatformsForLevel:level];
     
@@ -336,56 +320,56 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSMutableData *mapHeaderData;
     NSMutableData *entireMapData;
     
-    #ifdef useDebugingLogs
-        NSLog(@"save projectedLevelByteCount: %d", projectedLevelByteCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"save projectedLevelByteCount: %d", projectedLevelByteCount);
+#endif
     mapDataToSave = [[NSMutableData alloc] initWithCapacity:MAX(projectedLevelByteCount, 500 * 1000)];
     
     //   -(void)saveTag:(long)theTag theLevelNumber:(short)levelNumber theLevelData:(LELevelData *)level
     
-    #ifdef useDebugingLogs
-        NSLog(@"*Begining Phase 1 loading process into level %d from file...*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Begining Phase 1 loading process into level %d from file...*", levelToSaveIn);
+#endif
     
     //   Get the points into this level... ('PNTS')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving points from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving points from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'PNTS' theLevelNumber:levelToSaveIn theLevelData:level];
     [self savePointsForLevel:level];
     
     //   Get the lines into this level... ('LINS')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving lines from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving lines from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'LINS' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveLinesForLevel:level];
     
     //   Get the polys into this level... ('POLY')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving poly's from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving poly's from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'POLY' theLevelNumber:levelToSaveIn theLevelData:level];
     [self savePolygonsForLevel:level];
     
     //   Get the objects into this level... ('OBJS')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving objects from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving objects from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'OBJS' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveObjectsForLevel:level];
     
     //   Get the sides into this level... ('SIDS')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving sides from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving sides from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'SIDS' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveSidesForLevel:level];
     
     //   Get the lights into this level... ('LITE')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving lights from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving lights from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'LITE' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveLightsForLevel:level];
     
@@ -395,46 +379,46 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveNotesForLevel:level];
     
     //   Get the liquids (media) into this level... ('medi')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving liquids from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving liquids from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'medi' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveMediasForLevel:level];
     
     //   Get the ambient sounds (like the wind) into this level... ('ambi')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving ambient sounds from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving ambient sounds from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'ambi' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveAmbientSoundsForLevel:level];
     
     // *** New ***
     
-     //   Get the platforms (like the wind) into this level... ('plat')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving platforms from file into level %d*", levelToSaveIn);
-    #endif
+    //   Get the platforms (like the wind) into this level... ('plat')
+#ifdef useDebugingLogs
+    NSLog(@"*Saving platforms from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'plat' theLevelNumber:levelToSaveIn theLevelData:level];
     [self savePlatformsForLevel:level];
     
     //   Get the item placment entrys (like the wind) into this level... ('plac')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving item placment data from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving item placment data from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'plac' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveItemPlacementForLevel:level];
     
     //   Get the random sounds (like driping sounds) into this level... ('bonk')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving random sounds from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving random sounds from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'bonk' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveRandomSoundsForLevel:level];
     
     //   Get the terminals into this level... ('bonk')
-    #ifdef useDebugingLogs
-        NSLog(@"*Saving terminals from file into level %d*", levelToSaveIn);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"*Saving terminals from file into level %d*", levelToSaveIn);
+#endif
     //[self saveTag:'term' theLevelNumber:levelToSaveIn theLevelData:level];
     [self saveTerminalDataForLevel:level];
     
@@ -456,37 +440,37 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     mapDataToSave = nil;
     
-    #ifdef useDebugingLogs
-        NSLog(@" * The level header length after saving level into it:   %d", [levelHeaderData length]);
-        NSLog(@" * The map header length after saving level into it:     %d", [mapHeaderData length]);
-        NSLog(@" * The level data length after saving level into it:     %d", levelLength);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@" * The level header length after saving level into it:   %d", [levelHeaderData length]);
+    NSLog(@" * The map header length after saving level into it:     %d", [mapHeaderData length]);
+    NSLog(@" * The level data length after saving level into it:     %d", levelLength);
+#endif
     entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
     [entireMapData appendData:mapHeaderData];
     [entireMapData appendData:levelData];
     [entireMapData appendData:levelHeaderData];
     
-    [mapHeaderData release];
-    [levelData release];
-    [levelHeaderData release];
+    mapHeaderData = nil;
+    levelData = nil;
+    levelHeaderData = nil;
     
-    #ifdef useDebugingLogs
-        NSLog(@"|*| Entire level data length after saving level into it:   %d", [entireMapData length]);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"|*| Entire level data length after saving level into it:   %d", [entireMapData length]);
+#endif
     
     
     unsigned char *buffer = [entireMapData mutableBytes];
     long theLength = [entireMapData length];
     unsigned long theChecksum = calculate_data_crc(buffer, theLength);
     // at 68 for 4 bytes...
-    #ifdef useDebugingLogs
-        NSLog(@"Checksum In Single Level: %d", theChecksum);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Checksum In Single Level: %d", theChecksum);
+#endif
     NSRange checksumRange = {68, 4};
     [entireMapData replaceBytesInRange:checksumRange withBytes:&theChecksum];
     
-    return [entireMapData autorelease];
+    return entireMapData;
 }
 
 - (LELevelData *)getLevel:(short)levelToGet
@@ -511,19 +495,18 @@ BOOL setupPointerArraysDurringLoading = YES;
     BOOL logInfo = YES;
     
     //Make a level object to put all this stuff into...
-    #ifdef useDebugingLogs
-        NSLogs(@"getLevel -> *Allocating and Initating the level data file for level %d...*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"getLevel -> *Allocating and Initating the level data file for level %d...*", levelToGet);
+#endif
     theLevel = [[LELevelData alloc] init];
     
     [self preAllocateArraysForLevel:theLevel forLevelNumber:levelToGet];
     
     //Update the counts on all the stuff :)
     [theLevel updateCounts];
-   
-   // *********** Setup Master Array Pointers ***********
-    if (logInfo == YES)
-   {
+    
+    // *********** Setup Master Array Pointers ***********
+    if (logInfo == YES) {
         [progress setStatusText:@"Setting Level Pointers..."];
         [progress increaseProgressBy:5.0];
     }
@@ -660,168 +643,154 @@ BOOL setupPointerArraysDurringLoading = YES;
      
     // *********** END Setup Master Array Pointers ***********
     
-    #ifdef useDebugingLogs
-        NSLogs(@"*Begining Phase 1 loading process for level %d from file...*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Begining Phase 1 loading process for level %d from file...*", levelToGet);
+#endif
     
     alreadyGaveBoundingError = NO;
     
-    if (logInfo == YES)
-    {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Terminals..."];
         [progress increaseProgressBy:4.0];
     }
     //   Get the random sounds (like driping sounds) for this level... ('bonk')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading terminals from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading terminals from file for level %d*", levelToGet);
+#endif
     [self getTag:'term' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Points..."];
         [progress increaseProgressBy:5.0];
     }
     
     //   Get the points for this level... ('PNTS')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading points from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading points from file for level %d*", levelToGet);
+#endif
     [self getTag:'PNTS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Lines..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the lines for this level... ('LINS')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading lines from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading lines from file for level %d*", levelToGet);
+#endif
     [self getTag:'LINS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Polygons..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the polys for this level... ('POLY')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading poly's from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading poly's from file for level %d*", levelToGet);
+#endif
     [self getTag:'POLY' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Objects..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the objects for this level... ('OBJS')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading objects from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading objects from file for level %d*", levelToGet);
+#endif
     [self getTag:'OBJS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Sides..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the sides for this level... ('SIDS')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading sides from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading sides from file for level %d*", levelToGet);
+#endif
     [self getTag:'SIDS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Lights..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the lights for this level... ('LITE')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading lights from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading lights from file for level %d*", levelToGet);
+#endif
     [self getTag:'LITE' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Annotations..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the annotations (notes) for this level... ('NOTE')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading annotations from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading annotations from file for level %d*", levelToGet);
+#endif
     [self getTag:'NOTE' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Liquids..."];
         [progress increaseProgressBy:5.0];
     }
     //   Get the liquids (media) for this level... ('medi')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading liquids from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading liquids from file for level %d*", levelToGet);
+#endif
     [self getTag:'medi' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Ambient Sounds..."];
         [progress increaseProgressBy:4.0];
     }
     //   Get the ambient sounds (like the wind) for this level... ('ambi')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading ambient sounds from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading ambient sounds from file for level %d*", levelToGet);
+#endif
     [self getTag:'ambi' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     // *** New ***
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Platforms..."];
         [progress increaseProgressBy:4.0];
     }
-     //   Get the platforms (like the wind) for this level... ('plat')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading platforms from file for level %d*", levelToGet);
-    #endif
+    //   Get the platforms (like the wind) for this level... ('plat')
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading platforms from file for level %d*", levelToGet);
+#endif
     [self getTag:'plat' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Item Placement Entrys..."];
         [progress increaseProgressBy:4.0];
     }
     //   Get the item placment entrys (like the wind) for this level... ('plac')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading item placment data from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading item placment data from file for level %d*", levelToGet);
+#endif
     [self getTag:'plac' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Loading Random Sounds..."];
         [progress increaseProgressBy:4.0];
     }
     //   Get the random sounds (like driping sounds) for this level... ('bonk')
-    #ifdef useDebugingLogs
-        NSLogs(@"*Loading random sounds from file for level %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Loading random sounds from file for level %d*", levelToGet);
+#endif
     [self getTag:'bonk' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     // *** End New ***
     
-    #ifdef useDebugingLogs
-        NSLogs(@"*Done loading level %d from the file!*", levelToGet);
-        NSLog1(@"*Transfering Level Info (Minf) data in map object to level object...*");
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Done loading level %d from the file!*", levelToGet);
+    NSLog1(@"*Transfering Level Info (Minf) data in map object to level object...*");
+#endif
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Geting Level Information..."];
         [progress increaseProgressBy:5.0];
     }
@@ -834,16 +803,15 @@ BOOL setupPointerArraysDurringLoading = YES;
     [theLevel setLevelName:[levelNames objectAtIndex:(levelToGet - 1)]];
     
     [theLevel setEntryPointFlags:entry_point_flags[levelToGet - 1]];
-    #ifdef useDebugingLogs
-        NSLogs(@"The Levels Entry Point Flag Value: %d", entry_point_flags[levelToGet - 1]);
-        
-        NSLogs(@"*Phase 1 Loading Completed For Level %d!*", levelToGet);
-        NSLogs(@"*Begining Phase 2 Loading For Level %d...*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"The Levels Entry Point Flag Value: %d", entry_point_flags[levelToGet - 1]);
+    
+    NSLogs(@"*Phase 1 Loading Completed For Level %d!*", levelToGet);
+    NSLogs(@"*Begining Phase 2 Loading For Level %d...*", levelToGet);
+#endif
     
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Setting Object Pointers From Array Using Index Numbers..."];
         [progress increaseProgressBy:3.0];
     }
@@ -881,20 +849,19 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     // Test each polygon for concavness...
 
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Testing Every Polygon For Concavness..."];
         [progress increaseProgressBy:5.0];
     }
     //[self performSelector:@selector(isPolygonConcave) withEachObjectInArray:[theLevel getThePolys]];
     
-    #ifdef useDebugingLogs
+#ifdef useDebugingLogs
     NSLogs(@"*Phase 2 Loading Completed For Level %d!*", levelToGet);
     NSLogs(@"*Done Loading Level %d!*", levelToGet);
     
     NSLog1(@"Doing some pre-caculations..");
     NSLog1(@"Seting up layers for the level..");
-    #endif
+#endif
     
     if (logInfo == YES)
         [progress setStatusText:@"Seting up default layers..."];
@@ -911,12 +878,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     if (logInfo == YES)
         [progress increaseProgressBy:8.0];
     
-    #ifdef useDebugingLogs
-        NSLog1(@"Compiling And Caching List Of Custom Names In Level...");
-    #endif
+#ifdef useDebugingLogs
+    NSLog1(@"Compiling And Caching List Of Custom Names In Level...");
+#endif
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Compiling And Caching List Of Custom Names In Level..."];
         [progress increaseProgressBy:3.0];
     }
@@ -932,12 +898,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         [[test objectAtIndex:273] getTheVertexCount]);
     }
     */
-    #ifdef useDebugingLogs
-        NSLogs(@"*Returning 'LELevelData theLevel' for level: %d*", levelToGet);
-    #endif
+#ifdef useDebugingLogs
+    NSLogs(@"*Returning 'LELevelData theLevel' for level: %d*", levelToGet);
+#endif
     
-    if (logInfo == YES)
-   {
+    if (logInfo == YES) {
         [progress setStatusText:@"Returning Level To Map Document Controller..."];
         [progress increaseProgressBy:1.0];
     }
@@ -984,14 +949,14 @@ BOOL setupPointerArraysDurringLoading = YES;
     int randomSoundsByteCount = ([[level randomSounds] count]) * 32; // 32
     int itemPlacmentByteCount = ([[level itemPlacement] count]) * 12; // 12
     int platformsByteCount = ([[level getPlatforms] count]) * 32; // 32
-  */  
+  */
   
     BOOL foundTheTag;
     long this_offset;
     //NSMutableArray *theDataToReturn = nil;
-//    NSString *theTagAsString;
-//    
-//    theTagAsString = [[NSString alloc] init];
+    //    NSString *theTagAsString;
+    //
+    //    theTagAsString = [[NSString alloc] init];
     
     //Set the cursor to the first byte of the level
     theCursor = myLevelHeaders[theLevel-1].offsetToStart;
@@ -1001,8 +966,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     this_offset = -1;
     foundTheTag = NO;
     
-    while (myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart))
-    {        
+    while (myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart)) {
         int next_offset, length, offset;
         OSType tag;
         NSMutableArray *theArray = nil;
@@ -1013,7 +977,7 @@ BOOL setupPointerArraysDurringLoading = YES;
             theCursor = this_offset;
         else
             this_offset = theCursor;
-       
+        
         tag = [self getLong];
         next_offset = [self getLong];
         length = [self getLong];
@@ -1021,8 +985,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         foundTheTag = NO;
         
-        switch (tag)
-        {  
+        switch (tag) {
             case 'PNTS':
                 theArray = [level getThePoints];
                 amountOfObjects = length / 4;
@@ -1059,35 +1022,35 @@ BOOL setupPointerArraysDurringLoading = YES;
                 theClass = [LESide class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'LITE':
                 theArray = [level getLights];
                 amountOfObjects = length / 100;
                 theClass = [PhLight class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'NOTE':
                 theArray = [level getNotes];
                 amountOfObjects = length / 72;
                 theClass = [PhAnnotationNote class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'medi':
                 theArray = [level getMedia];
                 amountOfObjects = length / 32;
                 theClass = [PhMedia class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'ambi':
                 theArray = [level getAmbientSounds];
                 amountOfObjects = length / 16;
                 theClass = [PhAmbientSound class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'plat': // also 'PLAT' ??? diffrent platform tag???
                 theArray = [level getPlatforms];
                 amountOfObjects = length / 32;
@@ -1114,63 +1077,57 @@ BOOL setupPointerArraysDurringLoading = YES;
                 theClass = [PhRandomSound class];
                 foundTheTag = YES;
                 break;
-            
+                
             case 'term':
                 foundTheTag = NO;
                 break;
                 
             default:
                 NSLog(@"   PreAllocation Process Detected Unknown Tag: %@",
-                        CFBridgingRelease(UTCreateStringForOSType(tag)));
+                      CFBridgingRelease(UTCreateStringForOSType(tag)));
             case 'Minf':
-                if (next_offset == 0 /* && !foundTheTag */)
-                {
-                    #ifdef useDebugingLogs
-                        NSLog(@"   PreAllocation Completed...");
-                    #endif
+                if (next_offset == 0 /* && !foundTheTag */) {
+#ifdef useDebugingLogs
+                    NSLog(@"   PreAllocation Completed...");
+#endif
                     //[theDataToReturn release];
                     return;
                 }
                 this_offset = myLevelHeaders[theLevel-1].offsetToStart + next_offset;
                 continue;
-            
+                
         } //End switch (theTag)
         
-        if (foundTheTag)
-        {
+        if (foundTheTag) {
             int i;
             //NSString *theTmpTagString = CFBridgingRelease(UTCreateStringForOSType(tag));
             [theArray removeAllObjects];
             
-            #ifdef useDebugingLogs
-                NSLog(@"   PreAllocating %d objects for tag '%@'", amountOfObjects, CFBridgingRelease(UTCreateStringForOSType(tag)));
-            #endif
+#ifdef useDebugingLogs
+            NSLog(@"   PreAllocating %d objects for tag '%@'", amountOfObjects, CFBridgingRelease(UTCreateStringForOSType(tag)));
+#endif
             
-            for (i = 0; i < amountOfObjects; i++)
-            {
+            for (i = 0; i < amountOfObjects; i++) {
                 id theObj = [[theClass alloc] init];
                 [theArray addObject:theObj];
                 
                 [level setUpArrayPointersFor:theObj];
-                
-                [theObj release];
             }
         }
         
-        if (next_offset == 0 /* && !foundTheTag */)
-        {
-            #ifdef useDebugingLogs
-                NSLog(@"   PreAllocation Completed...");
-            #endif
+        if (next_offset == 0 /* && !foundTheTag */) {
+#ifdef useDebugingLogs
+            NSLog(@"   PreAllocation Completed...");
+#endif
             //[theDataToReturn release];
             return;
         }
         this_offset = myLevelHeaders[theLevel-1].offsetToStart + next_offset;
         
     } // End while (GoOn == YES)
-    #ifdef useDebugingLogs
-        NSLog(@"   PreAllocation Completed...");
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"   PreAllocation Completed...");
+#endif
     return;
 }
 
@@ -1210,16 +1167,15 @@ BOOL setupPointerArraysDurringLoading = YES;
 	theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
     
-    if ((theShortNum >= theArrayCount))
-    {
+    if ((theShortNum >= theArrayCount)) {
 		NSLog(@"Bounding Error: %d   Array Count: %ld", theShortNum, (long)theArrayCount);
         if (!alreadyGaveBoundingError)
             SEND_ERROR_MSG(@"Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array...");
         alreadyGaveBoundingError = YES;
         return [theArray lastObject];
-    }
-    else
+    } else {
         return (theShortNum < 0) ? (nil) : ([theArray objectAtIndex:theShortNum]);
+    }
 }
 
 -(id)getShortZeroIsNilIfOverObjectFromArray:(NSArray *)theArray
@@ -1230,12 +1186,9 @@ BOOL setupPointerArraysDurringLoading = YES;
 	theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
     
-    if (theShortNum < 1 && theArrayCount < 1)
-    {
+    if (theShortNum < 1 && theArrayCount < 1) {
         return nil;
-    }
-    else if ((theShortNum >= theArrayCount))
-    {
+    } else if ((theShortNum >= theArrayCount)) {
         return nil;
     }
     /*else if ((theShortNum >= theArrayCount))
@@ -1246,8 +1199,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         alreadyGaveBoundingError = YES;
         return [theArray lastObject];
     }*/
-    else
+    else {
         return (theShortNum < 0) ? (nil) : ([theArray objectAtIndex:theShortNum]);
+    }
 }
 
 - (short)getUnsignedShort
@@ -1297,11 +1251,10 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSRange range = [theTmpCharString rangeOfString:@"\0"];
     if (range.location != NSNotFound) {
         NSString *theTrimmedCharString = [theTmpCharString substringToIndex:range.location];
-        [theTmpCharString release];
         return theTrimmedCharString;
     }
     
-    return [theTmpCharString autorelease];
+    return theTmpCharString;
 }
 
 - (short)getOneByteShort
@@ -1346,20 +1299,18 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length
 {
-    const char *theStringAsCString = [v UTF8String]; //FIXME: MacRoman?
+    const char *theStringAsCString = [v cStringUsingEncoding:NSMacOSRomanStringEncoding];
     ssize_t theStringLength = strlen(theStringAsCString);
     char nullChar = '\0';
     
-    if (length < 0)
-    {
+    if (length < 0) {
         NSLog(@"••• ERROR: Tried to saved a string of negative length in LEMapData->saveStringAsChar:");
         return;
     }
     
-    if (theStringLength >= length)
+    if (theStringLength >= length) {
         [mapDataToSave appendBytes:theStringAsCString length:(length-1)];
-    else
-    {
+    } else {
         [mapDataToSave appendBytes:theStringAsCString length:theStringLength];
         [self saveEmptyBytes:(int)((length - theStringLength) - 1)];
     }
@@ -1373,8 +1324,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 { 
     //int i;
     //int c = amount / 2;
-   // for (i = 0; i < c; i++)
-   //    [self saveShort:0];
+    // for (i = 0; i < c; i++)
+    //    [self saveShort:0];
     [mapDataToSave increaseLengthBy:amount];
 }
 
@@ -1471,9 +1422,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     [self saveStringAsChar:theLevelName withLength:66];
     
-    #ifdef useDebugingLogs
-        NSLog(@"Saved the level directory entry.   SIZE: %d", [mapDataToSave length]);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved the level directory entry.   SIZE: %d", [mapDataToSave length]);
+#endif
     return YES;
 }
 
@@ -1510,9 +1461,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     [self saveLong:[level entryPointFlags]];
     
-    #ifdef useDebugingLogs
-        NSLog(@"Saved the level info object ('Minf'). SIZE: %d", [mapDataToSave length]);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved the level info object ('Minf'). SIZE: %d", [mapDataToSave length]);
+#endif
     return YES;
 }
 
@@ -1522,9 +1473,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveLong:(int)size];
     [self saveShort:index];
     [self saveDirectoryEntryInfo:level];
-    #ifdef useDebugingLogs
-        NSLog(@"Saved the level header.");
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved the level header.");
+#endif
     return YES;
 }
 
@@ -1541,7 +1492,6 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self initMainHeader];
     
     levelNames = [NSMutableArray arrayWithCapacity:[self numberOfLevels]];
-    [levelNames retain];
     
     // get the indvidual level headers...
     //NSLog(@"initLevelHeaders");
@@ -1551,9 +1501,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     //NSLog(@"initBasicLevelInfo");
     [self initBasicLevelInfo];
     
-    #ifdef useDebugingLogs
-        NSLog(@"Number Of Leves: %d   -   Number Of Level Names: %d", [self getNumberOfLevels], [[self getLevelNames] count]);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Number Of Leves: %d   -   Number Of Level Names: %d", [self getNumberOfLevels], [[self getLevelNames] count]);
+#endif
     return YES;
 }
 
@@ -1567,8 +1517,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     mission_flags = (short *) malloc (sizeof(short) * [self numberOfLevels]);
     entry_point_flags = (int *) malloc (sizeof(int) * [self numberOfLevels]);
     
-    for (i = 0; i < [self numberOfLevels]; i++)
-    {
+    for (i = 0; i < [self numberOfLevels]; i++) {
         BOOL GoOn;
         long this_offset;
         //Set the cursor to the first byte of the level
@@ -1578,11 +1527,10 @@ BOOL setupPointerArraysDurringLoading = YES;
         this_offset = -1;
         GoOn = YES;
         
-        #ifdef useDebugingLogs
-            NSLog(@"Scaning level (initBasicLevelInfo): %d", i+1);
-        #endif
-        while (GoOn == YES /*&& theCursor < (theCursor + myLevelHeaders[i].length) */) // Logicaly check this out some time!!!
-        {
+#ifdef useDebugingLogs
+        NSLog(@"Scaning level (initBasicLevelInfo): %d", i+1);
+#endif
+        while (GoOn == YES /*&& theCursor < (theCursor + myLevelHeaders[i].length) */) { // Logicaly check this out some time!!!
             int next_offset, length, offset;
             OSType tag;
             //NSString *theTagAsString;
@@ -1592,7 +1540,7 @@ BOOL setupPointerArraysDurringLoading = YES;
             if (this_offset != -1) {
                 theCursor = this_offset;
             }
-                
+            
             //NSLog(@"BEFORE %d tag: %d", i+1, tag);
             tag = [self getLong];
             //NSLog(@"Level %d tag: %d", i+1, tag);
@@ -1649,9 +1597,9 @@ BOOL setupPointerArraysDurringLoading = YES;
                 thisLevelsName = [self getChar:66];
                 [levelNames addObject:thisLevelsName];
                 
-                #ifdef useDebugingLogs
-                    NSLog(@"Level# %d  -  Name: %@", i, thisLevelsName);
-                #endif
+#ifdef useDebugingLogs
+                NSLog(@"Level# %d  -  Name: %@", i, thisLevelsName);
+#endif
                 entry_point_flags[i] = [self getLong];
                 
                 GoOn = NO;
@@ -1673,8 +1621,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     myLevelHeaders = (struct SLevelHeader *) malloc (sizeof(struct SLevelHeader) * [self numberOfLevels]);
     
     // Fill out all the array of structures with the header information from the file...
-    for (i = 0; i < [self numberOfLevels]; i++)
-    {
+    for (i = 0; i < [self numberOfLevels]; i++) {
         myLevelHeaders[i].offsetToStart = [self getLong];
         //NSLog(@"offsetToStart for level %d: %d ", i+1, myLevelHeaders[i].offsetToStart);
         
@@ -1696,14 +1643,14 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     // 2
     myMainMapHeader.version = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"version: %d ", myMainMapHeader.version);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"version: %d ", myMainMapHeader.version);
+#endif
     // 1
     myMainMapHeader.dataVersion = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"dataVersion: %d ", myMainMapHeader.dataVersion);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"dataVersion: %d ", myMainMapHeader.dataVersion);
+#endif
     //myMainMapHeader.theName = [self getChar:64];
     
     /* tTCS = [self getChar:64]; */
@@ -1711,34 +1658,34 @@ BOOL setupPointerArraysDurringLoading = YES;
     //tTCS = [NSString stringWithCString:myMainMapHeader.theName];
     //tTCS = [NSString stringWithCString:myMainMapHeader.theName length:64];
     
-   /*  //NSlog(@"theFileName: %@ ", tTCS); */
+    /*  //NSlog(@"theFileName: %@ ", tTCS); */
     
     theCursor += 64;
     myMainMapHeader.checksum = [self getUnsignedLong];
-    #ifdef useDebugingLogs
-        NSLog(@"checksum: %d ", myMainMapHeader.checksum);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"checksum: %d ", myMainMapHeader.checksum);
+#endif
     myMainMapHeader.mapSize = [self getLong];
-    #ifdef useDebugingLogs
-        NSLog(@"mapSize: %d ", myMainMapHeader.mapSize);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"mapSize: %d ", myMainMapHeader.mapSize);
+#endif
     //The Location Of The Number of Levels is byte 77
     myMainMapHeader.numberOfLevels = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"numberOfLevels: %d ", myMainMapHeader.numberOfLevels);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"numberOfLevels: %d ", myMainMapHeader.numberOfLevels);
+#endif
     myMainMapHeader.applicationSpecificDirectoryDataSize = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"applicationSpecificDirectoryDataSize: %d ", myMainMapHeader.applicationSpecificDirectoryDataSize);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"applicationSpecificDirectoryDataSize: %d ", myMainMapHeader.applicationSpecificDirectoryDataSize);
+#endif
     myMainMapHeader.entryHeaderSize = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"entryHeaderSize: %d ", myMainMapHeader.entryHeaderSize);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"entryHeaderSize: %d ", myMainMapHeader.entryHeaderSize);
+#endif
     myMainMapHeader.directoryEntryBaseSize = [self getShort];
-    #ifdef useDebugingLogs
-        NSLog(@"directoryEntryBaseSize: %d ", myMainMapHeader.directoryEntryBaseSize);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"directoryEntryBaseSize: %d ", myMainMapHeader.directoryEntryBaseSize);
+#endif
     myMainMapHeader.parentChecksum = [self getUnsignedLong];
     //NSLog(@"parentChecksum: %d ", myMainMapHeader.parentChecksum);
     
@@ -1754,9 +1701,9 @@ BOOL setupPointerArraysDurringLoading = YES;
 #pragma mark ********* Get Tag Data Functions *********
 
 -(void)getThePointsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-                    regularPoints:(BOOL)regPointStyle
+                 withLength:(long)theDataLength
+                  withLevel:(LELevelData *)curLevel
+              regularPoints:(BOOL)regPointStyle
 {
     NSArray *thePointArray = [curLevel points];
     LEMapPoint *theObj;
@@ -1764,31 +1711,25 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [thePointArray objectEnumerator];
-    if (!regPointStyle)
-    { // tag == 'EPNT'
-    if ((theDataLength % 16)  > 0)
-    {
-        NSLog(@"WARNING: Non Integer Number Of Extended Points, File Could Be Corupted!");
-    }
+    if (!regPointStyle) {
+        // tag == 'EPNT'
+        if ((theDataLength % 16)  > 0) {
+            NSLog(@"WARNING: Non Integer Number Of Extended Points, File Could Be Corupted!");
+        }
         while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-        {
+               && (theObj = [numer nextObject])) {
             theCursor += 6;
             [theObj setX:[self getShort] Y:[self getShort]];
             //[theObj setX:[self getShort]];
             //[theObj setY:[self getShort]];
             theCursor += 6;
         }
-    }
-    else
-    { //case 'PNTS'
-    if ((theDataLength % 4)  > 0)
-    {
-        NSLog(@"WARNING: Non Integer Number Of Points, File Could Be Corupted!");
-    }
+    } else{ //case 'PNTS'
+        if ((theDataLength % 4)  > 0) {
+            NSLog(@"WARNING: Non Integer Number Of Points, File Could Be Corupted!");
+        }
         while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-        {
+               && (theObj = [numer nextObject])) {
             [theObj setX:[self getShort] Y:[self getShort]];
             //[theObj setX:[self getShort]];
             //[theObj setY:[self getShort]];
@@ -1812,58 +1753,56 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theLineArray objectEnumerator];
-    if ((theDataLength % 32)  > 0)
-    {
+    if ((theDataLength % 32)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Ambient Sounds, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         i++;
         ///NSLog(@"\n			*** *** *** Line %d *** *** ***\n", i);
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setMapPoint1"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setMapPoint1"];
+#endif
         
         //[theObj setMapPoint1:[self getShortObjectFromArray:thePointArray]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setMapPoint2"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setMapPoint2"];
+#endif
         //[theObj setMapPoint2:];
         [theObj setMapPoint1:[self getShortObjectFromArray:thePointArray] mapPoint2:[self getShortObjectFromArray:thePointArray]];
         
-        #ifdef useDebugingLogs
-            [self NSLogUnsignedShortFromData:@"setFlags"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogUnsignedShortFromData:@"setFlags"];
+#endif
         [theObj setFlags:[self getUnsignedShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setLength"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setLength"];
+#endif
         [theObj setLength:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setHighestAdjacentFloor"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setHighestAdjacentFloor"];
+#endif
         [theObj setHighestAdjacentFloor:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setLowestAdjacentCeiling"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setLowestAdjacentCeiling"];
+#endif
         [theObj setLowestAdjacentCeiling:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setClockwisePolygonSideObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setClockwisePolygonSideObject"];
+#endif
         [theObj setClockwisePolygonSideObject:[self getShortObjectFromArray:theSideArray]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setCounterclockwisePolygonSideObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setCounterclockwisePolygonSideObject"];
+#endif
         [theObj setCounterclockwisePolygonSideObject:[self getShortObjectFromArray:theSideArray]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setClockwisePolygonObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setClockwisePolygonObject"];
+#endif
         [theObj setClockwisePolygonObject:[self getShortObjectFromArray:thePolyArray]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setConterclockwisePolygonObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setConterclockwisePolygonObject"];
+#endif
         [theObj setConterclockwisePolygonObject:[self getShortObjectFromArray:thePolyArray]];
         
         theCursor += 12; //Skip the unused part of each line... :)
@@ -1894,13 +1833,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [thePolyArray objectEnumerator];
-    if ((theDataLength % 128)  > 0)
-    {
+    if ((theDataLength % 128)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Polygons, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         short thePermutation;
         LEPolygonType theType;
         id thePerObj;
@@ -1908,29 +1845,25 @@ BOOL setupPointerArraysDurringLoading = YES;
         c++;
         ///NSLog(@"\n			*** *** *** Polygon %d *** *** ***\n", c);
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"theType"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"theType"];
+#endif
         theType = [self getShort];
         
         [theObj setType:theType];
-        #ifdef useDebugingLogs
-            [self NSLogUnsignedShortFromData:@"setFlags"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogUnsignedShortFromData:@"setFlags"];
+#endif
         [theObj setFlags:[self getUnsignedShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"thePermutation"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"thePermutation"];
+#endif
         thePermutation = [self getShort];
         
-        if (thePermutation < 0)
-        {
+        if (thePermutation < 0) {
             thePerObj = nil;
-        }
-        else
-        {
-            switch (theType)
-            {
+        } else {
+            switch (theType) {
                 case _polygon_is_base:
                     thePerObj = nil; // For Now, I am not sure about this yet??? 
                     break;
@@ -1971,108 +1904,100 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setPermutationObject:thePerObj];
         
         //[theObj setPermutation:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setVertextCount"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setVertextCount"];
+#endif
         vertextCount = [self getShort];
         [theObj setVertextCount:vertextCount];
         
-        for (i = 0; i < 8; i++)
-        {
-            if (i < vertextCount)
-            {
-                #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"[theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] i:i]"];
-        #endif
+        for (i = 0; i < 8; i++) {
+            if (i < vertextCount) {
+#ifdef useDebugingLogs
+                [self NSLogShortFromData:@"[theObj setVertexWithObject:[self getShortObjectFrom:thePointArray] i:i]"];
+#endif
                 [theObj setVertexWithObject:[self getShortObjectFromArray:thePointArray] toIndex:i];
-            }
-            else
-            {
+            } else {
                 theCursor += 2;
                 [theObj setVertexWithObject:nil toIndex:i];
             }
         }
         
-        for (i = 0; i < 8; i++)
-        {
-            if (i < vertextCount)
-            {
+        for (i = 0; i < 8; i++) {
+            if (i < vertextCount) {
 #ifdef useDebugingLogs
                 [self NSLogShortFromData:@"[theObj setLinesObject:[self getShortObjectFrom:theLineArray] i:0]"];
 #endif
                 [theObj setLinesObject:[self getShortObjectFromArray:theLineArray] toIndex:i]; //
-            }
-            else
-            {
+            } else {
                 theCursor += 2;
                 [theObj setLinesObject:nil toIndex:i];
             }
         }
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFloor_texture"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFloor_texture"];
+#endif
         [theObj setFloorTexture:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setCeiling_texture"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setCeiling_texture"];
+#endif
         [theObj setCeilingTexture:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFloor_height:"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFloor_height:"];
+#endif
         [theObj setFloorHeightNoSides:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setCeiling_height:"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setCeiling_height:"];
+#endif
         [theObj setCeilingHeightNoSides:[self getShort]];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFloor_lightsourceObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFloor_lightsourceObject"];
+#endif
         [theObj setFloorLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setCeiling_lightsourceObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setCeiling_lightsourceObject"];
+#endif
         [theObj setCeilingLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
         
-        #ifdef useDebugingLogs
-            [self NSLogLongFromData:@"setArea"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogLongFromData:@"setArea"];
+#endif
         [theObj setArea:[self getLong]];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFirst_objectObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFirst_objectObject"];
+#endif
         [theObj setFirstObjectObject:[self getShortZeroIsNilIfOverObjectFromArray:theObjectArray]]; //
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFirst_exclusion_zone_index"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFirst_exclusion_zone_index"];
+#endif
         [theObj setFirstExclusionZoneIndex:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setLine_exclusion_zone_count"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setLine_exclusion_zone_count"];
+#endif
         [theObj setLineExclusionZoneCount:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setPoint_exclusion_zone_count"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setPoint_exclusion_zone_count"];
+#endif
         [theObj setPointExclusionZoneCount:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setFloor_transfer_mode"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setFloor_transfer_mode"];
+#endif
         [theObj setFloorTransferMode:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setCeiling_transfer_mode"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setCeiling_transfer_mode"];
+#endif
         [theObj setCeilingTransferMode:[self getShort]];
         
         for (i = 0; i < 8; i++)
         {
             if (i < vertextCount)
             {
-                #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setAdjacent_polygonObject:[self getShortObjectFrom:thePolyArray] i:0]"];
-        #endif
+#ifdef useDebugingLogs
+                [self NSLogShortFromData:@"setAdjacent_polygonObject:[self getShortObjectFrom:thePolyArray] i:0]"];
+#endif
                 [theObj setAdjacentPolygonObject:[self getShortZeroIsNilIfOverObjectFromArray:thePolyArray] toIndex:i]; //
             }
             else
@@ -2220,33 +2145,31 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theSideArray objectEnumerator];
-    if ((theDataLength % 64)  > 0)
-    {
+    if ((theDataLength % 64)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Sides, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         struct side_texture_definition theTempSideTextureDefinition;
         struct side_exclusion_zone theTempExclusionZone;
         
         i++;
         ///NSLog(@"\n			*** *** *** Side %d *** *** ***\n", i);
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setType"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setType"];
+#endif
         [theObj setType:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogUnsignedShortFromData:@"setFlags"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogUnsignedShortFromData:@"setFlags"];
+#endif
         [theObj setFlags:[self getUnsignedShort]];
         
         theTempSideTextureDefinition.x0 = [self getShort];
         theTempSideTextureDefinition.y0 = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"P texture"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"P texture"];
+#endif
         theTempSideTextureDefinition.texture = [self getShort]; // 3oisudjlifslkf sujdlifj ldsf
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
@@ -2255,9 +2178,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         theTempSideTextureDefinition.x0 = [self getShort];
         theTempSideTextureDefinition.y0 = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"S texture"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"S texture"];
+#endif
         theTempSideTextureDefinition.texture = [self getShort];
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
@@ -2266,9 +2189,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         theTempSideTextureDefinition.x0 = [self getShort];
         theTempSideTextureDefinition.y0 = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"T texture"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"T texture"];
+#endif
         theTempSideTextureDefinition.texture = [self getShort];
         theCursor -= 2;
         theTempSideTextureDefinition.textureCollection = [self getOneByteShort];
@@ -2276,76 +2199,76 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setTransparentTextureStruct:theTempSideTextureDefinition];
         
         
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"theTempExclusionZone 0"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"theTempExclusionZone 0"];
+#endif
         theTempExclusionZone.e0.x = [self getShort];
         theTempExclusionZone.e0.y = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"theTempExclusionZone 1"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"theTempExclusionZone 1"];
+#endif
         theTempExclusionZone.e1.x = [self getShort];
         theTempExclusionZone.e1.y = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"theTempExclusionZone 2"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"theTempExclusionZone 2"];
+#endif
         theTempExclusionZone.e2.x = [self getShort];
         theTempExclusionZone.e2.y = [self getShort];
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"theTempExclusionZone 3"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"theTempExclusionZone 3"];
+#endif
         theTempExclusionZone.e3.x = [self getShort];
         theTempExclusionZone.e3.y = [self getShort];
         
         [theObj setExclusionZone:theTempExclusionZone];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setControl_panel_type"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setControl_panel_type"];
+#endif
         [theObj setControlPanelType:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setControl_panel_permutation"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setControl_panel_permutation"];
+#endif
         [theObj setControlPanelPermutation:[self getShort]];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setPrimary_transfer_mode"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setPrimary_transfer_mode"];
+#endif
         [theObj setPrimaryTransferMode:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setSecondary_transfer_mode"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setSecondary_transfer_mode"];
+#endif
         [theObj setSecondaryTransferMode:[self getShort]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setTransparent_transfer_mode"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setTransparent_transfer_mode"];
+#endif
         [theObj setTransparentTransferMode:[self getShort]];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setPolygon_object"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setPolygon_object"];
+#endif
         [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setLine_object"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setLine_object"];
+#endif
         [theObj setLineObject:[self getShortObjectFromArray:theLineArray]];
         
-        #ifdef useDebugingLogs
-            [self NSLogLongFromData:@"setPrimary_lightsource_object"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogLongFromData:@"setPrimary_lightsource_object"];
+#endif
         [theObj setPrimaryLightsourceObject:[self getShortObjectFromArray:theLightArray]];
-        #ifdef useDebugingLogs
-            [self NSLogLongFromData:@"setSecondary_lightsource_object"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogLongFromData:@"setSecondary_lightsource_object"];
+#endif
         [theObj setSecondaryLightsourceObject:[self getShortObjectFromArray:theLightArray]];
-        #ifdef useDebugingLogs
-            [self NSLogLongFromData:@"setTransparent_lightsource_object"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogLongFromData:@"setTransparent_lightsource_object"];
+#endif
         [theObj setTransparentLightsourceObject:[self getShortObjectFromArray:theLightArray]];
         
-        #ifdef useDebugingLogs
-            [self NSLogLongFromData:@"setAmbient_delta"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogLongFromData:@"setAmbient_delta"];
+#endif
         [theObj setAmbientDelta:[self getLong]];
         
         theCursor+=2; // Skip the unused short
@@ -2364,13 +2287,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theLightArray objectEnumerator];
-    if ((theDataLength % 100)  > 0)
-    {
+    if ((theDataLength % 100)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Lights, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setType:[self getShort]];
         [theObj setFlags:[self getUnsignedShort]];
         
@@ -2381,7 +2302,7 @@ BOOL setupPointerArraysDurringLoading = YES;
             [theObj setFunction:[self getShort] forState:i];
             [theObj setPeriod:[self getShort]forState:i];
             [theObj setDeltaPeriod:[self getShort] forState:i];
-            [theObj setIntensity:[self getLong] forState:i]; 
+            [theObj setIntensity:[self getLong] forState:i];
             [theObj setDeltaIntensity:[self getLong] forState:i];
         }
         
@@ -2403,13 +2324,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theAnnotationArray objectEnumerator];
-    if ((theDataLength % 72)  > 0)
-    {
+    if ((theDataLength % 72)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Annotation Notes, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setType:[self getShort]];
         
         [theObj setLocation:NSMakePoint([self getShort], [self getShort])];
@@ -2431,13 +2350,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theMediaArray objectEnumerator];
-    if ((theDataLength % 32)  > 0)
-    {
+    if ((theDataLength % 32)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Medias, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setType:[self getShort]];
         [theObj setFlags:[self getUnsignedShort]];
         
@@ -2471,13 +2388,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theAmbientArray objectEnumerator];
-    if ((theDataLength % 16)  > 0)
-    {
+    if ((theDataLength % 16)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Ambient Sounds, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setFlags:[self getUnsignedShort]];
         
         [theObj setSoundIndex:[self getShort]];
@@ -2499,13 +2414,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [thePlatformArray objectEnumerator];
-    if ((theDataLength % 32)  > 0)
-    {
+    if ((theDataLength % 32)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Static Platforms, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setType:[self getShort]];
         [theObj setSpeed:[self getShort]];
         [theObj setDelay:[self getShort]];
@@ -2515,9 +2428,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         [theObj setPolygonObject:[self getShortObjectFromArray:thePolyArray]];
         [theObj setTag:[self getShort]];
         
-        #ifdef useDebugingLogs
+#ifdef useDebugingLogs
         NSLog(@"Platfrom Tag: %d, index: %d", [theObj getTag], [theObj getIndex]);
-        #endif
+#endif
         
         theCursor+=14; // Skip the 7 unused bytes
     }
@@ -2615,7 +2528,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 -(void)getTheTerminalsAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                     withLevel:(LELevelData *)curLevel
 {
     ///[data getBytes:&length range:NSMakeRange(0, 2)];
     
@@ -2633,7 +2546,6 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSData *theTerminalRawData = [mapData subdataWithRange:NSMakeRange((theCursor - 2), terminalLength)];
         Terminal *theTerm = [[Terminal alloc] initWithTerminalData:theTerminalRawData terminalNumber:count withLevel:curLevel];
         [theTerminalArray addObject:theTerm];
-        [theTerm release];
         theCursor += (terminalLength - 2);
         count++;
     }
@@ -2814,23 +2726,21 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     NSArray *theObjects = [level points];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'PNTS' next_offset:[mapDataToSave length] length:(objCount * 4 /* point length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    { 
-	[self saveShort:[currentObj x]];
-	[self saveShort:[currentObj y]];
+    for (LEMapPoint *currentObj in theObjects)
+    {
+        [self saveShort:[currentObj x]];
+        [self saveShort:[currentObj y]];
     }
     
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d point objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d point objects.", objCount);
+#endif
 }
 
 
@@ -2842,29 +2752,29 @@ BOOL setupPointerArraysDurringLoading = YES;
     long objCount = [theObjects count];
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'LINS' next_offset:[mapDataToSave length] length:(objCount * 32 /* line length */) offset:0];
     
     for (LELine *currentObj in theObjects)
-    {                
-		[self saveShort:[currentObj pointIndex1]];
-		[self saveShort:[currentObj pointIndex2]];
-	[self saveUnsignedShort:[currentObj flags]];
-	[self saveShort:[currentObj length]];
-	[self saveShort:[currentObj highestAdjacentFloor]];
-	[self saveShort:[currentObj lowestAdjacentCeiling]];
-	[self saveShort:[currentObj clockwisePolygonSideIndex]];
-	[self saveShort:[currentObj counterclockwisePolygonSideIndex]];
-	[self saveShort:[currentObj clockwisePolygonOwner]];
-	[self saveShort:[currentObj conterclockwisePolygonOwner]];
-	
-	[self saveEmptyBytes:12]; //Skip the unused part of each line... :)
+    {
+        [self saveShort:[currentObj pointIndex1]];
+        [self saveShort:[currentObj pointIndex2]];
+        [self saveUnsignedShort:[currentObj flags]];
+        [self saveShort:[currentObj length]];
+        [self saveShort:[currentObj highestAdjacentFloor]];
+        [self saveShort:[currentObj lowestAdjacentCeiling]];
+        [self saveShort:[currentObj clockwisePolygonSideIndex]];
+        [self saveShort:[currentObj counterclockwisePolygonSideIndex]];
+        [self saveShort:[currentObj clockwisePolygonOwner]];
+        [self saveShort:[currentObj conterclockwisePolygonOwner]];
+        
+        [self saveEmptyBytes:12]; //Skip the unused part of each line... :)
     }
     
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d line objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d line objects.", objCount);
+#endif
 }
 
 - (void)savePolygonsForLevel:(LELevelData *)level
@@ -2872,121 +2782,118 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 128)];
     NSArray *theObjects = [level polygons];
     long objCount = [theObjects count];
-    LEPolygon *currentObj = nil;
-            
+    
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'POLY' next_offset:[mapDataToSave length] length:(objCount * 128 /* poly length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	[self saveShort:[currentObj type]];
-	[self saveUnsignedShort:[currentObj flags]];
-	[self saveShort:[currentObj permutation]];
-	
-	[self saveShort:[currentObj getTheVertexCount]];
-	
-	[self saveShort:[currentObj vertexIndexesAtIndex:0]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:1]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:2]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:3]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:4]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:5]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:6]]; 
-	[self saveShort:[currentObj vertexIndexesAtIndex:7]];
-	
-	[self saveShort:[currentObj lineIndexesAtIndex:0]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:1]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:2]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:3]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:4]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:5]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:6]]; 
-	[self saveShort:[currentObj lineIndexesAtIndex:7]];
-	
-	[self saveShort:[currentObj floorTexture]];
-	[self saveShort:[currentObj ceilingTexture]];
-	[self saveShort:[currentObj floorHeight]];
-	[self saveShort:[currentObj ceilingHeight]];
-	[self saveShort:[currentObj floorLightsourceIndex]]; 
-	[self saveShort:[currentObj ceilingLightsourceIndex]]; 
-	
-	//[self saveLong:[currentObj area]];
-	[self saveLong:0];
-	
-	//[self saveShort:[currentObj firstObjectIndex]]; 
-	//[self saveShort:[currentObj firstExclusionZoneIndex]];
-	//[self saveShort:[currentObj lineExclusionZoneCount]];
-	//[self saveShort:[currentObj pointExclusionZoneCount]];
-	[self saveShort:-1]; 
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	
-	[self saveShort:[currentObj floorTransferMode]];
-	[self saveShort:[currentObj ceilingTransferMode]];
-	
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:0]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:1]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:2]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:3]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:4]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:5]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:6]]; 
-	//[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:7]];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	[self saveShort:0];
-	
-	//[self saveShort:[currentObj firstNeighborIndex]]; 
-	//[self saveShort:[currentObj neighborCount]];
-	[self saveShort:0]; 
-	[self saveShort:0];
-	
-	//[self saveShort:[currentObj center].x];
-	//[self saveShort:[currentObj center].y];
-	[self saveShort:0];
-	[self saveShort:0];
-	
-	// NSLog(@"\np\n");	*** 	***	***	***	***	***	***	***	***
-	
-	[self saveShort:[currentObj sideIndexesAtIndex:0]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:1]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:2]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:3]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:4]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:5]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:6]]; 
-	[self saveShort:[currentObj sideIndexesAtIndex:7]];
-	
-	[self saveShort:[currentObj floorOrigin].x];
-	[self saveShort:[currentObj floorOrigin].y];
-	
-	[self saveShort:[currentObj ceilingOrigin].x];
-	[self saveShort:[currentObj ceilingOrigin].y];
-	
-	[self saveShort:[currentObj mediaIndex]];
-	[self saveShort:[currentObj mediaLightsourceIndex]];
-	
-	//[self saveShort:[currentObj soundSourceIndexes]];
-	[self saveShort:0];
-	
-	[self saveShort:[currentObj ambientSoundImageIndex]];
-	[self saveShort:[currentObj randomSoundImageIndex]];
-	
-	[self saveEmptyBytes:2]; //Skip the unused part... :)
+    for (LEPolygon *currentObj in theObjects) {
+        [self saveShort:[currentObj type]];
+        [self saveUnsignedShort:[currentObj flags]];
+        [self saveShort:[currentObj permutation]];
+        
+        [self saveShort:[currentObj getTheVertexCount]];
+        
+        [self saveShort:[currentObj vertexIndexesAtIndex:0]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:1]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:2]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:3]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:4]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:5]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:6]];
+        [self saveShort:[currentObj vertexIndexesAtIndex:7]];
+        
+        [self saveShort:[currentObj lineIndexesAtIndex:0]];
+        [self saveShort:[currentObj lineIndexesAtIndex:1]];
+        [self saveShort:[currentObj lineIndexesAtIndex:2]];
+        [self saveShort:[currentObj lineIndexesAtIndex:3]];
+        [self saveShort:[currentObj lineIndexesAtIndex:4]];
+        [self saveShort:[currentObj lineIndexesAtIndex:5]];
+        [self saveShort:[currentObj lineIndexesAtIndex:6]];
+        [self saveShort:[currentObj lineIndexesAtIndex:7]];
+        
+        [self saveShort:[currentObj floorTexture]];
+        [self saveShort:[currentObj ceilingTexture]];
+        [self saveShort:[currentObj floorHeight]];
+        [self saveShort:[currentObj ceilingHeight]];
+        [self saveShort:[currentObj floorLightsourceIndex]];
+        [self saveShort:[currentObj ceilingLightsourceIndex]];
+        
+        //[self saveLong:[currentObj area]];
+        [self saveLong:0];
+        
+        //[self saveShort:[currentObj firstObjectIndex]];
+        //[self saveShort:[currentObj firstExclusionZoneIndex]];
+        //[self saveShort:[currentObj lineExclusionZoneCount]];
+        //[self saveShort:[currentObj pointExclusionZoneCount]];
+        [self saveShort:-1];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        
+        [self saveShort:[currentObj floorTransferMode]];
+        [self saveShort:[currentObj ceilingTransferMode]];
+        
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:0]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:1]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:2]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:3]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:4]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:5]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:6]];
+        //[self saveShort:[currentObj adjacentPolygonIndexesAtIndex:7]];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        [self saveShort:0];
+        
+        //[self saveShort:[currentObj firstNeighborIndex]];
+        //[self saveShort:[currentObj neighborCount]];
+        [self saveShort:0];
+        [self saveShort:0];
+        
+        //[self saveShort:[currentObj center].x];
+        //[self saveShort:[currentObj center].y];
+        [self saveShort:0];
+        [self saveShort:0];
+        
+        // NSLog(@"\np\n");	*** 	***	***	***	***	***	***	***	***
+        
+        [self saveShort:[currentObj sideIndexesAtIndex:0]];
+        [self saveShort:[currentObj sideIndexesAtIndex:1]];
+        [self saveShort:[currentObj sideIndexesAtIndex:2]];
+        [self saveShort:[currentObj sideIndexesAtIndex:3]];
+        [self saveShort:[currentObj sideIndexesAtIndex:4]];
+        [self saveShort:[currentObj sideIndexesAtIndex:5]];
+        [self saveShort:[currentObj sideIndexesAtIndex:6]];
+        [self saveShort:[currentObj sideIndexesAtIndex:7]];
+        
+        [self saveShort:[currentObj floorOrigin].x];
+        [self saveShort:[currentObj floorOrigin].y];
+        
+        [self saveShort:[currentObj ceilingOrigin].x];
+        [self saveShort:[currentObj ceilingOrigin].y];
+        
+        [self saveShort:[currentObj mediaIndex]];
+        [self saveShort:[currentObj mediaLightsourceIndex]];
+        
+        //[self saveShort:[currentObj soundSourceIndexes]];
+        [self saveShort:0];
+        
+        [self saveShort:[currentObj ambientSoundImageIndex]];
+        [self saveShort:[currentObj randomSoundImageIndex]];
+        
+        [self saveEmptyBytes:2]; //Skip the unused part... :)
     }
     
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d polygon objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d polygon objects.", objCount);
+#endif
 }
 
 - (void)saveObjectsForLevel:(LELevelData *)level
@@ -2996,24 +2903,23 @@ BOOL setupPointerArraysDurringLoading = YES;
     long objCount = [theObjects count];
     
     if (objCount < 1)
-	return;
-	
+        return;
+    
     [self saveEntryHeader:'OBJS' next_offset:[mapDataToSave length] length:(objCount * 16 /* objs length */) offset:0];
     
-    for (LEMapObject *currentObj in theObjects)
-    {
-	[self saveShort:[currentObj type]];
-	[self saveShort:[currentObj getObjTypeIndex]];
-	[self saveShort:[currentObj facing]];
-	[self saveShort:[currentObj polygonIndex]];
-	[self saveShort:[currentObj x]];
-	[self saveShort:[currentObj y]];
-	[self saveShort:[currentObj z]];
-	[self saveUnsignedShort:[currentObj mapFlags]];
+    for (LEMapObject *currentObj in theObjects) {
+        [self saveShort:[currentObj type]];
+        [self saveShort:[currentObj getObjTypeIndex]];
+        [self saveShort:[currentObj facing]];
+        [self saveShort:[currentObj polygonIndex]];
+        [self saveShort:[currentObj x]];
+        [self saveShort:[currentObj y]];
+        [self saveShort:[currentObj z]];
+        [self saveUnsignedShort:[currentObj mapFlags]];
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d map objects (Monsters, Items, Etc.).", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d map objects (Monsters, Items, Etc.).", objCount);
+#endif
 }
 
 - (void)saveSidesForLevel:(LELevelData *)level
@@ -3021,92 +2927,89 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 64)];
     NSArray *theObjects = [level sides];
     long objCount = [theObjects count];
-    LESide *currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'SIDS' next_offset:[mapDataToSave length] length:(objCount * 64 /* objs length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	struct side_texture_definition theTempSideTextureDefinition;
-	struct side_exclusion_zone theTempExclusionZone;
-	
-	[self saveShort:[currentObj type]];
-	[self saveShort:[currentObj flags]];
-	
-	// ***
-	
-	theTempSideTextureDefinition = [currentObj primaryTextureStruct];
-	
-	[self saveShort:theTempSideTextureDefinition.x0];
-	[self saveShort:theTempSideTextureDefinition.y0];
-	//theTempSideTextureDefinition.texture = [self getShort]; // 3oisudjlifslkf sujdlifj ldsf
-	//theCursor -= 2;
-	[self saveShort:theTempSideTextureDefinition.texture];
-	//[self saveOneByteShort:theTempSideTextureDefinition.textureCollection];
-	//[self saveOneByteShort:/*(char)*/theTempSideTextureDefinition.textureNumber]; // *** May Need to Cast It??? ***
-	
-	// ---
-	
-	theTempSideTextureDefinition = [currentObj secondaryTextureStruct];
-	
-	[self saveShort:theTempSideTextureDefinition.x0];
-	[self saveShort:theTempSideTextureDefinition.y0];
-	//theTempSideTextureDefinition.texture = [self getShort];
-	//theCursor -= 2;
-	[self saveShort:theTempSideTextureDefinition.texture];
-	//[self saveOneByteShort:theTempSideTextureDefinition.textureCollection = [self getOneByteShort]];
-	//[self saveOneByteShort:theTempSideTextureDefinition.textureNumber = [self getOneByteShort]];
-	
-	// ---
-	
-	theTempSideTextureDefinition = [currentObj transparentTextureStruct];
-	
-	[self saveShort:theTempSideTextureDefinition.x0];
-	[self saveShort:theTempSideTextureDefinition.y0];
-	//theTempSideTextureDefinition.texture = [self getShort];
-	//theCursor -= 2;
-	[self saveShort:theTempSideTextureDefinition.texture];
-	//[self saveOneByteShort:theTempSideTextureDefinition.textureCollection];
-	//[self saveOneByteShort:theTempSideTextureDefinition.textureNumber];
-	
-	// ***
-	
-	theTempExclusionZone = [currentObj exclusionZone];
-	
-	[self saveShort:theTempExclusionZone.e0.x];
-	[self saveShort:theTempExclusionZone.e0.y];
-	[self saveShort:theTempExclusionZone.e1.x];
-	[self saveShort:theTempExclusionZone.e1.y];
-	[self saveShort:theTempExclusionZone.e2.x];
-	[self saveShort:theTempExclusionZone.e2.y];
-	[self saveShort:theTempExclusionZone.e3.x];
-	[self saveShort:theTempExclusionZone.e3.y];
-		
-	[self saveShort:[currentObj controlPanelType]];
-	[self saveShort:[currentObj controlPanelPermutation]];
-		
-	[self saveShort:[currentObj primaryTransferMode]];
-	[self saveShort:[currentObj secondaryTransferMode]];
-	[self saveShort:[currentObj transparentTransferMode]];
-	
-	[self saveShort:[currentObj polygonIndex]];
-	[self saveShort:[currentObj lineIndex]];
-	
-	[self saveShort:[currentObj primaryLightsourceIndex]];
-	[self saveShort:[currentObj secondaryLightsourceIndex]];
-	[self saveShort:[currentObj transparentLightsourceIndex]];
-	
-	[self saveLong:[currentObj ambientDelta]];
-	
-	[self saveEmptyBytes:2]; //Skip the unused part... :)
+    for (LESide *currentObj in theObjects) {
+        struct side_texture_definition theTempSideTextureDefinition;
+        struct side_exclusion_zone theTempExclusionZone;
+        
+        [self saveShort:[currentObj type]];
+        [self saveShort:[currentObj flags]];
+        
+        // ***
+        
+        theTempSideTextureDefinition = [currentObj primaryTextureStruct];
+        
+        [self saveShort:theTempSideTextureDefinition.x0];
+        [self saveShort:theTempSideTextureDefinition.y0];
+        //theTempSideTextureDefinition.texture = [self getShort]; // 3oisudjlifslkf sujdlifj ldsf
+        //theCursor -= 2;
+        [self saveShort:theTempSideTextureDefinition.texture];
+        //[self saveOneByteShort:theTempSideTextureDefinition.textureCollection];
+        //[self saveOneByteShort:/*(char)*/theTempSideTextureDefinition.textureNumber]; // *** May Need to Cast It??? ***
+        
+        // ---
+        
+        theTempSideTextureDefinition = [currentObj secondaryTextureStruct];
+        
+        [self saveShort:theTempSideTextureDefinition.x0];
+        [self saveShort:theTempSideTextureDefinition.y0];
+        //theTempSideTextureDefinition.texture = [self getShort];
+        //theCursor -= 2;
+        [self saveShort:theTempSideTextureDefinition.texture];
+        //[self saveOneByteShort:theTempSideTextureDefinition.textureCollection = [self getOneByteShort]];
+        //[self saveOneByteShort:theTempSideTextureDefinition.textureNumber = [self getOneByteShort]];
+        
+        // ---
+        
+        theTempSideTextureDefinition = [currentObj transparentTextureStruct];
+        
+        [self saveShort:theTempSideTextureDefinition.x0];
+        [self saveShort:theTempSideTextureDefinition.y0];
+        //theTempSideTextureDefinition.texture = [self getShort];
+        //theCursor -= 2;
+        [self saveShort:theTempSideTextureDefinition.texture];
+        //[self saveOneByteShort:theTempSideTextureDefinition.textureCollection];
+        //[self saveOneByteShort:theTempSideTextureDefinition.textureNumber];
+        
+        // ***
+        
+        theTempExclusionZone = [currentObj exclusionZone];
+        
+        [self saveShort:theTempExclusionZone.e0.x];
+        [self saveShort:theTempExclusionZone.e0.y];
+        [self saveShort:theTempExclusionZone.e1.x];
+        [self saveShort:theTempExclusionZone.e1.y];
+        [self saveShort:theTempExclusionZone.e2.x];
+        [self saveShort:theTempExclusionZone.e2.y];
+        [self saveShort:theTempExclusionZone.e3.x];
+        [self saveShort:theTempExclusionZone.e3.y];
+        
+        [self saveShort:[currentObj controlPanelType]];
+        [self saveShort:[currentObj controlPanelPermutation]];
+        
+        [self saveShort:[currentObj primaryTransferMode]];
+        [self saveShort:[currentObj secondaryTransferMode]];
+        [self saveShort:[currentObj transparentTransferMode]];
+        
+        [self saveShort:[currentObj polygonIndex]];
+        [self saveShort:[currentObj lineIndex]];
+        
+        [self saveShort:[currentObj primaryLightsourceIndex]];
+        [self saveShort:[currentObj secondaryLightsourceIndex]];
+        [self saveShort:[currentObj transparentLightsourceIndex]];
+        
+        [self saveLong:[currentObj ambientDelta]];
+        
+        [self saveEmptyBytes:2]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d side objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d side objects.", objCount);
+#endif
 }
 
 - (void)saveLightsForLevel:(LELevelData *)level
@@ -3157,23 +3060,23 @@ BOOL setupPointerArraysDurringLoading = YES;
     long objCount = [theObjects count];
     
     if (objCount < 1)
-	return;
-	
+        return;
+    
     [self saveEntryHeader:'NOTE' next_offset:[mapDataToSave length] length:(objCount * 72 /* annotation length */) offset:0];
     
     for (PhAnnotationNote *currentObj in theObjects) {
-	[self saveShort:[currentObj type]];
-	
-	[self saveShort:[currentObj location].x];
-	[self saveShort:[currentObj location].y];
-	[self saveShort:[currentObj polygonIndex]];
-	
-	[self saveStringAsChar:[currentObj text] withLength:64];
-	
+        [self saveShort:[currentObj type]];
+        
+        [self saveShort:[currentObj location].x];
+        [self saveShort:[currentObj location].y];
+        [self saveShort:[currentObj polygonIndex]];
+        
+        [self saveStringAsChar:[currentObj text] withLength:64];
+        
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d annotation objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d annotation objects.", objCount);
+#endif
 }
 
 - (void)saveMediasForLevel:(LELevelData *)level
@@ -3181,41 +3084,38 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 32)];
     NSArray *theObjects = [level media];
     long objCount = [theObjects count];
-    PhMedia *currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'medi' next_offset:[mapDataToSave length] length:(objCount * 32 /* media length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {    
-	[self saveShort:[currentObj type]];
-	[self saveUnsignedShort:[currentObj flags]];
-	
-	[self saveShort:[currentObj lightIndex]];
-	
-	[self saveShort:[currentObj currentDirection]];
-	[self saveShort:[currentObj currentMagnitude]];
-	
-	[self saveShort:[currentObj low]];
-	[self saveShort:[currentObj high]];
-	
-	[self saveShort:[currentObj origin].x];
-	[self saveShort:[currentObj origin].y];
-	
-	[self saveShort:[currentObj height]];
-	
-	[self saveLong:[currentObj minimumLightIntensity]]; // ??? Should Make Object Pointer ???
-	[self saveShort:[currentObj texture]];
-	[self saveShort:[currentObj transferMode]];
-	
-	[self saveEmptyBytes:4]; //Skip the unused part... :)
+    for (PhMedia *currentObj in theObjects) {
+        [self saveShort:[currentObj type]];
+        [self saveUnsignedShort:[currentObj flags]];
+        
+        [self saveShort:[currentObj lightIndex]];
+        
+        [self saveShort:[currentObj currentDirection]];
+        [self saveShort:[currentObj currentMagnitude]];
+        
+        [self saveShort:[currentObj low]];
+        [self saveShort:[currentObj high]];
+        
+        [self saveShort:[currentObj origin].x];
+        [self saveShort:[currentObj origin].y];
+        
+        [self saveShort:[currentObj height]];
+        
+        [self saveLong:[currentObj minimumLightIntensity]]; // ??? Should Make Object Pointer ???
+        [self saveShort:[currentObj texture]];
+        [self saveShort:[currentObj transferMode]];
+        
+        [self saveEmptyBytes:4]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d media (water, lava, etc.) objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d media (water, lava, etc.) objects.", objCount);
+#endif
 }
 
 - (void)saveAmbientSoundsForLevel:(LELevelData *)level
@@ -3226,23 +3126,21 @@ BOOL setupPointerArraysDurringLoading = YES;
     PhAmbientSound *currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'ambi' next_offset:[mapDataToSave length] length:(objCount * 16 /* object length */) offset:0];
-    NSEnumerator *
-    numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	[self saveUnsignedShort:[currentObj flags]];
-	
-	[self saveShort:[currentObj soundIndex]];
-	[self saveShort:[currentObj volume]];
-	
-	[self saveEmptyBytes:10]; //Skip the unused part... :)
+    
+    for (currentObj in theObjects) {
+        [self saveUnsignedShort:[currentObj flags]];
+        
+        [self saveShort:[currentObj soundIndex]];
+        [self saveShort:[currentObj volume]];
+        
+        [self saveEmptyBytes:10]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d ambient sound objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d ambient sound objects.", objCount);
+#endif
 }
 
 - (void)saveRandomSoundsForLevel:(LELevelData *)level
@@ -3250,29 +3148,26 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 28)];
     NSArray *theObjects = [level randomSounds];
     long objCount = [theObjects count];
-    PhRandomSound *currentObj = nil;
     
     if (objCount < 1)
 	return;
     
     [self saveEntryHeader:'bonk' next_offset:[mapDataToSave length] length:(objCount * 32 /* random_sound length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {                
-	[self saveShort:[currentObj flags]];
-	[self saveShort:[currentObj soundIndex]];
-	[self saveShort:[currentObj volume]];
-	[self saveShort:[currentObj deltaVolume]];
-	[self saveShort:[currentObj period]];
-	[self saveShort:[currentObj deltaPeriod]];
-	[self saveShort:[currentObj direction]];
-	[self saveShort:[currentObj deltaDirection]];
-	[self saveLong:[currentObj pitch]];
-	[self saveLong:[currentObj deltaPitch]];
-	[self saveShort:[currentObj phase]];
-	
-	[self saveEmptyBytes:6]; //Skip the unused part... :)
+    for (PhRandomSound *currentObj in theObjects) {
+        [self saveShort:[currentObj flags]];
+        [self saveShort:[currentObj soundIndex]];
+        [self saveShort:[currentObj volume]];
+        [self saveShort:[currentObj deltaVolume]];
+        [self saveShort:[currentObj period]];
+        [self saveShort:[currentObj deltaPeriod]];
+        [self saveShort:[currentObj direction]];
+        [self saveShort:[currentObj deltaDirection]];
+        [self saveLong:[currentObj pitch]];
+        [self saveLong:[currentObj deltaPitch]];
+        [self saveShort:[currentObj phase]];
+        
+        [self saveEmptyBytes:6]; //Skip the unused part... :)
     }
     #ifdef useDebugingLogs
         NSLog(@"Saved %d random sound objects.", objCount);
@@ -3284,28 +3179,25 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 12)];
     NSArray *theObjects = [level itemPlacement];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'plac' next_offset:[mapDataToSave length] length:(objCount * 12 /* objs length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	[self saveShort:[currentObj flags]];
-	
-	[self saveShort:[currentObj initialCount]];
-	[self saveShort:[currentObj minimumCount]];
-	[self saveShort:[currentObj maximumCount]];
-	
-	[self saveShort:[currentObj randomCount]];
-	[self saveUnsignedShort:[currentObj randomChance]];
+    for (PhItemPlacement *currentObj in theObjects) {
+        [self saveShort:[currentObj flags]];
+        
+        [self saveShort:[currentObj initialCount]];
+        [self saveShort:[currentObj minimumCount]];
+        [self saveShort:[currentObj maximumCount]];
+        
+        [self saveShort:[currentObj randomCount]];
+        [self saveUnsignedShort:[currentObj randomChance]];
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d item placement objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d item placement objects.", objCount);
+#endif
 }
 
 - (void)savePlatformsForLevel:(LELevelData *)level
@@ -3313,30 +3205,27 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 32)];
     NSArray *theObjects = [level platforms];
     long objCount = [theObjects count];
-    PhPlatform *currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'plat' next_offset:[mapDataToSave length] length:(objCount * 32 /* platform length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	[self saveShort:[currentObj type]];
-	[self saveShort:[currentObj speed]];
-	[self saveShort:[currentObj delay]];
-	[self saveShort:[currentObj maximumHeight]];
-	[self saveShort:[currentObj minimumHeight]];
-	[self saveUnsignedLong:[currentObj staticFlags]];
-	[self saveShort:[currentObj polygonIndex]];
-	[self saveShort:[currentObj tag]];
-	
-	[self saveEmptyBytes:14]; //Skip the unused part... :)
+    for (PhPlatform *currentObj in theObjects) {
+        [self saveShort:[currentObj type]];
+        [self saveShort:[currentObj speed]];
+        [self saveShort:[currentObj delay]];
+        [self saveShort:[currentObj maximumHeight]];
+        [self saveShort:[currentObj minimumHeight]];
+        [self saveUnsignedLong:[currentObj staticFlags]];
+        [self saveShort:[currentObj polygonIndex]];
+        [self saveShort:[currentObj tag]];
+        
+        [self saveEmptyBytes:14]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d platform objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d platform objects.", objCount);
+#endif
 }
 
 - (void)saveTerminalDataForLevel:(LELevelData *)level
@@ -3344,22 +3233,18 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 28)];
     NSArray *theObjects = [level terminals];
     long objCount = [theObjects count];
-    id currentObj = nil;
     
     if (objCount < 1)
-	return;
+        return;
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
     {
-	NSMutableData *theTerminalData = [[NSMutableData alloc] initWithCapacity:0];
-	while (currentObj = [numer nextObject])
-	    [theTerminalData appendData:[currentObj getTerminalAsMarathonData]];
-	    
-	[self saveEntryHeader:'term' next_offset:[mapDataToSave length] length:[theTerminalData length] offset:0];
-			    //    Proably extra blank space for expation, I guess???
-	[self saveData:theTerminalData];
-	
-	[theTerminalData release];
+        NSMutableData *theTerminalData = [[NSMutableData alloc] initWithCapacity:0];
+        for (Terminal *currentObj in theObjects)
+            [theTerminalData appendData:[currentObj getTerminalAsMarathonData]];
+        
+        [self saveEntryHeader:'term' next_offset:[mapDataToSave length] length:[theTerminalData length] offset:0];
+        //    Proably extra blank space for expation, I guess???
+        [self saveData:theTerminalData];
     }
 }
 /*

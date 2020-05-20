@@ -55,7 +55,6 @@
 #pragma mark -
 #pragma mark ********* Level Specific Settings *********
 
--(NSDecimalNumberHandler *)roundingSettings { return defaultRoundingBehavior; }
 
 
 -(NSMutableDictionary *)getLevelOptionDictionary { return levelOptions; }
@@ -90,7 +89,7 @@
     NSNumber *theNumber = [levelOptions objectForKey:key];
     if (theNumber != nil)
     {
-        return [((NSNumber *)[levelOptions objectForKey:key]) floatValue];
+        return [theNumber floatValue];
     }
     else
     {
@@ -105,7 +104,7 @@
     NSNumber *theNumber = [levelOptions objectForKey:key];
     if (theNumber != nil)
     {
-        return [((NSNumber *)[levelOptions objectForKey:key]) intValue];
+        return [theNumber intValue];
     }
     else
     {
@@ -278,9 +277,9 @@
     {
         NSScriptObjectSpecifier *containerRef = [theLevelDocument objectSpecifier];
         
-        return [[[NSPropertySpecifier alloc]
+        return [[NSPropertySpecifier alloc]
                         initWithContainerClassDescription:[containerRef keyClassDescription]
-                        /*initWith*/containerSpecifier:containerRef key:@"level"] autorelease];
+                        /*initWith*/containerSpecifier:containerRef key:@"level"];
     }
     else
         return nil;

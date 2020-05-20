@@ -80,6 +80,7 @@
 @synthesize environmentFlags=environment_flags;
 @synthesize entryPointFlags=entry_point_flags;
 @synthesize myUndoManager;
+@synthesize roundingSettings=defaultRoundingBehavior;
 
 - (NSMutableArray<PhItemPlacement *> *)getItemPlacement
 {
@@ -294,7 +295,7 @@
         [terimals setArray:[coder decodeObjectForKey:LELevelDataterimalsCoderKey]];
         
         [layersInLevel setArray:[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey]];
-        currentLayer = [[coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey] retain];
+        currentLayer = [coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey];
         [layerPoints setArray:[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey]];
         [layerLines setArray:[coder decodeObjectForKey:LELevelDatalayerLinesCoderKey]];
         [layerPolys setArray:[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey]];
@@ -649,13 +650,11 @@
         // Could be just a NSArray, but I am going to, for now, cast it to NSMutableArray...
         NSMutableArray *sortedArray = (NSMutableArray *)[tmpNumberList sortedArrayUsingSelector:@selector(compare:)];
         
-        [tmpNumberList release];
         tmpNumberList = sortedArray;
-        [tmpNumberList retain];
     }
     
     //if (heightMode == _drawAmbientSounds || _drawLiquidLights:_drawLiquids
-    if ([tmpNumberList indexOfObject:[NSNumber numberWithShort:((short)(-1))]] == NSNotFound)
+    if ([tmpNumberList indexOfObject:@((short)(-1))] == NSNotFound)
     {
         listIncludesNone = NO;
 	//SEND_ERROR_MSG_TITLE(@"There is no -1 (NONE) tag", @"Information - Did Not Find NONE Tag");
@@ -892,10 +891,7 @@ enum // export data types
     
     [finnalData appendData:exportData];
     
-    [exportData release];
-    [exports release];
-    
-    return [finnalData autorelease];
+    return [finnalData copy];
 }
 
 - (NSSet *)importObjects:(NSData *)theData
@@ -958,15 +954,11 @@ enum // export data types
         else
         {
             NSLog(@"While importing, I found an unkown object type attempted to be imported... I will have to abort importing...");
-			[index release];
-			[theSet release];
-			[myData release];
             return nil;
         }
         
         [self setUpArrayPointersFor:obj]; 
         [index addObject:obj];
-        [obj release];
     }
     
     //NSLog(@"Importing Commencing...");
@@ -1106,10 +1098,7 @@ enum // export data types
     // Tempoary Solution To The Naming Problem For Now...
     [self setUpArrayNamesForEveryObject];
     
-	[index release];
-	[myData release];
-	
-    return [theSet autorelease];
+    return theSet;
 }
 
 
@@ -1127,7 +1116,7 @@ enum // export data types
     if (self == nil)
         return nil;
     
-    level_name = [@"Untitled Level" retain];
+    level_name = @"Untitled Level";
     
     enum {PID_LIGHT_SET_RANGE = 20};	// Kludgy way of doing "const" in plain C
     for (i = PID_LIGHT_SET_RANGE; i >= 0; i--)
@@ -1157,7 +1146,6 @@ enum // export data types
     {
         PhItemPlacement *theNewItemPlacObj = [[PhItemPlacement alloc] init];
         [itemPlacement addObject:theNewItemPlacObj];
-        [theNewItemPlacObj release];
     }
     
     [self setupLayersForNewPIDLevel];
@@ -1185,7 +1173,7 @@ enum // export data types
     if (self == nil)
         return nil;
     
-    level_name = [@"Untitled Level" retain];
+    level_name = @"Untitled Level";
     
     for (i = 20; i >= 0; i--)
     {
@@ -1214,7 +1202,6 @@ enum // export data types
     {
         PhItemPlacement *theNewItemPlacObj = [[PhItemPlacement alloc] init];
         [itemPlacement addObject:theNewItemPlacObj];
-        [theNewItemPlacObj release];
     }
     
     [self setupLayers];
@@ -1239,7 +1226,7 @@ enum // export data types
     if (self == nil)
         return nil;
         
-    defaultRoundingBehavior = [[NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:3 raiseOnExactness:NO raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES] retain];
+    defaultRoundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:3 raiseOnExactness:NO raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES];
 
     layerPolys = [[NSMutableArray alloc] init];
     layerLines = [[NSMutableArray alloc] init];
@@ -1264,7 +1251,7 @@ enum // export data types
     itemPlacement = [[NSMutableArray alloc] init];
     platforms = [[NSMutableArray alloc] init];
     
-    level_name = [[NSString alloc] initWithString:@"Untitled"];
+    level_name = @"Untitled";
     
     noteTypes = [[NSMutableArray alloc] init];
     
@@ -1340,37 +1327,6 @@ enum // export data types
     
     level_name = nil;
     
-    [points release];
-    [lines release];
-    [polys release];
-    [mapObjects release];
-    [sides release];
-    [lights release];
-    [notes release];
-    [media release];
-    [ambientSounds release];
-    [randomSounds release];
-    [itemPlacement release];
-    [platforms release];
-    
-    [tags release];
-    
-    [terimals release];
-    
-    [level_name release];
-    
-    currentLayer = nil;
-    [layersInLevel release];
-    
-    [layerPoints release];
-    [layerLines release];
-    [layerPolys release];
-    [layerMapObjects release];
-    [layerNotes release];
-    
-    [namedPolyObjects release];
-    
-    [levelOptions release];
     
     // *** Deallocat Default Objects ***
     
@@ -1378,24 +1334,8 @@ enum // export data types
     
     for (i = 0; i < _NUMBER_OF_OBJECT_TYPES; i++)
     {
-        [defaultObjects[i] release];
         defaultObjects[i] = nil;
     }
-    
-    [defaultPolygon release];
-    defaultPolygon = nil;
-    
-    [defaultSide release];
-    defaultSide = nil;
-    
-    [cDefaultSide release];
-    [ccDefaultSide release];
-    cDefaultSide = nil;
-    ccDefaultSide = nil;
-    
-    [noteTypes dealloc];
-    
-    [super dealloc];
 }
 
 @end

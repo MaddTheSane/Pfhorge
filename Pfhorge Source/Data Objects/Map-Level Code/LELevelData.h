@@ -226,9 +226,13 @@ enum {
     
     NSMutableArray<PhNoteGroup*> *noteTypes;
     
-    NSUndoManager *myUndoManager;
+    __weak NSUndoManager *myUndoManager;
 }
-@property (assign) NSUndoManager *myUndoManager;
+
+@property (weak) NSUndoManager *myUndoManager;
+
+#pragma mark Level Specific Settings
+@property (readonly, strong) NSDecimalNumberHandler *roundingSettings;
 
 
 #pragma mark Inital Setup Methods
@@ -419,7 +423,6 @@ enum {
 @interface LELevelData (LevelSettings)
 
 #pragma mark Level Specific Settings
--(NSDecimalNumberHandler *)roundingSettings;
 
 -(NSMutableDictionary *)getLevelOptionDictionary;
 -(BOOL)settingExsists:(NSString *)key;

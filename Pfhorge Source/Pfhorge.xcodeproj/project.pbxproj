@@ -120,7 +120,7 @@
 		AE3C154A0A04512100FBFFCD /* LELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0121ECA800DDCD937F000001 /* LELine.m */; };
 		AE3C154B0A04512100FBFFCD /* LEPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0112096B00DEC9357F000001 /* LEPolygon.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154C0A04512100FBFFCD /* LEMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F6628600E19BB67F000001 /* LEMapObject.m */; };
-		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; };
+		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154E0A04512100FBFFCD /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
@@ -156,7 +156,7 @@
 		AE3C156F0A04512100FBFFCD /* PhLiquidEditCon.m in Sources */ = {isa = PBXBuildFile; fileRef = F54D4C4801CBF77601A8A806 /* PhLiquidEditCon.m */; };
 		AE3C15700A04512100FBFFCD /* PhLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E215901D03C110146BBD2 /* PhLayer.m */; };
 		AE3C15710A04512100FBFFCD /* PhDefaultLayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52E216301D0500B0146BBD2 /* PhDefaultLayerController.m */; };
-		AE3C15720A04512100FBFFCD /* LELevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBE54900DBBE877F000001 /* LELevelData.m */; };
+		AE3C15720A04512100FBFFCD /* LELevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBE54900DBBE877F000001 /* LELevelData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15730A04512100FBFFCD /* PhAbstractNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */; };
 		AE3C15740A04512100FBFFCD /* PhLevelNameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F52974FF01C44D7B01A8A806 /* PhLevelNameManager.m */; };
 		AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F54738F0021F01E90146BBD2 /* NSURL+NDCarbonUtilities.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -Wno-deprecated-declarations"; }; };
@@ -182,11 +182,11 @@
 		AE3C15890A04512100FBFFCD /* PluginManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */; };
 		AE3C158A0A04512100FBFFCD /* PhTextureInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */; };
 		AE3C158B0A04512100FBFFCD /* LELine-SideCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */; };
-		AE3C158C0A04512100FBFFCD /* LELevelData-Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */; };
+		AE3C158C0A04512100FBFFCD /* LELevelData-Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C158D0A04512100FBFFCD /* LELevelData-Data.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D403E3223A0146BBD2 /* LELevelData-Data.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C158E0A04512100FBFFCD /* LELevelData-Utilites.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D603E322530146BBD2 /* LELevelData-Utilites.m */; };
-		AE3C158F0A04512100FBFFCD /* LELevelData-Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D803E322660146BBD2 /* LELevelData-Objects.m */; };
-		AE3C15900A04512100FBFFCD /* LELevelData-Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */; };
+		AE3C158E0A04512100FBFFCD /* LELevelData-Utilites.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D603E322530146BBD2 /* LELevelData-Utilites.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE3C158F0A04512100FBFFCD /* LELevelData-Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D803E322660146BBD2 /* LELevelData-Objects.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		AE3C15900A04512100FBFFCD /* LELevelData-Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15910A04512100FBFFCD /* PhData.m in Sources */ = {isa = PBXBuildFile; fileRef = A597FC2D045763B20046BBD2 /* PhData.m */; };
 		AE3C15920A04512100FBFFCD /* PathwaysDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */; };
 		AE3C15930A04512100FBFFCD /* PathwaysExchange.mm in Sources */ = {isa = PBXBuildFile; fileRef = A59437B504B018070046BBD2 /* PathwaysExchange.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };

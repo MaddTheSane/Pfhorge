@@ -62,7 +62,6 @@
     PhLayer *theNewLayer = [[PhLayer alloc] initWithName:@"PID Level Layer"];
     [layersInLevel addObject:theNewLayer];
     [self setUpArrayPointersFor:theNewLayer];
-    [theNewLayer release];
     [self setLayerModeTo:theNewLayer];
 }
 
@@ -89,7 +88,6 @@
         PhLayer *theNewLayer = [[PhLayer alloc] initWithName:[theObj1 objectForKey:PhDefaultLayer_Name]];
         [layersInLevel addObject:theNewLayer];
         [self setUpArrayPointersFor:theNewLayer];
-        [theNewLayer release];
     }
     
     if ([layersInLevel count] == 1)
@@ -134,9 +132,6 @@
     }
     
     [self setLayerModeTo:[layersInLevel lastObject]];
-    
-    [records release];
-    
 }// END -(void)setupLayers
 
 -(int)getLayerModeIndex // zero is no layer

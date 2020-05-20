@@ -186,8 +186,6 @@
     ///NSLog(@"newTag: %d", [[theNewTag phNumber] intValue]);
     
     
-    [theNewTag release];
-    
     [self refreshEveryMenu];
     
     return theTagNumber;
@@ -433,49 +431,49 @@
     if ([theObject isKindOfClass:[PhLayer class]])
     {
         [layerNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_layerMenu];
         [theDrawView updateNameList:_layerMenu];
     }
     else if ([theObject isKindOfClass:[PhTag class]])
     {
         [tagNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_tagMenu];
         [theDrawView updateNameList:_tagMenu];
     }
     else if ([theObject isKindOfClass:[PhPlatform class]])
     {
         [platformNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_platformMenu];
         [theDrawView updateNameList:_platformMenu];
     }
     else if ([theObject isKindOfClass:[PhRandomSound class]])
     {
         [randomSoundNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_randomSoundMenu];
         [theDrawView updateNameList:_randomSoundMenu];
     }
     else if ([theObject isKindOfClass:[PhAmbientSound class]])
     {
         [ambientSoundNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_ambientSoundMenu];
         [theDrawView updateNameList:_ambientSoundMenu];
     }
     else if ([theObject isKindOfClass:[PhMedia class]])
     {
         [liquidNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_liquidMenu];
         [theDrawView updateNameList:_liquidMenu];
     }
     else if ([theObject isKindOfClass:[PhLight class]])
     {
         [lightNames replaceObjectAtIndex:[theObject index]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
         [self refreshAllMenusOf:_lightMenu];
         [theDrawView updateNameList:_lightMenu];
     }
@@ -503,13 +501,13 @@
     if ([namedPolyObjects containsObject:thePoly])
     {
         [polyNames replaceObjectAtIndex:[namedPolyObjects indexOfObjectIdenticalTo:thePoly]
-                             withObject:[[theName copy] autorelease]];
+                             withObject:[theName copy]];
     }
     else
     {
     
         [namedPolyObjects addObject:thePoly];
-        [polyNames addObject:[[theName copy] autorelease]];
+        [polyNames addObject:[theName copy]];
     }
     
     [self refreshAllMenusOf:_polyMenu];
@@ -683,7 +681,6 @@
         }
         
         [theObjects unionSet:tmpList1];
-        [tmpList1 release];
         return;
     }
     else if ([theObj isKindOfClass:[LELine class]])
@@ -717,7 +714,6 @@
         }
         
         [theObjects unionSet:tmpList1];
-        [tmpList1 release];
         return;
     }
     else if ([theObj isKindOfClass:[LEPolygon class]])
@@ -750,7 +746,6 @@
         }
         
         [theObjects unionSet:tmpList1];
-        [tmpList1 release];
         return;
     }
     else if ([theObj isKindOfClass:[LEMapObject class]])

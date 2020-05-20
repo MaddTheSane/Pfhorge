@@ -65,54 +65,39 @@
     
     BOOL useCC = NO;
     
-    if (theClass == [LEMapPoint class])
-    {
-	LEMapPoint *newPoint = [[LEMapPoint alloc] init];
+    if (theClass == [LEMapPoint class]) {
+        LEMapPoint *newPoint = [[LEMapPoint alloc] init];
         [self setUpArrayPointersFor:newPoint];
         [self addPoint:newPoint];
-        [newPoint release];
         return newPoint;
-    }
-    else if (theClass == [LELine class])
-    {
-	LELine *newLine = [[LELine alloc] init];
+    } else if (theClass == [LELine class]) {
+        LELine *newLine = [[LELine alloc] init];
         [self setUpArrayPointersFor:newLine];
         [self addLine:newLine];
-        [newLine release];
         return newLine;
-    }
-    else if (theClass == [LEPolygon class])
-    {
-	NSLog(@"Can't add a polygon object this way, yet... ]:=>");
-    }
-    else if (theClass == [LEMapObject class])
-    {
+    } else if (theClass == [LEPolygon class]) {
+        NSLog(@"Can't add a polygon object this way, yet... ]:=>");
+    } else if (theClass == [LEMapObject class]) {
         LEMapObject *theNewObject = [[LEMapObject alloc] initWithMapObject:defaultObjects[_saved_monster] withLevel:self];
         [mapObjects addObject:theNewObject];
         [layerMapObjects addObject:theNewObject];
         //[self setUpArrayPointersFor:theNewObject];
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added LEMapObject with index #%d", [theNewObject getIndex]);
-        #endif
-        [theNewObject release];
+#endif
         return theNewObject;
-    }
-    else if (theClass == [LESide class])
-    {
-	//LESide *theNewSide = [defaultSide copy];
+    } else if (theClass == [LESide class]) {
+        //LESide *theNewSide = [defaultSide copy];
         LESide *theNewSide = [[LESide alloc] init];
         [sides addObject:theNewSide];
         
-        if (useCC == YES && ccHasDefaultSide == YES)
-        {
+        if (useCC == YES && ccHasDefaultSide == YES) {
             //[ccDefaultSide copySettingsTo:theNewSide];
             
             // For right now, just use the defaultSide...
             [defaultSide copySettingsTo:theNewSide];
-        }
-        else
-        {	// If possible, the default side should be
-                // a clockwise side...
+        } else {	// If possible, the default side should be
+            // a clockwise side...
             [defaultSide copySettingsTo:theNewSide];
         }
         
@@ -125,14 +110,11 @@
         //[theNewSide setPrimaryLightsourceObject:[lights objectAtIndex:0]];
         //[theNewSide setSecondaryLightsourceObject:[lights objectAtIndex:0]];
         //[theNewSide setTransparentLightsourceObject:[lights objectAtIndex:0]];
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added LESide object with index #%d", [theNewSide getIndex]);
-        #endif
-        [theNewSide release];
+#endif
         return theNewSide;
-    }
-    else if (theClass == [PhLight class])//([theClass isKindOfClass:[PhLight class]])
-    {
+    } else if (theClass == [PhLight class]) {//([theClass isKindOfClass:[PhLight class]])
         PhLight *theNewObj = [[PhLight alloc] init];
         NSString *theName;
         [lights addObject:theNewObj];
@@ -142,16 +124,13 @@
         [theNewObj setPhName:theName];
         [lightNames addObject:theName];
         
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhLight object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_lightMenu];
         return theNewObj;
-    }
-    else if (theClass == [PhMedia class])
-    {
+    } else if (theClass == [PhMedia class]) {
         PhMedia *theNewObj = [[PhMedia alloc] init];
         NSString *theName;
         [media addObject:theNewObj];
@@ -161,16 +140,13 @@
         [theNewObj setPhName:theName];
         [liquidNames addObject:theName];
         
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhMedia object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_liquidMenu];
         return theNewObj;
-    }
-    else if (theClass == [PhAmbientSound class])
-    {
+    } else if (theClass == [PhAmbientSound class]) {
         PhAmbientSound *theNewObj = [[PhAmbientSound alloc] init];
         NSString *theName;
         [ambientSounds addObject:theNewObj];
@@ -180,16 +156,13 @@
         [theNewObj setPhName:theName];
         [ambientSoundNames addObject:theName];
         
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhAmbientSound object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_ambientSoundMenu];
         return theNewObj;
-    }
-    else if (theClass == [PhRandomSound class])
-    {
+    } else if (theClass == [PhRandomSound class]) {
         PhRandomSound *theNewObj = [[PhRandomSound alloc] init];
         NSString *theName;
         [randomSounds addObject:theNewObj];
@@ -199,28 +172,22 @@
         [theNewObj setPhName:theName];
         [randomSoundNames addObject:theName];
         
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhRandomSound object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_randomSoundMenu];
         return theNewObj;
-    }
-    else if (theClass == [PhItemPlacement class])
-    {
-	PhItemPlacement *theNewObj = [[PhItemPlacement alloc] init];
+    } else if (theClass == [PhItemPlacement class]) {
+        PhItemPlacement *theNewObj = [[PhItemPlacement alloc] init];
         [itemPlacement addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhItemPlacement object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         return theNewObj;
-    }
-    else if (theClass == [PhPlatform class])
-    {
-	PhPlatform *theNewObj = [[PhPlatform alloc] init];
+    } else if (theClass == [PhPlatform class]) {
+        PhPlatform *theNewObj = [[PhPlatform alloc] init];
         NSString *theName;
         [platforms addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
@@ -229,47 +196,41 @@
         [theNewObj setPhName:theName];
         [platformNames addObject:theName];
         
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhPlatform object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         ///[[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         return theNewObj;
     }
     else if (theClass == [PhAnnotationNote class])
     {
-	PhAnnotationNote *theNewObj = [[PhAnnotationNote alloc] init];
+        PhAnnotationNote *theNewObj = [[PhAnnotationNote alloc] init];
         [notes addObject:theNewObj];
         [layerNotes addObject:theNewObj];
         [self setUpArrayPointersFor:theNewObj];
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhAnnotationNote object with index #%d", [theNewObj getIndex]);
-        #endif
-        [theNewObj release];
+#endif
         return theNewObj;
-    }
-    else if (theClass == [PhTag class])
-    {
+    } else if (theClass == [PhTag class]) {
         NSNumber *theNum = [NSNumber numberWithInt:(([[[tags lastObject] phNumber] intValue]) + 1)];
         PhTag *theNewTag = [self addNewTagWithNumber:theNum]; // this adds to naems and sets up array pointers...
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Added PhTag object with index #%d", [theNewTag getIndex]);
-        #endif
+#endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         return theNewTag;
-    }
-    else if (theClass == [PhLayer class])
-    {
+    } else if (theClass == [PhLayer class]) {
         PhLayer *theNewLayer = [[PhLayer alloc] initWithName:@"Untitled Layer"];
         [self addLayer:theNewLayer];
         [self setUpArrayPointersFor:theNewLayer];
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
         [theDrawView updateNameList:_layerMenu];
         
-        return [theNewLayer autorelease];
-    }
-    else
+        return theNewLayer;
+    } else {
         SEND_ERROR_MSG(@"I tried to add a unknown object class to level?");
+    }
     
     return nil;
 }
@@ -394,7 +355,6 @@
     #ifdef showDebugDeletionsAndAddtions
     NSLog(@"Added PhTag object with tag number #%d", [theTagNumber intValue]);
     #endif
-    [theNewObj release];
     return theNewObj;
 }
 
@@ -430,15 +390,13 @@
     // 		Correctly, and set the highes/lowest ajcent ceiling/floor
     //		Also, give this the templates settings!!! *********
     
-    if ([lines indexOfObjectIdenticalTo:theLineToAdd] == NSNotFound)
-    {
+    if ([lines indexOfObjectIdenticalTo:theLineToAdd] == NSNotFound) {
         [lines addObject:theLineToAdd];
     }
     
     [self setUpArrayPointersFor:theLineToAdd];
     
-    if ([layerLines indexOfObjectIdenticalTo:theLineToAdd] == NSNotFound)
-    {
+    if ([layerLines indexOfObjectIdenticalTo:theLineToAdd] == NSNotFound) {
         [layerLines addObject:theLineToAdd];
     }
 }
@@ -456,8 +414,7 @@
     
     NSLog(@"Directly Adding Polygon");
     
-    if ([polys indexOfObjectIdenticalTo:thePolyToAdd] == NSNotFound)
-    {
+    if ([polys indexOfObjectIdenticalTo:thePolyToAdd] == NSNotFound) {
         [polys addObject:thePolyToAdd]; // Check it out first?
     }
     
@@ -468,15 +425,13 @@
     else
         [thePolyToAdd setPolyLayer:[layersInLevel lastObject]];
     
-    if ([layerPolys indexOfObjectIdenticalTo:thePolyToAdd] == NSNotFound)
-    {
+    if ([layerPolys indexOfObjectIdenticalTo:thePolyToAdd] == NSNotFound) {
         [layerPolys addObject:thePolyToAdd];
     }
     
     [thePolyToAdd calculateSidesForAllLines];
     
-    if ([thePolyToAdd doIHaveAName] == YES)
-    {
+    if ([thePolyToAdd doIHaveAName] == YES) {
         [self namePolygon:thePolyToAdd to:[thePolyToAdd phName]];
     }
 }
@@ -489,16 +444,15 @@
     // *** Make sure to do checks here to make sure this polygon is ok!!! ***
     // *** Also, give this the templates settings!!! ***
     
-    if (thePolyToAdd != nil)
-    {
+    if (thePolyToAdd != nil) {
         NSMutableArray *polyLines = [[NSMutableArray alloc] initWithCapacity:1];
         int i;
         int c = [thePolyToAdd getTheVertexCount];
         id thisObj/*, thisObj2*/;
         NSRect newPolyRect;
-        #ifdef showDebugDeletionsAndAddtions
+#ifdef showDebugDeletionsAndAddtions
         NSLog(@"Adding Polygon");
-        #endif
+#endif
         [polys addObject:thePolyToAdd]; // Check it out first?
         [self setUpArrayPointersFor:thePolyToAdd];        
         //[thePolyToAdd updateObjectsFromIndexes];
@@ -523,8 +477,7 @@
         
         i = -1;
         numer = [polyLines objectEnumerator];
-        while (thisObj = [numer nextObject])
-        {
+        for (thisObj in polyLines) {
             LEPolygon *poly1 = [thisObj clockwisePolygonObject];
             LEPolygon *poly2 = [thisObj conterclockwisePolygonObject];
             ///LEMapPoint *p1 = [thisObj mapPoint1]; // Beta Point
@@ -533,25 +486,19 @@
             int result;
             //NSRect otherPolyRect;
             
-            if (poly1 != nil)
-            {
+            if (poly1 != nil) {
                 otherPoly = poly1;
                 i++;
                 [thePolyToAdd setAdjacentPolygonObject:otherPoly toIndex:i];
-            }
-            else if (poly2 != nil)
-            {
+            } else if (poly2 != nil) {
                 otherPoly = poly2;
                 i++;
                 [thePolyToAdd setAdjacentPolygonObject:otherPoly toIndex:i];
-            }
-            else if (poly1 != nil && poly2 != nil)
-            { // This line could already have two polygons???
+            } else if (poly1 != nil && poly2 != nil) {
+                // This line could already have two polygons???
                 SEND_ERROR_MSG(@"When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!");
                 return; // Delete from poly array?
-            }
-            else
-            {
+            } else {
                 otherPoly = nil; 
                 //i++;
                 //[thePolyToAdd setAdjacentPolygonObject:otherPoly i:i];
@@ -581,8 +528,7 @@
             }*/
             
             
-            switch (result)
-            {
+            switch (result) {
                 case _line_is_clockwise:
                     [thisObj setClockwisePolygonObject:thePolyToAdd];
                     [thisObj setConterclockwisePolygonObject:otherPoly];
@@ -616,11 +562,11 @@
         
         //[??? unionSet:polyLines];
         // Might want to call updateIndexesFromObjects instead?
-        [polyLines release];
+        //[polyLines release];
     }
-    else
+    else {
         SEND_ERROR_MSG(@"A nil polygon was attempted to being added to the level polygons array, ERROR");
-    
+    }
 }
 
 - (PhNoteGroup *)newNoteType

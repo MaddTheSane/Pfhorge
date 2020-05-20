@@ -435,68 +435,81 @@ static void AddFrame(LELevelData *level)
 // Adds the textured walls as lines
 void AddTexturedWalls(PID_Sector& Sector, SectorObjects& SO)
 {
-    switch(Sector.WallList[PID_Sector::Wall_Y].Type)
-    {
-    case PID_Wall::Wall:
-    case PID_Wall::Wall_FancyCorners:
-        SO.MakeLine(Ln_X);
-        break;
-        
-    case PID_Wall::Wall_ShortLow:
-        SO.MakeLine(Ln_X_FarCenter);
-        break;
-        
-    case PID_Wall::Wall_ShortHigh:
-        SO.MakeLine(Ln_X_NearCenter);
-        break;
-        
-    case PID_Wall::Wall_ShortBoth:
-        SO.MakeLine(Ln_X_Center);
-        break;
+    switch (Sector.WallList[PID_Sector::Wall_Y].Type) {
+        case PID_Wall::Wall:
+        case PID_Wall::Wall_FancyCorners:
+            SO.MakeLine(Ln_X);
+            break;
+            
+        case PID_Wall::Wall_ShortLow:
+            SO.MakeLine(Ln_X_FarCenter);
+            break;
+            
+        case PID_Wall::Wall_ShortHigh:
+            SO.MakeLine(Ln_X_NearCenter);
+            break;
+            
+        case PID_Wall::Wall_ShortBoth:
+            SO.MakeLine(Ln_X_Center);
+            break;
+            
+        default:
+            break;
     }
     
-    switch(Sector.WallList[PID_Sector::Wall_X].Type)
-    {
-    case PID_Wall::Wall:
-    case PID_Wall::Wall_FancyCorners:
-        SO.MakeLine(Ln_Y);
-        break;
-        
-    case PID_Wall::Wall_ShortLow:
-        SO.MakeLine(Ln_Y_FarCenter);
-        break;
-        
-    case PID_Wall::Wall_ShortHigh:
-        SO.MakeLine(Ln_Y_NearCenter);
-        break;
-        
-    case PID_Wall::Wall_ShortBoth:
-        SO.MakeLine(Ln_Y_Center);
-        break;
-    }          
+    switch (Sector.WallList[PID_Sector::Wall_X].Type) {
+        case PID_Wall::Wall:
+        case PID_Wall::Wall_FancyCorners:
+            SO.MakeLine(Ln_Y);
+            break;
+            
+        case PID_Wall::Wall_ShortLow:
+            SO.MakeLine(Ln_Y_FarCenter);
+            break;
+            
+        case PID_Wall::Wall_ShortHigh:
+            SO.MakeLine(Ln_Y_NearCenter);
+            break;
+            
+        case PID_Wall::Wall_ShortBoth:
+            SO.MakeLine(Ln_Y_Center);
+            break;
+            
+        default:
+            break;
+            
+    }
 
-    switch(Sector.WallList[PID_Sector::Corner_HighX_LowY].Type)
-    {
-    case PID_Wall::CutoffCorner:
-        SO.MakeLine(Ln_XFar_YNear);
+    switch (Sector.WallList[PID_Sector::Corner_HighX_LowY].Type) {
+        case PID_Wall::CutoffCorner:
+            SO.MakeLine(Ln_XFar_YNear);
+            break;
+        default:
+            break;
     }
     
-    switch(Sector.WallList[PID_Sector::Corner_LowX_LowY].Type)
-    {
-    case PID_Wall::CutoffCorner:
-        SO.MakeLine(Ln_XNear_YNear);
+    switch (Sector.WallList[PID_Sector::Corner_LowX_LowY].Type) {
+        case PID_Wall::CutoffCorner:
+            SO.MakeLine(Ln_XNear_YNear);
+            break;
+        default:
+            break;
     }
     
-    switch(Sector.WallList[PID_Sector::Corner_HighX_HighY].Type)
-    {
-    case PID_Wall::CutoffCorner:
-        SO.MakeLine(Ln_XFar_YFar);
+    switch (Sector.WallList[PID_Sector::Corner_HighX_HighY].Type) {
+        case PID_Wall::CutoffCorner:
+            SO.MakeLine(Ln_XFar_YFar);
+            break;
+        default:
+            break;
     }
     
-    switch(Sector.WallList[PID_Sector::Corner_LowX_HighY].Type)
-    {
-    case PID_Wall::CutoffCorner:
-        SO.MakeLine(Ln_XNear_YFar);
+    switch (Sector.WallList[PID_Sector::Corner_LowX_HighY].Type) {
+        case PID_Wall::CutoffCorner:
+            SO.MakeLine(Ln_XNear_YFar);
+            break;
+        default:
+            break;
     }
 }
 
@@ -511,16 +524,13 @@ static void AddTexturedWalls(PID_Level& PL, SectorArray SO)
 // Adds the sector contents as polygons and line lists
 static void AddSectorContents(PID_Level& PL, SectorArray SO)
 {
-    for (int x=0; x<PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++)
-        {
+    for (int x=0; x<PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++) {
             PID_Sector& Sector = PL.SectorList[SectorAddr(x,y)];
             
-            if (Sector.Type == PID_Sector::Door)
-            {
+            if (Sector.Type == PID_Sector::Door) {
                 int Dir = PL.DoorList[Sector.TypeAddl].Direction;
-                switch(Dir)
-                {
+                switch(Dir) {
                 case PID_Door::X_Negative:
                 case PID_Door::X_Positive:
                     SO[x][y].MakePolygon(Pg_YNear);
@@ -535,12 +545,9 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     SO[x][y].MakePolygon(Pg_XFar);
                     break;
                 }
-            }
-            else if (Sector.Type != PID_Sector::Void)
-            {
+            } else if (Sector.Type != PID_Sector::Void) {
                 // Check all the sides
-                for (int s=0; s<NumSideDefs; s++)
-                {
+                for (int s=0; s<NumSideDefs; s++) {
                     const SideDef& S = SdDefs[s];
                     int nx = x + S.x;
                     int ny = y + S.y;
@@ -555,18 +562,15 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     LnPtDef LineList[4];
                     
                     // Since the corners will trail the sides, reverse-direction means adding them first
-                    if (S.dir < 0 && cpres_lo)
-                    {
+                    if (S.dir < 0 && cpres_lo) {
                         LnPtDef& L = LineList[NumLines++];
                         L.x = 0; L.y = 0; L.w = S.crnr_lo_dst;
                    }
                    
                     // Shorten the wall if there is a textured corner:
                     short WallType = NgbrSctr.WallList[S.wall].Type;
-                    if (cpres_lo)
-                    {
-                        switch(WallType)
-                        {
+                    if (cpres_lo) {
+                        switch(WallType) {
                         case PID_Wall::Wall_ShortBoth:
                         case PID_Wall::Wall_ShortLow:
                             break;	// OK
@@ -580,10 +584,8 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                             break;
                         }
                     }
-                    if (cpres_hi)
-                    {
-                        switch(WallType)
-                        {
+                    if (cpres_hi) {
+                        switch(WallType) {
                         case PID_Wall::Wall_ShortBoth:
                         case PID_Wall::Wall_ShortHigh:
                             break;	// OK
@@ -599,8 +601,7 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     }
                     
                     // Extend the sector edges if necessary - if there are no textured corners present
-                    switch(WallType)
-                    {
+                    switch(WallType) {
                     case PID_Wall::Wall_ShortBoth:
                         if (!cpres_lo)
                         {
@@ -623,16 +624,14 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                             LnPtDef& L = LineList[NumLines++];
                             L.x = S.x; L.y = S.y; L.w = S.lomid;
                         }
-                        if (!cpres_hi)
-                        {
+                        if (!cpres_hi) {
                             LnPtDef& L = LineList[NumLines++];
                             L.x = S.x; L.y = S.y; L.w = S.hi;
                         }
                         break;
                     
                     case PID_Wall::Wall_ShortLow:
-                        if (!cpres_lo)
-                        {
+                        if (!cpres_lo) {
                             LnPtDef& L = LineList[NumLines++];
                             L.x = S.x; L.y = S.y; L.w = S.lo;
                         }
@@ -651,21 +650,17 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     }
                     
                     // Corner trailing the side in the forward direction
-                    if (S.dir >= 0 && cpres_hi)
-                    {
+                    if (S.dir >= 0 && cpres_hi) {
                         LnPtDef& L = LineList[NumLines++];
                         L.x = 0; L.y = 0; L.w = S.crnr_hi_dst;
                     }
                     
                     // Load!
-                    if (S.dir >= 0)
-                    {
+                    if (S.dir >= 0) {
                         for (int n=0; n<NumLines; n++)
                             if (!SO[x][y].AddEdge(LineList[n]))
                                 NSLog(@"*** Too many edges at sector %d,%d",x,y);
-                    }
-                    else
-                    {
+                    } else {
                         for (int n=NumLines-1; n>=0; n--)
                             if (!SO[x][y].AddEdge(LineList[n]))
                                 NSLog(@"*** Too many edges at sector %d,%d",x,y);
@@ -676,16 +671,13 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                 SO[x][y].MakePolygon(Pg_Plain);
                 
                 // Look for bevels in neighboring sectors; add bevel polygons as necessary
-                for (int b=0; b<NumBevelDefs; b++)
-                {
+                for (int b=0; b<NumBevelDefs; b++) {
                     const BevelDef& B = BvDefs[b];
-                    if (Sector.WallList[B.c].Type == PID_Wall::None)
-                    {
+                    if (Sector.WallList[B.c].Type == PID_Wall::None) {
                         int nx = x+B.x;
                         int ny = y+B.y;
                         PID_Sector& NgbrSctr = PL.SectorList[SectorAddr(nx,ny)];
-                        if (NgbrSctr.Type == PID_Sector::Void)
-                        {
+                        if (NgbrSctr.Type == PID_Sector::Void) {
                             if (NgbrSctr.WallList[B.nc].Type == PID_Wall::CutoffCorner)
                                 SO[nx][ny].MakePolygon(B.p);
                         }
@@ -693,6 +685,7 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                 }
             }
         }
+    }
 }
 
 
@@ -702,27 +695,20 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
     // Create the lines from the polygons
     for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
         for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPolygonDefs; k++)
-            {
+            for (int k=0; k<NumPolygonDefs; k++) {
                 LEPolygon *Pg = SO[x][y].GetPolygon(k);
-                if (Pg)
-                {
-                    if (k == Pg_Plain)
-                    {
+                if (Pg) {
+                    if (k == Pg_Plain) {
                         int NumEdges = SO[x][y].GetNumEdges();
                                                 
-                        for (int n=0; n<NumEdges; n++)
-                        {
+                        for (int n=0; n<NumEdges; n++) {
                             LnPtDef& L = SO[x][y].GetEdge(n);
                             SO[x+L.x][y+L.y].MakeLine(L.w);
                         }
-                    }
-                    else
-                    {
+                    } else {
                        const PolygonDef &D = PgDefs[k];
                        
-                       for (int n=0; n<D.N; n++)
-                       {
+                       for (int n=0; n<D.N; n++) {
                             const LnPtDef& L = D.Lns[n];
                             SO[x+L.x][y+L.y].MakeLine(L.w);
                        }
@@ -731,13 +717,11 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
             }
    
     // Create the points from the lines
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumLineDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumLineDefs; k++) {
                 LELine *Ln = SO[x][y].GetLine(k);
-                if (Ln)
-                {
+                if (Ln) {
                     const LineDef& L = LnDefs[k];
                     const LnPtDef& P0 = L.p0;
                     const LnPtDef& P1 = L.p1;
@@ -745,15 +729,15 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                     SO[x+P1.x][y+P1.y].MakePoint(P1.w);
                 }
             }
+        }
+    }
     
     // Set up the points
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPointDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumPointDefs; k++) {
                 LEMapPoint *Pt = SO[x][y].GetPoint(k);
-                if (Pt)
-                {
+                if (Pt) {
                     const PointDef& P = PtDefs[k];
                     [Pt setX:XPos(x,P.wx) Y:YPos(y,P.wy)];
                     //[Pt setY:YPos(y,P.wy)];
@@ -761,15 +745,15 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                     [level addPoint:Pt];
                 }
             }
+        }
+    }
    
     // Set up the lines (needs the points)
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumLineDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumLineDefs; k++) {
                 LELine *Ln = SO[x][y].GetLine(k);
-                if (Ln)
-                {
+                if (Ln) {
                     const LineDef& L = LnDefs[k];
                     const LnPtDef& P0 = L.p0;
                     const LnPtDef& P1 = L.p1;
@@ -782,25 +766,23 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                     [level addLine:Ln];
                 }
             }
+        }
+    }
     
     // Set up the polygons (needs the points and lines)
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPolygonDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumPolygonDefs; k++) {
                 LEPolygon *Pg = SO[x][y].GetPolygon(k);
-                if (Pg)
-                {
+                if (Pg) {
                     [level setUpArrayPointersFor:Pg];
                     
-                    if (k == Pg_Plain)
-                    {
+                    if (k == Pg_Plain) {
                         int NumEdges = SO[x][y].GetNumEdges();
                         
                         [Pg setVertextCount:NumEdges];
                         
-                        for (int n=0; n<NumEdges; n++)
-                        {
+                        for (int n=0; n<NumEdges; n++) {
                             int np = n > 0 ? n-1 : NumEdges-1;
                             
                             LnPtDef& D0 = SO[x][y].GetEdge(np);
@@ -819,27 +801,23 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                             
                             LnPtDef P;
                             if (!SharedPoint(L0,L1,P))
-                                {NSLog(@"*** Broken Chain at %d,%d %d",x,y,n); continue;}
+                            {NSLog(@"*** Broken Chain at %d,%d %d",x,y,n); continue;}
                             
                             LEMapPoint *Pt = SO[x+P.x][y+P.y].GetPoint(P.w);
                             [Pg setVertexWithObject:Pt toIndex:n];
-                         }
+                        }
                         
-                        for (int n=0; n<NumEdges; n++)
-                        {
+                        for (int n=0; n<NumEdges; n++) {
                             LnPtDef& L = SO[x][y].GetEdge(n);
                             LELine *Ln = SO[x+L.x][y+L.y].GetLine(L.w);
                             [Pg setLinesObject:Ln toIndex:n];
                         }
-                    }
-                    else
-                    {
-                       const PolygonDef &D = PgDefs[k];
-                       
-                       [Pg setVertextCount:D.N];
-                       
-                       for (int n=0; n<D.N; n++)
-                       {
+                    } else {
+                        const PolygonDef &D = PgDefs[k];
+                        
+                        [Pg setVertextCount:D.N];
+                        
+                        for (int n=0; n<D.N; n++) {
                             const LnPtDef& P = D.Pts[n];
                             LEMapPoint *Pt = SO[x+P.x][y+P.y].GetPoint(P.w);
                             [Pg setVertexWithObject:Pt toIndex:n];
@@ -847,7 +825,7 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                             const LnPtDef& L = D.Lns[n];
                             LELine *Ln = SO[x+L.x][y+L.y].GetLine(L.w);
                             [Pg setLinesObject:Ln toIndex:n];
-                       }
+                        }
                     }
                     
                     // Do this here because it's necessary for side setting
@@ -861,6 +839,8 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                         [level namePolygon:Pg to:[NSString stringWithFormat:@"PID %d %d",x,y,nil]];
                 }
             }
+        }
+    }
 }
 
 

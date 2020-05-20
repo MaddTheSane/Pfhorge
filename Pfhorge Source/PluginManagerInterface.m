@@ -12,6 +12,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PhPluginManager.h"
 #import "PluginManagerInterface.h"
+#import "LEMap.h"
 
 @implementation PhPluginManager (ForPlugins)
 
@@ -44,7 +45,11 @@
 // Gives the front most LEMap level document...
 -(LEMap *)currentDocument
 {
-	return [[NSDocumentController sharedDocumentController] currentDocument];
+    id tmpMap = [[NSDocumentController sharedDocumentController] currentDocument];
+    if ([tmpMap isKindOfClass:[LEMap class]]) {
+        return tmpMap;
+    }
+	return nil;
 }
 
 @end

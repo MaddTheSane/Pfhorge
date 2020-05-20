@@ -671,6 +671,8 @@
 			case _polygon_is_hill:
 				permutationObject = nil;
 				break;
+            default:
+                break;
 		}
 		
 		if (useIndexNumbersInstead) {
@@ -825,6 +827,8 @@
 		case _polygon_is_hill:
 			permutationObject = nil;
 			break;
+        default:
+            break;
 	}
     
     if (useIndexNumbersInstead) {
@@ -1052,24 +1056,20 @@
 		floor_height = [coder decodeIntForKey:@"floor_height"];
 		ceiling_height = [coder decodeIntForKey:@"ceiling_height"];
 		
-		if (useIndexNumbersInstead)
-		{
+		if (useIndexNumbersInstead) {
 			short tmpShort;
 			tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
 			floor_lightsource_object = [self getLightFromIndex:tmpShort];
 			tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
 			ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
-		}
-		else
-		{
+		} else {
 			floor_lightsource_object = [coder decodeObjectForKey:@"floor_lightsource_object"];
 			ceiling_lightsource_object = [coder decodeObjectForKey:@"ceiling_lightsource_object"];
 		}
 		
 		area = [coder decodeIntForKey:@"area"];
 		
-		if (!useIndexNumbersInstead)
-		{
+		if (!useIndexNumbersInstead) {
 			first_object_pointer = [coder decodeObjectForKey:@"first_object_pointer"];
 			
 			first_exclusion_zone_object = [coder decodeObjectForKey:@"first_exclusion_zone_object"];
@@ -1080,8 +1080,7 @@
 		floor_transfer_mode = [coder decodeIntForKey:@"floor_transfer_mode"];
 		ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
 		
-		if (!useIndexNumbersInstead)
-		{
+		if (!useIndexNumbersInstead) {
 			first_neighbor_object = [coder decodeObjectForKey:@"first_neighbor_object"];
 			neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
 		}
@@ -1090,32 +1089,26 @@
 		floor_origin = [coder decodePointForKey:@"floor_origin"];
 		ceiling_origin = [coder decodePointForKey:@"ceiling_origin"];
 		
-		if (useIndexNumbersInstead)
-		{
+		if (useIndexNumbersInstead) {
 			short tmpShort;
 			tmpShort = [coder decodeIntForKey:@"media_object index"];
 			media_object = [self getMediaFromIndex:tmpShort];
 			tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
 			media_lightsource_object = [self getLightFromIndex:tmpShort];
-		}
-		else
-		{
+		} else {
 			media_object = [coder decodeObjectForKey:@"media_object"];
 			media_lightsource_object = [coder decodeObjectForKey:@"media_lightsource_object"];
 			
 			sound_source_objects = [coder decodeObjectForKey:@"sound_source_objects"];
 		}
 		
-		if (useIndexNumbersInstead)
-		{
+		if (useIndexNumbersInstead) {
 			short tmpShort;
 			tmpShort = [coder decodeIntForKey:@"ambient_sound_image_object index"];
 			ambient_sound_image_object = [self getAmbientSoundFromIndex:tmpShort];
 			tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
 			random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
-		}
-		else
-		{
+		} else {
 			ambient_sound_image_object = [coder decodeObjectForKey:@"ambient_sound_image_object"];
 			random_sound_image_object = [coder decodeObjectForKey:@"random_sound_image_object"];
 		}
@@ -1146,6 +1139,8 @@
 			case _polygon_is_hill:
 				permutationObject = nil;
 				break;
+            default:
+                break;
 		}
 	} else {
     versionNum = decodeNumInt(coder);
@@ -1318,6 +1313,8 @@
             case _polygon_is_monster_impassable:
             case _polygon_is_hill:
                 permutationObject = nil;
+                break;
+            default:
                 break;
         }
 	}

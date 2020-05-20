@@ -325,8 +325,7 @@
     LEMapDraw *theDrawView = [mainInspectorController getTheCurrentLevelDrawView];
     int theOldPolyType = [thePolyInQuestion type];
     
-    switch (thePolyType)
-    {
+    switch (thePolyType) {
         case _polygon_is_base:
             //SEND_ERROR_MSG_TITLE(@"Sorry, this version of Pfhorge does not support this... I will soon though...",
             //                     @"Can't Change Type");
@@ -367,6 +366,8 @@
        /// default:
             // Polygon type does not reqire the permutation object...
             [thePolyInQuestion setPermutationObject:nil];
+            break;
+        default:
             break;
     }
     

@@ -313,6 +313,8 @@
         case PhLightStaticFlagIsStateless:
             return GET_LIGHT_FLAG(PhLightStaticFlagIsStateless);
             break;
+        default:
+            break;
     }
     return NO;
 }
@@ -326,6 +328,8 @@
             break;
         case PhLightStaticFlagIsStateless:
             SET_LIGHT_FLAG(PhLightStaticFlagIsStateless, v);
+            break;
+        default:
             break;
     }
 }
