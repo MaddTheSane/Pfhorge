@@ -201,8 +201,6 @@ enum {
     LELevelMissionFlags	mission_flags;
     LELevelEnvironmentFlags	environment_flags;
     
-    short	unused[4];
-    
     NSString	*level_name;
     LELevelEntryPointFlags	entry_point_flags;
     

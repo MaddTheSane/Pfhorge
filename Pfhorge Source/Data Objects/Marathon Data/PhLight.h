@@ -31,8 +31,7 @@
 #define MAXIMUM_LIGHTS_PER_MAP 64
 
 //! default light types
-typedef NS_ENUM(short, PhLightTypes)
-{
+typedef NS_ENUM(short, PhLightTypes) {
 	PhLightNormal,
 	PhLightStrobe,
 	PhLightMedia,
@@ -106,7 +105,6 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags)
         
 	short tag;
 	PhTag *tagObject;
-	short unused[4];
 }
 
 

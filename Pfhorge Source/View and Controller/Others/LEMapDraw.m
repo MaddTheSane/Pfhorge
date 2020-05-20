@@ -2016,37 +2016,31 @@ typedef NS_ENUM(short, LEEDrawMode) {
     {
         /*BOOL cPolyM = NO, cMonsterM = NO, cItemM = NO, cPlayerM = NO,
                 cSceaneryM = NO, cGoalM = NO, cSoundM = NO;*/
-        id curObj;
         //NSRect drawingBounds = NSUnionRect([self drawingBoundsForSelections],
         //                        [self drawingBoundsForObjects:includeInBounds]);
         NSRect oldDrawingBounds = [self drawingBoundsForSelections];
         NSEnumerator *numer = [selections objectEnumerator];
         
         numer = [selectedPoints objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
+        for (LEMapPoint *curObj in selectedPoints) {
             [(LEMapPoint *)undoWith(curObj) setY32:[curObj y32]];
             [(LEMapPoint *)undoWith(curObj) setX32:[curObj x32]];
             [(LEMapPoint *)curObj setY32:theLocation.y];
             [(LEMapPoint *)curObj setX32:theLocation.x];
         }
         
-        numer = [selectedMapObjects objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
+        for (LEMapObject *curObj in selectedMapObjects) {
 			[(LEMapObject *)undoWith(curObj) setY32:[curObj y32]];
 			[(LEMapObject *)undoWith(curObj) setX32:[curObj x32]];
 			[(LEMapObject *)curObj setY32:theLocation.y];
 			[(LEMapObject *)curObj setX32:theLocation.x];
         }
         
-        numer = [selectedNotes objectEnumerator];
-        while (curObj = [numer nextObject])
-        {
-            [(PhAnnotationNote *)undoWith(curObj) set32Y:[curObj y32]];
-            [(PhAnnotationNote *)undoWith(curObj) set32X:[curObj x32]];
-            [(PhAnnotationNote *)curObj set32Y:theLocation.y];
-            [(PhAnnotationNote *)curObj set32X:theLocation.x];
+        for (PhAnnotationNote *curObj in selectedNotes) {
+            [(PhAnnotationNote *)undoWith(curObj) setY32:[curObj y32]];
+            [(PhAnnotationNote *)undoWith(curObj) setX32:[curObj x32]];
+            [(PhAnnotationNote *)curObj setY32:theLocation.y];
+            [(PhAnnotationNote *)curObj setX32:theLocation.x];
         }
         
         /*if (cMonsterM)
@@ -2848,7 +2842,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         NSArray *mapPointsArray;
                         //NSMutableArray *thePointsInRange = [[NSMutableArray alloc] initWithCapacity:0];
                         LEMapPoint *theSelectedP = endPoint; //[selectedPoints anyObject]; // *** MAKE SURE YOU MAKE IT MULTIPOINT FRENDLY!!! ***
-                        id curObj;
                         
                         NSRect snapToRect = NSMakeRect(curPoint.x - snapToPointLength,
                                                        curPoint.y - snapToPointLength,
@@ -2868,7 +2861,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                             
                             // Determin if there are any close points,,,
                             numer = [mapPointsArray reverseObjectEnumerator];
-                            while (curObj = [numer nextObject])
+                            for (LEMapPoint*curObj in numer)
                             {
                                 
                                 if ([self mouse:[curObj as32Point] inRect:snapToRect]

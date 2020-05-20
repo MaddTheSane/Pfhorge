@@ -49,7 +49,6 @@ typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
 	int32_t	pitch, delta_pitch; // fixed
 
 	short	phase; // should be NONE ???
-	short	unused[3];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************

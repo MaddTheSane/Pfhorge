@@ -176,11 +176,11 @@
         //struct side_texture_definition transparentTex; 	//= [baseSideRef transparentTextureStruct];
         
         /*
-	_full_side,	// primary texture is mapped floor-to-ceiling
-	_high_side, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
-	_low_side, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
-	_composite_side,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
-	_split_side 	// primary texture is mapped onto a panel coming down from the ceiling,
+	LESideFull,	// primary texture is mapped floor-to-ceiling
+	LESideHigh, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
+	LESideLow, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
+	LESideComposite,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
+	LESideSplit 	// primary texture is mapped onto a panel coming down from the ceiling,
                         // secondary texture is mapped on a panel coming up from the floor
         */
         
@@ -416,14 +416,14 @@
     id sender = lineControlPanelFlags;
     unsigned short theFlags = 0;
     
-    theFlags |= _side_is_control_panel;
+    theFlags |= LESideIsControlPanel;
         
-    if SState(sender, 1) (theFlags |= _control_panel_status);
-    if SState(sender, 2) (theFlags |= _side_is_repair_switch);
-    if SState(sender, 3) (theFlags |= _side_is_destructive_switch);
-    if SState(sender, 4) (theFlags |= _side_is_lighted_switch);
-    if SState(sender, 5) (theFlags |= _side_switch_can_be_destroyed);
-    if SState(sender, 6) (theFlags |= _side_switch_can_only_be_hit_by_projectiles);
+    if SState(sender, 1) (theFlags |= LESideControlPanelStatus);
+    if SState(sender, 2) (theFlags |= LESideIsRepairSwitch);
+    if SState(sender, 3) (theFlags |= LESideIsDestructiveSwitch);
+    if SState(sender, 4) (theFlags |= LESideIsLightedSwitch);
+    if SState(sender, 5) (theFlags |= LESideSwitchCanBeDestroyed);
+    if SState(sender, 6) (theFlags |= LESideSwitchCanOnlyBeByProjectiles);
     
     // ((v) ? ((i) |= (b)) : ((i) &= ~(b))
     

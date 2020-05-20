@@ -506,11 +506,11 @@
 - (void)setupTextureUIWithSide:(LESide *)side enableTransparentTexture:(BOOL)lTransparentSide
 {
         /*
-	_full_side,	// primary texture is mapped floor-to-ceiling
-	_high_side, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
-	_low_side, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
-	_composite_side,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
-	_split_side 	// primary texture is mapped onto a panel coming down from the ceiling,
+	LESideFull,	// primary texture is mapped floor-to-ceiling
+	LESideHigh, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
+	LESideLow, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
+	LESideComposite,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
+	LESideSplit 	// primary texture is mapped onto a panel coming down from the ceiling,
                         // secondary texture is mapped on a panel coming up from the floor
         */
         
@@ -525,7 +525,7 @@
         {
             int sideType = [side type];
             
-            if (sideType == _full_side || sideType == _high_side || sideType == _low_side)
+            if (sideType == LESideFull || sideType == LESideHigh || sideType == LESideLow)
             {
                 [primaryTexture setEnabled:YES];
                 [secondaryTexture setEnabled:NO];
@@ -534,7 +534,7 @@
                 [primaryLight setEnabled:YES];
                 [secondaryLight setEnabled:NO];
             }
-            else // if (sideType == _split_side || sideType == _composite_side)
+            else // if (sideType == LESideSplit || sideType == LESideComposite)
             {
                 [primaryTexture setEnabled:YES];
                 [secondaryTexture setEnabled:YES];

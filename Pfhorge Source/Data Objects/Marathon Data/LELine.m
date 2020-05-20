@@ -72,20 +72,20 @@
         
         switch ([clockwisePolygonSideObject type])
         {
-            case _full_side:
-                [tis appendString:@"_full_side"];
+            case LESideFull:
+                [tis appendString:@"LESideFull"];
                 break;
-            case _high_side:
-                [tis appendString:@"_high_side"];
+            case LESideHigh:
+                [tis appendString:@"LESideHigh"];
                 break;
-            case _low_side:
-                [tis appendString:@"_low_side"];
+            case LESideLow:
+                [tis appendString:@"LESideLow"];
                 break;
-            case _composite_side:
-                [tis appendString:@"_composite_side"];
+            case LESideComposite:
+                [tis appendString:@"LESideComposite"];
                 break;
-            case _split_side:
-                [tis appendString:@"_split_side"];
+            case LESideSplit:
+                [tis appendString:@"LESideSplit"];
                 break;
             default:
                 [tis appendString:@"unkown"];
@@ -102,20 +102,20 @@
         
         switch ([counterclockwisePolygonSideObject type])
         {
-            case _full_side:
-                [tis appendString:@"_full_side"];
+            case LESideFull:
+                [tis appendString:@"LESideFull"];
                 break;
-            case _high_side:
-                [tis appendString:@"_high_side"];
+            case LESideHigh:
+                [tis appendString:@"LESideHigh"];
                 break;
-            case _low_side:
-                [tis appendString:@"_low_side"];
+            case LESideLow:
+                [tis appendString:@"LESideLow"];
                 break;
-            case _composite_side:
-                [tis appendString:@"_composite_side"];
+            case LESideComposite:
+                [tis appendString:@"LESideComposite"];
                 break;
-            case _split_side:
-                [tis appendString:@"_split_side"];
+            case LESideSplit:
+                [tis appendString:@"LESideSplit"];
                 break;
             default:
                 [tis appendString:@"unkown"];
@@ -1622,8 +1622,6 @@
 
 - (BOOL)isThereAClockWiseLineAlpha:(LEMapPoint *)alphaPoint beta:(LEMapPoint *)betaPoint theLine:(LELine *)currentLine
 {
-    NSEnumerator *numer;
-    LELine *thisMapLine;
     // *** *** ***
     LELine *smallestLine;
     LEMapPoint *nextMainPoint;
@@ -1640,7 +1638,7 @@
     }
     
     //previousLine = nil; // Just to make sure...
-    for (thisMapLine in theConnectedLines)
+    for (LELine *thisMapLine in theConnectedLines)
     {
         double previousX, previousY, thisX, thisY;
         double prevX, prevY, theX, theY;

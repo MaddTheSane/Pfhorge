@@ -30,8 +30,7 @@
 #define MAXIMUM_MEDIAS_PER_MAP 16
 
 //! media  types
-typedef NS_ENUM(short, PhMediaType)
-{
+typedef NS_ENUM(short, PhMediaType) {
 	_media_water,
 	_media_lava,
 	_media_goo,
@@ -45,7 +44,6 @@ typedef NS_OPTIONS(unsigned short, PhMediaFlags)
 {
 	//! this media makes no sound when under the floor
 	_media_sound_obstructed_by_floor=0x0001,
-	NUMBER_OF_MEDIA_FLAGS
 };
 
 #define MEDIA_SOUND_OBSTRUCTED_BY_FLOOR(m) TEST_FLAG16((m)->flags, _media_sound_obstructed_by_floor)

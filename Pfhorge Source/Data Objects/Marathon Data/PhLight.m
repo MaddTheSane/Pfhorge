@@ -408,8 +408,6 @@
             light_states[i].delta_period = 0;
             light_states[i].intensity = 0;
             light_states[i].delta_intensity = 0;
-            if (i < 4 && i > -1)
-                unused[i] = 0;
         }
     }
     return self;

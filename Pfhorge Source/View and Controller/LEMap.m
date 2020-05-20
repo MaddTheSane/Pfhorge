@@ -145,7 +145,7 @@
 - (LEMapDraw *)getMapDrawView { return [theLevelDocumentWindowController levelDrawView]; }
 - (NSArray *)levelNames { return currentLevelNames; }
 
-- (void)changeLevelNameFor:(int)theLevelIndex To:(NSString *)theNewName
+- (void)changeLevelNameForLevel:(int)theLevelIndex toString:(NSString *)theNewName
 {
     NSString *copy = [theNewName copy];
     [currentLevelNames replaceObjectAtIndex:theLevelIndex withObject:copy];

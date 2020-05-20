@@ -43,8 +43,6 @@
 
 	short sound_index;
 	short volume;
-
-	short unused[5];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************

@@ -596,7 +596,7 @@
     [theTarget setFlags:flags];
     
     // Should I also inlucd control panel settings? We will se waht happens...
-    if (flags & _side_is_control_panel)
+    if (flags & LESideIsControlPanel)
     {
         [theTarget setControlPanelType:control_panel_type];
         [theTarget setControlPanelPermutation:control_panel_permutation];
@@ -665,28 +665,28 @@
     switch (theFlag)
     {
         case 1:
-            return GET_SIDE_FLAG(_control_panel_status);
+            return GET_SIDE_FLAG(LESideControlPanelStatus);
             break;
         case 2:
-            return GET_SIDE_FLAG(_side_is_control_panel);
+            return GET_SIDE_FLAG(LESideIsControlPanel);
             break;
         case 3:
-            return GET_SIDE_FLAG(_side_is_repair_switch);
+            return GET_SIDE_FLAG(LESideIsRepairSwitch);
             break;
         case 4:
-            return GET_SIDE_FLAG(_side_is_destructive_switch);
+            return GET_SIDE_FLAG(LESideIsDestructiveSwitch);
             break;
         case 5:
-            return GET_SIDE_FLAG(_side_is_lighted_switch);
+            return GET_SIDE_FLAG(LESideIsLightedSwitch);
             break;
         case 6:
-            return GET_SIDE_FLAG(_side_switch_can_be_destroyed);
+            return GET_SIDE_FLAG(LESideSwitchCanBeDestroyed);
             break;
         case 7:
-            return GET_SIDE_FLAG(_side_switch_can_only_be_hit_by_projectiles);
+            return GET_SIDE_FLAG(LESideSwitchCanOnlyBeByProjectiles);
             break;
         case 8:
-            return GET_SIDE_FLAG(_editor_dirty_bit);
+            return GET_SIDE_FLAG(LESideEditorDirtyBit);
             break;
         default:
             NSLog(@"DEFAULT");
@@ -699,29 +699,29 @@
  {
     switch (theFlag)
     {
-        case _control_panel_status:
-            SET_SIDE_FLAG(_control_panel_status, v);
+        case LESideControlPanelStatus:
+            SET_SIDE_FLAG(LESideControlPanelStatus, v);
             break;
-        case _side_is_control_panel:
-            SET_SIDE_FLAG(_side_is_control_panel, v);
+        case LESideIsControlPanel:
+            SET_SIDE_FLAG(LESideIsControlPanel, v);
             break;
-        case _side_is_repair_switch:
-            SET_SIDE_FLAG(_side_is_repair_switch, v);
+        case LESideIsRepairSwitch:
+            SET_SIDE_FLAG(LESideIsRepairSwitch, v);
             break;
-        case _side_is_destructive_switch:
-            SET_SIDE_FLAG(_side_is_destructive_switch, v);
+        case LESideIsDestructiveSwitch:
+            SET_SIDE_FLAG(LESideIsDestructiveSwitch, v);
             break;
-        case _side_is_lighted_switch:
-            SET_SIDE_FLAG(_side_is_lighted_switch, v);
+        case LESideIsLightedSwitch:
+            SET_SIDE_FLAG(LESideIsLightedSwitch, v);
             break;
-        case _side_switch_can_be_destroyed:
-            SET_SIDE_FLAG(_side_switch_can_be_destroyed, v);
+        case LESideSwitchCanBeDestroyed:
+            SET_SIDE_FLAG(LESideSwitchCanBeDestroyed, v);
             break;
-        case _side_switch_can_only_be_hit_by_projectiles:
-            SET_SIDE_FLAG(_side_switch_can_only_be_hit_by_projectiles, v);
+        case LESideSwitchCanOnlyBeByProjectiles:
+            SET_SIDE_FLAG(LESideSwitchCanOnlyBeByProjectiles, v);
             break;
-        case _editor_dirty_bit:
-            SET_SIDE_FLAG(_editor_dirty_bit, v);
+        case LESideEditorDirtyBit:
+            SET_SIDE_FLAG(LESideEditorDirtyBit, v);
             break;
     }
  }
@@ -1191,7 +1191,7 @@
     exclusion_zone.e2 = NSMakePoint(0,0);
     exclusion_zone.e3 = NSMakePoint(0,0);
     
-    control_panel_type = 0; // only valid if side->flags & _side_is_control_panel
+    control_panel_type = 0; // only valid if side->flags & LESideIsControlPanel
     control_panel_permutation = 0; // platform index, light source index, etc...
     control_panel_permutation_object = nil; // platform object, light source object, etc...
     permutationEffects = 0;

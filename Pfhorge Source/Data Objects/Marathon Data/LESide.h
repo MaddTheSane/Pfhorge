@@ -46,17 +46,16 @@ enum /* environment control panel offsets */
 };
 
 //! side flags
-typedef NS_OPTIONS(unsigned short, LESideFlags)
-{
-	_control_panel_status = 0x0001,
-	_side_is_control_panel = 0x0002,
-	_side_is_repair_switch = 0x0004,
-	_side_is_destructive_switch = 0x0008,
-	_side_is_lighted_switch = 0x0010,
-	_side_switch_can_be_destroyed = 0x0020,
-	_side_switch_can_only_be_hit_by_projectiles = 0x0040,
+typedef NS_OPTIONS(unsigned short, LESideFlags) {
+	LESideControlPanelStatus = 0x0001,
+	LESideIsControlPanel = 0x0002,
+	LESideIsRepairSwitch = 0x0004,
+	LESideIsDestructiveSwitch = 0x0008,
+	LESideIsLightedSwitch = 0x0010,
+	LESideSwitchCanBeDestroyed = 0x0020,
+	LESideSwitchCanOnlyBeByProjectiles = 0x0040,
 
-	_editor_dirty_bit = 0x4000 // used by the editor (Not Used In Pfhorge)
+	LESideEditorDirtyBit = 0x4000 //!< used by the editor (Not Used In Pfhorge)
 };
 
 //! control panel side types // FIXME: THIS IS CURRENTLY INACURATE!!!
@@ -75,31 +74,31 @@ typedef NS_ENUM(short, LESideControlPanelType) {
 	NUMBER_OF_CONTROL_PANELS
 };
 
-#define SIDE_IS_CONTROL_PANEL(s) ((s)->flags & _side_is_control_panel)
-#define SET_SIDE_CONTROL_PANEL(s,t) ((t) ? (s->flags |= (word) _side_is_control_panel) : (s->flags &= (word)~_side_is_control_panel))
+#define SIDE_IS_CONTROL_PANEL(s) ((s)->flags & LESideIsControlPanel)
+#define SET_SIDE_CONTROL_PANEL(s,t) ((t) ? (s->flags |= (word) LESideIsControlPanel) : (s->flags &= (word)~LESideIsControlPanel))
 
-#define GET_CONTROL_PANEL_STATUS(s) ((s)->flags & _control_panel_status)
-#define SET_CONTROL_PANEL_STATUS(s,t) ((t) ? (s->flags |= (word) _control_panel_status) : (s->flags &= (word)~_control_panel_status))
+#define GET_CONTROL_PANEL_STATUS(s) ((s)->flags & LESideControlPanelStatus)
+#define SET_CONTROL_PANEL_STATUS(s,t) ((t) ? (s->flags |= (word) LESideControlPanelStatus) : (s->flags &= (word)~LESideControlPanelStatus))
 
-#define SIDE_IS_REPAIR_SWITCH(s) ((s)->flags & _side_is_repair_switch)
-#define SET_SIDE_IS_REPAIR_SWITCH(s,t) ((t) ? (s->flags |= (word) _side_is_repair_switch) : (s->flags &= (word) ~ _side_is_repair_switch))
+#define SIDE_IS_REPAIR_SWITCH(s) ((s)->flags & LESideIsRepairSwitch)
+#define SET_SIDE_IS_REPAIR_SWITCH(s,t) ((t) ? (s->flags |= (word) LESideIsRepairSwitch) : (s->flags &= (word) ~ LESideIsRepairSwitch))
 
 // flags used by Vulcan
-#define SIDE_IS_DIRTY(s) ((s)->flags &_editor_dirty_bit)
-#define SET_SIDE_IS_DIRTY(s, t) ((t)?(s->flags|=(word)_editor_dirty_bit):(s->flags&=(word)~_editor_dirty_bit)
+#define SIDE_IS_DIRTY(s) ((s)->flags &LESideEditorDirtyBit)
+#define SET_SIDE_IS_DIRTY(s, t) ((t)?(s->flags|=(word)LESideEditorDirtyBit):(s->flags&=(word)~LESideEditorDirtyBit)
 
 //! side types (largely redundant; most of this could be guessed for examining adjacent polygons)
 typedef NS_ENUM(short, LESideType) {
 	//! primary texture is mapped floor-to-ceiling
-	_full_side,
+	LESideFull,
 	//! primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
-	_high_side,
+	LESideHigh,
 	//! primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
-	_low_side,
+	LESideLow,
 	//! primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
-	_composite_side,
+	LESideComposite,
 	//! primary texture is mapped onto a panel coming down from the ceiling, secondary texture is mapped on a panel coming up from the floor
-	_split_side
+	LESideSplit
 };
 
 typedef struct side_texture_definition
@@ -133,7 +132,7 @@ typedef struct side_exclusion_zone
 	 is the area near the side which cannont be walked through */
 	struct side_exclusion_zone	exclusion_zone;
 	
-	//! only valid if side->flags & _side_is_control_panel
+	//! only valid if side->flags & LESideIsControlPanel
 	short		control_panel_type;
 	short		control_panel_permutation; //platform index, light source index, etc...
 	__kindof LEMapStuffParent	*control_panel_permutation_object;

@@ -264,9 +264,6 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 -(void)setSides:(short)v toIndex:(short)i; //
 -(void)setSidesObject:(LESide*)v toIndex:(short)i;
 
--(void)setFloorOrigin:(NSPoint)v;
--(void)setCeilingOrigin:(NSPoint)v;
-
 -(void)setMedia:(short)v API_DEPRECATED_WITH_REPLACEMENT("-setMediaIndex:", macos(10.0, 10.7)); //
 -(void)setMediaIndex:(short)v; //
 @property (assign) PhMedia *mediaObject;

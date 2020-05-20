@@ -219,8 +219,6 @@ struct platform_data2 /* 140 bytes */
 	
 	short tag;
 	PhTag *tagObject;
-	
-	short unused[7];
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************

@@ -79,10 +79,12 @@
     [self updateBounds];
 }
 
+- (int)x32 { return location.x / 16; }
+- (int)y32 { return location.y / 16; }
 - (void)setX32:(int)v { v *= 16; location.x = v; }
 - (void)setY32:(int)v { v *= 16; location.y = v; }
-- (void)set32X:(int)v { v *= 16; location.x = v; }
-- (void)set32Y:(int)v { v *= 16; location.y = v; }
+- (void)set32X:(int)v { [self setX32:v]; }
+- (void)set32Y:(int)v { [self setY32:v]; }
 
  // **************************  Coding/Copy Protocal Methods  *************************
  #pragma mark -
@@ -249,7 +251,7 @@
 
 -(PhNoteGroup *)getGroup
 {
-    return group;
+    return self.group;
 }
 
 -(NSPoint)as32Point

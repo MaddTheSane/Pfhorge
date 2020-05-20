@@ -56,7 +56,7 @@ enum	// side flags
 };
 
 #define SIDE_IS_CONTROL_PANEL_NEW(s) ([s getFlagNow] & _side_is_control_panel_NEW)
-#define SET_SIDE_CONTROL_PANEL_NEW(s,t) ((t) ? [s setFlagNow:([s getFlagNow] | (unsigned short) _side_is_control_panel)] : [s setFlagNow:([s getFlagNow] & (unsigned short)~_side_is_control_panel_NEW)])
+#define SET_SIDE_CONTROL_PANEL_NEW(s,t) ((t) ? [s setFlagNow:([s getFlagNow] | (unsigned short) LESideIsControlPanel)] : [s setFlagNow:([s getFlagNow] & (unsigned short)~_side_is_control_panel_NEW)])
 
 #define THE_TEST_PLEASEWORK(p,v) ([p setFlagNow:[p getFlagNow] + v])
 
@@ -456,7 +456,7 @@ static NSCursor *crosshairCursor = nil;
     
     [theLevel setLevelName:[levelName stringValue]];
     
-    [[self document] changeLevelNameFor:[mapLevelList indexOfSelectedItem] To:[levelName stringValue]];
+    [[self document] changeLevelNameForLevel:[mapLevelList indexOfSelectedItem] toString:[levelName stringValue]];
     
     [self updateTheLevelNamesMenu];
     
@@ -497,7 +497,7 @@ static NSCursor *crosshairCursor = nil;
 
 - (void)updateTheLevelNamesMenu
 {
-    int theLevelIndex = [mapLevelList indexOfSelectedItem];
+    NSInteger theLevelIndex = [mapLevelList indexOfSelectedItem];
     [mapLevelList removeAllItems];
     [mapLevelList addItemsWithTitles:[[self document] levelNames]];
     [mapLevelList selectItemAtIndex:theLevelIndex];
@@ -686,7 +686,7 @@ static NSCursor *crosshairCursor = nil;
 
 - (IBAction)mapManagerPerfOverrideForGridSizeDrawerAction:(id)sender
 {
-	int menuSelection = [gridFactorMenu indexOfSelectedItem];
+	NSInteger menuSelection = [gridFactorMenu indexOfSelectedItem];
 	float theGridFactor = 0.00;
     switch(menuSelection)
     {
@@ -873,7 +873,7 @@ static NSCursor *crosshairCursor = nil;
 {
     NSString *theReply = [levelDrawView
             gotoAndSelectIndex:[gotoTextInputTB intValue]
-            ofType:[gotoPfhorgeObjectTypePopMenu indexOfSelectedItem]];
+            ofType:(LEMapGoToType)[gotoPfhorgeObjectTypePopMenu indexOfSelectedItem]];
     
     if (theReply != nil)
     {
