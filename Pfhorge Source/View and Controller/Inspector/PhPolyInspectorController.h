@@ -35,7 +35,7 @@
     
     IBOutlet NSButton *platformParametersBtn;
     IBOutlet NSComboBox *ambientSound;
-    IBOutlet id polyBox;
+    //IBOutlet id polyBox;
     IBOutlet NSTextField *ceilingHeight;
     IBOutlet NSPopUpButton *ceilingLight;
     IBOutlet NSTextField *floorHeight;
@@ -56,7 +56,7 @@
     PhPlatformSheetController *platformEditingWindowController;
     int lastMenuTypeCache;
     
-    LEPolygon *curPoly;
+    __unsafe_unretained LEPolygon *curPoly;
 }
 
 - (void)reset;

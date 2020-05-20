@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -394,7 +395,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Grid" identifier="2" id="81">
-                                <view key="view" ambiguous="YES" id="83">
+                                <view key="view" id="83">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -479,7 +480,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Grid Size:" id="1018">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" red="0.083484061062335968" green="0.082436621189117432" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextColor"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -507,11 +508,11 @@ DQ
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="342">
-                                            <rect key="frame" x="119" y="315" width="94" height="17"/>
+                                            <rect key="frame" x="119" y="316" width="94" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Grid Factor:" id="1024">
                                                 <font key="font" metaFont="system"/>
-                                                <color key="textColor" red="0.083484061062335968" green="0.082436621189117432" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextColor"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
@@ -981,7 +982,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Visual Mode" id="505">
-                                <view key="view" id="506">
+                                <view key="view" ambiguous="YES" id="506">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1179,8 +1180,8 @@ DQ
                                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1037">
                                                                     <font key="font" metaFont="cellTitle"/>
                                                                     <string key="title">If visual mode is already open, you will need to restart it to see any changes made here, sorry, I will fix this soon. You only need to click "Save Visual Mode Colors" if you changed the colors, the above settings are automticaly saved.</string>
-                                                                    <color key="textColor" red="0.00070191343547776341" green="0.32451921701431274" blue="0.079221457242965698" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="textColor" name="VisualModeWarningTextColor"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
                                                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="783">
@@ -1777,4 +1778,12 @@ DQ
             </connections>
         </customObject>
     </objects>
+    <resources>
+        <namedColor name="SpecialTextColor">
+            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="VisualModeWarningTextColor">
+            <color red="0.00070191343549999997" green="0.32451921700000003" blue="0.079221457240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

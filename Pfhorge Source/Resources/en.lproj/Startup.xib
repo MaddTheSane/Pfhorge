@@ -27,98 +27,62 @@
         <window title="Loading Status" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="329" y="286" width="340" height="115"/>
+            <rect key="contentRect" x="329" y="286" width="352" height="115"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="340" height="115"/>
+                <rect key="frame" x="0.0" y="0.0" width="352" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                        <rect key="frame" x="2" y="86" width="318" height="23"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                        <rect key="frame" x="111" y="86" width="131" height="23"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Loading Textures..." id="146">
                             <font key="font" metaFont="system" size="14"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                        <rect key="frame" x="-1" y="55" width="266" height="14"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        <size key="cellSize" width="47.599998474121094" height="14"/>
-                        <size key="intercellSpacing" width="6.4000000953674316" height="8"/>
-                        <textFieldCell key="prototype" sendsActionOnEndEditing="YES" alignment="center" tag="-1" title="Water" id="161">
-                            <font key="font" metaFont="controlContent" size="11"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <cells>
-                            <column>
-                                <textFieldCell sendsActionOnEndEditing="YES" state="on" alignment="center" title="Water" id="55">
-                                    <font key="font" metaFont="controlContent" size="11"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </column>
-                            <column>
-                                <textFieldCell sendsActionOnEndEditing="YES" alignment="center" tag="1" title="Lava" id="56">
-                                    <font key="font" metaFont="controlContent" size="11"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </column>
-                            <column>
-                                <textFieldCell sendsActionOnEndEditing="YES" alignment="center" tag="2" title="Sewage" id="57">
-                                    <font key="font" metaFont="controlContent" size="11"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </column>
-                            <column>
-                                <textFieldCell sendsActionOnEndEditing="YES" alignment="center" tag="3" title="Jjaro" id="58">
-                                    <font key="font" metaFont="controlContent" size="11"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </column>
-                            <column>
-                                <textFieldCell sendsActionOnEndEditing="YES" alignment="center" tag="4" title="Pfhor" id="59">
-                                    <font key="font" metaFont="controlContent" size="11"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </column>
-                        </cells>
-                    </matrix>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60">
-                        <rect key="frame" x="9" y="20" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="60">
+                        <rect key="frame" x="20" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="2ui-ea-13l"/>
+                            <constraint firstAttribute="height" constant="32" id="xVQ-NV-ySY"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="147"/>
                     </imageView>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61">
-                        <rect key="frame" x="61" y="20" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="61">
+                        <rect key="frame" x="72" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="5K4-u6-6Ph"/>
+                            <constraint firstAttribute="width" constant="32" id="ypO-eW-bpB"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="148"/>
                     </imageView>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62">
-                        <rect key="frame" x="114" y="20" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="62">
+                        <rect key="frame" x="125" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="6N0-JS-arh"/>
+                            <constraint firstAttribute="width" constant="32" id="ZNT-EK-Krt"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="149"/>
                     </imageView>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63">
-                        <rect key="frame" x="168" y="20" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="63">
+                        <rect key="frame" x="179" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="vWV-qP-ag7"/>
+                            <constraint firstAttribute="height" constant="32" id="xw0-t5-fA0"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="150"/>
                     </imageView>
-                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
-                        <rect key="frame" x="222" y="20" width="32" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                        <rect key="frame" x="233" y="20" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="PEY-0K-6td"/>
+                            <constraint firstAttribute="width" constant="32" id="pkD-K9-7RX"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="151"/>
                     </imageView>
-                    <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79">
-                        <rect key="frame" x="270" y="10" width="54" height="46"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <popUpButton imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79">
+                        <rect key="frame" x="281" y="10" width="53" height="47"/>
                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="81" id="152">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -131,27 +95,105 @@
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84">
-                        <rect key="frame" x="270" y="52" width="50" height="15"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Menu" id="153">
-                            <font key="font" metaFont="label"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="84">
+                        <rect key="frame" x="289" y="55" width="37" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" title="Menu" id="153">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85">
-                        <rect key="frame" x="6" y="73" width="129" height="14"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Texture 19:" id="154">
-                            <font key="font" metaFont="controlContent" size="11"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="85">
+                        <rect key="frame" x="18" y="73" width="62" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Texture 19:" id="154">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9QR-5k-K7g">
+                        <rect key="frame" x="17" y="55" width="39" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" state="on" alignment="center" title="Water" id="55">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rdk-a6-eyG">
+                        <rect key="frame" x="72" y="55" width="33" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" tag="1" title="Lava" id="56">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Red-lY-cW3">
+                        <rect key="frame" x="116" y="55" width="50" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" tag="2" title="Sewage" id="57">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZnW-c0-Iip">
+                        <rect key="frame" x="178" y="55" width="34" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" tag="3" title="Jjaro" id="58">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j46-Wv-p1h">
+                        <rect key="frame" x="231" y="55" width="37" height="14"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="center" tag="4" title="Pfhor" id="59">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="j46-Wv-p1h" firstAttribute="centerX" secondItem="64" secondAttribute="centerX" id="19C-zN-ZS2"/>
+                    <constraint firstItem="60" firstAttribute="top" secondItem="61" secondAttribute="top" id="1dd-J0-yx5"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="85" secondAttribute="trailing" constant="20" symbolic="YES" id="3Kx-Yx-9g3"/>
+                    <constraint firstItem="62" firstAttribute="leading" secondItem="61" secondAttribute="trailing" constant="21" id="6Hw-f1-I7A"/>
+                    <constraint firstItem="79" firstAttribute="top" secondItem="84" secondAttribute="bottom" id="6bN-e8-9g1"/>
+                    <constraint firstItem="84" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j46-Wv-p1h" secondAttribute="trailing" constant="8" symbolic="YES" id="7Sz-vX-Yam"/>
+                    <constraint firstItem="79" firstAttribute="centerX" secondItem="84" secondAttribute="centerX" id="8Vk-BQ-FTo"/>
+                    <constraint firstItem="64" firstAttribute="leading" secondItem="63" secondAttribute="trailing" constant="22" id="9eD-1C-fKM"/>
+                    <constraint firstItem="9" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="C7k-Xs-EcG"/>
+                    <constraint firstItem="63" firstAttribute="leading" secondItem="62" secondAttribute="trailing" constant="22" id="D6p-c5-QQc"/>
+                    <constraint firstItem="9" firstAttribute="top" secondItem="6" secondAttribute="top" constant="6" id="E2U-gT-te8"/>
+                    <constraint firstItem="Rdk-a6-eyG" firstAttribute="centerX" secondItem="61" secondAttribute="centerX" id="G6R-Jd-6kL"/>
+                    <constraint firstItem="61" firstAttribute="leading" secondItem="60" secondAttribute="trailing" constant="20" id="GLd-yv-abF"/>
+                    <constraint firstAttribute="trailing" secondItem="79" secondAttribute="trailing" constant="20" symbolic="YES" id="J1i-MR-kid"/>
+                    <constraint firstItem="9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="ObU-fc-gOJ"/>
+                    <constraint firstAttribute="bottom" secondItem="79" secondAttribute="bottom" constant="13" id="Pky-YH-lZl"/>
+                    <constraint firstAttribute="bottom" secondItem="60" secondAttribute="bottom" constant="20" symbolic="YES" id="QoJ-GW-FmJ"/>
+                    <constraint firstItem="79" firstAttribute="leading" secondItem="64" secondAttribute="trailing" constant="18" id="Sef-U8-S0s"/>
+                    <constraint firstItem="9QR-5k-K7g" firstAttribute="baseline" secondItem="Rdk-a6-eyG" secondAttribute="baseline" id="Sn6-l9-snt"/>
+                    <constraint firstItem="Red-lY-cW3" firstAttribute="baseline" secondItem="ZnW-c0-Iip" secondAttribute="baseline" id="TD7-iM-AKx"/>
+                    <constraint firstItem="j46-Wv-p1h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZnW-c0-Iip" secondAttribute="trailing" constant="10" id="TMy-uW-5ZL"/>
+                    <constraint firstItem="j46-Wv-p1h" firstAttribute="baseline" secondItem="84" secondAttribute="firstBaseline" id="UBb-Mc-uyx"/>
+                    <constraint firstItem="63" firstAttribute="top" secondItem="64" secondAttribute="top" id="Uh4-FE-Zed"/>
+                    <constraint firstItem="ZnW-c0-Iip" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Red-lY-cW3" secondAttribute="trailing" constant="8" symbolic="YES" id="UtE-YW-bLe"/>
+                    <constraint firstItem="ZnW-c0-Iip" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="17" id="ZAB-yz-qqf"/>
+                    <constraint firstItem="9QR-5k-K7g" firstAttribute="top" secondItem="85" secondAttribute="bottom" constant="4" id="ZAQ-D6-pjj"/>
+                    <constraint firstItem="Red-lY-cW3" firstAttribute="centerX" secondItem="62" secondAttribute="centerX" id="bbF-rY-33u"/>
+                    <constraint firstItem="9QR-5k-K7g" firstAttribute="centerX" secondItem="60" secondAttribute="centerX" id="ctQ-xa-Vye"/>
+                    <constraint firstItem="Red-lY-cW3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rdk-a6-eyG" secondAttribute="trailing" constant="8" symbolic="YES" id="dcA-iv-eio"/>
+                    <constraint firstItem="Rdk-a6-eyG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9QR-5k-K7g" secondAttribute="trailing" constant="8" symbolic="YES" id="eiH-C1-HgG"/>
+                    <constraint firstItem="60" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="fW4-q5-yFa"/>
+                    <constraint firstItem="85" firstAttribute="top" secondItem="6" secondAttribute="top" constant="28" id="kuJ-dO-szH"/>
+                    <constraint firstItem="j46-Wv-p1h" firstAttribute="baseline" secondItem="ZnW-c0-Iip" secondAttribute="firstBaseline" id="qlt-Ls-j9G"/>
+                    <constraint firstItem="85" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="rIv-UY-jcj"/>
+                    <constraint firstItem="Rdk-a6-eyG" firstAttribute="baseline" secondItem="Red-lY-cW3" secondAttribute="baseline" id="std-Ru-pk0"/>
+                    <constraint firstItem="ZnW-c0-Iip" firstAttribute="centerX" secondItem="63" secondAttribute="centerX" id="tHy-rm-x2L"/>
+                    <constraint firstItem="62" firstAttribute="top" secondItem="63" secondAttribute="top" id="xw6-cu-wE4"/>
+                    <constraint firstItem="61" firstAttribute="top" secondItem="62" secondAttribute="top" id="ynE-NC-2S5"/>
+                </constraints>
             </view>
-            <point key="canvasLocation" x="139" y="148"/>
+            <point key="canvasLocation" x="145" y="147.5"/>
         </window>
         <window title="Loading Status" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="95" userLabel="Window1">
             <windowStyleMask key="styleMask" titled="YES"/>
@@ -181,14 +223,15 @@
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="112">
                                     <rect key="frame" x="16" y="35" width="388" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="158">
-                                        <font key="font" metaFont="controlContent" size="11"/>
+                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="158">
+                                        <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                             </subviews>
                         </view>
+                        <font key="titleFont" metaFont="smallSystem"/>
                     </box>
                 </subviews>
             </view>
@@ -217,14 +260,15 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="130">
                                 <rect key="frame" x="16" y="35" width="388" height="14"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="159">
-                                    <font key="font" metaFont="message" size="11"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="159">
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                     </view>
+                    <font key="titleFont" metaFont="smallSystem"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="139" y="725"/>
@@ -252,14 +296,15 @@
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="136">
                                 <rect key="frame" x="16" y="35" width="388" height="14"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="160">
-                                    <font key="font" metaFont="message" size="11"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Small System Font Text" id="160">
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                     </view>
+                    <font key="titleFont" metaFont="smallSystem"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="139" y="1022"/>

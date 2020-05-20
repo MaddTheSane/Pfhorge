@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -95,7 +96,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0" drawsBackground="YES" id="68">
                             <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" red="0.0" green="0.0088286399841308594" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" name="SpecialTextColor"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
@@ -108,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Informational Text" id="69">
                             <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" red="0.0" green="0.070261478424072266" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" name="SpecialTextColor"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -202,4 +203,9 @@ Gw
             <point key="canvasLocation" x="139" y="368"/>
         </window>
     </objects>
+    <resources>
+        <namedColor name="SpecialTextColor">
+            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>
