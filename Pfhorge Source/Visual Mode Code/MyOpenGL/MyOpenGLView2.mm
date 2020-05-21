@@ -122,12 +122,12 @@ static NSDate *distantPast;
 // Motion
 // const GLfloat HorizStep = 256;
 // const GLfloat VertStep = 256;
-const GLfloat YawStep = 10;
-const GLfloat PitchStep = 10;
+//const GLfloat YawStep = 10;
+//const GLfloat PitchStep = 10;
 
 // Vertical Panning
-const GLfloat VertPanLimit = tan((M_PI/180)*30);
-const GLfloat PanStep = VertPanLimit/3;
+//const GLfloat VertPanLimit = tan((M_PI/180)*30);
+//const GLfloat PanStep = VertPanLimit/3;
 
 
 // Map-manager object
@@ -139,7 +139,7 @@ const GLfloat PanStep = VertPanLimit/3;
 #define kWindowWidth	512
 #define kWindowHeight	256
 
-const short TextDefaultsID = 650;
+//const short TextDefaultsID = 650;
 
 bool ShowText, ShowFramerate;
 RGBColor TextColor, TextShadowColor;
@@ -160,14 +160,14 @@ const float MAX_FOG = 64;
 /////
 //////////////////////////// RESIZE OPENGL SCREEN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
-void SizeOpenGLScreen(int width, int height)            // Initialize The GL Window
+void SizeOpenGLScreen(int width, int height)
 {
-    if (height==0)                                        // Prevent A Divide By Zero error
+    if (height==0)                                      // Prevent A Divide By Zero error
     {
-        height=1;                                        // Make the Height Equal One
+        height=1;                                       // Make the Height Equal One
     }
 
-    glViewport(0,0,width,height);                        // Make our viewport the whole window
+    glViewport(0,0,width,height);                       // Make our viewport the whole window
                                                         // We could make the view smaller inside
                                                         // Our window if we wanted too.
                                                         // The glViewport takes (x, y, width, height)
@@ -271,7 +271,7 @@ void Draw3DSGrid()
     glColor3ub(0, 255, 0);
 
     // Draw a 1x1 grid along the X and Z axis'
-    for(float i = -256; i <= 256; i += 4)
+    for(int i = -256; i <= 256; i += 4)
     {
         // Start drawing some lines
         glBegin(GL_LINES);
@@ -441,12 +441,12 @@ static unsigned short SetColor(short ID, int Indx) {
 
 - (void)doMapRenderingLoopWithMapData:(LELevelData *)theLevel shapesLocation:(NSString *)theShapesLocation
 {
-    bool done = NO, downKey = NO, leftKey = NO, rightKey = NO, upKey = NO;
-    bool forwardKey = NO, backwardKey = NO, slideLeftKey = NO, slideRightKey = NO;
+    BOOL done = NO, downKey = NO, leftKey = NO, rightKey = NO, upKey = NO;
+    BOOL forwardKey = NO, backwardKey = NO, slideLeftKey = NO, slideRightKey = NO;
     
-    bool MouseButtonPressed = NO;
+    BOOL MouseButtonPressed = NO;
     
-    bool  invertMouse 		= [preferences boolForKey:VMInvertMouse];
+    BOOL  invertMouse 		= [preferences boolForKey:VMInvertMouse];
     float mouseSpeedMultiplier 	= [preferences floatForKey:VMMouseSpeed];
     NSInteger   keySpeed		= [preferences integerForKey:VMKeySpeed];
     

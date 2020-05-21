@@ -24,29 +24,20 @@
 #include <cmath>
 #include <ApplicationServices/ApplicationServices.h>
 #import <Cocoa/Cocoa.h>
-/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
 
-// We increased the speed a bit from the Camera Strafing Tutorial
-// This is how fast our camera moves
+//! We increased the speed a bit from the Camera Strafing Tutorial
+//! This is how fast our camera moves
 #define kSpeed  15.0f                                   
 
-// Create a global float that stores the elapsed time between the current
-// and last frame.  For your engine, this would move likely go into a 
-// CTime or CTimer class, along with the CalculateFrameRate() function.
+//! Create a global float that stores the elapsed time between the current
+//! and last frame.  For your engine, this would move likely go into a
+//! CTime or CTimer class, along with the CalculateFrameRate() function.
 static float g_FrameInterval = 0.0f;
 
-/////// * /////////// * /////////// * NEW * /////// * /////////// * /////////// *
-
-//extern bool upPressed , downPressed, leftPressed , rightPressed;
 
 using namespace simd;
 
-///////////////////////////////// CALCULATE FRAME RATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This function calculates the frame rate and time intervals between frames
-/////
-///////////////////////////////// CALCULATE FRAME RATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
+//! This function calculates the frame rate and time intervals between frames
 static void CalculateFrameRate()
 {
     static float framesPerSecond    = 0.0f;     // This will store our fps
@@ -93,12 +84,6 @@ static void CalculateFrameRate()
 }
 
 
-///////////////////////////////// CCAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This is the class constructor
-/////
-///////////////////////////////// CCAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
 CCamera::CCamera()
 {
     m_vPosition = simd_make_float3(0.0, 0.0, 0.0);      // Init a vVector to 0 0 0 for our position
@@ -106,12 +91,6 @@ CCamera::CCamera()
     m_vUpVector   = simd_make_float3(0.0, 0.0, 1.0);    // Init a standard up vVector (Rarely ever changes)
 }
 
-
-///////////////////////////////// POSITION CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This function sets the camera's position and view and up vVector.
-/////
-///////////////////////////////// POSITION CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::PositionCamera(float positionX, float positionY, float positionZ,
                              float viewX,     float viewY,     float viewZ,
@@ -179,11 +158,6 @@ void CCamera::SetViewByMouse()
 }
 */
 
-///////////////////////////////// ROTATE VIEW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This rotates the view around the position using an axis-angle rotation
-/////
-///////////////////////////////// ROTATE VIEW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::RotateView(float angle, float x, float y, float z)
 {
@@ -217,12 +191,6 @@ void CCamera::RotateView(float angle, float x, float y, float z)
 }
 
 
-///////////////////////////////// STRAFE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This strafes the camera left and right depending on the speed (-/+)
-/////
-///////////////////////////////// STRAFE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
 void CCamera::StrafeCamera(float speed)
 {   
     // Add the strafe vector to our position
@@ -232,12 +200,6 @@ void CCamera::StrafeCamera(float speed)
     m_vView.xz += m_vStrafe.xz * speed;
 }
 
-
-///////////////////////////////// MOVE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This will move the camera forward or backward depending on the speed
-/////
-///////////////////////////////// MOVE CAMERA \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::MoveCamera(float speed)
 {
@@ -249,12 +211,6 @@ void CCamera::MoveCamera(float speed)
     m_vView.xz += vVector.xz * speed;         // Add our acceleration to our view's X/Z
 }
 
-
-//////////////////////////// CHECK FOR MOVEMENT \\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This function handles the input faster than in the WinProc()
-/////
-//////////////////////////// CHECK FOR MOVEMENT \\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::CheckForMovement(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed)
 {
@@ -298,12 +254,6 @@ void CCamera::CheckForMovement(bool upPressed, bool downPressed, bool leftPresse
     }   
 }
 
-
-///////////////////////////////// UPDATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This updates the camera's view and strafe vector
-/////
-///////////////////////////////// UPDATE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::Update(bool upPressed, bool downPressed, bool leftPressed, bool rightPressed) 
 {
@@ -349,12 +299,6 @@ static inline float4x4 matrix4MakeLookAt(float3 eye, float3 center, float3 up)
     return m;
 }
 
-
-///////////////////////////////// LOOK \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This updates the camera according to the 
-/////
-///////////////////////////////// LOOK \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void CCamera::Look()
 {

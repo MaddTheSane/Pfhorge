@@ -110,8 +110,7 @@ unsigned int calculate_data_crc(
 }
 
 /* ---------------- Private Code --------------- */
-static bool build_crc_table(
-	void)
+static bool build_crc_table(void)
 {
 	bool success= FALSE;
 
@@ -140,8 +139,7 @@ static bool build_crc_table(
 	return success;
 }
 
-static void free_crc_table(
-	void)
+static void free_crc_table(void)
 {
 	assert(crc_table);
 	free(crc_table);
@@ -190,8 +188,7 @@ static uint32 calculate_file_crc(
 	//set_fpos(refnum, 0l);
 
 	crc = 0xFFFFFFFFL;
-	while(file_length) 
-	{
+	while(file_length) {
 		if(file_length>buffer_size)
 		{
 			count= buffer_size;

@@ -12,46 +12,18 @@
 
 #define SCREEN_WIDTH 800                                // We want our screen width 800 pixels
 #define SCREEN_HEIGHT 600                               // We want our screen height 600 pixels
-#define SCREEN_DEPTH 32                                 // We want 16 bits per pixel
+#define SCREEN_DEPTH 32                                 // We want 32 bits per pixel
 
 using namespace std;
 
 
-extern int VideoFlags;                                  // The Pixel Format flags
-//extern SDL_Surface * MainWindow;                        // Our Drawable portion of the window
+extern int VideoFlags;                                  //!< The Pixel Format flags
 
-// This Controls our MainLoop
-//void MainLoop(void);
-
-// This toggles between the Full Screen mode and the windowed mode
-//void ToggleFullScreen(void);
-
-// This allows us to configure our window for OpenGL and backbuffered
-//void SetupPixelFormat(void);
-
-// This is our own function that makes creating a window modular and easy
-//void CreateMyWindow(const char *strWindowName, int width, int height, int VideoFlags);
-
-// This inits our screen translations and projections
+//! This function resizes the viewport for OpenGL.
 void SizeOpenGLScreen(int width, int height);
 
-// This sets up OpenGL
+//! This function handles all the initialization for openGL
 void InitializeGL(int width, int height);
-
-// This initializes the whole program
-//void Init();
-
-// This handles the keypress events generated when the user presses a key
-//void HandleKeyPressEvent(SDL_keysym * keysym);
-
-// This handles the keyrelease events generated when the user releases a key
-//void HandleKeyReleaseEvent(SDL_keysym * keysym);
-
-// This draws everything to the screen
-//void RenderScene();
-
-// This shuts down SDL and quits program
-//void Quit(int ret_val);
 
 #endif  // _MAIN_H_
 

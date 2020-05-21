@@ -44,12 +44,6 @@ public:
     //! This rotates the camera's view around the position depending on the values passed in.
     void RotateView(float angle, float X, float Y, float Z);
 
-    //! This moves the camera's view by the mouse movements (First person view)
-    void SetViewByMouse(); 
-
-    //! This rotates the camera around a point (I.E. your character).
-    //void RotateAroundPoint(simd::float3 vCenter, float X, float Y, float Z);
-
     //! This strafes the camera left or right depending on the speed (+/-)
     void StrafeCamera(float speed);
 
