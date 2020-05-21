@@ -19,8 +19,8 @@ static SRefCon					defaultSendProcRefCon = 0;
 static OSAActiveProcPtr			defaultActiveProcPtr = NULL;
 static SRefCon					defaultActiveProcRefCon = 0;
 
-static OSErr AppleScriptActiveProc( SRefCon aRefCon );
-static OSErr AppleEventSendProc( const AppleEvent *theAppleEvent, AppleEvent *reply, AESendMode sendMode, AESendPriority sendPriority, SInt32 timeOutInTicks, AEIdleUPP idleProc, AEFilterUPP filterProc, SRefCon refCon );
+static OSErr AppleScriptActiveProc(SRefCon aRefCon);
+static OSErr AppleEventSendProc(const AppleEvent *theAppleEvent, AppleEvent *reply, AESendMode sendMode, AESendPriority sendPriority, SInt32 timeOutInTicks, AEIdleUPP idleProc, AEFilterUPP filterProc, SRefCon refCon);
 
 @interface NDAppleScriptObject ()
 + (ComponentInstance)OSAComponent;
@@ -81,19 +81,17 @@ static ComponentInstance		defaultOSAComponent = NULL;
 				theScriptDesc = { typeNull, NULL };
 	id			theResultObject = nil;
 
-	if( (AECreateDesc( typeUTF8Text, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute( [self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr ) )
-	{
-		if( OSACoerceToDesc( [self OSAComponent], theResultID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr )
-		{
-			if( theResultDesc.descriptorType != typeNull )
-			{
+	if ((AECreateDesc(typeUTF8Text, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) ==  noErr) && (OSACompileExecute([self OSAComponent], &theScriptDesc, kOSANullScript, kOSAModeNull, &theResultID) ==  noErr)) {
+		if (OSACoerceToDesc([self OSAComponent], theResultID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr ) {
+			if (theResultDesc.descriptorType != typeNull) {
 				theResultObject = [self objectForAEDesc:&theResultDesc];
 				AEDisposeDesc( &theResultDesc );
 			}
 		}
-		AEDisposeDesc( &theScriptDesc );
-		if( theResultID != kOSANullScript )
-			OSADispose( [self OSAComponent], theResultID );
+		AEDisposeDesc(&theScriptDesc);
+		if (theResultID != kOSANullScript) {
+			OSADispose([self OSAComponent], theResultID);
+		}
 	}
 	
 	return theResultObject;
@@ -118,11 +116,9 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	
 	theComponentDesc.componentFlagsMask = theComponentDesc.componentFlags;
 
-	do
-	{
-		theLastComponent = FindNextComponent( theLastComponent, &theComponentDesc );
-	}
-	while( GetComponentInfo( theLastComponent, &theReturnCompDesc, NULL, NULL, NULL ) == noErr && theComponentDesc.componentSubType == kOSAGenericScriptingComponentSubtype );
+	do {
+		theLastComponent = FindNextComponent(theLastComponent, &theComponentDesc);
+	} while (GetComponentInfo(theLastComponent, &theReturnCompDesc, NULL, NULL, NULL) == noErr && theComponentDesc.componentSubType == kOSAGenericScriptingComponentSubtype);
 
 	return theLastComponent;
 }
@@ -132,8 +128,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (void)closeDefaultComponent
 {
-	if( defaultOSAComponent != NULL ) {
-		CloseComponent( defaultOSAComponent );
+	if (defaultOSAComponent != NULL) {
+		CloseComponent(defaultOSAComponent);
 		defaultOSAComponent = NULL;
 	}
 }
@@ -196,13 +192,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
 
 	theData = [[NDResourceFork resourceForkForReadingAtPath:aPath] dataForType:kOSAScriptResourceType Id:kScriptResourceID];
 	
-	if( theData != nil )
-	{
+	if (theData != nil) {
 		self = [self initWithData:theData component:aComponent];
-	}
-	else
-	{
-		self = nil;
+	} else {
+		self = [self initWithData:[NSData dataWithContentsOfFile:aPath] component:aComponent];
 	}
 	
 	return self;
@@ -225,12 +218,9 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	
 	theData = [[NDResourceFork resourceForkForReadingAtURL:aURL] dataForType:kOSAScriptResourceType Id:kScriptResourceID];
 	
-	if( theData != nil )
-	{
+	if (theData != nil) {
 		self = [self initWithData:theData component:aComponent];
-	}
-	else
-	{
+	} else {
 		self = [self initWithData:[NSData dataWithContentsOfURL:aURL] component:aComponent];
 	}
 	
@@ -242,13 +232,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (id)initWithAppleEventDescriptor:(NSAppleEventDescriptor *)aDescriptor
 {
-	if( [aDescriptor descriptorType] == cScript )
-	{
+	if ([aDescriptor descriptorType] == cScript) {
 		self = [self initWithData:[aDescriptor data]];
-	}
-	else
-	{
-		self = nil;
+	} else {
+		return nil;
 	}
 	
 	return self;
@@ -267,21 +254,20 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (id)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent
 {
-	if( ( self = [super init] )  )
-	{
-		if( aComponent != NULL )
-			osaComponent = OpenComponent( aComponent );
-		else
+	if (self = [super init]) {
+		if (aComponent != NULL) {
+			osaComponent = OpenComponent(aComponent);
+		} else {
 			osaComponent = NULL;
+		}
 
 		compiledScriptID = [self compileString:aString modeFlags: aModeFlags];
 		resultingValueID = kOSANullScript;
 		executionModeFlags = kOSAModeNull;
 		osaComponent = NULL;
 
-		if( compiledScriptID == kOSANullScript )
-		{
-			self = nil;
+		if (compiledScriptID == kOSANullScript) {
+			return nil;
 		}
 	}
 
@@ -293,21 +279,20 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (id)initWithData:(NSData *)aData component:(Component)aComponent
 {
-	if( (self = [self init]) != nil )
-	{
-		if( aComponent != NULL )
-			osaComponent = OpenComponent( aComponent );
-		else
+	if (self = [super init]) {
+		if (aComponent != NULL) {
+			osaComponent = OpenComponent(aComponent);
+		} else {
 			osaComponent = NULL;
+		}
 
 		compiledScriptID = [self loadData:aData];
 		resultingValueID = kOSANullScript;
 		executionModeFlags = kOSAModeNull;
 		osaComponent = NULL;
 
-		if( compiledScriptID == kOSANullScript )
-		{
-			self = nil;
+		if (compiledScriptID == kOSANullScript) {
+			return nil;
 		}
 	}
 
@@ -319,13 +304,13 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 -(void)dealloc
 {
-	if( compiledScriptID != kOSANullScript )
-		OSADispose( [self OSAComponent], compiledScriptID );
-	if( resultingValueID != kOSANullScript )
-		OSADispose( [self OSAComponent], resultingValueID );
+	if (compiledScriptID != kOSANullScript)
+		OSADispose([self OSAComponent], compiledScriptID);
+	if (resultingValueID != kOSANullScript)
+		OSADispose([self OSAComponent], resultingValueID);
 
-	if( osaComponent != NULL )
-		CloseComponent( osaComponent );
+	if (osaComponent != NULL)
+		CloseComponent(osaComponent);
 }
 
 /*
@@ -337,14 +322,13 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	OSStatus			theError;
 	AEDesc				theDesc = { typeNull, NULL };
 	
-	theError = OSAStore( [self OSAComponent], compiledScriptID, typeOSAGenericStorage, kOSAModeNull, &theDesc );
-	if( noErr == theError )
-	{
+	theError = OSAStore([self OSAComponent], compiledScriptID, typeOSAGenericStorage, kOSAModeNull, &theDesc);
+	if (noErr == theError) {
 		theData = [NSData dataWithAEDesc: &theDesc];
-		AEDisposeDesc( &theDesc );
+		AEDisposeDesc(&theDesc);
 	}
 	
-	return (noErr == theError ) ? theData : nil;
+	return (noErr == theError) ? theData : nil;
 }
 
 /*
@@ -373,14 +357,13 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	theTarget = [self targetNoProcess];
 	theEventList = [NSAppleEventDescriptor aliasListDescriptorWithArray:aParameters];
 
-	if( theTarget != nil && theEventList != nil )
-	{
+	if (theTarget != nil && theEventList != nil) {
 		theEvent = [NSAppleEventDescriptor appleEventWithEventClass:kCoreEventClass eventID:kAEOpenDocuments targetDescriptor:theTarget returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
 
 		[theEvent setParamDescriptor:theEventList forKeyword:keyDirectObject];
 	}
 
-	return (theEvent != nil ) ? [self executeEvent:theEvent] : NO;
+	return (theEvent != nil) ? [self executeEvent:theEvent] : NO;
 }
 
 /*
@@ -391,12 +374,11 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	AEDesc				theEventDesc;
 	BOOL				theSuccess= NO;
 	
-	if( [anEvent AEDesc:&theEventDesc] )
-	{
+	if ([anEvent AEDesc:&theEventDesc]) {
 		[self setSendProc];
 		[self setActiveProc];
 		theSuccess = OSAExecuteEvent([self OSAComponent], &theEventDesc, compiledScriptID, [self executionModeFlags], &resultingValueID) == noErr;
-		AEDisposeDesc( &theEventDesc );
+		AEDisposeDesc(&theEventDesc);
 	}
 
 	return theSuccess;
@@ -409,7 +391,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 {
 	NSArray			* theNamesArray = nil;
 	AEDescList		theNamesDescList;
-	if (OSAGetHandlerNames([self OSAComponent], kOSAModeNull, compiledScriptID, &theNamesDescList) == noErr ) {
+	if (OSAGetHandlerNames([self OSAComponent], kOSAModeNull, compiledScriptID, &theNamesDescList) == noErr) {
 		theNamesArray = [NDAppleScriptObject objectForAEDesc: &theNamesDescList];
 		AEDisposeDesc(&theNamesDescList);
 	}
@@ -438,7 +420,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	AEDesc					theResultDesc = { typeNull, NULL };
 	NSAppleEventDescriptor	* theResult = nil;
 	
-	if (OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr) {
+	if (OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr) {
 		theResult = [NSAppleEventDescriptor descriptorWithDescriptorType:theResultDesc.descriptorType data:[NSData dataWithAEDesc:&theResultDesc]];
 		AEDisposeDesc(&theResultDesc);
 	}
@@ -456,7 +438,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	if (resultingValueID != kOSANullScript) {
 		AEDesc		theResultDesc = { typeNull, NULL };
 
-		if (OSACoerceToDesc( [self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr) {
+		if (OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr) {
 			theResult = [NDAppleScriptObject objectForAEDesc: &theResultDesc];
 			AEDisposeDesc(&theResultDesc);
 		}
@@ -475,7 +457,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	if (resultingValueID != kOSANullScript) {
 		AEDesc		theResultDesc = { typeNull, NULL };
 		
-		if(OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr ) {
+		if (OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr) {
 			theResult = [NSData dataWithAEDesc: &theResultDesc];
 			AEDisposeDesc(&theResultDesc);
 		}
@@ -513,13 +495,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
 - (void)setDefaultTarget:(NSAppleEventDescriptor *)aDefaultTarget
 {
 	AEAddressDesc		theTargetDesc;
-	if( [aDefaultTarget AEDesc:(AEDesc*)&theTargetDesc] )
-	{
-		OSASetDefaultTarget( [self OSAComponent], &theTargetDesc );
-	}
-	else
-	{
-		NSLog( @"Could not set default target" );
+	if ([aDefaultTarget AEDesc:(AEDesc*)&theTargetDesc]) {
+		OSASetDefaultTarget([self OSAComponent], &theTargetDesc);
+	} else {
+		NSLog(@"Could not set default target");
 	}
 }
 
@@ -560,14 +539,11 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	AppleEvent				theAppleEvent;
 	NSAppleEventDescriptor	* theReplyAppleEventDesc = nil;
 
-	if( [theAppleEventDescriptor AEDesc:&theAppleEvent] )
-	{
+	if ([theAppleEventDescriptor AEDesc:&theAppleEvent]) {
 		AppleEvent					theReplyAppleEvent;
 		
-		if( defaultSendProc != NULL )
-		{
-			if( defaultSendProc( &theAppleEvent, &theReplyAppleEvent, aSendMode, aSendPriority, aTimeOutInTicks, anIdleProc, aFilterProc, defaultSendProcRefCon ) == noErr )
-			{
+		if (defaultSendProc != NULL) {
+			if (defaultSendProc(&theAppleEvent, &theReplyAppleEvent, aSendMode, aSendPriority, aTimeOutInTicks, anIdleProc, aFilterProc, defaultSendProcRefCon) == noErr) {
 				theReplyAppleEventDesc = [NSAppleEventDescriptor appleEventDescriptorWithAEDesc:&theReplyAppleEvent];
 			}
 		}
@@ -581,12 +557,11 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (BOOL)appleScriptActive
 {
-	if( defaultActiveProcPtr != NULL )
-	{
-		return defaultActiveProcPtr( defaultActiveProcRefCon ) == noErr;
-	}
-	else
+	if (defaultActiveProcPtr != NULL) {
+		return defaultActiveProcPtr(defaultActiveProcRefCon) == noErr;
+	} else {
 		return NO;
+	}
 }
 
 /*
@@ -605,12 +580,11 @@ static ComponentInstance		defaultOSAComponent = NULL;
 - (NSString *)description
 {
 	AEDesc		theDesc = { typeNull, NULL };
-	NSString		* theResult = nil;
+	NSString	*theResult = nil;
 
-	if( OSAGetSource( [self OSAComponent], compiledScriptID, typeChar, &theDesc) == noErr )
-	{
+	if (OSAGetSource([self OSAComponent], compiledScriptID, typeChar, &theDesc) == noErr) {
 		theResult = [NSString stringWithAEDesc: &theDesc];
-		AEDisposeDesc( &theDesc );
+		AEDisposeDesc(&theDesc);
 	}
 
 	return theResult;
@@ -627,17 +601,16 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * writeToURL:Id:
  */
-- (BOOL)writeToURL:(NSURL *)aURL Id:(short)anID
+- (BOOL)writeToURL:(NSURL *)aURL Id:(ResID)anID
 {
 	NSData			* theData;
 	NDResourceFork	* theResourceFork;
 	
-	if( (theData = [self data]) && (theResourceFork = [NDResourceFork resourceForkForWritingAtURL:aURL]) )
-	{
+	if ((theData = [self data]) && (theResourceFork = [NDResourceFork resourceForkForWritingAtURL:aURL])) {
 		return [theResourceFork addData:theData type:kOSAScriptResourceType Id:anID name:@"script"];
-	}
-	else
+	} else {
 		return NO;
+	}
 }
 
 /*
@@ -651,7 +624,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * writeToFile:Id:
  */
-- (BOOL)writeToFile:(NSString *)aPath Id:(short)anID
+- (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID
 {
 	return [self writeToURL:[NSURL fileURLWithPath:aPath] Id:anID];
 }
@@ -662,9 +635,8 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 + (ComponentInstance)OSAComponent
 {
-	if( defaultOSAComponent == NULL )
-	{
-		defaultOSAComponent = OpenDefaultComponent( kOSAComponentType, kAppleScriptSubtype );
+	if (defaultOSAComponent == NULL) {
+		defaultOSAComponent = OpenDefaultComponent(kOSAComponentType, kAppleScriptSubtype);
 	}
 	return defaultOSAComponent;
 }
@@ -678,7 +650,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	
 	theData = [NSData dataWithAEDesc: aDesc];
 
-	return ( theData == nil ) ? nil : [[self alloc] initWithData:theData];
+	return (theData == nil) ? nil : [[self alloc] initWithData:theData];
 }
 
 /*
@@ -693,7 +665,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	NSLog(@"objectForAEDesc: recieved type '%c%c%c%c'\n",theType[0],theType[1],theType[2],theType[3]);
 #endif
 
-	switch(aDesc->descriptorType) {
+	switch (aDesc->descriptorType) {
 		case typeBoolean:					//	1-byte Boolean value
 		case typeSInt16:					//	16-bit integer
 		case typeSInt32:					//	32-bit integer
@@ -713,7 +685,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		case typeCString:					//	null-terminated string
 			theResult = [NSString stringWithCStringAEDesc:aDesc];
 			break;
-		case typeUTF8Text:
+		case typeUTF8Text:					//	null-terminated
 			theResult = [NSString stringWithUTF8AEDesc:aDesc];
 			break;
 		case typeAEList:					//	list of descriptor records
@@ -754,9 +726,9 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	OSAID			theCompiledScript = kOSANullScript;
 	AEDesc			theScriptDesc = { typeNull, NULL };
 	
-	if (AECreateDesc(typeChar, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) == noErr) {
+	if (AECreateDesc(typeUTF8Text, [aString UTF8String], [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], &theScriptDesc) == noErr) {
 		OSACompile([self OSAComponent], &theScriptDesc, aModeFlags, &theCompiledScript);
-		AEDisposeDesc( &theScriptDesc );
+		AEDisposeDesc(&theScriptDesc);
 	}
 	
 	return theCompiledScript;
@@ -782,9 +754,9 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	AEDesc		theScriptDesc = { typeNull, NULL };
 	OSAID		theCompiledScript = kOSANullScript;
 	
-	if (AECreateDesc(typeOSAGenericStorage, [aData bytes], [aData length], &theScriptDesc ) == noErr ) {
+	if (AECreateDesc(typeOSAGenericStorage, [aData bytes], [aData length], &theScriptDesc) == noErr) {
 		OSALoad([self OSAComponent], &theScriptDesc, kOSAModeCompileIntoContext, &theCompiledScript);
-		AEDisposeDesc( &theScriptDesc );
+		AEDisposeDesc(&theScriptDesc);
 	}
 	
 	return theCompiledScript;
@@ -800,7 +772,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (OSAID)contextID
 {
-	return ( contextAppleScriptObject ) ? [contextAppleScriptObject compiledScriptID] : kOSANullScript;
+	return (contextAppleScriptObject) ? [contextAppleScriptObject compiledScriptID] : kOSANullScript;
 }
 
 /*
@@ -808,19 +780,14 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (void)setSendProc
 {
-	NSAssert( sizeof(long) == sizeof(id), @"This method works by assuming type long is the same size as type id" );
-
-	if( defaultSendProc == NULL )
-	{
-		if( OSAGetSendProc( [self OSAComponent], &defaultSendProc, &defaultSendProcRefCon) != noErr )
-		{
+	if (defaultSendProc == NULL) {
+		if (OSAGetSendProc([self OSAComponent], &defaultSendProc, &defaultSendProcRefCon) != noErr) {
 			defaultSendProc = NULL;
 			NSLog(@"Could not get default AppleScript send procedure");
 		}
 	}
 
-	if( OSASetSendProc( [self OSAComponent], AppleEventSendProc, (__bridge SRefCon)self ) != noErr )
-	{
+	if (OSASetSendProc([self OSAComponent], AppleEventSendProc, (__bridge SRefCon)self) != noErr) {
 		NSLog(@"Could not set AppleScript send procedure");
 	}
 }
@@ -835,9 +802,8 @@ OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AE
 	
 	theAppleEventDescriptor = [NSAppleEventDescriptor appleEventDescriptorWithAEDesc:anAppleEvent];
 	
-	if( theAppleEventDescriptor )
-	{
-		id								theSendTarget;
+	if (theAppleEventDescriptor) {
+		id<NDAppleScriptObjectSendEvent> theSendTarget;
 		//static BOOL					hasFirstEventBeenSent = NO;
 		
 		/*if( [theAppleEventDescriptor isTargetCurrentProcess] && !hasFirstEventBeenSent )
@@ -846,22 +812,19 @@ OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AE
 		 [[NSNotificationCenter defaultCenter] postNotificationName:NSAppleEventManagerWillProcessFirstEventNotification object:[NSAppleEventManager sharedAppleEventManager]];
 		 }*/
 		
-		theSendTarget = [(__bridge id)aRefCon appleEventSendTarget];
+		theSendTarget = [(__bridge NDAppleScriptObject*)aRefCon appleEventSendTarget];
 		
-		if( theSendTarget != nil )
-		{
+		if (theSendTarget != nil) {
 			theAppleEventDescReply = [theSendTarget sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
-		}
-		else
-		{
-			theAppleEventDescReply = [(__bridge id)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
+		} else {
+			theAppleEventDescReply = [(__bridge NDAppleScriptObject*)aRefCon sendAppleEvent:theAppleEventDescriptor sendMode:aSendMode sendPriority:aSendPriority timeOutInTicks:aTimeOutInTicks idleProc:anIdleProc filterProc:aFilterProc];
 		}
 		
-		if( ![theAppleEventDescReply AEDesc:(AEDesc*)aReply] )
+		if (![theAppleEventDescReply AEDesc:(AEDesc*)aReply])
 			theAppleEventDescriptor = nil;			// ERROR
 	}
 	
-	return ( theAppleEventDescriptor == nil ) ? errOSASystemError : noErr;
+	return (theAppleEventDescriptor == nil) ? errOSASystemError : noErr;
 }
 
 /*
@@ -869,25 +832,18 @@ OSErr AppleEventSendProc( const AppleEvent *anAppleEvent, AppleEvent *aReply, AE
  */
 - (void)setActiveProc
 {
-	if( activeTarget != nil )
-	{
-		if( defaultActiveProcPtr == NULL )
-		{
-			if( OSAGetActiveProc([self OSAComponent], &defaultActiveProcPtr, &defaultActiveProcRefCon ) != noErr )
-			{
+	if (activeTarget != nil) {
+		if (defaultActiveProcPtr == NULL) {
+			if (OSAGetActiveProc([self OSAComponent], &defaultActiveProcPtr, &defaultActiveProcRefCon) != noErr) {
 				defaultActiveProcPtr = NULL;
 				NSLog(@"Could not get default AppleScript send procedure");
 			}
 		}
 		
-		NSAssert( sizeof(long) == sizeof(id), @"This method works by assuming type long is the same size as type id" );
-
-		if( OSASetActiveProc( [self OSAComponent], AppleScriptActiveProc , (__bridge SRefCon)activeTarget ) != noErr )
+		if (OSASetActiveProc([self OSAComponent], AppleScriptActiveProc , (__bridge SRefCon)activeTarget) != noErr)
 			NSLog(@"Could not set AppleScript activation procedure.");
-	}
-	else
-	{
-		if( OSASetActiveProc( [self OSAComponent], NULL , 0 ) != noErr )
+	} else {
+		if (OSASetActiveProc([self OSAComponent], NULL , 0) != noErr)
 			NSLog(@"Could not restore default AppleScript activation procedure.");
 	}
 }
@@ -946,22 +902,19 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
  */
 + (id)arrayWithAEDesc:(const AEDesc *)aDesc
 {
-	long				theNumOfItems,
-							theIndex;
-	id						theInstance = nil;
+	long				theNumOfItems;
+	id					theInstance = nil;
 	
-	AECountItems( aDesc, &theNumOfItems );
+	AECountItems(aDesc, &theNumOfItems);
 	theInstance = [NSMutableArray arrayWithCapacity:theNumOfItems];
-
-	for( theIndex = 1; theIndex <= theNumOfItems; theIndex++)
-	{
+	
+	for (long theIndex = 1; theIndex <= theNumOfItems; theIndex++) {
 		AEDesc		theDesc = { typeNull, NULL };
 		AEKeyword	theAEKeyword;
 		
-		if( AEGetNthDesc ( aDesc, theIndex, typeWildCard, &theAEKeyword, &theDesc ) == noErr )
-		{
+		if (AEGetNthDesc(aDesc, theIndex, typeWildCard, &theAEKeyword, &theDesc) == noErr) {
 			[theInstance addObject: [NDAppleScriptObject objectForAEDesc: &theDesc]];
-			AEDisposeDesc( &theDesc );
+			AEDisposeDesc(&theDesc);
 		}
 	}
 	
@@ -977,37 +930,32 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
  */
 + (id)dictionaryWithAEDesc:(const AEDesc *)aDesc
 {
-	id						theInstance = nil;
+	id					theInstance = nil;
 	AEDesc				theListDesc = { typeNull, NULL };
 	AEKeyword			theAEKeyword;
 
-	if( AEGetNthDesc ( aDesc, 1, typeWildCard, &theAEKeyword, &theListDesc ) == noErr )
-	{
-		long				theNumOfItems,
-								theIndex;
-		AECountItems( &theListDesc, &theNumOfItems );
+	if (AEGetNthDesc(aDesc, 1, typeWildCard, &theAEKeyword, &theListDesc) == noErr) {
+		long				theNumOfItems;
+		
+		AECountItems(&theListDesc, &theNumOfItems);
 		theInstance = [NSMutableDictionary dictionaryWithCapacity:theNumOfItems];
 	
-		for( theIndex = 1; theIndex <= theNumOfItems; theIndex += 2)
-		{
-			AEDesc		theDesc = { typeNull, NULL },
-							theKeyDesc = { typeNull, NULL };
+		for (long theIndex = 1; theIndex <= theNumOfItems; theIndex += 2) {
+			AEDesc theDesc = { typeNull, NULL },
+			theKeyDesc = { typeNull, NULL };
 			
 	
-			if( ( AEGetNthDesc ( &theListDesc, theIndex + 1, typeWildCard, &theAEKeyword, &theDesc ) == noErr) && ( AEGetNthDesc ( &theListDesc, theIndex, typeWildCard, &theAEKeyword, &theKeyDesc ) == noErr) )
-			{
+			if ((AEGetNthDesc(&theListDesc, theIndex + 1, typeWildCard, &theAEKeyword, &theDesc) == noErr) && (AEGetNthDesc(&theListDesc, theIndex, typeWildCard, &theAEKeyword, &theKeyDesc) == noErr)) {
 				[theInstance setObject: [NDAppleScriptObject objectForAEDesc: &theDesc] forKey:[NSString stringWithAEDesc: &theKeyDesc]];
-				AEDisposeDesc( &theDesc );
-				AEDisposeDesc( &theKeyDesc );
-			}
-			else
-			{
-				AEDisposeDesc( &theDesc );
+				AEDisposeDesc(&theDesc);
+				AEDisposeDesc(&theKeyDesc);
+			} else {
+				AEDisposeDesc(&theDesc);
 				theInstance = nil;
 				break;
 			}
 		}
-		AEDisposeDesc( &theListDesc );
+		AEDisposeDesc(&theListDesc);
 	}
 	
 	return theInstance;
@@ -1026,8 +974,7 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 
 	theInstance = [NSMutableData dataWithLength: (unsigned int)AEGetDescDataSize(aDesc)];
 	
-	if( AEGetDescData(aDesc, [theInstance mutableBytes], [theInstance length]) != noErr )
-	{
+	if (AEGetDescData(aDesc, [theInstance mutableBytes], [theInstance length]) != noErr) {
 		theInstance = nil;
 	}
 	
@@ -1042,68 +989,67 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 {
 	id						theInstance = nil;
 	
-	switch(aDesc->descriptorType)
-	{
-		case typeBoolean:						//	1-byte Boolean value
+	switch (aDesc->descriptorType) {
+		case typeBoolean:					//	1-byte Boolean value
 		{
 			BOOL		theBoolean;
-			if( AEGetDescData(aDesc, &theBoolean, sizeof(BOOL)) == noErr )
-				theInstance = [NSNumber numberWithBool:theBoolean];
+			if (AEGetDescData(aDesc, &theBoolean, sizeof(BOOL)) == noErr)
+				theInstance = @(theBoolean);
 			break;
 		}
-		case typeSInt16:				//	16-bit integer
+		case typeSInt16:					//	16-bit integer
 		{
 			short int		theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(short int)) == noErr )
-				theInstance = [NSNumber numberWithShort: theInteger];
+			if (AEGetDescData(aDesc, &theInteger, sizeof(short int)) == noErr)
+				theInstance = @(theInteger);
 			break;
 		}
-		case typeSInt32:				//	32-bit integer
+		case typeSInt32:					//	32-bit integer
 		{
 			int		theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(int)) == noErr )
-				theInstance = [NSNumber numberWithInt: theInteger];
+			if (AEGetDescData(aDesc, &theInteger, sizeof(int)) == noErr)
+				theInstance = @(theInteger);
 			break;
 		}
-		case typeIEEE32BitFloatingPoint:						//	SANE single
+		case typeIEEE32BitFloatingPoint:	//	SANE single
 		{
 			float		theFloat;
 			if( AEGetDescData(aDesc, &theFloat, sizeof(float)) == noErr )
-				theInstance = [NSNumber numberWithFloat: theFloat];
+				theInstance = @(theFloat);
 			break;
 		}
-		case typeIEEE64BitFloatingPoint:						//	SANE double
+		case typeIEEE64BitFloatingPoint:	//	SANE double
 		{
 			double theFloat;
-			if( AEGetDescData(aDesc, &theFloat, sizeof(double)) == noErr )
-				theInstance = [NSNumber numberWithDouble: theFloat];
+			if (AEGetDescData(aDesc, &theFloat, sizeof(double)) == noErr)
+				theInstance = @(theFloat);
 			break;
 		}
 		case typeUInt32:					//	unsigned 32-bit integer
 		{
 			unsigned int		theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned int)) == noErr )
-				theInstance = [NSNumber numberWithUnsignedInt: theInteger];
+			if (AEGetDescData(aDesc, &theInteger, sizeof(unsigned int)) == noErr)
+				theInstance = @(theInteger);
 			break;
 		}
 		case typeUInt16:					//	unsigned 16-bit integer
 		{
 			unsigned short		theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned short)) == noErr )
+			if (AEGetDescData(aDesc, &theInteger, sizeof(unsigned short)) == noErr)
 				theInstance = @(theInteger);
 			break;
 		}
 		case typeUInt64:					//	unsigned 64-bit integer
 		{
 			unsigned long long theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(unsigned long long)) == noErr )
+			if (AEGetDescData(aDesc, &theInteger, sizeof(unsigned long long)) == noErr)
 				theInstance = @(theInteger);
 			break;
 		}
 		case typeSInt64:					//	signed 64-bit integer
 		{
 			long long		theInteger;
-			if( AEGetDescData(aDesc, &theInteger, sizeof(long long)) == noErr )
+			if (AEGetDescData(aDesc, &theInteger, sizeof(long long)) == noErr)
 				theInstance = @(theInteger);
 			break;
 		}
@@ -1136,8 +1082,7 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 	
 	theSize = (unsigned int)AEGetDescDataSize(aDesc);
 
-	switch(aDesc->descriptorType)
-	{
+	switch(aDesc->descriptorType) {
 		case typeAlias:							//	alias record
 		{
 			NSMutableData *mutDat = [NSMutableData dataWithLength:theSize];
@@ -1187,6 +1132,6 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 	NSData		* theData;
 
 	theData = [self data];
-	return AECreateDesc( [self descriptorType], [theData bytes], [theData length], aDescPtr ) == noErr;
+	return AECreateDesc([self descriptorType], [theData bytes], [theData length], aDescPtr) == noErr;
 }
 @end

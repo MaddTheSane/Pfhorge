@@ -38,8 +38,9 @@
 - (instancetype)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent;
 - (instancetype)initWithData:(NSData *)aDesc;
 
-- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent;
-- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent;
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent NS_DESIGNATED_INITIALIZER;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 - (NSData *)data;
 
@@ -62,14 +63,14 @@
 - (void)setDefaultTargetAsCreator:(OSType)aCreator;
 - (void)setFinderAsDefaultTarget;
 
-@property (retain) id appleEventSendTarget;
-@property (retain) id activateTarget;
+@property (retain) id<NDAppleScriptObjectSendEvent> appleEventSendTarget;
+@property (retain) id<NDAppleScriptObjectActive> activateTarget;
 
 - (NSAppleEventDescriptor *)targetNoProcess;
 
 - (BOOL)writeToURL:(NSURL *)aURL;
-- (BOOL)writeToURL:(NSURL *)aURL Id:(short)anID;
+- (BOOL)writeToURL:(NSURL *)aURL Id:(ResID)anID;
 - (BOOL)writeToFile:(NSString *)aPath;
-- (BOOL)writeToFile:(NSString *)aPath Id:(short)anID;
+- (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID;
 
 @end
