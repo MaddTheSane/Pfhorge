@@ -107,17 +107,14 @@
 
 - (void)loadAndSetVisualModePrefUI
 {
-    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
+    NSURL *theShapesPath = [preferences URLForKey:VMShapesPath];
     
     [renderModePM selectItemAtIndex:[preferences integerForKey:VMRenderMode]];
     [startPositionPM selectItemAtIndex:[preferences integerForKey:VMStartPosition]];
     
-    if ([theShapesPath length] > 1)
-    {
-        [shapesPathTB setStringValue:theShapesPath];
-    }
-    else
-    {
+    if (theShapesPath) {
+        [shapesPathTB setStringValue:theShapesPath.path];
+    } else {
         [shapesPathTB setStringValue:NSLocalizedString(@"No Shapes Selected", @"No Shapes Selected")];
     }
  
@@ -389,10 +386,10 @@ extern NSString *VMBackwardKey;
     
     if (returnCode == NSOKButton)
     {
-        NSString *path = [panel URL].path;
+        NSURL *path = [panel URL];
         NSLog(@"The Shapes Path Choosen: %@", path);
-        [shapesPathTB setStringValue:path];
-        [preferences setObject:path forKey:VMShapesPath];
+        [shapesPathTB setStringValue:path.path];
+        [preferences setURL:path forKey:VMShapesPath];
     }
     else
     {

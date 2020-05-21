@@ -67,9 +67,9 @@
 
 -(void)loadTextureSet:(int)textureSet
 {
-    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
+    NSURL *theShapesPath = [preferences URLForKey:VMShapesPath];
     
-    if (!theShapesPath || theShapesPath.length == 0) {
+    if (!theShapesPath) {
         NSLog(@"*** No valid shapes file! ***");
         return;
     }
@@ -77,47 +77,44 @@
     switch (textureSet) {
         case _water:
             NSLog(@"*** Loading Water Textures ***");
-            waterTextures = getAllTexturesOfWithError(17, 0, [NSURL fileURLWithPath:theShapesPath], NULL);
+            waterTextures = getAllTexturesOfWithError(17, 0, theShapesPath, NULL);
             break;
             
         case _lava:
             NSLog(@"*** Loading Lava Textures ***");
-            lavaTextures = getAllTexturesOfWithError(18, 0, [NSURL fileURLWithPath:theShapesPath], NULL);
+            lavaTextures = getAllTexturesOfWithError(18, 0, theShapesPath, NULL);
             break;
             
         case _sewage:
             NSLog(@"*** Loading Sewage Textures ***");
-            sewageTextures = getAllTexturesOfWithError(19, 0, [NSURL fileURLWithPath:theShapesPath], NULL);
+            sewageTextures = getAllTexturesOfWithError(19, 0, theShapesPath, NULL);
             break;
             
         case _jjaro:
             NSLog(@"*** Loading Jjaro Textures ***");
-            jjaroTextures = getAllTexturesOfWithError(20, 0, [NSURL fileURLWithPath:theShapesPath], NULL);
+            jjaroTextures = getAllTexturesOfWithError(20, 0, theShapesPath, NULL);
             break;
             
         case _pfhor:
             NSLog(@"*** Loading Pfhor Textures ***");
-            pfhorTextures = getAllTexturesOfWithError(21, 0, [NSURL fileURLWithPath:theShapesPath], NULL);
+            pfhorTextures = getAllTexturesOfWithError(21, 0, theShapesPath, NULL);
             break;
         case 99:
-        {
-            NSURL *shapesURL = [NSURL fileURLWithPath:theShapesPath];
             NSLog(@"*** Loading Landscapes 1 ***");
-            landscape1 = getAllTexturesOfWithError(27, 0, shapesURL, NULL);
+            landscape1 = getAllTexturesOfWithError(27, 0, theShapesPath, NULL);
             NSLog(@"*** Loading Landscapes 2 ***");
-            landscape2 = getAllTexturesOfWithError(28, 0, shapesURL, NULL);
+            landscape2 = getAllTexturesOfWithError(28, 0, theShapesPath, NULL);
             NSLog(@"*** Loading Landscapes 3 ***");
-            landscape3 = getAllTexturesOfWithError(29, 0, shapesURL, NULL);
+            landscape3 = getAllTexturesOfWithError(29, 0, theShapesPath, NULL);
             NSLog(@"*** Loading Landscapes 4 ***");
-            landscape4 = getAllTexturesOfWithError(30, 0, shapesURL, NULL);
-        }
+            landscape4 = getAllTexturesOfWithError(30, 0, theShapesPath, NULL);
             break;
     }
 }
 
 -(void)loadTheTextures
 {
-    NSString *theShapesPath = [preferences stringForKey:VMShapesPath];
+    NSURL *theShapesPath = [preferences URLForKey:VMShapesPath];
     
     // (Collection, Color Table, Shapes Path)
     
@@ -133,102 +130,30 @@
     landscape3 = nil;
     landscape4 = nil;
     
-    if (theShapesPath == nil || [theShapesPath length] <= 0)
+    if (theShapesPath == nil)
         return;
-    
-    NSURL *shapesURL = [NSURL fileURLWithPath:theShapesPath];
     
     NSLog(@"*** Loading Water Textures ***");
-    waterTextures = getAllTexturesOfWithError(17, 0, shapesURL, NULL);
+    waterTextures = getAllTexturesOfWithError(17, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Lava Textures ***");
-    lavaTextures = getAllTexturesOfWithError(18, 0, shapesURL, NULL);
+    lavaTextures = getAllTexturesOfWithError(18, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Sewage Textures ***");
-    sewageTextures = getAllTexturesOfWithError(19, 0, shapesURL, NULL);
+    sewageTextures = getAllTexturesOfWithError(19, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Jjaro Textures ***");
-    jjaroTextures = getAllTexturesOfWithError(20, 0, shapesURL, NULL);
+    jjaroTextures = getAllTexturesOfWithError(20, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Pfhor Textures ***");
-    pfhorTextures = getAllTexturesOfWithError(21, 0, shapesURL, NULL);
+    pfhorTextures = getAllTexturesOfWithError(21, 0, theShapesPath, NULL);
     
     NSLog(@"*** Loading Landscapes 1 ***");
-    landscape1 = getAllTexturesOfWithError(27, 0, shapesURL, NULL);
+    landscape1 = getAllTexturesOfWithError(27, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Landscapes 2 ***");
-    landscape2 = getAllTexturesOfWithError(28, 0, shapesURL, NULL);
+    landscape2 = getAllTexturesOfWithError(28, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Landscapes 3 ***");
-    landscape3 = getAllTexturesOfWithError(29, 0, shapesURL, NULL);
+    landscape3 = getAllTexturesOfWithError(29, 0, theShapesPath, NULL);
     NSLog(@"*** Loading Landscapes 4 ***");
-    landscape4 = getAllTexturesOfWithError(30, 0, shapesURL, NULL);
+    landscape4 = getAllTexturesOfWithError(30, 0, theShapesPath, NULL);
     
     NSLog(@"*** Done Loading Textures ***");
-    ///[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:theImage forKey:@19]];
-    
-    
-    /*
-
-    NSFileWrapper *collectionsDir = [[NSFileWrapper alloc] initWithPath:@"~/Documents/Texture Enhancement Pack s/Textures/Marathon Infinity Textures/"];
-    NSString *theWaterTextureMainDir = @"/Users/jagildra/Documents/Texture Enhancement Pack s/Textures/Marathon Infinity Textures/17 Water/";
-    
-    NSFileWrapper *water;
-    //, *sewage, *lava, *pfhor, *jjaro;
-        
-    NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:theWaterTextureMainDir];
-    NSString *pname;
-    
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSArray *subpaths;
-    BOOL isDir;
-    NSString *fileName;
-    NSEnumerator *numer;
-    
-    if ([manager fileExistsAtPath:theWaterTextureMainDir isDirectory:&isDir] && isDir)
-    {
-        NSLog(@"Water Texture Directory Found!");
-        subpaths = [manager subpathsAtPath:theWaterTextureMainDir];
-        numer = [subpaths objectEnumerator];
-        while (fileName = [numer nextObject])
-        {
-            NSImage *texture = [[NSImage alloc] initWithContentsOfFile:[theWaterTextureMainDir stringByAppendingString:fileName]];
-            //NSImage *texture = [[NSImage alloc] initWithSize:NSMakeSize(20.0, 20.0)];
-            NSNumber *textureNumber = [NSNumber numberWithInt:[[fileName stringByDeletingPathExtension] intValue]];
-            [texture setSize:NSMakeSize(60.0, 60.0)];
-            [waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject:texture forKey:textureNumber]];
-            NSLog(@"Water texture %@ loaded!", fileName);
-        }
-    }
-    else
-    {
-        NSLog(@"No Water Textures Found...");
-    }
-    
-    return;
-    
-    while (pname = [direnum nextObject]) {
-        if ([[pname pathExtension] isEqualToString:@"rtfd"]) {            
-            if ([[[direnum fileAttributes] fileType] isEqualToString:NSFileTypeDirectory])
-            {
-                [direnum skipDescendents];
-            }
-        }
-        else {
-            
-        }
-    }
-    
-    water = [[collectionsDir fileWrappers] objectForKey:@"19 Water"];
-    
-    if (water == nil)
-        return;
-    if ([water isDirectory])
-    {
-        NSDictionary *theFiles = [water fileWrappers];
-        NSEnumerator *enumerator = [theFiles objectEnumerator];
-        id value;
-                
-        while ((value = [enumerator nextObject]))
-        {
-            ///NSImage *texture = [[NSImage alloc] initWithContentsOfFile:@"~/Documents/Texture Enhancement Pack s/Textures/Marathon Infinity Textures/17 Water/00.jpg"];
-            //[waterTextures addEntriesFromDictionary:[NSDictionary dictionaryWithObject: forKey:@"The Key Value"]];
-        }    
-    }*/
 }
 
 // *********************** Get Methods ***********************

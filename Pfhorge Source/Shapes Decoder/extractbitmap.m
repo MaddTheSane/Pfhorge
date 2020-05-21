@@ -105,6 +105,12 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	
 	int        err = 0;
 	FILE    *f/*, *bmp*/;
+	if (!theShapesPath) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:paramErr userInfo:nil];
+		}
+		return nil;
+	}
 	if (!theShapesPath.isFileURL) {
 		if (outError) {
 			*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadUnsupportedSchemeError userInfo:@{NSURLErrorKey: theShapesPath}];
@@ -166,6 +172,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	
 	theTextures = [[NSMutableArray alloc] initWithCapacity:MAX(30, theBitmapCount)];
 	
+	@autoreleasepool {
 	for (i = 0; i < theBitmapCount; i++) {
 		NSImage *theImage = [[NSImage alloc] initWithSize:NSMakeSize(32.0, 32.0)];
 		//[theImage setScalesWhenResized:YES];
@@ -183,6 +190,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 		[theImage addRepresentation:rep];
 		[theTextures addObject:theImage];
 		[theImage setSize:NSMakeSize(32, 32)];
+	}
 	}
 	
 	// free everything

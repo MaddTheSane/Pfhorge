@@ -79,7 +79,7 @@
     //[self saveChanges];
     
     [OpenGLViewOGLV doMapRenderingLoopWithMapData:levelData
-                    shapesLocation:[preferences stringForKey:VMShapesPath]];
+                    shapesLocation:[preferences URLForKey:VMShapesPath].path];
     
     //[[self window] performClose:self];
 }
