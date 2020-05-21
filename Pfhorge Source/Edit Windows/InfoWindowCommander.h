@@ -46,11 +46,11 @@
 
 - (void)setupTitlesAndNames;
 
-- (id)initWithLevel:(LELevelData *)theLevel
-                    withMapDocument:(LEMap *)theDocument
-                    withNibFile:(NSString *)nibFileName
-                    withEditingObj:(id)theObj;
+- (instancetype)initWithLevel:(LELevelData *)theLevel
+              withMapDocument:(LEMap *)theDocument
+                  withNibFile:(NSString *)nibFileName
+               withEditingObj:(id)theObj;
 
 - (NSInteger)tagIndexNumberFromShort:(short)tagNumber;
-- (id)getObjectBeingEdited;
+- (__kindof LEMapStuffParent*)objectBeingEdited;
 @end

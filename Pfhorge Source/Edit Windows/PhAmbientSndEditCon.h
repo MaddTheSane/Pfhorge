@@ -35,17 +35,17 @@
     IBOutlet NSPopUpButton *typeMenu;
     IBOutlet NSTextField *volumeTB;
     
-    PhAmbientSound	*curSound;
+    __unsafe_unretained PhAmbientSound	*curSound;
 }
 
-- (id)initWithSound:(id)theSound
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc;
+- (instancetype)initWithSound:(PhAmbientSound*)theSound
+                    withLevel:(LELevelData *)theLevel
+              withMapDocument:(LEMap *)theMapDoc;
 
 - (void)registerNotifcations;
 
--(void)refreshInterfaceFromData;
--(void)saveChanges;
+- (void)refreshInterfaceFromData;
+- (void)saveChanges;
 
 //- (IBAction)templateAction:(id)sender;
 //- (IBAction)copyFromMenuAction:(id)sender;

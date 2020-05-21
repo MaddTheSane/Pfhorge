@@ -291,7 +291,7 @@
     {
         if (![theWinController isKindOfClass:[TerminalEditorController class]] && ![theWinController isKindOfClass:[PhItemPlacementEditorController class]])
         {
-            if ([theWinController getObjectBeingEdited] == objectToEdit)
+            if ([theWinController objectBeingEdited] == objectToEdit)
             {
                 [theWinController showWindow:self];
                 windowAlreadyOpen = YES;

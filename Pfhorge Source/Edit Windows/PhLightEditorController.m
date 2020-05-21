@@ -37,9 +37,9 @@
 #pragma mark -
 #pragma mark ********* Overridden Methods *********
 
-- (id)initWithLight:(id)theLight
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc
+- (id)initWithLight:(PhLight*)theLight
+          withLevel:(LELevelData *)theLevel
+    withMapDocument:(LEMap *)theMapDoc
 {
     NSString *theNibFileName = @"LightEditor";
     
@@ -74,8 +74,7 @@
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (mapLevel == levelDataObjectDeallocating)
-    {
+    if (mapLevel == levelDataObjectDeallocating) {
         [mapLevel removeMenu:tagComboMenu thatsA:_tagMenu];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
@@ -156,19 +155,10 @@
 #pragma mark ********* Updater Methods  *********
 - (void)setupTitlesAndNames
 {
-    NSMutableString *infoString, *lightNameString;
-    infoString = [[NSMutableString alloc] initWithString:@"Light#"];
-        [infoString appendString:[[NSNumber numberWithShort:[curLight index]] stringValue]];
-        [infoString appendString:@" - Name: "];
-        [infoString appendString:[curLight phName]];
-        [infoIT setStringValue:infoString];
-        [infoString release];
+    NSString *infoString = [NSString stringWithFormat:@"Light#%d - Name: %@", [curLight index], [curLight phName]];
+    [infoIT setStringValue:infoString];
     
-    lightNameString = [[NSMutableString alloc] initWithString:@"Current Name: "];
-        [lightNameString appendString:[curLight phName]];
-        [nameIT setStringValue:lightNameString];
-        [lightNameString release];
-    return;
+    [nameIT setStringValue:[@"Current Name: " stringByAppendingString:[curLight phName]]];
 }
 
 -(void)setupTagMenu // WHen user changes the name of a light, or tag, etc, a notificaiton will call this...

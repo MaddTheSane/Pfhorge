@@ -72,8 +72,7 @@
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (theLevel == levelDataObjectDeallocating)
-    {
+    if (theLevel == levelDataObjectDeallocating) {
         [theLevel removeMenu:premutationMenu];
         [theMap removeLevelInfoWinCon:self];
         theLevel = nil;
@@ -283,7 +282,7 @@
 }
 
 #pragma mark -
-#pragma mark ********* Outline View Updater And Action Methods *********
+#pragma mark Outline View Updater And Action Methods
 
 - (IBAction)addANewSectionAction:(id)sender
 {
@@ -604,7 +603,7 @@
     IBOutlet id pictureTextView;
     IBOutlet id noTextMsgTextView;
 */
-- (void)setTextView:(id)theTextView withAttributedString:(NSAttributedString *)theString
+- (void)setTextView:(NSTextView*)theTextView withAttributedString:(NSAttributedString *)theString
 {
     [[theTextView textStorage] setAttributedString:theString];
     lastTextViewUsed = theTextView;
@@ -643,8 +642,7 @@
     
     
     
-    switch (theCellTagClickedOn)
-    {
+    switch (theCellTagClickedOn) {
         case 0:
             theTextColor = [NSColor greenColor];
             break;
@@ -725,74 +723,75 @@
     NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-            NSAttributedString *attrStr = theTextAtriString; 
-            NSRange limitRange;
-            NSRange effectiveRange;
-            id attributeValue; 
-            NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
-            NSFont *boldFontItalic = [[NSFontManager sharedFontManager]
-                                    convertFont:[NSFont fontWithName:@"Courier-Bold" size:12.0]
-                                    toHaveTrait:NSItalicFontMask];
-            NSFont *fontToUse;
+    NSAttributedString *attrStr = theTextAtriString;
+    NSRange limitRange;
+    NSRange effectiveRange;
+    id attributeValue;
+    NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
+    NSFont *boldFontItalic = [[NSFontManager sharedFontManager]
+                              convertFont:boldFont
+                              toHaveTrait:NSItalicFontMask];
+    NSFont *fontToUse;
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]])
         return;
     
-    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
+    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-            limitRange = [[self getTheCurrentTextView] selectedRange];
-                            //NSMakeRange(0, [attrStr length]);
-            
-            while (limitRange.length > 0)
-            {
-                attributeValue = [attrStr attribute:PhTerminalItalicAttributeName
-                atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-                inRange:limitRange];
-                
-                // familyName italicAngle
-                
-                // NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]); 
-                
-                if ([attributeValue isEqualTo:@"YES"])
-                    fontToUse = boldFontItalic;
-                else
-                    fontToUse = boldFont;
-                
-                [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                        
-                        @"YES",
-                        PhTerminalBoldAttributeName,
-                        
-                        fontToUse,
-                        NSFontAttributeName, nil]
-                    range:effectiveRange];
-            
-                limitRange = NSMakeRange(NSMaxRange(effectiveRange),
-                NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
-            }
+    limitRange = [[self getTheCurrentTextView] selectedRange];
+    //NSMakeRange(0, [attrStr length]);
+    
+    while (limitRange.length > 0)
+    {
+        attributeValue = [attrStr attribute:PhTerminalItalicAttributeName
+                                    atIndex:limitRange.location longestEffectiveRange:&effectiveRange
+                                    inRange:limitRange];
         
+        // familyName italicAngle
         
+        // NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]);
+        
+        if ([attributeValue isEqualTo:@"YES"])
+            fontToUse = boldFontItalic;
+        else
+            fontToUse = boldFont;
+        
+        [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          
+                                          @"YES",
+                                          PhTerminalBoldAttributeName,
+                                          
+                                          fontToUse,
+                                          NSFontAttributeName, nil]
+                                   range:effectiveRange];
+        
+        limitRange = NSMakeRange(NSMaxRange(effectiveRange),
+                                 NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
+    }
+    
+    
     [theSelectedObj setText:theTextAtriString];
     [self updateViewToTerminalSection:theSelectedObj];
 }
 
 - (IBAction)applyUnderlineStyleAction:(id)sender
 {
-    NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
+    NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-    if (![theSelectedObj isKindOfClass:[TerminalSection class]])
+    if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
+        [theTextAtriString release];
         return;
+    }
     
-    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
+    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-    [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            @(NSUnderlineStyleSingle),
-            NSUnderlineStyleAttributeName, nil]
-        range:[[self getTheCurrentTextView] selectedRange]];
-        
+    [theTextAtriString addAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}
+                               range:[[self getTheCurrentTextView] selectedRange]];
+    
     [theSelectedObj setText:theTextAtriString];
     [self updateViewToTerminalSection:theSelectedObj];
+    [theTextAtriString release];
 }
 
 - (IBAction)applyItalicStyleAction:(id)sender
@@ -800,54 +799,54 @@
     NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-            NSAttributedString *attrStr = theTextAtriString; 
-            NSRange limitRange;
-            NSRange effectiveRange;
-            id attributeValue;
-            NSFont *boldItalicFont = [[NSFontManager sharedFontManager]
-                                    convertFont:[NSFont fontWithName:@"Courier-Bold" size:12.0]
-                                    toHaveTrait:NSItalicFontMask];
-            NSFont *regItalicFont = [[NSFontManager sharedFontManager]
-                                    convertFont:[NSFont fontWithName:@"Courier" size:12.0]
-                                    toHaveTrait:NSItalicFontMask];
-            NSFont *fontToUse;
+    NSAttributedString *attrStr = theTextAtriString;
+    NSRange limitRange;
+    NSRange effectiveRange;
+    id attributeValue;
+    NSFont *boldItalicFont = [[NSFontManager sharedFontManager]
+                              convertFont:[NSFont fontWithName:@"Courier-Bold" size:12.0]
+                              toHaveTrait:NSItalicFontMask];
+    NSFont *regItalicFont = [[NSFontManager sharedFontManager]
+                             convertFont:[NSFont fontWithName:@"Courier" size:12.0]
+                             toHaveTrait:NSItalicFontMask];
+    NSFont *fontToUse;
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]])
         return;
     
-    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
+    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-            limitRange = [[self getTheCurrentTextView] selectedRange];
-                            //NSMakeRange(0, [attrStr length]);
-            
-            while (limitRange.length > 0)
-            {
-                attributeValue = [attrStr attribute:NSFontAttributeName
-                atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-                inRange:limitRange];
-                
-                // familyName italicAngle
-                
-                NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]); 
-                
-                if ([[attributeValue fontName] isEqualToString:@"Courier-Bold"])
-                    fontToUse = boldItalicFont;
-                else
-                    fontToUse = regItalicFont;
-                
-                [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                fontToUse,
-                NSFontAttributeName,
-                
-                @"YES",
-                PhTerminalItalicAttributeName, nil]
-                
-                range:effectiveRange];
-            
-                limitRange = NSMakeRange(NSMaxRange(effectiveRange),
-                NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
-            }
+    limitRange = [[self getTheCurrentTextView] selectedRange];
+    //NSMakeRange(0, [attrStr length]);
+    
+    while (limitRange.length > 0)
+    {
+        attributeValue = [attrStr attribute:NSFontAttributeName
+                                    atIndex:limitRange.location longestEffectiveRange:&effectiveRange
+                                    inRange:limitRange];
         
+        // familyName italicAngle
+        
+        NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]);
+        
+        if ([[attributeValue fontName] isEqualToString:@"Courier-Bold"])
+            fontToUse = boldItalicFont;
+        else
+            fontToUse = regItalicFont;
+        
+        [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                          fontToUse,
+                                          NSFontAttributeName,
+                                          
+                                          @"YES",
+                                          PhTerminalItalicAttributeName, nil]
+         
+                                   range:effectiveRange];
+        
+        limitRange = NSMakeRange(NSMaxRange(effectiveRange),
+                                 NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
+    }
+    
     [theSelectedObj setText:theTextAtriString];
     [self updateViewToTerminalSection:theSelectedObj];
 }
@@ -876,8 +875,7 @@
         return;
 	}
     
-    switch ([sender indexOfSelectedItem])
-    {
+    switch ([sender indexOfSelectedItem]) {
         case 0:
             theTextColor = [NSColor greenColor];
             break;
@@ -937,8 +935,7 @@
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-    if ([theSelectedObj isKindOfClass:[TerminalSection class]])
-    {
+    if ([theSelectedObj isKindOfClass:[TerminalSection class]]) {
         [(TerminalSection *)theSelectedObj setType:[sender indexOfSelectedItem]];
         [theTeriminalTableView reloadData];
         [self selectionChanged:nil];
@@ -948,8 +945,7 @@
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-    if ([theSelectedObj isKindOfClass:[TerminalSection class]])
-    {
+    if ([theSelectedObj isKindOfClass:[TerminalSection class]]) {
         [(TerminalSection *)theSelectedObj setPermutation:[sender intValue]];
         [self selectionChanged:nil];
     }
@@ -958,23 +954,18 @@
 - (IBAction)changedIndexMenuAction:(id)sender
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
-    int theType = PhTerminalSectionTypeNone;
+    PhTerminalSectionType theType = PhTerminalSectionTypeNone;
     
-    if ([theSelectedObj isKindOfClass:[TerminalSection class]])
-    {
+    if ([theSelectedObj isKindOfClass:[TerminalSection class]]) {
         theType = [(TerminalSection *)theSelectedObj type];
-        if (theType == PhTerminalSectionTypeLevelTeleport)
-        {
+        if (theType == PhTerminalSectionTypeLevelTeleport) {
             [theSelectedObj setPermutation:[sender indexOfSelectedItem]];
             /// [theSelectedObj setPermutationObject:nil];
-        }
-        else if (theType == PhTerminalSectionTypeInMapTeleport)
-        {
+        } else if (theType == PhTerminalSectionTypeInMapTeleport) {
             [theSelectedObj setPermutationObject:
-                            [[theLevel namedPolyObjects]
-                                objectAtIndex:[sender indexOfSelectedItem]]];
+             [[theLevel namedPolyObjects]
+              objectAtIndex:[sender indexOfSelectedItem]]];
         }
-        
     }
 }
 

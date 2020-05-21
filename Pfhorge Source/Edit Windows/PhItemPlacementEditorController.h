@@ -40,8 +40,8 @@
     
     IBOutlet NSButton *randomCB;
     
-    LEMap *theMap;
-    LELevelData *theLevel;
+    __unsafe_unretained LEMap *theMap;
+    __unsafe_unretained LELevelData *theLevel;
     NSMutableArray *theItemPlacmentObjects;
     
     NSArray<NSString*> *theMonsterNames;
@@ -51,7 +51,7 @@
     NSInteger monstersStartAt;
 }
 
-- (id)initWithMapDocument:(LEMap *)theDocument;
+- (instancetype)initWithMapDocument:(LEMap *)theDocument;
 
 // *********************** Utilites ***********************
 
@@ -74,6 +74,6 @@
 - (IBAction)apperenceSliderChanged:(id)sender;
 - (IBAction)randomCheckboxDidChange:(id)sender;
 
--(void)setupTheObjectNames;
+- (void)setupTheObjectNames;
 
 @end

@@ -38,9 +38,9 @@
 #pragma mark -
 #pragma mark ********* Overridden Methods *********
 
-- (id)initWithSound:(id)theSound
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc
+- (id)initWithSound:(PhRandomSound*)theSound
+          withLevel:(LELevelData *)theLevel
+    withMapDocument:(LEMap *)theMapDoc
 {
     if (theSound == nil || theLevel == nil || theMapDoc == nil)
         return nil;
@@ -98,16 +98,10 @@
 #pragma mark ********* Updater Methods  *********
 - (void)setupTitlesAndNames
 {
-    NSMutableString *infoString;
+    NSString *infoString;
     // *** Set the name, etc. ***
-    infoString = [[NSMutableString alloc] initWithString:@"RandomSound#"];
-        [infoString appendString:[[NSNumber numberWithShort:[curRandomSound index]] stringValue]];
-        [infoString appendString:@" - Name: "];
-        [infoString appendString:[curRandomSound phName]];
-        [infoIT setStringValue:infoString];
-        [infoString release];
-    
-    return;
+    infoString = [NSString stringWithFormat:@"RandomSound#%d - Name: %@", [curRandomSound index], [curRandomSound phName]];
+    [infoIT setStringValue:infoString];
 }
 
 -(void)setupTagMenu

@@ -64,7 +64,7 @@
     
     NSMutableArray *theTerminals;
     
-    id theLastObjectEdited;
+    __kindof PhAbstractName *theLastObjectEdited;
     TerminalSection *draggedTerminalSection;
     
     Terminal *poposedTerminalToDelete;
@@ -77,7 +77,7 @@
 
 - (void)updateViewToTerminalSection:(TerminalSection *)terminalObject;
 - (void)setTextView:(id)theTextView withAttributedString:(NSAttributedString *)theString;
--(NSTextView *)getTheCurrentTextView;
+- (NSTextView *)getTheCurrentTextView;
 
 - (IBAction)addANewSectionAction:(id)sender;
 - (IBAction)addANewTerminalAction:(id)sender;

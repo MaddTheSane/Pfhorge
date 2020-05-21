@@ -97,9 +97,9 @@
     __unsafe_unretained PhLight *curLight;
 }
 
-- (id)initWithLight:(PhLight*)theLight
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc;
+- (instancetype)initWithLight:(PhLight*)theLight
+                    withLevel:(LELevelData *)theLevel
+              withMapDocument:(LEMap *)theMapDoc;
 
 - (void)registerNotifcations;
 

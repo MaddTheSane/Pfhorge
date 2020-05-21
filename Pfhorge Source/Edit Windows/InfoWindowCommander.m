@@ -144,7 +144,7 @@
     //return -1;
 }
 
-- (id)getObjectBeingEdited
+- (id)objectBeingEdited
 {
     return theObjBeingEdited;
 }
