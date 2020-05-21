@@ -7,9 +7,9 @@
     {
       "idiom" : "universal",
       "color" : {
-        "color-space" : "display-p3",
+        "color-space" : "srgb",
         "components" : {
-          "red" : "0.816",
+          "red" : "0.815",
           "alpha" : "1.000",
           "blue" : "1.000",
           "green" : "0.821"
@@ -25,9 +25,9 @@
         }
       ],
       "color" : {
-        "color-space" : "display-p3",
+        "color-space" : "srgb",
         "components" : {
-          "red" : "0.816",
+          "red" : "0.815",
           "alpha" : "1.000",
           "blue" : "1.000",
           "green" : "0.821"
