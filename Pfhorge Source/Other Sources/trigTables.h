@@ -30,11 +30,11 @@
  * during program launch.
  */ 
 
-/** Sine, integer degrees 0-360 **/
+/** Sine, integer degrees 0-360 */
 double PhSin(int a);
 
-/** Cosine, integer degrees 0-360 **/
+/** Cosine, integer degrees 0-360 */
 double PhCos(int a);
 
-/** Tangent, integer degrees 0-360 **/
+/** Tangent, integer degrees 0-360 */
 double PhTan(int a);

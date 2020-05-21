@@ -28,10 +28,10 @@
 
 - (byte)getByte;
 - (short)getShort;
-- (long)getLong;
+- (long long)getLong;
 - (int)getInt;
 - (unsigned short)getUnsignedShort;
-- (unsigned long)getUnsignedLong;
+- (unsigned long long)getUnsignedLong;
 - (unsigned int)getUnsignedInt;
 
 @property (readonly) NSInteger currentPosition;

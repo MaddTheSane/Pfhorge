@@ -40,7 +40,7 @@
 
 - (BOOL)skipLengthLong
 {
-    long theLength = [self getInt];
+    int theLength = [self getInt];
     
     [self addP:theLength];
     
@@ -83,9 +83,9 @@
     return value;
 }
 
-- (long)getLong
+- (long long)getLong
 {
-    long value;
+    long long value;
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
 	value = CFSwapInt64BigToHost(value);
@@ -113,9 +113,9 @@
     return value;
 }
 
-- (unsigned long)getUnsignedLong
+- (unsigned long long)getUnsignedLong
 {
-    unsigned long value;
+    unsigned long long value;
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
 	value = CFSwapInt64HostToBig(value);
