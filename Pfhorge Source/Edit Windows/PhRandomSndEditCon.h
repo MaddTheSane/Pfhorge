@@ -33,15 +33,15 @@
 {
     IBOutlet NSTextField *infoIT;
     IBOutlet NSPopUpButton *typeMenu;
-    IBOutlet NSFormCell *directionTB;
-    IBOutlet NSFormCell *directionDeltaTB;
-    IBOutlet NSFormCell *volumeTB;
-    IBOutlet NSFormCell *volumeDeltaTB;
-    IBOutlet NSFormCell *periodTB;
-    IBOutlet NSFormCell *periodDeltaTB;
-    IBOutlet NSFormCell *pitchTB;
-    IBOutlet NSFormCell *pitchDeltaTB;
-    IBOutlet NSFormCell *phaseTB;
+    IBOutlet NSTextField *directionTB;
+    IBOutlet NSTextField *directionDeltaTB;
+    IBOutlet NSTextField *volumeTB;
+    IBOutlet NSTextField *volumeDeltaTB;
+    IBOutlet NSTextField *periodTB;
+    IBOutlet NSTextField *periodDeltaTB;
+    IBOutlet NSTextField *pitchTB;
+    IBOutlet NSTextField *pitchDeltaTB;
+    IBOutlet NSTextField *phaseTB;
     IBOutlet NSButton *nonDirectionalCB;
     
     PhRandomSound	*curRandomSound;
