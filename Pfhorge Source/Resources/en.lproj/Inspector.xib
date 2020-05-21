@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <tabViewItems>
                             <tabViewItem label="Line" identifier="1" id="677">
-                                <view key="view" ambiguous="YES" id="678">
+                                <view key="view" id="678">
                                     <rect key="frame" x="10" y="7" width="299" height="221"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -746,7 +746,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="N/A" identifier="" id="680">
-                                <view key="view" id="681">
+                                <view key="view" ambiguous="YES" id="681">
                                     <rect key="frame" x="10" y="7" width="299" height="221"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1022,7 +1022,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="637">
-                                            <rect key="frame" x="30" y="34" width="153" height="27"/>
+                                            <rect key="frame" x="27" y="34" width="153" height="27"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Avaliable" id="2829">
                                                 <font key="font" metaFont="system" size="18"/>
@@ -1057,7 +1057,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Line" identifier="1" id="652">
-                                <view key="view" ambiguous="YES" id="653">
+                                <view key="view" id="653">
                                     <rect key="frame" x="10" y="7" width="206" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1238,7 +1238,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1257">
-                                            <rect key="frame" x="27" y="97" width="153" height="27"/>
+                                            <rect key="frame" x="27" y="90" width="153" height="27"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Available" id="2836">
                                                 <font key="font" metaFont="system" size="18"/>
@@ -1255,7 +1255,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1258">
-                                            <rect key="frame" x="21" y="102" width="153" height="27"/>
+                                            <rect key="frame" x="26" y="90" width="153" height="27"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Avaliable" id="2837">
                                                 <font key="font" metaFont="system" size="18"/>
@@ -1267,12 +1267,12 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="N/A" identifier="4" id="658">
-                                <view key="view" id="659">
+                                <view key="view" ambiguous="YES" id="659">
                                     <rect key="frame" x="10" y="7" width="206" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1259">
-                                            <rect key="frame" x="21" y="102" width="153" height="27"/>
+                                            <rect key="frame" x="26" y="90" width="153" height="27"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Avaliable" id="2838">
                                                 <font key="font" metaFont="system" size="18"/>
@@ -1307,7 +1307,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Line" identifier="1" id="962">
-                                <view key="view" ambiguous="YES" id="954">
+                                <view key="view" id="954">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1780,7 +1780,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="N/A" identifier="4" id="946">
-                                <view key="view" id="953">
+                                <view key="view" ambiguous="YES" id="953">
                                     <rect key="frame" x="0.0" y="0.0" width="211" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1789,7 +1789,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Available" id="2839">
                                                 <font key="font" metaFont="system" size="18"/>
-                                                <color key="textColor" red="0.81507432460784912" green="0.82350462675094604" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextBackground"/>
                                                 <color key="backgroundColor" red="0.81609225273132324" green="0.82101941108703613" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
@@ -1856,7 +1856,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Available" id="2868">
                                                 <font key="font" metaFont="system" size="18"/>
-                                                <color key="textColor" red="0.81507432460784912" green="0.82350462675094604" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextBackground"/>
                                                 <color key="backgroundColor" red="0.81609225273132324" green="0.82101941108703613" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
@@ -1886,7 +1886,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <tabViewItems>
                             <tabViewItem label="Tab" identifier="1" id="1954">
-                                <view key="view" ambiguous="YES" id="1955">
+                                <view key="view" id="1955">
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="68"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -2029,7 +2029,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Available" id="2879">
                                                 <font key="font" metaFont="system" size="18"/>
-                                                <color key="textColor" red="0.81507402658462524" green="0.8235049843788147" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextBackground"/>
                                                 <color key="backgroundColor" red="0.81609201431274414" green="0.82101899385452271" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
@@ -2037,7 +2037,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Tab" id="2000">
-                                <view key="view" id="2001">
+                                <view key="view" ambiguous="YES" id="2001">
                                     <rect key="frame" x="0.0" y="0.0" width="206" height="68"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -2046,7 +2046,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="Not Available" id="2880">
                                                 <font key="font" metaFont="system" size="18"/>
-                                                <color key="textColor" red="0.81507402658462524" green="0.8235049843788147" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="SpecialTextBackground"/>
                                                 <color key="backgroundColor" red="0.81609201431274414" green="0.82101899385452271" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
@@ -2125,10 +2125,10 @@
     </objects>
     <resources>
         <namedColor name="SpecialTextBackground">
-            <color red="0.81609225269999996" green="0.82101941109999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.81599998474121094" green="0.82099997997283936" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="SpecialTextColor">
-            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.19215473532676697" green="0.12433554977178574" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -731,7 +731,7 @@ Gw
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.19215473532676697" green="0.12433554977178574" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -66,20 +66,18 @@
                         <rect key="frame" x="0.0" y="265" width="442" height="4"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="138">
-                        <rect key="frame" x="3" y="268" width="432" height="15"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                        <rect key="frame" x="3" y="270" width="432" height="13"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Status Bar..." id="1158">
                             <font key="font" metaFont="system" size="10"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="150">
-                        <rect key="frame" x="-3" y="0.0" width="445" height="268"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" ambiguous="YES" id="PZO-6J-6sO">
-                            <rect key="frame" x="1" y="1" width="443" height="266"/>
+                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="150">
+                        <rect key="frame" x="-1" y="-1" width="444" height="271"/>
+                        <clipView key="contentView" id="PZO-6J-6sO">
+                            <rect key="frame" x="0.0" y="0.0" width="444" height="271"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="172" customClass="LEMapDraw">
@@ -97,17 +95,16 @@
                         </clipView>
                         <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1210">
-                            <rect key="frame" x="1" y="251" width="443" height="16"/>
+                            <rect key="frame" x="0.0" y="255" width="444" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1211">
-                            <rect key="frame" x="428" y="1" width="16" height="266"/>
+                            <rect key="frame" x="428" y="0.0" width="16" height="271"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="623">
-                        <rect key="frame" x="214" y="281" width="128" height="22"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="623">
+                        <rect key="frame" x="255" y="281" width="103" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Level Names" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="624" id="1159">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
@@ -123,18 +120,16 @@
                             <action selector="chooseLevelMenu:" target="-2" id="649"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="626">
-                        <rect key="frame" x="171" y="286" width="41" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="626">
+                        <rect key="frame" x="217" y="286" width="35" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Level:" id="1160">
                             <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="628">
-                        <rect key="frame" x="41" y="281" width="128" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="628">
+                        <rect key="frame" x="40" y="281" width="104" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Layer Names" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="630" id="1161">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
@@ -150,18 +145,16 @@
                             <action selector="layerMenuAction:" target="-2" id="656"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="632">
-                        <rect key="frame" x="-3" y="286" width="42" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="632">
+                        <rect key="frame" x="1" y="286" width="36" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Layer:" id="1162">
                             <font key="font" metaFont="message" size="11"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="701">
-                        <rect key="frame" x="344" y="281" width="94" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="701">
+                        <rect key="frame" x="360" y="281" width="78" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Options" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1033" id="1163">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="message" size="11"/>
@@ -201,6 +194,26 @@
                         </popUpButtonCell>
                     </popUpButton>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="150" firstAttribute="top" secondItem="138" secondAttribute="bottom" id="7x0-ji-pvi"/>
+                    <constraint firstAttribute="trailing" secondItem="701" secondAttribute="trailing" constant="7" id="AIA-8q-86e"/>
+                    <constraint firstItem="628" firstAttribute="leading" secondItem="632" secondAttribute="trailing" constant="8" symbolic="YES" id="Chm-5T-T73"/>
+                    <constraint firstAttribute="trailing" secondItem="138" secondAttribute="trailing" constant="9" id="Ia6-eK-ily"/>
+                    <constraint firstItem="701" firstAttribute="leading" secondItem="623" secondAttribute="trailing" constant="8" symbolic="YES" id="JR3-78-dxm"/>
+                    <constraint firstItem="150" firstAttribute="leading" secondItem="32" secondAttribute="leading" constant="-1" id="Kku-eF-U0P"/>
+                    <constraint firstItem="701" firstAttribute="firstBaseline" secondItem="632" secondAttribute="firstBaseline" id="Lzo-xn-Hg8"/>
+                    <constraint firstItem="626" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="628" secondAttribute="trailing" constant="8" symbolic="YES" id="QFv-Ct-3y5"/>
+                    <constraint firstItem="623" firstAttribute="leading" secondItem="626" secondAttribute="trailing" constant="8" symbolic="YES" id="QzP-Hk-HD5"/>
+                    <constraint firstItem="632" firstAttribute="leading" secondItem="32" secondAttribute="leading" constant="3" id="Swb-lU-1ai"/>
+                    <constraint firstItem="628" firstAttribute="firstBaseline" secondItem="632" secondAttribute="firstBaseline" id="WUi-Ck-wxZ"/>
+                    <constraint firstItem="623" firstAttribute="firstBaseline" secondItem="632" secondAttribute="firstBaseline" id="ZGz-om-fXe"/>
+                    <constraint firstItem="701" firstAttribute="top" secondItem="32" secondAttribute="top" constant="2" id="Zht-Oy-Rg1"/>
+                    <constraint firstAttribute="bottom" secondItem="150" secondAttribute="bottom" constant="-1" id="gX7-MK-CPL"/>
+                    <constraint firstAttribute="trailing" secondItem="150" secondAttribute="trailing" constant="-1" id="h0n-9f-AMO"/>
+                    <constraint firstItem="138" firstAttribute="leading" secondItem="32" secondAttribute="leading" constant="5" id="ioD-Cg-xE9"/>
+                    <constraint firstItem="626" firstAttribute="firstBaseline" secondItem="632" secondAttribute="firstBaseline" id="lfD-8u-xuc"/>
+                    <constraint firstItem="138" firstAttribute="top" secondItem="623" secondAttribute="bottom" constant="1" id="v0N-aY-kG2"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="46"/>
@@ -819,19 +832,17 @@ Gw
             <rect key="frame" x="0.0" y="0.0" width="83" height="214"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="715">
-                    <rect key="frame" x="2" y="0.0" width="69" height="14"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                    <rect key="frame" x="2" y="0.0" width="79" height="14"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="??? Listed" id="1186">
                         <font key="font" metaFont="message" size="11"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <scrollView fixedFrame="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="717">
+                <scrollView horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="717">
                     <rect key="frame" x="0.0" y="14" width="83" height="200"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <clipView key="contentView" ambiguous="YES" id="5sj-xK-W2T">
+                    <clipView key="contentView" id="5sj-xK-W2T">
                         <rect key="frame" x="1" y="1" width="81" height="198"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -839,7 +850,7 @@ Gw
                                 <rect key="frame" x="0.0" y="0.0" width="81" height="198"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn width="78" minWidth="38.759998321533203" maxWidth="1000" id="716">
@@ -851,7 +862,7 @@ Gw
                                         <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" id="1207">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
@@ -875,6 +886,15 @@ Gw
                     </scroller>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="715" secondAttribute="trailing" constant="4" id="1Hi-9I-pPU"/>
+                <constraint firstItem="715" firstAttribute="top" secondItem="717" secondAttribute="bottom" id="FWZ-Sw-u2a"/>
+                <constraint firstItem="715" firstAttribute="leading" secondItem="707" secondAttribute="leading" constant="4" id="G6N-Hz-pgo"/>
+                <constraint firstAttribute="bottom" secondItem="715" secondAttribute="bottom" id="KEQ-l8-oRZ"/>
+                <constraint firstAttribute="trailing" secondItem="717" secondAttribute="trailing" id="USZ-zU-7am"/>
+                <constraint firstItem="717" firstAttribute="top" secondItem="707" secondAttribute="top" id="i9x-Yx-F0E"/>
+                <constraint firstItem="717" firstAttribute="leading" secondItem="707" secondAttribute="leading" id="jyg-EG-5ke"/>
+            </constraints>
             <connections>
                 <outlet property="nextKeyView" destination="172" id="1150"/>
             </connections>
@@ -981,7 +1001,7 @@ DQ
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="956">
                             <view key="view" ambiguous="YES" id="952">
-                                <rect key="frame" x="10" y="7" width="113" height="273"/>
+                                <rect key="frame" x="10" y="7" width="117" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
@@ -989,7 +1009,7 @@ DQ
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="982" id="1191">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="message" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                             <menu key="menu" title="OtherViews" id="996">
                                                 <items>
                                                     <menuItem title="1/8" id="986"/>
@@ -1011,17 +1031,17 @@ DQ
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="check" title="Override Prefs..." bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" inset="2" id="1192">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="message" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="useMapManagerCheckboxDrawerAction:" target="-2" id="1012"/>
                                         </connections>
                                     </button>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="994">
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="994">
                                         <rect key="frame" x="7" y="232" width="40" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Grid:" id="1193">
-                                            <font key="font" metaFont="message" size="11"/>
+                                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Grid:" id="1193">
+                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1038,35 +1058,35 @@ DQ
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     <size key="cellSize" width="74" height="18"/>
-                                                    <buttonCell key="prototype" type="check" title="Monster" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="-1" inset="2" id="1204">
+                                                    <buttonCell key="prototype" type="check" title="Monster" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="-1" inset="2" id="1204">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                     </buttonCell>
                                                     <cells>
                                                         <column>
                                                             <buttonCell type="check" title="Monster" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="991">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Player" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="988">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Scenery" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="1004">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="1003">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Item" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="4" inset="2" id="999">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Goal" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="5" inset="2" id="1005">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                         </column>
                                                     </cells>
@@ -1076,33 +1096,34 @@ DQ
                                                 </matrix>
                                             </subviews>
                                         </view>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </box>
                                     <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1000">
-                                        <rect key="frame" x="9" y="155" width="108" height="72"/>
+                                        <rect key="frame" x="9" y="155" width="106" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="cellSize" width="108" height="18"/>
+                                        <size key="cellSize" width="106" height="18"/>
                                         <buttonCell key="prototype" type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="-1" inset="2" id="1202">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="message" size="11"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <cells>
                                             <column>
                                                 <buttonCell type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1001">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="message" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <buttonCell type="check" title="Objects To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="1002">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="message" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <buttonCell type="check" title="Points To Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="990">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="message" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <buttonCell type="check" title="Draw Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="997">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="message" size="11"/>
+                                                    <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                             </column>
                                         </cells>
@@ -1126,31 +1147,31 @@ DQ
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1018">
-                                                    <rect key="frame" x="2" y="5" width="75" height="72"/>
+                                                    <rect key="frame" x="2" y="5" width="70" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="cellSize" width="75" height="18"/>
+                                                    <size key="cellSize" width="70" height="18"/>
                                                     <buttonCell key="prototype" type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="-1" inset="2" id="1203">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="smallSystem"/>
                                                     </buttonCell>
                                                     <cells>
                                                         <column>
                                                             <buttonCell type="check" title="Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1020">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="1" inset="2" id="1022">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Objects" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="2" inset="2" id="1021">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Polygons" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="3" inset="2" id="1019">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="message" size="11"/>
+                                                                <font key="font" metaFont="smallSystem"/>
                                                             </buttonCell>
                                                         </column>
                                                     </cells>
@@ -1211,7 +1232,7 @@ DQ
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="visible" width="51" minWidth="40" maxWidth="1000" id="1075">
@@ -1222,7 +1243,7 @@ DQ
                                             </tableHeaderCell>
                                             <textFieldCell key="dataCell" alignment="left" id="1208">
                                                 <font key="font" metaFont="cellTitle"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
@@ -1236,7 +1257,7 @@ DQ
                                             <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" id="1209">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
@@ -1372,7 +1393,7 @@ DQ
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.18199999630451202" green="0.12700000405311584" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
     </resources>
 </document>

@@ -900,8 +900,8 @@ Hint: Use Upper Right </string>
             <rect key="contentRect" x="91" y="585" width="494" height="139"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="213" height="107"/>
-            <view key="contentView" id="237">
-                <rect key="frame" x="0.0" y="0.0" width="494" height="126"/>
+            <view key="contentView" misplaced="YES" id="237">
+                <rect key="frame" x="0.0" y="0.0" width="494" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="238">

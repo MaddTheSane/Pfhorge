@@ -101,8 +101,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="142" y="342" width="225" height="102"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" misplaced="YES" id="30">
-                <rect key="frame" x="0.0" y="0.0" width="225" height="102"/>
+            <view key="contentView" id="30">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="31">
@@ -144,7 +144,7 @@ DQ
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33">
                         <rect key="frame" x="46" y="13" width="84" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="72" id="lsD-fs-Xeh"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="lsD-fs-Xeh"/>
                         </constraints>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="47">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

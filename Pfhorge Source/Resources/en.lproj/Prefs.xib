@@ -71,7 +71,7 @@
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
                                 <view key="view" id="82">
-                                    <rect key="frame" x="10" y="29" width="373" height="380"/>
+                                    <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box fixedFrame="YES" title="Point Colors" translatesAutoresizingMaskIntoConstraints="NO" id="174">
@@ -395,7 +395,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Grid" identifier="2" id="81">
-                                <view key="view" id="83">
+                                <view key="view" ambiguous="YES" id="83">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -416,7 +416,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="World Units" id="1019">
                                                             <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -435,7 +435,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Center Lines" id="1020">
                                                             <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -444,7 +444,7 @@ DQ
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Subworld Units" id="1021">
                                                             <font key="font" metaFont="message" size="11"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
@@ -982,7 +982,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Visual Mode" id="505">
-                                <view key="view" ambiguous="YES" id="506">
+                                <view key="view" id="506">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1012,7 +1012,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Wireframe Lines:" id="1100">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1026,7 +1026,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Landscapes:" id="1101">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1040,7 +1040,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Invalid Polygons:" id="1102">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1054,7 +1054,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Render Background:" id="1103">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1110,7 +1110,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Walls:" id="1104">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1124,7 +1124,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Floors:" id="1105">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1138,7 +1138,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Ceilings:" id="1106">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1152,7 +1152,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Liquids:" id="1107">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1166,7 +1166,7 @@ DQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Transparent:" id="1108">
                                                                                 <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
@@ -1780,10 +1780,10 @@ DQ
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.19215473532676697" green="0.12433554977178574" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="VisualModeWarningTextColor">
-            <color red="0.00070191343549999997" green="0.32451921700000003" blue="0.079221457240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.0" green="0.33158868551254272" blue="0.012628895230591297" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

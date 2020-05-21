@@ -54,7 +54,7 @@ typedef CF_ENUM(short, collection_definition_types) {
 
 struct collection_definition {
 	short	version;
-	short	type;					/* used for get_shape_descriptors() */
+	collection_definition_types	type;/* used for get_shape_descriptors() */
 	word	flags;					/* [unused.16] */
 	short	color_count,
 			clut_count;

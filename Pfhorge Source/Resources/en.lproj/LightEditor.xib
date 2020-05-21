@@ -1095,30 +1095,27 @@ DQ
             <rect key="contentRect" x="155" y="283" width="367" height="127"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="271">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="127"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="267">
-                        <rect key="frame" x="17" y="90" width="333" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="267">
+                        <rect key="frame" x="18" y="78" width="231" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For This Object:" id="323">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="268">
-                        <rect key="frame" x="20" y="60" width="327" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="268">
+                        <rect key="frame" x="20" y="49" width="327" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="324">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="269">
-                        <rect key="frame" x="272" y="12" width="81" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="269">
+                        <rect key="frame" x="271" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="325">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1130,9 +1127,8 @@ DQ
                             <action selector="renameSheetApplyAction:" target="-2" id="273"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="272">
-                        <rect key="frame" x="187" y="12" width="85" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="272">
+                        <rect key="frame" x="189" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="326">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1145,13 +1141,28 @@ Gw
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="267" firstAttribute="leading" secondItem="271" secondAttribute="leading" constant="20" symbolic="YES" id="0Mj-eB-Jlg"/>
+                    <constraint firstAttribute="bottom" secondItem="269" secondAttribute="bottom" constant="20" symbolic="YES" id="1Dw-t6-bw4"/>
+                    <constraint firstItem="269" firstAttribute="leading" secondItem="272" secondAttribute="trailing" constant="12" symbolic="YES" id="5pf-Oh-uIv"/>
+                    <constraint firstItem="268" firstAttribute="top" secondItem="267" secondAttribute="bottom" constant="8" symbolic="YES" id="AES-5o-YNK"/>
+                    <constraint firstItem="268" firstAttribute="leading" secondItem="271" secondAttribute="leading" constant="20" symbolic="YES" id="FIO-9s-AnD"/>
+                    <constraint firstItem="269" firstAttribute="width" secondItem="272" secondAttribute="width" id="M5C-gB-kmH"/>
+                    <constraint firstItem="272" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="271" secondAttribute="leading" constant="20" symbolic="YES" id="RiN-KR-sh9"/>
+                    <constraint firstItem="269" firstAttribute="firstBaseline" secondItem="272" secondAttribute="firstBaseline" id="Xcd-CB-wul"/>
+                    <constraint firstAttribute="trailing" secondItem="269" secondAttribute="trailing" constant="20" symbolic="YES" id="anJ-RD-QMy"/>
+                    <constraint firstItem="267" firstAttribute="top" secondItem="271" secondAttribute="top" constant="20" symbolic="YES" id="cat-6K-hkX"/>
+                    <constraint firstItem="268" firstAttribute="centerX" secondItem="271" secondAttribute="centerX" id="oz5-4f-jSq"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="267" secondAttribute="trailing" constant="20" symbolic="YES" id="pHL-lv-t9j"/>
+                    <constraint firstItem="269" firstAttribute="top" secondItem="268" secondAttribute="bottom" constant="8" symbolic="YES" id="ptQ-b8-lxb"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="139" y="536"/>
         </window>
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.18222603200000001" green="0.12710839509999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.19215473532676697" green="0.12433554977178574" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

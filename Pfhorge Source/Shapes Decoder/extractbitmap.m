@@ -40,8 +40,8 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
         // who ever called me should send the error
         // because there is no need for futher elaboration on what
         // the error is...
-            fprintf(stderr, "* Can't open %s: %s\n", theShapesPath, strerror(errno));
-            return nil;
+        fprintf(stderr, "* Can't open %s: %s\n", theShapesPath, strerror(errno));
+        return nil;
     }
     
     // read the collection headers...
@@ -50,31 +50,31 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
     {
         SEND_ERROR_MSG_TITLE(@"Could not read collection headers in shapes file...",
                              @"Error Reading Shapes");
-            fprintf(stderr, "error.\n");
-            return nil;
+        fprintf(stderr, "error.\n");
+        return nil;
     }
     
     /// fprintf(stderr, "done.\n");
     
     // load the color table...
     /// fprintf(stderr, "Loading color table %d... ", theColorTable);
-	if ((err = DecodeShapesClut(theCollection, theColorTable, &color_count, &ctable)))
+    if ((err = DecodeShapesClut(theCollection, theColorTable, &color_count, &ctable)))
     {
         SEND_ERROR_MSG_TITLE(@"Could not read color tables in shapes file...",
                              @"Error Reading Shapes");
-            fprintf(stderr, "error: %s.\n", strerror(err));
-            return nil;
+        fprintf(stderr, "error: %s.\n", strerror(err));
+        return nil;
     }
     /// fprintf(stderr, "done, %d colors.\n", color_count);
     
     // get number of bitmaps in the collection...
     /// fprintf(stderr, "Getting number of bitmaps... ");
-	if ((err = GetNumberOfBitmapsInCollection(theCollection, &theBitmapCount)))
+    if ((err = GetNumberOfBitmapsInCollection(theCollection, &theBitmapCount)))
     {
         SEND_ERROR_MSG_TITLE(@"Could not read bitmap info in shapes file...",
                              @"Error Reading Shapes");
-            fprintf(stderr, "error: %s.\n", strerror(err));
-            return nil;
+        fprintf(stderr, "error: %s.\n", strerror(err));
+        return nil;
     }
     /// fprintf(stderr, "done, %d bitmaps.\n", theBitmapCount);
     
@@ -93,7 +93,7 @@ NSArray * getAllTexturesOf(int theCollection, int theColorTable, const char *the
     UnloadCollection(theCollection);
     fclose(f);
     free(ctable);
-        
+    
     return [theTextures copy];
 }
 
