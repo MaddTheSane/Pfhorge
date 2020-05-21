@@ -367,13 +367,13 @@
 		F530D716029862DA0146BBD2 /* PhStartupWinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhStartupWinController.m; sourceTree = "<group>"; };
 		F532393001AF836201A8A806 /* PhAbstractName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhAbstractName.h; sourceTree = "<group>"; };
 		F532393101AF836201A8A806 /* PhAbstractName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhAbstractName.m; sourceTree = "<group>"; };
-		F532A6C0029741880146BBD2 /* extractbitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extractbitmap.h; sourceTree = "<group>"; };
+		F532A6C0029741880146BBD2 /* extractbitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = extractbitmap.h; sourceTree = "<group>"; usesTabs = 1; };
 		F5339DC301B0ACB801A8A806 /* PhProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhProgress.h; sourceTree = "<group>"; };
 		F5339DC401B0ACB801A8A806 /* PhProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhProgress.m; sourceTree = "<group>"; };
 		F536BD5C02824AA40146BBD2 /* shapes-structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "shapes-structs.h"; sourceTree = "<group>"; };
 		F536BD5D02824AA40146BBD2 /* bitmap-decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "bitmap-decode.c"; sourceTree = "<group>"; };
 		F536BD5E02824AA40146BBD2 /* bitmap-decode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bitmap-decode.h"; sourceTree = "<group>"; };
-		F536BD5F02824AA40146BBD2 /* extractbitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extractbitmap.m; sourceTree = "<group>"; };
+		F536BD5F02824AA40146BBD2 /* extractbitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = extractbitmap.m; sourceTree = "<group>"; usesTabs = 1; };
 		F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhAbstractNumber.h; sourceTree = "<group>"; };
 		F53CC3630207B6C40146BBD2 /* PhAbstractNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhAbstractNumber.m; sourceTree = "<group>"; };
 		F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = OpenGLVisualModeController.h; sourceTree = "<group>"; };
@@ -950,6 +950,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = Ph;
 				LastUpgradeCheck = 1130;
 			};
 			buildConfigurationList = AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */;

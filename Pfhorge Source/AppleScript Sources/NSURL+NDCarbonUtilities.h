@@ -12,5 +12,5 @@
 @interface NSURL (NDCarbonUtilities)
 + (NSURL *)URLWithFSRef:(const FSRef *)aFsRef;
 - (BOOL)getFSRef:(FSRef *)aFsRef;
-- (NSString *)fileSystemPathHFSStyle;
+@property (readonly, copy) NSString *fileSystemPathHFSStyle;
 @end
