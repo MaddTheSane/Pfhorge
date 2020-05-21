@@ -55,7 +55,7 @@
 - (id)resultData;
 - (NSString *)resultAsString;
 
-- (void)setContextAppleScriptObject:(NDAppleScriptObject *)aAppleScriptObject;
+@property (strong) NDAppleScriptObject *contextAppleScriptObject;
 @property SInt32 executionModeFlags;
 
 - (void)setDefaultTarget:(NSAppleEventDescriptor *)aDefaultTarget;

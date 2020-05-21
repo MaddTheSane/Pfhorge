@@ -53,24 +53,6 @@
 #import "PhData.h"
 
 
-@interface LELevelData (private)
-    /*-(void)setThePoints:(NSMutableArray *)thePoints;
-    -(void)setTheLines:(NSMutableArray *)theLines;
-    -(void)setThePolys:(NSMutableArray *)thePolygons;
-    -(void)setTheMapObjects:(NSMutableArray *)theMapObjects;
-    -(void)setSides:(NSMutableArray *)Sides;
-    -(void)setLights:(NSMutableArray *)v;
-    -(void)setNotes:(NSMutableArray *)v;
-    -(void)setMedia:(NSMutableArray *)v;
-    -(void)setAmbientSounds:(NSMutableArray *)v;
-    -(void)setRandomSounds:(NSMutableArray *)v;
-    -(void)setItemPlacement:(NSMutableArray *)v;
-    -(void)setPlatforms:(NSMutableArray *)v;
-    
-    -(void)setTags:(NSMutableArray *)v;*/
-@end
-
-
 @implementation LELevelData
 @synthesize levelName=level_name;
 @synthesize environmentCode = environment_code;
@@ -88,7 +70,6 @@
 }
 
 -(NSMutableArray *)getThePoints { return points; }
-//-(NSArray *)points { return points; }
 
 -(NSMutableArray *)getTheLines { return lines; }
 -(NSMutableArray *)getThePolys { return polys; }
@@ -310,91 +291,88 @@
         
         [self havePointsScanForLines];
     } else {
-    versionNum = decodeNumInt(coder);
-    
-    //NSLog(@"1");
-    
-    environment_code = decodeShort(coder);
-    physics_model = decodeShort(coder);
-    song_index = decodeShort(coder);
-    mission_flags = decodeShort(coder);
-    environment_flags = decodeShort(coder);
-    entry_point_flags = decodeInt(coder);
-    
-    //linesThatIBelongTo = decodeObj(coder);
-    //NSLog(@"1");
-    
-    // Objects are already inited due to -init being called by the super's -initWithCoder:
-    [points setArray:decodeObj(coder)];
-    //NSLog(@"2");
-    [lines setArray:decodeObj(coder)];
-    //NSLog(@"3");
-    [polys setArray:decodeObj(coder)];
-    //NSLog(@"4");
-    [mapObjects setArray:decodeObj(coder)];
-    //NSLog(@"5");
-    [sides setArray:decodeObj(coder)];
-    //NSLog(@"6");
-    [lights setArray:decodeObj(coder)];
-    //NSLog(@"7");
-    [notes setArray:decodeObj(coder)];
-    //NSLog(@"8");
-    [media setArray:decodeObj(coder)];
-    //NSLog(@"9");
-    [ambientSounds setArray:decodeObj(coder)];
-    //NSLog(@"10");
-    [randomSounds setArray:decodeObj(coder)];
-    //NSLog(@"11");
-    [itemPlacement setArray:decodeObj(coder)];
-    //NSLog(@"12");
-    [platforms setArray:decodeObj(coder)];
-    //NSLog(@"13");
-    
-    [terimals setArray:decodeObj(coder)];
-    //NSLog(@"14");
-    
-    [layersInLevel setArray:decodeObj(coder)];
-    //NSLog(@"15");
-    currentLayer = decodeObjRetain(coder);
-    //NSLog(@"16");
-    [layerPoints setArray:decodeObj(coder)];
-    //NSLog(@"17");
-    [layerLines setArray:decodeObj(coder)];
-    //NSLog(@"18");
-    [layerPolys setArray:decodeObj(coder)];
-    //NSLog(@"19");
-    [layerMapObjects setArray:decodeObj(coder)];
-    //NSLog(@"20");
-    
-    //namedPolyObjects = decodeObj(coder);
-    
-    /*layerPolys = [[NSMutableArray alloc] initWithCapacity:0];
-    layerLines = [[NSMutableArray alloc] initWithCapacity:0];
-    layerPoints = [[NSMutableArray alloc] initWithCapacity:0];
-    layerMapObjects = [[NSMutableArray alloc] initWithCapacity:0];
-    namedPolyObjects = [[NSMutableArray alloc] initWithCapacity:0];*/
-    
-    [tags setArray:decodeObj(coder)];
-    
-    self.levelName = decodeObj(coder);
-    
-    [self setUpArrayPointersForEveryObject];
-    
-    if (versionNum > 0) // this is if versionNum == 1...
-       { [noteTypes setArray:decodeObj(coder)]; }
-    
-    if (versionNum > 1)
-    { [layerNotes setArray:decodeObj(coder)]; }
-    
-    if (versionNum > 2)
-    {
+        versionNum = decodeNumInt(coder);
         
+        //NSLog(@"1");
+        
+        environment_code = decodeShort(coder);
+        physics_model = decodeShort(coder);
+        song_index = decodeShort(coder);
+        mission_flags = decodeShort(coder);
+        environment_flags = decodeShort(coder);
+        entry_point_flags = decodeInt(coder);
+        
+        //linesThatIBelongTo = decodeObj(coder);
+        //NSLog(@"1");
+        
+        // Objects are already inited due to -init being called by the super's -initWithCoder:
+        [points setArray:decodeObj(coder)];
+        //NSLog(@"2");
+        [lines setArray:decodeObj(coder)];
+        //NSLog(@"3");
+        [polys setArray:decodeObj(coder)];
+        //NSLog(@"4");
+        [mapObjects setArray:decodeObj(coder)];
+        //NSLog(@"5");
+        [sides setArray:decodeObj(coder)];
+        //NSLog(@"6");
+        [lights setArray:decodeObj(coder)];
+        //NSLog(@"7");
+        [notes setArray:decodeObj(coder)];
+        //NSLog(@"8");
+        [media setArray:decodeObj(coder)];
+        //NSLog(@"9");
+        [ambientSounds setArray:decodeObj(coder)];
+        //NSLog(@"10");
+        [randomSounds setArray:decodeObj(coder)];
+        //NSLog(@"11");
+        [itemPlacement setArray:decodeObj(coder)];
+        //NSLog(@"12");
+        [platforms setArray:decodeObj(coder)];
+        //NSLog(@"13");
+        
+        [terimals setArray:decodeObj(coder)];
+        //NSLog(@"14");
+        
+        [layersInLevel setArray:decodeObj(coder)];
+        //NSLog(@"15");
+        currentLayer = decodeObjRetain(coder);
+        //NSLog(@"16");
+        [layerPoints setArray:decodeObj(coder)];
+        //NSLog(@"17");
+        [layerLines setArray:decodeObj(coder)];
+        //NSLog(@"18");
+        [layerPolys setArray:decodeObj(coder)];
+        //NSLog(@"19");
+        [layerMapObjects setArray:decodeObj(coder)];
+        //NSLog(@"20");
+        
+        //namedPolyObjects = decodeObj(coder);
+        
+        /*layerPolys = [[NSMutableArray alloc] initWithCapacity:0];
+         layerLines = [[NSMutableArray alloc] initWithCapacity:0];
+         layerPoints = [[NSMutableArray alloc] initWithCapacity:0];
+         layerMapObjects = [[NSMutableArray alloc] initWithCapacity:0];
+         namedPolyObjects = [[NSMutableArray alloc] initWithCapacity:0];*/
+        
+        [tags setArray:decodeObj(coder)];
+        
+        self.levelName = decodeObj(coder);
+        
+        [self setUpArrayPointersForEveryObject];
+        
+        if (versionNum > 0) // this is if versionNum == 1...
+        { [noteTypes setArray:decodeObj(coder)]; }
+        
+        if (versionNum > 1)
+        { [layerNotes setArray:decodeObj(coder)]; }
+        
+        if (versionNum > 2) {
+            
+        } else {
+            [self havePointsScanForLines];
+        }
     }
-    else
-    {
-        [self havePointsScanForLines];
-    }
-	}
     [self setUpArrayNamesForEveryObject];
     //[self recaculateTheCurrentLayer];
     [self setupDefaultObjects];
@@ -896,7 +874,7 @@ enum // export data types
 
 - (NSSet *)importObjects:(NSData *)theData
 {
-    PhData *myData = [[PhData alloc] initWithSomeData:theData];
+    PhData *myData = [[PhData alloc] initWithData:theData];
     NSMutableArray *index = [[NSMutableArray alloc] init];
     NSMutableSet *theSet = [[NSMutableSet alloc] init];
     

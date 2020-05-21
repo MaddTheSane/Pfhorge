@@ -187,7 +187,7 @@
 		AE3C158E0A04512100FBFFCD /* LELevelData-Utilites.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D603E322530146BBD2 /* LELevelData-Utilites.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C158F0A04512100FBFFCD /* LELevelData-Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D803E322660146BBD2 /* LELevelData-Objects.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15900A04512100FBFFCD /* LELevelData-Layers.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032DA03E32D510146BBD2 /* LELevelData-Layers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C15910A04512100FBFFCD /* PhData.m in Sources */ = {isa = PBXBuildFile; fileRef = A597FC2D045763B20046BBD2 /* PhData.m */; };
+		AE3C15910A04512100FBFFCD /* PhData.m in Sources */ = {isa = PBXBuildFile; fileRef = A597FC2D045763B20046BBD2 /* PhData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15920A04512100FBFFCD /* PathwaysDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBBF6E04A3A60C0046BBD2 /* PathwaysDocument.m */; };
 		AE3C15930A04512100FBFFCD /* PathwaysExchange.mm in Sources */ = {isa = PBXBuildFile; fileRef = A59437B504B018070046BBD2 /* PathwaysExchange.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15940A04512100FBFFCD /* crc.m in Sources */ = {isa = PBXBuildFile; fileRef = A5CE3C7304B265440046BBD2 /* crc.m */; };

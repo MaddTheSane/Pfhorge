@@ -100,7 +100,7 @@
 
 // ************************* Actions *************************
 #pragma mark -
-#pragma mark ********* Actions *********
+#pragma mark Actions
 
 - (IBAction)saveToPfhorgeFormat:(id)sender
 {
@@ -147,7 +147,7 @@
 
 // *********************** Loading and Saving Levels ***********************
 #pragma mark -
-#pragma mark ********* Loading and Saving Levels *********
+#pragma mark Loading and Saving Levels
 
 - (void)initallyLoadInTheDataNow
 {
@@ -478,7 +478,7 @@
     return value;
 }
 
-#pragma mark ****************** (END) NEW METHODS ******************
+#pragma mark (END) NEW METHODS
 #pragma mark -
 
 // ****************** (END) NEW METHODS ******************
@@ -489,12 +489,9 @@
     
     shouldExportToMarathonFormat = NO;
     
-    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"])
-    {
+    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
         [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel]];
-    }
-    else
-    {
+    } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
@@ -522,9 +519,9 @@
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
     BOOL loadedOk = NO;
-     
-     NSLog(@"loadDataRepresentation");
-     
+    
+    NSLog(@"loadDataRepresentation");
+    
     NSLog(@"Loading Pathways Into Darkness Map...");
     theRawMapData = [data retain];
     theLevel = nil;

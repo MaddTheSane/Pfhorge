@@ -29,6 +29,7 @@
 // #import "LEMapDraw.h"
 
 @class LEMapData, LELevelData, ScenarioResources;
+@class LEMapPoint, LELine, LEMapObject, LEPolygon;
 
 @interface LEMap : NSDocument
 {
@@ -87,22 +88,22 @@
 - (void)loadLevel:(int)levelNumber;
 
 // ***************************** Scripting Support Methods *****************************
-#pragma mark ********* Scripting Support Methods *******
--(NSArray *)points;
--(NSArray *)lines;
--(NSArray *)objects;
--(NSArray *)polygons;
+#pragma mark Scripting Support Methods
+- (NSArray<LEMapPoint*> *)points;
+- (NSArray<LELine*> *)lines;
+- (NSArray<LEMapObject*> *)objects;
+- (NSArray<LEPolygon*> *)polygons;
 
 - (id)handleFillWithLine:(NSScriptCommand *)command;
 - (id)handleLineFromPointToPoint:(NSScriptCommand *)command;
 - (id)handleLineToNewPoint:(NSScriptCommand *)command;
 
-- (void)setPoints:(NSArray *)thePoints;
+- (void)setPoints:(NSArray<LEMapPoint*> *)thePoints;
 - (void)addInPoints:(LEMapPoint *)point;
-- (void)insertInPoints:(LEMapPoint *)graphic atIndex:(unsigned)index;
-- (void)removeFromPointsAtIndex:(unsigned)index;
-- (void)replaceInPoints:(LEMapPoint *)graphic atIndex:(unsigned)index;
+- (void)insertInPoints:(LEMapPoint *)graphic atIndex:(NSInteger)index;
+- (void)removeFromPointsAtIndex:(NSInteger)index;
+- (void)replaceInPoints:(LEMapPoint *)graphic atIndex:(NSInteger)index;
 
--(id)handleRedrawAndRecaculate:(NSScriptCommand *)command;
+- (id)handleRedrawAndRecaculate:(NSScriptCommand *)command;
 
 @end

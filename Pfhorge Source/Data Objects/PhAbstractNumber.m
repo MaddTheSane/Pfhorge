@@ -69,12 +69,11 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
-		assignedNumber = [[coder decodeObjectForKey:@"assignedNumber"] retain];
+		assignedNumber = [[coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"] retain];
 	} else {
-		versionNum = decodeNumInt(coder);
+		int versionNum = decodeNumInt(coder);
 		
 		assignedNumber = decodeObjRetain(coder);
 	}

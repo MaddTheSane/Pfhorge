@@ -245,11 +245,11 @@
     NSMutableData *tempData;
     
     tempData = [LEMapData convertLevelToDataObject:[self level]];
-        
+    
     [[NSFileManager defaultManager] createFileAtPath:fullPath
-	  contents:tempData
-	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-				 NSFileHFSTypeCode: @((OSType)'sce2')}];
+                                            contents:tempData
+                                          attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+                                                       NSFileHFSTypeCode: @((OSType)'sce2')}];
     
     return YES;
 }
@@ -457,8 +457,7 @@
     
     // Add any code here that need to be executed once the windowController has loaded the document's window.
     NSLog(@"windowControllerDidLoadNib");
-    if ( theRawMapData != nil)
-    {
+    if (theRawMapData != nil) {
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
         [progress setProgressPostion:0.0];
@@ -526,12 +525,10 @@
 - (void)loadLevel:(int)levelNumber //Starts at one, not zero... :)
 {
     PhProgress *progress = [PhProgress sharedPhProgress];
-    if ( theRawMapData != nil)
-    {
+    if (theRawMapData != nil) {
         if (theMap == nil)
             return;
-        if (theLevel != nil)
-        {
+        if (theLevel != nil) {
             NSLog(@"Level Dealloc Post Notification");
             [self releaseAllInfoWindowControllers];
             
@@ -820,8 +817,7 @@
     NSLog(@"handleFillWithLine");
     theNewPoly = [[[theLevel lines] objectAtIndex:lineNum] getPolyFromMe];
     
-    if (theNewPoly == nil)
-    {
+    if (theNewPoly == nil) {
         SEND_ERROR_MSG(@"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)");
         return nil;
     }
@@ -851,7 +847,7 @@
 - (id)handleLineToNewPoint:(NSScriptCommand *)command
 {
         // ask the command to evaluate its arguments
-    NSDictionary *args = [command evaluatedArguments];
+    NSDictionary<NSString*,id> *args = [command evaluatedArguments];
     NSDictionary *pointDef = [args objectForKey:@"plocation"];
         // if we don't have a file argument, we're doomed!
     // if (!file || [file isEqualToString:@""]) return [NSNumber numberWithBool:NO];
@@ -868,28 +864,21 @@
     LELine *theNewLine;
     
     NSInteger count = [theKeys count];
-    int i;
-    for (i = 0; i < count; i++)
-    {
+    for (NSInteger i = 0; i < count; i++) {
         NSNumber *theKeyNumber = [theKeys objectAtIndex:i];
         
-        if ([theKeyNumber unsignedIntValue] == 'Ppgx')
+        if ([theKeyNumber unsignedIntValue] == 'Ppgx') {
             xLoc = [[pointDef objectForKey:theKeyNumber] intValue];
-        else if ([theKeyNumber unsignedIntValue] == 'Ppgy')
+        } else if ([theKeyNumber unsignedIntValue] == 'Ppgy') {
             yLoc = [[pointDef objectForKey:theKeyNumber] intValue];
-        else if ([theKeyNumber unsignedIntValue] == 'usrf')
-        {
-            SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when useing lineToPoint where num can be from -32768 to 32768.",
+        } else if ([theKeyNumber unsignedIntValue] == 'usrf') {
+            SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768.",
                                  @"AppleScript Error");
             return nil;
-        }
-        else
-        {
+        } else {
             OSType theKeyAsLong = [theKeyNumber unsignedIntValue];
-			theKeyAsLong = CFSwapInt32BigToHost(theKeyAsLong);
-			NSData *dat = [NSData dataWithBytes:&theKeyAsLong length:4];
-            NSString *theTagAsString = [[NSString alloc] initWithData:dat encoding:NSMacOSRomanStringEncoding];
-            NSLog(@"Perculer key in arguments: %@", theTagAsString);
+            NSString *theTagAsString = CFBridgingRelease(UTCreateStringForOSType(theKeyAsLong));
+            NSLog(@"Peculiar key in arguments: %@", theTagAsString);
             NSLog(@"Here is the record description sent via AppleScript: %@", [args description]);
             SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
                         @"AppleScript Error");
@@ -924,7 +913,7 @@
     [theLevel addObjects:point];
 }
 
-- (void)insertInPoints:(LEMapPoint *)point atIndex:(unsigned)index {
+- (void)insertInPoints:(LEMapPoint *)point atIndex:(NSInteger)index {
     // MF:!!! This is not going to be ideal.  If we are being asked to, say, "make a new rectangle at after rectangle 2", we will be after rectangle 2, but we may be after some other stuff as well since we will be asked to insertInRectangles:atIndex:3...
     
     NSArray *thePoints = [self points];
@@ -948,7 +937,7 @@
     }
 }
 
-- (void)removeFromPointsAtIndex:(unsigned)index {
+- (void)removeFromPointsAtIndex:(NSInteger)index {
     NSLog(@"removeFromPointsAtIndex");
     /*NSArray *rects = [self rectangles];
     NSArray *graphics = [self graphics];
@@ -961,7 +950,7 @@
     }*/
 }
 
-- (void)replaceInPoints:(LEMapPoint *)graphic atIndex:(unsigned)index {
+- (void)replaceInPoints:(LEMapPoint *)graphic atIndex:(NSInteger)index {
     NSLog(@"replaceInPoints");
    /* NSArray *rects = [self rectangles];
     NSArray *graphics = [self graphics];

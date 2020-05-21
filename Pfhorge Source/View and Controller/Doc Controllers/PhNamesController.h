@@ -29,7 +29,7 @@
 //
 // Right now, I am developing this as a sheet.
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
 @class PhAbstractName, LELevelData, LELevelWindowController;
 
@@ -51,13 +51,13 @@ enum /* display modes */
     
     IBOutlet NSPanel *theNameWindow;
     IBOutlet NSTableView *theTable;
-    IBOutlet id editBtn;
-    IBOutlet id defaultBtn;
-    IBOutlet id deleteBtn;
-    IBOutlet id deleteAllBtn;
-    IBOutlet id addBtn;
-    IBOutlet id duplicateBtn;
-    IBOutlet id okBtn;
+    IBOutlet NSButton *editBtn;
+    IBOutlet NSButton *defaultBtn;
+    IBOutlet NSButton *deleteBtn;
+    IBOutlet NSButton *deleteAllBtn;
+    IBOutlet NSButton *addBtn;
+    IBOutlet NSButton *duplicateBtn;
+    IBOutlet NSButton *okBtn;
     IBOutlet NSPopUpButton *editingMenu;
     
     int currentDisplayMode;

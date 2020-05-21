@@ -49,9 +49,9 @@
     
     ImportInt(length);
     theData = [myData getSubDataWithLength:length];
-    myName = [[NSKeyedUnarchiver unarchiveObjectWithData:theData] retain];
+    self.phName = [NSKeyedUnarchiver unarchiveObjectWithData:theData];
     if (!myName) {
-        myName = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
+        self.phName = [NSUnarchiver unarchiveObjectWithData:theData];
     }
     
     [super superClassImportWithIndex:index withData:myData useOrginals:useOrg];
@@ -75,7 +75,7 @@
     int versionNum = 0;
     self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
-		myName = [[coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"] copy];
+		self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
 	} else {
 		versionNum = decodeNumInt(coder);
 		

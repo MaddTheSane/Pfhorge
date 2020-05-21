@@ -150,7 +150,7 @@
 
 // ************************* Plugin Methods *************************
 #pragma mark -
-#pragma mark ********* Plugin Methods *********
+#pragma mark Plugin Methods
 
 // + (PhPluginManager *)sharedPhPluginManager {pluginInstanceNames
 
@@ -263,7 +263,7 @@
         }
         else if ([[fileName pathExtension] isEqualToString:@"scpt"])
         {
-            NSString *copyOfFullPath = [[fullPath copy] autorelease];
+            NSString *copyOfFullPath = [fullPath copy];
             
             [scriptPaths addObject:copyOfFullPath];
             
@@ -275,6 +275,7 @@
             [newItem setAction:@selector(scriptMenuItemAction:)];
             [theMenu addItem:newItem];
             [newItem release];
+            [copyOfFullPath release];
         }
         else
         {
@@ -414,11 +415,11 @@
 
 // ************************* Actions *************************
 #pragma mark -
-#pragma mark ********* Actions *********
+#pragma mark Actions
 
 - (IBAction)pluginMenuItemAction:(id)sender
 {
-    id thePlugin = [sender representedObject];
+    id<PhLevelPluginProtocol> thePlugin = [sender representedObject];
     NSLog(@"Activating Plugin Name: %@", [thePlugin name]);
     [thePlugin activate];
 }

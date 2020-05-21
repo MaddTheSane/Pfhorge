@@ -12,7 +12,7 @@
 
 @implementation PhData
 
-- (id)initWithSomeData:(NSData *)value
+- (id)initWithData:(NSData *)value
 {
     self = [super init];
     
@@ -24,12 +24,6 @@
     theData = [value copy];
     
     return self;
-}
-
-- (void)dealloc
-{
-    [theData release];
-    [super dealloc];
 }
 
 - (BOOL)setP:(long)value { position = value; return [self checkPosition]; }
@@ -54,16 +48,7 @@
     [self addP:theLength];
     return subData;
 }
-/*
-- (BOOL)getBool
-{
-    long value;
-    [self checkPosition];
-    [theData getBytes:&value range:NSMakeRange(position, 4)];
-    position += 4;
-    return value;
-}
-*/
+
 - (byte)getByte
 {
     byte value;
@@ -133,15 +118,14 @@
     return value;
 }
 
-- (long)length { return [theData length]; };
+- (NSInteger)length { return [theData length]; };
 
 @synthesize currentPosition=position;
 
 - (BOOL)checkPosition
 {
-    if (position >= ((long)[theData length]))
-    {
-		NSLog(@"WARNING: Position: %ld   Excedded Length: %lu", position, (unsigned long)[theData length]);
+    if (position >= [theData length]) {
+        NSLog(@"WARNING: Position: %ld   Excedded Length: %lu", (long)position, (unsigned long)[theData length]);
         position = 0;
         return NO;
     }
@@ -153,10 +137,9 @@
 {
     int indexNum = [self getInt];
     
-    if (indexNum == -1)
+    if (indexNum == -1) {
         return nil;
-    else if (indexNum < ((int)[theIndex count]) && indexNum >= 0)
-    {
+    } else if (indexNum < ((int)[theIndex count]) && indexNum >= 0) {
         objTypesArr[indexNum] = _data_is_primary;
         return [theIndex objectAtIndex:indexNum];
     }
@@ -168,14 +151,11 @@
 {
     int indexNum = [self getInt];
     
-    if (indexNum == -1)
+    if (indexNum == -1) {
         return nil;
-    else if (indexNum < ((int)[theIndex count]) && indexNum >= 0)
-    {
+    } else if (indexNum < ((int)[theIndex count]) && indexNum >= 0) {
         return [theIndex objectAtIndex:indexNum];
-    }
-    else if (indexNum >= ((int)[theIndex count]))
-    {
+    } else if (indexNum >= ((int)[theIndex count])) {
         return [theIndex lastObject];
     }
     
@@ -188,11 +168,9 @@
     
     unsigned char theChar[length];
     const unsigned char *theCharConstPntr;
-    int i;
     NSString *theTmpCharString;
     
-    for (i = 0; i < length; i++)
-    {
+    for (int i = 0; i < length; i++) {
         theChar[i] = [self getByte];
         
         // Just in case, although it should not be nessary...
@@ -201,7 +179,7 @@
     }
     
     theCharConstPntr = theChar;
-    theTmpCharString = [NSString stringWithCString:(const char*)theCharConstPntr encoding:NSMacOSRomanStringEncoding]; //length:theCharAmount];
+    theTmpCharString = [NSString stringWithCString:(const char*)theCharConstPntr encoding:NSMacOSRomanStringEncoding];
     
     return theTmpCharString;
 }

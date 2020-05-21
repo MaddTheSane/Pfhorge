@@ -12,12 +12,12 @@
 
 + (NSURL *)URLWithFSRef:(const FSRef *)aFsRef
 {
-	return CFBridgingRelease(CFURLCreateFromFSRef( kCFAllocatorDefault, aFsRef ));
+	return CFBridgingRelease(CFURLCreateFromFSRef(kCFAllocatorDefault, aFsRef));
 }
 
 - (BOOL)getFSRef:(FSRef *)aFsRef
 {
-	return CFURLGetFSRef( (CFURLRef)self, aFsRef );
+	return CFURLGetFSRef((CFURLRef)self, aFsRef);
 }
 
 - (NSString *)fileSystemPathHFSStyle

@@ -26,27 +26,25 @@
 + (NSAppleEventDescriptor *)aliasListDescriptorWithArray:(NSArray *)aArray
 {
 	NSAppleEventDescriptor	* theEventList = nil;
-	NSInteger				theIndex,
-									theNumOfParam;
-
-	theNumOfParam = [aArray count];
-
-	if( theNumOfParam > 0)
-	{
-		theEventList = [self listDescriptor];
+	NSInteger				theIndex, theNumOfParam;
 	
-		for( theIndex = 0; theIndex < theNumOfParam; theIndex++ )
-		{
+	theNumOfParam = [aArray count];
+	
+	if (theNumOfParam > 0) {
+		theEventList = [self listDescriptor];
+		
+		for (theIndex = 0; theIndex < theNumOfParam; theIndex++) {
 			id				theObject;
 			theObject = [aArray objectAtIndex:theIndex];
-	
-			if( [theObject isKindOfClass:[NSString class]] )
+			
+			if ([theObject isKindOfClass:[NSString class]]) {
 				theObject = [NSURL fileURLWithPath:theObject];
-
+			}
+			
 			[theEventList insertDescriptor:[self aliasDescriptorWithURL:theObject] atIndex:theIndex+1];
 		}
 	}
-
+	
 	return theEventList;
 }
 
@@ -141,6 +139,24 @@
 	return theProcessSerialNumber;
 }
 
+- (NSString*)targetProcessBundleIdentifier
+{
+	//TODO: test/fix!
+	NSAppleEventDescriptor	* theTarget;
+	NSString		*theProcessBundleID = nil;
+
+	theTarget = [self attributeDescriptorForKeyword:keyAddressAttr];
+
+	if( theTarget )
+	{
+		if( [theTarget descriptorType] != typeApplicationBundleID )
+			theTarget = [theTarget coerceToDescriptorType:typeApplicationBundleID];
+
+		theProcessBundleID = [[NSString alloc] initWithData:[theTarget data] encoding:NSUTF8StringEncoding];
+	}
+	return theProcessBundleID;
+}
+
 /*
  * targetCreator
  */
@@ -148,14 +164,14 @@
 {
 	NSAppleEventDescriptor	* theTarget;
 	OSType						theCreator = 0;
-
-	theTarget = [self attributeDescriptorForKeyword:keyAddressAttr];
-
-	if( theTarget )
-	{
-		if( [theTarget descriptorType] != typeApplSignature )
-			theTarget = [theTarget coerceToDescriptorType:typeApplSignature];
 	
+	theTarget = [self attributeDescriptorForKeyword:keyAddressAttr];
+	
+	if (theTarget) {
+		if ([theTarget descriptorType] != typeApplSignature) {
+			theTarget = [theTarget coerceToDescriptorType:typeApplSignature];
+		}
+		
 		theCreator = theTarget.typeCodeValue;
 	}
 	return theCreator;

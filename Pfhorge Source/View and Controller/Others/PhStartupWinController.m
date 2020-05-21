@@ -6,14 +6,14 @@
 
 #define waterTex(i) [[[PhTextureRepository sharedTextureRepository] getTextureCollection:_water] objectAtIndex:(i)]
 
-@interface PhStartupWinController (Private)
-    - (void)setupWindow;
-    - (void)closeWindow;
-    - (void)setStatusText:(NSString *)msg;
-    - (void)setProgressPostion:(double)thePostion;
-    - (void)increaseProgressBy:(double)increaseBy;
-    - (void)setMaxProgress:(double)max;
-    - (void)setMinProgress:(double)min;
+@interface PhStartupWinController ()
+- (void)setupWindow;
+- (void)closeWindow;
+- (void)setStatusText:(NSString *)msg;
+- (void)setProgressPostion:(double)thePostion;
+- (void)increaseProgressBy:(double)increaseBy;
+- (void)setMaxProgress:(double)max;
+- (void)setMinProgress:(double)min;
 @end
 
 @implementation PhStartupWinController

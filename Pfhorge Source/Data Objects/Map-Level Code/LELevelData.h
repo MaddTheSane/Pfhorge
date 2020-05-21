@@ -234,7 +234,12 @@ enum {
 
 
 #pragma mark Inital Setup Methods
+
+//! Called after loading a marathon formated map, to set thePhName of lights, etc.
+//! and to put those names in the name manager cache.
 -(void)compileAndSetNameArraysFromLevel;
+//! Called after loading a Pfhorge formated map, to get thePhName of lights, etc.
+//! and to put those names in the name manager cache.
 -(void)setUpArrayNamesForEveryObject;
 
 #pragma mark Coding/Copy Protocal Methods
@@ -279,7 +284,7 @@ enum {
 - (PhNoteGroup *)newNoteType;
 - (PhNoteGroup *)newNoteType:(NSString *)name;
 
-    // ### Move following method to Pfhorge Independit Utility Functions ###
+    // TODO: Move following method to Pfhorge Independit Utility Functions
 -(int)whatIsDirectionalRelationshipForLine:(LELine *)theLine relitiveTo:(NSArray *)lineArray;
 
 #pragma mark Deleteing Objects From Level Array Methods

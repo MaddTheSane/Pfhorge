@@ -12,7 +12,7 @@
 #import "NDResourceFork.h"
 #import "NSURL+NDCarbonUtilities.h"
 
-OSErr createResourceFork( NSURL * aURL );
+static OSErr createResourceFork(NSURL * aURL);
 
 @implementation NDResourceFork
 
@@ -72,24 +72,22 @@ OSErr createResourceFork( NSURL * aURL );
 	OSErr			theError = !noErr;
 	FSRef			theFsRef;
 
-	if( ( self = [self init] ) && [aURL getFSRef:&theFsRef] )
-	{
-		fileReference = FSOpenResFile ( &theFsRef, aPermission );
+	if ((self = [self init]) && [aURL getFSRef:&theFsRef]) {
+		fileReference = FSOpenResFile(&theFsRef, aPermission);
 		
-		theError = fileReference > 0 ? ResError( ) : !noErr;
+		theError = fileReference > 0 ? ResError() : !noErr;
 		
-/*
-		if( noErr != theError )		// file has no resource fork
-		{
-			theError = createResourceFork( aURL );
-			fileReference = FSOpenResFile ( &theFsRef, aPermission );;
-			theError = fileReference > 0 ? ResError( ) : !noErr;
-		}
- */	}
 
-	if( noErr != theError )
-	{
-		self = nil;
+		if (noErr != theError)		// file has no resource fork
+		{
+			theError = createResourceFork(aURL);
+			fileReference = FSOpenResFile(&theFsRef, aPermission);
+			theError = fileReference > 0 ? ResError() : !noErr;
+		}
+	}
+
+	if (noErr != theError) {
+		return nil;
 	}
 
 	return self;
@@ -100,10 +98,11 @@ OSErr createResourceFork( NSURL * aURL );
  */
 - (id)initForReadingAtPath:(NSString *)aPath
 {
-	if( [[NSFileManager defaultManager] fileExistsAtPath:aPath] )
+	if ([[NSFileManager defaultManager] fileExistsAtPath:aPath]) {
 		return [self initForPermission:fsRdPerm AtURL:[NSURL fileURLWithPath:aPath]];
-	else
+	} else {
 		return nil;
+	}
 }
 
 /*
@@ -119,7 +118,7 @@ OSErr createResourceFork( NSURL * aURL );
  */
 - (void)dealloc
 {
-	CloseResFile( fileReference );
+	CloseResFile(fileReference);
 }
 
 - (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName
@@ -134,19 +133,18 @@ OSErr createResourceFork( NSURL * aURL );
 		UseResFile( fileReference );    			// set this resource to be current
 	
 		// copy NSData's bytes to a handle
-		if ( noErr == PtrToHand ( [aData bytes], &theResHandle, [aData length] ) )
-		{
+		if (noErr == PtrToHand([aData bytes], &theResHandle, [aData length])) {
 			Str255			thePName;
 			CFStringGetPascalString((CFStringRef)aName, thePName, 255, kCFStringEncodingMacRoman);
 			
-			HLock( theResHandle );
-			AddResource( theResHandle, aType, anID, thePName );
-			HUnlock( theResHandle );
+			HLock(theResHandle);
+			AddResource(theResHandle, aType, anID, thePName);
+			HUnlock(theResHandle);
 			
-			UseResFile( thePreviousRefNum );     		// reset back to resource previously set
+			UseResFile(thePreviousRefNum);     		// reset back to resource previously set
 	
-//			DisposeHandle( theResHandle );
-			return ( ResError( ) == noErr );
+			DisposeHandle(theResHandle);
+			return ( ResError() == noErr );
 		}
 	}
 	
@@ -164,21 +162,20 @@ OSErr createResourceFork( NSURL * aURL );
 
 	thePreviousRefNum = CurResFile();	// save current resource
 	
-	UseResFile( fileReference );    		// set this resource to be current
+	UseResFile(fileReference);    		// set this resource to be current
 	
-	theResHandle = Get1Resource( aType, anID );
+	theResHandle = Get1Resource(aType, anID);
 
-	if ( noErr ==  ResError( ) )
-	{
+	if (noErr == ResError()) {
 		HLock(theResHandle);
 		theData = [NSData dataWithBytes:*theResHandle length:GetHandleSize( theResHandle )];
 		HUnlock(theResHandle);
 	}
 	
-	if ( theResHandle )
-		ReleaseResource( theResHandle );
+	if (theResHandle)
+		ReleaseResource(theResHandle);
 
-	UseResFile( thePreviousRefNum );     		// reset back to resource previously set
+	UseResFile(thePreviousRefNum);     // reset back to resource previously set
 	
 	return theData;
 }
@@ -190,13 +187,12 @@ OSErr createResourceFork( NSURL * aURL );
 {
 	Handle		theResHandle;
 	
-	UseResFile( fileReference );    			// set this resource to be current
+	UseResFile(fileReference);    				// set this resource to be current
 
 	theResHandle = Get1Resource( aType, anID );
-	if ( ResError( ) == noErr )
-	{
-		RemoveResource( theResHandle );			// Disposed of in current resource file
-		return ( ResError( ) == noErr );
+	if (ResError() == noErr) {
+		RemoveResource(theResHandle);			// Disposed of in current resource file
+		return (ResError() == noErr);
 	}
 	return YES;
 }
@@ -211,12 +207,11 @@ OSErr createResourceFork( NSURL * aURL )
 	
 	theUrl = [aURL URLByDeletingLastPathComponent];
 
-	if( [aURL getFSRef:&theParentFsRef] )
-	{
+	if ([aURL getFSRef:&theParentFsRef]) {
 		NSData			* theFileName;
 
 		theFileName = [[aURL lastPathComponent] dataUsingEncoding:NSUnicodeStringEncoding];
-		FSCreateResFile ( &theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL );
+		FSCreateResFile(&theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL);
 	}
 	
 	return ( ResError( ) == noErr );

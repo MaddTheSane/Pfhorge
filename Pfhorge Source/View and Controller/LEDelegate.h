@@ -24,14 +24,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface LEDelegate : NSObject
+@interface LEDelegate : NSObject <NSApplicationDelegate>
 {
     IBOutlet NSMenu *theAppleScriptMenu;
     IBOutlet NSMenu *thePluginMenu;
     
-    NSMutableArray *scriptPaths;
-    
-    NSMutableArray* pluginClasses;	// an array of all plug-in classes
+    NSMutableArray<NSString*> *scriptPaths;
 }
 
 + (id)sharedAppDelegateController:(LEDelegate *)del;

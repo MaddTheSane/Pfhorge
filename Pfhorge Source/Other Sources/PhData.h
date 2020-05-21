@@ -10,12 +10,14 @@
 #import "PhTypesStructresEnums.h"
 
 
+//! This assumes the data is in big-endian format.
 @interface PhData : NSObject {
     NSData *theData;
     NSInteger position;
 }
 
-- (instancetype)initWithSomeData:(NSData *)value;
+- (instancetype)initWithData:(NSData *)value NS_DESIGNATED_INITIALIZER;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 - (BOOL)setP:(long)value;
 - (BOOL)addP:(long)value;
@@ -35,6 +37,7 @@
 - (unsigned int)getUnsignedInt;
 
 @property (readonly) NSInteger currentPosition;
+@property (readonly) NSInteger length;
 
 - (BOOL)checkPosition;
 - (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;

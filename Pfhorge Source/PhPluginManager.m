@@ -9,10 +9,10 @@
 #import "PhPluginManager.h"
 //#import "PluginInterface.h"
 
-@interface PhPluginManager (private)
-    - (void)activatePlugin:(NSString*)path;
-    - (void)initializePlugins;
-    - (void)instantiatePlugins:(Class)pluginClass;
+@interface PhPluginManager ()
+- (void)activatePlugin:(NSString*)path;
+- (void)initializePlugins;
+- (void)instantiatePlugins:(Class)pluginClass;
 @end
 
 @implementation PhPluginManager
@@ -44,9 +44,9 @@
 #pragma mark -
 #pragma mark •••••••••• Accsessor Methods •••••••••
 
-- (NSArray *)pluginInstanceNames { return pluginInstanceNames; }
-- (NSArray *)pluginClasses { return pluginClasses; }
-- (NSArray *)pluginInstances { return pluginInstances; }
+- (NSArray<NSString*> *)pluginInstanceNames { return [[pluginInstanceNames copy] autorelease]; }
+- (NSArray<Class> *)pluginClasses { return [[pluginClasses copy] autorelease]; }
+- (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances { return [[pluginInstances copy] autorelease]; }
  
 // ************************* Convience Methods *************************
 #pragma mark -
@@ -72,8 +72,7 @@
     
     if (folderPath) {
         NSEnumerator* enumerator = [[NSBundle pathsForResourcesOfType:@"plugin" inDirectory:folderPath] objectEnumerator];
-        NSString* pluginPath;
-        while ((pluginPath = [enumerator nextObject])) {
+        for (NSString* pluginPath in enumerator) {
             [self activatePlugin:pluginPath];
         }
     }
@@ -83,8 +82,7 @@
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isDir];
     
 
-    if (!exsists)
-    {
+    if (!exsists) {
         NSLog(@"Creating Support Folder...");
         [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
@@ -96,8 +94,7 @@
     
     else if (folderPath) {
         NSEnumerator* enumerator = [[NSBundle pathsForResourcesOfType:@"plugin" inDirectory:folderPath] objectEnumerator];
-        NSString* pluginPath;
-        while ((pluginPath = [enumerator nextObject])) {
+        for (NSString* pluginPath in enumerator) {
                 [self activatePlugin:pluginPath];
         }
     }
@@ -130,8 +127,7 @@
 				pluginClass = [pluginBundle principalClass];
 				if ([pluginClass conformsToProtocol:@protocol(PhLevelPluginProtocol)] &&
 					[pluginClass isKindOfClass:[NSObject class]] &&
-					[pluginClass initializeClass:pluginBundle])
-				{
+					[pluginClass initializeClass:pluginBundle]) {
 					NSLog(@"      ... Activated!");
 					[pluginClasses addObject:pluginClass];
 				}
@@ -145,10 +141,7 @@
        
 - (void)initializePlugins
 {
-    NSEnumerator* enumerator = [pluginClasses objectEnumerator];
-    Class pluginClass;
-    while ((pluginClass = [enumerator nextObject]))
-    {
+    for (Class pluginClass in pluginClasses) {
         [self instantiatePlugins:pluginClass];
     }
     //[theWindow makeKeyAndOrderFront:self];
@@ -162,9 +155,8 @@
 //	instances array.
 
 - (void)instantiatePlugins:(Class)pluginClass {
-	NSEnumerator* plugs = [pluginClass pluginsFor:self];
-	NSObject<PhLevelPluginProtocol>* plugin;
-	while ((plugin = [plugs nextObject])) {
+	NSEnumerator<id<PhLevelPluginProtocol>>* plugs = [pluginClass pluginsFor:self];
+	for (NSObject<PhLevelPluginProtocol> *plugin in plugs) {
 		//NSTabViewItem* tab = [[[NSTabViewItem alloc] initWithIdentifier:nil] autorelease];
 		//NSView* view = [plugin theView];
 		//NSRect frame = [theTabView contentRect];

@@ -29,6 +29,8 @@
 + (NSAppleEventDescriptor *)appleEventDescriptorWithUnsignedInt:(unsigned int)aValue;
 
 - (ProcessSerialNumber)targetProcessSerialNumber;
+- (NSString*)targetProcessBundleIdentifier;
+
 @property (readonly) OSType targetCreator;
 @property (readonly, getter=isTargetCurrentProcess) BOOL targetCurrentProcess;
 
