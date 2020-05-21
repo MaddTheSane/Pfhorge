@@ -25,20 +25,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-enum { // Old Tool enum Names (still work)
-       // Although these still work, I highly recemmend that you use the new ones...
-    LEPaletteArrowTool = 0,
-    LEPaletteLineTool,
-    LEPalettePaintTool,
-    LEPaletteObjectTool,
-    LEPaletteCommentTool,
-    LEPaletteDeleteTool, // Proably won't need this...
-};
-
-// jra: Uh, the above doesn't jibe with the actual tool palette's configuration.
-// Which is ok because nobody in our code uses it anymore. Suggest removal?
-
-// New Tool enum Names, recommend these be used.
+//! New Tool enum Names, recommend these be used.
 typedef NS_ENUM(NSInteger, LEPaletteTool) {
     LEPaletteToolArrow = 0,
     LEPaletteToolLine,
@@ -48,7 +35,7 @@ typedef NS_ENUM(NSInteger, LEPaletteTool) {
     LEPaletteToolZoom,
     LEPaletteToolSampler,
     LEPaletteToolBrush,
-     // Object Creation Tools
+    // Object Creation Tools
     LEPaletteToolMonster = 10,
     LEPaletteToolPlayer,
     LEPaletteToolItem,
@@ -59,16 +46,16 @@ typedef NS_ENUM(NSInteger, LEPaletteTool) {
 
 @interface LEPaletteController : NSWindowController
 {
-    IBOutlet id toolPalette;
+    IBOutlet NSMatrix *toolPalette;
 }
 
-+ (id)sharedPaletteController;
+@property (class, readonly, retain) LEPaletteController *sharedPaletteController;
 
 - (IBAction)toolSelection:(id)sender;
-- (LEPaletteTool)getCurrentTool;
+- (LEPaletteTool)currentTool;
 
 
-- (BOOL)tryToMatchKey:(NSString *)keys;
+- (BOOL)tryToMatchKey:(NSString *)keys NS_SWIFT_NAME(tryToMatch(key:));
 
 - (void)selectArrowTool;
 - (void)selectLineTool;

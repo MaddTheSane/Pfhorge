@@ -53,7 +53,7 @@
 }
 
 - (void)windowDidLoad {
-    NSArray *cells = [toolPalette cells];
+    NSArray<NSCell*> *cells = [toolPalette cells];
     NSInteger i, c = [cells count];
     
     //[super windowDidLoad];
@@ -71,7 +71,7 @@
     [toolPalette setFrameOrigin:NSMakePoint(0.0, 0.0)];
 }
 
-- (LEPaletteTool)getCurrentTool {
+- (LEPaletteTool)currentTool {
     LEPaletteTool theTool = GetTagOfSelected(toolPalette); //[toolPalette selectedColumn];
     
     return theTool;
@@ -126,45 +126,44 @@
 {
     // pull out first letter
     unichar key = [keys characterAtIndex:0];
-
-    switch(key)
-    {
-	case 'a':
-	case 'A':
-	    [self selectArrowTool];
-	    break;
-	    
-	case 'l':	// L as in Line
-	case 'L':
-	case 'd':	// D as in Draw ... keeps it on the left hand
-	case 'D':	// (right hand on mouse, left hand in std position)
-	    [self selectLineTool];
-	    break;
-	    
-	case 'f':	// F as in Fill poly (Forge carryover)
-	case 'F':
-	case 'p':	// P as in Paint bucket OR Polygon tool
-	case 'P':
-	    [self selectPaintTool];
-	    break;
-
-	case 'h':
-	case 'H':
-	    [self selectHandTool];
-	    break;
-	    
-	case 't':
-	case 'T':
-	    [self selectTextTool];
-	    break;
-
-	case 'z':
-	case 'Z':
-	    [self selectZoomTool];
-	    break;
-	    
-	default:
-	    return NO;
+    
+    switch(key) {
+        case 'a':
+        case 'A':
+            [self selectArrowTool];
+            break;
+            
+        case 'l':	// L as in Line
+        case 'L':
+        case 'd':	// D as in Draw ... keeps it on the left hand
+        case 'D':	// (right hand on mouse, left hand in std position)
+            [self selectLineTool];
+            break;
+            
+        case 'f':	// F as in Fill poly (Forge carryover)
+        case 'F':
+        case 'p':	// P as in Paint bucket OR Polygon tool
+        case 'P':
+            [self selectPaintTool];
+            break;
+            
+        case 'h':
+        case 'H':
+            [self selectHandTool];
+            break;
+            
+        case 't':
+        case 'T':
+            [self selectTextTool];
+            break;
+            
+        case 'z':
+        case 'Z':
+            [self selectZoomTool];
+            break;
+            
+        default:
+            return NO;
     }
     
     return YES;		// default has already returned NO if char wasn't matched

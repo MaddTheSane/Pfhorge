@@ -32,14 +32,14 @@
 //Other Classes...
 #import "LEExtras.h"
 
-@interface PhTextureInspectorController (private)
+@interface PhTextureInspectorController ()
 
-    - (void)setMenusTo:(NSMenu *)menu;
-    - (void)setMenusToUseImages:(NSArray *)images;
-    - (void)updateMenu:(NSPopUpButton *)menu withImages:(NSArray *)images;
-    - (void)setupTextureUIWithSide:(LESide *)side enableTransparentTexture:(BOOL)lTransparentSide;
-    - (void)addNumbersForMenu:(NSPopUpButton *)menu upTo:(int)maxItem;
-    
+- (void)setMenusTo:(NSMenu *)menu;
+- (void)setMenusToUseImages:(NSArray<NSImage*> *)images;
+- (void)updateMenu:(NSPopUpButton *)menu withImages:(NSArray<NSImage*> *)images;
+- (void)setupTextureUIWithSide:(LESide *)side enableTransparentTexture:(BOOL)lTransparentSide;
+- (void)addNumbersForMenu:(NSPopUpButton *)menu upTo:(int)maxItem;
+
 @end
 
 @implementation PhTextureInspectorController
@@ -105,34 +105,11 @@
     // I am redesining (again }:=>) some aspects of the texture inspector...
     
     currentEnvironment = code;
-    
-    return; 
-    
-    if (currentEnvironment != code)
-    {
-        PhTextureRepository *textures = [PhTextureRepository sharedTextureRepository];
-        NSArray *images = [textures getTextureCollection:code];
-
-        if (images != nil)
-             [self setMenusToUseImages:images];
-        else // Error if it gets to this point...
-        {
-                NSLog(@"Default, Enviroment Code=%d", code);
-                [self setMenusToUseImages:nil];
-        }
-        
-        fprintf(stderr, ".\n");
-        
-        currentEnvironment = code;
-    }
-    
-    return;
 }
 
 - (void)updateTextureMenuContents
 {
-    if (menusSetup == NO)
-    {
+    if (menusSetup == NO) {
         //PhTextureRepository *textures = [PhTextureRepository sharedTextureRepository];
         NSLog(@"updateTextureMenuContents...");
         
@@ -175,14 +152,6 @@
 {
     // This is a really early function that is 
     // no longer used...
-    return;
-    
-    [primaryTexture setMenu:menu];
-    [secondaryTexture setMenu:menu];
-    [transparentTexture setMenu:menu];
-    
-    [ceilingTexture setMenu:menu];
-    [floorTexture setMenu:menu];
 }
 
 - (void)setMenusToUseImages:(NSArray *)images
@@ -212,10 +181,6 @@
 
 - (void)updateMenu:(NSPopUpButton *)menu withImages:(NSArray *)images
 {
-    NSEnumerator *numer;
-    NSImage *image;
-    id item;
-    
     //fprintf(stderr, "Seting Up Menu Items: ");
     
     //NSArray *curPImages; // primay
@@ -224,22 +189,17 @@
     //NSArray *curFImages; // floor
     //NSArray *curCImages; // ceiling
     
-    if (menu == primaryTexture)
-    {
+    if (menu == primaryTexture) {
         if (curPImages == images)
             return;
         else
             curPImages = images;
-    }
-    else if (menu == secondaryTexture)
-    {
+    } else if (menu == secondaryTexture) {
         if (curSImages == images)
             return;
         else
             curSImages = images;
-    }
-    else if (menu == transparentTexture)
-    {
+    } else if (menu == transparentTexture) {
         if (curTImages == images)
             return;
         else
@@ -248,12 +208,10 @@
     
     [menu removeAllItems];
     
-    numer = [images objectEnumerator];
-    while (image = [numer nextObject])
-    {
+    for (NSImage *image in images) {
         //fprintf(stderr, ".");
         [menu addItemWithTitle:@""];
-        item = [menu lastItem];
+        NSMenuItem *item = [menu lastItem];
         
         //item = [menu addItemWithTitle:@"" action:nil keyEquivalent:@""];
         [item setImage:image];
@@ -303,48 +261,43 @@
     
     // Primary Texture Collection
     
-    if (fColl < 0 || (fColl > 4 && fColl < 10) || fColl > 13)
-    {
+    if (fColl < 0 || (fColl > 4 && fColl < 10) || fColl > 13) {
         NSLog(@"Collection Out Of Bounds For Floor of Polygon: %d", [thePoly index]);
         
         [floorTextureNums selectItemAtIndex:-1];
-    }
-    else
-    {
+    } else {
         [self updateMenu:floorTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(fColl + 0x11)]];
         
-        if (fColl > 4)
+        if (fColl > 4) {
             [floorTextureNums selectItemAtIndex:(fColl - 5)];
-        else
+        } else {
             [floorTextureNums selectItemAtIndex:fColl];
+        }
     }
     
     
     // Secondary Texture Collection
     
-    if (cColl < 0 || (cColl > 4 && cColl < 10) || cColl > 13)
-    {
+    if (cColl < 0 || (cColl > 4 && cColl < 10) || cColl > 13) {
         NSLog(@"Collection Out Of Bounds For Ceiling of Polygon: %d", [thePoly index]);
         
         [ceilingTextureNums selectItemAtIndex:-1];
-    }
-    else
-    {
+    } else {
         [self updateMenu:ceilingTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(cColl + 0x11)]];
         
-        if (cColl > 4)
+        if (cColl > 4) {
             [ceilingTextureNums selectItemAtIndex:(cColl - 5)];
-        else
+        } else {
             [ceilingTextureNums selectItemAtIndex:cColl];
+        }
     }
     
     
     // Floor Colletion Number Choosen
     
-    if ([floorTexture numberOfItems] > floorTextureChar && floorTextureChar < 0)
+    if ([floorTexture numberOfItems] > floorTextureChar && floorTextureChar < 0) {
         [floorTexture selectItemAtIndex:floorTextureChar];
-    else
-    {
+    } else {
         [self addNumbersForMenu:floorTexture upTo:(floorTextureChar + 1)];
         [floorTexture selectItemAtIndex:floorTextureChar];
     }
@@ -354,8 +307,7 @@
     
     if ([ceilingTexture numberOfItems] > ceilingTextureChar)
         [ceilingTexture selectItemAtIndex:ceilingTextureChar];
-    else
-    {
+    else {
         [self addNumbersForMenu:ceilingTexture upTo:(ceilingTextureChar + 1)];
         [ceilingTexture selectItemAtIndex:ceilingTextureChar];
     }
@@ -393,61 +345,57 @@
     BOOL lLandscape = NO;
     BOOL lTransparentSide = NO;
     
-    unsigned short flags = 0;
+    LELineFlags flags = 0;
     
     // Check to make sure that this is actually a LELine...
     theCurrentLine = theCurrentSelection;//[mainInspectorController getTheCurrentSelection];
     
     flags = [theCurrentSelection flags];
     
-        // Cache the flags, to reduce call count...
-        // Do I need these here?
+    // Cache the flags, to reduce call count...
+    // Do I need these here?
     //lSolid 		= ([theCurrentSelection flags] & 0x4000);
     //lTransparent 	= ([theCurrentSelection flags] & 0x2000);
     
     lLandscape 		= ((flags & LELineLandscape) ? YES : NO);
     lTransparentSide 	= ((flags & LELineVariableHasTransparentSide) ? YES : NO);
     
-        // Get the sides of the line...
+    // Get the sides of the line...
     cSide = [theCurrentSelection clockwisePolygonSideObject];
     ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
     //NSLog(((flags & LELineVariableHasTransparentSide) ? @"TTRANSPARENT_SIDE: YES" : @"TTRANSPARENT_SIDE: NO"));
-        // These are not managed by thie function...
+    // These are not managed by thie function...
     //[lineFlags deselectAllCells];
     //[emptyFlag setState:NSOffState];
     //[lineControlPanelFlags deselectAllCells];
     
-        // Do I need these here?
+    // Do I need these here?
     //if (lineFlagsNumber & LELineSolid)
     //    SelectS(lineFlags, 1);
     //if (lineFlagsNumber & LELineTransparent)
-     //   SelectS(lineFlags, 2);
-     
+    //   SelectS(lineFlags, 2);
     
-    if (lLandscape == YES)
-    {
+    
+    if (lLandscape == YES) {
         // SelectS(lineFlags, 3)
     }
-    if (lTransparentSide == YES)
-    { // Should Probably make another checkbox for this...
+    if (lTransparentSide == YES) {
+        // Should Probably make another checkbox for this...
         // Might be useful for the user to set this manually...
         [transparentTextureCheckBox setState:NSOnState];
-    }
-    else
+    } else {
         [transparentTextureCheckBox setState:NSOffState];
+    }
     
     baseSideRef = nil;
     
-    if (cSide == nil && ccSide == nil)
-    {
+    if (cSide == nil && ccSide == nil) {
         [self setupTextureUIWithSide:nil enableTransparentTexture:NO];
         baseSideRef = nil;
         [sideTextureRadioBtn setEnabledOfMatrixCellsTo:NO];
         [sideLightRadioBtn setEnabledOfMatrixCellsTo:NO];
         [sideControlRadioBtn setEnabledOfMatrixCellsTo:NO];
-    }
-    else if (cSide != nil && ccSide == nil)
-    {
+    } else if (cSide != nil && ccSide == nil) {
         [self setupTextureUIWithSide:cSide enableTransparentTexture:lTransparentSide];
         SelectS(sideTextureRadioBtn, _c_side_radio);
         SelectS(sideLightRadioBtn, _c_side_radio);
@@ -456,9 +404,7 @@
         [sideLightRadioBtn setEnabledOfMatrixCellsTo:NO];
         [sideControlRadioBtn setEnabledOfMatrixCellsTo:NO];
         baseSideRef = cSide;
-    }
-    else if (cSide == nil && ccSide != nil)
-    {
+    } else if (cSide == nil && ccSide != nil) {
         [self setupTextureUIWithSide:ccSide enableTransparentTexture:lTransparentSide];
         SelectS(sideTextureRadioBtn, _cc_side_radio);
         SelectS(sideLightRadioBtn, _cc_side_radio);
@@ -467,29 +413,22 @@
         [sideLightRadioBtn setEnabledOfMatrixCellsTo:NO];
         [sideControlRadioBtn setEnabledOfMatrixCellsTo:NO];
         baseSideRef = ccSide;
-    }
-    else // if (cSide != nil && ccSide != nil)
-    {
+    } else {// if (cSide != nil && ccSide != nil)
         [sideTextureRadioBtn setEnabledOfMatrixCellsTo:YES];
         [sideLightRadioBtn setEnabledOfMatrixCellsTo:YES];
         [sideControlRadioBtn setEnabledOfMatrixCellsTo:YES];
         
-        if (GetTagOfSelected(sideTextureRadioBtn) == _cc_side_radio)
-        {
+        if (GetTagOfSelected(sideTextureRadioBtn) == _cc_side_radio) {
             SelectS(sideLightRadioBtn, _cc_side_radio);
             SelectS(sideControlRadioBtn, _cc_side_radio);
             [self setupTextureUIWithSide:ccSide enableTransparentTexture:lTransparentSide];
             baseSideRef = ccSide;
-        }
-        else if (GetTagOfSelected(sideTextureRadioBtn) == _c_side_radio)
-        {
+        } else if (GetTagOfSelected(sideTextureRadioBtn) == _c_side_radio) {
             SelectS(sideLightRadioBtn, _c_side_radio);
             SelectS(sideControlRadioBtn, _c_side_radio);
             [self setupTextureUIWithSide:cSide enableTransparentTexture:lTransparentSide];
             baseSideRef = cSide;
-        }
-        else
-        {
+        } else {
             SEND_ERROR_MSG_TITLE(@"Don't know which side to have inspector inspect", @"Please Report This Error");
             [self reset];
             [self setupTextureUIWithSide:nil enableTransparentTexture:NO];
@@ -505,230 +444,209 @@
 
 - (void)setupTextureUIWithSide:(LESide *)side enableTransparentTexture:(BOOL)lTransparentSide
 {
-        /*
-	LESideFull,	// primary texture is mapped floor-to-ceiling
-	LESideHigh, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
-	LESideLow, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
-	LESideComposite,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
-	LESideSplit 	// primary texture is mapped onto a panel coming down from the ceiling,
-                        // secondary texture is mapped on a panel coming up from the floor
-        */
+    /*
+     LESideFull,	// primary texture is mapped floor-to-ceiling
+     LESideHigh, 	// primary texture is mapped on a panel coming down from the ceiling (implies 2 adjacent polygons)
+     LESideLow, 	// primary texture is mapped on a panel coming up from the floor (implies 2 adjacent polygons)
+     LESideComposite,// primary texture is mapped floor-to-ceiling, secondary texture is mapped into it (i.e., control panel)
+     LESideSplit 	// primary texture is mapped onto a panel coming down from the ceiling,
+     // secondary texture is mapped on a panel coming up from the floor
+     */
+    
+    // For Right Now...
+    //[transparentTextureCheckBox setEnabled:NO];
+    
+    BOOL doPriT = YES;
+    BOOL doSecT = YES;
+    BOOL doTraT = YES;
+    
+    if (side != nil) {
+        LESideType sideType = [side type];
         
-        // For Right Now...
-        //[transparentTextureCheckBox setEnabled:NO];
-        
-        BOOL doPriT = YES;
-        BOOL doSecT = YES;
-        BOOL doTraT = YES;
-        
-        if (side != nil)
-        {
-            int sideType = [side type];
-            
-            if (sideType == LESideFull || sideType == LESideHigh || sideType == LESideLow)
-            {
-                [primaryTexture setEnabled:YES];
-                [secondaryTexture setEnabled:NO];
-                [primaryTextureNums setEnabled:YES];
-                [secondaryTextureNums setEnabled:NO];
-                [primaryLight setEnabled:YES];
-                [secondaryLight setEnabled:NO];
-            }
-            else // if (sideType == LESideSplit || sideType == LESideComposite)
-            {
-                [primaryTexture setEnabled:YES];
-                [secondaryTexture setEnabled:YES];
-                [primaryTextureNums setEnabled:YES];
-                [secondaryTextureNums setEnabled:YES];
-                [primaryLight setEnabled:YES];
-                [secondaryLight setEnabled:YES];
-            }
-        }
-        else // no side...
-        {
-            [primaryTexture setEnabled:NO];
-            [primaryTextureNums setEnabled:NO];
-            [transparentTexture setEnabled:NO];
-            [transparentTextureNums setEnabled:NO];
+        if (sideType == LESideFull || sideType == LESideHigh || sideType == LESideLow) {
+            [primaryTexture setEnabled:YES];
             [secondaryTexture setEnabled:NO];
+            [primaryTextureNums setEnabled:YES];
             [secondaryTextureNums setEnabled:NO];
-            [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:NO];
-            [primaryLight setEnabled:NO];
+            [primaryLight setEnabled:YES];
             [secondaryLight setEnabled:NO];
-            [transparentLight setEnabled:NO];
-            return;
+        } else { // if (sideType == LESideSplit || sideType == LESideComposite)
+            [primaryTexture setEnabled:YES];
+            [secondaryTexture setEnabled:YES];
+            [primaryTextureNums setEnabled:YES];
+            [secondaryTextureNums setEnabled:YES];
+            [primaryLight setEnabled:YES];
+            [secondaryLight setEnabled:YES];
         }
+    } else {// no side...
+        [primaryTexture setEnabled:NO];
+        [primaryTextureNums setEnabled:NO];
+        [transparentTexture setEnabled:NO];
+        [transparentTextureNums setEnabled:NO];
+        [secondaryTexture setEnabled:NO];
+        [secondaryTextureNums setEnabled:NO];
+        [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:NO];
+        [primaryLight setEnabled:NO];
+        [secondaryLight setEnabled:NO];
+        [transparentLight setEnabled:NO];
+        return;
+    }
+    
+    if (lTransparentSide == YES) {
+        [transparentTexture setEnabled:YES];
+        [transparentTextureNums setEnabled:YES];
+        [transparentLight setEnabled:YES];
+    } else {// No Transparent Side...
+        [transparentTexture setEnabled:NO];
+        [transparentTextureNums setEnabled:NO];
+        [transparentLight setEnabled:NO];
+    }
+    
+    /*
+     struct side_texture_definition primaryTex; 	//= [baseSideRef primaryTexture];
+     struct side_texture_definition secondaryTex; 	//= [baseSideRef secondaryTextureStruct];
+     struct side_texture_definition transparentTex; 	//= [baseSideRef transparentTextureStruct];
+     */
+    
+    // NOTE: Need to do caching below!!!
+    
+    // Update the texture offset fields...
+    
+    short pTransMode = [side primaryTransferMode];
+    short sTransMode = [side secondaryTransferMode];
+    short tTransMode = [side transparentTransferMode];
+    
+    if (([primaryMode numberOfItems] - 1) > pTransMode && pTransMode >= 0)
+        [primaryMode selectItemAtIndex:(pTransMode + 1)];
+    else
+        [primaryMode selectItemAtIndex:-1];
+    
+    if (([secondaryMode numberOfItems] - 1) > sTransMode && sTransMode >= 0)
+        [secondaryMode selectItemAtIndex:(sTransMode + 1)];
+    else
+        [secondaryMode selectItemAtIndex:-1];
+    
+    if (([transparentMode numberOfItems] - 1) > tTransMode && tTransMode >= 0)
+        [transparentMode selectItemAtIndex:(tTransMode + 1)];
+    else
+        [transparentMode selectItemAtIndex:-1];
+    
+    
+    short pLight = [side primaryLightsourceIndex];
+    short sLight = [side secondaryLightsourceIndex];
+    short tLight = [side transparentLightsourceIndex];
+    
+    if ([primaryLight numberOfItems] > pLight && pLight >= 0)
+        [primaryLight selectItemAtIndex:pLight];
+    else
+        [primaryLight selectItemAtIndex:-1];
+    
+    if ([secondaryLight numberOfItems] > sLight && sLight >= 0) {
+        NSLog(@"Secondary Light Was Ok...");
+        [secondaryLight selectItemAtIndex:sLight];
+    } else {
+        NSLog(@"Secondary Light was out of range: %d  num of items: %ld", sLight, (long)[secondaryLight numberOfItems]);
+        [secondaryLight selectItemAtIndex:-1];
+    }
+    
+    if ([transparentLight numberOfItems] > tLight && tLight >= 0) {
+        [transparentLight selectItemAtIndex:tLight];
+    } else {
+        [transparentLight selectItemAtIndex:-1];
+    }
+    
+    
+    [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:YES];
+    
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 1, [side primaryTextureStruct].x0);
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 2, [side primaryTextureStruct].y0);
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 3, [side secondaryTextureStruct].x0);
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 4, [side secondaryTextureStruct].y0);
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 5, [side transparentTextureStruct].x0);
+    SetMatrixObjectValue(sideTextureOffsetMatrix, 6, [side transparentTextureStruct].y0);
+    
+    
+    int pColl = [side primaryTextureCollection];
+    int sColl = [side secondaryTextureCollection];
+    int tColl = [side transparentTextureCollection];
+    
+    // Primary Texture Collection
+    
+    if (pColl < 0 || (pColl > 4 && pColl < 10) || pColl > 13) {
+        NSLog(@"Collection Out Of Bounds For Primary of Side: %d  Line: %d...",
+              [side index], [side lineIndex]);
         
-        if (lTransparentSide == YES)
-        {
-            [transparentTexture setEnabled:YES];
-            [transparentTextureNums setEnabled:YES];
-            [transparentLight setEnabled:YES];
-        }
-        else // No Transparent Side...
-        {
-            [transparentTexture setEnabled:NO];
-            [transparentTextureNums setEnabled:NO];
-            [transparentLight setEnabled:NO];
-        }
+        [primaryTextureNums selectItemAtIndex:-1];
+        doPriT = NO;
+    } else {
+        [self updateMenu:primaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(pColl + 0x11)]];
         
-        /*
-        struct side_texture_definition primaryTex; 	//= [baseSideRef primaryTexture];
-        struct side_texture_definition secondaryTex; 	//= [baseSideRef secondaryTextureStruct];
-        struct side_texture_definition transparentTex; 	//= [baseSideRef transparentTextureStruct];
-        */
-        
-        // NOTE: Need to do caching below!!!
-        
-        // Update the texture offset fields...
-        
-        short pTransMode = [side primaryTransferMode];
-        short sTransMode = [side secondaryTransferMode];
-        short tTransMode = [side transparentTransferMode];
-        
-        if (([primaryMode numberOfItems] - 1) > pTransMode && pTransMode >= 0)
-            [primaryMode selectItemAtIndex:(pTransMode + 1)];
+        if (pColl > 4)
+            [primaryTextureNums selectItemAtIndex:(pColl - 5)];
         else
-            [primaryMode selectItemAtIndex:-1];
+            [primaryTextureNums selectItemAtIndex:pColl];
+    }
+    
+    // Secondary Texture Collection
+    
+    if (sColl < 0 || (sColl > 4 && sColl < 10) || sColl > 13) {
+        NSLog(@"Collection Out Of Bounds For Secondary of Side: %d  Line: %d...",
+              [side index], [side lineIndex]);
         
-        if (([secondaryMode numberOfItems] - 1) > sTransMode && sTransMode >= 0)
-            [secondaryMode selectItemAtIndex:(sTransMode + 1)];
+        [secondaryTextureNums selectItemAtIndex:-1];
+        doSecT = NO;
+    } else {
+        [self updateMenu:secondaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(sColl + 0x11)]];
+        
+        if (sColl > 4)
+            [secondaryTextureNums selectItemAtIndex:(sColl - 5)];
         else
-            [secondaryMode selectItemAtIndex:-1];
+            [secondaryTextureNums selectItemAtIndex:sColl];
+    }
+    
+    // Transparent Texture Collection
+    
+    if (tColl < 0 || (tColl > 4 && tColl < 10) || tColl > 13) {
+        NSLog(@"Collection Out Of Bounds For Transperent of Side: %d  Line: %d...",
+              [side index], [side lineIndex]);
         
-        if (([transparentMode numberOfItems] - 1) > tTransMode && tTransMode >= 0)
-            [transparentMode selectItemAtIndex:(tTransMode + 1)];
-        else
-            [transparentMode selectItemAtIndex:-1];
-
+        [transparentTextureNums selectItemAtIndex:-1];
+        doTraT = NO;
+    } else {
+        [self updateMenu:transparentTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(tColl + 0x11)]];
         
-        short pLight = [side primaryLightsourceIndex];
-        short sLight = [side secondaryLightsourceIndex];
-        short tLight = [side transparentLightsourceIndex];
-        
-        if ([primaryLight numberOfItems] > pLight && pLight >= 0)
-            [primaryLight selectItemAtIndex:pLight];
-        else
-            [primaryLight selectItemAtIndex:-1];
-        
-        if ([secondaryLight numberOfItems] > sLight && sLight >= 0)
-        {
-            NSLog(@"Secondary Light Was Ok...");
-            [secondaryLight selectItemAtIndex:sLight];
+        if (tColl > 4) {
+            [transparentTextureNums selectItemAtIndex:(tColl - 5)];
+        } else {
+            [transparentTextureNums selectItemAtIndex:tColl];
         }
-        else
-        {
-			NSLog(@"Secondary Light was out of range: %d  num of items: %ld", sLight, (long)[secondaryLight numberOfItems]);
-            [secondaryLight selectItemAtIndex:-1];
-        }
-        
-        if ([transparentLight numberOfItems] > tLight && tLight >= 0)
-            [transparentLight selectItemAtIndex:tLight];
-        else
-            [transparentLight selectItemAtIndex:-1];
-        
-        
-        [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:YES];
-        
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 1, [side primaryTextureStruct].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 2, [side primaryTextureStruct].y0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 3, [side secondaryTextureStruct].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 4, [side secondaryTextureStruct].y0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 5, [side transparentTextureStruct].x0);
-        SetMatrixObjectValue(sideTextureOffsetMatrix, 6, [side transparentTextureStruct].y0);
-        
-        
-        int pColl = [side primaryTextureCollection];
-        int sColl = [side secondaryTextureCollection];
-        int tColl = [side transparentTextureCollection];
-        
-        // Primary Texture Collection
-        
-        if (pColl < 0 || (pColl > 4 && pColl < 10) || pColl > 13)
-        {
-            NSLog(@"Collection Out Of Bounds For Primary of Side: %d  Line: %d...",
-                    [side index], [side lineIndex]);
-            
-            [primaryTextureNums selectItemAtIndex:-1];
-            doPriT = NO;
-        }
-        else
-        {
-            [self updateMenu:primaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(pColl + 0x11)]];
-            
-            if (pColl > 4)
-                [primaryTextureNums selectItemAtIndex:(pColl - 5)];
-            else
-                [primaryTextureNums selectItemAtIndex:pColl];
-        }
-        
-        // Secondary Texture Collection
-        
-        if (sColl < 0 || (sColl > 4 && sColl < 10) || sColl > 13)
-        {
-            NSLog(@"Collection Out Of Bounds For Secondary of Side: %d  Line: %d...",
-                    [side index], [side lineIndex]);
-            
-            [secondaryTextureNums selectItemAtIndex:-1];
-            doSecT = NO;
-        }
-        else
-        {
-            [self updateMenu:secondaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(sColl + 0x11)]];
-            
-            if (sColl > 4)
-                [secondaryTextureNums selectItemAtIndex:(sColl - 5)];
-            else
-                [secondaryTextureNums selectItemAtIndex:sColl];
-        }
-        
-        // Transparent Texture Collection
-        
-        if (tColl < 0 || (tColl > 4 && tColl < 10) || tColl > 13)
-        {
-            NSLog(@"Collection Out Of Bounds For Transperent of Side: %d  Line: %d...",
-                    [side index], [side lineIndex]);
-            
-            [transparentTextureNums selectItemAtIndex:-1];
-            doTraT = NO;
-        }
-        else
-        {
-            [self updateMenu:transparentTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(tColl + 0x11)]];
-            
-            if (tColl > 4)
-                [transparentTextureNums selectItemAtIndex:(tColl - 5)];
-            else
-                [transparentTextureNums selectItemAtIndex:tColl];
-        }
-        
-        //Update texture menus...
-        // In the future, instead of setting them to -1
-        //   if the texture is out of range, numbers in them after the images...
-        
-        if ([primaryTexture numberOfItems] > [side primaryTexture] && doPriT == YES)
-            [primaryTexture selectItemAtIndex:[side primaryTexture]];
-        else
-        {
-            [self addNumbersForMenu:primaryTexture upTo:([side primaryTexture] + 1)];
-            [primaryTexture selectItemAtIndex:[side primaryTexture]];
-        }
-        
-        if ([secondaryTexture numberOfItems] > [side secondaryTexture] && doSecT == YES)
-            [secondaryTexture selectItemAtIndex:[side secondaryTexture]];
-        else
-        {
-            [self addNumbersForMenu:secondaryTexture upTo:([side secondaryTexture] + 1)];
-            [secondaryTexture selectItemAtIndex:[side secondaryTexture]];
-        }
-        
-        if (/*lTransparentSide == YES &&*/ [transparentTexture numberOfItems] > [side transparentTexture] && doTraT == YES)
-            [transparentTexture selectItemAtIndex:[side transparentTexture]];
-        else// if (lTransparentSide == YES)
-        {
-            [self addNumbersForMenu:transparentTexture upTo:([side transparentTexture] + 1)];
-            [transparentTexture selectItemAtIndex:[side transparentTexture]];
-        }
+    }
+    
+    //Update texture menus...
+    // In the future, instead of setting them to -1
+    //   if the texture is out of range, numbers in them after the images...
+    
+    if ([primaryTexture numberOfItems] > [side primaryTexture] && doPriT == YES)
+        [primaryTexture selectItemAtIndex:[side primaryTexture]];
+    else
+    {
+        [self addNumbersForMenu:primaryTexture upTo:([side primaryTexture] + 1)];
+        [primaryTexture selectItemAtIndex:[side primaryTexture]];
+    }
+    
+    if ([secondaryTexture numberOfItems] > [side secondaryTexture] && doSecT == YES) {
+        [secondaryTexture selectItemAtIndex:[side secondaryTexture]];
+    } else {
+        [self addNumbersForMenu:secondaryTexture upTo:([side secondaryTexture] + 1)];
+        [secondaryTexture selectItemAtIndex:[side secondaryTexture]];
+    }
+    
+    if (/*lTransparentSide == YES &&*/ [transparentTexture numberOfItems] > [side transparentTexture] && doTraT == YES) {
+        [transparentTexture selectItemAtIndex:[side transparentTexture]];
+    } else {// if (lTransparentSide == YES)
+        [self addNumbersForMenu:transparentTexture upTo:([side transparentTexture] + 1)];
+        [transparentTexture selectItemAtIndex:[side transparentTexture]];
+    }
 }
 
 - (void)addNumbersForMenu:(NSPopUpButton *)menu upTo:(int)maxItem
@@ -779,11 +697,10 @@
     if (number < 0)
         return;
     
-    if (number > 4)
-	{
+    if (number > 4) {
         number += 5;
-		[baseSideRef setPrimaryTexture:0];
-	}
+        [baseSideRef setPrimaryTexture:0];
+    }
     
     [baseSideRef setPrimaryTextureCollection:number];
     [self updateLineTextureAndLightMenus];
@@ -797,11 +714,10 @@
     if (number < 0)
         return;
     
-    if (number > 4)
-	{
+    if (number > 4) {
         number += 5;
-		[baseSideRef setSecondaryTexture:0];
-	}
+        [baseSideRef setSecondaryTexture:0];
+    }
     
     [baseSideRef setSecondaryTextureCollection:number];
     [self updateLineTextureAndLightMenus];
@@ -815,11 +731,10 @@
     if (number < 0)
         return;
     
-    if (number > 4)
-	{
+    if (number > 4) {
         number += 5;
-		[baseSideRef setTransparentTexture:0];
-	}
+        [baseSideRef setTransparentTexture:0];
+    }
     
     [baseSideRef setTransparentTextureCollection:number];
     [self updateLineTextureAndLightMenus];
@@ -927,17 +842,17 @@
 
 - (IBAction)primaryLightAction:(id)sender
 {
-    [baseSideRef  setPrimaryLightsourceIndex:[sender indexOfSelectedItem]];
+    [baseSideRef setPrimaryLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)secondaryLightAction:(id)sender
 {
-    [baseSideRef  setSecondaryLightsourceIndex:[sender indexOfSelectedItem]];
+    [baseSideRef setSecondaryLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 - (IBAction)transparentLightAction:(id)sender
 {
-    [baseSideRef  setTransparentLightsourceIndex:[sender indexOfSelectedItem]];
+    [baseSideRef setTransparentLightsourceIndex:[sender indexOfSelectedItem]];
 }
 
 

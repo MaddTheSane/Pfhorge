@@ -110,28 +110,28 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:12];
         
-        [progress setStatusText:[NSString stringWithFormat:@"Converting \"%@\"...", [theLevelNames objectAtIndex:(i - 1)], nil]];
+        [progress setStatusText:[NSString stringWithFormat:@"Converting \"%@\"…", [theLevelNames objectAtIndex:(i - 1)], nil]];
         
         [progress setSecondMinProgress:0.0];
         [progress setSecondMaxProgress:100.0];
         [progress setSecondProgressPostion:0.0];
         [progress setSecondStatusText:@"Loading Level, Please Wait..."];
         
-        [progress useSecondBarOnly:YES];
+        [progress setUseSecondBarOnly:YES];
         currentLevel = [theTmpMarathonMap getLevel:i log:NO];
-        [progress useSecondBarOnly:NO];
+        [progress setUseSecondBarOnly:NO];
         if (currentLevel == nil) {
-            SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels...",
+            SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels…",
                                  @"Converting Error");
             continue;
         }
         
-        [progress setSecondStatusText:@"Archiving Level Into Binary Data..."];
+        [progress setSecondStatusText:@"Archiving Level Into Binary Data…"];
         [progress increaseSecondProgressBy:5.0];
         
         theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:currentLevel];
         
-        [progress setSecondStatusText:@"Saving Level..."];
+        [progress setSecondStatusText:@"Saving Level…"];
         [progress increaseSecondProgressBy:5.0];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
@@ -201,8 +201,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     ///   mapDataToSave
     
-    for (i = 0; i < levelCount; i++)
-    {
+    for (i = 0; i < levelCount; i++) {
         NSString *fileName = [scenarioData getLevelPathForLevel:i];
         NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
         NSMutableData *tempData = [[NSMutableData alloc] initWithCapacity:200000];
@@ -1154,7 +1153,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     short theShort;
     //[mapData deserializeDataAt:&theShort ofObjCType:@encode(short) atCursor:&theCursor context:nil];
     [mapData getBytes:&theShort range:NSMakeRange(theCursor,2)];
-	theShort = CFSwapInt16BigToHost(theShort);
+    theShort = CFSwapInt16BigToHost(theShort);
     theCursor += 2;
     return theShort;
 }
@@ -1164,11 +1163,11 @@ BOOL setupPointerArraysDurringLoading = YES;
     short theShortNum;
     NSInteger theArrayCount = [theArray count];
     [mapData getBytes:&theShortNum range:NSMakeRange(theCursor,2)];
-	theShortNum = CFSwapInt16BigToHost(theShortNum);
+    theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
     
     if ((theShortNum >= theArrayCount)) {
-		NSLog(@"Bounding Error: %d   Array Count: %ld", theShortNum, (long)theArrayCount);
+        NSLog(@"Bounding Error: %d   Array Count: %ld", theShortNum, (long)theArrayCount);
         if (!alreadyGaveBoundingError)
             SEND_ERROR_MSG(@"Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array...");
         alreadyGaveBoundingError = YES;
@@ -1183,7 +1182,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     short theShortNum;
     NSInteger theArrayCount = [theArray count];
     [mapData getBytes:&theShortNum range:NSMakeRange(theCursor,2)];
-	theShortNum = CFSwapInt16BigToHost(theShortNum);
+    theShortNum = CFSwapInt16BigToHost(theShortNum);
     theCursor += 2;
     
     if (theShortNum < 1 && theArrayCount < 1) {
@@ -1209,7 +1208,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     unsigned short theUnsignedShort;
     //[mapData deserializeDataAt:&theShort ofObjCType:@encode(short) atCursor:&theCursor context:nil];
     [mapData getBytes:&theUnsignedShort range:NSMakeRange(theCursor,2)];
-	theUnsignedShort = CFSwapInt16BigToHost(theUnsignedShort);
+    theUnsignedShort = CFSwapInt16BigToHost(theUnsignedShort);
     theCursor += 2;
     return theUnsignedShort;
 }
@@ -1218,7 +1217,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 {
     unsigned short theUnsignedShort;
     [mapData getBytes:&theUnsignedShort range:NSMakeRange(theCursor,2)];
-	theUnsignedShort = CFSwapInt16BigToHost(theUnsignedShort);
+    theUnsignedShort = CFSwapInt16BigToHost(theUnsignedShort);
     theCursor += 2;
     return [theArray objectAtIndex:theUnsignedShort];
 }
@@ -1228,7 +1227,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     int theLong;
     //[mapData deserializeDataAt:&theLong ofObjCType:@encode(long) atCursor:&theCursor context:nil];
     [mapData getBytes:&theLong range:NSMakeRange(theCursor,4)];
-	theLong = CFSwapInt32BigToHost(theLong);
+    theLong = CFSwapInt32BigToHost(theLong);
     theCursor += 4;
     return theLong;
 }
@@ -1238,7 +1237,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     unsigned int theUnsignedLong;
     //[mapData deserializeDataAt:&theUnsignedLong ofObjCType:@encode(unsigned long) atCursor:&theCursor context:nil];
     [mapData getBytes:&theUnsignedLong range:NSMakeRange(theCursor,4)];
-	theUnsignedLong = CFSwapInt32BigToHost(theUnsignedLong);
+    theUnsignedLong = CFSwapInt32BigToHost(theUnsignedLong);
     theCursor += 4;
     return theUnsignedLong;
 }
@@ -1275,26 +1274,26 @@ BOOL setupPointerArraysDurringLoading = YES;
 - (void)saveData:(NSData *)theData { [mapDataToSave appendData:theData]; }
 - (void)saveShort:(short)v 
 { 
-	short theData = CFSwapInt16HostToBig(v);
-	[mapDataToSave appendBytes:&theData length:2]; 
+    short theData = CFSwapInt16HostToBig(v);
+    [mapDataToSave appendBytes:&theData length:2];
 }
 
 - (void)saveUnsignedShort:(unsigned short)v 
 { 
-	short theShort = CFSwapInt16HostToBig(v);
-	[mapDataToSave appendBytes:&theShort length:2]; 
+    short theShort = CFSwapInt16HostToBig(v);
+    [mapDataToSave appendBytes:&theShort length:2];
 }
 
 - (void)saveLong:(int)v
 { 
-	int theLong = CFSwapInt32HostToBig(v);
-	[mapDataToSave appendBytes:&theLong length:4]; 
+    int theLong = CFSwapInt32HostToBig(v);
+    [mapDataToSave appendBytes:&theLong length:4];
 }
 
 - (void)saveUnsignedLong:(unsigned int)v
 { 
-	int theLong = CFSwapInt32HostToBig(v);
-	[mapDataToSave appendBytes:&theLong length:4]; 
+    int theLong = CFSwapInt32HostToBig(v);
+    [mapDataToSave appendBytes:&theLong length:4];
 }
 
 - (void)saveStringAsChar:(NSString *)v withLength:(int)length
@@ -1742,7 +1741,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getTheLinesAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{ // *** 'LINS' *** 32 bytes each
+{
+    // *** 'LINS' *** 32 bytes each
     NSArray *theLineArray = [curLevel lines];
     NSArray *thePolyArray = [curLevel polygons];
     NSArray *theSideArray = [curLevel sides];
@@ -1813,7 +1813,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getThePolygonsAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{ // *** 'POLY' *** 128 bytes each
+{
+    // *** 'POLY' *** 128 bytes each
     NSArray *thePolyArray = [curLevel polygons];
     NSArray *theLightArray = [curLevel lights];
     NSArray *theSideArray = [curLevel sides];
@@ -1865,16 +1866,16 @@ BOOL setupPointerArraysDurringLoading = YES;
         } else {
             switch (theType) {
                 case _polygon_is_base:
-                    thePerObj = nil; // For Now, I am not sure about this yet??? 
+                    thePerObj = nil; // For Now, I am not sure about this yet???
                     break;
                 case _polygon_is_platform:
                     if (countOfPlatformArray > thePermutation)
                         thePerObj = [thePlatformArray objectAtIndex:thePermutation];
                     else
                         thePerObj = nil;
-                    #ifdef useDebugingLogs
-                        NSLog(@"poly platfrom tag number: %d, poly index: %d, thePermutation: %d", [thePerObj getTag], [theObj getIndex], thePermutation);
-                    #endif
+#ifdef useDebugingLogs
+                    NSLog(@"poly platfrom tag number: %d, poly index: %d, thePermutation: %d", [thePerObj getTag], [theObj getIndex], thePermutation);
+#endif
                     break;
                 case _polygon_is_light_on_trigger:
                     thePerObj = [theLightArray objectAtIndex:thePermutation];
@@ -2018,9 +2019,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         // all touching polygons for easy refrence...
         // Ask the Marathon-Developer list about the
         // following two entrys...
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"blank"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"blank"];
+#endif
         theCursor += 2; // Skip the sound sources for right now...
         //[theObj setFirstNeighborObject:[self getShortObjectFromArray:thePolyArray]]; //
         
@@ -2029,23 +2030,23 @@ BOOL setupPointerArraysDurringLoading = YES;
         // boarders?  Or is it from the center
         // of the polygon?  I am going with
         // the boarders for right now...
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setNeighbor_count"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setNeighbor_count"];
+#endif
         [theObj setNeighborCount:[self getShort]];
         
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"setCenter"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"setCenter"];
+#endif
         [theObj setCenter:NSMakePoint([self getShort], [self getShort])];
         
         for (i = 0; i < 8; i++)
         {
             if (i < vertextCount)
             {
-                #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setSidesObject:[self getShortObjectFrom:theSideArray] i:0]"];
-        #endif
+#ifdef useDebugingLogs
+                [self NSLogShortFromData:@"setSidesObject:[self getShortObjectFrom:theSideArray] i:0]"];
+#endif
                 [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFromArray:theSideArray] toIndex:i]; //
             }
             else
@@ -2055,42 +2056,42 @@ BOOL setupPointerArraysDurringLoading = YES;
             }
         }
         
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"setFloor_origin"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"setFloor_origin"];
+#endif
         [theObj setFloorOrigin:NSMakePoint([self getShort], [self getShort])];
-        #ifdef useDebugingLogs
-            [self NSLogPointFromData:@"setCeiling_origin"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogPointFromData:@"setCeiling_origin"];
+#endif
         [theObj setCeilingOrigin:NSMakePoint([self getShort], [self getShort])];
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setMediaObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setMediaObject"];
+#endif
         [theObj setMediaObject:[self getShortObjectFromArray:theMediaArray]]; //
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setMedia_lightsourceObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setMedia_lightsourceObject"];
+#endif
         [theObj setMediaLightsourceObject:[self getShortObjectFromArray:theLightArray]]; //
         
         //[theObj setSoundSources:[self getShort]]; // *** I am not sure about this one ***
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"blank"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"blank"];
+#endif
         theCursor += 2; // Skip the sound sources for right now...
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setAmbient_soundObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setAmbient_soundObject"];
+#endif
         [theObj setAmbientSoundObject:[self getShortObjectFromArray:theAmbientArray]]; //
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"setRandom_soundObject"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"setRandom_soundObject"];
+#endif
         [theObj setRandomSoundObject:[self getShortZeroIsNilIfOverObjectFromArray:theRandomArray]]; //
         
-        #ifdef useDebugingLogs
-            [self NSLogShortFromData:@"blank"];
-        #endif
+#ifdef useDebugingLogs
+        [self NSLogShortFromData:@"blank"];
+#endif
         theCursor+=2; // Skip the unused short
     }
     return;
@@ -2101,7 +2102,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getTheMapObjectsAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{	// *** 'OBJS' *** 16 bytes each
+{
+    // *** 'OBJS' *** 16 bytes each
     NSArray *theObjectArray = [curLevel theMapObjects];
     NSArray *thePolyArray = [curLevel polygons];
     LEMapObject *theObj;
@@ -2109,14 +2111,12 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theObjectArray objectEnumerator];
-    if ((theDataLength % 16)  > 0)
-    {
+    if ((theDataLength % 16) > 0) {
         NSLog(@"WARNING: Non Integer Number Of Map Objects, File Could Be Corupted!");
     }
     
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setType:[self getShort]];
         [theObj setIndex:[self getShort]];
         [theObj setFacing:[self getShort]];
@@ -2132,7 +2132,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getTheSidesAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{	// *** 'SIDS' *** 64 bytes each
+{
+    // *** 'SIDS' *** 64 bytes each
     NSArray *theSideArray = [curLevel sides];
     NSArray *theLightArray = [curLevel lights];
     NSArray *theLineArray = [curLevel lines];
@@ -2145,7 +2146,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     theCursor = theDataOffset;
     numer = [theSideArray objectEnumerator];
-    if ((theDataLength % 64)  > 0) {
+    if ((theDataLength % 64) > 0) {
         NSLog(@"WARNING: Non Integer Number Of Sides, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
@@ -2279,7 +2280,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getTheLightsAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{	// *** 'LITE' *** 100 bytes each
+{
+    // *** 'LITE' *** 100 bytes each
     NSArray *theLightArray = [curLevel lights];
     PhLight *theObj;
     NSEnumerator *numer;
@@ -2297,8 +2299,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         [theObj setPhase:[self getShort]];
         
-        for (i = 0; i < 6; i++)
-        {
+        for (i = 0; i < 6; i++) {
             [theObj setFunction:[self getShort] forState:i];
             [theObj setPeriod:[self getShort]forState:i];
             [theObj setDeltaPeriod:[self getShort] forState:i];
@@ -2316,7 +2317,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)getTheAnnotationsAtOffset:(long)theDataOffset
                     withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
-{	// *** 'NOTE' *** 72 bytes each
+{
+    // *** 'NOTE' *** 72 bytes each
     NSArray *theAnnotationArray = [curLevel notes];
     NSArray *thePolyArray = [curLevel polygons];
     PhAnnotationNote *theObj;
@@ -2340,9 +2342,10 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getTheMediaAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-{	// *** 'medi' *** 32 bytes each
+                withLength:(long)theDataLength
+                 withLevel:(LELevelData *)curLevel
+{
+    // *** 'medi' *** 32 bytes each
     NSArray *theMediaArray = [curLevel media];
     NSArray *theLightArray = [curLevel lights];
     PhMedia *theObj;
@@ -2375,13 +2378,13 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         theCursor+=4; // Skip the 2 unused shorts
     }
-    return;
 }
 
 -(void)getTheAmbientSoundsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-{	// *** 'ambi' *** 16 bytes each
+                        withLength:(long)theDataLength
+                         withLevel:(LELevelData *)curLevel
+{
+    // *** 'ambi' *** 16 bytes each
     NSArray *theAmbientArray = [curLevel ambientSounds];
     PhAmbientSound *theObj;
     NSEnumerator *numer;
@@ -2400,13 +2403,13 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         theCursor+=10; // Skip the 5 unused shorts
     }
-    return;
 }
 
 -(void)getTheStaticPlatformsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-{	// *** 'plat' *** 32 bytes each   Merged Maps have 'PLAT' ???
+                          withLength:(long)theDataLength
+                           withLevel:(LELevelData *)curLevel
+{
+    // *** 'plat' *** 32 bytes each   Merged Maps have 'PLAT' ???
     NSArray *thePlatformArray = [curLevel platforms];
     NSArray *thePolyArray = [curLevel polygons];
     PhPlatform *theObj;
@@ -2434,12 +2437,11 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         theCursor+=14; // Skip the 7 unused bytes
     }
-    return;
 }
 
 -(void)getTheDynamicPlatformsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                           withLength:(long)theDataLength
+                            withLevel:(LELevelData *)curLevel
 {	// *** 'PLAT' ***
     NSArray *thePlatformArray = [curLevel platforms];
     //NSArray *thePolyArray = [curLevel polygons];
@@ -2464,51 +2466,48 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 
 -(void)getTheItemPlacementAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-{	// *** 'plac' *** 12 bytes each
+                        withLength:(long)theDataLength
+                         withLevel:(LELevelData *)curLevel
+{
+    // *** 'plac' *** 12 bytes each
     NSArray *theItemArray = [curLevel itemPlacement];
     PhItemPlacement *theObj;
     NSEnumerator *numer;
     
     theCursor = theDataOffset;
     numer = [theItemArray objectEnumerator];
-    if ((theDataLength % 12)  > 0)
-    {
+    if ((theDataLength % 12)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Item Placments, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setFlags:[self getShort]];
-    
+        
         [theObj setInitialCount:[self getShort]];
         [theObj setMinimumCount:[self getShort]];
         [theObj setMaximumCount:[self getShort]];
-    
+        
         [theObj setRandomCount:[self getShort]];
         [theObj setRandomChance:[self getUnsignedShort]];
     }
-    return;
 }
 
 -(void)getTheRandomSoundsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
-{	// *** 'bonk' *** 32 bytes each
+                       withLength:(long)theDataLength
+                        withLevel:(LELevelData *)curLevel
+{
+    // *** 'bonk' *** 32 bytes each
     NSArray *theRandomArray = [curLevel randomSounds];
     PhRandomSound *theObj;
     NSEnumerator *numer;
     
     theCursor = theDataOffset;
     numer = [theRandomArray objectEnumerator];
-    if ((theDataLength % 32)  > 0)
-    {
+    if ((theDataLength % 32)  > 0) {
         NSLog(@"WARNING: Non Integer Number Of Random Sounds, File Could Be Corupted!");
     }
     while (((theDataLength + theDataOffset) > theCursor)
-                && (theObj = [numer nextObject]))
-    {
+           && (theObj = [numer nextObject])) {
         [theObj setFlags:[self getShort]];
         [theObj setSoundIndex:[self getShort]];
         [theObj setVolume:[self getShort]];
@@ -2549,10 +2548,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         theCursor += (terminalLength - 2);
         count++;
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Number Of Terminals Loaded: %d", [theTerminalArray count]);
-    #endif
-    return;
+#ifdef useDebugingLogs
+    NSLog(@"Number Of Terminals Loaded: %d", [theTerminalArray count]);
+#endif
 }
 
 #pragma mark -
@@ -2576,8 +2574,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     GoOn = YES;
     foundTheTag = NO;
     
-    while (GoOn == YES  && myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart)  )
-    {        
+    while (GoOn == YES  && myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart)) {
         long next_offset, length, offset, tag;
         
         if (this_offset != -1)
@@ -2592,89 +2589,88 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         if (tag == theTag || (theTag == 'PNTS' && tag == 'EPNT') || (theTag == 'plat' && tag == 'PLAT')) {
             //int theCount = 0;
-            switch (tag)
-            {  
+            switch (tag) {
                 case 'PNTS':
                     [self getThePointsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel regularPoints:YES];
+                                    withLength:length withLevel:curLevel regularPoints:YES];
                     foundTheTag = YES;
                     break;
                 case 'EPNT':
                     [self getThePointsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel regularPoints:NO];
+                                    withLength:length withLevel:curLevel regularPoints:NO];
                     foundTheTag = YES;
                     break;
                 case 'LINS':
                     [self getTheLinesAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                   withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'POLY':
                     [self getThePolygonsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                      withLength:length withLevel:curLevel];
                     foundTheTag = YES; // <-- DEAL WITH THIS
                     break;
                 case 'OBJS':
                     [self getTheMapObjectsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                        withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'SIDS':
                     [self getTheSidesAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                   withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'LITE':
                     [self getTheLightsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                    withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'NOTE':
                     [self getTheAnnotationsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                         withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'medi':
                     [self getTheMediaAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                   withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'ambi':
                     [self getTheAmbientSoundsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                           withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'plat':
                     [self getTheStaticPlatformsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                             withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'PLAT':
                     [self getTheDynamicPlatformsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                              withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-            
+                    
                 case 'plac':
                     [self getTheItemPlacementAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                           withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'bonk':
                     [self getTheRandomSoundsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                          withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
-                
+                    
                 case 'term':
                     [self getTheTerminalsAtOffset:(this_offset + 16)
-                                            withLength:length withLevel:curLevel];
+                                       withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
             } //End switch (theTag)
@@ -2682,18 +2678,17 @@ BOOL setupPointerArraysDurringLoading = YES;
             GoOn = NO;
             
             //if (theDataToReturn != nil)
-                //[theDataToReturn retain];
-                
+            //[theDataToReturn retain];
+            
             return;
             
         } // End if (tag == theTag)
         
         
-        if (next_offset == 0 && !foundTheTag)
-        {
-            #ifdef useDebugingLogs
-                NSLog(@"Importent:  Level %d did not have the tag...", theLevel);
-            #endif
+        if (next_offset == 0 && !foundTheTag) {
+#ifdef useDebugingLogs
+            NSLog(@"Importent:  Level %d did not have the tag...", theLevel);
+#endif
             //[theDataToReturn release];
             return;
         }
@@ -2702,8 +2697,6 @@ BOOL setupPointerArraysDurringLoading = YES;
         this_offset = myLevelHeaders[theLevel-1].offsetToStart + next_offset;
         
     } // End while (GoOn == YES)
-    
-    return;
 }
 
 // ***************************** Save Data Functions **********************************
@@ -2712,12 +2705,10 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 - (void)saveEntryHeader:(OSType)tag next_offset:(long)nextOffset length:(long)length offset:(long)offset
 {
-
     [self saveLong:tag];
     [self saveLong:(int)(nextOffset + length + 16)]; // next offset
     [self saveLong:(int)length]; // length
     [self saveLong:(int)offset]; // offset, for inplace expansion of data???
-
 }
 
 - (void)savePointsForLevel:(LELevelData *)level
@@ -2732,8 +2723,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     [self saveEntryHeader:'PNTS' next_offset:[mapDataToSave length] length:(objCount * 4 /* point length */) offset:0];
     
-    for (LEMapPoint *currentObj in theObjects)
-    {
+    for (LEMapPoint *currentObj in theObjects) {
         [self saveShort:[currentObj x]];
         [self saveShort:[currentObj y]];
     }
@@ -2756,8 +2746,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     [self saveEntryHeader:'LINS' next_offset:[mapDataToSave length] length:(objCount * 32 /* line length */) offset:0];
     
-    for (LELine *currentObj in theObjects)
-    {
+    for (LELine *currentObj in theObjects) {
         [self saveShort:[currentObj pointIndex1]];
         [self saveShort:[currentObj pointIndex2]];
         [self saveUnsignedShort:[currentObj flags]];
@@ -3017,39 +3006,36 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 100)];
     NSArray *theObjects = [level lights];
     long objCount = [theObjects count];
-    PhLight *currentObj = nil;
     
     if (objCount < 1)
-	return;
-	
+        return;
+    
     [self saveEntryHeader:'LITE' next_offset:[mapDataToSave length] length:(objCount * 100 /* light length */) offset:0];
     
-    NSEnumerator *numer = [theObjects objectEnumerator];
-    while (currentObj = [numer nextObject])
-    {
-	int i;
-	
-	[self saveShort:[currentObj type]];
-	[self saveUnsignedShort:[currentObj flags]];
-	
-	[self saveShort:[currentObj phase]];
-	
-	for (i = 0; i < 6; i++)
-	{
-	    [self saveShort:[currentObj functionForState:i]];
-	    [self saveShort:[currentObj periodForState:i]];
-	    [self saveShort:[currentObj deltaPeriodForState:i]];
-	    [self saveLong:[currentObj intensityForState:i]]; 
-	    [self saveLong:[currentObj deltaIntensityForState:i]];
-	}
-	
-	[self saveShort:[currentObj tag]];
-	
-	[self saveEmptyBytes:8]; //Skip the unused part... :)
+    for (PhLight *currentObj in theObjects) {
+        int i;
+        
+        [self saveShort:[currentObj type]];
+        [self saveUnsignedShort:[currentObj flags]];
+        
+        [self saveShort:[currentObj phase]];
+        
+        for (i = 0; i < 6; i++)
+        {
+            [self saveShort:[currentObj functionForState:i]];
+            [self saveShort:[currentObj periodForState:i]];
+            [self saveShort:[currentObj deltaPeriodForState:i]];
+            [self saveLong:[currentObj intensityForState:i]];
+            [self saveLong:[currentObj deltaIntensityForState:i]];
+        }
+        
+        [self saveShort:[currentObj tag]];
+        
+        [self saveEmptyBytes:8]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d light objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d light objects.", objCount);
+#endif
 }
 
 - (void)saveNotesForLevel:(LELevelData *)level
@@ -3150,7 +3136,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     long objCount = [theObjects count];
     
     if (objCount < 1)
-	return;
+        return;
     
     [self saveEntryHeader:'bonk' next_offset:[mapDataToSave length] length:(objCount * 32 /* random_sound length */) offset:0];
     
@@ -3169,9 +3155,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         [self saveEmptyBytes:6]; //Skip the unused part... :)
     }
-    #ifdef useDebugingLogs
-        NSLog(@"Saved %d random sound objects.", objCount);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Saved %d random sound objects.", objCount);
+#endif
 }
 
 - (void)saveItemPlacementForLevel:(LELevelData *)level

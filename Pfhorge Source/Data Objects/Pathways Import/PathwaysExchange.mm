@@ -51,9 +51,9 @@
         [progress setSecondProgressPostion:0.0];
         [progress setSecondStatusText:@"Loading Level, Please Wait..."];
         
-        [progress useSecondBarOnly:YES];
+        [progress setUseSecondBarOnly:YES];
         currentLevel = [exchange getPIDLevel:i]; // Autoreleased....
-        [progress useSecondBarOnly:NO];
+        [progress setUseSecondBarOnly:NO];
         
         if (currentLevel == nil)
         {

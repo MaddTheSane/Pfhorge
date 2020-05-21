@@ -62,9 +62,9 @@
     poposedTerminalToDelete = nil;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                          selector:@selector(levelDeallocating:)
-                                          name:PhLevelDeallocatingNotification
-                                          object:nil];
+                                             selector:@selector(levelDeallocating:)
+                                                 name:PhLevelDeallocatingNotification
+                                               object:nil];
     return self;
 }
 
@@ -98,8 +98,8 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionChanged:)
-        name:NSOutlineViewSelectionDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectionChanged:)
+                                                 name:NSOutlineViewSelectionDidChangeNotification object:nil];
     
     [theTeriminalTableView registerForDraggedTypes:@[PfhorgeTerminalSectionDataPasteboardType]];
     
@@ -123,15 +123,15 @@
     id theSelectedObj;
     NSInteger theSelectedRow = [theTeriminalTableView selectedRow];
     
-    if (theSelectedRow > -1)
+    if (theSelectedRow > -1) {
         theSelectedObj = [theTeriminalTableView itemAtRow:theSelectedRow];
-    else
+    } else {
         theSelectedObj = nil;
+    }
     
-    if (theLastObjectEdited != nil && [theLastObjectEdited isKindOfClass:[TerminalSection class]])
-    {
+    if (theLastObjectEdited != nil && [theLastObjectEdited isKindOfClass:[TerminalSection class]]) {
         if ([self getTheCurrentTextView] != nil)
-            [theLastObjectEdited setText:((NSMutableAttributedString *)[[self getTheCurrentTextView] textStorage])];
+            [theLastObjectEdited setText:[[self getTheCurrentTextView] textStorage]];
     }
     
     theLastObjectEdited = theSelectedObj;
@@ -147,14 +147,13 @@
     
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {
-    if (item == nil)
+    if (item == nil) {
         return [theTerminals count];
-    else if ([item isKindOfClass:[TerminalSection class]])
+    } else if ([item isKindOfClass:[TerminalSection class]]) {
         return 0;
-    else if ([item isKindOfClass:[Terminal class]])
+    } else if ([item isKindOfClass:[Terminal class]]) {
         return [[item theSections] count];
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
                              @"Unknown Object");
         return 0;
@@ -163,14 +162,13 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
 {
-    if (item == nil)
+    if (item == nil) {
         return YES;
-    else if ([item isKindOfClass:[TerminalSection class]])
+    } else if ([item isKindOfClass:[TerminalSection class]]) {
         return NO;
-    else if ([item isKindOfClass:[Terminal class]])
+    } else if ([item isKindOfClass:[Terminal class]]) {
         return YES;
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
                              @"Unknown Object");
         return NO;
@@ -179,14 +177,13 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
 {
-    if (item == nil)
+    if (item == nil) {
         return [theTerminals objectAtIndex:index];
-    else if ([item isKindOfClass:[Terminal class]])
+    } else if ([item isKindOfClass:[Terminal class]]) {
         return [[item theSections] objectAtIndex:index];
-    else if ([item isKindOfClass:[TerminalSection class]])
+    } else if ([item isKindOfClass:[TerminalSection class]]) {
         return nil;
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
                              @"Unknown Object");
         return nil;
@@ -195,7 +192,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    return (item == nil) ? @"The Terminals" : (id)[item phName];
+    return (item == nil) ? @"The Terminals" : [item phName];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
@@ -209,8 +206,7 @@
     
     /// NSLog(@"writeItems");
     
-    if ([obj isKindOfClass:[TerminalSection class]])
-    {
+    if ([obj isKindOfClass:[TerminalSection class]]) {
         NSData *theData = [NSArchiver archivedDataWithRootObject:obj];
         draggedTerminalSection = obj;
         // Don't retain since this is just holding temporaral drag information,
@@ -222,30 +218,34 @@
         // the actual data doesn't matter since DragDropSimplePboardType drags aren't recognized by anyone but us!.
         [pboard setData:theData forType:PfhorgeTerminalSectionDataPasteboardType];
         return YES;
-    }
-    else
+    } else {
         return NO;
+    }
 }
 
 - (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id<NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index
-{ // NSDraggingInfo
+{
+    // NSDraggingInfo
     ///NSLog(@"validateDrop");
     
     BOOL targetNodeIsValid = NO;
     //BOOL isOnDropTypeProposal = index==NSOutlineViewDropOnItemIndex;
     
-    if (item == nil)
+    if (item == nil) {
         targetNodeIsValid = NO;
+    }
     
-    if ([item isKindOfClass:[Terminal class]])
+    if ([item isKindOfClass:[Terminal class]]) {
         targetNodeIsValid = YES;
+    }
     
     return targetNodeIsValid ? NSDragOperationGeneric : NSDragOperationNone;
 }
 
 - (BOOL)outlineView:(NSOutlineView*)outlineView acceptDrop:(id <NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
-{ // NSDraggingInfo
-    // draggedTerminalSection may not exsist, and may not be nil in that case. 
+{
+    // NSDraggingInfo
+    // draggedTerminalSection may not exsist, and may not be nil in that case.
     //	it should not happen, but it is a possiblity.  Deal with this possibility elagently in the future...
     Terminal *theTerm = [theLevel getTerminalThatContains:draggedTerminalSection];
     NSMutableArray *destArray = [item theSections];
@@ -254,18 +254,20 @@
     [draggedTerminalSection retain];
     [[theTerm theSections] removeObject:draggedTerminalSection];
     
-    if (((int)[destArray count]) <= index || NSOutlineViewDropOnItemIndex == index)
+    if (((int)[destArray count]) <= index || NSOutlineViewDropOnItemIndex == index) {
         [destArray addObject:draggedTerminalSection];
-    else
+    } else {
         [destArray insertObject:draggedTerminalSection atIndex:index];
+    }
     
     [outlineView reloadData];
     
     rowNumberForItem = [outlineView rowForItem:draggedTerminalSection];
-    if (rowNumberForItem > -1)
+    if (rowNumberForItem > -1) {
         [outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
-    else
+    } else {
         [outlineView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
+    }
     
     //[theTeriminalTableView selectItems:[NSArray arrayWithObjects:draggedTerminalSection, nil] byExtendingSelection: NO];
     
@@ -291,31 +293,27 @@
     NSInteger rowNumberForItem = -1;
     TerminalSection *theNewSection = [[TerminalSection alloc] init];
     
-    if (selectedRowNumber >= 0)
+    if (selectedRowNumber >= 0) {
         theSelectedObj = [theTeriminalTableView itemAtRow:selectedRowNumber];
-    
-    if ([theSelectedObj isKindOfClass:[Terminal class]] && theSelectedObj != nil)
-    {
-        [[theSelectedObj theSections] addObject:theNewSection];
     }
-    else
-    {
+    
+    if ([theSelectedObj isKindOfClass:[Terminal class]] && theSelectedObj != nil) {
+        [[theSelectedObj theSections] addObject:theNewSection];
+    } else {
         Terminal *theTerm = [theLevel getTerminalThatContains:theSelectedObj];
         NSMutableArray *destArray;
         NSInteger theSelectedItemsIndex;
         
-        if (theTerm == nil)
-        {
+        if (theTerm == nil) {
             NSArray *terminals = [theLevel terminals];
-            if ([terminals count] <= 0)
-            {
+            if ([terminals count] <= 0) {
                 SEND_ERROR_MSG(@"Must have a terminal to add sections to first. 103");
                 [theNewSection release];
                 NSLog(@"past release...");
                 return;
-            }
-            else
+            } else {
                 theTerm = [terminals lastObject];
+            }
         }
         
         // CHANGE_NOTE: In future, call a Termianl class method for creating sections in that terminal...
@@ -325,22 +323,23 @@
         
         [theNewSection setType:[(TerminalSection *)theSelectedObj type]];
         
-        if (([destArray count]) <= theSelectedItemsIndex)
+        if (([destArray count]) <= theSelectedItemsIndex) {
             [destArray addObject:theNewSection];
-        else
+        } else {
             [destArray insertObject:theNewSection atIndex:theSelectedItemsIndex];
+        }
     }
     
     [theTeriminalTableView reloadData];
     
     rowNumberForItem = [theTeriminalTableView rowForItem:theNewSection];
-    if (rowNumberForItem > -1)
+    if (rowNumberForItem > -1) {
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
-    else
+    } else {
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
+    }
     
     [theNewSection release];
-    
 }
 
 - (IBAction)addANewTerminalAction:(id)sender
@@ -351,27 +350,29 @@
     NSMutableArray *terminals = [theLevel getTerminals];
     Terminal *theNewTerminal = [[Terminal alloc] init];
     
-    if (selectedRowNumber >= 0)
+    if (selectedRowNumber >= 0) {
         theSelectedObj = [theTeriminalTableView itemAtRow:selectedRowNumber];
+    }
     
-    if (theSelectedObj != nil)
-    {
-        id theTerminal = nil;
+    if (theSelectedObj != nil) {
+        Terminal *theTerminal = nil;
         
-        if ([theSelectedObj isKindOfClass:[Terminal class]])
+        if ([theSelectedObj isKindOfClass:[Terminal class]]) {
             theTerminal = theSelectedObj;
-        else
+        } else {
             theTerminal = [theLevel getTerminalThatContains:theSelectedObj];
+        }
         
         rowNumberForItem = ([terminals indexOfObjectIdenticalTo:theTerminal] + 1);
-    }
-    else
+    } else {
         rowNumberForItem = 0;
+    }
     
-    if (([terminals count]) <= rowNumberForItem || rowNumberForItem < 0)
+    if (([terminals count]) <= rowNumberForItem || rowNumberForItem < 0) {
         [terminals addObject:theNewTerminal];
-    else
+    } else {
         [terminals insertObject:theNewTerminal atIndex:rowNumberForItem];
+    }
     
     [theNewTerminal setPhName:[NSString stringWithFormat:@"Terminal %lu", ([terminals count] - 1)]];
     
@@ -394,42 +395,39 @@
     //int rowNumberForItem = -1;
     //NSMutableArray *terminals = [theLevel getTerminals];
     
-    if (selectedRowNumber >= 0)
+    if (selectedRowNumber >= 0) {
         theSelectedObj = [theTeriminalTableView itemAtRow:selectedRowNumber];
-        
-    if ([theSelectedObj isKindOfClass:[Terminal class]])
-    {
+    }
+    
+    if ([theSelectedObj isKindOfClass:[Terminal class]]) {
         poposedTerminalToDelete = theSelectedObj;
         
-    // Open the sheet...
-    [NSApp beginSheet:sheetWarningWindow
-       modalForWindow:[self window]
-        modalDelegate:self
-       didEndSelector:NULL
-          contextInfo:nil];
-    }
-    else if ([theSelectedObj isKindOfClass:[TerminalSection class]])
-    {
+        // Open the sheet...
+        [NSApp beginSheet:sheetWarningWindow
+           modalForWindow:[self window]
+            modalDelegate:self
+           didEndSelector:NULL
+              contextInfo:nil];
+    } else if ([theSelectedObj isKindOfClass:[TerminalSection class]]) {
         Terminal *theTerm = [theLevel getTerminalThatContains:theSelectedObj];
         NSMutableArray *sections = [theTerm theSections];
         
         [sections removeObjectIdenticalTo:theSelectedObj];
         theLastObjectEdited = nil;
         [theTeriminalTableView reloadData];
-    
+        
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
         [theLevel recompileTerminalNamesCache];
-    }
-    else
+    } else {
         SEND_ERROR_MSG(@"Selected item is not a Terminal or TerminalSection class???");
+    }
 }
 
 - (IBAction)deleteTerminalConfirmation:(id)sender
 {
     NSInteger oldIndexRowForTerminal = 0;
     
-    if ([[sender title] isEqualToString:@"Cancel"] || poposedTerminalToDelete == nil)
-    {
+    if ([[sender title] isEqualToString:@"Cancel"] || poposedTerminalToDelete == nil) {
         poposedTerminalToDelete = nil;
         
         // Hide the sheet...
@@ -459,11 +457,10 @@
 ///PhTerminalSectionTypeNone
 - (void)updateViewToTerminalSection:(TerminalSection *)terminalObject
 {
-    int theType = PhTerminalSectionTypeNone;
+    PhTerminalSectionType theType = PhTerminalSectionTypeNone;
     NSAttributedString *theText = nil;
     ///NSLog(@"Updating...");
-    if (terminalObject == nil)
-    {
+    if (terminalObject == nil) {
         theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
@@ -471,9 +468,7 @@
         [stylePopM setEnabled:NO];
         [sectionTypesPopM selectItemAtIndex:-1];
         [indexPopM setIntValue:0];
-    }
-    else if ([terminalObject isKindOfClass:[TerminalSection class]])
-    {
+    } else if ([terminalObject isKindOfClass:[TerminalSection class]]) {
         theType = [terminalObject type];
         theText = [terminalObject text];
         [sectionTypesPopM setEnabled:YES];
@@ -481,9 +476,7 @@
         [stylePopM setEnabled:YES];
         [sectionTypesPopM selectItemAtIndex:theType];
         [indexPopM setIntValue:(int)[terminalObject permutation]];
-    }
-    else if ([terminalObject isKindOfClass:[Terminal class]])
-    {
+    } else if ([terminalObject isKindOfClass:[Terminal class]]) {
         theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
@@ -491,9 +484,7 @@
         [stylePopM setEnabled:NO];
         [sectionTypesPopM selectItemAtIndex:-1];
         [indexPopM setIntValue:0];
-    }
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data... updateViewToTerminalSection",
                              @"Unknown Object");
         theType = PhTerminalSectionTypeNone;
@@ -511,8 +502,7 @@
     [theLevel removeMenu:premutationMenu];
     /// NSLog(@"removeMenu AFTER");
     
-    switch (theType)
-    {
+    switch (theType) {
         case PhTerminalSectionTypeLogOn:
         case PhTerminalSectionTypeLogOff:   ///   theText
             [terminalTabView selectTabViewItemAtIndex:1];
@@ -551,27 +541,24 @@
         case PhTerminalSectionTypeLevelTeleport:
             [terminalTabView selectTabViewItemAtIndex:3];
             
-            if ([theMap isKindOfClass:[PhPfhorgeSingleLevelDoc class]])
-            {
+            if ([theMap isKindOfClass:[PhPfhorgeSingleLevelDoc class]]) {
                 NSLog(@"PhPfhorgeSingleLevelDoc confirmed");
-                if ([(PhPfhorgeSingleLevelDoc *)theMap isThereAScenarioDocumentLinked])
-                {
+                if ([(PhPfhorgeSingleLevelDoc *)theMap isThereAScenarioDocumentLinked]) {
                     NSLog(@"SETING UP LEVEL NAME MENU!!! confirmed");
                     [menuTextTabView selectTabViewItemAtIndex:0];
                     [theLevel addMenu:premutationMenu asA:_levelMenu];
-					if ([terminalObject permutation] < [premutationMenu numberOfItems])
+                    if ([terminalObject permutation] < [premutationMenu numberOfItems]) {
 						[premutationMenu selectItemAtIndex:[terminalObject permutation]];
-					else
-					{
+                    } else {
 						NSLog(@"new level terminal section level index beyond scenerio bounds...");
 						[menuTextTabView selectTabViewItemAtIndex:1];
 					}
-                }
-                else
+                } else {
                     [menuTextTabView selectTabViewItemAtIndex:1];
-            }
-            else
+                }
+            } else {
                 [menuTextTabView selectTabViewItemAtIndex:1];
+            }
             
             break;
         case PhTerminalSectionTypeInMapTeleport:
@@ -633,10 +620,10 @@
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-	if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
-		[theTextAtriString release];
+    if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
+        [theTextAtriString release];
         return;
-	}
+    }
     
     theCellTagClickedOn = [[sender selectedCell] tag];
     
@@ -673,19 +660,18 @@
     }
     
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                
-                @(theCellTagClickedOn),
-                PhTerminalColorAttributeName,
-                
-                theTextColor,
-                NSForegroundColorAttributeName, nil]
-            
-            range:[[self getTheCurrentTextView] selectedRange]];
+                                      
+                                      @(theCellTagClickedOn),
+                                      PhTerminalColorAttributeName,
+                                      
+                                      theTextColor,
+                                      NSForegroundColorAttributeName, nil]
+     
+                               range:[[self getTheCurrentTextView] selectedRange]];
     
     [theSelectedObj setText:theTextAtriString];
     
     [self updateViewToTerminalSection:theSelectedObj];
-                    
 }
 
 - (IBAction)applyPlainStyleAction:(id)sender
@@ -696,24 +682,24 @@
     if (![theSelectedObj isKindOfClass:[TerminalSection class]])
         return;
     
-    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]]; 
+    [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
     [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            
-            [NSFont fontWithName:@"Courier" size:12.0],
-            NSFontAttributeName,
-            
-            @"NO",
-            PhTerminalItalicAttributeName,
-            
-            @"NO",
-            PhTerminalBoldAttributeName,
-            
-            @(NSUnderlineStyleNone),
-            NSUnderlineStyleAttributeName, nil]
-            
-        range:[[self getTheCurrentTextView] selectedRange]];
-        
+                                      
+                                      [NSFont fontWithName:@"Courier" size:12.0],
+                                      NSFontAttributeName,
+                                      
+                                      @"NO",
+                                      PhTerminalItalicAttributeName,
+                                      
+                                      @"NO",
+                                      PhTerminalBoldAttributeName,
+                                      
+                                      @(NSUnderlineStyleNone),
+                                      NSUnderlineStyleAttributeName, nil]
+     
+                               range:[[self getTheCurrentTextView] selectedRange]];
+    
     [theSelectedObj setText:theTextAtriString];
     [self updateViewToTerminalSection:theSelectedObj];
 }
@@ -741,8 +727,7 @@
     limitRange = [[self getTheCurrentTextView] selectedRange];
     //NSMakeRange(0, [attrStr length]);
     
-    while (limitRange.length > 0)
-    {
+    while (limitRange.length > 0) {
         attributeValue = [attrStr attribute:PhTerminalItalicAttributeName
                                     atIndex:limitRange.location longestEffectiveRange:&effectiveRange
                                     inRange:limitRange];
@@ -751,10 +736,11 @@
         
         // NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]);
         
-        if ([attributeValue isEqualTo:@"YES"])
+        if ([attributeValue isEqualTo:@"YES"]) {
             fontToUse = boldFontItalic;
-        else
+        } else {
             fontToUse = boldFont;
+        }
         
         [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                           
@@ -819,8 +805,7 @@
     limitRange = [[self getTheCurrentTextView] selectedRange];
     //NSMakeRange(0, [attrStr length]);
     
-    while (limitRange.length > 0)
-    {
+    while (limitRange.length > 0) {
         attributeValue = [attrStr attribute:NSFontAttributeName
                                     atIndex:limitRange.location longestEffectiveRange:&effectiveRange
                                     inRange:limitRange];
@@ -857,80 +842,79 @@
     NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
-	NSAttributedString *attrStr = theTextAtriString;
-	NSRange limitRange;
-	NSRange effectiveRange;
-	id attributeValue;
-	NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
-	NSFont *regFont = [NSFont fontWithName:@"Courier" size:12.0];
-	NSFont *fontToUse;
-            
+    NSAttributedString *attrStr = theTextAtriString;
+    NSRange limitRange;
+    NSRange effectiveRange;
+    id attributeValue;
+    NSFont *boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
+    NSFont *regFont = [NSFont fontWithName:@"Courier" size:12.0];
+    NSFont *fontToUse;
+    
     NSLog(@"stylePopMAction");
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
     
-	if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
-		[theTextAtriString release];
+    if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
+        [theTextAtriString release];
         return;
-	}
+    }
     
     switch ([sender indexOfSelectedItem]) {
         case 0:
             theTextColor = [NSColor greenColor];
             break;
         case 1:
-
+            
             break;
         case 2:
             [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            @(NSUnderlineStyleSingle),
-            NSUnderlineStyleAttributeName, nil]
-            range:[[self getTheCurrentTextView] selectedRange]];
+                                              @(NSUnderlineStyleSingle),
+                                              NSUnderlineStyleAttributeName, nil]
+                                       range:[[self getTheCurrentTextView] selectedRange]];
             break;
-        
-        case 3: // dim green 
+            
+        case 3: // dim green
             
             //= [[self getTheCurrentTextView] attributedSubstringFromRange:[[self getTheCurrentTextView] selectedRange]];
             limitRange = [[self getTheCurrentTextView] selectedRange];
-                            //NSMakeRange(0, [attrStr length]);
+            //NSMakeRange(0, [attrStr length]);
             
-            while (limitRange.length > 0)
-            {
+            while (limitRange.length > 0) {
                 attributeValue = [attrStr attribute:NSFontAttributeName
-                atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-                inRange:limitRange];
+                                            atIndex:limitRange.location longestEffectiveRange:&effectiveRange
+                                            inRange:limitRange];
                 
                 // familyName italicAngle
                 
-                NSLog(@"italicAngle: %g", [attributeValue italicAngle]); 
+                NSLog(@"italicAngle: %g", [attributeValue italicAngle]);
                 
-                if ([[attributeValue familyName] isEqualToString:@"Courier-Bold"])
+                if ([[attributeValue familyName] isEqualToString:@"Courier-Bold"]) {
                     fontToUse = boldFont;
-                else
+                } else {
                     fontToUse = regFont;
+                }
                 
                 [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                [[NSFontManager sharedFontManager] convertFont:fontToUse toHaveTrait:NSItalicFontMask],
-                NSFontAttributeName, nil]
-                range:effectiveRange];
-            
+                                                  [[NSFontManager sharedFontManager] convertFont:fontToUse toHaveTrait:NSItalicFontMask],
+                                                  NSFontAttributeName, nil]
+                                           range:effectiveRange];
+                
                 limitRange = NSMakeRange(NSMaxRange(effectiveRange),
-                NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
+                                         NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
             }
-
+            
             break;
         default:
             /// theTextColor = [NSColor greenColor];
             break;
     }
     
-
-    
     [theSelectedObj setText:theTextAtriString];
     
     [self updateViewToTerminalSection:theSelectedObj];
 }
+
 - (IBAction)sectionTypePopMAction:(id)sender
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
@@ -941,6 +925,7 @@
         [self selectionChanged:nil];
     }
 }
+
 - (IBAction)indexPopMAction:(id)sender
 {
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
@@ -974,8 +959,4 @@
     return;
 }
 
-
 @end
-
-
-

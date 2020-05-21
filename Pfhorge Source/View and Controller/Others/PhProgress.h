@@ -28,14 +28,14 @@
 
 @interface PhProgress : NSWindowController
 {
-    IBOutlet id theStatusWindow;
-    IBOutlet id informationText;
-    IBOutlet id statusText;
-    IBOutlet id statusBar;
-    IBOutlet id theCurStatTxt;
+    IBOutlet NSPanel *theStatusWindow;
+    IBOutlet NSTextField *informationText;
+    IBOutlet NSTextField *statusText;
+    IBOutlet NSProgressIndicator *statusBar;
+    IBOutlet NSTextField *theCurStatTxt;
     
-    IBOutlet id theSecondStatTxt;
-    IBOutlet id theSecondStatusBar;
+    IBOutlet NSTextField *theSecondStatTxt;
+    IBOutlet NSProgressIndicator *theSecondStatusBar;
     
     BOOL onlyUseSecondBar;
 }
@@ -45,7 +45,7 @@
 
 
 -(void)orderOutWin:(id)sender;
--(void)useSecondBarOnly:(BOOL)value;
+-(void)setUseSecondBarOnly:(BOOL)value;
 
 // *********************** Updater Methods ***********************
 

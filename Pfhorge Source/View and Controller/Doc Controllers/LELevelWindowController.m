@@ -1174,7 +1174,7 @@ static NSCursor *crosshairCursor = nil;
 - (void)toolJustChanged:(NSNotification *)notification
 {
     // Just set the correct cursor
-    LEPaletteTool currentTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
+    LEPaletteTool currentTool = [[LEPaletteController sharedPaletteController] currentTool];
     NSCursor *theCursor = nil;
     
     

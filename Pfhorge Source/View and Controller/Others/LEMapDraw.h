@@ -82,82 +82,82 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 @interface LEMapDraw : NSView
 {
 @protected
-	
-	BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
-	
-	IBOutlet NSScrollView *scrollView;
-	IBOutlet NSTextField *ttt;
-	IBOutlet LELevelWindowController *winController;
-	
-	IBOutlet PhColorListControllerDrawer *colorListObject;
-	IBOutlet NSDrawer *colorListDrawer;
-	
-	BOOL alreadySentToolUnavalbeMsg;
-	
-	LEMapDrawingMode drawingMode;
-	
-	//NSMutableArray *rects;
-	//ColorRect *selectedItem;
-	
-	NSTimer *timer;
-	
-	LELevelData *currentLevel;
-	
-	NSBezierPath    *polyDrawingMap, *lineDrawingMap, *invalidPolyDrawingMap, *theGridDrawingMap,
-	*pointDrawingMap, *monsterDrawingMap, *itemDrawingMap, *playerDrawingMap, *sceaneryDrawingMap,
-	*goalDrawingMap, *soundDrawingMap, *subGridDrawingMap, *centerGridDrawingMap,
-	*joinedLineDrawingMap, *zonePolyMap, *teleporterPolyMap, *platformPolyMap, *hillPolyMap;
-	
-	NSMutableSet<LELine*> *selectedLines;
-	NSMutableSet<LEPolygon*> *selectedPolys;
-	NSMutableSet<LEMapPoint*> *selectedPoints;
-	NSMutableSet<LEMapObject*> *selectedMapObjects;
-	NSMutableSet<PhAnnotationNote*> *selectedNotes;
-	NSMutableSet<__kindof LEMapStuffParent*> *selections;
-	NSMutableSet<__kindof LEMapStuffParent*> *affectedBySelections;
-	NSMutableSet<__kindof LEMapStuffParent*> *includeInBounds;
-	
-	// Rect Cache Lists
-	NSMutableSet<LEPolygon*> *rectPolys;
-	NSMutableSet<LELine*> *rectLines;
-	NSMutableSet<LEMapPoint*> *rectPoints;
-	NSMutableSet<LEMapObject*> *rectObjects;
-	NSMutableSet<PhAnnotationNote*> *rectNotes;
-	
-	// Special Pointers for line tool...
-	LEMapPoint *startPoint, *endPoint;
-	LELine *newLine;
-	
-	// List Stuff
-	NSMutableDictionary<NSNumber*,id> *numberTable;
-	NSMutableArray<NSNumber*> *numberList;
-	NSMutableArray<NSBezierPath*> *numberDrawingMaps;
-	NSMutableArray<NSColor*> *colorList;
-	NSMutableArray<NSString*> *nameList;
-	NSMutableArray *objsList;
-	
-	BOOL needToCreatPolyMap, drawingHeightMapNeedsUpdating, numberListNeedsUpdating, caculateTheGrid;
-	BOOL isAntialiasingOn, shouldObjectOutline, shouldDrawItemObjects, shouldDrawPlayerObjects;
-	BOOL shouldDrawEnemyMonstersObjects, shouldDrawSceanryObjects, shouldDrawSoundObjects;
-	BOOL shouldDrawGoalObjects, shouldDrawPlatfromPolyObjects, shouldDrawConvexPolyObjects;
-	BOOL shouldDrawZonePolyObjects, shouldDrawTeleporterExitPolyObjects, shouldDrawHillPolyObjects;
-	
-	BOOL optionDown, commandDown, shiftDown, controlKeyDown, capsLockDown;
-	
-	BOOL shouldNotGetNewObjectsForTiledCache;
-	
-	BOOL drawBoundingBox;
-	NSRect boundingBox;
-	
-	NSImage *cachedImage;
-	NSImageRep *cachedImageRep;
-	NSAffineTransform *trans;
-	
-	NSUndoManager *myUndoManager;
-	
+    
+    BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
+    
+    IBOutlet NSScrollView *scrollView;
+    IBOutlet NSTextField *ttt;
+    IBOutlet LELevelWindowController *winController;
+    
+    IBOutlet PhColorListControllerDrawer *colorListObject;
+    IBOutlet NSDrawer *colorListDrawer;
+    
+    BOOL alreadySentToolUnavalbeMsg;
+    
+    LEMapDrawingMode drawingMode;
+    
+    //NSMutableArray *rects;
+    //ColorRect *selectedItem;
+    
+    NSTimer *timer;
+    
+    LELevelData *currentLevel;
+    
+    NSBezierPath    *polyDrawingMap, *lineDrawingMap, *invalidPolyDrawingMap, *theGridDrawingMap,
+    *pointDrawingMap, *monsterDrawingMap, *itemDrawingMap, *playerDrawingMap, *sceaneryDrawingMap,
+    *goalDrawingMap, *soundDrawingMap, *subGridDrawingMap, *centerGridDrawingMap,
+    *joinedLineDrawingMap, *zonePolyMap, *teleporterPolyMap, *platformPolyMap, *hillPolyMap;
+    
+    NSMutableSet<LELine*> *selectedLines;
+    NSMutableSet<LEPolygon*> *selectedPolys;
+    NSMutableSet<LEMapPoint*> *selectedPoints;
+    NSMutableSet<LEMapObject*> *selectedMapObjects;
+    NSMutableSet<PhAnnotationNote*> *selectedNotes;
+    NSMutableSet<__kindof LEMapStuffParent*> *selections;
+    NSMutableSet<__kindof LEMapStuffParent*> *affectedBySelections;
+    NSMutableSet<__kindof LEMapStuffParent*> *includeInBounds;
+    
+    // Rect Cache Lists
+    NSMutableSet<LEPolygon*> *rectPolys;
+    NSMutableSet<LELine*> *rectLines;
+    NSMutableSet<LEMapPoint*> *rectPoints;
+    NSMutableSet<LEMapObject*> *rectObjects;
+    NSMutableSet<PhAnnotationNote*> *rectNotes;
+    
+    // Special Pointers for line tool...
+    LEMapPoint *startPoint, *endPoint;
+    LELine *newLine;
+    
+    // List Stuff
+    NSMutableDictionary<NSNumber*,id> *numberTable;
+    NSMutableArray<NSNumber*> *numberList;
+    NSMutableArray<NSBezierPath*> *numberDrawingMaps;
+    NSMutableArray<NSColor*> *colorList;
+    NSMutableArray<NSString*> *nameList;
+    NSMutableArray *objsList;
+    
+    BOOL needToCreatPolyMap, drawingHeightMapNeedsUpdating, numberListNeedsUpdating, caculateTheGrid;
+    BOOL isAntialiasingOn, shouldObjectOutline, shouldDrawItemObjects, shouldDrawPlayerObjects;
+    BOOL shouldDrawEnemyMonstersObjects, shouldDrawSceanryObjects, shouldDrawSoundObjects;
+    BOOL shouldDrawGoalObjects, shouldDrawPlatfromPolyObjects, shouldDrawConvexPolyObjects;
+    BOOL shouldDrawZonePolyObjects, shouldDrawTeleporterExitPolyObjects, shouldDrawHillPolyObjects;
+    
+    BOOL optionDown, commandDown, shiftDown, controlKeyDown, capsLockDown;
+    
+    BOOL shouldNotGetNewObjectsForTiledCache;
+    
+    BOOL drawBoundingBox;
+    NSRect boundingBox;
+    
+    NSImage *cachedImage;
+    NSImageRep *cachedImageRep;
+    NSAffineTransform *trans;
+    
+    NSUndoManager *myUndoManager;
+    
 @public
-	// Color Sheet Boolean;
-	BOOL newHeightSheetOpen;
+    // Color Sheet Boolean;
+    BOOL newHeightSheetOpen;
 }
 
 @property BOOL newHeightSheetOpen;

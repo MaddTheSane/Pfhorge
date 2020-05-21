@@ -29,15 +29,15 @@
 @interface PhColorListController : NSWindowController <NSTableViewDelegate, NSTableViewDataSource>
 {
     IBOutlet id colorListDataSource;
-    IBOutlet id colorListTable;
-    IBOutlet id colorListTableHeader;
-    IBOutlet id colorListTableScrollView;
-    IBOutlet id status;
-	
-	IBOutlet id drawerObject;
+    IBOutlet NSTableView *colorListTable;
+    IBOutlet NSTableColumn *colorListTableHeader;
+    IBOutlet NSScrollView *colorListTableScrollView;
+    IBOutlet NSTextField *status;
     
-    IBOutlet id newHeightWindowSheet;
-    IBOutlet id newHeightTextBox;
+    IBOutlet id drawerObject;
+    
+    IBOutlet NSPanel *newHeightWindowSheet;
+    IBOutlet NSTextField *newHeightTextBox;
     
     id 				theCurrentSelection;
     LEMap 			*currentLevelDocument;
@@ -46,9 +46,9 @@
     LELevelWindowController	*currentMainWindowController;
     
     //Table Data
-    NSArray *numbers;
-    NSArray *colors;
-    NSArray *names;
+    NSArray<NSNumber*> *numbers;
+    NSArray<NSColor*> *colors;
+    NSArray<NSString*> *names;
     NSArray *objs;
     
     BOOL newHeightSheetOpen;

@@ -91,7 +91,7 @@
     [theStatusWindow orderOut:self];
 }
 
--(void)useSecondBarOnly:(BOOL)value { onlyUseSecondBar = value; }
+-(void)setUseSecondBarOnly:(BOOL)value { onlyUseSecondBar = value; }
 
 // *********************** Class Methods ***********************
 + (id)sharedPhProgress {

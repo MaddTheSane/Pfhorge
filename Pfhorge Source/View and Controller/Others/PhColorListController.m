@@ -104,7 +104,7 @@
 - (IBAction)enableLayerViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawLayers]; }
 
 - (void)windowDidLoad {
-
+    
     [super windowDidLoad];
     
     [self setMainWindow:[NSApp mainWindow]];
@@ -112,31 +112,31 @@
     [(NSPanel *)[self window] setFloatingPanel:YES];
     //[(NSPanel *)[self window] setBecomesKeyOnlyIfNeeded:YES];
     
-    [[NSNotificationCenter defaultCenter]   addObserver:self 
-                                            selector:@selector(mainWindowChanged:) 
-                                            name:NSWindowDidBecomeMainNotification
-                                            object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(mainWindowChanged:)
+                                                 name:NSWindowDidBecomeMainNotification
+                                               object:nil];
     
-    [[NSNotificationCenter defaultCenter]   addObserver:self
-                                            selector:@selector(mainWindowResigned:)
-                                            name:NSWindowDidResignMainNotification
-                                            object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(mainWindowResigned:)
+                                                 name:NSWindowDidResignMainNotification
+                                               object:nil];
     
-    [[[[colorListTable tableColumns] objectAtIndex:0] dataCell] 
-        setDrawsBackground:YES];
+    [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
+     setDrawsBackground:YES];
     
-    [[[[colorListTable tableColumns] objectAtIndex:0] dataCell] 
-        setEditable:YES];
+    [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
+     setEditable:YES];
 }
 
 // *********************** Class Methods ***********************
 + (id)sharedColorListController {
     static PhColorListController *sharedColorListController = nil;
-
+    
     if (!sharedColorListController) {
         sharedColorListController = [[PhColorListController allocWithZone:[self zone]] init];
     }
-
+    
     return sharedColorListController;
 }
 
@@ -167,25 +167,20 @@
     //[mainWindow close];
     //return;
     
-    if (controller && [controller isKindOfClass:[LELevelWindowController class]])
-    {
-       /// NSLog(@"1");
+    if (controller && [controller isKindOfClass:[LELevelWindowController class]]) {
+        /// NSLog(@"1");
         currentLevelDocument = [(LELevelWindowController *)controller document];
         currentLevelDrawView = [(LELevelWindowController *)controller levelDrawView];
         currentLevel = [currentLevelDocument getCurrentLevelLoaded];
         currentMainWindowController = (LELevelWindowController *)controller;
         [(NSWindow *)[self window] orderFront:self];
         [self updateInterface:currentLevelDrawView];
-		[drawerObject setNextResponder:currentLevelDrawView];
-    }
-    else if (controller != nil && [controller isKindOfClass:[PhColorListController class]])
-    {
-       /// NSLog(@"2");
+        [drawerObject setNextResponder:currentLevelDrawView];
+    } else if (controller != nil && [controller isKindOfClass:[PhColorListController class]]) {
+        /// NSLog(@"2");
         return;
-    }
-    else
-    {
-       /// NSLog(@"3");
+    } else {
+        /// NSLog(@"3");
         currentLevelDocument = nil;
         currentLevelDrawView = nil;
         currentLevel = nil;
@@ -194,7 +189,6 @@
         [self cancelNewHeightSheetBtn:nil];
         [self updateInterface:currentLevelDrawView];
     }
-    
 }
 
 - (void)updateInterfaceIfLevelDataSame:(LELevelData *)levdata
@@ -202,8 +196,7 @@
     if (currentLevel == nil)
         return;
     
-    if (currentLevel == levdata)
-    {
+    if (currentLevel == levdata) {
         [self updateInterface:currentLevelDrawView];
     }
 }
@@ -233,10 +226,11 @@
 
 - (NSNumber *)getSelectedNumber
 {
-    if ([self getSelection] < 0)
+    if ([self getSelection] < 0) {
         return nil;
-    else
+    } else {
         return [[[numbers objectAtIndex:[self getSelection]] copy] autorelease];
+    }
 }
 
 - (void)setSelectionToNumber:(NSNumber *)theNumberToSelect
@@ -251,8 +245,7 @@
 {
     NSMutableString *levelInfoString = nil;
     
-    if (currentLevelDrawView == nil)
-    {
+    if (currentLevelDrawView == nil) {
         /*if (numbers != nil)
             [numbers release];
         if (colors != nil)
@@ -266,19 +259,14 @@
             [self cancelNewHeightSheetBtn:nil];
         
         //NSLog(@"updateInterface nil");
-    }
-    else
-    {    
-        
-        if ([currentLevelDrawView newHeightSheetOpen])
-        {
-            if (!newHeightSheetOpen)
-            {
-                [NSApp  beginSheet:newHeightWindowSheet
-                        modalForWindow:[self window]
-                        modalDelegate:self
-                        didEndSelector:NULL
-                        contextInfo:nil];
+    } else {
+        if ([currentLevelDrawView newHeightSheetOpen]) {
+            if (!newHeightSheetOpen) {
+                [NSApp beginSheet:newHeightWindowSheet
+                   modalForWindow:[self window]
+                    modalDelegate:self
+                   didEndSelector:NULL
+                      contextInfo:nil];
                 
                 newHeightSheetOpen = YES;
             }
@@ -290,23 +278,21 @@
         objs = [currentLevelDrawView tableObjectList];
         
         levelInfoString = [[NSMutableString alloc] initWithString:
-            [[NSNumber numberWithInteger:[numbers count]] stringValue]];
+                           [[NSNumber numberWithInteger:[numbers count]] stringValue]];
         [levelInfoString appendString:@" Listed"];
         [status setStringValue:levelInfoString];
         [levelInfoString release];
         
-        if (numbers == nil || colors == nil)
-        {
-            [(NSWindow *)[self window] orderOut:self];
+        if (numbers == nil || colors == nil) {
+            [[self window] orderOut:self];
             //return;
         }
         //[numbers retain];
         //[colors retain];
         //NSLog(@"updateInterface != nil");
         /// NSLog(@"Numbers Array Count: %d and Colors Array Count: %d, if these are not equal, ERROR!", [numbers count], [colors count]);
-        if ([numbers count] != [colors count])
-        {
-			NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
+        if ([numbers count] != [colors count]) {
+            NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
             SEND_ERROR_MSG(@"Numbers array count and colors array count are not equal (check console for more details), ERROR!");
         }
     }
@@ -319,14 +305,14 @@
 - (void)tableView:(NSTableView *)view
   willDisplayCell:(id)cell
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)row
+              row:(NSInteger)row
 {
-    if (row == 0)
+    if (row == 0) {
         [cell setBackgroundColor:[NSColor whiteColor]];
-    else
+    } else {
         [cell setBackgroundColor:[colors objectAtIndex:(row - 1)]];
+    }
     //[cell setForegroundColor: [colors objectAtIndex:row]];
-    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)view
@@ -336,7 +322,7 @@
 
 - (id)tableView:(NSTableView *)view
 objectValueForTableColumn:(NSTableColumn *)col
-			row:(NSInteger)row
+            row:(NSInteger)row
 {
     if (row == 0)
         return @"Double Click For New";
@@ -346,27 +332,25 @@ objectValueForTableColumn:(NSTableColumn *)col
 
 - (BOOL)tableView:(NSTableView *)aTableView
 shouldEditTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)rowIndex
+              row:(NSInteger)rowIndex
 {
     NSParameterAssert(rowIndex >= 0 && rowIndex < (((int)[names count]) + 1));
     //NSLog(@"editing somthing...");
-
     
-    if (rowIndex == 0)
-    {
+    
+    if (rowIndex == 0) {
         // Add new object...
-        int drawMode = [currentLevelDrawView currentDrawingMode];
+        LEMapDrawingMode drawMode = [currentLevelDrawView currentDrawingMode];
         id newObj = nil;
-        switch(drawMode)
-        {
+        switch(drawMode) {
             case _drawCeilingHeight:
             case _drawFloorHeight:
                 // Open the sheet...
-                [NSApp  beginSheet:newHeightWindowSheet
-                        modalForWindow:[self window]
-                        modalDelegate:self
-                        didEndSelector:NULL
-                        contextInfo:nil];
+                [NSApp beginSheet:newHeightWindowSheet
+                   modalForWindow:[self window]
+                    modalDelegate:self
+                   didEndSelector:NULL
+                      contextInfo:nil];
                 
                 newHeightSheetOpen = YES;
                 [currentLevelDrawView setNewHeightSheetOpen:YES];
@@ -404,15 +388,13 @@ shouldEditTableColumn:(NSTableColumn *)col
     if (objs == nil)
         return NO;
     
-    if ([[numbers objectAtIndex:0] intValue] == -1)
-    {
-        if (rowIndex == 1)
+    if ([[numbers objectAtIndex:0] intValue] == -1) {
+        if (rowIndex == 1) {
             return NO;
-        else
+        } else {
             [currentLevelDocument openEditWindowForObject:[objs objectAtIndex:(rowIndex - 2)]];
-    }
-    else
-    {
+        }
+    } else {
         //NSLog(@"editing light...");
         [currentLevelDocument openEditWindowForObject:[objs objectAtIndex:(rowIndex - 1)]];
     }
@@ -423,7 +405,7 @@ shouldEditTableColumn:(NSTableColumn *)col
 - (void)tableView:(NSTableView *)aTableView
    setObjectValue:anObject
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)rowIndex
+              row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
     SEND_ERROR_MSG(@"Color List Table Attempted To Set Object.");

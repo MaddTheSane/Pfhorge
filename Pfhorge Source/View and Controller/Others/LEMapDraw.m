@@ -2260,7 +2260,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     BOOL foundSelection = NO;
     LEMapDrawingMode drawMode = [self currentDrawingMode];
     
-    LEPaletteTool curTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
+    LEPaletteTool curTool = [[LEPaletteController sharedPaletteController] currentTool];
     
     if (curTool == LEPaletteToolHand || commandDown)
     {
@@ -2451,7 +2451,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     currentDrawingMode = LEEDrawNothing;
     
     //Get The Currently Selected Tool on the tool palette utility window...
-    currentTool = [[LEPaletteController sharedPaletteController] getCurrentTool];
+    currentTool = [[LEPaletteController sharedPaletteController] currentTool];
     
     // Get the mouse point and convert it to this view's cordinate system....
     mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];

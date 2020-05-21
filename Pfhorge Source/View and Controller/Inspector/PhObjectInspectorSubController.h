@@ -24,25 +24,26 @@
 
 #import <AppKit/AppKit.h>
 
+@class LEInspectorController;
 
 @interface PhObjectInspectorSubController : NSWindowController {
-    IBOutlet id mainInspectorController;
+    IBOutlet LEInspectorController *mainInspectorController;
     
     IBOutlet id objectWindow;
     
     IBOutlet NSTextField *objAngle;
     IBOutlet id objBox;
     IBOutlet NSMatrix *objFlags;
-    IBOutlet id objItem;
+    IBOutlet NSPopUpButton *objItem;
     IBOutlet NSPopUpButton *objType;
     IBOutlet NSTextField *objZHeight;
     
-    NSArray *theMonsterNames;
-    NSArray *theItemNames;
-    NSArray *theSceneryNames;
-    NSArray *theSoundNames;
-    NSArray *theGoalNames;
-    NSArray *thePlayerNames;
+    NSArray<NSString*> *theMonsterNames;
+    NSArray<NSString*> *theItemNames;
+    NSArray<NSString*> *theSceneryNames;
+    NSArray<NSString*> *theSoundNames;
+    NSArray<NSString*> *theGoalNames;
+    NSArray<NSString*> *thePlayerNames;
 }
 
 - (void)reset;
@@ -50,7 +51,7 @@
 - (void)updateInterface;
 - (void)updateObjectValuesOfComboMenus;
 
--(void)updateObjectKindMenu;
+- (void)updateObjectKindMenu;
 
 - (IBAction)objectTypeAction:(id)sender;
 - (IBAction)objectKindAction:(id)sender;
@@ -58,6 +59,6 @@
 - (IBAction)objectHeightAction:(id)sender;
 - (IBAction)objectFlagsAction:(id)sender;
 
--(void)setupTheObjectNames;
+- (void)setupTheObjectNames;
 
 @end

@@ -102,8 +102,7 @@
     //[mainWindow close];
     //return;
     
-    if (controller != nil && [controller isKindOfClass:[LELevelWindowController class]])
-    {
+    if (controller != nil && [controller isKindOfClass:[LELevelWindowController class]]) {
         //NSLog(@"SETING UP COLOR DRAWER OBJECT...");
         currentLevelDocument = [(LELevelWindowController *)controller document];
         currentLevelDrawView = [(LELevelWindowController *)controller levelDrawView];
@@ -111,33 +110,30 @@
         currentMainWindowController = (LELevelWindowController *)controller;
         ///[(NSWindow *)[self window] orderFront:self];
         
-		[theDrawer setNextResponder:currentLevelDrawView];
-		
-		if (currentLevelDrawView == nil)
-			NSLog(@"ERROR: NIL in currentLevelDrawView");
-		
+        [theDrawer setNextResponder:currentLevelDrawView];
+        
+        if (currentLevelDrawView == nil) {
+            NSLog(@"ERROR: NIL in currentLevelDrawView");
+        }
+        
         [theDrawer open];
         
         [self updateInterface:currentLevelDrawView];
         
-        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell] 
-            setDrawsBackground:YES];
+        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
+         setDrawsBackground:YES];
         
-        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell] 
-            setAlignment:NSCenterTextAlignment];
+        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
+         setAlignment:NSCenterTextAlignment];
         
-        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell] 
-            setEditable:YES];
+        [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
+         setEditable:YES];
         
-    }
-    else if (controller != nil && [controller isKindOfClass:[PhColorListController class]])
-    {
+    } else if (controller != nil && [controller isKindOfClass:[PhColorListController class]]) {
         NSLog(@"PhColorListController found in setLevelWindowController in PhColrListControllerDrawer...");
         return;
-    }
-    else
-    {
-       NSLog(@"3");
+    } else {
+        NSLog(@"3");
         currentLevelDocument = nil;
         currentLevelDrawView = nil;
         currentLevel = nil;
@@ -148,7 +144,6 @@
         /* [self cancelNewHeightSheetBtn:nil]; */
         [self updateInterface:currentLevelDrawView];
     }
-    
 }
 
 - (void)updateInterfaceIfLevelDataSame:(LELevelData *)levdata
@@ -156,8 +151,7 @@
     if (currentLevel == nil)
         return;
     
-    if (currentLevel == levdata)
-    {
+    if (currentLevel == levdata) {
         [self updateInterface:currentLevelDrawView];
     }
 }
@@ -176,10 +170,11 @@
 
 - (NSNumber *)getSelectedNumber
 {
-    if ([self getSelection] < 0)
+    if ([self getSelection] < 0) {
         return nil;
-    else
+    } else {
         return [[[numbers objectAtIndex:[self getSelection]] copy] autorelease];
+    }
 }
 
 - (void)setSelectionToNumber:(NSNumber *)theNumberToSelect
@@ -194,8 +189,8 @@
 {
     NSMutableString *levelInfoString = nil;
     
-    if (currentLevelDrawView == nil || [currentLevelDrawView currentDrawingMode] == _drawNormaly)
-    {   //NSLog(@"UPDATE - NIL");
+    if (currentLevelDrawView == nil || [currentLevelDrawView currentDrawingMode] == _drawNormaly) {
+        //NSLog(@"UPDATE - NIL");
         /*if (numbers != nil)
             [numbers release];
         if (colors != nil)
@@ -209,14 +204,11 @@
             [self cancelNewHeightSheetBtn:nil];*/
         
         //NSLog(@"updateInterface nil");
-    }
-    else
-    {   //NSLog(@"UPDATE - OK"); 
+    } else {
+        //NSLog(@"UPDATE - OK");
         
-        if ([currentLevelDrawView newHeightSheetOpen])
-        {
-            if (!newHeightSheetOpen)
-            {
+        if ([currentLevelDrawView newHeightSheetOpen]) {
+            if (!newHeightSheetOpen) {
                 /*[NSApp  beginSheet:newHeightWindowSheet
                         modalForWindow:[self window]
                         modalDelegate:self
@@ -233,13 +225,12 @@
         objs = [currentLevelDrawView tableObjectList];
         
         levelInfoString = [[NSMutableString alloc] initWithString:
-            [[NSNumber numberWithInteger:[numbers count]] stringValue]];
+                           [[NSNumber numberWithInteger:[numbers count]] stringValue]];
         [levelInfoString appendString:@" Listed"];
         [status setStringValue:levelInfoString];
         [levelInfoString release];
         
-        if (numbers == nil || colors == nil)
-        {
+        if (numbers == nil || colors == nil) {
             /*  [(NSWindow *)[self window] orderOut:self]; */
             
             //return;
@@ -248,15 +239,14 @@
         //[colors retain];
         //NSLog(@"updateInterface != nil");
         /// NSLog(@"Numbers Array Count: %d and Colors Array Count: %d, if these are not equal, ERROR!", [numbers count], [colors count]);
-        if ([numbers count] != [colors count])
-        {
-			NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
+        if ([numbers count] != [colors count]) {
+            NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
             SEND_ERROR_MSG(@"Numbers array count and colors array count are not equal (check console for more details), ERROR!");
         }
     }
     
-	
-	//NSLog(@"UDPATE");
+    
+    //NSLog(@"UDPATE");
     [colorListTable reloadData];
 }
 
@@ -265,12 +255,13 @@
 - (void)tableView:(NSTableView *)view
   willDisplayCell:(id)cell
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)row
+              row:(NSInteger)row
 {
-    if (row == 0)
+    if (row == 0) {
         [cell setBackgroundColor:[NSColor whiteColor]];
-    else
+    } else {
         [cell setBackgroundColor:[colors objectAtIndex:(row - 1)]];
+    }
         
     [cell setAlignment:NSCenterTextAlignment];
     //[cell setForegroundColor: [colors objectAtIndex:row]];
@@ -287,29 +278,27 @@
 
 - (id)tableView:(NSTableView *)view
 objectValueForTableColumn:(NSTableColumn *)col
-			row:(NSInteger)row
+            row:(NSInteger)row
 {
     if (row == 0)
         return @"Double Click For New";
-   /// NSLog(@"objAtIndex: %d", row);
+    /// NSLog(@"objAtIndex: %d", row);
     return [names objectAtIndex:(row - 1)];
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView
-    shouldEditTableColumn:(NSTableColumn *)col
-    row:(NSInteger)rowIndex
+shouldEditTableColumn:(NSTableColumn *)col
+              row:(NSInteger)rowIndex
 {
     NSParameterAssert(rowIndex >= 0 && rowIndex < (((int)[names count]) + 1));
     //NSLog(@"editing somthing...");
-
     
-    if (rowIndex == 0)
-    {
+    
+    if (rowIndex == 0) {
         // Add new object...
-        int drawMode = [currentLevelDrawView currentDrawingMode];
+        LEMapDrawingMode drawMode = [currentLevelDrawView currentDrawingMode];
         id newObj = nil;
-        switch(drawMode)
-        {
+        switch(drawMode) {
             case _drawCeilingHeight:
             case _drawFloorHeight:
                 // Open the sheet...
@@ -359,15 +348,13 @@ objectValueForTableColumn:(NSTableColumn *)col
     if (objs == nil)
         return NO;
     
-    if ([[numbers objectAtIndex:0] intValue] == -1)
-    {
-        if (rowIndex == 1)
+    if ([[numbers objectAtIndex:0] intValue] == -1) {
+        if (rowIndex == 1) {
             return NO;
-        else
+        } else {
             [currentLevelDocument openEditWindowForObject:[objs objectAtIndex:(rowIndex - 2)]];
-    }
-    else
-    {
+        }
+    } else {
         //NSLog(@"editing light...");
         [currentLevelDocument openEditWindowForObject:[objs objectAtIndex:(rowIndex - 1)]];
     }
@@ -378,7 +365,7 @@ objectValueForTableColumn:(NSTableColumn *)col
 - (void)tableView:(NSTableView *)aTableView
    setObjectValue:anObject
    forTableColumn:(NSTableColumn *)col
-			  row:(NSInteger)rowIndex
+              row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
     SEND_ERROR_MSG(@"Color List Table Attempted To Set Object.");

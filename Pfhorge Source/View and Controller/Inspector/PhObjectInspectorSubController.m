@@ -98,10 +98,9 @@
     //NSLog(@"Setting The Index...");
     
     
-    if ([objItem numberOfItems] > [theObj getObjTypeIndex])
+    if ([objItem numberOfItems] > [theObj getObjTypeIndex]) {
         [objItem selectItemAtIndex:[theObj getObjTypeIndex]];
-    else
-    {
+    } else {
         [objItem selectItemAtIndex:-1];
 		SEND_ERROR_MSG_TITLE(([NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %ld", [theObj getObjTypeIndex], (long)[objItem numberOfItems]]), @"Selected Object Kind Beyond Range");
     }
@@ -115,20 +114,26 @@
     // _map_object_is_invisible  and  _map_object_is_platform_sound  are same number!
     // apperently top four bits (first hexadecmial number) is monster activation bias...
     
-    if (theFlags & _map_object_is_invisible)
+    if (theFlags & _map_object_is_invisible) {
         SelectS(objFlags, 1);
+    }
     //if (theFlags & _map_object_is_platform_sound)
     //    SelectS(objFlags, 2);
-    if (theFlags & _map_object_hanging_from_ceiling)
+    if (theFlags & _map_object_hanging_from_ceiling) {
         SelectS(objFlags, 3);
-    if (theFlags & _map_object_is_blind)
+    }
+    if (theFlags & _map_object_is_blind) {
         SelectS(objFlags, 4);
-    if (theFlags & _map_object_is_deaf)
+    }
+    if (theFlags & _map_object_is_deaf) {
         SelectS(objFlags, 5);
-    if (theFlags & _map_object_floats)
+    }
+    if (theFlags & _map_object_floats) {
         SelectS(objFlags, 6);
-    if (theFlags & _map_object_is_network_only)
+    }
+    if (theFlags & _map_object_is_network_only) {
         SelectS(objFlags, 8);
+    }
 }
 
 - (void)updateObjectValuesOfComboMenus
@@ -150,14 +155,14 @@
     
     /// NSLog(@"Setting Up Object Type Menu... theObjType: %d theObjIndex: %d", theObjType, theObjIndex);
     
-    switch (theObjType)
-    {	case _saved_monster:
+    switch (theObjType) {
+        case _saved_monster:
             //NSLog(@"Adding Enemy Names To Object Menu");
             [objItem addItemsWithTitles:theMonsterNames];
             SSetEnabled(objFlags, 2, NO);
             SSetEnabled(objFlags, 6, NO);
             break;
-	case _saved_object:
+        case _saved_object:
             //NSLog(@"Adding scenery Names To Object Menu");
             [objItem addItemsWithTitles:theSceneryNames];
             SSetEnabled(objFlags, 1, NO);
@@ -166,7 +171,7 @@
             SSetEnabled(objFlags, 5, NO);
             SSetEnabled(objFlags, 6, NO);
             break;
-	case _saved_item:
+        case _saved_item:
             //NSLog(@"Adding item Names To Object Menu");
             [objItem addItemsWithTitles:theItemNames];
             SSetEnabled(objFlags, 1, NO);
@@ -174,8 +179,8 @@
             SSetEnabled(objFlags, 4, NO);
             SSetEnabled(objFlags, 5, NO);
             SSetEnabled(objFlags, 6, NO);
-            break;	
-	case _saved_player:
+            break;
+        case _saved_player:
             //NSLog(@"Adding player Names To Object Menu");
             [objItem addItemsWithTitles:thePlayerNames];
             SSetEnabled(objFlags, 1, NO);
@@ -185,7 +190,7 @@
             SSetEnabled(objFlags, 5, NO);
             SSetEnabled(objFlags, 6, NO);
             break;
-	case _saved_goal:
+        case _saved_goal:
             //NSLog(@"Adding goal Names To Object Menu");
             [objItem addItemsWithTitles:theGoalNames];
             SSetEnabled(objFlags, 1, NO);
@@ -195,7 +200,7 @@
             SSetEnabled(objFlags, 5, NO);
             SSetEnabled(objFlags, 6, NO);
             break;
-	case _saved_sound_source:
+        case _saved_sound_source:
             //NSLog(@"Adding sound Names To Object Menu");
             [objItem addItemsWithTitles:theSoundNames];
             SSetEnabled(objFlags, 1, NO);
@@ -228,8 +233,7 @@
 
 - (IBAction)objectTypeAction:(id)sender
 {
-    if ([sender indexOfSelectedItem] != -1)
-    {
+    if ([sender indexOfSelectedItem] != -1) {
         LEMapDraw *levelDrawView = [mainInspectorController getTheCurrentLevelDrawView];
         LEMapObject *theObj = [mainInspectorController getTheCurrentSelection];
         
@@ -249,8 +253,7 @@
 
 - (IBAction)objectKindAction:(id)sender
 {
-    if ([sender indexOfSelectedItem] != -1)
-    {
+    if ([sender indexOfSelectedItem] != -1) {
         LEMapDraw *levelDrawView = [mainInspectorController getTheCurrentLevelDrawView];
         LEMapObject *theObj = [mainInspectorController getTheCurrentSelection];
         [theObj  setType:[objType indexOfSelectedItem]];
