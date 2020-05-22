@@ -1,0 +1,15 @@
+A list of things to do for this project:
+
+* Add code to save/load newer Aleph One map formats.
+* Fix spelling mistakes visible to the end user.
+* Add localization points.
+* There are still some areas where byte-swapping is needed for little-endian CPUs, which modern Macs use.
+* The OpenGL preview is borked: Find out why and fix.
+* Saving/loading takes awhile: Find out why.
+* Scrolling the map around SPIKES RAM usage. Find a better way to draw map.
+* Use something more casual-user-friendly to replace PICTs for terminals (and convert to PICT when exporting). 
+** Atque might have source code that will help with this, as PICT is heavily deprecated with the rest of QuickDraw.
+* Go over obsoleted/Carbon code, salvage what we can, and delete the rest.
+* New icons, especially different icons for scenario and map.
+* New tool icons, either migrate to template icons or create new hi-res icons based off of existing icons.
+* More custom cursor images.
