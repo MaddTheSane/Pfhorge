@@ -1739,8 +1739,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getTheLinesAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                withLength:(long)theDataLength
+                 withLevel:(LELevelData *)curLevel
 {
     // *** 'LINS' *** 32 bytes each
     NSArray *theLineArray = [curLevel lines];
@@ -1811,7 +1811,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getThePolygonsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
+                   withLength:(long)theDataLength
                     withLevel:(LELevelData *)curLevel
 {
     // *** 'POLY' *** 128 bytes each
@@ -2040,17 +2040,13 @@ BOOL setupPointerArraysDurringLoading = YES;
 #endif
         [theObj setCenter:NSMakePoint([self getShort], [self getShort])];
         
-        for (i = 0; i < 8; i++)
-        {
-            if (i < vertextCount)
-            {
+        for (i = 0; i < 8; i++) {
+            if (i < vertextCount) {
 #ifdef useDebugingLogs
                 [self NSLogShortFromData:@"setSidesObject:[self getShortObjectFrom:theSideArray] i:0]"];
 #endif
                 [theObj setSidesObject:[self getShortZeroIsNilIfOverObjectFromArray:theSideArray] toIndex:i]; //
-            }
-            else
-            {
+            } else {
                 theCursor += 2;
                 [theObj setSidesObject:nil toIndex:i];
             }
@@ -2100,8 +2096,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 // [ objectAtIndex:
 
 -(void)getTheMapObjectsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                     withLength:(long)theDataLength
+                      withLevel:(LELevelData *)curLevel
 {
     // *** 'OBJS' *** 16 bytes each
     NSArray *theObjectArray = [curLevel theMapObjects];
@@ -2130,8 +2126,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getTheSidesAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                withLength:(long)theDataLength
+                 withLevel:(LELevelData *)curLevel
 {
     // *** 'SIDS' *** 64 bytes each
     NSArray *theSideArray = [curLevel sides];
@@ -2278,8 +2274,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getTheLightsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                 withLength:(long)theDataLength
+                  withLevel:(LELevelData *)curLevel
 {
     // *** 'LITE' *** 100 bytes each
     NSArray *theLightArray = [curLevel lights];
@@ -2315,8 +2311,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 -(void)getTheAnnotationsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
-                    withLevel:(LELevelData *)curLevel
+                      withLength:(long)theDataLength
+                       withLevel:(LELevelData *)curLevel
 {
     // *** 'NOTE' *** 72 bytes each
     NSArray *theAnnotationArray = [curLevel notes];
@@ -2338,7 +2334,6 @@ BOOL setupPointerArraysDurringLoading = YES;
         
         [theObj setText:[self getChar:64]];
     }
-    return;
 }
 
 -(void)getTheMediaAtOffset:(long)theDataOffset
@@ -3013,15 +3008,12 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self saveEntryHeader:'LITE' next_offset:[mapDataToSave length] length:(objCount * 100 /* light length */) offset:0];
     
     for (PhLight *currentObj in theObjects) {
-        int i;
-        
         [self saveShort:[currentObj type]];
         [self saveUnsignedShort:[currentObj flags]];
         
         [self saveShort:[currentObj phase]];
         
-        for (i = 0; i < 6; i++)
-        {
+        for (int i = 0; i < 6; i++) {
             [self saveShort:[currentObj functionForState:i]];
             [self saveShort:[currentObj periodForState:i]];
             [self saveShort:[currentObj deltaPeriodForState:i]];
@@ -3109,14 +3101,13 @@ BOOL setupPointerArraysDurringLoading = YES;
     //theDataToReturn = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:(length / 16)];
     NSArray *theObjects = [level ambientSounds];
     long objCount = [theObjects count];
-    PhAmbientSound *currentObj = nil;
     
     if (objCount < 1)
         return;
     
     [self saveEntryHeader:'ambi' next_offset:[mapDataToSave length] length:(objCount * 16 /* object length */) offset:0];
     
-    for (currentObj in theObjects) {
+    for (PhAmbientSound *currentObj in theObjects) {
         [self saveUnsignedShort:[currentObj flags]];
         
         [self saveShort:[currentObj soundIndex]];
@@ -3312,7 +3303,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 -(void)NSLogUnsignedShortFromData:(NSString *)theMessage
 {
     return;
-    NSLog(@"%@ : %d", theMessage, [self getUnsignedShort]);
+    NSLog(@"%@ : %u", theMessage, [self getUnsignedShort]);
     theCursor -= 2;
 }
 
