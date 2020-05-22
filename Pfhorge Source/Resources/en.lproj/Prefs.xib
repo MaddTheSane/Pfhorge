@@ -1074,7 +1074,7 @@ DQ
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="606">
                                                                 <rect key="frame" x="27" y="318" width="143" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="push" title="Select Shapes..." bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1035">
+                                                                <buttonCell key="cell" type="push" title="Select Shapes…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1035">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>

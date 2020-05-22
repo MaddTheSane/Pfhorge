@@ -503,10 +503,8 @@
 		LEPolygon	*thePolyPointedTo;
         id theObj;
         NSEnumerator *spenumer = [polys objectEnumerator];
-        while (thePolyToCheck = [spenumer nextObject])
-        {
-            switch ([thePolyToCheck type])
-            {
+        for (LEPolygon *thePolyToCheck in polys) {
+            switch ([thePolyToCheck type]) {
                 case _polygon_is_platform_on_trigger:
                 case _polygon_is_platform_off_trigger:
                 case _polygon_is_teleporter:
@@ -519,11 +517,8 @@
             }
         }
         
-        spenumer = [sides objectEnumerator];
-        while (theObj = [spenumer nextObject])
-        {
-            switch ([theObj permutationEffects])
-            {
+        for (theObj in sides) {
+            switch ([theObj permutationEffects]) {
                 case 0:
                     
                     break;
@@ -554,13 +549,11 @@
     
     // Gets Tags In Light Objects
     numer = [lights objectEnumerator];
-    for (PhLight *theObj in numer)
-    {
+    for (PhLight *theObj in numer) {
         NSNumber *theNumber;
         theNumber = [NSNumber numberWithShort:[theObj tag]];
         
-        if (theNumber == nil)
-        {
+        if (theNumber == nil) {
             NSLog(@"*** theNumber from light tag was nil in name caching...");
             continue; // Continues at 'while (theObj = [numer nextObject]) // get next Light object'
         }
@@ -589,14 +582,11 @@
     }
     
     // Gets Tags In Side Objects
-    numer = [sides objectEnumerator];
-    while (theObj = [numer nextObject]) // get next side object
-    {
+    for (theObj in sides) { // get next side object
         NSNumber *theNumber = nil;
         int theControlPanelType = [theObj adjustedControlPanelType];
         
-        switch (theControlPanelType)
-        {
+        switch (theControlPanelType) {
             case _panel_tagSwitch:
                 theNumber = [NSNumber numberWithShort:[theObj controlPanelPermutation]];
                 break;
@@ -608,8 +598,7 @@
                 break;
         }
         
-        if (theNumber == nil)
-        {
+        if (theNumber == nil) {
             // NSLog(@"*** theNumber from side tag was nil in name caching...");
             continue; // Continues at 'while (theObj = [numer nextObject]) // get next side object'
         }
@@ -620,8 +609,7 @@
     }
     
     // check to see if the array contains more then one tag...
-    if ([tmpNumberList count] > 1)
-    {
+    if ([tmpNumberList count] > 1) {
         // if it does contain more then one object, sort it...
         // *** May have to convert array to mutable array? ***
         
@@ -632,19 +620,15 @@
     }
     
     //if (heightMode == _drawAmbientSounds || _drawLiquidLights:_drawLiquids
-    if ([tmpNumberList indexOfObject:@((short)(-1))] == NSNotFound)
-    {
+    if ([tmpNumberList indexOfObject:@((short)(-1))] == NSNotFound) {
         listIncludesNone = NO;
 	//SEND_ERROR_MSG_TITLE(@"There is no -1 (NONE) tag", @"Information - Did Not Find NONE Tag");
-    }
-    else
-    {
+    } else {
         listIncludesNone = YES;
         // SEND_ERROR_MSG_TITLE(@"There is a -1 (NONE) tag, is this possible? ]:=>", @"Information - Found NONE Tag ???");
     }
     
-    if (tags ==  nil)
-    {
+    if (tags ==  nil) {
         tags = [[NSMutableArray alloc] initWithCapacity:15];
         NSLog(@"*** Tags was nil in compileAndSetNameArraysFromLevel...");
     }
@@ -671,9 +655,9 @@
         [theTag release];
     }*/
     
-    #ifdef useDebugingLogs
-        NSLog(@"Tags count from name caching: %d - %d. Both Need To Be The Same!", [tags count], [tagNames count]);
-    #endif
+#ifdef useDebugingLogs
+    NSLog(@"Tags count from name caching: %d - %d. Both Need To Be The Same!", [tags count], [tagNames count]);
+#endif
     
 }
 
@@ -698,54 +682,43 @@
     [namedPolyObjects removeAllObjects];
     [terminalNames removeAllObjects];
     
-    for (LEPolygon *theObj in polys)
-    {
-        if ([theObj doIHaveAName])
-        {
+    for (LEPolygon *theObj in polys) {
+        if ([theObj doIHaveAName]) {
             [polyNames addObject:[theObj phName]];
             [namedPolyObjects addObject:theObj];
         }
         
-        if ([theObj type] == _polygon_is_platform)
-        {
-            if ([[theObj permutationObject] polygonObject] != theObj)
-            { // The polygon points to a platform which does not point back
+        if ([theObj type] == _polygon_is_platform) {
+            if ([[theObj permutationObject] polygonObject] != theObj) {
+                // The polygon points to a platform which does not point back
               //   to the polygon...  This will fix that, hopefully...
                 [[theObj permutationObject] setPolygonObject:theObj];
             }
         }
     }
     
-    numer = [lights objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in lights)
         [lightNames addObject:[theObj phName]];
     
-    numer = [media objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in media)
         [liquidNames addObject:[theObj phName]];
     
-    numer = [ambientSounds objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in ambientSounds)
         [ambientSoundNames addObject:[theObj phName]];
     
-    numer = [randomSounds objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in randomSounds)
         [randomSoundNames addObject:[theObj phName]];
     
-    numer = [platforms objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in platforms)
         [platformNames addObject:[theObj phName]];
     
-    numer = [layersInLevel objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in layersInLevel)
         [layerNames addObject:[theObj phName]];
     
-    numer = [tags objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in tags)
         [tagNames addObject:[theObj phName]];
 
-    numer = [terimals objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (theObj in terimals)
         [terminalNames addObject:[theObj phName]];
     
     [self refreshEveryMenu];
@@ -778,18 +751,14 @@ enum // export data types
 - (NSData *)exportObjects:(NSSet *)objects
 {
     NSMutableArray *exports = [[NSMutableArray alloc] init];
-    NSEnumerator *numer = nil;
     id theObj = nil;
     NSMutableData *exportData = [[NSMutableData alloc] init];
     NSMutableData *finnalData = [[NSMutableData alloc] init];
     short tmpShort = 0;
     short appendNumber = 0;
     
-    numer = [objects objectEnumerator];
-    while (theObj = [numer nextObject])
-    {
-        if ([exports indexOfObjectIdenticalTo:theObj] == NSNotFound)
-        {
+    for (theObj in objects) {
+        if ([exports indexOfObjectIdenticalTo:theObj] == NSNotFound) {
             [theObj exportWithIndex:exports withData:exportData mainObjects:objects];
         }
     }
@@ -803,9 +772,7 @@ enum // export data types
     
     [finnalData appendBytes:&indexEntrys length:4];
     
-    numer = [exports objectEnumerator];
-    while (theObj = [numer nextObject])
-    {
+    for (theObj in exports) {
         Class theClass = [theObj class];
         
         if (theClass == [LEMapPoint class])
@@ -842,23 +809,15 @@ enum // export data types
         
         _data_name_export customNameStatus = _data_has_no_name;
         
-        if ([theObj isKindOfClass:[PhAbstractName class]])
-        {
-            if ([theObj doIHaveACustomName])
-            {
+        if ([theObj isKindOfClass:[PhAbstractName class]]) {
+            if ([theObj doIHaveACustomName]) {
                 customNameStatus = _data_has_no_name;
-            }
-            else if ([theObj doIHaveAName])
-            {
+            } else if ([theObj doIHaveAName]) {
                 customNameStatus = _data_has_regular_name;
-            }
-            else
-            {
+            } else {
                 customNameStatus = _data_has_no_name;
             }
-        }
-        else
-        {
+        } else {
             customNameStatus = _data_has_no_name;
         }
         
@@ -895,8 +854,7 @@ enum // export data types
         NSLog(@"Total Imports: %d  --- Allocating Objects...", totalObjects);
     #endif
     
-    for (i = 0; i < totalObjects; i++)
-    {
+    for (i = 0; i < totalObjects; i++) {
         objTypesArr[i] = [myData getShort]; // Primary or Secondary?
         objImported[i] = NO;
         objKindArr[i] = [myData getShort]; // Light or Polygon?, etc...
@@ -943,37 +901,29 @@ enum // export data types
     
     BOOL stillImporting = YES;
     
-    while (stillImporting)
-    {
-        for (i = 0; i < totalObjects; i++)
-        {
+    while (stillImporting) {
+        for (i = 0; i < totalObjects; i++) {
             theObj = [index objectAtIndex:i];
             
-            if (objImported[i] == NO && objTypesArr[i] == _data_is_primary)
-            {
+            if (objImported[i] == NO && objTypesArr[i] == _data_is_primary) {
                 if ([myData addP:4] == NO)
                     NSLog(@"Went Beyond Import Bounds...");
                 
                 [theObj importWithIndex:index withData:myData useOrginals:NO objTypesArr:objTypesArr];
                 objImported[i] = YES;
-            }
-            else
-            {
+            } else {
                 if ((i+1) != totalObjects)
                     if ([myData skipLengthLong] == NO)
                         NSLog(@"Went Beyond Import Bounds...");
             }
         }
         
-        for (i = 0; i < totalObjects; i++)
-        {
+        for (i = 0; i < totalObjects; i++) {
             if (objImported[i] == NO && objTypesArr[i] == _data_is_primary)
             {
                 stillImporting = YES;
                 break;
-            }
-            else
-            {
+            } else {
                 stillImporting = NO;
             }
         }

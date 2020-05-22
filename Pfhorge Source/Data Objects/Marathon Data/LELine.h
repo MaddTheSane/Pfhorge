@@ -75,8 +75,6 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
     BOOL usePermanentSettings;
     
     BOOL permanentNoSides;
-    
-    //short 6 unused shorts... :)
 }
 
 

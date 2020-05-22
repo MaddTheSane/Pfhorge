@@ -194,8 +194,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
         [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Importing Marathon Data..."];
-        [progress setInformationalText:@"Loading Marathon Data Into Memory..."];
+        [progress setStatusText:@"Importing Marathon Data…"];
+        [progress setInformationalText:@"Loading Marathon Data Into Memory…"];
         [progress showWindow:self];
         
         maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fileName];
@@ -205,17 +205,17 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                            contentsAtPath:fileName] 
                                levelNames:levelNames];
                                
-        [progress setStatusText:@"Saving All The Levels..."];
+        [progress setStatusText:@"Saving All The Levels…"];
         
         [self saveArrayOfNSDatas:archivedLevels
                    withFileNames:levelNames
                          baseDir:[self fullPathForDirectory]];
                          
-        [progress setStatusText:@"Adding Level Names To Scenario Document..."];
+        [progress setStatusText:@"Adding Level Names To Scenario Document…"];
         
         [scenarioData addLevelNames:levelNames];
         
-        [progress setStatusText:@"Extracting and Saving Resources..."];
+        [progress setStatusText:@"Extracting and Saving Resources…"];
         
         exsists = [fileManager fileExistsAtPath:imageDir isDirectory:&isDir];
         
@@ -271,8 +271,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
         [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Importing Pathways Into Darkness Map..."];
-        [progress setInformationalText:@"Importing Pathways Into Darkness Map..."];
+        [progress setStatusText:@"Importing Pathways Into Darkness Map…"];
+        [progress setInformationalText:@"Importing Pathways Into Darkness Map…"];
         [progress showWindow:self];
         
         
@@ -328,13 +328,13 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         // it if it needed it keep it...
         [dpin128ResourceData release];
         
-        [progress setStatusText:@"Saving All The Levels..."];
+        [progress setStatusText:@"Saving All The Levels…"];
         
         [self saveArrayOfNSDatas:archivedLevels
                    withFileNames:levelNames
                          baseDir:[self fullPathForDirectory]];
                          
-        [progress setStatusText:@"Adding Level Names To Scenario Document..."];
+        [progress setStatusText:@"Adding Level Names To Scenario Document…"];
         
         [scenarioData addLevelNames:levelNames];
         
@@ -480,7 +480,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         [[NSFileManager defaultManager] createFileAtPath:fpath
                                                 contents:fdata
                                               // May want to set creator code, etc...
-                                              attributes:nil]; 
+                                              attributes:nil];
     }
     
 }
@@ -503,7 +503,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 								NSFileHFSTypeCode: @((OSType)'sce2')
 				   }];
     
-    NSLog(@"Scaning Image Folder FOr Resources Now...");
+    NSLog(@"Scaning Images folder for resources now...");
     
     fullImageDirPath  = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
     

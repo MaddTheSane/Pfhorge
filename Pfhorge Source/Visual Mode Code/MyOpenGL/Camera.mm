@@ -51,7 +51,7 @@ static void CalculateFrameRate()
 	
 	struct tms tmpTimes;
 	
-    float currentTime = TickCount() * 0.016f;                
+    NSTimeInterval currentTime = TickCount() * 0.016;
 
     // Here we store the elapsed time between the current and last frame,
     // then keep the current frame in our static variable for the next frame.
@@ -66,8 +66,7 @@ static void CalculateFrameRate()
 
     // Now we want to subtract the current time by the last time that was stored
     // to see if the time elapsed has been over a second, which means we found our FPS.
-    if( currentTime - lastTime > 1.0f )
-    {
+    if (currentTime - lastTime > 1.0) {
         // Here we set the lastTime to the currentTime
         lastTime = currentTime;
         

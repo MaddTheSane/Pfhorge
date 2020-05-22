@@ -306,7 +306,7 @@
         //NSString *theExScriptPath = [[NSBundle mainBundle] pathForResource:@"Example Script" ofType:@"scpt"];
         BOOL isNewDir = NO;
         
-        SEND_ERROR_MSG_TITLE(@"Script folder does not exist. Please see read me for details about using this. Creating It...",
+        SEND_ERROR_MSG_TITLE(@"Script folder does not exist. Please see read me for details about using this. Creating it…",
                                 @"Creating Script Folder");
         
         NSLog(@"Script folder does not exsist at: '%@', attempting to create it...", scriptFolder);

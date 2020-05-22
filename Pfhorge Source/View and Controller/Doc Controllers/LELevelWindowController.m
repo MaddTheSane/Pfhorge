@@ -486,7 +486,7 @@ static NSCursor *crosshairCursor = nil;
 	if (!alreadyWarned)
 	{
 		alreadyWarned = YES;
-		SEND_INFO_MSG_TITLE(@"This setting will tell aleph/marathon what landscape testure set to load. If you wish to use a two diffrent landscapes, you will need to use MML to load the other landscape texture sets...", @"Please Note");
+		SEND_INFO_MSG_TITLE(@"This setting will tell Aleph One/Marathon what landscape testure set to load. If you wish to use a two diffrent landscapes, you will need to use MML to load the other landscape texture sets.", @"Please Note");
 	}
 }
 
@@ -1120,7 +1120,7 @@ static NSCursor *crosshairCursor = nil;
         else // (theSelectionsCount > 1)
         {
             levelInfoString = [[NSMutableString alloc] initWithString:[[NSNumber numberWithShort:theSelectionsCount] stringValue]];
-            [levelInfoString appendString:@" Objects Selected..."];
+            [levelInfoString appendString:@" Objects Selected…"];
         }
     }
     [levelStatusBar setStringValue:levelInfoString];

@@ -92,42 +92,42 @@
     [self setMinProgress:0.0];
     [self setMaxProgress:60.0];
       
-    [self setStatusText:@"Loading Water Textures..."];
+    [self setStatusText:@"Loading Water Textures…"];
     [textures loadTextureSet:_water];
     
     if ([textures getTextureCollection:_water] == nil)
     {
-        [self setStatusText:@"Can't load, choose shapes location in prefs..."];
+        [self setStatusText:@"Can't load, choose shapes location in prefs…"];
         [self closeWindow];
-        SEND_ERROR_MSG_TITLE(@"Could not load textures, please set shapes location in the prefs...",
+        SEND_ERROR_MSG_TITLE(@"Could not load textures, please set shapes location in the prefs.",
                              @"Shapes Not Found");
         return;
     }
     
     [self increaseProgressBy:10.0];
     
-    [self setStatusText:@"Loading Lava Textures..."];
+    [self setStatusText:@"Loading Lava Textures…"];
     [textures loadTextureSet:_lava];
     [self increaseProgressBy:10.0];
     
-    [self setStatusText:@"Loading Sewage Textures..."];
+    [self setStatusText:@"Loading Sewage Textures…"];
     [textures loadTextureSet:_sewage];
     [self increaseProgressBy:10.0];
     
-    [self setStatusText:@"Loading Jjaro Textures..."];
+    [self setStatusText:@"Loading Jjaro Textures…"];
     [textures loadTextureSet:_jjaro];
     [self increaseProgressBy:10.0];
     
-    [self setStatusText:@"Loading Pfhor Textures..."];
+    [self setStatusText:@"Loading Pfhor Textures…"];
     [textures loadTextureSet:_pfhor];
     [self increaseProgressBy:10.0];
     
-    // Loads landscape textures...
-    [self setStatusText:@"Loading Landscape Textures..."];
+    // Loads landscape textures…
+    [self setStatusText:@"Loading Landscape Textures…"];
     [textures loadTextureSet:99.0];
     [self increaseProgressBy:10.0];
     
-    [self setStatusText:@"Done Loading Textures..."];
+    [self setStatusText:@"Done Loading Textures…"];
     [self closeWindow];
 }
 
@@ -199,7 +199,7 @@
     //[imagePopUp sizeToFit];
     //[contentView addSubview:imagePopUp];
     
-    [statusTB setStringValue:@"Done Loading Textures, Below Is A Test..."];
+    [statusTB setStringValue:@"Done Loading Textures, Below Is A Test…"];
 }
 */
 

@@ -485,7 +485,7 @@
         [sectionTypesPopM selectItemAtIndex:-1];
         [indexPopM setIntValue:0];
     } else {
-        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data... updateViewToTerminalSection",
+        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection",
                              @"Unknown Object");
         theType = PhTerminalSectionTypeNone;
         theText = nil;

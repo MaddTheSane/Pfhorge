@@ -115,7 +115,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         [progress setSecondMinProgress:0.0];
         [progress setSecondMaxProgress:100.0];
         [progress setSecondProgressPostion:0.0];
-        [progress setSecondStatusText:@"Loading Level, Please Wait..."];
+        [progress setSecondStatusText:@"Loading Level, Please Wait…"];
         
         [progress setUseSecondBarOnly:YES];
         currentLevel = [theTmpMarathonMap getLevel:i log:NO];
@@ -649,7 +649,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     alreadyGaveBoundingError = NO;
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Terminals..."];
+        [progress setStatusText:@"Loading Terminals…"];
         [progress increaseProgressBy:4.0];
     }
     //   Get the random sounds (like driping sounds) for this level... ('bonk')
@@ -660,7 +660,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Points..."];
+        [progress setStatusText:@"Loading Points…"];
         [progress increaseProgressBy:5.0];
     }
     
@@ -671,7 +671,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'PNTS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Lines..."];
+        [progress setStatusText:@"Loading Lines…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the lines for this level... ('LINS')
@@ -681,7 +681,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'LINS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Polygons..."];
+        [progress setStatusText:@"Loading Polygons…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the polys for this level... ('POLY')
@@ -691,7 +691,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'POLY' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Objects..."];
+        [progress setStatusText:@"Loading Objects…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the objects for this level... ('OBJS')
@@ -701,7 +701,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'OBJS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Sides..."];
+        [progress setStatusText:@"Loading Sides…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the sides for this level... ('SIDS')
@@ -711,7 +711,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'SIDS' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Lights..."];
+        [progress setStatusText:@"Loading Lights…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the lights for this level... ('LITE')
@@ -721,7 +721,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'LITE' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Annotations..."];
+        [progress setStatusText:@"Loading Annotations…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the annotations (notes) for this level... ('NOTE')
@@ -731,7 +731,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'NOTE' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Liquids..."];
+        [progress setStatusText:@"Loading Liquids…"];
         [progress increaseProgressBy:5.0];
     }
     //   Get the liquids (media) for this level... ('medi')
@@ -741,7 +741,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'medi' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Ambient Sounds..."];
+        [progress setStatusText:@"Loading Ambient Sounds…"];
         [progress increaseProgressBy:4.0];
     }
     //   Get the ambient sounds (like the wind) for this level... ('ambi')
@@ -753,7 +753,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     // *** New ***
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Platforms..."];
+        [progress setStatusText:@"Loading Platforms…"];
         [progress increaseProgressBy:4.0];
     }
     //   Get the platforms (like the wind) for this level... ('plat')
@@ -763,7 +763,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'plat' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Item Placement Entrys..."];
+        [progress setStatusText:@"Loading Item Placement Entries…"];
         [progress increaseProgressBy:4.0];
     }
     //   Get the item placment entrys (like the wind) for this level... ('plac')
@@ -773,7 +773,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     [self getTag:'plac' theLevel:levelToGet theCurrentLevelObject:theLevel];
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Loading Random Sounds..."];
+        [progress setStatusText:@"Loading Random Sounds…"];
         [progress increaseProgressBy:4.0];
     }
     //   Get the random sounds (like driping sounds) for this level... ('bonk')
@@ -790,7 +790,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #endif
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Geting Level Information..."];
+        [progress setStatusText:@"Geting Level Information…"];
         [progress increaseProgressBy:5.0];
     }
     
@@ -811,7 +811,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Setting Object Pointers From Array Using Index Numbers..."];
+        [progress setStatusText:@"Setting Object Pointers From Array Using Index Numbers…"];
         [progress increaseProgressBy:3.0];
     }
     
@@ -849,7 +849,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     // Test each polygon for concavness...
 
     if (logInfo == YES) {
-        [progress setStatusText:@"Testing Every Polygon For Concavness..."];
+        [progress setStatusText:@"Testing Every Polygon For Concavness…"];
         [progress increaseProgressBy:5.0];
     }
     //[self performSelector:@selector(isPolygonConcave) withEachObjectInArray:[theLevel getThePolys]];
@@ -863,7 +863,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #endif
     
     if (logInfo == YES)
-        [progress setStatusText:@"Seting up default layers..."];
+        [progress setStatusText:@"Seting up default layers…"];
     
     // This function Sets Up The Initall Layers
     // Ethier From Loading Them From The Level
@@ -882,7 +882,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #endif
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Compiling And Caching List Of Custom Names In Level..."];
+        [progress setStatusText:@"Compiling And Caching List Of Custom Names In Level…"];
         [progress increaseProgressBy:3.0];
     }
     
@@ -902,7 +902,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 #endif
     
     if (logInfo == YES) {
-        [progress setStatusText:@"Returning Level To Map Document Controller..."];
+        [progress setStatusText:@"Returning Level To Map Document Controller…"];
         [progress increaseProgressBy:1.0];
     }
     
@@ -1169,7 +1169,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     if ((theShortNum >= theArrayCount)) {
         NSLog(@"Bounding Error: %d   Array Count: %ld", theShortNum, (long)theArrayCount);
         if (!alreadyGaveBoundingError)
-            SEND_ERROR_MSG(@"Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array...");
+            SEND_ERROR_MSG(@"Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array…");
         alreadyGaveBoundingError = YES;
         return [theArray lastObject];
     } else {

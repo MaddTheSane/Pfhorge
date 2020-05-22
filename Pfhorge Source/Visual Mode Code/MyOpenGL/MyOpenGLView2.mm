@@ -142,7 +142,6 @@ static NSDate *distantPast;
 //const short TextDefaultsID = 650;
 
 bool ShowText, ShowFramerate;
-RGBColor TextColor, TextShadowColor;
 // int theRenderMode;
 
 // For finding framerates

@@ -230,7 +230,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress
 {
-    Resource		*resource, *value;
+    Resource		*value;
     Handle			handle;
     NSArray			*array;
     NSEnumerator	*resEnum;
@@ -246,12 +246,12 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     array = [typeDict objectForKey:type];
     resEnum = [array objectEnumerator];
     
-    for (resource in resEnum)
+    for (Resource *resource in resEnum)
     {
         handle = ASGetResource(type, [resource resID], filename);
         theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
         
-        [progress setInformationalText:[NSString stringWithFormat:@"Saving '%@' Resource# %@...", type, [[resource resID] stringValue], nil]];
+        [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", type, [resource resID], nil]];
         
         fullPath = [baseDirPath stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:fileExt]];
         

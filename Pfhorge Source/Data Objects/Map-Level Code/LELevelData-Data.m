@@ -170,11 +170,6 @@
 
 
 
-// The below arrays SHOULD NOT be added to manualy, or deleted from...
-// Unless you know EXACTLY what you are doing.  You should use the add and delete methods instead,
-// I will be making more and expanding the add and delete methods soon.
-
-
 -(NSArray *)points { return [points copy]; }
 //-(NSArray *)points { return points; }
 

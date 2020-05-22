@@ -128,7 +128,7 @@
 - (void)setupTitlesAndNames
 {
     SEND_ERROR_MSG(@"Sorry, but the name will not be updated on the window\
-                        [it was applied though, I think ]:=) ]...");
+                        [it was applied though, I think ]:=) ]…");
     return;
 }
 

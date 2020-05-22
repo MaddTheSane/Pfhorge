@@ -429,7 +429,7 @@
     
     [tis appendString:@"\n"];
     
-    SEND_INFO_MSG_TITLE(tis, @"Detailed Platform Info...");
+    SEND_INFO_MSG_TITLE(tis, @"Detailed Platform Info…");
     
     [tis release];
 }

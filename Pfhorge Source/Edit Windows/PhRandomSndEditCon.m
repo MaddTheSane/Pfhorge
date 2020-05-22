@@ -136,7 +136,7 @@
     [nonDirectionalCB setState:NO];
     [nonDirectionalCB setEnabled:NO];
     
-    [infoIT setStringValue:@"Name Not Here Yet... :)"];
+    [infoIT setStringValue:@"Name Not Here Yet… :)"];
 }
 
 -(void)saveChanges

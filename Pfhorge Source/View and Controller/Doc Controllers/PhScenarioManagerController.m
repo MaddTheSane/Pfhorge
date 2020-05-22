@@ -81,7 +81,7 @@
 
 - (IBAction)notDoneYet:(id)sender
 {
-    SEND_INFO_MSG_TITLE(@"This does not work yet...", @"Please Be Aware");
+    SEND_INFO_MSG_TITLE(@"This does not work yet…", @"Please Be Aware");
 }
 
 - (IBAction)reloadLevelTable:(id)sender
@@ -94,7 +94,7 @@
 {
     NSSavePanel *theSavePanel = [NSSavePanel savePanel];
     
-    SEND_INFO_MSG_TITLE(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now...", @"Warning");
+    SEND_INFO_MSG_TITLE(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…", @"Warning");
     
     [theSavePanel setPrompt:@"Export"];
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];

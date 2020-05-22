@@ -123,7 +123,7 @@
     //[self shouldExportToMarathonFile:YES];
     //[self saveDocumentAs:self];
     
-    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used...",
+    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used…",
                          @"No Longer Used");
 }
 
@@ -166,8 +166,8 @@
         [progress setMaxProgress:10.0];
         [progress setProgressPostion:0.0];
         NSLog(@"Attempting To Load PID Level");
-        [progress setStatusText:@"Loading PID Level, Please Wait..."];
-        [progress setInformationalText:@"Loading PID Level, Please Wait..."];
+        [progress setStatusText:@"Loading PID Level, Please Wait…"];
+        [progress setInformationalText:@"Loading PID Level, Please Wait…"];
         [progress showWindow:self];
         
         theMap = nil;
@@ -183,7 +183,7 @@
         pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData resourceData:dpin128ResourceData];
         theLevel = [[pidMap getPIDLevel:1] retain];
         
-        [progress setStatusText:@"Sending PID Level Changed Notification..."];
+        [progress setStatusText:@"Sending PID Level Changed Notification…"];
         [progress increaseProgressBy:5.0];
         
         // Transfer Level Names
@@ -249,8 +249,8 @@
         [progress setMaxProgress:10.0];
         [progress setProgressPostion:0.0];
         NSLog(@"Attempting To Load PID Level");
-        [progress setStatusText:@"Loading PID Level, Please Wait..."];
-        [progress setInformationalText:@"Loading PID Level, Please Wait..."];
+        [progress setStatusText:@"Loading PID Level, Please Wait…"];
+        [progress setInformationalText:@"Loading PID Level, Please Wait…"];
         [progress showWindow:self];
         
         theMap = nil;
@@ -265,7 +265,7 @@
         [theLevel setLevelDocument:self];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
         
-        [progress setStatusText:@"Sending PID Level Changed Notification..."];
+        [progress setStatusText:@"Sending PID Level Changed Notification…"];
         [progress increaseProgressBy:5.0];
         
         // Transfer Level Names

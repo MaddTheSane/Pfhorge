@@ -235,7 +235,7 @@
     //[self shouldExportToMarathonFile:YES];
     //[self saveDocumentAs:self];
     
-    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used...",
+    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used…",
                          @"No Longer Used");
 }
 
@@ -461,8 +461,8 @@
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
         [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Loading Level, Please Wait..."];
-        [progress setInformationalText:@"Loading Level, Please Wait..."];
+        [progress setStatusText:@"Loading Level, Please Wait…"];
+        [progress setInformationalText:@"Loading Level, Please Wait…"];
         [progress showWindow:self];
         
         theMap = [[LEMapData alloc] initWithMapNSData:theRawMapData];
@@ -471,7 +471,7 @@
         [theLevel setLevelDocument:self];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
         
-        [progress setStatusText:@"Sending Level Changed Notification..."];
+        [progress setStatusText:@"Sending Level Changed Notification…"];
         [progress increaseProgressBy:5.0];
         
         // Transfer Level Names
@@ -540,14 +540,14 @@
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
         [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Loading Level, Please Wait..."];
-        [progress setInformationalText:@"Loading Level, Please Wait..."];
+        [progress setStatusText:@"Loading Level, Please Wait…"];
+        [progress setInformationalText:@"Loading Level, Please Wait…"];
         [progress showWindow:self];
         
         theLevel = [theMap getLevel:levelNumber];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
         
-        [progress setStatusText:@"Sending level Changes Notification..."];
+        [progress setStatusText:@"Sending level Changes Notification…"];
         [progress increaseProgressBy:5.0];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:LELevelChangedNotification object:theLevel];
@@ -743,7 +743,7 @@
         thePfhorgeDataSig2FromData != thePfhorgeDataSig2 ||
         thePfhorgeDataSig3FromData != thePfhorgeDataSig3)
     {
-        NSLog(@"Loading Alepha/Marathon Formated Map...");
+        NSLog(@"Loading Aleph One/Marathon Formated Map…");
         theRawMapData = data;
         theLevel = nil;
         
@@ -914,7 +914,7 @@
 }
 
 - (void)insertInPoints:(LEMapPoint *)point atIndex:(NSInteger)index {
-    // MF:!!! This is not going to be ideal.  If we are being asked to, say, "make a new rectangle at after rectangle 2", we will be after rectangle 2, but we may be after some other stuff as well since we will be asked to insertInRectangles:atIndex:3...
+    // MF:!!! This is not going to be ideal.  If we are being asked to, say, "make a new rectangle at after rectangle 2", we will be after rectangle 2, but we may be after some other stuff as well since we will be asked to insertInRectangles:atIndex:3…
     
     NSArray *thePoints = [self points];
     

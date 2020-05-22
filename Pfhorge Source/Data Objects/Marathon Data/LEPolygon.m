@@ -317,7 +317,7 @@
     }
     else
     {
-        SEND_INFO_MSG_TITLE(@"Only platform polygons support this for right now...", @"Detailed Polygon Info");
+        SEND_INFO_MSG_TITLE(@"Only platform polygons support this for right now…", @"Detailed Polygon Info");
     }
 }
 

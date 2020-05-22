@@ -17,7 +17,7 @@
                 <menuItem title="Pfhorge" id="56">
                     <menu key="submenu" title="Pfhorge" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About Pfhorge..." id="58">
+                            <menuItem title="About Pfhorge…" id="58">
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
@@ -86,7 +86,7 @@
                             <menuItem isSeparatorItem="YES" id="498">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Open..." keyEquivalent="o" id="72">
+                            <menuItem title="Open…" keyEquivalent="o" id="72">
                                 <connections>
                                     <action selector="openDocument:" target="-1" id="195"/>
                                 </connections>
@@ -105,12 +105,12 @@
                             <menuItem isSeparatorItem="YES" id="79">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Import Marathon Map..." id="507">
+                            <menuItem title="Import Marathon Map…" id="507">
                                 <connections>
                                     <action selector="importMarathonMap:" target="-1" id="509"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Import Pathways Map..." id="571">
+                            <menuItem title="Import Pathways Map…" id="571">
                                 <connections>
                                     <action selector="importPathwaysMap:" target="-1" id="573"/>
                                 </connections>
@@ -118,7 +118,7 @@
                             <menuItem isSeparatorItem="YES" id="508">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Test Checksum..." id="579">
+                            <menuItem title="Test Checksum…" id="579">
                                 <connections>
                                     <action selector="testTheCheckSumOnAFile:" target="202" id="581"/>
                                 </connections>
@@ -134,12 +134,12 @@
                             <menuItem isSeparatorItem="YES" id="463">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Save..." keyEquivalent="s" id="75">
+                            <menuItem title="Save" keyEquivalent="s" id="75">
                                 <connections>
                                     <action selector="saveDocument:" target="-1" id="577"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As..." keyEquivalent="S" id="80">
+                            <menuItem title="Save As…" keyEquivalent="S" id="80">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="575"/>
                                 </connections>
@@ -341,7 +341,7 @@
                             <menuItem isSeparatorItem="YES" id="568">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Import Marathon Map..." id="562">
+                            <menuItem title="Import Marathon Map…" id="562">
                                 <connections>
                                     <action selector="importMarathonMap:" target="-1" id="563"/>
                                 </connections>
@@ -417,7 +417,7 @@
                 <menuItem title="Scripts" id="473">
                     <menu key="submenu" title="Scripts" id="474">
                         <items>
-                            <menuItem title="Choose Script Manually..." id="478">
+                            <menuItem title="Choose Script Manually…" id="478">
                                 <connections>
                                     <action selector="exectuteScriptExample:" target="202" id="rQ3-yX-b0V"/>
                                 </connections>

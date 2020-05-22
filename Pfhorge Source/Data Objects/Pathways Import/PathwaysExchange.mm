@@ -43,13 +43,13 @@
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] init];
         
-        [progress setStatusText:[NSString stringWithFormat:@"Converting \"%@\"...",
+        [progress setStatusText:[NSString stringWithFormat:@"Converting “%@”…",
                 [theLevelNames objectAtIndex:(i - 1)], nil]];
         
         [progress setSecondMinProgress:0.0];
         [progress setSecondMaxProgress:10.0];
         [progress setSecondProgressPostion:0.0];
-        [progress setSecondStatusText:@"Loading Level, Please Wait..."];
+        [progress setSecondStatusText:@"Loading Level, Please Wait…"];
         
         [progress setUseSecondBarOnly:YES];
         currentLevel = [exchange getPIDLevel:i]; // Autoreleased....
@@ -57,18 +57,18 @@
         
         if (currentLevel == nil)
         {
-            SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels...",
+            SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels…",
                                  @"Converting Error");
             NSLog(@"Could not convert PID level: %d (One Based)", i);
             continue;
         }
         
-        [progress setSecondStatusText:@"Archiving Level Into Binary Data..."];
+        [progress setSecondStatusText:@"Archiving Level Into Binary Data…"];
         [progress increaseSecondProgressBy:5.0];
         
         theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:currentLevel];
         
-        [progress setSecondStatusText:@"Saving Level..."];
+        [progress setSecondStatusText:@"Saving Level…"];
         [progress increaseSecondProgressBy:5.0];
         
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);

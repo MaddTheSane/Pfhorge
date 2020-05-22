@@ -79,11 +79,11 @@ static NSString *const PhNameOfObject = @"Name";
     if ([self isSomthingSelected]) {
         [[theLevelWindowControllerOutlet document] openEditWindowForObject:[self getSelectedObject]];
     } else {
-        SEND_ERROR_MSG(@"Sorry, but you need to select something first...");
+        SEND_ERROR_MSG(@"Sorry, but you need to select something first…");
     }
 }
 
-- (IBAction)defaultBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet..."); }
+- (IBAction)defaultBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet…"); }
 - (IBAction)deleteBtnAction:(id)sender
 {
     if (currentDisplayMode == _display_polys && [self isSomthingSelected]) {
@@ -95,13 +95,13 @@ static NSString *const PhNameOfObject = @"Name";
     if ([self isSomthingSelected])
         [[(LEMap *)[theLevelWindowControllerOutlet document] level] deleteObject:[self getSelectedObject]];
     else
-        SEND_ERROR_MSG(@"Sorry, but you need to select something first...");
+        SEND_ERROR_MSG(@"Sorry, but you need to select something first…");
     [self reloadDataFromLevel];
 }
 
 - (IBAction)deleteAllBtnAction:(id)sender
 {
-    SEND_ERROR_MSG(@"The Delete All Command Not Implemented Yet...");
+    SEND_ERROR_MSG(@"The Delete All Command Not Implemented Yet…");
     //[self reloadDataFromLevel];
 }
 
@@ -134,15 +134,15 @@ static NSString *const PhNameOfObject = @"Name";
             [theLevelDataObject addObjectWithDefaults:[PhLayer class]];
             break;
         default:
-            SEND_ERROR_MSG(@"Can't Add More Of These Yet...");
+            SEND_ERROR_MSG(@"Can't Add More Of These Yet…");
             return;
     }
     
     [self reloadDataFromLevel];
 }
 
-- (IBAction)duplicateBtnAction:(id)sender {SEND_ERROR_MSG(@"Command Not Implemented Yet..."); }
-- (IBAction)okBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet...");}
+- (IBAction)duplicateBtnAction:(id)sender {SEND_ERROR_MSG(@"Command Not Implemented Yet…"); }
+- (IBAction)okBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet…");}
 - (IBAction)editingMenuAction:(id)sender { [self setDisplayEditMode:[sender indexOfSelectedItem]];  }
 
 // *********************** Overridden Methods ***********************

@@ -237,27 +237,22 @@
     
     if (thePfhorgeDataSig1FromData != thePfhorgeDataSig1 ||
         thePfhorgeDataSig2FromData != thePfhorgeDataSig2 ||
-        thePfhorgeDataSig3FromData != thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData != thePfhorgeDataSig3) {
         NSLog(@"--------- ERROR: Tried To Load Marathon Map In PhPfhorgeSingleLevelDoc... ---------");
         SEND_ERROR_MSG_TITLE(@"Tried To load with wrong doc class!", @"Loading Error");
         loadedOk = NO;
-    }
-    else if (theVersionNumberFromData < 2 &&
+    } else if (theVersionNumberFromData < 2 &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,\
                                 export it in eariler, release candidate 1 release of pfhorge, then open it here.",
                              @"Level Is Too Old");
         loadedOk = NO;
-    }
-    else if (theVersionNumberFromData > theVersionNumber &&
+    } else if (theVersionNumberFromData > theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,\
                                 export it in latter version of pfhorge, then open it here.",
                              @"Level Is Too New");
@@ -313,7 +308,7 @@
         NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
         NSLog(@"Loading Pfhorge Formated Map...");
         
-        SEND_INFO_MSG_TITLE(@"This is an eariler version of the Pfhorge level format, I will convert it for you...", @"Update Needed");
+        SEND_INFO_MSG_TITLE(@"This is an eariler version of the Pfhorge level format, I will convert it for you…", @"Update Needed");
         
         theRawMapData = nil;
         theLevel = [[NSUnarchiver unarchiveObjectWithData:

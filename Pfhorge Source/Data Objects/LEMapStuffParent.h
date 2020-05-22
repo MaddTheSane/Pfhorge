@@ -37,7 +37,7 @@
     // They are here so that every relevent data object (objects that inherit from me)
     // can have quick accsess to any of these arrays.
     // These arrays are owned by the LELevelData object
-    // that this object is apart of...
+    // that this object is a part of...
     
     NSArray	*theMapPointsST, *theMapLinesST, *theMapObjectsST;
     NSArray	*theMapPolysST, *theMapSidesST, *theMapPlatformsST;

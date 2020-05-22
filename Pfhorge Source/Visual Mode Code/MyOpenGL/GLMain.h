@@ -17,8 +17,6 @@
 using namespace std;
 
 
-extern int VideoFlags;                                  //!< The Pixel Format flags
-
 //! This function resizes the viewport for OpenGL.
 void SizeOpenGLScreen(int width, int height);
 

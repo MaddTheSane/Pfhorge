@@ -127,7 +127,7 @@
     
     [tis appendString:@"\n"];
     
-    SEND_INFO_MSG_TITLE(tis, @"Detailed Line Information...");
+    SEND_INFO_MSG_TITLE(tis, @"Detailed Line Information…");
     
     [tis release];
 }
@@ -540,7 +540,7 @@
             
             
             // Should probably have caculateDies just return
-            // before doing anything if this set...
+            // before doing anything if this set…
         /*
         if (permanetNoSides == NO)
             [theLevelST removeSidesFromLine:self]*/
@@ -910,7 +910,7 @@
         case LELinePermanentNoSides:
             return permanentNoSides;
         default:
-            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting...", @"Unknown parmanent setting...");
+            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting…", @"Unknown parmanent setting…");
             return NO;
     }
 }
@@ -1071,7 +1071,7 @@
             permanentNoSides = value;
             break;
         default:
-            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting...", @"Unknown parmanent setting...");
+            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting…", @"Unknown parmanent setting…");
             break;
     }
 }
@@ -1496,7 +1496,7 @@
             
             if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
             {
-                SEND_ERROR_MSG(@"One of the lines was not concave reltive to the rest of the lines...");
+                SEND_ERROR_MSG(@"One of the lines was not concave reltive to the rest of the lines…");
                 return nil;
             }
             

@@ -68,7 +68,7 @@
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="138">
                         <rect key="frame" x="3" y="270" width="432" height="13"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Status Bar..." id="1158">
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Status Bar…" usesSingleLineMode="YES" id="1158">
                             <font key="font" metaFont="system" size="10"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -584,9 +584,9 @@ DQ
                         </connections>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="547">
-                        <rect key="frame" x="2" y="307" width="52" height="14"/>
+                        <rect key="frame" x="2" y="306" width="52" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Editing:" id="1173">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Editing:" usesSingleLineMode="YES" id="1173">
                             <font key="font" metaFont="message" size="11"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1029,7 +1029,7 @@ DQ
                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="985">
                                         <rect key="frame" x="0.0" y="251" width="134" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="Override Prefs..." bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" inset="2" id="1192">
+                                        <buttonCell key="cell" type="check" title="Override Prefs…" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" inset="2" id="1192">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
@@ -1393,7 +1393,7 @@ DQ
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.18199999630451202" green="0.12700000405311584" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.19200000166893005" green="0.12399999797344208" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
