@@ -206,7 +206,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
         NSMutableData *tempData = [[NSMutableData alloc] initWithCapacity:200000];
         
-        theLevel =	[NSUnarchiver unarchiveObjectWithData:
+        theLevel =	[NSKeyedUnarchiver unarchiveObjectWithData:
                      [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]];
         
         mapDataToSave = tempData;

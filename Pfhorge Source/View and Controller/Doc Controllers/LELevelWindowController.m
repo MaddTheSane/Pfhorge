@@ -1104,7 +1104,7 @@ static NSCursor *crosshairCursor = nil;
         //    [levelInfoString appendString:@" YES "];
         //else
         //    [levelInfoString appendString:@" NO "];
-        //[levelInfoString appendString:[[NSNumber numberWithShort:[self getFlagNow]] stringValue]];
+        //[levelInfoString appendString:[[NSNumber numberWithShort:[self flagNow]] stringValue]];
         
         
         
@@ -1191,9 +1191,12 @@ static NSCursor *crosshairCursor = nil;
             theCursor = crosshairCursor;
             break;
        
+        case LEPaletteToolHand:
+            theCursor = NSCursor.openHandCursor;
+            break;
+            
         case LEPaletteToolPaint:
         case LEPaletteToolText:
-        case LEPaletteToolHand:
         case LEPaletteToolZoom:
         case LEPaletteToolSampler:
         case LEPaletteToolBrush:
@@ -1225,10 +1228,8 @@ static NSCursor *crosshairCursor = nil;
 
 - (void)windowDidBecomeMain:(NSNotification *)aNotification
 {
-    if ([aNotification object] == [self window])
-    {
-        if (showLevelSettingsSheetWhenWindowIsLoaded)
-        {
+    if ([aNotification object] == [self window]) {
+        if (showLevelSettingsSheetWhenWindowIsLoaded) {
             NSLog(@"Mandatory: Opening Level Sheet For New Level...");
             [levelSCancelBtn setEnabled:NO];
             [self levelSettingsSheet:self];
@@ -1299,19 +1300,11 @@ static NSCursor *crosshairCursor = nil;
     return levelDrawView;
 }
 
--(unsigned short)getFlagNow
-{
-    return theExpShort;
-}
-
--(void)setFlagNow:(unsigned short)s
-{
-    theExpShort = s;
-}
+@synthesize flagNow=theExpShort;
 
 // *********************** Table Data Source Updater Methods ***********************
 #pragma mark -
-#pragma mark ********* Table Data Source Updater Methods *********
+#pragma mark Table Data Source Updater Methods
 
 // *** Data Source Messages ***
 
@@ -1370,16 +1363,13 @@ static NSCursor *crosshairCursor = nil;
     
     [[NSDocumentController sharedDocumentController]
      openDocumentWithContentsOfURL:[sheet URL] display:NO completionHandler:^(NSDocument * _Nullable theMapDocToImport, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {
-        if (theMapDocToImport != nil)
-        {
+        if (theMapDocToImport != nil) {
             [[(LEMap *)[self document] level] unionLevel:[(LEMap *)theMapDocToImport level]];
             [theMapDocToImport close];
             [[(LEMap *)[self document] level] setCurrentLayerToLastLayer];
             [self updateLayerSelection];
             [levelDrawView recaculateAndRedrawEverything];
-        }
-        else
-        {
+        } else {
             SEND_ERROR_MSG_TITLE(@"While importing, the new document was nil?", @"Import Problem");
         }
     }];

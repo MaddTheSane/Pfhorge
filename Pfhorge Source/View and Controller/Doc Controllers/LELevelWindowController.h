@@ -173,7 +173,7 @@ extern NSString *PhLevelDidChangeName;
 - (IBAction)turnOnUseOptimizedDrawing:(id)sender;
 
 // *** Rename Dialog Actions/Methods ***
-- (void)renamePolyWithSheet:(__kindof LEMapStuffParent*)thePoly;
+- (void)renamePolyWithSheet:(LEPolygon*)thePoly;
 - (IBAction)rdOkBtnAction:(id)sender;
 - (IBAction)rdCancelBtnAction:(id)sender;
 - (IBAction)rdRemoveBtnAction:(id)sender;
@@ -206,7 +206,7 @@ extern NSString *PhLevelDidChangeName;
 // ************************ Utility and Update Methods ************************
 -(void)updateTheLevelNamesMenu;
 -(void)disableTheLevelNamesMenu:(BOOL)theAnswer;
-- (BOOL)isSheetAlreadyOpen;
+@property (readonly, getter=isSheetAlreadyOpen) BOOL sheetAlreadyOpen;
 
 // *** Notifications ***
 - (void)aLevelDidChangeName:(NSNotification *)notification;
@@ -219,8 +219,7 @@ extern NSString *PhLevelDidChangeName;
 - (void)loadUpCursors;
 - (LEMapDraw *)levelDrawView;
 
--(unsigned short)getFlagNow;
--(void)setFlagNow:(unsigned short)s;
+@property unsigned short flagNow;
 
 
 // *** NSSavePanelForExportingLevelMethods ***

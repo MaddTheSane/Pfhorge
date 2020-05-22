@@ -47,8 +47,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	
 	// open the shapes file...
 	f = fopen(theShapesPath.fileSystemRepresentation, "rb");
-	if (f == NULL)
-	{
+	if (f == NULL) {
 		// No need for an error message to the user
 		// who ever called me should send the error
 		// because there is no need for futher elaboration on what

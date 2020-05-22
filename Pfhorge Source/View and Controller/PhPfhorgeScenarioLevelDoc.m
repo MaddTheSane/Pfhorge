@@ -427,8 +427,14 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     NSMutableData *tempData; //= [[NSMutableData alloc] initWithCapacity:200000];
     LELevelData *theLevel;
     
-    theLevel =  [[NSUnarchiver unarchiveObjectWithData:
-                [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]] retain];
+    if (@available(macOS 10.13, *)) {
+        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+                      [LELevelData class] fromData:
+                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
+    } else {
+        theLevel =  [[NSKeyedUnarchiver unarchiveObjectWithData:
+                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]] retain];
+    }
     
     tempData = [[LEMapData convertLevelToDataObject:theLevel] retain];
         
