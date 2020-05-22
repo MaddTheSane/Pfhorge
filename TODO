@@ -15,3 +15,5 @@ A list of things to do for this project:
 * New tool icons, either migrate to template icons or create new hi-res icons based off of existing icons.
 * More custom cursor images.
 * Migrate away from deprecated UI elements, like NSMatrix, NSDrawer, and NSForm.
+* Clean-up code style. 
+** Use clang-format?

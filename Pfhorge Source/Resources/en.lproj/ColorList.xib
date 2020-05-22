@@ -129,7 +129,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32">
-                        <rect key="frame" x="130" y="13" width="81" height="32"/>
+                        <rect key="frame" x="129" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="46">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -142,10 +142,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33">
-                        <rect key="frame" x="46" y="13" width="84" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="lsD-fs-Xeh"/>
-                        </constraints>
+                        <rect key="frame" x="47" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="47">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -155,7 +152,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35">
-                        <rect key="frame" x="10" y="52" width="114" height="16"/>
+                        <rect key="frame" x="45" y="52" width="79" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="New Height:" id="48">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -167,11 +164,12 @@ DQ
                     <constraint firstAttribute="trailing" secondItem="32" secondAttribute="trailing" constant="20" symbolic="YES" id="64Y-Pp-KSj"/>
                     <constraint firstItem="31" firstAttribute="firstBaseline" secondItem="35" secondAttribute="firstBaseline" id="Ajn-9r-Z5s"/>
                     <constraint firstItem="31" firstAttribute="leading" secondItem="35" secondAttribute="trailing" constant="5" id="IvR-W4-Hky"/>
-                    <constraint firstItem="35" firstAttribute="leading" secondItem="30" secondAttribute="leading" constant="12" id="MUW-5m-qF6"/>
+                    <constraint firstItem="35" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="30" secondAttribute="leading" constant="20" symbolic="YES" id="MUW-5m-qF6"/>
                     <constraint firstAttribute="trailing" secondItem="31" secondAttribute="trailing" constant="20" symbolic="YES" id="T8s-kU-xcn"/>
                     <constraint firstItem="31" firstAttribute="top" secondItem="30" secondAttribute="top" constant="20" symbolic="YES" id="Unt-ap-880"/>
                     <constraint firstItem="32" firstAttribute="leading" secondItem="33" secondAttribute="trailing" constant="12" symbolic="YES" id="UuB-jc-Wow"/>
                     <constraint firstAttribute="bottom" secondItem="32" secondAttribute="bottom" constant="20" symbolic="YES" id="Zoo-dZ-mOR"/>
+                    <constraint firstItem="32" firstAttribute="width" secondItem="33" secondAttribute="width" id="cNz-Jl-IA7"/>
                     <constraint firstItem="33" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="30" secondAttribute="leading" constant="20" symbolic="YES" id="drI-kV-vxx"/>
                     <constraint firstItem="33" firstAttribute="baseline" secondItem="32" secondAttribute="baseline" id="msu-Uk-cDq"/>
                     <constraint firstItem="32" firstAttribute="top" secondItem="31" secondAttribute="bottom" constant="8" symbolic="YES" id="usA-YD-fkW"/>

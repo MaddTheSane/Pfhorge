@@ -418,6 +418,7 @@
                     <menu key="submenu" title="Scripts" id="474">
                         <items>
                             <menuItem title="Choose Script Manually…" id="478">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="exectuteScriptExample:" target="202" id="rQ3-yX-b0V"/>
                                 </connections>
@@ -443,6 +444,7 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Bring All to Front" id="5">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="39"/>
                                 </connections>
