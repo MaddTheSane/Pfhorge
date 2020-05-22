@@ -735,8 +735,8 @@ Gw
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="104" y="149" width="372" height="155"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="684">
-                <rect key="frame" x="0.0" y="0.0" width="372" height="143"/>
+            <view key="contentView" misplaced="YES" id="684">
+                <rect key="frame" x="0.0" y="0.0" width="372" height="155"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="685">
@@ -905,8 +905,8 @@ Gw
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="43" y="58" width="225" height="102"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="723">
-                <rect key="frame" x="0.0" y="0.0" width="225" height="90"/>
+            <view key="contentView" misplaced="YES" id="723">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="721">
@@ -1001,7 +1001,7 @@ DQ
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="956">
                             <view key="view" ambiguous="YES" id="952">
-                                <rect key="frame" x="10" y="7" width="117" height="273"/>
+                                <rect key="frame" x="10" y="7" width="113" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
@@ -1307,8 +1307,8 @@ DQ
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="109" y="46" width="416" height="134"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="1090">
-                <rect key="frame" x="0.0" y="0.0" width="416" height="135"/>
+            <view key="contentView" misplaced="YES" id="1090">
+                <rect key="frame" x="0.0" y="0.0" width="416" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1089">

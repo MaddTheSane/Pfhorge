@@ -3,6 +3,7 @@ A list of things to do for this project:
 * Add code to save/load newer Aleph One map formats.
 * Fix spelling mistakes visible to the end user.
 * Add localization points.
+* Make it comply with modern Objective-C practices, including @properties and KVO/KVC.
 * There are still some areas where byte-swapping is needed for little-endian CPUs, which modern Macs use.
 * The OpenGL preview is borked: Find out why and fix.
 * Saving/loading takes awhile: Find out why.
@@ -13,3 +14,4 @@ A list of things to do for this project:
 * New icons, especially different icons for scenario and map.
 * New tool icons, either migrate to template icons or create new hi-res icons based off of existing icons.
 * More custom cursor images.
+* Migrate away from deprecated UI elements, like NSMatrix, NSDrawer, and NSForm.
