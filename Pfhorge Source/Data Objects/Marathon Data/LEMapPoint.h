@@ -66,8 +66,6 @@
 @property (nonatomic) short y32;
 @property (nonatomic) short x;
 @property (nonatomic) short y;
--(short)getX API_DEPRECATED_WITH_REPLACEMENT("-x", macos(10.0, 10.7));
--(short)getY API_DEPRECATED_WITH_REPLACEMENT("-y", macos(10.0, 10.7));
 
 -(void)scanAndUpdateLines;
 

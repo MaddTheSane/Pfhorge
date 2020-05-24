@@ -71,7 +71,7 @@
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
                                 <view key="view" id="82">
-                                    <rect key="frame" x="10" y="25" width="373" height="384"/>
+                                    <rect key="frame" x="10" y="29" width="373" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box fixedFrame="YES" title="Point Colors" translatesAutoresizingMaskIntoConstraints="NO" id="174">
@@ -982,7 +982,7 @@ DQ
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Visual Mode" id="505">
-                                <view key="view" id="506">
+                                <view key="view" ambiguous="YES" id="506">
                                     <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -991,8 +991,8 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                             <tabViewItems>
                                                 <tabViewItem label="Environment" identifier="1" id="595">
-                                                    <view key="view" ambiguous="YES" id="596">
-                                                        <rect key="frame" x="10" y="25" width="374" height="358"/>
+                                                    <view key="view" id="596">
+                                                        <rect key="frame" x="10" y="29" width="374" height="354"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <box fixedFrame="YES" title="Other Colors:" translatesAutoresizingMaskIntoConstraints="NO" id="601">
@@ -1525,11 +1525,11 @@ DQ
                                                     </view>
                                                 </tabViewItem>
                                                 <tabViewItem label="Keys" identifier="" id="742">
-                                                    <view key="view" id="743">
+                                                    <view key="view" ambiguous="YES" id="743">
                                                         <rect key="frame" x="10" y="25" width="374" height="358"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="744">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="3" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="744">
                                                                 <rect key="frame" x="15" y="130" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Turn Right" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1063">
@@ -1560,7 +1560,7 @@ DQ
                                                                     <action selector="setKeySpeedAction:" target="466" id="887"/>
                                                                 </connections>
                                                             </slider>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="750">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="6" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="750">
                                                                 <rect key="frame" x="15" y="40" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Slide Left" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1066">
@@ -1571,7 +1571,7 @@ DQ
                                                                     <action selector="setKeyButtonAction:" target="466" id="894"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="753">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="753">
                                                                 <rect key="frame" x="15" y="190" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Slide Down" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1067">
@@ -1602,7 +1602,7 @@ DQ
                                                                     <action selector="setInvertMouseAction:" target="466" id="886"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="756">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="7" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="756">
                                                                 <rect key="frame" x="15" y="10" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Slide Right" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1070">
@@ -1613,7 +1613,7 @@ DQ
                                                                     <action selector="setKeyButtonAction:" target="466" id="895"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="757">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="757">
                                                                 <rect key="frame" x="15" y="160" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Turn Left" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1071">
@@ -1700,7 +1700,7 @@ DQ
                                                                     <action selector="setKeyButtonAction:" target="466" id="888"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="764">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="5" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="764">
                                                                 <rect key="frame" x="15" y="70" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Backward" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1074">
@@ -1711,7 +1711,7 @@ DQ
                                                                     <action selector="setKeyButtonAction:" target="466" id="893"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="765">
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="4" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="765">
                                                                 <rect key="frame" x="15" y="100" width="141" height="32"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <buttonCell key="cell" type="push" title="Set Forward" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1075">

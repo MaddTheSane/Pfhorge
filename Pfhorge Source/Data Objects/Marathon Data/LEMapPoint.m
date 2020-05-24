@@ -358,12 +358,9 @@
 
 -(void)tellLinesAttachedToMeToRecalc
 {   
-                        // jdo change: An array is not nessary, a set will do :)
-    NSEnumerator *numer = [[self getLinesAttachedToMe] objectEnumerator];
-    LELine *curLine;
-    while((curLine = [numer nextObject]))
-    {
-	[curLine recalc];
+    // jdo change: An array is not nessary, a set will do :)
+    for (LELine *curLine in [self getLinesAttachedToMe]) {
+        [curLine recalc];
     }
 }
 
@@ -399,8 +396,6 @@
 {
 	return [NSSet setWithObject:@"y32"];
 }
--(short)getX { return x; }
--(short)getY { return y; }
 
 // These are methods that we probably wouldn't bother with if we weren't scriptable.
 

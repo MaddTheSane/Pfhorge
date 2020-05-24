@@ -11,6 +11,8 @@
 
 #import "PhProgress.h"
 
+static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
+
 @implementation ScenarioResources
 
 
@@ -69,7 +71,7 @@
                 
                 
                 res = [[Resource alloc] initWithID:resID
-                    type:CFBridgingRelease(UTCreateStringForOSType(restype))
+                                              type:CFBridgingRelease(UTCreateStringForOSType(restype))
                                               name:resName[0] != 0 ? CFBridgingRelease(CFStringCreateWithPascalString(kCFAllocatorDefault, resName, kCFStringEncodingMacRoman)) : nil];
                 
                 [array addObject:res];
@@ -101,7 +103,7 @@
     NSArray<Resource*>		*array;
     Resource		*resource;
     Handle			handle;
-    int				i, j;
+    int				j;
     
     url = [NSURL fileURLWithPath:fileName];
     //CFURLGetFSRef(url, &fsref);
@@ -118,31 +120,29 @@
     
     refNum = FSOpenResFile(&fsref, fsWrPerm);
     
-    for (i = 0; i < ((int)[typeDict count]); i++) {
-        array = [[typeDict allValues] objectAtIndex:i];
+    for (array in typeDict.objectEnumerator) {
         
-        for (j = 0; j < ((int)[array count]); j++) {
+        for (j = 0; j < [array count]; j++) {
             resource = [self resourceOfType:[[array objectAtIndex:j] type]
-                index:[[[array objectAtIndex:j] resID] shortValue]
-                load:NO];
+                                      index:[[[array objectAtIndex:j] resID] shortValue]
+                                       load:NO];
             
             if (![resource loaded]) {
                 handle = ASGetResource([[array objectAtIndex:j] type],
-                    [[array objectAtIndex:j] resID],
-                    oldFileName);
-            }
-            else
-            {
+                                       [[array objectAtIndex:j] resID],
+                                       oldFileName);
+            } else {
                 handle = NewHandle([[resource data] length]);
                 HLock(handle);
                 [[resource data] getBytes:*handle];
+                HUnlock(handle);
             }
             
             UseResFile(refNum);
             
             AddResource(handle, [[array objectAtIndex:j] typeAsResType],
-                [[[array objectAtIndex:j] resID] unsignedShortValue],
-                [[array objectAtIndex:j] nameAsStr255]);
+                        [[[array objectAtIndex:j] resID] shortValue],
+                        [[array objectAtIndex:j] nameAsStr255]);
             
             WriteResource(handle);
             
@@ -176,7 +176,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     resType = UTGetOSTypeFromString((__bridge CFStringRef)type);
     SetResLoad(YES);
     
-    data = Get1Resource(resType, [resID unsignedShortValue]);
+    data = Get1Resource(resType, [resID shortValue]);
     
     MacLoadResource(data);
     DetachResource(data);
@@ -190,26 +190,19 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return data;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(int)index load:(BOOL)load
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load
 {
-    Resource		*resource, *value;
+    Resource		*value = nil;
     Handle			handle;
-    NSArray			*array;
-    NSEnumerator	*resEnum;
-    NSNumber		*indexAsNSNumber = [NSNumber numberWithInt:index];
+    NSArray			*array = [typeDict objectForKey:type];
+    NSEnumerator	*resEnum = [array objectEnumerator];
+    NSNumber		*indexAsNSNumber = @(index);
     
-    value = nil;
-    array = [typeDict objectForKey:type];
-    resEnum = [array objectEnumerator];
-    
-    resource = [resEnum nextObject];
-    while (resource) {
+    for (Resource *resource in resEnum) {
         if ([[resource resID] isEqualToNumber:indexAsNSNumber]) {
             value = resource;
             break;
         }
-        
-        resource = [resEnum nextObject];
     }
     
     if ((value) && (![value loaded]) && load) {
@@ -222,7 +215,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return value;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(int)index
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index
 {
     return [self resourceOfType:type index:index load:YES];
 }
@@ -230,30 +223,21 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress
 {
-    Resource		*value;
-    Handle			handle;
-    NSArray			*array;
-    NSEnumerator	*resEnum;
-    NSString 		*fullPath;
-    NSData 			*theData;
+    NSArray			*array = [typeDict objectForKey:type];
+    NSEnumerator	*resEnum = [array objectEnumerator];
     NSFileManager	*fileManager = [NSFileManager defaultManager];
     OSType 			osTyp = UTGetOSTypeFromString((__bridge CFStringRef)type);
-	NSNumber		*nsOSTyp = @(osTyp);
+    NSNumber		*nsOSTyp = @(osTyp);
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
-    value = nil;
-    array = [typeDict objectForKey:type];
-    resEnum = [array objectEnumerator];
-    
-    for (Resource *resource in resEnum)
-    {
-        handle = ASGetResource(type, [resource resID], filename);
-        theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
+    for (Resource *resource in resEnum) {
+        Handle handle = ASGetResource(type, [resource resID], filename);
+        NSData *theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
         
         [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", type, [resource resID], nil]];
         
-        fullPath = [baseDirPath stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:fileExt]];
+        NSString *fullPath = [baseDirPath stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:fileExt]];
         
         [fileManager createFileAtPath:fullPath
                              contents:theData
@@ -266,17 +250,9 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (int)count
 {
-    NSEnumerator	*typeEnum;
-    NSArray			*resArray;
-    int				i, count;
+    int count = 0;
     
-    count = 0;
-    
-    typeEnum = [typeDict objectEnumerator];
-    
-    for (i = 0; i < ((int)[typeDict count]); i++) {
-        resArray = [typeEnum nextObject];
-        
+    for (NSArray *resArray in [typeDict objectEnumerator]) {
         count += [resArray count];
     }
     
@@ -285,20 +261,11 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (Resource *)objectAtIndex:(int)index
 {
-    NSEnumerator	*typeEnum;
-    NSArray			*resArray;
-    id				object;
-    int				i, j, count;
+    id  object = nil;
+    int count = 0;
     
-    object = nil;
-    count = 0;
-    
-    typeEnum = [typeDict objectEnumerator];
-    
-    for (i = 0; i < ((int)[typeDict count]); i++) {
-        resArray = [typeEnum nextObject];
-        
-        for (j = 0; j < ((int)[resArray count]); j++) {
+    for (NSArray *resArray in [typeDict objectEnumerator]) {
+        for (NSInteger j = 0; j < [resArray count]; j++) {
             if (index == count) {
                 object = [resArray objectAtIndex:j];
             }
@@ -312,34 +279,29 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (void)addResource:(Resource *)resource
 {
-    NSMutableArray	*array;
+    NSMutableArray<Resource*> *array;
     
     array = [typeDict objectForKey:[resource type]];
     
     if (!array) {
         array = [NSMutableArray arrayWithObject:resource];
         [typeDict setObject:array forKey:[resource type]];
-    }
-    else {
+    } else {
         [array addObject:resource];
     }
 }
 
 - (void)removeResource:(Resource *)resource
 {
-    NSMutableArray	*array;
-    
-    array = [typeDict objectForKey:[resource type]];
+    NSMutableArray	*array = [typeDict objectForKey:[resource type]];
     
     [array removeObject:resource];
     
-    if (![array count]) {
+    if ([array count] == 0) {
         [typeDict removeObjectForKey:[resource type]];
     }
 }
 
-- (NSMutableDictionary *)typeDict
-{
-    return typeDict;
-}
+@synthesize typeDict;
+
 @end

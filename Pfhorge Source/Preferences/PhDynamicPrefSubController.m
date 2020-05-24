@@ -517,26 +517,45 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)setKeyButtonAction:(id)sender
 {
-    NSString *theKeyName = [sender title];
+    NSInteger theKeyTag = [sender tag];
     
-    if 	    ([theKeyName isEqualToString:@"Set Slide Up"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMUpKey];
-    else if ([theKeyName isEqualToString:@"Set Slide Down"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMDownKey];
-    else if ([theKeyName isEqualToString:@"Set Turn Left"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMLeftKey];
-    else if ([theKeyName isEqualToString:@"Set Turn Right"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMRightKey];
-    else if ([theKeyName isEqualToString:@"Set Forward"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMForwardKey];
-    else if ([theKeyName isEqualToString:@"Set Backward"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMBackwardKey];
-    else if ([theKeyName isEqualToString:@"Set Slide Left"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMSlideLeftKey];
-    else if ([theKeyName isEqualToString:@"Set Slide Right"])
-        [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMSlideRightKey];
-    else
-        SEND_ERROR_MSG(@"Could Not Detirmen Which Button Was Pressed.");
+    switch (theKeyTag) {
+        case 0:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMUpKey];
+            break;
+            
+        case 1:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMDownKey];
+            break;
+            
+        case 2:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMLeftKey];
+            break;
+            
+        case 3:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMRightKey];
+            break;
+            
+        case 4:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMForwardKey];
+            break;
+            
+        case 5:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMBackwardKey];
+            break;
+            
+        case 6:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMSlideLeftKey];
+            break;
+            
+        case 7:
+            [preferences setInteger:(int)([self getKeyUnichar]) forKey:VMSlideRightKey];
+            break;
+            
+        default:
+            SEND_ERROR_MSG(@"Could not determine which button was pressed.");
+            break;
+    }
     
     [self loadAndSetVisualModePrefKeys];
 }

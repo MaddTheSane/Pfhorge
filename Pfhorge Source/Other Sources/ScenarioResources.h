@@ -10,8 +10,6 @@
 
 @class Resource;
 
-Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
-
 //TODO: Update to use MacBinary for cross-platform compatibility!
 @interface ScenarioResources : NSObject {
     NSMutableDictionary<NSString*, NSMutableArray<Resource*>*>	*typeDict;
@@ -22,8 +20,8 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName;
 
-- (Resource *)resourceOfType:(NSString *)type index:(int)index;
-- (Resource *)resourceOfType:(NSString *)type index:(int)index load:(BOOL)load;
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index;
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress;
 
@@ -33,5 +31,5 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 - (void)addResource:(Resource *)resource;
 - (void)removeResource:(Resource *)resource;
 
-- (NSMutableDictionary<NSString*, NSMutableArray<Resource*>*> *)typeDict;
+@property (readonly, strong) NSMutableDictionary<NSString*, NSMutableArray<Resource*>*> *typeDict;
 @end

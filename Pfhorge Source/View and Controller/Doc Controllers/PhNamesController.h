@@ -33,8 +33,8 @@
 
 @class PhAbstractName, LELevelData, LELevelWindowController;
 
-enum /* display modes */
-{
+/*! display modes */
+typedef NS_ENUM(NSInteger, PhDisplayMode) {
 	_display_tags = 0,
 	_display_lights,
 	_display_ambient_sounds,
@@ -60,7 +60,7 @@ enum /* display modes */
     IBOutlet NSButton *okBtn;
     IBOutlet NSPopUpButton *editingMenu;
     
-    int currentDisplayMode;
+    PhDisplayMode currentDisplayMode;
     NSArray *currentArray;
     NSMutableArray *currentNameArray;
     id editingWindowController;
@@ -80,7 +80,7 @@ enum /* display modes */
 // *********************** Updater Methods ***********************
 -(void)updateInterface;
 -(void)reloadDataFromLevel;
--(void)setDisplayEditMode:(int)theRequestedDisplayMode;
+-(void)setDisplayEditMode:(PhDisplayMode)theRequestedDisplayMode;
 
 - (void)levelDeallocating:(NSNotification *)notification;
 

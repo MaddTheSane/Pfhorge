@@ -204,7 +204,7 @@ static NSString *const PhNameOfObject = @"Name";
     [self setDisplayEditMode:currentDisplayMode];
 }
 
--(void)setDisplayEditMode:(int)theRequestedDisplayMode
+-(void)setDisplayEditMode:(PhDisplayMode)theRequestedDisplayMode
 {
     // Get the Document
     LEMap *theMapDocumentController = [theLevelWindowControllerOutlet document];
@@ -251,7 +251,7 @@ static NSString *const PhNameOfObject = @"Name";
             currentNameArray = [theLevelData getLayerNames];
             break;
         default:
-            SEND_ERROR_MSG(@"Unkown Edit Item Currently Selected!");
+            SEND_ERROR_MSG(([NSString stringWithFormat:@"Unkown Edit Item Currently Selected, %ld!", (long)currentDisplayMode]));
             currentArray = nil;
             currentNameArray = nil;
             break;
