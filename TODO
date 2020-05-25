@@ -17,3 +17,4 @@ A list of things to do for this project:
 * Migrate away from deprecated UI elements, like NSMatrix, NSDrawer, and NSForm.
 * Clean-up code style. 
 ** Use clang-format?
+* Better error handling (I think this code was written before NSError was introduced.)

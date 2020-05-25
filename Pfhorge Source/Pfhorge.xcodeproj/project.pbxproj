@@ -301,6 +301,7 @@
 		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
 		55B3DC5C24747EBE00499B7F /* LELevelData-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LELevelData-private.h"; sourceTree = "<group>"; };
+		55C4EF5C247C8FAB00424767 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = ../TODO; sourceTree = "<group>"; };
 		55D7334324640306008B33F6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
 		A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView2.h; sourceTree = "<group>"; };
@@ -525,6 +526,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* LevEd */ = {
 			isa = PBXGroup;
 			children = (
+				55C4EF5C247C8FAB00424767 /* TODO */,
 				F50087910347B95E0146BBD2 /* Pfhorge (Old History).rtf */,
 				F50087930347B9630146BBD2 /* Pfhorge Read Me.rtf */,
 				F50087970347BA3A0146BBD2 /* Source Note.txt */,
