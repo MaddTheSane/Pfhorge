@@ -175,7 +175,7 @@ static uint32 calculate_file_crc(
 	uint32 crc;
 	int32 count;
 	//FileError err;
-	int32 file_length;
+	NSInteger file_length;
 	int32 place = 0;
 	
 	// Save and restore the initial file position
@@ -193,7 +193,7 @@ static uint32 calculate_file_crc(
 		{
 			count= buffer_size;
 		} else {
-			count= file_length;
+			count= (int32_t)file_length;
 		}
 
 		//err= read_file(refnum, count, buffer);

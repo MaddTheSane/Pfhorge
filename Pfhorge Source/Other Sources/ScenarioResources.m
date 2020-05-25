@@ -32,7 +32,6 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     Handle			resource;
     ResID			resID;
     Str255			resName;
-    NSMutableArray	*array;
     Resource		*res;
     ResFileRefNum	refNum;
     int				i, j;
@@ -59,7 +58,7 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
         for (i = 1; i <= Count1Types(); i++) {
             Get1IndType(&restype, i);
             
-            array = [NSMutableArray array];
+            NSMutableArray *array = [NSMutableArray array];
             
             for (j = 1; j <= Count1Resources(restype); j++) {
                 SetResLoad(NO);
@@ -190,7 +189,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return data;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load
+- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index load:(BOOL)load
 {
     Resource		*value = nil;
     Handle			handle;
@@ -215,7 +214,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return value;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index
+- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index
 {
     return [self resourceOfType:type index:index load:YES];
 }

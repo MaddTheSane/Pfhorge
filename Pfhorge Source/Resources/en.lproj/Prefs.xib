@@ -71,7 +71,7 @@
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
                                 <view key="view" id="82">
-                                    <rect key="frame" x="10" y="29" width="373" height="380"/>
+                                    <rect key="frame" x="10" y="25" width="373" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box fixedFrame="YES" title="Point Colors" translatesAutoresizingMaskIntoConstraints="NO" id="174">
@@ -262,7 +262,7 @@
                                             </view>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="173">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="173">
                                             <rect key="frame" x="266" y="190" width="95" height="14"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Selected" id="1008">
@@ -487,7 +487,7 @@ DQ
                                         <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="332">
                                             <rect key="frame" x="13" y="348" width="109" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" title="Enable Grid" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="1022">
+                                            <buttonCell key="cell" type="check" title="Enable Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1022">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -577,7 +577,7 @@ DQ
                                         <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="351">
                                             <rect key="frame" x="18" y="348" width="234" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" title="Enable Anti-Aliased Drawing" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="1029">
+                                            <buttonCell key="cell" type="check" title="Enable Anti-Aliased Drawing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1029">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -685,17 +685,17 @@ DQ
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="cellSize" width="179" height="18"/>
                                                         <size key="intercellSpacing" width="4" height="2"/>
-                                                        <buttonCell key="prototype" type="check" title="Snap Points To Grid" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="-1" inset="2" id="1112">
+                                                        <buttonCell key="prototype" type="check" title="Snap Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="-1" inset="2" id="1112">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <cells>
                                                             <column>
-                                                                <buttonCell type="check" title="Right Angle Line Guiding" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="1001">
+                                                                <buttonCell type="check" title="Right Angle Line Guiding" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1001">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" title="Isometric Line Guiding" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="1" inset="2" id="1002">
+                                                                <buttonCell type="check" title="Isometric Line Guiding" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="1002">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -890,37 +890,37 @@ DQ
                                                         <color key="backgroundColor" red="0.89517802000045776" green="0.89868146181106567" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <size key="cellSize" width="22" height="18"/>
                                                         <size key="intercellSpacing" width="4" height="10"/>
-                                                        <buttonCell key="prototype" type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="-1" inset="2" id="1113">
+                                                        <buttonCell key="prototype" type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="-1" inset="2" id="1113">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <cells>
                                                             <column>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" enabled="NO" transparent="YES" inset="2" id="426">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" transparent="YES" inset="2" id="426">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="1" inset="2" id="427">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="1" inset="2" id="427">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="2" inset="2" id="428">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="2" inset="2" id="428">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="3" inset="2" id="429">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="3" inset="2" id="429">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="4" inset="2" id="430">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="4" inset="2" id="430">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="5" inset="2" id="431">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="5" inset="2" id="431">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
-                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="leading" alignment="left" tag="6" inset="2" id="432">
+                                                                <buttonCell type="check" bezelStyle="regularSquare" imagePosition="left" alignment="left" tag="6" inset="2" id="432">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -934,7 +934,7 @@ DQ
                                         <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="388">
                                             <rect key="frame" x="18" y="348" width="187" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="check" title="Enable Object Borders" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="1030">
+                                            <buttonCell key="cell" type="check" title="Enable Object Borders" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1030">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -1594,7 +1594,7 @@ DQ
                                                             <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="755">
                                                                 <rect key="frame" x="23" y="319" width="112" height="18"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
-                                                                <buttonCell key="cell" type="check" title="Invert Mouse" bezelStyle="regularSquare" imagePosition="leading" alignment="left" inset="2" id="1069">
+                                                                <buttonCell key="cell" type="check" title="Invert Mouse" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1069">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>

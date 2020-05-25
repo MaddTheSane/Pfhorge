@@ -27,9 +27,15 @@ public:
     
     //! This changes the position, view, and up vector of the camera.
     //! This is primarily used for initialization
-    void PositionCamera(float positionX, float positionY, float positionZ,
-                        float viewX,     float viewY,     float viewZ,
-                        float upVectorX, float upVectorY, float upVectorZ);
+    inline void PositionCamera(float positionX, float positionY, float positionZ,
+                               float viewX,     float viewY,     float viewZ,
+                               float upVectorX, float upVectorY, float upVectorZ) {
+        simd::float3 vPosition  = simd_make_float3(positionX, positionY, positionZ);
+        simd::float3 vView      = simd_make_float3(viewX, viewY, viewZ);
+        simd::float3 vUpVector  = simd_make_float3(upVectorX, upVectorY, upVectorZ);
+        
+        PositionCamera(vPosition, vView, vUpVector);
+    }
 
     //! This changes the position, view, and up vector of the camera.
     //! This is primarily used for initialization

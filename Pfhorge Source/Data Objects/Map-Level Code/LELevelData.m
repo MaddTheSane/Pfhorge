@@ -404,17 +404,14 @@
     id theObj;
     NSMutableArray *tmpNumberList, *theNamesCacheArray;
     NSArray *theAcutalObjectsArray = nil;
-    NSEnumerator *numer;
     BOOL listIncludesNone;
     int i, j;
     
     // *** Start Main Code ***
     
     
-    for (i = 0; i < 7; i++)
-    {
-        switch (i)
-        {
+    for (i = 0; i < 7; i++) {
+        switch (i) {
             case 0:
                 theNamesCacheArray = ambientSoundNames;
                 theAcutalObjectsArray = ambientSounds;
@@ -457,16 +454,12 @@
         [theNamesCacheArray removeAllObjects];
         
         j = 0;
-        numer = [theAcutalObjectsArray objectEnumerator];
-        while (theObj = [numer nextObject])
-        {
-            if (i < 5)
-            {
+        for (theObj in theAcutalObjectsArray) {
+            if (i < 5) {
                 NSString *theName = [NSString localizedStringWithFormat:@"%d", j];
                 [theObj setPhName:theName];
                 
-                if (theName == nil)
-                {
+                if (theName == nil) {
                     NSLog(@"REPORT THIS PLEASE: *** theName was nil in name caching... #1");
                     [theObj setPhName:@"Name Was Nil? 1"];
                     theName = @"Name Was Nil? 1";
@@ -476,16 +469,14 @@
                 [theNamesCacheArray addObject:theName];
                 j++;
             }
-            else if (i == 5 || i == 6) // Layers/Terminals arleady have there name...
+            else if (i == 5 || i == 6) // Layers/Terminals already have there name...
             {
-                if (theObj == nil)
-                {
+                if (theObj == nil) {
                     NSLog(@"REPORT THIS PLEASE: *** theObj was nil in name caching... #3");
                     continue;
                 }
                 
-                if ([theObj phName] == nil)
-                {
+                if ([theObj phName] == nil) {
                     NSLog(@"REPORT THIS PLEASE: *** [theObj getPhName] was nil in name caching... #2");
                     [theObj setPhName:@"Name Was Nil? 2"];
                     //continue;
@@ -499,10 +490,8 @@
     NSLog(@"Check To See which polygons need names...");
     
     { // Checking polygons to see if I need to name some polygons...
-        LEPolygon *thePolyToCheck;
 		LEPolygon	*thePolyPointedTo;
         id theObj;
-        NSEnumerator *spenumer = [polys objectEnumerator];
         for (LEPolygon *thePolyToCheck in polys) {
             switch ([thePolyToCheck type]) {
                 case _polygon_is_platform_on_trigger:
@@ -548,10 +537,8 @@
     tmpNumberList = [[NSMutableArray alloc] initWithCapacity:15];
     
     // Gets Tags In Light Objects
-    numer = [lights objectEnumerator];
-    for (PhLight *theObj in numer) {
-        NSNumber *theNumber;
-        theNumber = [NSNumber numberWithShort:[theObj tag]];
+    for (PhLight *theObj in lights) {
+        NSNumber *theNumber = [NSNumber numberWithShort:[theObj tag]];
         
         if (theNumber == nil) {
             NSLog(@"*** theNumber from light tag was nil in name caching...");
@@ -564,14 +551,11 @@
     }
     
     // Gets Tags In Platform Objects
-    numer = [platforms objectEnumerator];
-    for (PhPlatform *theObj in numer)
-    {
+    for (PhPlatform *theObj in platforms) {
         NSNumber *theNumber;
         theNumber = [NSNumber numberWithShort:[theObj tag]];
         
-        if (theNumber == nil)
-        {
+        if (theNumber == nil) {
             NSLog(@"*** theNumber from platform tag was nil in name caching...");
             continue; // Continues at 'while (theObj = [numer nextObject]) // get next Platform object'
         }
@@ -614,9 +598,7 @@
         // *** May have to convert array to mutable array? ***
         
         // Could be just a NSArray, but I am going to, for now, cast it to NSMutableArray...
-        NSMutableArray *sortedArray = (NSMutableArray *)[tmpNumberList sortedArrayUsingSelector:@selector(compare:)];
-        
-        tmpNumberList = sortedArray;
+        [tmpNumberList sortUsingSelector:@selector(compare:)];
     }
     
     //if (heightMode == _drawAmbientSounds || _drawLiquidLights:_drawLiquids

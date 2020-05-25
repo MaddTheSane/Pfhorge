@@ -91,18 +91,6 @@ CCamera::CCamera()
 }
 
 
-void CCamera::PositionCamera(float positionX, float positionY, float positionZ,
-                             float viewX,     float viewY,     float viewZ,
-                             float upVectorX, float upVectorY, float upVectorZ)
-{
-    auto vPosition  = simd_make_float3(positionX, positionY, positionZ);
-    auto vView      = simd_make_float3(viewX, viewY, viewZ);
-    auto vUpVector  = simd_make_float3(upVectorX, upVectorY, upVectorZ);
-
-	PositionCamera(vPosition, vView, vUpVector);
-}
-
-
 ///////////////////////////////// SET VIEW BY MOUSE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
 /////   This allows us to look around using the mouse, like in most first person games.

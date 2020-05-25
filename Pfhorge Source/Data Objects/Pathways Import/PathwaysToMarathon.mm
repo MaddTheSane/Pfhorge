@@ -515,9 +515,11 @@ void AddTexturedWalls(PID_Sector& Sector, SectorObjects& SO)
 
 static void AddTexturedWalls(PID_Level& PL, SectorArray SO)
 {
-    for (int x=0; x<PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++)
+    for (int x=0; x<PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<PID_Level::NUMBER_Y_SECTORS; y++) {
             AddTexturedWalls(PL.SectorList[SectorAddr(x,y)], SO[x][y]);
+        }
+    }
 }
 
 

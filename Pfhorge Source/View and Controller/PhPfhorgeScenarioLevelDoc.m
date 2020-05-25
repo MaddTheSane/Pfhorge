@@ -128,7 +128,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 
 - (IBAction)importMarathonMap:(id)sender
 {
-    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), @"org.bungie.source.map"];
+    NSArray	*fileTypes	= @[NSFileTypeForHFSTypeCode('sce2'), NSFileTypeForHFSTypeCode(0x736365B0) /*'sce∞'*/, @"org.bungie.source.map"];
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];

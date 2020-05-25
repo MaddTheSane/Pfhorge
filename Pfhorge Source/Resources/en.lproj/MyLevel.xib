@@ -78,7 +78,7 @@
                         <rect key="frame" x="-1" y="-1" width="444" height="271"/>
                         <clipView key="contentView" id="PZO-6J-6sO">
                             <rect key="frame" x="0.0" y="0.0" width="444" height="271"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="172" customClass="LEMapDraw">
                                     <rect key="frame" x="0.0" y="0.0" width="4096" height="4096"/>
@@ -503,7 +503,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" ambiguous="YES" id="1Ds-nc-x4n">
                             <rect key="frame" x="1" y="0.0" width="320" height="295"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="1213" floatsGroupRows="NO" id="535">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
@@ -650,8 +650,8 @@ DQ
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="142" y="151" width="367" height="137"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="662">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
+            <view key="contentView" misplaced="YES" id="662">
+                <rect key="frame" x="0.0" y="0.0" width="367" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="663">
@@ -844,7 +844,7 @@ Gw
                     <rect key="frame" x="0.0" y="14" width="83" height="200"/>
                     <clipView key="contentView" id="5sj-xK-W2T">
                         <rect key="frame" x="1" y="1" width="81" height="198"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" floatsGroupRows="NO" id="714">
                                 <rect key="frame" x="0.0" y="0.0" width="81" height="198"/>
@@ -1029,7 +1029,7 @@ DQ
                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="985">
                                         <rect key="frame" x="0.0" y="251" width="134" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="check" title="Override Prefs…" bezelStyle="regularSquare" imagePosition="leading" alignment="left" controlSize="small" inset="2" id="1192">
+                                        <buttonCell key="cell" type="check" title="Override Prefs…" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="1192">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
@@ -1096,7 +1096,6 @@ DQ
                                                 </matrix>
                                             </subviews>
                                         </view>
-                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </box>
                                     <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1000">
                                         <rect key="frame" x="9" y="155" width="106" height="72"/>
@@ -1226,7 +1225,7 @@ DQ
                         <rect key="frame" x="-1" y="61" width="423" height="189"/>
                         <clipView key="contentView" id="rir-hE-OT8">
                             <rect key="frame" x="1" y="0.0" width="421" height="188"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1218" floatsGroupRows="NO" id="1074">
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>

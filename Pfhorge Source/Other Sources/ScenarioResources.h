@@ -20,8 +20,8 @@
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName;
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index;
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
+- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index;
+- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index load:(BOOL)load;
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress;
 
