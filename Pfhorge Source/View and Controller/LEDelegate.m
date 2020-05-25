@@ -156,7 +156,6 @@
 
 - (void)setupPluginMenu
 {
-    NSZone *theMenuZone = [NSMenu menuZone];
     PhPluginManager *thePluginManager = [PhPluginManager sharedPhPluginManager];
     NSArray *thePluginNames = [thePluginManager pluginInstanceNames];
     NSArray *thePlugins = [thePluginManager pluginInstances];
@@ -168,7 +167,7 @@
     while ((theString = [numer nextObject]) &&
             (thePlugin = [numer2 nextObject]))
     {
-        NSMenuItem *newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        NSMenuItem *newItem = [[NSMenuItem alloc]
         initWithTitle:theString action:NULL keyEquivalent:@""];
         
         [newItem setRepresentedObject:thePlugin];
@@ -228,7 +227,6 @@
     NSEnumerator *numer;
     NSMenu *newMenu;
     NSMenuItem *newItem;
-    NSZone *theMenuZone = [NSMenu menuZone];
     
     if (!IsPathDirectory(manager, thePath))
     {
@@ -250,9 +248,9 @@
         
         if (IsPathDirectory(manager, fullPath))
         {
-            newItem = [[NSMenuItem allocWithZone:theMenuZone]
+            newItem = [[NSMenuItem alloc]
                         initWithTitle:onlyName action:NULL keyEquivalent:@""];
-            newMenu = [[NSMenu allocWithZone:theMenuZone] initWithTitle:onlyName];
+            newMenu = [[NSMenu alloc] initWithTitle:onlyName];
             
             [newItem setSubmenu:newMenu];
             [newMenu release];
@@ -267,7 +265,7 @@
             
             [scriptPaths addObject:copyOfFullPath];
             
-            newItem = [[NSMenuItem allocWithZone:theMenuZone]
+            newItem = [[NSMenuItem alloc]
                 initWithTitle:onlyName action:NULL keyEquivalent:@""];
             
             [newItem setRepresentedObject:copyOfFullPath];
@@ -342,9 +340,8 @@
     if ([[manager contentsOfDirectoryAtPath:scriptFolder error:NULL] count] == 0)
     {
         NSMenuItem *newItem;
-        NSZone *theMenuZone = [NSMenu menuZone];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"There Are No Scripts In The Scripts Folder"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -352,7 +349,7 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"See Read Me For Details On How To Use Scripts"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -360,7 +357,7 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"   ********* Notes *********"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -368,7 +365,7 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"Use Compiled Scripts Here Only"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -376,7 +373,7 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"Files In Scripts Folder Need A '.scpt' Extension"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -384,7 +381,7 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"You can use folders in the script folder ]:=>"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -392,14 +389,14 @@
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
         
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"The example script creates a new map and creates"
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         [newItem release];
-        newItem = [[NSMenuItem allocWithZone:theMenuZone]
+        newItem = [[NSMenuItem alloc]
                     initWithTitle:@"   five polygons in the center of the map."
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
@@ -438,7 +435,7 @@
     panel.allowedFileTypes = @[@"scpt"];
     NSModalResponse returnCode = [panel runModal];
     
-    if (returnCode == NSOKButton)
+    if (returnCode == NSModalResponseOK)
     {
         NSString *path = [panel URL].path;
         NSLog(@"The Path: %@", path);
@@ -565,7 +562,7 @@
     
     NSData *theData;
     
-    if (returnCode == NSOKButton)
+    if (returnCode == NSModalResponseOK)
     {
         fileName = op.URL.path;
         theData = [fileManager contentsAtPath:fileName];

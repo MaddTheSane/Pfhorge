@@ -124,7 +124,7 @@
          setDrawsBackground:YES];
         
         [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
-         setAlignment:NSCenterTextAlignment];
+         setAlignment:NSTextAlignmentCenter];
         
         [[[[colorListTable tableColumns] objectAtIndex:0] dataCell]
          setEditable:YES];
@@ -263,7 +263,7 @@
         [cell setBackgroundColor:[colors objectAtIndex:(row - 1)]];
     }
         
-    [cell setAlignment:NSCenterTextAlignment];
+    [cell setAlignment:NSTextAlignmentCenter];
     //[cell setForegroundColor: [colors objectAtIndex:row]];
     
 }

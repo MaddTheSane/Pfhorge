@@ -349,7 +349,7 @@
     {
         case PhTerminalSectionTypeLogOn:
             [self setPhName:@"Logon"];
-            [theParagraphStyle setAlignment:NSCenterTextAlignment];
+            [theParagraphStyle setAlignment:NSTextAlignmentCenter];
             break;
         case PhTerminalSectionTypeUnfinished:
             [self setPhName:@"Unfinished"];
@@ -380,7 +380,7 @@
             break;
         case PhTerminalSectionTypeLogOff:
             [self setPhName:@"Logoff"];
-            [theParagraphStyle setAlignment:NSCenterTextAlignment];
+            [theParagraphStyle setAlignment:NSTextAlignmentCenter];
             break;
         case PhTerminalSectionTypeCamera:
             [self setPhName:@"Camera"];

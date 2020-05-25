@@ -491,7 +491,7 @@ static unsigned short SetColor(short ID, int Indx) {
 		g_Camera->Update(forwardKey, backwardKey, leftKey, rightKey);
         
         // This polls for an event.  If there isn't an event read immediately, it will return nil.  In a real game, we would loop until we had processed all pending events and would then go about our normal game processing
-        event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:distantPast inMode:NSDefaultRunLoopMode dequeue:YES];
+        event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:distantPast inMode:NSDefaultRunLoopMode dequeue:YES];
         if (event == nil) {
             //[pool release];
             //DisplayFunc([thePathToShapesFile length] > 1);
@@ -577,7 +577,7 @@ static unsigned short SetColor(short ID, int Indx) {
                         //[self _logString: [NSString stringWithFormat: @"KEY %@:  unichar=0x%02x\n", (type == NSKeyDown) ? @"DOWN" : @"UP", c]];
                         
                         // These keys are all to change overall settings, and are thus not auto-repeat keys
-                        if (type == NSKeyDown)
+                        if (type == NSEventTypeKeyDown)
                         {
 							BOOL IsChecked;
 							int PopupIndex;
@@ -690,38 +690,38 @@ static unsigned short SetColor(short ID, int Indx) {
 							}
                         }
  
-                        if (c == upKeyUnichar && (type == NSKeyDown))
+                        if (c == upKeyUnichar && (type == NSEventTypeKeyDown))
                             upKey = YES;
-                        if (c == downKeyUnichar && (type == NSKeyDown))
+                        if (c == downKeyUnichar && (type == NSEventTypeKeyDown))
                             downKey = YES;
-                        if (c == leftKeyUnichar && (type == NSKeyDown))
+                        if (c == leftKeyUnichar && (type == NSEventTypeKeyDown))
                             leftKey = YES;
-                        if (c == rightKeyUnichar && (type == NSKeyDown))
+                        if (c == rightKeyUnichar && (type == NSEventTypeKeyDown))
                             rightKey = YES;
-                        if (c == upKeyUnichar && (type == NSKeyUp))
+                        if (c == upKeyUnichar && (type == NSEventTypeKeyUp))
                             upKey = NO;
-                        if (c == downKeyUnichar && (type == NSKeyUp))
+                        if (c == downKeyUnichar && (type == NSEventTypeKeyUp))
                             downKey = NO;
-                        if (c == leftKeyUnichar && (type == NSKeyUp))
+                        if (c == leftKeyUnichar && (type == NSEventTypeKeyUp))
                             leftKey = NO;
-                        if (c == rightKeyUnichar && (type == NSKeyUp))
+                        if (c == rightKeyUnichar && (type == NSEventTypeKeyUp))
                             rightKey = NO;
 
-                        if (c == forwardKeyUnichar && (type == NSKeyDown))
+                        if (c == forwardKeyUnichar && (type == NSEventTypeKeyDown))
                             forwardKey = YES;
-                        if (c == backwardKeyUnichar && (type == NSKeyDown))
+                        if (c == backwardKeyUnichar && (type == NSEventTypeKeyDown))
                             backwardKey = YES;
-                        if (c == slideLeftKeyUnichar && (type == NSKeyDown))
+                        if (c == slideLeftKeyUnichar && (type == NSEventTypeKeyDown))
                             slideLeftKey = YES;
-                        if (c == slideRightKeyUnichar && (type == NSKeyDown))
+                        if (c == slideRightKeyUnichar && (type == NSEventTypeKeyDown))
                             slideRightKey = YES;
-                        if (c == forwardKeyUnichar && (type == NSKeyUp))
+                        if (c == forwardKeyUnichar && (type == NSEventTypeKeyUp))
                             forwardKey = NO;
-                        if (c == backwardKeyUnichar && (type == NSKeyUp))
+                        if (c == backwardKeyUnichar && (type == NSEventTypeKeyUp))
                             backwardKey = NO;
-                        if (c == slideLeftKeyUnichar && (type == NSKeyUp))
+                        if (c == slideLeftKeyUnichar && (type == NSEventTypeKeyUp))
                             slideLeftKey = NO;
-                        if (c == slideRightKeyUnichar && (type == NSKeyUp))
+                        if (c == slideRightKeyUnichar && (type == NSEventTypeKeyUp))
                             slideRightKey = NO;
                     }
                 }

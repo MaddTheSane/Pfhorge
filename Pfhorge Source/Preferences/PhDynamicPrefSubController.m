@@ -298,7 +298,7 @@ extern NSString *VMBackwardKey;
     panel.allowedFileTypes = @[@"scpt"];
     NSInteger returnCode = [panel runModal];
     
-    if (returnCode == NSOKButton)
+    if (returnCode == NSModalResponseOK)
     {
         NSString *path = [panel URL].path;
         NSLog(@"The Path: %@", path);
@@ -384,7 +384,7 @@ extern NSString *VMBackwardKey;
     
     returnCode = [panel runModal];
     
-    if (returnCode == NSOKButton)
+    if (returnCode == NSModalResponseOK)
     {
         NSURL *path = [panel URL];
         NSLog(@"The Shapes Path Choosen: %@", path);
@@ -572,13 +572,13 @@ extern NSString *VMBackwardKey;
     // Process events
     while (!done) {
         NSEventType type;
-        event = [NSApp nextEventMatchingMask:NSAnyEventMask untilDate:distantPast inMode:NSDefaultRunLoopMode dequeue:YES];
+        event = [NSApp nextEventMatchingMask:NSEventMaskAny untilDate:distantPast inMode:NSDefaultRunLoopMode dequeue:YES];
         
         // Handle the event we got
         type = [event type];
         switch (type) {
-            case NSKeyDown:
-            case NSKeyUp:
+            case NSEventTypeKeyDown:
+            case NSEventTypeKeyUp:
                 {
                     NSString *characters;
                     

@@ -1345,7 +1345,7 @@ static NSCursor *crosshairCursor = nil;
 {
     sheetOpen = NO;
     
-    if (returnCode != NSOKButton)
+    if (returnCode != NSModalResponseOK)
         return;
 	
 	//[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
@@ -1356,7 +1356,7 @@ static NSCursor *crosshairCursor = nil;
 {
     sheetOpen = NO;
     
-    if (returnCode != NSOKButton)
+    if (returnCode != NSModalResponseOK)
         return;
     
     NSLog(@"Importing....");

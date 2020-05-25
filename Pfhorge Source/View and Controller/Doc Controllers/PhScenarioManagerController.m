@@ -136,7 +136,7 @@
 
 - (void)savePanelDidEnd:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
-    if (returnCode != NSOKButton)
+    if (returnCode != NSModalResponseOK)
         return;
     
     [[self document] saveMergedMapTo:[sheet filename]];
@@ -144,7 +144,7 @@
 
 - (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
 {
-    if (returnCode != NSOKButton)
+    if (returnCode != NSModalResponseOK)
         return;
     
     [[self document] exportLevelToMarathonMap:[sheet filename]];

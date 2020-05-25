@@ -2656,7 +2656,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // Make an event mask that will prevent events that we will not use
     // to not call use, therfore not wasting CPU time...
-    eventMask = NSLeftMouseDraggedMask | NSLeftMouseUpMask | NSPeriodicMask;
+    eventMask = NSEventMaskLeftMouseDragged | NSEventMaskLeftMouseUp | NSEventMaskPeriodic;
     
     // Determin if I should snap to nearest point
     if ([selections count] == 1 && ([selectedPoints count] == 1 || [selectedMapObjects count] == 1))
@@ -5588,7 +5588,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     else
         optionDown = NO;
     
-    if (newFlags & NSCommandKeyMask)
+    if (newFlags & NSEventModifierFlagCommand)
         commandDown = YES;
     else
         commandDown = NO;
