@@ -22,7 +22,10 @@ enum {
     NSString *thePathToShapesFile;
 }
 
+//! This function initializes the game window.
 - (void)Init;
+
+//! This function renders the entire scene.
 - (void)renderScene;
 
 - (void)doMapRenderingLoopWithMapData:(LELevelData *)theLevel shapesLocation:(NSString *)theShapesLocation;

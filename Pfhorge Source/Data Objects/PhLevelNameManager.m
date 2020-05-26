@@ -274,7 +274,7 @@
 #pragma mark -
 #pragma mark ********* Menu Name Managment*********
 
--(void)addMenu:(id)theMenuUIO asA:(int)menuKind
+-(void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind
 {
     NSMutableSet *theMenuArray;
     
@@ -286,7 +286,7 @@
     [self refreshTheMenu:theMenuUIO thatsA:menuKind];
 }
 
--(void)removeMenu:(id)theMenuUIO thatsA:(int)menuKind
+-(void)removeMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind
 {
     NSMutableSet *theMenuArray;
     
@@ -298,7 +298,7 @@
     [theMenuArray removeObject:theMenuUIO];
 }
 
--(void)removeMenu:(id)theMenuUIO
+-(void)removeMenu:(NSPopUpButton*)theMenuUIO
 {
     if (theMenuUIO == nil)
         return;
@@ -313,14 +313,11 @@
     [polyNameMenus removeObject:theMenuUIO];
 }
 
--(void)refreshAllMenusOf:(int)menuKind
+-(void)refreshAllMenusOf:(PhLevelNameMenu)menuKind
 {
-    NSMutableSet *theMenuSet = [self getMenuArrayUsingType:menuKind];
-    NSEnumerator *enumerator;
-    id theMenu;
+    NSMutableSet<NSPopUpButton*> *theMenuSet = [self getMenuArrayUsingType:menuKind];
     
-    enumerator = [theMenuSet objectEnumerator];
-    while ((theMenu = [enumerator nextObject]))
+    for (NSPopUpButton *theMenu in theMenuSet)
         [self refreshTheMenu:theMenu thatsA:menuKind];
     
     // [[PhColorListController sharedColorListController] updateInterfaceIfLevelDataSame:self];
@@ -328,12 +325,12 @@
 
 -(void)refreshEveryMenu
 {
-    int i = 0;
-    for (i = 0; i < _NUMBER_OF_NAME_MENU_TYPES; i++)
+    for (int i = 0; i < _NUMBER_OF_NAME_MENU_TYPES; i++) {
         [self refreshAllMenusOf:i];
+    }
 }
 
--(void)refreshTheMenu:(id)theMenuUIO thatsA:(int)menuKind
+-(void)refreshTheMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind
 {
     // addItemsWithTitles   removeAllItems
     // indexOfSelectedItem  selectItemAtIndex:
@@ -350,22 +347,22 @@
     
     [theMenuUIO removeAllItems];
     
-    if (menuKind == _layerMenu)
-    {
+    if (menuKind == _layerMenu) {
         [theMenuUIO addItemWithTitle:@"No Layer On"];
         //[theMenuUIO addItemWithTitle:@"No Layer On2"];
         totalNumberOfMenuItems = [theNameArray count] + 1;
         //NSLog(@"Updating Layer Menu With: %@", [theNameArray description]);
-    }
-    else
+    } else {
         totalNumberOfMenuItems = [theNameArray count];
+    }
     
     [theMenuUIO addItemsWithTitles:theNameArray];
     
-    if (totalNumberOfMenuItems <= indexOfSelectedMenuItem)
+    if (totalNumberOfMenuItems <= indexOfSelectedMenuItem) {
         [theMenuUIO selectItemAtIndex:([theNameArray count] - 1)];
-    else
+    } else {
         [theMenuUIO selectItemAtIndex:indexOfSelectedMenuItem];
+    }
     
     /*
     enumerator = [theNameArray objectEnumerator];
@@ -386,10 +383,9 @@
     //[contentView addSubview:lineTextureExp];
 }
 
-- (NSMutableSet *)getMenuArrayUsingType:(int)menuKind;
+- (NSMutableSet *)getMenuArrayUsingType:(PhLevelNameMenu)menuKind;
 {    
-    switch(menuKind)
-    {
+    switch (menuKind) {
         case _tagMenu:
             return tagNameMenus;
         case _platformMenu:
@@ -415,10 +411,9 @@
     return nil;
 }
 
-- (NSMutableArray *)getNameArrayUsingType:(int)menuKind;
+- (NSMutableArray *)getNameArrayUsingType:(PhLevelNameMenu)menuKind;
 {    
-    switch(menuKind)
-    {
+    switch (menuKind) {
         case _tagMenu:
             return tagNames;
         case _platformMenu:
@@ -465,14 +460,14 @@
 -(NSMutableArray *)getLayerNames { return layerNames; }
 -(NSMutableArray *)getPolyNames { return polyNames; }
 
--(NSMutableArray *)getLiquidNamesCopy { return [[liquidNames copy] autorelease]; }
--(NSMutableArray *)getRandomSoundNamesCopy { return [[randomSoundNames copy] autorelease]; }
--(NSMutableArray *)getAmbientSoundNamesCopy { return [[ambientSoundNames copy] autorelease]; }
--(NSMutableArray *)getLightNamesCopy { return [[lightNames copy] autorelease]; }
--(NSMutableArray *)getPlatformNamesCopy { return [[platformNames copy] autorelease]; }
--(NSMutableArray *)getTagNamesCopy { return [[tagNames copy] autorelease]; }
--(NSMutableArray *)getLayerNamesCopy { return [[layerNames copy] autorelease]; }
--(NSMutableArray *)getPolyNamesCopy { return [[polyNames copy] autorelease]; }
+-(NSArray<NSString*> *)getLiquidNamesCopy { return [[liquidNames copy] autorelease]; }
+-(NSArray<NSString*> *)getRandomSoundNamesCopy { return [[randomSoundNames copy] autorelease]; }
+-(NSArray<NSString*> *)getAmbientSoundNamesCopy { return [[ambientSoundNames copy] autorelease]; }
+-(NSArray<NSString*> *)getLightNamesCopy { return [[lightNames copy] autorelease]; }
+-(NSArray<NSString*> *)getPlatformNamesCopy { return [[platformNames copy] autorelease]; }
+-(NSArray<NSString*> *)getTagNamesCopy { return [[tagNames copy] autorelease]; }
+-(NSArray<NSString*> *)getLayerNamesCopy { return [[layerNames copy] autorelease]; }
+-(NSArray<NSString*> *)getPolyNamesCopy { return [[polyNames copy] autorelease]; }
 
 /*
 -(NSArray *)getLightNames

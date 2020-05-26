@@ -62,7 +62,7 @@ enum	// side flags
 
 #define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
 
-NSString *PhLevelDidChangeName = @"PhLevelDidChangeName";
+NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 static NSCursor *crosshairCursor = nil;
 
 @implementation LELevelWindowController
@@ -81,7 +81,7 @@ static NSCursor *crosshairCursor = nil;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(aLevelDidChangeName:)
-        name:PhLevelDidChangeName
+        name:PhLevelDidChangeNameNotification
         object:nil];
     
     showLevelSettingsSheetWhenWindowIsLoaded = NO;

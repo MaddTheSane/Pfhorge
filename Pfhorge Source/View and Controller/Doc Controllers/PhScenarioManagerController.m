@@ -44,8 +44,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:nil];
     ///[[self document] windowControllerDidLoadNib:self];
     
-    [theLevelTable registerForDraggedTypes:[NSArray 				
-        arrayWithObjects:@"PfhorgeScenarioLevelsTableData", nil]];
+    [theLevelTable registerForDraggedTypes:@[PfhorgeScenarioLevelsTableDataPasteboardType]];
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)aNotification

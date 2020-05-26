@@ -48,6 +48,9 @@ extern void NXSetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling) UNA
 extern void NXGetMouseScaling(NXEventHandle handle, NXMouseScaling *scaling) UNAVAILABLE_ATTRIBUTE;
 }
 
+static void DrawSpiralTowers(void);
+static void Draw3DSGrid(void);
+static void CreatePyramid(float x, float y, float z, int width, int height);
 
 static BOOL mouseScalingEnabled = YES;
 static NXMouseScaling originalMouseScaling;
@@ -153,16 +156,10 @@ bool ShowText, ShowFramerate;
 const float MIN_FOG = 1;
 const float MAX_FOG = 64;
 
-//////////////////////////// RESIZE OPENGL SCREEN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////    This function resizes the viewport for OpenGL.
-/////
-//////////////////////////// RESIZE OPENGL SCREEN \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void SizeOpenGLScreen(int width, int height)
 {
-    if (height==0)                                      // Prevent A Divide By Zero error
-    {
+    if (height==0) {                                    // Prevent A Divide By Zero error
         height=1;                                       // Make the Height Equal One
     }
 
@@ -173,7 +170,7 @@ void SizeOpenGLScreen(int width, int height)
                                                         // This basically means, what our our drawing boundries
 
     glMatrixMode(GL_PROJECTION);                        // Select The Projection Matrix
-    glLoadIdentity();                                    // Reset The Projection Matrix
+    glLoadIdentity();                                   // Reset The Projection Matrix
 
                                                         // Calculate The Aspect Ratio Of The Window
                                                         // The parameters are:
@@ -182,20 +179,15 @@ void SizeOpenGLScreen(int width, int height)
                   // FOV        // Ratio                //  The farthest distance before it stops drawing)
 	glMultMatrixf(GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0f), (GLfloat)width/(GLfloat)height, 1.0f, 512.0f).m);
 
-    glMatrixMode(GL_MODELVIEW);                            // Select The Modelview Matrix
+    glMatrixMode(GL_MODELVIEW);                          // Select The Modelview Matrix
     glLoadIdentity();                                    // Reset The Modelview Matrix
 }
 
 
-/////////////////////////////////   INITIALIZE OPENGL  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-//////
-//////         This function handles all the initialization for openGL
-//////
-/////////////////////////////////   INITIALIZE OPENGL  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 
 void InitializeGL(int width, int height)
 {
-    glEnable(GL_DEPTH_TEST);                                // Enables Depth Testing
+    glEnable(GL_DEPTH_TEST);                            // Enables Depth Testing
     
     // Here, we turn on a light and enable lighting.  We don't need to
     // set anything else for lighting because we will just take the defaults.
@@ -207,17 +199,12 @@ void InitializeGL(int width, int height)
     glEnable(GL_LIGHTING);                              // Turn on lighting
     glEnable(GL_COLOR_MATERIAL);                        // Allow color
 	
-	SizeOpenGLScreen(width, height);                        // resize the OpenGL Viewport to the given height and width
+	SizeOpenGLScreen(width, height);                    // resize the OpenGL Viewport to the given height and width
 }
 
 
-///////////////////////////////// CREATE PYRAMID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This creates a pyramid with the center being (X, Y, Z).
-/////   The width and height depend on the WIDTH and HEIGHT passed in
-/////
-///////////////////////////////// CREATE PYRAMID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
+//! This creates a pyramid with the center being (X, Y, Z).
+//! The width and height depend on the WIDTH and HEIGHT passed in
 void CreatePyramid(float x, float y, float z, int width, int height)
 {
     // Start rendering the 4 triangles for the sides
@@ -226,21 +213,21 @@ void CreatePyramid(float x, float y, float z, int width, int height)
         // These vertices create the Back Side
         glColor3ub(255, 255, 0);   glVertex3f(x, y + height, z);                    // Top point
         glColor3ub(255, 255, 255); glVertex3f(x - width, y - height, z - width);    // Bottom left point
-        glColor3ub(255, 0, 0); glVertex3f(x + width, y - height, z - width);  // Bottom right point
+        glColor3ub(255, 0, 0);     glVertex3f(x + width, y - height, z - width);    // Bottom right point
 
         // These vertices create the Front Side
         glColor3ub(255, 255, 0);   glVertex3f(x, y + height, z);                    // Top point
-        glColor3ub(255, 255, 255); glVertex3f(x + width, y - height, z + width);  // Bottom right point
-        glColor3ub(255, 0, 0); glVertex3f(x - width, y - height, z + width);    // Bottom left point
+        glColor3ub(255, 255, 255); glVertex3f(x + width, y - height, z + width);    // Bottom right point
+        glColor3ub(255, 0, 0);     glVertex3f(x - width, y - height, z + width);    // Bottom left point
 
         // These vertices create the Front Left Side
         glColor3ub(255, 255, 0);   glVertex3f(x, y + height, z);                    // Top point
-        glColor3ub(255, 0, 0); glVertex3f(x - width, y - height, z + width);    // Front bottom point
+        glColor3ub(255, 0, 0);     glVertex3f(x - width, y - height, z + width);    // Front bottom point
         glColor3ub(255, 255, 255); glVertex3f(x - width, y - height, z - width);    // Bottom back point
 
         // These vertices create the Front right Side
         glColor3ub(255, 255, 0);   glVertex3f(x, y + height, z);                    // Top point
-        glColor3ub(255, 0, 0); glVertex3f(x + width, y - height, z - width);    // Bottom back point
+        glColor3ub(255, 0, 0);     glVertex3f(x + width, y - height, z - width);    // Bottom back point
         glColor3ub(255, 255, 255); glVertex3f(x + width, y - height, z + width);    // Front bottom point
             
     glEnd();
@@ -258,12 +245,7 @@ void CreatePyramid(float x, float y, float z, int width, int height)
 }
 
 
-///////////////////////////////// DRAW 3D GRID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This function create a simple grid to get a better view of the animation
-/////
-///////////////////////////////// DRAW 3D GRID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
+//! This function create a simple grid to get a better view of the animation
 void Draw3DSGrid()
 {
     // Turn the lines GREEN
@@ -289,12 +271,7 @@ void Draw3DSGrid()
 }
 
 
-///////////////////////////////// DRAW SPIRAL TOWERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This draws a spiral of pyramids to maneuver around
-/////
-///////////////////////////////// DRAW SPIRAL TOWERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
+//! This draws a spiral of pyramids to maneuver around
 void DrawSpiralTowers()
 {
     const float PI = M_PI;                   	        // Create a constant for PI
@@ -303,8 +280,7 @@ void DrawSpiralTowers()
     float radius = 40;                                  // We start with a radius of 40 and decrease towards the center
 
     // Keep looping until we go past the max degrees of rotation (which is 3 full rotations)
-    for(float degree = 0; degree < kMaxRotation; degree += kIncrease)
-    {
+    for (float degree = 0; degree < kMaxRotation; degree += kIncrease) {
         // Here we use polar coordinates for the rotations, but we swap the y with the z
         float x = float(radius * cos(degree));          // Get the x position for the current rotation and radius
         float z = float(radius * sin(degree));          // Get the z position for the current rotation and radius
@@ -374,13 +350,7 @@ static unsigned short SetColor(short ID, int Indx) {
     distantPast = [[NSDate distantPast] retain];
 }
 
-///////////////////////////////// RENDER SCENE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////   This function renders the entire scene.
-/////
-///////////////////////////////// RENDER SCENE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
-- (void)renderScene 
+- (void)renderScene
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
     glLoadIdentity();                                   // Reset The matrix
@@ -405,15 +375,9 @@ static unsigned short SetColor(short ID, int Indx) {
     //SDL_GL_SwapBuffers();
 }
 
-
-///////////////////////////////// INIT GAME WINDOW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////    This function initializes the game window.
-/////
-///////////////////////////////// INIT GAME WINDOW \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
 - (void)Init
 {
+    //TODO: move this to the right place?
     InitializeGL(kWindowWidth, kWindowHeight);    // Init OpenGL with the global rect
     //SDL_WM_GrabInput(SDL_GRAB_ON);
 
@@ -434,7 +398,7 @@ static unsigned short SetColor(short ID, int Indx) {
 
     // *Hint* We will put all our game init stuff here
     // Some things include loading models, textures and network initialization
-                         //Position      View          Up Vector
+                           //Position      View          Up Vector
     g_Camera->PositionCamera(0, 1.5, 6,   0, 1.5, 0,   0, 1, 0 );    
 }
 

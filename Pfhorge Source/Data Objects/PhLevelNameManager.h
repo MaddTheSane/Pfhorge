@@ -22,9 +22,9 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-enum {
+typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
     _tagMenu = 0,
     _lightMenu,
     _ambientSoundMenu,
@@ -61,7 +61,7 @@ enum {
     // then it can tell the level to keep track
     // of these menus and update them when nessary
     // using the following arrays and methods.
-    NSMutableSet    *tagNameMenus, *platformNameMenus,
+    NSMutableSet<NSPopUpButton*>    *tagNameMenus, *platformNameMenus,
                     *lightNameMenus, *ambientSoundNameMenus,
                     *randomSoundNameMenus, *liquidNameMenus,
                     *layerNameMenus, *polyNameMenus, *levelNameMenus,
@@ -75,43 +75,43 @@ enum {
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
-
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 //  ************ Others ************
 - (void)checkName:(PhAbstractName *)obj;
 
 
 // ************ Menu Name Managment ************
-- (void)addMenu:(id)theMenuUIO asA:(int)menuKind;
-- (void)removeMenu:(id)theMenuUIO thatsA:(int)menuKind;
-- (void)removeMenu:(id)theMenuUIO;
-- (void)refreshAllMenusOf:(int)menuKind;
+- (void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind;
+- (void)removeMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
+- (void)removeMenu:(NSPopUpButton*)theMenuUIO;
+- (void)refreshAllMenusOf:(PhLevelNameMenu)menuKind;
 - (void)refreshEveryMenu;
-- (void)refreshTheMenu:(id)theMenuUIO thatsA:(int)menuKind;
-- (NSMutableSet *)getMenuArrayUsingType:(int)menuKind;
-- (NSMutableArray *)getNameArrayUsingType:(int)menuKind;
+- (void)refreshTheMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
+- (NSMutableSet<NSPopUpButton*> *)getMenuArrayUsingType:(PhLevelNameMenu)menuKind;
+- (NSMutableArray<NSString*> *)getNameArrayUsingType:(PhLevelNameMenu)menuKind;
 
 - (void)changeLevelNamesTo:(NSArray *)theNames;
 
 // ************ Name Array's ************
--(NSMutableArray *)getLiquidNames;
--(NSMutableArray *)getRandomSoundNames;
--(NSMutableArray *)getAmbientSoundNames;
--(NSMutableArray *)getLightNames;
--(NSMutableArray *)getPlatformNames;
--(NSMutableArray *)getTagNames;
--(NSMutableArray *)getLayerNames;
--(NSMutableArray *)getPolyNames;
+-(NSMutableArray<NSString*> *)getLiquidNames;
+-(NSMutableArray<NSString*> *)getRandomSoundNames;
+-(NSMutableArray<NSString*> *)getAmbientSoundNames;
+-(NSMutableArray<NSString*> *)getLightNames;
+-(NSMutableArray<NSString*> *)getPlatformNames;
+-(NSMutableArray<NSString*> *)getTagNames;
+-(NSMutableArray<NSString*> *)getLayerNames;
+-(NSMutableArray<NSString*> *)getPolyNames;
 
--(NSMutableArray *)getLiquidNamesCopy;
--(NSMutableArray *)getRandomSoundNamesCopy;
--(NSMutableArray *)getAmbientSoundNamesCopy;
--(NSMutableArray *)getLightNamesCopy;
--(NSMutableArray *)getPlatformNamesCopy;
--(NSMutableArray *)getTagNamesCopy;
--(NSMutableArray *)getLayerNamesCopy;
--(NSMutableArray *)getPolyNamesCopy;
+-(NSArray<NSString*> *)getLiquidNamesCopy;
+-(NSArray<NSString*> *)getRandomSoundNamesCopy;
+-(NSArray<NSString*> *)getAmbientSoundNamesCopy;
+-(NSArray<NSString*> *)getLightNamesCopy;
+-(NSArray<NSString*> *)getPlatformNamesCopy;
+-(NSArray<NSString*> *)getTagNamesCopy;
+-(NSArray<NSString*> *)getLayerNamesCopy;
+-(NSArray<NSString*> *)getPolyNamesCopy;
 
 // ************ Other Array Assesors ************
 //-(NSMutableArray *)getTags;

@@ -29,8 +29,8 @@
 {
     __unsafe_unretained PhPfhorgeScenarioLevelDoc *theScenarioDocument;
     
-    NSMutableArray *levelFileNames;
-    NSMutableArray *pictFileNames;
+    NSMutableArray<NSString*> *levelFileNames;
+    NSMutableArray<NSString*> *pictFileNames;
     
     NSString *projectDir;
     

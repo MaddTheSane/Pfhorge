@@ -59,7 +59,7 @@ enum { // Map Mananger Grid Factor Menu Constents
 };
 
 
-extern NSString *PhLevelDidChangeName;
+extern NSNotificationName const PhLevelDidChangeNameNotification;
 
 @class PhAnnotationNote, PhNamesController, PhColorListControllerDrawer;
 @class LEMapDraw, PhNoteGroupsCon;

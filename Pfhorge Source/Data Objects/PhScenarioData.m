@@ -60,14 +60,13 @@
 
 -(id)init
 {
-    // [(NSDocument *) fileName];
-    
     self = [super init];
     
     if (self == nil)
         return nil;
     
     levelFileNames = [[NSMutableArray alloc] initWithCapacity:0];
+    pictFileNames = [[NSMutableArray alloc] initWithCapacity:0];
     projectDir = nil;
     
     return self;
@@ -94,6 +93,9 @@
 {
     [levelFileNames release];
     levelFileNames = nil;
+    
+    [pictFileNames release];
+    pictFileNames = nil;
     
     [projectDir release];
     projectDir = nil;
@@ -134,37 +136,24 @@
 -(void)scanProjectDirectory
 {
     NSFileManager *manager = [NSFileManager defaultManager];
-    NSArray *subpaths;
-    NSEnumerator *numer;
-    NSString *fileName;
-    BOOL isDir = YES;
-    BOOL exsists = NO;
+    NSArray<NSString*> *subpaths;
     
     NSLog(@"scanProjectDirectory");
     
-    numer = [levelFileNames objectEnumerator];
-    while (fileName = [numer nextObject])
-    {
+    for (NSString *fileName in levelFileNames) {
+        BOOL isDir = YES;
         NSString *fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
-        exsists = [manager fileExistsAtPath:fullPath isDirectory:&isDir];
+        BOOL exsists = [manager fileExistsAtPath:fullPath isDirectory:&isDir];
         
-        if ((!exsists) || (isDir))
-        {
+        if ((!exsists) || (isDir)) {
             NSLog(@"REMOVE");
             [levelFileNames removeObject:fileName];
            // [levelFileFullPaths removeObject:fullPath];
         }
     }
     
-    
-    /// [manager createDirectoryAtPath:scriptFolder attributes:nil];
-   
-        
-    
     subpaths = [manager contentsOfDirectoryAtPath:projectDir error:NULL];
-    numer = [subpaths objectEnumerator];
-    while (fileName = [numer nextObject])
-    {
+    for (NSString *fileName in subpaths) {
         NSString *fullPath = [projectDir stringByAppendingPathComponent:fileName];
         //char buffer;
         NSString *firstChar = [fileName substringToIndex:1];
@@ -172,21 +161,17 @@
         if ([levelFileNames containsObject:[fileName stringByDeletingPathExtension]])
             continue;
         
-        if (IsPathDirectory(manager, fullPath))
-        {
+        if (IsPathDirectory(manager, fullPath)) {
             continue;
-        }
-        else if ([[fileName pathExtension] isEqualToString:@"pfhlev"])
-        {
+        } else if ([[fileName pathExtension] isEqualToString:@"pfhlev"]) {
             [levelFileNames addObject:[fileName stringByDeletingPathExtension]];
             //[levelFileFullPaths addObject:[[levelFileNames copy] autorelease]]
-        }
-        else if (![[fileName pathExtension] isEqualToString:@"sen"] && ![firstChar isEqualToString:@"."])
-        {
+        } else if (![[fileName pathExtension] isEqualToString:@"sen"] && ![firstChar isEqualToString:@"."]) {
             static BOOL alreadyHadLecture2 = NO;
-            if (!alreadyHadLecture2)
+            if (!alreadyHadLecture2) {
                 SEND_ERROR_MSG_TITLE(@"Unknown File(s) in Scenario Directory.",
                                      @"Unknown Files(s)");
+            }
             
             NSLog(@"Unkown file '%@' in scenario directory: '%@'", fileName, projectDir);
             alreadyHadLecture2 = YES;
@@ -204,25 +189,20 @@
 
 - (NSInteger)isFileAPartOfThisSceanario:(NSString *)queryingfullPath
 {
-    NSEnumerator *numer = nil;
-    NSString *fullPath = nil;
-    NSString *fileName = nil;
-    
-    numer = [levelFileNames objectEnumerator];
-    while (fileName = [numer nextObject])
-    {
-        fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
+    for (NSString *fileName in levelFileNames) {
+        NSString *fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
         
-        if ([fullPath isEqualToString:queryingfullPath])
+        if ([fullPath isEqualToString:queryingfullPath]) {
             return [levelFileNames indexOfObjectIdenticalTo:fileName];
+        }
     }
     
-    return -1;
+    return NSNotFound;
 }
 
-// *********************** Table Data Source Updater Methods ***********************
+// ••••••••• Table Data Source Updater Methods •••••••••
 #pragma mark -
-#pragma mark ••••••••• Table Data Source Updater Methods •••••••••
+#pragma mark Table Data Source Updater Methods
 
 // *** Data Source Messages ***
 
@@ -236,10 +216,11 @@
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
            row:(NSInteger)rowIndex
 {
-    if ([[aTableColumn identifier] isEqualToString:@"#"])
+    if ([[aTableColumn identifier] isEqualToString:@"#"]) {
         return @(rowIndex);
-    else
-        return [self getLevelNameForLevel:rowIndex];
+    } else {
+        return [self getLevelNameForLevel:(int)rowIndex];
+    }
 }
 
 
@@ -280,7 +261,9 @@ shouldEditTableColumn:(NSTableColumn *)col
     //[cell setForegroundColor: [colors objectAtIndex:row]];
 }
 
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+- (BOOL)tableView:(NSTableView *)tableView
+writeRowsWithIndexes:(NSIndexSet *)rowIndexes
+     toPasteboard:(NSPasteboard *)pboard
 {
     NSInteger rowNumber = [rowIndexes firstIndex];
     
@@ -290,22 +273,26 @@ shouldEditTableColumn:(NSTableColumn *)col
     // and it is only used during a drag!  TODO: We could put this in the pboard actually.
     
     // Provide data for our custom type, and simple NSStrings.
-    [pboard declareTypes:[NSArray arrayWithObjects:@"PfhorgeScenarioLevelsTableData", nil] owner:self];
+    [pboard declareTypes:@[PfhorgeScenarioLevelsTableDataPasteboardType] owner:self];
     
     // the actual data doesn't matter since DragDropSimplePboardType drags aren't recognized by anyone but us!.
-    [pboard setData:[NSData data] forType:@"PfhorgeScenarioLevelsTableData"];
+    [pboard setData:[NSData data] forType:PfhorgeScenarioLevelsTableDataPasteboardType];
     
     return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(NSTableView*)tableView
+                validateDrop:(id <NSDraggingInfo>)info
+                 proposedRow:(NSInteger)row
+       proposedDropOperation:(NSTableViewDropOperation)operation
 { // NSDraggingInfo
     ///NSLog(@"validateDrop");
     
-    if (operation == NSTableViewDropOn)
+    if (operation == NSTableViewDropOn) {
         return NSDragOperationNone;
-    else
+    } else {
         return NSDragOperationGeneric;
+    }
     
     /*BOOL targetNodeIsValid = NO;
     BOOL isOnDropTypeProposal = index==NSOutlineViewDropOnItemIndex;
@@ -319,8 +306,12 @@ shouldEditTableColumn:(NSTableColumn *)col
     return targetNodeIsValid ? NSDragOperationGeneric : NSDragOperationNone;*/
 }
 
-- (BOOL)tableView:(NSTableView*)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
-{ // NSDraggingInfo
+- (BOOL)tableView:(NSTableView*)tableView
+       acceptDrop:(id <NSDraggingInfo>)info
+              row:(NSInteger)row
+    dropOperation:(NSTableViewDropOperation)operation
+{
+    // NSDraggingInfo
     // draggedTerminalSection may not exsist, and may not be nil in that case. 
     //	it should not happen, but it is a possiblity.  Deal with this possibility elagently in the future...
     //Terminal *theTerm = [[theMap getCurrentLevelLoaded] getTerminalThatContains:draggedTerminalSection];
@@ -330,18 +321,20 @@ shouldEditTableColumn:(NSTableColumn *)col
     [draggedLevel retain];
     [destArray removeObject:draggedLevel];
     
-    if (((int)[destArray count]) <= row || NSOutlineViewDropOnItemIndex == row)
+    if ([destArray count] <= row || NSOutlineViewDropOnItemIndex == row) {
         [destArray addObject:draggedLevel];
-    else
+    } else {
         [destArray insertObject:draggedLevel atIndex:row];
+    }
     
     [tableView reloadData];
     
     rowNumberForItem = row;//[tableView rowForItem:draggedTerminalSection];
-    if (rowNumberForItem > -1)
+    if (rowNumberForItem > -1) {
         [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
-    else
+    } else {
         [tableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
+    }
     
     [draggedLevel release];
     
