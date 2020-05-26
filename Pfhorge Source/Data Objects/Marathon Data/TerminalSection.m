@@ -118,14 +118,9 @@
     if (self == nil)
         return nil;
     theText = [[NSMutableAttributedString alloc]
-                    initWithString:@""
-                    
-                    attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSColor greenColor],
-                    NSForegroundColorAttributeName,
-                    
-                    [NSFont fontWithName:@"Courier" size:12.0],
-                    NSFontAttributeName, nil]];
+               initWithString:@""
+               attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
+                            NSFontAttributeName: [NSFont fontWithName:@"Courier" size:12.0]}];
     
     flags = 0;		/* section flags, see above */
     type = 1;		/* section type, see above */
@@ -212,11 +207,9 @@
                     /*NSASCIIStringEncoding*/
     
     theText = [[NSMutableAttributedString alloc]
-                    initWithString:theRawString
-                    attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSColor greenColor],
-                    NSForegroundColorAttributeName,
-                    regularFont,
-                    NSFontAttributeName, nil]];
+               initWithString:theRawString
+               attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
+                            NSFontAttributeName:regularFont}];
     
     newTextLength = [theText length];
     
@@ -230,8 +223,8 @@
             NSFontTraitMask    theFontAtributeMast = 0;
             NSUnderlineStyle	underlineValue = NSUnderlineStyleNone;
             NSFont *theFontToUse = nil;
-            NSString *italicValue = @"NO";
-            NSString *boldValue = @"NO";
+            NSNumber *italicValue = @NO;
+            NSNumber *boldValue = @NO;
             NSNumber *colorValue = @(theCurrentFont.color);
             /*
                 0=green, 1=white, 2=red, 3=dim green,
@@ -271,72 +264,37 @@
                     break;
             }
             
-            underlineValue = 0;
             theFontToUse = regularFont;
             
-            if (theCurrentFont.face & PhTerminalSectionItalic)
-            {
+            if (theCurrentFont.face & PhTerminalSectionItalic) {
                 theFontAtributeMast |= NSItalicFontMask;
-                italicValue = @"YES";
+                italicValue = @YES;
             }
-            if (theCurrentFont.face & PhTerminalSectionBold) // NSBoldFontMask
-            {
+            if (theCurrentFont.face & PhTerminalSectionBold) {
+                // NSBoldFontMask
                 theFontToUse = boldFont;
-                boldValue = @"YES";
+                boldValue = @YES;
             }
-            if (theCurrentFont.face & PhTerminalSectionUnderline)
+            if (theCurrentFont.face & PhTerminalSectionUnderline) {
                 underlineValue = NSUnderlineStyleSingle;
+            }
             
-            [theText setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    
-                    theTextColor,
-                    NSForegroundColorAttributeName,
-                    
-                    [fontManager convertFont:theFontToUse toHaveTrait:theFontAtributeMast],
-                    NSFontAttributeName,
-                    
-                    italicValue,
-                    PhTerminalItalicAttributeName,
-                    
-                    boldValue,
-                    PhTerminalBoldAttributeName,
-                    
-                    colorValue,
-                    PhTerminalColorAttributeName,
-                    
-                    @(underlineValue),
-                    NSUnderlineStyleAttributeName,
-                    
-                    theParagraphStyle,
-                    NSParagraphStyleAttributeName, nil]
-                    
-                    range:NSMakeRange((theCurrentFont.offset - text_offset),
-                    (newTextLength - (theCurrentFont.offset - text_offset)))];
+            [theText setAttributes:@{
+                NSForegroundColorAttributeName: theTextColor,
+                NSFontAttributeName: [fontManager convertFont:theFontToUse toHaveTrait:theFontAtributeMast],
+                PhTerminalItalicAttributeName: italicValue,
+                PhTerminalBoldAttributeName: boldValue,
+                PhTerminalColorAttributeName: colorValue,
+                NSUnderlineStyleAttributeName: @(underlineValue),
+                NSParagraphStyleAttributeName: theParagraphStyle}
+                             range:NSMakeRange((theCurrentFont.offset - text_offset),
+                                               (newTextLength - (theCurrentFont.offset - text_offset)))];
         }
     }
     
     //[theParagraphStyle release];
     
     return self;
-    
-    /*
-    NSAttributedString *attrStr;
-    NSRange limitRange;
-    NSRange effectiveRange;
-    id attributeValue;
-    
-    limitRange = NSMakeRange(0, [attrStr length]);
-    
-    while (limitRange.length > 0) {
-        attributeValue = [attrStr attribute:NSFontAttributeName
-            atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-            inRange:limitRange];
-        [analyzer recordFontChange:attributeValue];
-        limitRange = NSMakeRange(NSMaxRange(effectiveRange),
-            NSMaxRange(limitRange) - NSMaxRange(effectiveRange));
-    }
-    */
-    
 }
 
 -(NSMutableParagraphStyle *)setNameAndReturnStyleFromType
@@ -345,8 +303,7 @@
     NSMutableParagraphStyle *theParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     [theParagraphStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]];
     
-    switch (type)
-    {
+    switch (type) {
         case PhTerminalSectionTypeLogOn:
             [self setPhName:@"Logon"];
             [theParagraphStyle setAlignment:NSTextAlignmentCenter];
@@ -431,12 +388,8 @@
     type = value;
     theParagraphStyle = [self setNameAndReturnStyleFromType];
     
-    [theText addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            
-            theParagraphStyle,
-            NSParagraphStyleAttributeName, nil]
-            
-            range:NSMakeRange(0, [theText length])];
+    [theText addAttributes:@{NSParagraphStyleAttributeName: theParagraphStyle}
+                     range:NSMakeRange(0, [theText length])];
 }
 
 @synthesize permutation;
@@ -452,7 +405,7 @@
     term_section theSection;
     term_style theStyle;
     int baseOffsetOfText;
-    NSNumber *numberWithOne = @1;
+    NSNumber *numberWithOne = @(NSUnderlineStyleSingle);
     
     theSection.flags = flags;
     theSection.type = type;
@@ -470,8 +423,7 @@
     theSection.text_length = 1;
     theSection.lines = 0;
     
-    if (theText != nil && [[theText string] length] > 0)
-    {
+    if (theText != nil && [[theText string] length] > 0) {
         NSAttributedString *attrStr = theText; 
         NSRange limitRange;
         NSRange effectiveRange;
@@ -496,19 +448,10 @@
         
         limitRange = NSMakeRange(0, [attrStr length]);
         
-        while (limitRange.length > 0)
-        {
-            /*italicValue = [attrStr attribute:PhTerminalItalicAttributeName
-            atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-            inRange:limitRange];
-            
-            boldValue = [attrStr attribute:PhTerminalBoldAttributeName
-            atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-            inRange:limitRange];*/
-            
+        while (limitRange.length > 0) {
             colorValue = [attrStr attribute:PhTerminalColorAttributeName
-            atIndex:limitRange.location longestEffectiveRange:&effectiveRange
-            inRange:limitRange];
+                                    atIndex:limitRange.location longestEffectiveRange:&effectiveRange
+                                    inRange:limitRange];
             
             /*underlineValue = [attrStr attribute:NSUnderlineStyleAttributeName
             atIndex:limitRange.location longestEffectiveRange:&effectiveRange
@@ -517,9 +460,9 @@
             theStyle.offset = (baseOffsetOfText + limitRange.location);
             theStyle.face = PhTerminalSectionPlain;
             
-            if ([boldValue isEqualTo:@"YES"])
+            if ([boldValue boolValue])
                 theStyle.face |= PhTerminalSectionBold;
-            if ([italicValue isEqualTo:@"YES"])
+            if ([italicValue boolValue])
                 theStyle.face |= PhTerminalSectionItalic;
             if ([underlineValue isEqualTo:numberWithOne])
                 theStyle.face |= PhTerminalSectionUnderline;

@@ -83,12 +83,10 @@
 - (int)y32 { return location.y / 16; }
 - (void)setX32:(int)v { v *= 16; location.x = v; }
 - (void)setY32:(int)v { v *= 16; location.y = v; }
-- (void)set32X:(int)v { [self setX32:v]; }
-- (void)set32Y:(int)v { [self setY32:v]; }
 
  // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark -
+#pragma mark Coding/Copy Protocal Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     int tempInt;
@@ -225,13 +223,9 @@
     
     NSMouseInRect(adjPoint, [self drawingBounds], YES);
     
-    size = [text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                    
-                                        [NSColor greenColor],
-                                        NSForegroundColorAttributeName,
-                    
-                                        [NSFont fontWithName:@"Courier" size:16.0],
-                                        NSFontAttributeName, nil]];
+    size = [text sizeWithAttributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
+                                      NSFontAttributeName: [NSFont fontWithName:@"Courier" size:16.0]
+    }];
     
     bounds =  NSMakeRect(((int)adjPoint.x), (((int)adjPoint.y) - ((int)size.height)), ((int)size.width), ((int)size.height));
     
@@ -311,8 +305,7 @@
 -(id)initWithAdjPoint:(NSPoint)point
 {
     self = [super init];
-    if (self != nil)
-    {
+    if (self != nil) {
         //[self setP1:-1];
         //[self setP2:-1];
         polygon_object = nil;

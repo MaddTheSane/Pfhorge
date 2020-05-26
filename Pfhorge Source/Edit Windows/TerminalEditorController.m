@@ -659,14 +659,9 @@
             break;
     }
     
-    [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      
-                                      @(theCellTagClickedOn),
-                                      PhTerminalColorAttributeName,
-                                      
-                                      theTextColor,
-                                      NSForegroundColorAttributeName, nil]
-     
+    [theTextAtriString addAttributes:@{
+        PhTerminalColorAttributeName: @(theCellTagClickedOn),
+        NSForegroundColorAttributeName: theTextColor}
                                range:[[self getTheCurrentTextView] selectedRange]];
     
     [theSelectedObj setText:theTextAtriString];
@@ -684,20 +679,12 @@
     
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
-    [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                      
-                                      [NSFont fontWithName:@"Courier" size:12.0],
-                                      NSFontAttributeName,
-                                      
-                                      @"NO",
-                                      PhTerminalItalicAttributeName,
-                                      
-                                      @"NO",
-                                      PhTerminalBoldAttributeName,
-                                      
-                                      @(NSUnderlineStyleNone),
-                                      NSUnderlineStyleAttributeName, nil]
-     
+    [theTextAtriString addAttributes:@{
+        NSFontAttributeName: [NSFont fontWithName:@"Courier" size:12.0],
+        PhTerminalItalicAttributeName: @NO,
+        PhTerminalBoldAttributeName: @NO,
+        NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)
+    }
                                range:[[self getTheCurrentTextView] selectedRange]];
     
     [theSelectedObj setText:theTextAtriString];
@@ -736,19 +723,14 @@
         
         // NSLog(@"italicAngle: %g  - Font Name: %@", [attributeValue italicAngle], [attributeValue fontName]);
         
-        if ([attributeValue isEqualTo:@"YES"]) {
+        if ([attributeValue boolValue]) {
             fontToUse = boldFontItalic;
         } else {
             fontToUse = boldFont;
         }
         
-        [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                          
-                                          @"YES",
-                                          PhTerminalBoldAttributeName,
-                                          
-                                          fontToUse,
-                                          NSFontAttributeName, nil]
+        [theTextAtriString addAttributes:@{NSFontAttributeName: fontToUse,
+                                           PhTerminalBoldAttributeName: @YES}
                                    range:effectiveRange];
         
         limitRange = NSMakeRange(NSMaxRange(effectiveRange),
@@ -819,13 +801,8 @@
         else
             fontToUse = regItalicFont;
         
-        [theTextAtriString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                          fontToUse,
-                                          NSFontAttributeName,
-                                          
-                                          @"YES",
-                                          PhTerminalItalicAttributeName, nil]
-         
+        [theTextAtriString addAttributes:@{NSFontAttributeName: fontToUse,
+                                           PhTerminalItalicAttributeName: @YES}
                                    range:effectiveRange];
         
         limitRange = NSMakeRange(NSMaxRange(effectiveRange),
@@ -868,9 +845,7 @@
             
             break;
         case 2:
-            [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                              @(NSUnderlineStyleSingle),
-                                              NSUnderlineStyleAttributeName, nil]
+            [theTextAtriString setAttributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}
                                        range:[[self getTheCurrentTextView] selectedRange]];
             break;
             
@@ -895,9 +870,7 @@
                     fontToUse = regFont;
                 }
                 
-                [theTextAtriString setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                  [[NSFontManager sharedFontManager] convertFont:fontToUse toHaveTrait:NSItalicFontMask],
-                                                  NSFontAttributeName, nil]
+                [theTextAtriString setAttributes:@{NSFontAttributeName:[[NSFontManager sharedFontManager] convertFont:fontToUse toHaveTrait:NSItalicFontMask]}
                                            range:effectiveRange];
                 
                 limitRange = NSMakeRange(NSMaxRange(effectiveRange),

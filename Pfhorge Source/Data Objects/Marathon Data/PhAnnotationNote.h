@@ -60,8 +60,6 @@
 
 @property (nonatomic) int x32;
 @property (nonatomic) int y32;
-- (void)set32X:(int)v API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
-- (void)set32Y:(int)v API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 
 -(NSPoint)as32Point;
 

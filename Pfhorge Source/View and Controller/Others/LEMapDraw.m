@@ -1212,13 +1212,10 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //activateArchColor(PhLineSelectedColor);
         //NSRectFill(bounds);
         
-        [[note text] drawAtPoint:[note locationAdjusted] withAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                         
-                                                                         color,
-                                                                         NSForegroundColorAttributeName,
-                                                                         
-                                                                         [NSFont fontWithName:@"Courier" size:16.0],
-                                                                         NSFontAttributeName, nil]];
+        [[note text] drawAtPoint:[note locationAdjusted] withAttributes:@{
+            NSForegroundColorAttributeName: color,
+            NSFontAttributeName: [NSFont fontWithName:@"Courier" size:16.0]
+        }];
     }
 }
 
