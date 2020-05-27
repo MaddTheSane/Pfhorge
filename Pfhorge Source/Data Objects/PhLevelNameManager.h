@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCoder:(NSCoder *)coder;
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 //  ************ Others ************
@@ -89,8 +89,8 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
 - (void)refreshAllMenusOf:(PhLevelNameMenu)menuKind;
 - (void)refreshEveryMenu;
 - (void)refreshTheMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
-- (NSMutableSet<NSPopUpButton*> *)getMenuArrayUsingType:(PhLevelNameMenu)menuKind;
-- (NSMutableArray<NSString*> *)getNameArrayUsingType:(PhLevelNameMenu)menuKind;
+- (NSMutableSet<NSPopUpButton*> *)menuArrayUsingMenuType:(PhLevelNameMenu)menuKind;
+- (NSMutableArray<NSString*> *)nameArrayUsingMenuType:(PhLevelNameMenu)menuKind;
 
 - (void)changeLevelNamesTo:(NSArray *)theNames;
 

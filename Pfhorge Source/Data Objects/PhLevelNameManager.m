@@ -281,7 +281,7 @@
     if (theMenuUIO == nil)
         return;
     
-    theMenuArray = [self getMenuArrayUsingType:menuKind];
+    theMenuArray = [self menuArrayUsingMenuType:menuKind];
     [theMenuArray addObject:theMenuUIO];
     [self refreshTheMenu:theMenuUIO thatsA:menuKind];
 }
@@ -293,7 +293,7 @@
     if (theMenuUIO == nil)
         return;
     
-    theMenuArray = [self getMenuArrayUsingType:menuKind];
+    theMenuArray = [self menuArrayUsingMenuType:menuKind];
     
     [theMenuArray removeObject:theMenuUIO];
 }
@@ -315,7 +315,7 @@
 
 -(void)refreshAllMenusOf:(PhLevelNameMenu)menuKind
 {
-    NSMutableSet<NSPopUpButton*> *theMenuSet = [self getMenuArrayUsingType:menuKind];
+    NSMutableSet<NSPopUpButton*> *theMenuSet = [self menuArrayUsingMenuType:menuKind];
     
     for (NSPopUpButton *theMenu in theMenuSet)
         [self refreshTheMenu:theMenu thatsA:menuKind];
@@ -334,7 +334,7 @@
 {
     // addItemsWithTitles   removeAllItems
     // indexOfSelectedItem  selectItemAtIndex:
-    NSMutableArray *theNameArray = [self getNameArrayUsingType:menuKind];
+    NSMutableArray *theNameArray = [self nameArrayUsingMenuType:menuKind];
     NSInteger indexOfSelectedMenuItem = [theMenuUIO indexOfSelectedItem];
     NSInteger totalNumberOfMenuItems;
     
@@ -383,7 +383,7 @@
     //[contentView addSubview:lineTextureExp];
 }
 
-- (NSMutableSet *)getMenuArrayUsingType:(PhLevelNameMenu)menuKind;
+- (NSMutableSet *)menuArrayUsingMenuType:(PhLevelNameMenu)menuKind;
 {    
     switch (menuKind) {
         case _tagMenu:
@@ -411,7 +411,7 @@
     return nil;
 }
 
-- (NSMutableArray *)getNameArrayUsingType:(PhLevelNameMenu)menuKind;
+- (NSMutableArray *)nameArrayUsingMenuType:(PhLevelNameMenu)menuKind;
 {    
     switch (menuKind) {
         case _tagMenu:

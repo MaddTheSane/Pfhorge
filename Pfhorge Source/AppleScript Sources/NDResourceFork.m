@@ -67,24 +67,23 @@ static OSErr createResourceFork(NSURL * aURL);
 /*
  * initForPermission:AtURL:
  */
-- (id)initForPermission:(char)aPermission AtURL:(NSURL *)aURL
+- (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL
 {
 	OSErr			theError = !noErr;
 	FSRef			theFsRef;
 
 	if ((self = [self init]) && [aURL getFSRef:&theFsRef]) {
-		fileReference = FSOpenResFile(&theFsRef, aPermission);
+		HFSUniStr255 forkName;
+		FSGetResourceForkName(&forkName);
+		theError = FSOpenResourceFile(&theFsRef, forkName.length, forkName.unicode, aPermission, &fileReference);
 		
-		theError = fileReference > 0 ? ResError() : !noErr;
-		
-
-		if (noErr != theError)		// file has no resource fork
-		{
+/*
+		if (noErr != theError) {	// file has no resource fork
 			theError = createResourceFork(aURL);
 			fileReference = FSOpenResFile(&theFsRef, aPermission);
 			theError = fileReference > 0 ? ResError() : !noErr;
 		}
-	}
+ */	}
 
 	if (noErr != theError) {
 		return nil;
@@ -130,7 +129,7 @@ static OSErr createResourceFork(NSURL * aURL);
 		FSIORefNum		thePreviousRefNum;
 
 		thePreviousRefNum = CurResFile();	// save current resource
-		UseResFile( fileReference );    			// set this resource to be current
+		UseResFile(fileReference);    		// set this resource to be current
 	
 		// copy NSData's bytes to a handle
 		if (noErr == PtrToHand([aData bytes], &theResHandle, [aData length])) {
@@ -144,7 +143,7 @@ static OSErr createResourceFork(NSURL * aURL);
 			UseResFile(thePreviousRefNum);     		// reset back to resource previously set
 	
 			DisposeHandle(theResHandle);
-			return ( ResError() == noErr );
+			return (ResError() == noErr);
 		}
 	}
 	
@@ -168,7 +167,7 @@ static OSErr createResourceFork(NSURL * aURL);
 
 	if (noErr == ResError()) {
 		HLock(theResHandle);
-		theData = [NSData dataWithBytes:*theResHandle length:GetHandleSize( theResHandle )];
+		theData = [NSData dataWithBytes:*theResHandle length:GetHandleSize(theResHandle)];
 		HUnlock(theResHandle);
 	}
 	
@@ -189,7 +188,7 @@ static OSErr createResourceFork(NSURL * aURL);
 	
 	UseResFile(fileReference);    				// set this resource to be current
 
-	theResHandle = Get1Resource( aType, anID );
+	theResHandle = Get1Resource(aType, anID);
 	if (ResError() == noErr) {
 		RemoveResource(theResHandle);			// Disposed of in current resource file
 		return (ResError() == noErr);
@@ -199,7 +198,7 @@ static OSErr createResourceFork(NSURL * aURL);
 
 @end
 
-OSErr createResourceFork( NSURL * aURL )
+OSErr createResourceFork(NSURL * aURL)
 {
 	FSRef					theParentFsRef,
 							theFsRef;
@@ -214,5 +213,5 @@ OSErr createResourceFork( NSURL * aURL )
 		FSCreateResFile(&theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL);
 	}
 	
-	return ( ResError( ) == noErr );
+	return (ResError() == noErr);
 }

@@ -274,6 +274,7 @@ enum {
 #pragma mark Adding Objects To Level Array Methods
 
 -(id)addObjectWithDefaults:(Class)theClass;
+-(void)addObject:(id)objectToAdd;
 -(void)addObjects:(id)objectToAdd;
 -(PhTag *)addNewTagWithNumber:(NSNumber *)theTagNumber;
 -(void)addPlatform:(PhPlatform *)thePlatformToAdd;

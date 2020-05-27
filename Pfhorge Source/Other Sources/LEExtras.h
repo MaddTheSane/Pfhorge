@@ -332,12 +332,12 @@ static inline int loadIntFromNSData(NSData *dat, NSInteger offset)
 	NDAppleScriptObject		* appleScriptObject;
 	unsigned int				OK_Enough;
 }
-+ (id)sendTargetWithAppleScriptObject:(NDAppleScriptObject *)anObject;
++ (instancetype)sendTargetWithAppleScriptObject:(NDAppleScriptObject *)anObject;
 @end
 
 NSRect LERectFromPoints(NSPoint point1, NSPoint point2);
-NSPoint LEAddToPoint(NSPoint point1, float theSum);
-void createAndExecuteScriptObject( NSString * aPath );
+NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum);
+void createAndExecuteScriptObject(NSString * aPath);
 
 //int LECompareLines(id line1, id line2, NSPoint thePoint);
 //int LEDistanceOfLine(NSRect theBoundsOfLine);

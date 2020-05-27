@@ -189,13 +189,13 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return data;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index load:(BOOL)load
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load
 {
     Resource		*value = nil;
     Handle			handle;
-    NSArray			*array = [typeDict objectForKey:type];
-    NSEnumerator	*resEnum = [array objectEnumerator];
-    NSNumber		*indexAsNSNumber = @(index);
+    NSArray<Resource*>      *array = [typeDict objectForKey:type];
+    NSEnumerator<Resource*> *resEnum = [array objectEnumerator];
+    NSNumber                *indexAsNSNumber = @(index);
     
     for (Resource *resource in resEnum) {
         if ([[resource resID] isEqualToNumber:indexAsNSNumber]) {
@@ -214,7 +214,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return value;
 }
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResourceIndex)index
+- (Resource *)resourceOfType:(NSString *)type index:(ResID)index
 {
     return [self resourceOfType:type index:index load:YES];
 }
@@ -232,7 +232,9 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     for (Resource *resource in resEnum) {
         Handle handle = ASGetResource(type, [resource resID], filename);
+        HLock(handle);
         NSData *theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
+        HUnlock(handle);
         
         [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", type, [resource resID], nil]];
         

@@ -54,7 +54,7 @@
    ScenarioResources		*resources;
 }
 
-- (NSImage *)getPICTResourceIndex:(int)PICTIndex;
+- (NSImage *)getPICTResourceIndex:(ResID)PICTIndex;
 
 - (void)removeLevelInfoWinCon:(id)winCon;
 - (void)addLevelInfoWinCon:(id)winCon;

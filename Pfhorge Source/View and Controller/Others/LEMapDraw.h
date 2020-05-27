@@ -226,7 +226,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 
 - (void)clearSelections;
 - (NSRect)drawingBoundsForSelections;
-- (NSRect)drawingBoundsForObjects:(id)theSentObjs;
+- (NSRect)drawingBoundsForObjects:(id)theSentObjs NS_REFINED_FOR_SWIFT;
 - (void)updateTheSelections;
 
 // *************************** For Changing/Getting Settings ***************************

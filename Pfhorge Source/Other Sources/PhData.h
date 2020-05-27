@@ -28,13 +28,13 @@
 
 -(NSData *)getSubDataWithLength:(NSInteger)theLength;
 
-- (byte)getByte;
-- (short)getShort;
-- (long long)getLong;
-- (int)getInt;
-- (unsigned short)getUnsignedShort;
-- (unsigned long long)getUnsignedLong;
-- (unsigned int)getUnsignedInt;
+- (byte)getByte NS_SWIFT_NAME(getUInt8());
+- (short)getShort NS_SWIFT_NAME(getInt16());
+- (int)getInt NS_SWIFT_NAME(getInt32());
+- (long long)getLong NS_SWIFT_NAME(getInt64());
+- (unsigned short)getUnsignedShort NS_SWIFT_NAME(getUInt16());
+- (unsigned int)getUnsignedInt NS_SWIFT_NAME(getUInt32());
+- (unsigned long long)getUnsignedLong NS_SWIFT_NAME(getUInt64());
 
 @property (readonly) NSInteger currentPosition;
 @property (readonly) NSInteger length;

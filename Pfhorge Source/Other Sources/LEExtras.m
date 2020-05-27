@@ -237,7 +237,7 @@ NSRect LERectFromPoints(NSPoint point1, NSPoint point2) {
     return NSMakeRect(((point1.x <= point2.x) ? point1.x : point2.x), ((point1.y <= point2.y) ? point1.y : point2.y), ((point1.x <= point2.x) ? point2.x - point1.x : point1.x - point2.x), ((point1.y <= point2.y) ? point2.y - point1.y : point1.y - point2.y));
 }
 
-NSPoint LEAddToPoint(NSPoint point1, float theSum) {
+NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
     point1.x += theSum;
     point1.y += theSum;
     return point1;

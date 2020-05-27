@@ -52,10 +52,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     NSLog(@"getPICTResourceIndex in the scenerio document called...");
     
-    fullImagePath  = [[[[self fullPathForDirectory]
+    fullImagePath  = [[[self fullPathForDirectory]
                             stringByAppendingPathComponent:@"Images/"]
-                            stringByAppendingPathComponent:[@(PICTIndex) stringValue]]
-                                stringByAppendingPathExtension:@"pict"];
+                            stringByAppendingPathComponent:[[@(PICTIndex) stringValue]
+                                stringByAppendingPathExtension:@"pict"]];
     
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
     
@@ -76,7 +76,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     if (self == nil)
         return nil;
     
-    myFullFilePath = [[self fileURL].path stringByDeletingLastPathComponent];
+    myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent].path;
     
     if (![myFullFilePath isEqualToString:@"/"])
         myFullFilePath  = [[myFullFilePath stringByAppendingString:@"/"] retain];
@@ -136,7 +136,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     [op setPrompt:@"Import"];
     op.allowedFileTypes = fileTypes;
 
-    [op beginSheetModalForWindow:[theScenarioDocumentWindowController window] completionHandler:^(NSModalResponse result) {
+    [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
         [self importMapScriptDone:op returnCode:result contextInfo:NULL];
     }];
 
@@ -152,7 +152,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     [op setPrompt:@"Import"];
     op.allowedFileTypes = fileTypes;
     
-    [op beginSheetModalForWindow:[theScenarioDocumentWindowController window] completionHandler:^(NSModalResponse result) {
+    [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
         [self importPIDMapScriptDone:op returnCode:result contextInfo:NULL];
     }];
 }
@@ -186,8 +186,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
-    if (returnCode == NSOKButton)
-    {
+    if (returnCode == NSOKButton) {
         ScenarioResources *maraResources;
         fileName = sheet.URL.path;
         
@@ -219,8 +218,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         
         exsists = [fileManager fileExistsAtPath:imageDir isDirectory:&isDir];
         
-        if (exsists && !isDir)
-        {
+        if (exsists && !isDir) {
             SEND_ERROR_MSG_TITLE(@"File named 'Image' already exsists in scenario folder, can get images.",
                                  @"Can Create Images Folder");
             [maraResources release];
@@ -228,8 +226,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             return;
         }
         
-        if (!exsists)
-        {
+        if (!exsists) {
             BOOL succsessfull = YES;
             succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
             if (!succsessfull)
@@ -264,8 +261,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
-    if (returnCode == NSOKButton)
-    {
+    if (returnCode == NSOKButton) {
         fileName = sheet.URL.path;
         
         [progress setMinProgress:0.0];

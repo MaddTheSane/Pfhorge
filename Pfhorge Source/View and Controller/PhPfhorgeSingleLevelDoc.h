@@ -42,6 +42,6 @@
 
 - (void)scenarioDeallocating:(NSNotification *)notification;
 
-- (void)setScenarioDocument:(PhPfhorgeScenarioLevelDoc *)theScenarioDoc;
+@property (nonatomic, assign) PhPfhorgeScenarioLevelDoc *scenarioDocument;
 
 @end

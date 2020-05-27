@@ -34,7 +34,7 @@
 
 @implementation PhPfhorgeSingleLevelDoc
 
-- (NSImage *)getPICTResourceIndex:(int)PICTIndex
+- (NSImage *)getPICTResourceIndex:(ResID)PICTIndex
 {
     if (scenario == nil)
         return nil;
@@ -115,8 +115,7 @@
 {
     id theScenarioDallocating = [notification object];
     
-    if (scenario == theScenarioDallocating)
-    {
+    if (scenario == theScenarioDallocating) {
         scenario = nil;
         [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
@@ -126,21 +125,19 @@
 {
     id theScenarioDallocating = [notification object];
     
-    if (scenario == theScenarioDallocating)
-    {
+    if (scenario == theScenarioDallocating) {
         [theLevel changeLevelNamesTo:[scenario getLevelNames]];
-        
     }
 }
 
+@synthesize scenarioDocument=scenario;
 - (void)setScenarioDocument:(PhPfhorgeScenarioLevelDoc *)theScenarioDoc
 {
     scenario = theScenarioDoc;
     
-    if (scenario == nil)
+    if (scenario == nil) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-    else
-    {
+    } else {
         NSLog(@"setScenarioDocument, scenario != nil");
         [self registerScenarioRelatedNotifications];
         [theLevel changeLevelNamesTo:[scenario getLevelNames]];
@@ -157,24 +154,15 @@
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    // Implement to provide a persistent data representation of your document
-    // OR remove this and implement the file-wrapper or file path based save methods.
+    // TODO: properly fill NSError on failure.
     
     ///NSLog(@"*** Subclassed LEMap - dataRepresentationOfType ***");
     
-    // Insert code here to write your document from the given data.
-    // You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-    
-    //NSData *theLevelMapData = [theMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1];
-    
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
-    if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"])
-    {
+    if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"]) {
         [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel]];
-    }
-    else
-    {
+    } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
@@ -200,12 +188,8 @@
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    // Implement to load a persistent data representation of your document OR remove this and implement the file-wrapper or file path based load methods.
+    // TODO: properly fill NSError on failure.
     ///NSLog(@"*** Subclassed LEMap - loadDataRepresentation ***");
-    
-    // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
-    //theRawMapData = data;
-    //theLevel = nil;
     
     //short version, dataVersion;
     BOOL loadedOk = NO;
@@ -257,12 +241,10 @@
                                 export it in latter version of pfhorge, then open it here.",
                              @"Level Is Too New");
         loadedOk = NO;
-    }
-    else if (theVersionNumberFromData == oldVersionNumber &&
+    } else if (theVersionNumberFromData == oldVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
         theRawMapData = nil;
         theLevel = [[NSUnarchiver unarchiveObjectWithData:
@@ -282,14 +264,12 @@
     else if (theVersionNumberFromData == theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
         theLevel = [[NSKeyedUnarchiver unarchiveObjectWithData:
                         [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
-        if (theLevel != nil)
-        {
+        if (theLevel != nil) {
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
             NSLog(@"theLevel != nil...");
@@ -299,12 +279,10 @@
             [theLevel setUpArrayPointersForEveryObject];
             [theLevel setupDefaultObjects];
         }
-    }
-    else if (theVersionNumberFromData > 1 &&  theVersionNumberFromData < theVersionNumber &&
+    } else if (theVersionNumberFromData > 1 &&  theVersionNumberFromData < theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
         NSLog(@"Loading Pfhorge Formated Map...");
         
@@ -313,8 +291,7 @@
         theRawMapData = nil;
         theLevel = [[NSUnarchiver unarchiveObjectWithData:
                         [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
-        if (theLevel != nil)
-        {
+        if (theLevel != nil) {
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
             NSLog(@"theLevel != nil...");
@@ -324,9 +301,7 @@
             [theLevel setUpArrayPointersForEveryObject];
             [theLevel setupDefaultObjects];
         }
-    }
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Can't Load File, Unknown Format.",
                              @"Can't Load Map");
         loadedOk = NO;

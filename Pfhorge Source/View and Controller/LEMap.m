@@ -65,7 +65,7 @@
     return @"MyLevel";
 }*/
 
-- (NSImage *)getPICTResourceIndex:(int)PICTIndex
+- (NSImage *)getPICTResourceIndex:(ResID)PICTIndex
 {
     Resource	*resource;
     

@@ -73,7 +73,7 @@
 	if (coder.allowsKeyedCoding) {
 		assignedNumber = [[coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"] retain];
 	} else {
-		int versionNum = decodeNumInt(coder);
+		/*int versionNum =*/ decodeNumInt(coder);
 		
 		assignedNumber = decodeObjRetain(coder);
 	}

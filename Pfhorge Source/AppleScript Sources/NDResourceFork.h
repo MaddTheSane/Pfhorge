@@ -9,24 +9,28 @@
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NDResourceFork : NSObject
 {
-	FSIORefNum		fileReference;
+	ResFileRefNum		fileReference;
 }
 
-+ (instancetype)resourceForkForReadingAtURL:(NSURL *)aURL;
-+ (instancetype)resourceForkForWritingAtURL:(NSURL *)aURL;
-+ (instancetype)resourceForkForReadingAtPath:(NSString *)aPath;
-+ (instancetype)resourceForkForWritingAtPath:(NSString *)aPath;
++ (nullable instancetype)resourceForkForReadingAtURL:(NSURL *)aURL;
++ (nullable instancetype)resourceForkForWritingAtURL:(NSURL *)aURL;
++ (nullable instancetype)resourceForkForReadingAtPath:(NSString *)aPath;
++ (nullable instancetype)resourceForkForWritingAtPath:(NSString *)aPath;
 
-- (instancetype)initForReadingAtURL:(NSURL *)aURL;
-- (instancetype)initForWritingAtURL:(NSURL *)aURL;
-- (instancetype)initForReadingAtPath:(NSString *)aPath;
-- (instancetype)initForWritingAtPath:(NSString *)aPath;
-- (instancetype)initForPermission:(char)aPermission AtURL:(NSURL *)aURL;
+- (nullable instancetype)initForReadingAtURL:(NSURL *)aURL;
+- (nullable instancetype)initForWritingAtURL:(NSURL *)aURL;
+- (nullable instancetype)initForReadingAtPath:(NSString *)aPath;
+- (nullable instancetype)initForWritingAtPath:(NSString *)aPath;
+- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL;
 
-- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName;
-- (NSData *)dataForType:(ResType)aType Id:(ResID)anID;
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName;
+- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID;
 - (BOOL)removeType:(ResType)aType Id:(ResID)anID;
 
 @end
+
+NS_ASSUME_NONNULL_END
