@@ -27,9 +27,6 @@
 #import "LELevelWindowController.h"
 #import "LEMap.h"
 
-//#import "LELevelData.h"
-// #import "LEMapDraw.h"
-
 @class LEMapData, LELevelData, ScenarioResources, PathwaysExchange;
 
 @interface PathwaysDocument : LEMap

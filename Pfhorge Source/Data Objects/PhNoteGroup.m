@@ -49,41 +49,29 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
 		noteColor = [[coder decodeObjectForKey:@"noteColor"] retain];
 		notes = [[coder decodeObjectForKey:@"notes"] retain];
 		visible = [coder decodeBoolForKey:@"visible"];
 	} else {
-    versionNum = decodeNumInt(coder);
-    
-    noteColor = decodeObjRetain(coder);
-    notes = decodeObjRetain(coder);
-    visible = decodeBOOL(coder);
+        /*int versionNum = */decodeNumInt(coder);
+        
+        noteColor = decodeObjRetain(coder);
+        notes = decodeObjRetain(coder);
+        visible = decodeBOOL(coder);
 	}
     
     return self;
 }
 
  // **************************  Init and Dealloc Methods  *************************
- #pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark -
+#pragma mark Init and Dealloc Methods
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    [self setPhName:@"No Name"];
-    notes = [[NSMutableArray alloc] init];
-    
-    noteColor = nil;
-    visible = YES;
-    
-    return self;
+    return self = [self initWithName:@"No Name"];
 }
 
 -(id)initWithName:(NSString *)theString;
@@ -104,11 +92,7 @@
 
 -(void)dealloc
 {
-    NSEnumerator *numer = [notes objectEnumerator];
-    PhAnnotationNote *thisObj = nil;
-    
-    while (thisObj = [numer nextObject])
-    {
+    for (PhAnnotationNote *thisObj in notes) {
         [thisObj setNoteType:nil];
     }
     

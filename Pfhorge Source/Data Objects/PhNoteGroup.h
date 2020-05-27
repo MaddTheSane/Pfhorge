@@ -40,9 +40,9 @@
 @property (getter=isVisible) BOOL visible;
 
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (instancetype)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithName:(NSString *)theString;
+- (instancetype)initWithName:(NSString *)theString NS_DESIGNATED_INITIALIZER;
 
 @property (readonly) BOOL doIHaveColor;
 

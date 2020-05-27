@@ -256,7 +256,7 @@ struct PID_Level {
 	byte Name[NAME_LENGTH];
 	
 	//! The number of the level in sequence
-	long LevelNumber;
+	int LevelNumber;
 	
 	//! The height of the level * 10
 	short Height10;

@@ -11,7 +11,6 @@
 
 @class PhData, LELevelData;
 
-// TODO: Byte-swap!
 @interface PathwaysExchange : NSObject
 {
     NSData *data;	// Keeping it very simple...
@@ -23,8 +22,9 @@
                      levelNames:(NSMutableArray *)theLevelNamesEXP
                    resourceData:(NSData *)dpin128Data;
 
-- (id)initWithData:(NSData *)theData;
-- (id)initWithData:(NSData *)theData resourceData:(NSData *)dpin128Data;
+- (instancetype)initWithData:(NSData *)theData NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithData:(NSData *)theData resourceData:(NSData *)dpin128Data;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 @property (readonly) int levelCount;
 @property (readonly, copy) NSArray<NSString*> *levelNames;

@@ -38,9 +38,9 @@
     LELevelData *theLevel;
     LELevelWindowController *theLevelDocumentWindowController;
     
-    NSMutableArray *infoWindows;
+    NSMutableArray<__kindof NSWindowController*> *infoWindows;
     
-    NSMutableArray *currentLevelNames;
+    NSMutableArray<NSString*> *currentLevelNames;
     
     BOOL cameFromMarathonFormatedFile;
     BOOL shouldExportToMarathonFormat;
@@ -71,11 +71,10 @@
 - (BOOL)didIComeFromMarathonFormatedFile;
 - (void)shouldExportToMarathonFile:(BOOL)answer;
 
-- (IBAction)openItemPalcmentEditor:(id)sender;
+- (IBAction)openItemPlacmentEditor:(id)sender;
 - (IBAction)openTerminalEditor:(id)sender;
 - (IBAction)enterVisualMode:(id)sender;
 - (IBAction)saveToPfhorgeFormat:(id)sender;
-- (IBAction)exportToMarathonFormat:(id)sender;
 
 - (BOOL)exportToMarathonFormatAtPath:(NSString *)fullPath;
 

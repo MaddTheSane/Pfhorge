@@ -118,27 +118,17 @@
     }
 }
 
-- (IBAction)exportToMarathonFormat:(id)sender
-{
-    //[self shouldExportToMarathonFile:YES];
-    //[self saveDocumentAs:self];
-    
-    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used…",
-                         @"No Longer Used");
-}
-
 - (BOOL)exportToMarathonFormatAtPath:(NSString *)fullPath
 {
-    //NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
-    NSMutableData *tempData;
+    NSData *tempData;
     
-    tempData = [[LEMapData convertLevelToDataObject:[self level]] retain];
-        
+    tempData = [[self dataOfType:@"org.bungie.source.map" error:NULL] retain];
+
     [[NSFileManager defaultManager] createFileAtPath:fullPath
-	  contents:tempData
-	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-				 NSFileHFSTypeCode: @((OSType)'sce2')
-	}];
+                                            contents:tempData
+                                          attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+                                                       NSFileHFSTypeCode: @((OSType)'sce2')
+                                          }];
     
     [tempData release];
     

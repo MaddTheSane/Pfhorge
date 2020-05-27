@@ -159,7 +159,7 @@
 #pragma mark -
 #pragma mark ********* Actions *********
 
-- (IBAction)openItemPalcmentEditor:(id)sender
+- (IBAction)openItemPlacmentEditor:(id)sender
 {
     NSEnumerator *numer;
     id theWinController;
@@ -230,21 +230,11 @@
         [super saveDocument:sender];
 }
 
-- (IBAction)exportToMarathonFormat:(id)sender
-{
-    //[self shouldExportToMarathonFile:YES];
-    //[self saveDocumentAs:self];
-    
-    SEND_ERROR_MSG_TITLE(@"- (IBAction)exportToMarathonFormat:(id)sender in LEMap is no longer used…",
-                         @"No Longer Used");
-}
-
 - (BOOL)exportToMarathonFormatAtPath:(NSString *)fullPath
 {
-    //NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
-    NSMutableData *tempData;
+    NSData *tempData;
     
-    tempData = [LEMapData convertLevelToDataObject:[self level]];
+    tempData = [self dataOfType:@"org.bungie.source.map" error:NULL];
     
     [[NSFileManager defaultManager] createFileAtPath:fullPath
                                             contents:tempData
@@ -256,7 +246,7 @@
 
 // *********************** Info Window Managment ***********************
 #pragma mark -
-#pragma mark ********* Info Window Managment *********
+#pragma mark Info Window Managment
 
 - (void)addLevelInfoWinCon:(id)winCon
 {
@@ -282,17 +272,11 @@
 {
     InfoWindowCommander *editingWindowController = nil;
     
-    NSEnumerator *numer;
-    id theWinController;
     BOOL windowAlreadyOpen = NO;
     
-    numer = [infoWindows objectEnumerator];
-    while (theWinController = [numer nextObject])
-    {
-        if (![theWinController isKindOfClass:[TerminalEditorController class]] && ![theWinController isKindOfClass:[PhItemPlacementEditorController class]])
-        {
-            if ([theWinController objectBeingEdited] == objectToEdit)
-            {
+    for (__kindof NSWindowController *theWinController in infoWindows) {
+        if (![theWinController isKindOfClass:[TerminalEditorController class]] && ![theWinController isKindOfClass:[PhItemPlacementEditorController class]]) {
+            if ([theWinController objectBeingEdited] == objectToEdit) {
                 [theWinController showWindow:self];
                 windowAlreadyOpen = YES;
                 break;
@@ -304,53 +288,42 @@
     if (windowAlreadyOpen)
         return YES;
     
-    if ([objectToEdit isKindOfClass:[PhLight class]])
-    {
+    if ([objectToEdit isKindOfClass:[PhLight class]]) {
             NSLog(@"Editing Light %@", [objectToEdit phName]);
             editingWindowController = [[PhLightEditorController alloc]
                                             initWithLight:objectToEdit
                                             withLevel:theLevel
                                             withMapDocument:self];
             [editingWindowController showWindow:self];
-    }
-    else if ([objectToEdit isKindOfClass:[PhMedia class]])
-    {
+    } else if ([objectToEdit isKindOfClass:[PhMedia class]]) {
             NSLog(@"Editing Media Named: %@", [objectToEdit phName]);
             editingWindowController = [[PhLiquidEditCon alloc]
                                             initWithMedia:objectToEdit
                                             withLevel:theLevel
                                             withMapDocument:self];
             [editingWindowController showWindow:self];
-    }
-    else if ([objectToEdit isKindOfClass:[PhAmbientSound class]])
-    {
+    } else if ([objectToEdit isKindOfClass:[PhAmbientSound class]]) {
             NSLog(@"Editing Ambient Sound %@", [objectToEdit phName]);
             editingWindowController = [[PhAmbientSndEditCon alloc]
                                             initWithSound:objectToEdit
                                             withLevel:theLevel
                                             withMapDocument:self];
             [editingWindowController showWindow:self];
-    }
-    else if ([objectToEdit isKindOfClass:[PhRandomSound class]])
-    {
+    } else if ([objectToEdit isKindOfClass:[PhRandomSound class]]) {
             NSLog(@"Editing Random Sound %@", [objectToEdit phName]);
             editingWindowController = [[PhRandomSndEditCon alloc]
                                             initWithSound:objectToEdit
                                             withLevel:theLevel
                                             withMapDocument:self];
             [editingWindowController showWindow:self];
-    }
-    else if ([objectToEdit isKindOfClass:[PhPlatform class]])
-    {
+    } else if ([objectToEdit isKindOfClass:[PhPlatform class]]) {
             NSLog(@"Editing Platform Named: %@", [objectToEdit phName]);
             editingWindowController = [[PhPlatformSheetController alloc]
                                             initWithPlatform:objectToEdit
                                             withLevel:theLevel
                                             withMapDocument:self];
             [editingWindowController showWindow:self];
-    }
-    else
-    {
+    } else {
         SEND_ERROR_MSG(@"Pfhorge attempted to edit somthing not support currently!");
         return NO;
     }
@@ -366,8 +339,7 @@
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (theLevel == levelDataObjectDeallocating) 
-    {
+    if (theLevel == levelDataObjectDeallocating)  {
         [self tellDocWinControllerToUpdateLevelInfoString];
     }
 }
@@ -378,8 +350,7 @@
     
     NSLog(@"- (void)levelDeallocating:(NSNotification *)notification");
     
-    if (theLevel == levelDataObjectDeallocating)
-    {
+    if (theLevel == levelDataObjectDeallocating) {
         [self releaseAllInfoWindowControllers];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:nil];
     }
@@ -390,8 +361,7 @@
     ///NSAutoreleasePool*pool;
     NSLog(@"Determining If I Need To Deallocate Info Windows...");
     
-    if (infoWindows != nil && [infoWindows count] > 0)
-    {
+    if (infoWindows != nil && [infoWindows count] > 0) {
         NSEnumerator *numer;
         id theWinController;
         NSLog(@"Releasing all info windows for deallocating level...");
@@ -438,8 +408,7 @@
     PhProgress *progress = [PhProgress sharedPhProgress];
     [super windowControllerDidLoadNib:aController];
     
-    if (theLevel != nil)
-    {
+    if (theLevel != nil) {
         //currentLevelNames = [[theMap getLevelNames] copy];
         [theLevel setLevelDocument:self];
         currentLevelNames = [[NSMutableArray alloc] initWithCapacity:1];
@@ -491,9 +460,7 @@
             [theLevel setMyUndoManager:[self undoManager]];
             [theLevel setUpArrayPointersForEveryObject];
             [theLevel setupDefaultObjects];
-    }
-    else
-    {
+    } else {
         theMap = [[LEMapData alloc] init];
         theLevel = [[LELevelData alloc] initAndGenerateNewLevelObjects];
         [theLevel setLevelDocument:self];
@@ -561,11 +528,11 @@
         //[theLevel setLayerModeTo:nil];
         [[theLevelDocumentWindowController levelDrawView] setNeedsDisplay:YES];
         
-            [theLevel updateCounts];
-            [theLevel setLevelDocument:self];
-            [theLevel setMyUndoManager:[self undoManager]];
-            [theLevel setUpArrayPointersForEveryObject];
-            [theLevel setupDefaultObjects];
+        [theLevel updateCounts];
+        [theLevel setLevelDocument:self];
+        [theLevel setMyUndoManager:[self undoManager]];
+        [theLevel setUpArrayPointersForEveryObject];
+        [theLevel setupDefaultObjects];
     }
     
     [self tellDocWinControllerToUpdateLevelInfoString];
@@ -577,7 +544,7 @@
 }
 
 #pragma mark -
-#pragma mark ****************** NEW METHODS ******************
+#pragma mark NEW METHODS
 
 // ****************** NEW METHODS ******************
 
@@ -638,18 +605,11 @@
 
 - (NSData *)dataOfType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
-    // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-    //NSData *theLevelMapData = [theMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1];
-    
-    
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
-    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"])
-    {
-        entireMapData = [LEMapData convertLevelToDataObject:(LELevelData *)theLevel];
-    }
-    else
-    {
+    if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
+        entireMapData = [LEMapData convertLevelToDataObject:theLevel];
+    } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
         short thePfhorgeDataSig1 = 26743;
@@ -672,46 +632,10 @@
     }
     
     return entireMapData;
-    
-    
-    // return nil;
-    
-    /*NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
-    
-    if (shouldExportToMarathonFormat == YES)
-    {
-        [entireMapData release];
-        entireMapData = [[LEMapData convertLevelToDataObject:(LELevelData *)theLevel] retain];
-    }
-    else
-    {
-        short theVersionNumber = 3;
-        short thePfhorgeDataSig1 = 26743;
-        short thePfhorgeDataSig2 = 34521;
-        long thePfhorgeDataSig3 = 42296737;
-        
-        NSData *theLevelMapData = [NSArchiver archivedDataWithRootObject:theLevel];
-        
-        [entireMapData appendBytes:&theVersionNumber length:2];
-        [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
-        [entireMapData appendBytes:&thePfhorgeDataSig2 length:2];
-        [entireMapData appendBytes:&thePfhorgeDataSig3 length:4];
-        
-        [entireMapData appendData:theLevelMapData];
-        
-        cameFromMarathonFormatedFile = NO;
-    }
-    
-    return [entireMapData autorelease];*/
 }
 
 -(BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
 {
-    // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
-    //theRawMapData = data;
-    //theLevel = nil;
-    
-    //short version, dataVersion;
     BOOL loadedOk = NO;
     
     short theVersionNumber = currentVersionOfPfhorgeLevelData;
@@ -724,7 +648,7 @@
     unsigned short thePfhorgeDataSig2FromData = 0;
     int thePfhorgeDataSig3FromData = 0;
     
-   // NSRange firstOne = [aType rangeOfString:@"mmap"];
+    // NSRange firstOne = [aType rangeOfString:@"mmap"];
     
     [data getBytes:&theVersionNumberFromData range:NSMakeRange(0,2)];
     [data getBytes:&thePfhorgeDataSig1FromData range:NSMakeRange(2,2)];
@@ -735,20 +659,18 @@
     thePfhorgeDataSig1FromData = CFSwapInt16BigToHost(thePfhorgeDataSig1FromData);
     thePfhorgeDataSig2FromData = CFSwapInt16BigToHost(thePfhorgeDataSig2FromData);
     thePfhorgeDataSig3FromData = CFSwapInt32BigToHost(thePfhorgeDataSig3FromData);
-     NSLog(@"loadDataRepresentation");
+    NSLog(@"loadDataRepresentation");
     
     //NSRange secondOne = [theRawString rangeOfString:@"map"];
     
     if (thePfhorgeDataSig1FromData != thePfhorgeDataSig1 ||
         thePfhorgeDataSig2FromData != thePfhorgeDataSig2 ||
-        thePfhorgeDataSig3FromData != thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData != thePfhorgeDataSig3) {
         NSLog(@"Loading Aleph One/Marathon Formated Map…");
         theRawMapData = data;
         theLevel = nil;
         
-        if (theRawMapData != nil)
-        {
+        if (theRawMapData != nil) {
             cameFromMarathonFormatedFile = YES;
             loadedOk = YES;
         }
@@ -766,8 +688,7 @@
     else if (/*theVersionNumberFromData == theVersionNumber &&*/
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
-        thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
-    {
+        thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"Loading Pfhorge Formated Map... ERROR, WRONG PLACE!!!");
         
         loadedOk = NO;
@@ -788,9 +709,7 @@
             NSLog(@"theLevel != nil...");
             [theLevel updateCounts];
         }*/
-    }
-    else
-    {
+    } else {
         SEND_ERROR_MSG_TITLE(@"Can't Load File, Unknown Format.",
                              @"Can't Load File");
         loadedOk = NO;
@@ -922,15 +841,10 @@
     
     if (index == [thePoints count]) {
         [self addInPoints:point];
-    }
-    else
-    {
-        if (index < [thePoints count])
-        {
+    } else {
+        if (index < [thePoints count]) {
             [self addInPoints:point/* atIndex:newIndex*/];
-        }
-        else
-        {
+        } else {
             // Shouldn't happen.
             [NSException raise:NSRangeException format:@"Beyond bounds of the points array!"];
         }

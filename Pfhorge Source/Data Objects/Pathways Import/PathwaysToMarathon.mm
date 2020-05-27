@@ -54,8 +54,7 @@ inline int YPos(int y, int which)
 
 // Which sector points, lines, and polygons are which
 
-enum
-{
+enum {
     // Plain
     Pt_Corner,
     // For beveling, doors
@@ -372,8 +371,7 @@ bool SectorObjects::AddEdge(LnPtDef& Edge)
 
 void SectorObjects::AppendNoteText(NSString *NewText)
 {
-    if (NewText)
-    {
+    if (NewText) {
         // Add spacer in case of multiple additions
         if ([NTxt length] > 0)
             [NTxt appendString:@"_"];
@@ -404,8 +402,7 @@ static void AddFrame(LELevelData *level)
     LEMapPoint *Pts[NumFramePoints];
     LELine *Lns[NumFramePoints];
     
-    for (int k=0; k<NumFramePoints; k++)
-    {
+    for (int k=0; k<NumFramePoints; k++) {
         Pts[k] = [[LEMapPoint alloc] init];
         [Pts[k] setX:XPos(FramePoints[k][0],0) Y:YPos(FramePoints[k][1],0)];
         //[Pts[k] setY:YPos(FramePoints[k][1],0)];
@@ -416,16 +413,14 @@ static void AddFrame(LELevelData *level)
         // Can't do anything more with the lines until we have all the points
     }
      
-    for (int k=0; k<NumFramePoints; k++)
-    {
+    for (int k=0; k<NumFramePoints; k++) {
         [Lns[k] setMapPoint1:Pts[k] mapPoint2:Pts[(k+1)%NumFramePoints]];
         //[Lns[k] setMapPoint2:Pts[(k+1)%NumFramePoints]];
         
         [level addLine:Lns[k]];
     }
    
-    for (int k=0; k<NumFramePoints; k++)
-    {
+    for (int k=0; k<NumFramePoints; k++) {
         Pts[k] = nil;
         Lns[k] = nil;
     }
@@ -572,7 +567,7 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     // Shorten the wall if there is a textured corner:
                     short WallType = NgbrSctr.WallList[S.wall].Type;
                     if (cpres_lo) {
-                        switch(WallType) {
+                        switch (WallType) {
                         case PID_Wall::Wall_ShortBoth:
                         case PID_Wall::Wall_ShortLow:
                             break;	// OK
@@ -603,7 +598,7 @@ static void AddSectorContents(PID_Level& PL, SectorArray SO)
                     }
                     
                     // Extend the sector edges if necessary - if there are no textured corners present
-                    switch(WallType) {
+                    switch (WallType) {
                     case PID_Wall::Wall_ShortBoth:
                         if (!cpres_lo)
                         {
@@ -837,8 +832,9 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
                     [Pg setCeilingHeight:Ht_Ceiling];
                     
                     [level addPolygon:Pg];
-                    if (k == 0)
+                    if (k == 0) {
                         [level namePolygon:Pg to:[NSString stringWithFormat:@"PID %d %d",x,y,nil]];
+                    }
                 }
             }
         }
@@ -881,28 +877,24 @@ static void AddDoor(PhPlatformStaticFlags DoorFlags, LEPolygon *Pg, LELevelData 
 // All of them
 static void AddDoors(PID_Level& PL, SectorArray SO, LELevelData *level)
 {
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPolygonDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumPolygonDefs; k++) {
                 LEPolygon *Pg = SO[x][y].GetPolygon(k);
-                if (Pg)
-                {
-                    if (k == Pg_XDoor || k == Pg_YDoor)
-                    {
+                if (Pg) {
+                    if (k == Pg_XDoor || k == Pg_YDoor) {
                         AddDoor(PlainDoorFlags,Pg,level);
-                    }
-                    else if (k == Pg_Plain)
-                    {
+                    } else if (k == Pg_Plain) {
                         PID_Sector& Sector = PL.SectorList[SectorAddr(x,y)];
                         
-                        if (Sector.Type == PID_Sector::SecretDoor)
-                        {
+                        if (Sector.Type == PID_Sector::SecretDoor) {
                             AddDoor(SecretDoorFlags,Pg,level);
                         }
                     }
                 }
             }
+        }
+    }
 }
 
 
@@ -910,13 +902,16 @@ static void AddDoors(PID_Level& PL, SectorArray SO, LELevelData *level)
 static void AddSides(SectorArray SO)
 {
     // Polygon floor and ceiling textures
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPolygonDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumPolygonDefs; k++) {
                 LEPolygon *Pg = SO[x][y].GetPolygon(k);
-                if (Pg) [Pg calculateSidesForAllLines];
+                if (Pg) {
+                    [Pg calculateSidesForAllLines];
+                }
             }
+        }
+    }
 }
 
 
@@ -969,9 +964,9 @@ static unsigned short Xfers[Xf_HOW_MANY];
 
 // No error checking -- could not get NSAssert(Number, ...) etc. to compile
 
-static unsigned short GetUnsignedShort(NSDictionary *Dict, NSString *NumMem)
+static unsigned short GetUnsignedShort(NSDictionary<NSString*, NSNumber*> *Dict, NSString *NumMem)
 {
-    NSNumber *Number = (NSNumber *)[Dict objectForKey:NumMem];
+    NSNumber *Number = [Dict objectForKey:NumMem];
     return [Number unsignedShortValue];
 }
 
@@ -980,13 +975,12 @@ static void GetConversionParameters()
 {
     NSBundle *AppBundle = [NSBundle mainBundle];
     
-    NSDictionary *ConvParamsDict = (NSDictionary *)[AppBundle objectForInfoDictionaryKey:@"PfhPathwaysConvert"];
+    NSDictionary<NSString*,id> *ConvParamsDict = (NSDictionary *)[AppBundle objectForInfoDictionaryKey:@"PfhPathwaysConvert"];
     
-    NSArray *WallTxtrArray = (NSArray *)[ConvParamsDict objectForKey:@"WallTextures"];
+    NSArray<NSDictionary<NSString*,NSNumber*>*> *WallTxtrArray = [ConvParamsDict objectForKey:@"WallTextures"];
     
-    for (int i=0; i<NumTextureSets; i++)
-    {
-        NSDictionary *WallTxtrDict = (NSDictionary *)[WallTxtrArray objectAtIndex:i];
+    for (int i=0; i<NumTextureSets; i++) {
+        NSDictionary<NSString*,NSNumber*> *WallTxtrDict = [WallTxtrArray objectAtIndex:i];
         
         Txtrs[i][Tx_Collection] = GetUnsignedShort(WallTxtrDict,@"Collection");
         
@@ -1005,12 +999,12 @@ static void GetConversionParameters()
         Txtrs[i][Tx_Teleport] = GetUnsignedShort(WallTxtrDict,@"Teleport");
    }
    
-   NSDictionary *LightsDict = (NSDictionary *)[ConvParamsDict objectForKey:@"Lights"];
+   NSDictionary<NSString*,NSNumber*> *LightsDict = [ConvParamsDict objectForKey:@"Lights"];
    
    Lights[Lt_Normal] = GetUnsignedShort(LightsDict,@"Normal");
    Lights[Lt_Teleport] = GetUnsignedShort(LightsDict,@"Teleport");
    
-   NSDictionary *XfersDict = (NSDictionary *)[ConvParamsDict objectForKey:@"Transfers"];
+   NSDictionary<NSString*,NSNumber*> *XfersDict = [ConvParamsDict objectForKey:@"Transfers"];
    
    Xfers[Xf_Normal] = GetUnsignedShort(XfersDict,@"Normal");
    Xfers[Xf_Teleport] = GetUnsignedShort(XfersDict,@"Teleport");
@@ -1024,8 +1018,7 @@ static void AddNote(LELevelData *level, SectorArray SO, short x, short y, NSStri
     short xloc = x - WORLD_ONE*PID_Level::NUMBER_X_SECTORS/2;
     short yloc = y - WORLD_ONE*PID_Level::NUMBER_Y_SECTORS/2;
     LEPolygon *Pg = SO[xred][yred].GetPolygon(Pg_Plain);
-    if (Pg && ([Text length] > 0))
-    {
+    if (Pg && ([Text length] > 0)) {
         PhAnnotationNote *Note = [level addObjectWithDefaults:[PhAnnotationNote class]];
         
         [Note setLocationX:xloc];
@@ -1089,13 +1082,11 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
     AddSides(SO);
     
     // Add textures and notes for polygons
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumPolygonDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumPolygonDefs; k++) {
                 LEPolygon *Pg = SO[x][y].GetPolygon(k);
-                if (Pg)
-                {
+                if (Pg) {
                     // Defaults: no note, plain floor and ceiling textures
                     NSString *NTxt = nil;
                     short WhichFloor = Tx_Floor;
@@ -1105,17 +1096,13 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     short WhichCeilingLight = Lt_Normal;
                     short WhichCeilingXfer = Xf_Normal;
                     
-                    if (k == Pg_XDoor || k == Pg_YDoor)
-                    {
+                    if (k == Pg_XDoor || k == Pg_YDoor) {
                         WhichFloor = Tx_DoorFloor;
                         WhichCeiling = Tx_DoorCeiling;
-                    }
-                    else if (k == Pg_Plain)
-                    {
+                    } else if (k == Pg_Plain) {
                         PID_Sector& Sector = PL.SectorList[SectorAddr(x,y)];
                         
-                        switch(Sector.Type)
-                        {
+                        switch(Sector.Type) {
                         case PID_Sector::ChangeLevel:
                             {
                                 PID_LevelChange& LvCh = PL.LevelChangeList[Sector.TypeAddl];
@@ -1129,9 +1116,9 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                                     WhichCeiling = Tx_Teleport;
                                     WhichCeilingLight = Lt_Teleport;
                                     WhichCeilingXfer = Xf_Teleport;
-                                }
-                                else
+                                } else {
                                     NTxt = [NSString stringWithFormat:@"Lv%hd,%hd,%hd",LvCh.Level,LvCh.x,LvCh.y,nil];
+                                }
                             }
                             break;
                         
@@ -1175,14 +1162,15 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     [Pg setCeilingTransferMode:Xfers[WhichCeilingXfer]];
                 }
             }
+        }
+    }
     
     // Add the pickups and monsters as notes
     
     bool WasCounted[PID_LevelState::MAXIMUM_NUMBER_OF_ITEMS];
     memset(WasCounted,0,PID_LevelState::MAXIMUM_NUMBER_OF_ITEMS*sizeof(bool));
     
-    for (int n=0; n<PLS.NumAssigns; n++)
-    {
+    for (int n=0; n<PLS.NumAssigns; n++) {
         PID_PickupAssign& Assign = PLS.AssignList[n];
         PID_PlayerItem& Pickup = PLS.PickupList[Assign.PickupID];
         PID_ItemState& Item = PLS.Items[Assign.ItemID];
@@ -1195,8 +1183,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
         AddNote(level, SO, Item.Pos.x, Item.Pos.y, NTxt, NG_Pickups);
     }
     
-    for (int n=0; n<PLS.NumMonsters; n++)
-    {
+    for (int n=0; n<PLS.NumMonsters; n++) {
         PID_MonsterState& Monster = PLS.MonsterList[n];
         PID_ItemState& Item = PLS.Items[Monster.ItemID];
         WasCounted[Monster.ItemID] = true;
@@ -1208,8 +1195,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
         AddNote(level, SO, Item.Pos.x, Item.Pos.y, NTxt, NG_Monsters);
     }
     
-    for (int n=0; n<PID_LevelState::MAXIMUM_NUMBER_OF_ITEMS; n++)
-    {
+    for (int n=0; n<PID_LevelState::MAXIMUM_NUMBER_OF_ITEMS; n++) {
         if (WasCounted[n]) continue;
         PID_ItemState& Item = PLS.Items[n];
         if (Item.Pos.x <= 0 || Item.Pos.y <= 0) continue;
@@ -1222,38 +1208,35 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
     
     // Texture the sides; need to know which polygons are teleporters
     // in order to give their sides the teleporter textures
-    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++)
-        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++)
-            for (int k=0; k<NumLineDefs; k++)
-            {
+    for (int x=0; x<=PID_Level::NUMBER_X_SECTORS; x++) {
+        for (int y=0; y<=PID_Level::NUMBER_Y_SECTORS; y++) {
+            for (int k=0; k<NumLineDefs; k++) {
                 LELine *Ln = SO[x][y].GetLine(k);
-                if (Ln)
-                {
-                    for (int w=0; w<2; w++)
-                    {
+                if (Ln) {
+                    for (int w=0; w<2; w++) {
                         LESide *Sd = w > 0 ?
                             [Ln clockwisePolygonSideObject] :
                             [Ln counterclockwisePolygonSideObject];
-                        if (Sd)
-                        {
+                        if (Sd) {
                             // Use level's texture collection
                             [Sd resetTextureCollection];
                             
                             short Which = Tx_Wall;
                             short WhichLight = Lt_Normal;
                             short WhichXfer = Xf_Normal;
-                            switch(k)
-                            {
+                            switch(k) {
                             case Ln_X:
                                 if (PL.SectorList[SectorAddr(x,y)].WallList[PID_Sector::Wall_Y].Type ==
-                                    PID_Wall::Wall_FancyCorners)
+                                    PID_Wall::Wall_FancyCorners) {
                                         Which = Tx_FancyWall;
+                                }
                                 break;
                                 
                             case Ln_Y:
                                 if (PL.SectorList[SectorAddr(x,y)].WallList[PID_Sector::Wall_X].Type ==
-                                    PID_Wall::Wall_FancyCorners)
+                                    PID_Wall::Wall_FancyCorners) {
                                         Which = Tx_FancyWall;
+                                }
 								 break;
 
                             case Ln_XNear_YNear:
@@ -1264,13 +1247,15 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                                 break;
                                 
                             case Ln_X_Center:
-                                if (SO[x][y].GetPolygon(Pg_XDoor) || SO[x][y-1].GetPolygon(Pg_XDoor))
+                                if (SO[x][y].GetPolygon(Pg_XDoor) || SO[x][y-1].GetPolygon(Pg_XDoor)) {
                                     Which = Tx_DoorWall;
+                                }
                                 break;
                                 
                             case Ln_Y_Center:
-                                if (SO[x][y].GetPolygon(Pg_YDoor) || SO[x-1][y].GetPolygon(Pg_YDoor))
+                                if (SO[x][y].GetPolygon(Pg_YDoor) || SO[x-1][y].GetPolygon(Pg_YDoor)) {
                                     Which = Tx_DoorWall;
+                                }
                                 break;
                             
                             case Ln_X_NearDoor:
@@ -1282,8 +1267,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                             }
                             
                             LEPolygon *Pg = (LEPolygon *)[Sd polygonObject];
-                            if (Pg)
-                            {
+                            if (Pg) {
                                 if ([Pg type] == _polygon_is_teleporter)
                                 {
                                     Which = Tx_Teleport;
@@ -1299,6 +1283,8 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                     }
                 }
             }
+        }
+    }
 
     // Add a player start position:
     LEMapObject *Player =[level addObjectWithDefaults:[LEMapObject class]];
