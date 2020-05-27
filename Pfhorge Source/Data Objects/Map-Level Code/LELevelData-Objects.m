@@ -128,7 +128,7 @@
         NSLog(@"Added PhLight object with index #%d", [theNewObj getIndex]);
 #endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-        [theDrawView updateNameList:_lightMenu];
+        [theDrawView updateNameList:PhLevelNameMenuLight];
         return theNewObj;
     } else if (theClass == [PhMedia class]) {
         PhMedia *theNewObj = [[PhMedia alloc] init];
@@ -144,7 +144,7 @@
         NSLog(@"Added PhMedia object with index #%d", [theNewObj getIndex]);
 #endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-        [theDrawView updateNameList:_liquidMenu];
+        [theDrawView updateNameList:PhLevelNameMenuLiquid];
         return theNewObj;
     } else if (theClass == [PhAmbientSound class]) {
         PhAmbientSound *theNewObj = [[PhAmbientSound alloc] init];
@@ -160,7 +160,7 @@
         NSLog(@"Added PhAmbientSound object with index #%d", [theNewObj getIndex]);
 #endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-        [theDrawView updateNameList:_ambientSoundMenu];
+        [theDrawView updateNameList:PhLevelNameMenuAmbientSound];
         return theNewObj;
     } else if (theClass == [PhRandomSound class]) {
         PhRandomSound *theNewObj = [[PhRandomSound alloc] init];
@@ -176,7 +176,7 @@
         NSLog(@"Added PhRandomSound object with index #%d", [theNewObj getIndex]);
 #endif
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-        [theDrawView updateNameList:_randomSoundMenu];
+        [theDrawView updateNameList:PhLevelNameMenuRandomSound];
         return theNewObj;
     } else if (theClass == [PhItemPlacement class]) {
         PhItemPlacement *theNewObj = [[PhItemPlacement alloc] init];
@@ -225,7 +225,7 @@
         [self addLayer:theNewLayer];
         [self setUpArrayPointersFor:theNewLayer];
         [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-        [theDrawView updateNameList:_layerMenu];
+        [theDrawView updateNameList:PhLevelNameMenuLayer];
         
         return theNewLayer;
     } else {
@@ -856,7 +856,7 @@
         [thisObj setLightsThatAre:theLightToRemove to:[lights objectAtIndex:0]];
         
     [lights removeObjectIdenticalTo:theLightToRemove];
-    [[theLevelDocument getMapDrawView] updateNameList:_lightMenu];
+    [[theLevelDocument getMapDrawView] updateNameList:PhLevelNameMenuLight];
 }
 
 -(void)deleteSide:(LESide *)theSideToRemove

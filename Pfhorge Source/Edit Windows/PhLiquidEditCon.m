@@ -57,7 +57,7 @@
     
     [self window];
     
-    [mapLevel addMenu:tideLightMenu asA:_lightMenu];
+    [mapLevel addMenu:tideLightMenu asA:PhLevelNameMenuLight];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self
         //selector:@selector(reloadDataFromLevel)
@@ -86,7 +86,7 @@
     
     if (mapLevel == levelDataObjectDeallocating)
     {
-        [mapLevel removeMenu:tideLightMenu thatsA:_lightMenu];
+        [mapLevel removeMenu:tideLightMenu thatsA:PhLevelNameMenuLight];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
         mapDocument = nil;

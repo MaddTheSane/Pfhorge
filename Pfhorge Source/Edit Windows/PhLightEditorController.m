@@ -75,7 +75,7 @@
     id levelDataObjectDeallocating = [notification object];
     
     if (mapLevel == levelDataObjectDeallocating) {
-        [mapLevel removeMenu:tagComboMenu thatsA:_tagMenu];
+        [mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
         mapDocument = nil;
@@ -144,7 +144,7 @@
         theLightPhases[_light_secondary_inactive][5] = secondaryInactiveIntesitySlider;
     theLightPhases[_light_secondary_inactive][6] = secondaryInactiveIntesityChngSlider;
     
-    [mapLevel addMenu:tagComboMenu asA:_tagMenu];
+    [mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
     
     [self refreshInterfaceFromData];
 }

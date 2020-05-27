@@ -49,8 +49,8 @@
 
 @implementation PhLevelNameManager
  // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark -
+#pragma mark Coding/Copy Protocal Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     // Do I need to encode the NSObject super class?
@@ -61,15 +61,6 @@
 	} else {
 		encodeNumInt(coder, 0);
 	}
-    
-    /*encodeObj(coder, tagNames);
-    encodeObj(coder, platformNames);
-    encodeObj(coder, lightNames);
-    encodeObj(coder, ambientSoundNames);
-    encodeObj(coder, randomSoundNames);
-    encodeObj(coder, liquidNames);
-    encodeObj(coder, layerNames);
-    encodeObj(coder, polyNames);*/
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -85,26 +76,6 @@
 	} else {
 		versionNum = decodeNumInt(coder);
 	}
-    
-    /*tagNames = decodeObj(coder);
-    platformNames = decodeObj(coder);
-    lightNames = decodeObj(coder);
-    ambientSoundNames = decodeObj(coder);
-    randomSoundNames = decodeObj(coder);
-    liquidNames = decodeObj(coder);
-    layerNames = decodeObj(coder);
-    polyNames = decodeObj(coder);
-    
-    tagNameMenus		= [[NSMutableSet alloc] initWithCapacity:6];
-    platformNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    lightNameMenus		= [[NSMutableSet alloc] initWithCapacity:20];
-    ambientSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    randomSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    liquidNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    
-    layerNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    polyNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    */
     
     twoBytesCount = 2;
     fourBytesCount = 4;
@@ -126,8 +97,8 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
- #pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark -
+#pragma mark Init and Dealloc Methods
 -(id)init
 {
     self = [super init];
@@ -135,25 +106,25 @@
     if (self == nil)
         return nil;
     
-    tagNameMenus		= [[NSMutableSet alloc] initWithCapacity:6];
+    tagNameMenus		    = [[NSMutableSet alloc] initWithCapacity:6];
     platformNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    lightNameMenus		= [[NSMutableSet alloc] initWithCapacity:20];
+    lightNameMenus		    = [[NSMutableSet alloc] initWithCapacity:20];
     ambientSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
     randomSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    liquidNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+    liquidNameMenus		    = [[NSMutableSet alloc] initWithCapacity:0];
     
     layerNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
     polyNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
 
     levelNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
     
-    terminalNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+    terminalNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
     
     
-    liquidNames 	= [[NSMutableArray alloc] initWithCapacity:0];
-    tagNames 		= [[NSMutableArray alloc] initWithCapacity:6];
-    platformNames 	= [[NSMutableArray alloc] initWithCapacity:0];
-    lightNames 		= [[NSMutableArray alloc] initWithCapacity:0];
+    liquidNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
+    tagNames 		    = [[NSMutableArray alloc] initWithCapacity:6];
+    platformNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
+    lightNames 		    = [[NSMutableArray alloc] initWithCapacity:0];
     randomSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
     ambientSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -216,7 +187,7 @@
 
 - (void)checkNameOf:(PhAbstractName *)obj withNameArray:(NSMutableArray *)arr
 {
-    
+    // TODO: implement!
 }
 
 - (void)checkName:(PhAbstractName *)obj
@@ -229,50 +200,50 @@
     }
     else if (theClass == [Terminal class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhLayer class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [LEPolygon class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhMedia class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhAmbientSound class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhRandomSound class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhLight class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhItemPlacement class])
     {
-        
+        // TODO: implement!
     }
     else if (theClass == [PhPlatform class])
     {
-        
+        // TODO: implement!
     }
     else
     {
-        
+        // TODO: implement failure case?
     }
 }
 
 
 // ************************* Menu Name Managment*************************
 #pragma mark -
-#pragma mark ********* Menu Name Managment*********
+#pragma mark Menu Name Managment
 
 -(void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind
 {
@@ -325,7 +296,7 @@
 
 -(void)refreshEveryMenu
 {
-    for (int i = 0; i < _NUMBER_OF_NAME_MENU_TYPES; i++) {
+    for (int i = 0; i < PhLevelNameMenuCountOfLevelNameMenu; i++) {
         [self refreshAllMenusOf:i];
     }
 }
@@ -347,7 +318,7 @@
     
     [theMenuUIO removeAllItems];
     
-    if (menuKind == _layerMenu) {
+    if (menuKind == PhLevelNameMenuLayer) {
         [theMenuUIO addItemWithTitle:@"No Layer On"];
         //[theMenuUIO addItemWithTitle:@"No Layer On2"];
         totalNumberOfMenuItems = [theNameArray count] + 1;
@@ -386,26 +357,29 @@
 - (NSMutableSet *)menuArrayUsingMenuType:(PhLevelNameMenu)menuKind;
 {    
     switch (menuKind) {
-        case _tagMenu:
+        case PhLevelNameMenuTag:
             return tagNameMenus;
-        case _platformMenu:
+        case PhLevelNameMenuPlatform:
             return platformNameMenus;
-        case _lightMenu:
+        case PhLevelNameMenuLight:
             return lightNameMenus;
-        case _ambientSoundMenu:
+        case PhLevelNameMenuAmbientSound:
             return ambientSoundNameMenus;
-        case _randomSoundMenu:
+        case PhLevelNameMenuRandomSound:
             return randomSoundNameMenus;
-        case _liquidMenu:
+        case PhLevelNameMenuLiquid:
             return liquidNameMenus;
-        case _layerMenu:
+        case PhLevelNameMenuLayer:
             return layerNameMenus;
-        case _polyMenu:
+        case PhLevelNameMenuPolygon:
             return polyNameMenus;
-        case _levelMenu:
+        case PhLevelNameMenuLevel:
             return levelNameMenus;
-        case _terminalMenu:
+        case PhLevelNameMenuTerminal:
             return terminalNameMenus;
+        case PhLevelNameMenuCountOfLevelNameMenu:
+            NSLog(@"Got sent 'PhLevelNameMenuCountOfLevelNameMenu', which is an invalid variable to pass into %s.", __PRETTY_FUNCTION__);
+            break;
     }
     NSLog(@"Returned Nil In - (NSMutableSet *)getMenuArrayUsingType:(int)menuKind");
     return nil;
@@ -414,26 +388,29 @@
 - (NSMutableArray *)nameArrayUsingMenuType:(PhLevelNameMenu)menuKind;
 {    
     switch (menuKind) {
-        case _tagMenu:
+        case PhLevelNameMenuTag:
             return tagNames;
-        case _platformMenu:
+        case PhLevelNameMenuPlatform:
             return platformNames;
-        case _lightMenu:
+        case PhLevelNameMenuLight:
             return lightNames;
-        case _ambientSoundMenu:
+        case PhLevelNameMenuAmbientSound:
             return ambientSoundNames;
-        case _randomSoundMenu:
+        case PhLevelNameMenuRandomSound:
             return randomSoundNames;
-        case _liquidMenu:
+        case PhLevelNameMenuLiquid:
             return liquidNames;
-        case _layerMenu:
+        case PhLevelNameMenuLayer:
             return layerNames;
-        case _polyMenu:
+        case PhLevelNameMenuPolygon:
             return polyNames;
-        case _levelMenu:
+        case PhLevelNameMenuLevel:
             return levelNames;
-        case _terminalMenu:
+        case PhLevelNameMenuTerminal:
             return terminalNames;
+        case PhLevelNameMenuCountOfLevelNameMenu:
+            NSLog(@"Got sent 'PhLevelNameMenuCountOfLevelNameMenu', which is an invalid variable to pass into %s.", __PRETTY_FUNCTION__);
+            break;
     }
     NSLog(@"Returned Nil In - (NSMutableArray *)getNameArrayUsingType:(int)menuKind");
     return nil;
@@ -444,12 +421,12 @@
     NSLog(@"changeLevelNamesTo count: %lu", (unsigned long)[theNames count]);
     [levelNames removeAllObjects];
     [levelNames addObjectsFromArray:theNames];
-    [self refreshAllMenusOf:_levelMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuLevel];
 }
 
 // ************************* Name Array Accsess *************************
 #pragma mark -
-#pragma mark ********* Name Array Accsess *********
+#pragma mark Name Array Accsess
 
 -(NSMutableArray *)getLiquidNames { return liquidNames; }
 -(NSMutableArray *)getRandomSoundNames { return randomSoundNames; }
@@ -468,59 +445,5 @@
 -(NSArray<NSString*> *)getTagNamesCopy { return [[tagNames copy] autorelease]; }
 -(NSArray<NSString*> *)getLayerNamesCopy { return [[layerNames copy] autorelease]; }
 -(NSArray<NSString*> *)getPolyNamesCopy { return [[polyNames copy] autorelease]; }
-
-/*
--(NSArray *)getLightNames
-{
-    NSMutableArray *theNames;
-    int i;
-    
-    theNames = [[NSMutableArray alloc] init];
-    
-    for (i = 0; i < lightCount; i++)
-        [theNames addObject:[NSString localizedStringWithFormat:@"%d", i]];
-        
-    return theNames;
-}
-
--(NSArray *)getLiquidNames
-{
-    NSMutableArray *theNames;
-    int i;
-    
-    theNames = [[NSMutableArray alloc] init];
-    
-    for (i = 0; i < liquidCount; i++)
-        [theNames addObject:[NSString localizedStringWithFormat:@"%d", i]];
-        
-    return theNames;
-}
-
--(NSArray *)getRandomSoundNames
-{
-    NSMutableArray *theNames;
-    int i;
-    
-    theNames = [[NSMutableArray alloc] init];
-    
-    for (i = 0; i < randomSoundCount; i++)
-        [theNames addObject:[NSString localizedStringWithFormat:@"%d", i]];
-        
-    return theNames;
-}
-
--(NSArray *)getAmbientSoundNames
-{
-    NSMutableArray *theNames;
-    int i;
-    
-    theNames = [[NSMutableArray alloc] init];
-    
-    for (i = 0; i < ambientSoundCount; i++)
-        [theNames addObject:[NSString localizedStringWithFormat:@"%d", i]];
-        
-    return theNames;
-}
-*/
 
 @end

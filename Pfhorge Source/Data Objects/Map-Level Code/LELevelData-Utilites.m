@@ -78,7 +78,7 @@
     while (theObj = [numer nextObject])
         [terminalNames addObject:[theObj phName]];
     
-    [self refreshAllMenusOf:_terminalMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuTerminal];
 }
 
 - (void)adjustInitalItemPlacmentBy:(int)adjustmentNumber forIndex:(int)objectIndex isMonster:(BOOL)adjustingMonster
@@ -136,12 +136,12 @@
     [self recompileTerminalNamesCache];
     [self refreshEveryMenu];
     
-    [self refreshAllMenusOf:_layerMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuLayer];
     
     NSLog(@"layerNames: %@", [layerNames description]);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-    [[theLevelDocument getMapDrawView] updateNameList:_layerMenu];
+    [[theLevelDocument getMapDrawView] updateNameList:PhLevelNameMenuLayer];
     [self recaculateTheCurrentLayer];
     
     [theLevelDocument tellDocWinControllerToUpdateLevelInfoString];
@@ -432,50 +432,50 @@
     {
         [layerNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_layerMenu];
-        [theDrawView updateNameList:_layerMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuLayer];
+        [theDrawView updateNameList:PhLevelNameMenuLayer];
     }
     else if ([theObject isKindOfClass:[PhTag class]])
     {
         [tagNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_tagMenu];
-        [theDrawView updateNameList:_tagMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuTag];
+        [theDrawView updateNameList:PhLevelNameMenuTag];
     }
     else if ([theObject isKindOfClass:[PhPlatform class]])
     {
         [platformNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_platformMenu];
-        [theDrawView updateNameList:_platformMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuPlatform];
+        [theDrawView updateNameList:PhLevelNameMenuPlatform];
     }
     else if ([theObject isKindOfClass:[PhRandomSound class]])
     {
         [randomSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_randomSoundMenu];
-        [theDrawView updateNameList:_randomSoundMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuRandomSound];
+        [theDrawView updateNameList:PhLevelNameMenuRandomSound];
     }
     else if ([theObject isKindOfClass:[PhAmbientSound class]])
     {
         [ambientSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_ambientSoundMenu];
-        [theDrawView updateNameList:_ambientSoundMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuAmbientSound];
+        [theDrawView updateNameList:PhLevelNameMenuAmbientSound];
     }
     else if ([theObject isKindOfClass:[PhMedia class]])
     {
         [liquidNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_liquidMenu];
-        [theDrawView updateNameList:_liquidMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuLiquid];
+        [theDrawView updateNameList:PhLevelNameMenuLiquid];
     }
     else if ([theObject isKindOfClass:[PhLight class]])
     {
         [lightNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:_lightMenu];
-        [theDrawView updateNameList:_lightMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuLight];
+        [theDrawView updateNameList:PhLevelNameMenuLight];
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
@@ -510,7 +510,7 @@
         [polyNames addObject:[theName copy]];
     }
     
-    [self refreshAllMenusOf:_polyMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuPolygon];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
 }
@@ -522,14 +522,14 @@
     if (theNamedPolyOrginalIndex < 0 || theNamedPolyOrginalIndex == NSNotFound)
     {
         [thePoly setPhName:nil];
-        [self refreshAllMenusOf:_polyMenu];
+        [self refreshAllMenusOf:PhLevelNameMenuPolygon];
         return;
     }
     
     [namedPolyObjects removeObject:thePoly];
     [thePoly setPhName:nil];
     [polyNames removeObjectAtIndex:theNamedPolyOrginalIndex];
-    [self refreshAllMenusOf:_polyMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuPolygon];
 }
 
 

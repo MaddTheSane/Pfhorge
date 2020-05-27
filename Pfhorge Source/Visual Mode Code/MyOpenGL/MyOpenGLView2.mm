@@ -177,7 +177,7 @@ void SizeOpenGLScreen(int width, int height)
                                                         // (view angle, aspect ration of the width to the height, 
                                                         //  The closest distance to the camera before it clips, 
                   // FOV        // Ratio                //  The farthest distance before it stops drawing)
-	glMultMatrixf(GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0f), (GLfloat)width/(GLfloat)height, 1.0f, 512.0f).m);
+    glMultMatrixf(GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0f), (GLfloat)width/(GLfloat)height, 1.0f, 512.0f).m);
 
     glMatrixMode(GL_MODELVIEW);                          // Select The Modelview Matrix
     glLoadIdentity();                                    // Reset The Modelview Matrix
@@ -194,12 +194,12 @@ void InitializeGL(int width, int height)
     // We also want color, so we turn that on too.  We don't load any normals from
     // our .raw file so we will calculate some simple face normals to get a decent
     // perspective of the terrain.
-
+    
     glEnable(GL_LIGHT0);                                // Turn on a light with defaults set
     glEnable(GL_LIGHTING);                              // Turn on lighting
     glEnable(GL_COLOR_MATERIAL);                        // Allow color
-	
-	SizeOpenGLScreen(width, height);                    // resize the OpenGL Viewport to the given height and width
+    
+    SizeOpenGLScreen(width, height);                    // resize the OpenGL Viewport to the given height and width
 }
 
 
@@ -252,8 +252,7 @@ void Draw3DSGrid()
     glColor3ub(0, 255, 0);
 
     // Draw a 1x1 grid along the X and Z axis'
-    for(int i = -256; i <= 256; i += 4)
-    {
+    for (int i = -256; i <= 256; i += 4) {
         // Start drawing some lines
         glBegin(GL_LINES);
 
@@ -399,7 +398,7 @@ static unsigned short SetColor(short ID, int Indx) {
     // *Hint* We will put all our game init stuff here
     // Some things include loading models, textures and network initialization
                            //Position      View          Up Vector
-    g_Camera->PositionCamera(0, 1.5, 6,   0, 1.5, 0,   0, 1, 0 );    
+    g_Camera->PositionCamera(0, 1.5, 6,   0, 1.5, 0,   0, 1, 0 );
 }
 
 - (void)doMapRenderingLoopWithMapData:(LELevelData *)theLevel shapesLocation:(NSString *)theShapesLocation
@@ -541,13 +540,11 @@ static unsigned short SetColor(short ID, int Indx) {
                         //[self _logString: [NSString stringWithFormat: @"KEY %@:  unichar=0x%02x\n", (type == NSKeyDown) ? @"DOWN" : @"UP", c]];
                         
                         // These keys are all to change overall settings, and are thus not auto-repeat keys
-                        if (type == NSEventTypeKeyDown)
-                        {
+                        if (type == NSEventTypeKeyDown) {
 							BOOL IsChecked;
 							int PopupIndex;
 							float SliderLocation;
-							switch(c)
-							{
+							switch(c) {
 							/*
 							case NSF1FunctionKey:
 								PopupIndex = ([preferences integerForKey:VMRenderMode] + 1) % ViewOptions::NUM_RENDER_MODES;
@@ -743,7 +740,7 @@ static unsigned short SetColor(short ID, int Indx) {
     //SetKeyboardRepeatEnabled(YES);
     return;
     //[NSApp terminate: nil];
-   //glutSwapBuffers();
+    //glutSwapBuffers();
 }
 
 -(void)dealloc
@@ -770,5 +767,3 @@ static unsigned short SetColor(short ID, int Indx) {
 }
 
 @end
-
-

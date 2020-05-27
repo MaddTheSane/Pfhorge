@@ -261,7 +261,7 @@
     [layerNames addObject:[theLayer phName]];
     [self setUpArrayPointersFor:theLayer];
     
-    [self refreshAllMenusOf:_layerMenu];
+    [self refreshAllMenusOf:PhLevelNameMenuLayer];
 }
 
 @end

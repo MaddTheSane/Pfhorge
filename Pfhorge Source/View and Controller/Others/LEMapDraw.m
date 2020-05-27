@@ -445,30 +445,30 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
 }
 
-- (void)updateNameList:(int)theListFromNameManager
+- (void)updateNameList:(PhLevelNameMenu)theListFromNameManager
 {
     BOOL needToReCache = NO;
     switch(drawingMode) {
         case _drawLayers:
-            if (theListFromNameManager == _layerMenu)
+            if (theListFromNameManager == PhLevelNameMenuLayer)
                 needToReCache = YES;
             break;
         case _drawFloorLights:
         case _drawCeilingLights:
         case _drawLiquidLights:
-            if (theListFromNameManager == _lightMenu)
+            if (theListFromNameManager == PhLevelNameMenuLight)
                 needToReCache = YES;
             break;
         case _drawAmbientSounds:
-            if (theListFromNameManager == _ambientSoundMenu)
+            if (theListFromNameManager == PhLevelNameMenuAmbientSound)
                 needToReCache = YES;
             break;
         case _drawRandomSounds:
-            if (theListFromNameManager == _randomSoundMenu)
+            if (theListFromNameManager == PhLevelNameMenuRandomSound)
                 needToReCache = YES;
             break;
         case _drawLiquids:
-            if (theListFromNameManager == _liquidMenu)
+            if (theListFromNameManager == PhLevelNameMenuLiquid)
                 needToReCache = YES;
             break;
         default:
@@ -1902,26 +1902,18 @@ typedef NS_ENUM(short, LEEDrawMode) {
     numer4 = [tmpNameList objectEnumerator];
     while  ((curNumber = [numer nextObject]) && 
             (curMap = [numer2 nextObject]) &&
-            (curName = [numer4 nextObject]))
-    {
-        if ([curNumber isEqual:[NSNumber numberWithShort:-1]])
-        {
+            (curName = [numer4 nextObject])) {
+        if ([curNumber isEqual:[NSNumber numberWithShort:-1]]) {
             curColor = [NSColor
             colorWithCalibratedHue: 0.0
                         saturation: 0.0
                         brightness: 0.89
                              alpha: 1.0 ];
-        }
-        else
-        {
+        } else {
             curColor = [numer3 nextObject];
         }
             
-        [numberTable addEntriesFromDictionary:
-            [NSDictionary dictionaryWithObject:
-                [NSArray arrayWithObjects:curMap, curColor, curName, nil]
-            forKey:curNumber]
-        ];
+        [numberTable addEntriesFromDictionary:@{curNumber: @[curMap, curColor, curName]}];
     }
     
     if (listIncludesNone)
@@ -1930,8 +1922,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 [NSColor colorWithCalibratedHue: 0.0
                                      saturation: 0.0
                                      brightness: 0.89
-                                          alpha: 1.0	]
-                                        atIndex: 0	];
+                                          alpha: 1.0]
+                                        atIndex: 0];
     }
     
     //Keep Track Of The Arrays...
@@ -4613,7 +4605,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [currentLevel setSettingFor:PhGridFactor asFloat:8.000];
             break;
         default:
-            [self interpretKeyEvents:[NSArray arrayWithObject:event]];
+            [self interpretKeyEvents:@[event]];
             break;
     }
     
@@ -5646,7 +5638,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //id curObj = nil;
         //NSEnumerator *numer = [selections objectEnumerator];
         NSData *theLevelMapData = nil;
-        /* int theChangeCount = */ [thePasteboard declareTypes:[NSArray arrayWithObjects:PhorgeSelectionDataPasteboardType, nil]
+        /* int theChangeCount = */ [thePasteboard declareTypes:@[PhorgeSelectionDataPasteboardType]
                                                          owner:nil];
         
         // numer = [selections objectEnumerator];

@@ -57,7 +57,7 @@
     
     [self window];
     
-    //[mapLevel addMenu:tagComboMenu asA:_tagMenu];
+    //[mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self
         //selector:@selector(reloadDataFromLevel)
@@ -82,7 +82,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //[mapLevel updateCounts];
-    //[mapLevel removeMenu:tagComboMenu thatsA:_tagMenu];
+    //[mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
     //NSLog(@"PhLightEditorController dealloc");
     [super dealloc];
 }

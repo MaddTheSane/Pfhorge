@@ -337,17 +337,17 @@
                     [linePermutation removeAllItems];
                     break;
                 case _cpanel_effects_tag:
-                    [theLevelData addMenu:linePermutation asA:_tagMenu];
+                    [theLevelData addMenu:linePermutation asA:PhLevelNameMenuTag];
                     [linePermutation selectItemAtIndex:[[theLevelData tags]
                         indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_light:
-                    [theLevelData addMenu:linePermutation asA:_lightMenu];
+                    [theLevelData addMenu:linePermutation asA:PhLevelNameMenuLight];
                     [linePermutation selectItemAtIndex:[[theLevelData lights]
                         indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]]];
                     break;
                 case _cpanel_effects_polygon:
-                    [theLevelData addMenu:linePermutation asA:_polyMenu];
+                    [theLevelData addMenu:linePermutation asA:PhLevelNameMenuPolygon];
                     [linePermutation selectItemAtIndex:-1];
                     
     //IBOutlet id linePermutation;
@@ -372,7 +372,7 @@
                     terminalIndex = [[theLevelData terminals] 
                                 indexOfObjectIdenticalTo:[baseSideRef controlPanelPermutationObject]];
                     
-                    [theLevelData addMenu:linePermutation asA:_terminalMenu];
+                    [theLevelData addMenu:linePermutation asA:PhLevelNameMenuTerminal];
                     
                     if ([linePermutation numberOfItems] > terminalIndex &&  terminalIndex >= -1)
                         [linePermutation selectItemAtIndex:terminalIndex];

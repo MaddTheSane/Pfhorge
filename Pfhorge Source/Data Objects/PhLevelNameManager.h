@@ -25,42 +25,42 @@
 #import <Cocoa/Cocoa.h>
 
 typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
-    _tagMenu = 0,
-    _lightMenu,
-    _ambientSoundMenu,
-    _randomSoundMenu,
-    _liquidMenu,
-    _platformMenu,
-    _layerMenu,
-    _polyMenu,
-    _levelMenu,
-    _terminalMenu,
-    _NUMBER_OF_NAME_MENU_TYPES
+    PhLevelNameMenuTag = 0,
+    PhLevelNameMenuLight,
+    PhLevelNameMenuAmbientSound,
+    PhLevelNameMenuRandomSound,
+    PhLevelNameMenuLiquid,
+    PhLevelNameMenuPlatform,
+    PhLevelNameMenuLayer,
+    PhLevelNameMenuPolygon,
+    PhLevelNameMenuLevel,
+    PhLevelNameMenuTerminal,
+    PhLevelNameMenuCountOfLevelNameMenu
 };
 
 @class PhAbstractName;
 
 @interface PhLevelNameManager : NSObject <NSCoding>
 {
-    // This is a cache of names that get updated
-    // when needed to reflect the current names for
-    // the diffrent objects that they keep track of...
+    //! This is a cache of names that get updated
+    //! when needed to reflect the current names for
+    //! the diffrent objects that they keep track of...
     NSMutableArray<NSString*>  *tagNames, *platformNames, *lightNames,
                     *ambientSoundNames, *randomSoundNames,
                     *liquidNames, *layerNames, *polyNames,
                     *levelNames, *terminalNames;
     
-    // Whenever a menu is created that needs to be kept
-    // up to date with the above names, and always
-    // uses the same level (if a level in the front
-    // goes to the back, and resignes from the
-    /// 'main window', these menus still want
-    // to be associated with the level, unlike
-    // the inspector which updates the menus
-    // itself),
-    // then it can tell the level to keep track
-    // of these menus and update them when nessary
-    // using the following arrays and methods.
+    //! Whenever a menu is created that needs to be kept
+    //! up to date with the above names, and always
+    //! uses the same level (if a level in the front
+    //! goes to the back, and resignes from the
+    //! 'main window', these menus still want
+    //! to be associated with the level, unlike
+    //! the inspector which updates the menus
+    //! itself),
+    //! then it can tell the level to keep track
+    //! of these menus and update them when nessary
+    //! using the following arrays and methods.
     NSMutableSet<NSPopUpButton*>    *tagNameMenus, *platformNameMenus,
                     *lightNameMenus, *ambientSoundNameMenus,
                     *randomSoundNameMenus, *liquidNameMenus,
@@ -73,16 +73,16 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
     
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+#pragma mark Coding/Copy Protocal Methods
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-//  ************ Others ************
+#pragma mark Others
 - (void)checkName:(PhAbstractName *)obj;
 
 
-// ************ Menu Name Managment ************
+#pragma mark Menu Name Managment
 - (void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind;
 - (void)removeMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
 - (void)removeMenu:(NSPopUpButton*)theMenuUIO;
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
 
 - (void)changeLevelNamesTo:(NSArray *)theNames;
 
-// ************ Name Array's ************
+#pragma mark Name Arrays
 -(NSMutableArray<NSString*> *)getLiquidNames;
 -(NSMutableArray<NSString*> *)getRandomSoundNames;
 -(NSMutableArray<NSString*> *)getAmbientSoundNames;

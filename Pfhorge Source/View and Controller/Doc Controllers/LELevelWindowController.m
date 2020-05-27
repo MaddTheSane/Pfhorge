@@ -104,8 +104,8 @@ static NSCursor *crosshairCursor = nil;
 
 /*- (void)windowDidLoad
 {
-    ///[[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asA:_layerMenu];
-    ///[removeMenu:layerNamesMenu thatsA:_layerMenu];
+    ///[[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asA:PhLevelNameMenuLayer];
+    ///[removeMenu:layerNamesMenu thatsA:PhLevelNameMenuLayer];
 }*/
 
 - (void)awakeFromNib
@@ -155,7 +155,7 @@ static NSCursor *crosshairCursor = nil;
     //[mapLevelList setObjectValue:[mapLevelList objectValueOfSelectedItem]];
     //[mapLevelList setObjectValue:@"Choose Level:"];
     
-    [[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asA:_layerMenu];
+    [[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asA:PhLevelNameMenuLayer];
     
     [self updateLayerSelection];
 }
@@ -1157,7 +1157,7 @@ static NSCursor *crosshairCursor = nil;
     
     if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating)
     {
-        [levelDataObjectDeallocating removeMenu:layerNamesMenu thatsA:_layerMenu];
+        [levelDataObjectDeallocating removeMenu:layerNamesMenu thatsA:PhLevelNameMenuLayer];
     }
 }
 
