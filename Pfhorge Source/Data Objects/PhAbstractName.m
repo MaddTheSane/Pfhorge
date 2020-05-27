@@ -72,14 +72,13 @@
 
 -(id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
 		self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
 	} else {
-		versionNum = decodeNumInt(coder);
+		/*int versionNum = */decodeNumInt(coder);
 		
-		myName = decodeObjRetain(coder);
+		self.phName = decodeObj(coder);
 	}
     
     return self;
@@ -121,7 +120,12 @@
 
 -(NSString *)phName
 {
-    return (myName != nil) ? [[myName copy] autorelease] : [[NSNumber numberWithShort:[self index]] stringValue];
+    return (myName != nil) ? [[myName copy] autorelease] : [@([self index]) stringValue];
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveAName
+{
+    return [NSSet setWithObject:@"phName"];
 }
 
 -(BOOL)doIHaveAName
@@ -138,12 +142,9 @@
     
     // Should I use the trinary ? operator instead?
     
-    if (gotInt == YES && tmpInt == myIndex)
-    {
+    if (gotInt == YES && tmpInt == myIndex) {
         return NO;
-    }
-    else
-    {
+    } else {
         return YES;
     }
 }

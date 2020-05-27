@@ -117,14 +117,14 @@ extern unsigned eightBytesCount;*/
 
 
 #pragma mark Other Usful Data Micro Functions
-#define numInt(v)				[NSNumber numberWithInt:(v)]
-#define numInteger(v)			[NSNumber numberWithInteger:(v)]
-#define numShort(v)				[NSNumber numberWithShort:(v)]
+#define numInt(v)				@((int)(v))
+#define numInteger(v)			@((NSInteger)(v))
+#define numShort(v)				@((short)(v))
 #define numLong(v)				[NSNumber numberWithLong:(v)]
-#define numFloat(v)				[NSNumber numberWithFloat:(v)]
-#define numDouble(v)				[NSNumber numberWithDouble:(v)]
+#define numFloat(v)				@((float)(v))
+#define numDouble(v)				@((double)(v))
 #define numUnsignedLong(v)			[NSNumber numberWithUnsignedLong:(v)]
-#define numUnsignedShort(v)			[NSNumber numberWithUnsignedShort:(v)]
+#define numUnsignedShort(v)			@((unsigned short)(v))
 
 #define stringFromInt(v)			[numInt(v) stringValue]
 #define stringFromInteger(v)		[numInteger(v) stringValue]
@@ -210,9 +210,9 @@ static inline void encodeUnsignedShort(NSCoder *coder, unsigned short value)
 #define decodeLong(coder)			*(long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeFloat(coder)			*(float *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
 #define decodeDouble(coder)			*(double *)([(coder) decodeBytesWithReturnedLength:&eightBytesCount])
-#define decodeUnsignedInt(coder)            (unsigned int)*(unsigned int*)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
-#define decodeUnsignedLong(coder)		*(unsigned long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
-#define decodeUnsignedShort(coder)		*(unsigned short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount])
+#define decodeUnsignedInt(coder)	(unsigned int)*(unsigned int*)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
+#define decodeUnsignedLong(coder)	*(unsigned long *)([(coder) decodeBytesWithReturnedLength:&fourBytesCount])
+#define decodeUnsignedShort(coder)	*(unsigned short *)([(coder) decodeBytesWithReturnedLength:&twoBytesCount])
 #else
 static inline int decodeInt(NSCoder *coder)
 {
@@ -263,7 +263,7 @@ static inline unsigned short decodeUnsignedShort(NSCoder *coder)
 	return CFSwapInt16BigToHost(value);
 }
 #endif
-#define decodeObj(coder)			[(coder) decodeObject] // used to be retained!!!
+#define decodeObj(coder)				[(coder) decodeObject] // used to be retained!!!
 #if __has_feature(objc_arc)
 #define decodeObjRetain(coder)			[(coder) decodeObject]
 #else

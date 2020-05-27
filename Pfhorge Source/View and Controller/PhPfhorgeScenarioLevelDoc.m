@@ -188,7 +188,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     if (returnCode == NSOKButton) {
         ScenarioResources *maraResources;
-        fileName = sheet.URL.path;
+        NSURL *fileURL = sheet.URL;
+        fileName = fileURL.path;
         
         [progress setMinProgress:0.0];
         [progress setMaxProgress:100.0];
@@ -200,8 +201,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fileName];
         
         archivedLevels = [LEMapData 
-            convertMarathonDataToArchived:[fileManager
-                           contentsAtPath:fileName] 
+            convertMarathonDataToArchived:[NSData dataWithContentsOfURL:fileURL]
                                levelNames:levelNames];
                                
         [progress setStatusText:@"Saving All The Levels…"];
@@ -277,21 +277,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         NSString *pathPathwaysApp = [fileName stringByDeletingLastPathComponent];
         NSData *dpin128ResourceData = nil;
         
-        if ([pathPathwaysApp length] > 1)
-        {
-            // No slash, need to prepend it...
-            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"/Pathways Into Darkness"] retain];
-        }
-        else
-        {
-            // root path is a single slash, so don't need to prepend a slash...
-            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
-        }
+        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
         
         BOOL exsists = [fileManager fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
         
-        if ((exsists) && (!isDir))
-        {
+        if ((exsists) && (!isDir)) {
             // Data will be dallocated after fileResources gets released...
             ScenarioResources *fileResources = [[ScenarioResources alloc] initWithContentsOfFile:pathPathwaysApp];
             // Copy data (or we could just retain it, since it's immutable, which is waht the copy method
@@ -301,11 +291,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             // Should be able to just release it now, but just in case..
             [fileResources autorelease];
 			[pathPathwaysApp release];
-            
+            pathPathwaysApp = nil;
+
             NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
-        }
-        else
-        {
+        } else {
             [pathPathwaysApp release];
             pathPathwaysApp = nil;
             dpin128ResourceData = nil;

@@ -856,7 +856,7 @@
 {
     
     NSBezierPath *tmpBP2 = [NSBezierPath bezierPath];
-    NSPoint theNewPoint = NSMakePoint(((int)(point.x)), ((int)(point.y)));
+    NSPoint theNewPoint = NSMakePoint((floor(point.x)), (floor(point.y)));
 	
     [tmpBP2 moveToPoint:LEAddToPoint([mapPoint1 as32Point], -2)];
     [tmpBP2 lineToPoint:LEAddToPoint([mapPoint2 as32Point], -2)];
