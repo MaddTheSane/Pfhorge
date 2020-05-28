@@ -107,51 +107,50 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeObject:lines forKey:@"lines"];
-		[coder encodeInt:x forKey:@"x"];
-		[coder encodeInt:y forKey:@"y"];
-	} else {
-		encodeNumInt(coder, 1);
-		
-		encodeShort(coder, x);
-		encodeShort(coder, y);
-		
-		encodeObj(coder, lines);
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeObject:lines forKey:@"lines"];
+        [coder encodeInt:x forKey:@"x"];
+        [coder encodeInt:y forKey:@"y"];
+    } else {
+        encodeNumInt(coder, 1);
+        
+        encodeShort(coder, x);
+        encodeShort(coder, y);
+        
+        encodeObj(coder, lines);
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		x = [coder decodeIntForKey:@"x"];
-		y = [coder decodeIntForKey:@"y"];
-		
-		x32 = x / 16;
-		y32 = y / 16;
-		
-		lines = [[coder decodeObjectForKey:@"lines"] retain];
-	} else {
-		versionNum = decodeNumInt(coder);
-		
-		x = decodeShort(coder);
-		y = decodeShort(coder);
-		x32 = x / 16;
-		y32 = y / 16;
-		
-		if (versionNum > 0) {
-			lines = decodeObjRetain(coder);
-		} else {
-			lines = [[NSMutableSet alloc] init];
-		}
-		
-		//if (useIndexNumbersInstead)
-		//    [theLELevelDataST addPoint:self];
-		
-		//useIndexNumbersInstead = NO;
-	}
+    if (coder.allowsKeyedCoding) {
+        x = [coder decodeIntForKey:@"x"];
+        y = [coder decodeIntForKey:@"y"];
+        
+        x32 = x / 16;
+        y32 = y / 16;
+        
+        lines = [[coder decodeObjectForKey:@"lines"] retain];
+    } else {
+        int versionNum = decodeNumInt(coder);
+        
+        x = decodeShort(coder);
+        y = decodeShort(coder);
+        x32 = x / 16;
+        y32 = y / 16;
+        
+        if (versionNum > 0) {
+            lines = decodeObjRetain(coder);
+        } else {
+            lines = [[NSMutableSet alloc] init];
+        }
+        
+        //if (useIndexNumbersInstead)
+        //    [theLELevelDataST addPoint:self];
+        
+        //useIndexNumbersInstead = NO;
+    }
     
     return self;
 }

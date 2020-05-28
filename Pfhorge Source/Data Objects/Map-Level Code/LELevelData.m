@@ -164,93 +164,93 @@
     [self resetAdjacentPolygonAssociations];
     
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeInt:environment_code forKey:LELevelDataEnvironmentCodeCoderKey];
-		[coder encodeInt:physics_model forKey:LELevelDataphysics_modelCoderKey];
-		[coder encodeInt:song_index forKey:LELevelDatasong_indexCoderKey];
-		[coder encodeInt:mission_flags forKey:LELevelDatamission_flagsCoderKey];
-		[coder encodeInt:environment_flags forKey:LELevelDataenvironment_flagsCoderKey];
-		[coder encodeInt:entry_point_flags forKey:LELevelDataentry_point_flagsCoderKey];
-
-		[coder encodeObject:points forKey:LELevelDataPointsCoderKey];
-		[coder encodeObject:lines forKey:LELevelDataLinesCoderKey];
-		[coder encodeObject:polys forKey:LELevelDataPolysCoderKey];
-		[coder encodeObject:mapObjects forKey:LELevelDatamapObjectsCoderKey];
-		[coder encodeObject:sides forKey:LELevelDatasidesCoderKey];
-		[coder encodeObject:lights forKey:LELevelDatalightsCoderKey];
-		[coder encodeObject:notes forKey:LELevelDatanotesCoderKey];
-		[coder encodeObject:media forKey:LELevelDatamediaCoderKey];
-		[coder encodeObject:ambientSounds forKey:LELevelDataambientSoundsCoderKey];
-		[coder encodeObject:randomSounds forKey:LELevelDatarandomSoundsCoderKey];
-		[coder encodeObject:itemPlacement forKey:LELevelDataitemPlacementCoderKey];
-		[coder encodeObject:platforms forKey:LELevelDataplatformsCoderKey];
-		
-		[coder encodeObject:terimals forKey:LELevelDataterimalsCoderKey];
-		
-		[coder encodeObject:layersInLevel forKey:LELevelDatalayersInLevelCoderKey];
-		[coder encodeObject:currentLayer forKey:LELevelDatacurrentLayerCoderKey];
-		[coder encodeObject:layerPoints forKey:LELevelDatalayerPointsCoderKey];
-		[coder encodeObject:layerLines forKey:LELevelDatalayerLinesCoderKey];
-		[coder encodeObject:layerPolys forKey:LELevelDatalayerPolysCoderKey];
-		[coder encodeObject:layerMapObjects forKey:LELevelDatalayerMapObjectsCoderKey];
-			
-		[coder encodeObject:tags forKey:LELevelDatatagsCoderKey];
-		
-		[coder encodeObject:level_name forKey:LELevelDatalevel_nameCoderKey];
-		
-		[coder encodeObject:noteTypes forKey:LELevelDatanoteTypesCoderKey];
-		[coder encodeObject:layerNotes forKey:LELevelDatalayerNotesCoderKey];
-	} else {
-		encodeNumInt(coder, 3);
-		
-		encodeShort(coder, environment_code);
-		encodeShort(coder, physics_model);
-		encodeShort(coder, song_index);
-		encodeShort(coder, mission_flags);
-		encodeShort(coder, environment_flags);
-		encodeLong(coder, entry_point_flags);
-		
-		
-		//encodeObj(coder, linesThatIBelongTo);
-		
-		encodeObj(coder, points);
-		encodeObj(coder, lines);
-		encodeObj(coder, polys);
-		encodeObj(coder, mapObjects);
-		encodeObj(coder, sides);
-		encodeObj(coder, lights);
-		encodeObj(coder, notes);
-		encodeObj(coder, media);
-		encodeObj(coder, ambientSounds);
-		encodeObj(coder, randomSounds);
-		encodeObj(coder, itemPlacement);
-		encodeObj(coder, platforms);
-		
-		encodeObj(coder, terimals);
-		
-		encodeObj(coder, layersInLevel);
-		encodeObj(coder, currentLayer);
-		encodeObj(coder, layerPoints);
-		encodeObj(coder, layerLines);
-		encodeObj(coder, layerPolys);
-		encodeObj(coder, layerMapObjects);
-		
-		//encodeObj(coder, namedPolyObjects);
-		
-		encodeObj(coder, tags);
-		
-		encodeObj(coder, level_name);
-		
-		encodeObj(coder, noteTypes);
-		encodeObj(coder, layerNotes);
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeInt:environment_code forKey:LELevelDataEnvironmentCodeCoderKey];
+        [coder encodeInt:physics_model forKey:LELevelDataphysics_modelCoderKey];
+        [coder encodeInt:song_index forKey:LELevelDatasong_indexCoderKey];
+        [coder encodeInt:mission_flags forKey:LELevelDatamission_flagsCoderKey];
+        [coder encodeInt:environment_flags forKey:LELevelDataenvironment_flagsCoderKey];
+        [coder encodeInt:entry_point_flags forKey:LELevelDataentry_point_flagsCoderKey];
+        
+        [coder encodeObject:points forKey:LELevelDataPointsCoderKey];
+        [coder encodeObject:lines forKey:LELevelDataLinesCoderKey];
+        [coder encodeObject:polys forKey:LELevelDataPolysCoderKey];
+        [coder encodeObject:mapObjects forKey:LELevelDatamapObjectsCoderKey];
+        [coder encodeObject:sides forKey:LELevelDatasidesCoderKey];
+        [coder encodeObject:lights forKey:LELevelDatalightsCoderKey];
+        [coder encodeObject:notes forKey:LELevelDatanotesCoderKey];
+        [coder encodeObject:media forKey:LELevelDatamediaCoderKey];
+        [coder encodeObject:ambientSounds forKey:LELevelDataambientSoundsCoderKey];
+        [coder encodeObject:randomSounds forKey:LELevelDatarandomSoundsCoderKey];
+        [coder encodeObject:itemPlacement forKey:LELevelDataitemPlacementCoderKey];
+        [coder encodeObject:platforms forKey:LELevelDataplatformsCoderKey];
+        
+        [coder encodeObject:terimals forKey:LELevelDataterimalsCoderKey];
+        
+        [coder encodeObject:layersInLevel forKey:LELevelDatalayersInLevelCoderKey];
+        [coder encodeObject:currentLayer forKey:LELevelDatacurrentLayerCoderKey];
+        [coder encodeObject:layerPoints forKey:LELevelDatalayerPointsCoderKey];
+        [coder encodeObject:layerLines forKey:LELevelDatalayerLinesCoderKey];
+        [coder encodeObject:layerPolys forKey:LELevelDatalayerPolysCoderKey];
+        [coder encodeObject:layerMapObjects forKey:LELevelDatalayerMapObjectsCoderKey];
+        
+        [coder encodeObject:tags forKey:LELevelDatatagsCoderKey];
+        
+        [coder encodeObject:level_name forKey:LELevelDatalevel_nameCoderKey];
+        
+        [coder encodeObject:noteTypes forKey:LELevelDatanoteTypesCoderKey];
+        [coder encodeObject:layerNotes forKey:LELevelDatalayerNotesCoderKey];
+    } else {
+        encodeNumInt(coder, 3);
+        
+        encodeShort(coder, environment_code);
+        encodeShort(coder, physics_model);
+        encodeShort(coder, song_index);
+        encodeShort(coder, mission_flags);
+        encodeShort(coder, environment_flags);
+        encodeLong(coder, entry_point_flags);
+        
+        
+        //encodeObj(coder, linesThatIBelongTo);
+        
+        encodeObj(coder, points);
+        encodeObj(coder, lines);
+        encodeObj(coder, polys);
+        encodeObj(coder, mapObjects);
+        encodeObj(coder, sides);
+        encodeObj(coder, lights);
+        encodeObj(coder, notes);
+        encodeObj(coder, media);
+        encodeObj(coder, ambientSounds);
+        encodeObj(coder, randomSounds);
+        encodeObj(coder, itemPlacement);
+        encodeObj(coder, platforms);
+        
+        encodeObj(coder, terimals);
+        
+        encodeObj(coder, layersInLevel);
+        encodeObj(coder, currentLayer);
+        encodeObj(coder, layerPoints);
+        encodeObj(coder, layerLines);
+        encodeObj(coder, layerPolys);
+        encodeObj(coder, layerMapObjects);
+        
+        //encodeObj(coder, namedPolyObjects);
+        
+        encodeObj(coder, tags);
+        
+        encodeObj(coder, level_name);
+        
+        encodeObj(coder, noteTypes);
+        encodeObj(coder, layerNotes);
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
-
+    
     if (coder.allowsKeyedCoding) {
         environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
         physics_model = [coder decodeIntForKey:LELevelDataphysics_modelCoderKey];

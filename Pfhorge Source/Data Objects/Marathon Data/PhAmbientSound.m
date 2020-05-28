@@ -96,39 +96,38 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeInt:flags forKey:@"flags"];
-		
-		[coder encodeInt:sound_index forKey:@"sound_index"];
-		[coder encodeInt:volume forKey:@"volume"];
-	} else {
-		encodeNumInt(coder, 0);
-		
-		
-		encodeUnsignedShort(coder, flags);
-		
-		encodeShort(coder, sound_index);
-		encodeShort(coder, volume);
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeInt:flags forKey:@"flags"];
+        
+        [coder encodeInt:sound_index forKey:@"sound_index"];
+        [coder encodeInt:volume forKey:@"volume"];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        
+        encodeUnsignedShort(coder, flags);
+        
+        encodeShort(coder, sound_index);
+        encodeShort(coder, volume);
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		flags = [coder decodeIntForKey:@"flags"];
-		
-		sound_index = [coder decodeIntForKey:@"sound_index"];
-		volume = [coder decodeIntForKey:@"volume"];
-	} else {
-		versionNum = decodeNumInt(coder);
-		
-		flags = decodeUnsignedShort(coder);
-		
-		sound_index = decodeShort(coder);
-		volume = decodeShort(coder);
-	}
+    if (coder.allowsKeyedCoding) {
+        flags = [coder decodeIntForKey:@"flags"];
+        
+        sound_index = [coder decodeIntForKey:@"sound_index"];
+        volume = [coder decodeIntForKey:@"volume"];
+    } else {
+        /*int versionNum = */decodeNumInt(coder);
+        
+        flags = decodeUnsignedShort(coder);
+        
+        sound_index = decodeShort(coder);
+        volume = decodeShort(coder);
+    }
     
     return self;
 }

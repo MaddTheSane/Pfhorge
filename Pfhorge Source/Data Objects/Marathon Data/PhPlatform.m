@@ -214,15 +214,15 @@
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
-    [super encodeWithCoder:coder];
+	[super encodeWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
 		[coder encodeInt:type forKey:@"type"];
 		[coder encodeInt:speed forKey:@"speed"];
 		[coder encodeInt:delay forKey:@"delay"];
-
+		
 		[coder encodeInt:maximum_height forKey:@"maximum_height"];
 		[coder encodeInt:minimum_height forKey:@"minimum_height"];
-
+		
 		[coder encodeInt:static_flags forKey:@"static_flags"];
 		
 		[coder encodeObject:polygon_object forKey:@"polygon_object"];
@@ -251,8 +251,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
-    self = [super initWithCoder:coder];
+	self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
 		type = [coder decodeIntForKey:@"type"];
 		speed = [coder decodeIntForKey:@"type"];
@@ -268,7 +267,7 @@
 		tag = [coder decodeIntForKey:@"tag"];
 		tagObject = [coder decodeObjectForKey:@"tagObject"];
 	} else {
-		versionNum = decodeNumInt(coder);
+		/*int versionNum = */decodeNumInt(coder);
 		
 		type = decodeShort(coder);
 		speed = decodeShort(coder);
@@ -284,12 +283,12 @@
 		tag = decodeShort(coder);
 		tagObject = decodeObj(coder);
 	}
-    if (useIndexNumbersInstead)
-        [theLELevelDataST addPlatform:self];
-    
-    useIndexNumbersInstead = NO;
-    
-    return self;
+	if (useIndexNumbersInstead)
+		[theLELevelDataST addPlatform:self];
+	
+	useIndexNumbersInstead = NO;
+	
+	return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone

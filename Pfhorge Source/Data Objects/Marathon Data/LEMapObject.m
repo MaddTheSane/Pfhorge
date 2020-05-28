@@ -185,75 +185,74 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeInt:type forKey:LEMapObjectCoderTypeKey];
-		[coder encodeInt:index forKey:LEMapObjectCoderIndexKey];
-		[coder encodeInt:facing forKey:LEMapObjectCoderFacingKey];
-		[coder encodeInt:x forKey:LEMapObjectCoderXKey];
-		[coder encodeInt:y forKey:LEMapObjectCoderYKey];
-		[coder encodeInt:z forKey:LEMapObjectCoderZKey];
-		[coder encodeConditionalObject:polygonObject forKey:LEMapObjectCoderPolygonObjectKey];
-		[coder encodeInt:flags forKey:LEMapObjectCoderFlagsKey];
-	} else {
-		encodeNumInt(coder, 0);
-		
-		
-		encodeShort(coder, type);
-		encodeShort(coder, index);
-		encodeShort(coder, facing);
-		encodeShort(coder, x);
-		encodeShort(coder, y);
-		encodeShort(coder, z);
-		
-		/*if (!useIndexNumbersInstead)
-			encodeObj(coder, polygonObject);
-		else
-			encodeObj(coder, nil);*/
-
-		encodeConditionalObject(coder, polygonObject);
-		
-		encodeUnsignedShort(coder, flags);
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeInt:type forKey:LEMapObjectCoderTypeKey];
+        [coder encodeInt:index forKey:LEMapObjectCoderIndexKey];
+        [coder encodeInt:facing forKey:LEMapObjectCoderFacingKey];
+        [coder encodeInt:x forKey:LEMapObjectCoderXKey];
+        [coder encodeInt:y forKey:LEMapObjectCoderYKey];
+        [coder encodeInt:z forKey:LEMapObjectCoderZKey];
+        [coder encodeConditionalObject:polygonObject forKey:LEMapObjectCoderPolygonObjectKey];
+        [coder encodeInt:flags forKey:LEMapObjectCoderFlagsKey];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        
+        encodeShort(coder, type);
+        encodeShort(coder, index);
+        encodeShort(coder, facing);
+        encodeShort(coder, x);
+        encodeShort(coder, y);
+        encodeShort(coder, z);
+        
+        /*if (!useIndexNumbersInstead)
+            encodeObj(coder, polygonObject);
+        else
+            encodeObj(coder, nil);*/
+        
+        encodeConditionalObject(coder, polygonObject);
+        
+        encodeUnsignedShort(coder, flags);
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		polygonObject = [coder decodeObjectOfClass:[LEPolygon class] forKey:LEMapObjectCoderPolygonObjectKey];
-		type = [coder decodeIntForKey:LEMapObjectCoderTypeKey];
-		
-		index = [coder decodeIntForKey:LEMapObjectCoderIndexKey];
-		facing = [coder decodeIntForKey:LEMapObjectCoderFacingKey];
-		x = [coder decodeIntForKey:LEMapObjectCoderXKey];
-		y = [coder decodeIntForKey:LEMapObjectCoderYKey];
-		z = [coder decodeIntForKey:LEMapObjectCoderZKey];
-		x32 = x / 16;
-		y32 = y / 16;
-		flags = [coder decodeIntForKey:LEMapObjectCoderFlagsKey];
-	} else {
-		versionNum = decodeNumInt(coder);
-		
-		type = decodeShort(coder);
-		index = decodeShort(coder);
-		facing = decodeShort(coder);
-		x = decodeShort(coder);
-		y = decodeShort(coder);
-		z = decodeShort(coder);
-		
-		x32 = x / 16;
-		y32 = y / 16;
-		
-		polygonObject = decodeObj(coder);
-		
-		flags = decodeUnsignedShort(coder);
-		
-		//if (useIndexNumbersInstead)
-		//    [theLELevelDataST addObjects:self];
-		
-		//useIndexNumbersInstead = NO;
-	}
+    if (coder.allowsKeyedCoding) {
+        polygonObject = [coder decodeObjectOfClass:[LEPolygon class] forKey:LEMapObjectCoderPolygonObjectKey];
+        type = [coder decodeIntForKey:LEMapObjectCoderTypeKey];
+        
+        index = [coder decodeIntForKey:LEMapObjectCoderIndexKey];
+        facing = [coder decodeIntForKey:LEMapObjectCoderFacingKey];
+        x = [coder decodeIntForKey:LEMapObjectCoderXKey];
+        y = [coder decodeIntForKey:LEMapObjectCoderYKey];
+        z = [coder decodeIntForKey:LEMapObjectCoderZKey];
+        x32 = x / 16;
+        y32 = y / 16;
+        flags = [coder decodeIntForKey:LEMapObjectCoderFlagsKey];
+    } else {
+        /*int versionNum = */decodeNumInt(coder);
+        
+        type = decodeShort(coder);
+        index = decodeShort(coder);
+        facing = decodeShort(coder);
+        x = decodeShort(coder);
+        y = decodeShort(coder);
+        z = decodeShort(coder);
+        
+        x32 = x / 16;
+        y32 = y / 16;
+        
+        polygonObject = decodeObj(coder);
+        
+        flags = decodeUnsignedShort(coder);
+        
+        //if (useIndexNumbersInstead)
+        //    [theLELevelDataST addObjects:self];
+        
+        //useIndexNumbersInstead = NO;
+    }
     return self;
 }
 

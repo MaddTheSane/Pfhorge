@@ -67,7 +67,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
 	if (!coder.allowsKeyedCoding) {
-		[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
+		[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError userInfo:nil]];
 		return;
 	}
 	[coder encodeInt:function forKey:@"function"];
@@ -81,7 +81,7 @@
 {
 	if (self = [super init]) {
 		if (!coder.allowsKeyedCoding) {
-			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError userInfo:nil]];
+			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
 			[self release];
 			return nil;
 		}
@@ -120,8 +120,7 @@
     NSInteger tmpLong = 0;
     NSInteger i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -140,8 +139,7 @@
     
     ExportShort(phase);
     
-    for (i = 0; i < 6; i++)
-    {
+    for (i = 0; i < 6; i++) {
         ExportShort(light_states[i].function);
         ExportShort(light_states[i].period);
         ExportShort(light_states[i].delta_period);
@@ -167,8 +165,7 @@
     [myData release];
     [futureData release];
     
-    if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
-    {
+    if ([index indexOfObjectIdenticalTo:self] != myPosition) {
 		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
@@ -188,8 +185,7 @@
     
     ImportShort(phase);
     
-    for (i = 0; i < 6; i++)
-    {
+    for (i = 0; i < 6; i++) {
         ImportShort(light_states[i].function);
         ImportShort(light_states[i].period);
         ImportShort(light_states[i].delta_period);
@@ -208,83 +204,79 @@
     int i;
     
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeInt:type forKey:@"type"];
-		[coder encodeInt:flags forKey:@"flags"];
-		
-		[coder encodeInt:phase forKey:@"phase"];
-
-		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:6];
-		for (i = 0; i < 6; i++) {
-			[tmp addObject:[[[PhLightingFunctionSpecificationObject alloc] initWithCStruct:light_states[i]] autorelease]];
-		}
-		[coder encodeObject:tmp forKey:@"light_states"];
-
-		[coder encodeInt:tag forKey:@"tag"];
-		[coder encodeObject:tagObject forKey:@"tagObject"];
-	} else {
-    encodeNumInt(coder, 0);
-    
-    
-    encodeShort(coder, type);
-    encodeUnsignedShort(coder, flags);
-    
-    encodeShort(coder, phase);
-    
-    for (i = 0; i < 6; i++)
-    {
-        encodeShort(coder, light_states[i].function);
-        encodeShort(coder, light_states[i].period);
-        encodeShort(coder, light_states[i].delta_period);
-        encodeLong(coder, light_states[i].intensity);
-        encodeLong(coder, light_states[i].delta_intensity);
+    if (coder.allowsKeyedCoding) {
+        [coder encodeInt:type forKey:@"type"];
+        [coder encodeInt:flags forKey:@"flags"];
+        
+        [coder encodeInt:phase forKey:@"phase"];
+        
+        NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:6];
+        for (i = 0; i < 6; i++) {
+            [tmp addObject:[[[PhLightingFunctionSpecificationObject alloc] initWithCStruct:light_states[i]] autorelease]];
+        }
+        [coder encodeObject:tmp forKey:@"light_states"];
+        
+        [coder encodeInt:tag forKey:@"tag"];
+        [coder encodeObject:tagObject forKey:@"tagObject"];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        
+        encodeShort(coder, type);
+        encodeUnsignedShort(coder, flags);
+        
+        encodeShort(coder, phase);
+        
+        for (i = 0; i < 6; i++) {
+            encodeShort(coder, light_states[i].function);
+            encodeShort(coder, light_states[i].period);
+            encodeShort(coder, light_states[i].delta_period);
+            encodeLong(coder, light_states[i].intensity);
+            encodeLong(coder, light_states[i].delta_intensity);
+        }
+        
+        encodeShort(coder, tag);
+        encodeObj(coder, tagObject);
     }
-     
-    encodeShort(coder, tag);
-    encodeObj(coder, tagObject);
-	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     int i;
     
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		type = [coder decodeIntForKey:@"type"];
-		flags = [coder decodeIntForKey:@"flags"];
-		
-		phase = [coder decodeIntForKey:@"phase"];
-		NSArray *tmp = [coder decodeObjectForKey:@"light_states"];
-		for (i = 0; i < 6; i++)
-		{
-			PhLightingFunctionSpecificationObject *obj = tmp[i];
-			light_states[i] = obj.cStruct;
-		}
-		
-		tag = [coder decodeIntForKey:@"tag"];
-		tagObject = [coder decodeObjectForKey:@"tagObject"];
-	} else {
-    versionNum = decodeNumInt(coder);
-    
-    type = decodeShort(coder);
-    flags = decodeUnsignedShort(coder);
-    
-    phase = decodeShort(coder);
-    
-    for (i = 0; i < 6; i++)
-    {
-        light_states[i].function = decodeShort(coder);
-        light_states[i].period = decodeShort(coder);
-        light_states[i].delta_period = decodeShort(coder);
-        light_states[i].intensity = decodeInt(coder);
-        light_states[i].delta_intensity = decodeInt(coder);
+    if (coder.allowsKeyedCoding) {
+        type = [coder decodeIntForKey:@"type"];
+        flags = [coder decodeIntForKey:@"flags"];
+        
+        phase = [coder decodeIntForKey:@"phase"];
+        NSArray *tmp = [coder decodeObjectForKey:@"light_states"];
+        for (i = 0; i < 6; i++) {
+            PhLightingFunctionSpecificationObject *obj = tmp[i];
+            light_states[i] = obj.cStruct;
+        }
+        
+        tag = [coder decodeIntForKey:@"tag"];
+        tagObject = [coder decodeObjectForKey:@"tagObject"];
+    } else {
+        /*int versionNum = */decodeNumInt(coder);
+        
+        type = decodeShort(coder);
+        flags = decodeUnsignedShort(coder);
+        
+        phase = decodeShort(coder);
+        
+        for (i = 0; i < 6; i++) {
+            light_states[i].function = decodeShort(coder);
+            light_states[i].period = decodeShort(coder);
+            light_states[i].delta_period = decodeShort(coder);
+            light_states[i].intensity = decodeInt(coder);
+            light_states[i].delta_intensity = decodeInt(coder);
+        }
+        
+        tag = decodeShort(coder);
+        tagObject = decodeObj(coder);
     }
-     
-    tag = decodeShort(coder);
-    tagObject = decodeObj(coder);
-	}
     
     return self;
 }

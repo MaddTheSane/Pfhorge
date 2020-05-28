@@ -632,631 +632,16 @@
     short tmpShort;
     
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		if (!useIndexNumbersInstead) {
-			[coder encodeObject:polyLayer forKey:@"polyLayer"];
-		}
-		
-		[coder encodeBool:polygonConcave forKey:@"polygonConcave"];
-		
-		[coder encodeInt:type forKey:@"type"];
-		[coder encodeInt:flags forKey:@"flags"];
-		
-		switch (type) {
-			case _polygon_is_base:
-			case _polygon_is_minor_ouch:
-			case _polygon_is_major_ouch:
-			case _polygon_is_glue:
-			case _polygon_is_glue_trigger:
-			case _polygon_is_superglue:
-			case _polygon_is_goal:
-			case _polygon_is_visible_monster_trigger:
-			case _polygon_is_invisible_monster_trigger:
-			case _polygon_is_dual_monster_trigger:
-			case _polygon_is_item_trigger:
-			case _polygon_must_be_explored:
-			case _polygon_is_zone_border:
-			case _polygon_is_normal:
-			case _polygon_is_item_impassable:
-			case _polygon_is_monster_impassable:
-			case _polygon_is_hill:
-				permutationObject = nil;
-				break;
-            default:
-                break;
-		}
-		
-		if (useIndexNumbersInstead) {
-			switch (type) {
-				case _polygon_is_base:
-					//tmpShort = 0;
-					[coder encodeInt:0 forKey:@"permutationObject index"];
-					break;
-				case _polygon_is_light_on_trigger:
-				case _polygon_is_platform_on_trigger:
-				case _polygon_is_light_off_trigger:
-				case _polygon_is_platform_off_trigger:
-				case _polygon_is_teleporter:
-					tmpShort = GetIndexAdv(permutationObject);
-					[coder encodeInt:tmpShort forKey:@"permutationObject index"];
-					break;
-				case _polygon_is_automatic_exit:
-					//tmpShort = 0;
-					[coder encodeInt:0 forKey:@"permutationObject index"];
-					break;
-				case _polygon_is_platform:
-					[permutationObject setEncodeIndexNumbersInstead:YES];
-					[coder encodeObject:permutationObject forKey:@"permutationObject"];
-					[permutationObject setEncodeIndexNumbersInstead:NO];
-					break;
-				default:
-					break;
-			}
-		} else {
-			[coder encodeObject:permutationObject forKey:@"permutationObject"];
-		}
-		
-		@autoreleasepool {
-			NSArray *tmpVertex = [NSArray arrayWithObjects:vertexObjects count:vertexCountForPoly];
-			NSArray *tmpLine = [NSArray arrayWithObjects:lineObjects count:vertexCountForPoly];
-			if (useIndexNumbersInstead) {
-				[tmpVertex makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@YES];
-				[tmpLine makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@YES];
-			}
-			
-			[coder encodeObject:tmpVertex forKey:@"vertexObjects"];
-			[coder encodeObject:tmpLine forKey:@"lineObjects"];
-			
-			if (!useIndexNumbersInstead) {
-				NSMutableDictionary *tmpAdj = [NSMutableDictionary dictionary];
-				NSMutableDictionary *tmpSide = [NSMutableDictionary dictionary];
-				for (int i = 0; i < vertexCountForPoly; i++) {
-					if (adjacent_polygon_objects[i]) {
-						[tmpAdj setObject:adjacent_polygon_objects[i] forKey:@(i)];
-					}
-					if (side_objects[i]) {
-						[tmpSide setObject:side_objects[i] forKey:@(i)];
-					}
-				}
-				[coder encodeObject:tmpAdj forKey:@"adjacent_polygon_objects"];
-				[coder encodeObject:tmpSide forKey:@"side_objects"];
-			}
-
-			if (useIndexNumbersInstead) {
-				[tmpVertex makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@NO];
-				[tmpLine makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@NO];
-			}
-		}
-		
-		[coder encodeInt:floor_texture forKey:@"floor_texture"];
-		[coder encodeInt:ceiling_texture forKey:@"ceiling_texture"];
-		[coder encodeInt:floor_height forKey:@"floor_height"];
-		[coder encodeInt:ceiling_height forKey:@"ceiling_height"];
-		
-		if (useIndexNumbersInstead) {
-			tmpShort = GetIndexAdv(floor_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"floor_lightsource_object index"];
-			tmpShort = GetIndexAdv(ceiling_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"ceiling_lightsource_object index"];
-		} else {
-			[coder encodeObject:floor_lightsource_object forKey:@"floor_lightsource_object"];
-			[coder encodeObject:ceiling_lightsource_object forKey:@"ceiling_lightsource_object"];
-		}
-		
-		[coder encodeInt:area forKey:@"area"];
-		
-		if (!useIndexNumbersInstead) {
-			[coder encodeObject:first_object_pointer forKey:@"first_object_pointer"];
-			
-			[coder encodeObject:first_exclusion_zone_object forKey:@"first_exclusion_zone_object"];
-			[coder encodeInt:line_exclusion_zone_count forKey:@"line_exclusion_zone_count"];
-			[coder encodeInt:point_exclusion_zone_count forKey:@"point_exclusion_zone_count"];
-		}
-		
-		[coder encodeInt:floor_transfer_mode forKey:@"floor_transfer_mode"];
-		[coder encodeInt:ceiling_transfer_mode forKey:@"ceiling_transfer_mode"];
-		
-		if (!useIndexNumbersInstead) {
-			[coder encodeObject:first_neighbor_object forKey:@"first_neighbor_object"];
-			[coder encodeInt:neighbor_count forKey:@"neighbor_count"];
-		}
-		
-		[coder encodePoint:center forKey:@"center"];
-		[coder encodePoint:floor_origin forKey:@"floor_origin"];
-		[coder encodePoint:ceiling_origin forKey:@"ceiling_origin"];
-		
-		if (useIndexNumbersInstead) {
-			tmpShort = GetIndexAdv(media_object);
-			[coder encodeInt:tmpShort forKey:@"media_object index"];
-			tmpShort = GetIndexAdv(media_lightsource_object);
-			[coder encodeInt:tmpShort forKey:@"media_lightsource_object index"];
-		} else {
-			[coder encodeObject:media_object forKey:@"media_object"];
-			[coder encodeObject:media_lightsource_object forKey:@"media_lightsource_object"];
-			
-			[coder encodeObject:sound_source_objects forKey:@"sound_source_objects"];
-		}
-		
-		if (useIndexNumbersInstead) {
-			tmpShort = GetIndexAdv(ambient_sound_image_object);
-			[coder encodeInt:tmpShort forKey:@"random_sound_image_object index"];
-			tmpShort = GetIndexAdv(random_sound_image_object);
-			[coder encodeInt:tmpShort forKey:@"random_sound_image_object index"];
-		} else {
-			[coder encodeObject:ambient_sound_image_object forKey:@"ambient_sound_image_object"];
-			[coder encodeObject:random_sound_image_object forKey:@"random_sound_image_object"];
-		}
-	} else {
-    encodeNumInt(coder, 1);
-    
-    
-    if (!useIndexNumbersInstead)
-        encodeObj(coder, polyLayer);
-    
-    encodeBOOL(coder, polygonConcave);
-    
-    encodeShort(coder, type);
-    encodeUnsignedShort(coder, flags);
-    
-	switch (type) {
-		case _polygon_is_base:
-		case _polygon_is_minor_ouch:
-		case _polygon_is_major_ouch:
-		case _polygon_is_glue:
-		case _polygon_is_glue_trigger:
-		case _polygon_is_superglue:
-		case _polygon_is_goal:
-		case _polygon_is_visible_monster_trigger:
-		case _polygon_is_invisible_monster_trigger:
-		case _polygon_is_dual_monster_trigger:
-		case _polygon_is_item_trigger:
-		case _polygon_must_be_explored:
-		case _polygon_is_zone_border:
-		case _polygon_is_normal:
-		case _polygon_is_item_impassable:
-		case _polygon_is_monster_impassable:
-		case _polygon_is_hill:
-			permutationObject = nil;
-			break;
-        default:
-            break;
-	}
-    
-    if (useIndexNumbersInstead) {
-        switch (type) {
-            case _polygon_is_base:
-                tmpShort = 0;
-                encodeShort(coder, tmpShort);
-                break;
-            case _polygon_is_light_on_trigger:
-            case _polygon_is_platform_on_trigger:
-            case _polygon_is_light_off_trigger:
-            case _polygon_is_platform_off_trigger:
-            case _polygon_is_teleporter:
-                tmpShort = GetIndexAdv(permutationObject);
-                encodeShort(coder, tmpShort);
-                break;
-            case _polygon_is_automatic_exit:
-                tmpShort = 0;
-                encodeShort(coder, tmpShort);
-                break;
-            case _polygon_is_platform:
-                [permutationObject setEncodeIndexNumbersInstead:YES];
-                encodeObj(coder, permutationObject);
-                [permutationObject setEncodeIndexNumbersInstead:NO];
-                break;
-			default:
-				break;
-        }
-    } else {
-		if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/) {
-            encodeObj(coder, permutationObject);
-		} else {
-            short tmpn = [permutationObject shortValue];
-            encodeShort(coder, tmpn);
-        }
-    }
-    
-    
-    encodeShort(coder, vertexCountForPoly);
-    
-    for (i = 0; i < vertexCountForPoly; i++) {
-        if (useIndexNumbersInstead) {
-            NSLog(@"POLYGON: vertexObjects[%d]: %d", i, [vertexObjects[i] index]);
-            [vertexObjects[i] setEncodeIndexNumbersInstead:YES];
-            [lineObjects[i] setEncodeIndexNumbersInstead:YES];
-            //[side_objects[i] setEncodeIndexNumbersInstead:YES];
-        }
-        
-        encodeObj(coder, vertexObjects[i]);
-        encodeObj(coder, lineObjects[i]);
-        
-        if (!useIndexNumbersInstead)
-            encodeObj(coder, adjacent_polygon_objects[i]);
-        
-        if (!useIndexNumbersInstead)
-            encodeObj(coder, side_objects[i]);
-        
-        if (useIndexNumbersInstead) {
-            [vertexObjects[i] setEncodeIndexNumbersInstead:NO];
-            [lineObjects[i] setEncodeIndexNumbersInstead:NO];
-            //[side_objects[i] setEncodeIndexNumbersInstead:NO];
-        }
-        else
-            side_objects[i] = nil;
-    }
-    
-    encodeShort(coder, floor_texture);
-    encodeShort(coder, ceiling_texture);
-    encodeShort(coder, floor_height);
-    encodeShort(coder, ceiling_height);
-    
-    if (useIndexNumbersInstead) {
-        tmpShort = GetIndexAdv(floor_lightsource_object);
-        encodeShort(coder, tmpShort);
-        tmpShort = GetIndexAdv(ceiling_lightsource_object);
-        encodeShort(coder, tmpShort);
-    } else {
-        encodeObj(coder, floor_lightsource_object);
-        encodeObj(coder, ceiling_lightsource_object);
-    }
-    
-    encodeLong(coder, area);
-    
-    if (!useIndexNumbersInstead) {
-        encodeObj(coder, first_object_pointer);
-        
-        encodeObj(coder, first_exclusion_zone_object);
-        encodeShort(coder, line_exclusion_zone_count);
-        encodeShort(coder, point_exclusion_zone_count);
-    }
-    
-    encodeShort(coder, floor_transfer_mode);
-    encodeShort(coder, ceiling_transfer_mode);
-    
-    if (!useIndexNumbersInstead) {
-        encodeObj(coder, first_neighbor_object);
-        encodeShort(coder, neighbor_count);
-    }
-    
-    tempInt = center.x;
-    encodeInt(coder, tempInt);
-    tempInt = center.y;
-    encodeInt(coder, tempInt);
-    
-    tempInt = floor_origin.x;
-    encodeInt(coder, tempInt);
-    tempInt = floor_origin.y;
-    encodeInt(coder, tempInt);
-    
-    tempInt = ceiling_origin.x;
-    encodeInt(coder, tempInt);
-    tempInt = ceiling_origin.y;
-    encodeInt(coder, tempInt);
-    
-    if (useIndexNumbersInstead)
-    {
-        tmpShort = GetIndexAdv(media_object);
-        encodeShort(coder, tmpShort);
-        tmpShort = GetIndexAdv(media_lightsource_object);
-        encodeShort(coder, tmpShort);
-    }
-    else
-    {
-        encodeObj(coder, media_object);
-        encodeObj(coder, media_lightsource_object);
-        
-        encodeObj(coder, sound_source_objects);
-    }
-    
-    if (useIndexNumbersInstead)
-    {
-        tmpShort = GetIndexAdv(ambient_sound_image_object);
-        encodeShort(coder, tmpShort);
-        tmpShort = GetIndexAdv(random_sound_image_object);
-        encodeShort(coder, tmpShort);
-    }
-    else
-    {
-        encodeObj(coder, ambient_sound_image_object);
-        encodeObj(coder, random_sound_image_object);
-    }
-	}
-}
-
-- (id)initWithCoder:(NSCoder *)coder
-{
-    int i;
-    
-    int versionNum = 0;
-    self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding) {
         if (!useIndexNumbersInstead) {
-			polyLayer = [coder decodeObjectForKey:@"polyLayer"];
+            [coder encodeObject:polyLayer forKey:@"polyLayer"];
         }
-		
-		polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
-		
-		type = [coder decodeIntForKey:@"type"];
-		flags = [coder decodeIntForKey:@"flags"];
-
-		if (useIndexNumbersInstead) {
-			short tmpShort;
-			switch (type) {
-				case _polygon_is_base:
-					///tmpShort = 0;
-					//decodeShort(coder);
-					break;
-				case _polygon_is_light_on_trigger:
-				case _polygon_is_light_off_trigger:
-					tmpShort = [coder decodeIntForKey:@"permutationObject index"];
-					permutationObject = [self getLightFromIndex:tmpShort];
-					break;
-				case _polygon_is_platform_on_trigger:
-				case _polygon_is_platform_off_trigger:
-				case _polygon_is_teleporter:
-					tmpShort = [coder decodeIntForKey:@"permutationObject index"];
-					permutationObject = [self getPolygonFromIndex:tmpShort];
-					break;
-				case _polygon_is_automatic_exit:
-					///tmpShort = 0;
-					//decodeShort(coder);
-					break;
-				case _polygon_is_platform:
-					permutationObject = [coder decodeObjectForKey:@"permutationObject"];
-					break;
-				default:
-					break;
-			}
-		} else {
-			permutationObject = [coder decodeObjectForKey:@"permutationObject"];
-		}
-		
-		@autoreleasepool {
-			NSArray *tmpVertex = [coder decodeObjectForKey:@"vertexObjects"];
-			NSArray *tmpLine = [coder decodeObjectForKey:@"lineObjects"];
-			vertexCountForPoly = tmpVertex.count;
-			
-			for (int i = 0; i<vertexCountForPoly; i++) {
-				vertexObjects[i]=tmpVertex[i];
-				lineObjects[i]=tmpLine[i];
-			}
-			
-			if (!useIndexNumbersInstead) {
-				NSDictionary *tmpAdj = [coder decodeObjectForKey:@"adjacent_polygon_objects"];
-				NSDictionary *tmpSide = [coder decodeObjectForKey:@"side_objects"];
-				for (int i = 0; i<vertexCountForPoly; i++) {
-					adjacent_polygon_objects[i]=tmpAdj[@(i)];
-					side_objects[i]=tmpSide[@(i)];
-				}
-			}
-		}
-		
-		floor_texture = [coder decodeIntForKey:@"floor_texture"];
-		ceiling_texture = [coder decodeIntForKey:@"ceiling_texture"];
-		floor_height = [coder decodeIntForKey:@"floor_height"];
-		ceiling_height = [coder decodeIntForKey:@"ceiling_height"];
-		
-		if (useIndexNumbersInstead) {
-			short tmpShort;
-			tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
-			floor_lightsource_object = [self getLightFromIndex:tmpShort];
-			tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
-			ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
-		} else {
-			floor_lightsource_object = [coder decodeObjectForKey:@"floor_lightsource_object"];
-			ceiling_lightsource_object = [coder decodeObjectForKey:@"ceiling_lightsource_object"];
-		}
-		
-		area = [coder decodeIntForKey:@"area"];
-		
-		if (!useIndexNumbersInstead) {
-			first_object_pointer = [coder decodeObjectForKey:@"first_object_pointer"];
-			
-			first_exclusion_zone_object = [coder decodeObjectForKey:@"first_exclusion_zone_object"];
-			line_exclusion_zone_count = [coder decodeIntForKey:@"line_exclusion_zone_count"];
-			point_exclusion_zone_count = [coder decodeIntForKey:@"point_exclusion_zone_count"];
-		}
-		
-		floor_transfer_mode = [coder decodeIntForKey:@"floor_transfer_mode"];
-		ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
-		
-		if (!useIndexNumbersInstead) {
-			first_neighbor_object = [coder decodeObjectForKey:@"first_neighbor_object"];
-			neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
-		}
-		
-		center = [coder decodePointForKey:@"center"];
-		floor_origin = [coder decodePointForKey:@"floor_origin"];
-		ceiling_origin = [coder decodePointForKey:@"ceiling_origin"];
-		
-		if (useIndexNumbersInstead) {
-			short tmpShort;
-			tmpShort = [coder decodeIntForKey:@"media_object index"];
-			media_object = [self getMediaFromIndex:tmpShort];
-			tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
-			media_lightsource_object = [self getLightFromIndex:tmpShort];
-		} else {
-			media_object = [coder decodeObjectForKey:@"media_object"];
-			media_lightsource_object = [coder decodeObjectForKey:@"media_lightsource_object"];
-			
-			sound_source_objects = [coder decodeObjectForKey:@"sound_source_objects"];
-		}
-		
-		if (useIndexNumbersInstead) {
-			short tmpShort;
-			tmpShort = [coder decodeIntForKey:@"ambient_sound_image_object index"];
-			ambient_sound_image_object = [self getAmbientSoundFromIndex:tmpShort];
-			tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
-			random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
-		} else {
-			ambient_sound_image_object = [coder decodeObjectForKey:@"ambient_sound_image_object"];
-			random_sound_image_object = [coder decodeObjectForKey:@"random_sound_image_object"];
-		}
-		
-		//if (useIndexNumbersInstead)
-		//    [theLELevelDataST addPolygonDirectly:self];
-		
-		//useIndexNumbersInstead = NO;
-		
-		
-		switch (type) {
-			case _polygon_is_base:
-			case _polygon_is_minor_ouch:
-			case _polygon_is_major_ouch:
-			case _polygon_is_glue:
-			case _polygon_is_glue_trigger:
-			case _polygon_is_superglue:
-			case _polygon_is_goal:
-			case _polygon_is_visible_monster_trigger:
-			case _polygon_is_invisible_monster_trigger:
-			case _polygon_is_dual_monster_trigger:
-			case _polygon_is_item_trigger:
-			case _polygon_must_be_explored:
-			case _polygon_is_zone_border:
-			case _polygon_is_normal:
-			case _polygon_is_item_impassable:
-			case _polygon_is_monster_impassable:
-			case _polygon_is_hill:
-				permutationObject = nil;
-				break;
-            default:
-                break;
-		}
-	} else {
-    versionNum = decodeNumInt(coder);
-    
-    if (!useIndexNumbersInstead)
-        polyLayer = decodeObj(coder);
-    
-    polygonConcave = decodeBOOL(coder);
-    
-    type = decodeShort(coder);
-    flags = decodeUnsignedShort(coder);
-/*
--(id)getLightFromIndex:(short)theIndex;
--(id)getMediaFromIndex:(short)theIndex;
--(id)getAmbientSoundFromIndex:(short)theIndex;
--(id)getRandomSoundFromIndex:(short)theIndex;
--(id)getPolygonFromIndex:(short)theIndex;
-*/
-
-
-
-    if (useIndexNumbersInstead) {
-        switch (type) {
-            case _polygon_is_base:
-                ///tmpShort = 0;
-                decodeShort(coder);
-                break;
-            case _polygon_is_light_on_trigger:
-            case _polygon_is_light_off_trigger:
-                permutationObject = [self getLightFromIndex:decodeShort(coder)];
-                break;
-            case _polygon_is_platform_on_trigger:
-            case _polygon_is_platform_off_trigger:
-            case _polygon_is_teleporter:
-                ///tmpShort = [permutationObject getIndex];
-                permutationObject = [self getPolygonFromIndex:decodeShort(coder)];
-                break;
-            case _polygon_is_automatic_exit:
-                ///tmpShort = 0;
-                decodeShort(coder);
-                break;
-            case _polygon_is_platform:
-                permutationObject = decodeObj(coder);
-                break;
-			default:
-				break;
-        }
-    } else {
-        if (_polygon_is_automatic_exit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
-            if (versionNum < 1) {
-                decodeObj(coder);
-                permutationObject = [numShort(256) copy];
-            } else
-                permutationObject = [numShort(decodeShort(coder)) copy];
-        }
-        else
-            permutationObject = decodeObj(coder);
-    }
-    vertexCountForPoly = decodeShort(coder);
-    //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
-    for (i = 0; i < vertexCountForPoly; i++) {
-        vertexObjects[i] = decodeObj(coder);
-        lineObjects[i] = decodeObj(coder);
         
-        if (!useIndexNumbersInstead)
-            adjacent_polygon_objects[i] = decodeObj(coder);
+        [coder encodeBool:polygonConcave forKey:@"polygonConcave"];
         
-        if (!useIndexNumbersInstead)
-            side_objects[i] = decodeObj(coder);
-    }
-    
-    floor_texture = decodeShort(coder);
-    ceiling_texture = decodeShort(coder);
-    floor_height = decodeShort(coder);
-    ceiling_height = decodeShort(coder);
-    
-    if (useIndexNumbersInstead) {
-        floor_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        ceiling_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-    } else {
-        floor_lightsource_object = decodeObj(coder);
-        ceiling_lightsource_object = decodeObj(coder);
-    }
-    
-    area = decodeLong(coder);
-    
-    if (!useIndexNumbersInstead) {
-        first_object_pointer = decodeObj(coder);
+        [coder encodeInt:type forKey:@"type"];
+        [coder encodeInt:flags forKey:@"flags"];
         
-        first_exclusion_zone_object = decodeObj(coder);
-        line_exclusion_zone_count = decodeShort(coder);
-        point_exclusion_zone_count = decodeShort(coder);
-    }
-    
-    floor_transfer_mode = decodeShort(coder);
-    ceiling_transfer_mode = decodeShort(coder);
-    
-    if (!useIndexNumbersInstead) {
-        first_neighbor_object = decodeObj(coder);
-        neighbor_count = decodeShort(coder);
-    }
-    
-    center.x = decodeInt(coder);
-    center.y = decodeInt(coder);
-    
-    floor_origin.x = decodeInt(coder);
-    floor_origin.y = decodeInt(coder);
-    
-    ceiling_origin.x = decodeInt(coder);
-    ceiling_origin.y = decodeInt(coder);
-    
-    if (useIndexNumbersInstead) {
-        media_object = [self getMediaFromIndex:decodeShort(coder)];
-        media_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-    } else {
-        media_object = decodeObj(coder);
-        media_lightsource_object = decodeObj(coder);
-        
-        sound_source_objects = decodeObj(coder);
-    }
-    
-    if (useIndexNumbersInstead) {
-        ambient_sound_image_object = [self getAmbientSoundFromIndex:decodeShort(coder)];
-        random_sound_image_object = [self getRandomSoundFromIndex:decodeShort(coder)];
-    } else {
-        ambient_sound_image_object = decodeObj(coder);
-        random_sound_image_object = decodeObj(coder);
-    }
-    
-    //if (useIndexNumbersInstead)
-    //    [theLELevelDataST addPolygonDirectly:self];
-    
-    //useIndexNumbersInstead = NO;
-    
-    
         switch (type) {
             case _polygon_is_base:
             case _polygon_is_minor_ouch:
@@ -1280,7 +665,622 @@
             default:
                 break;
         }
-	}
+        
+        if (useIndexNumbersInstead) {
+            switch (type) {
+                case _polygon_is_base:
+                    //tmpShort = 0;
+                    [coder encodeInt:0 forKey:@"permutationObject index"];
+                    break;
+                case _polygon_is_light_on_trigger:
+                case _polygon_is_platform_on_trigger:
+                case _polygon_is_light_off_trigger:
+                case _polygon_is_platform_off_trigger:
+                case _polygon_is_teleporter:
+                    tmpShort = GetIndexAdv(permutationObject);
+                    [coder encodeInt:tmpShort forKey:@"permutationObject index"];
+                    break;
+                case _polygon_is_automatic_exit:
+                    //tmpShort = 0;
+                    [coder encodeInt:0 forKey:@"permutationObject index"];
+                    break;
+                case _polygon_is_platform:
+                    [permutationObject setEncodeIndexNumbersInstead:YES];
+                    [coder encodeObject:permutationObject forKey:@"permutationObject"];
+                    [permutationObject setEncodeIndexNumbersInstead:NO];
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            [coder encodeObject:permutationObject forKey:@"permutationObject"];
+        }
+        
+        @autoreleasepool {
+            NSArray *tmpVertex = [NSArray arrayWithObjects:vertexObjects count:vertexCountForPoly];
+            NSArray *tmpLine = [NSArray arrayWithObjects:lineObjects count:vertexCountForPoly];
+            if (useIndexNumbersInstead) {
+                [tmpVertex makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@YES];
+                [tmpLine makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@YES];
+            }
+            
+            [coder encodeObject:tmpVertex forKey:@"vertexObjects"];
+            [coder encodeObject:tmpLine forKey:@"lineObjects"];
+            
+            if (!useIndexNumbersInstead) {
+                NSMutableDictionary *tmpAdj = [NSMutableDictionary dictionary];
+                NSMutableDictionary *tmpSide = [NSMutableDictionary dictionary];
+                for (int i = 0; i < vertexCountForPoly; i++) {
+                    if (adjacent_polygon_objects[i]) {
+                        [tmpAdj setObject:adjacent_polygon_objects[i] forKey:@(i)];
+                    }
+                    if (side_objects[i]) {
+                        [tmpSide setObject:side_objects[i] forKey:@(i)];
+                    }
+                }
+                [coder encodeObject:tmpAdj forKey:@"adjacent_polygon_objects"];
+                [coder encodeObject:tmpSide forKey:@"side_objects"];
+            }
+            
+            if (useIndexNumbersInstead) {
+                [tmpVertex makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@NO];
+                [tmpLine makeObjectsPerformSelector:@selector(setEncodeIndexNumbersInstead:) withObject:@NO];
+            }
+        }
+        
+        [coder encodeInt:floor_texture forKey:@"floor_texture"];
+        [coder encodeInt:ceiling_texture forKey:@"ceiling_texture"];
+        [coder encodeInt:floor_height forKey:@"floor_height"];
+        [coder encodeInt:ceiling_height forKey:@"ceiling_height"];
+        
+        if (useIndexNumbersInstead) {
+            tmpShort = GetIndexAdv(floor_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"floor_lightsource_object index"];
+            tmpShort = GetIndexAdv(ceiling_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"ceiling_lightsource_object index"];
+        } else {
+            [coder encodeObject:floor_lightsource_object forKey:@"floor_lightsource_object"];
+            [coder encodeObject:ceiling_lightsource_object forKey:@"ceiling_lightsource_object"];
+        }
+        
+        [coder encodeInt:area forKey:@"area"];
+        
+        if (!useIndexNumbersInstead) {
+            [coder encodeObject:first_object_pointer forKey:@"first_object_pointer"];
+            
+            [coder encodeObject:first_exclusion_zone_object forKey:@"first_exclusion_zone_object"];
+            [coder encodeInt:line_exclusion_zone_count forKey:@"line_exclusion_zone_count"];
+            [coder encodeInt:point_exclusion_zone_count forKey:@"point_exclusion_zone_count"];
+        }
+        
+        [coder encodeInt:floor_transfer_mode forKey:@"floor_transfer_mode"];
+        [coder encodeInt:ceiling_transfer_mode forKey:@"ceiling_transfer_mode"];
+        
+        if (!useIndexNumbersInstead) {
+            [coder encodeObject:first_neighbor_object forKey:@"first_neighbor_object"];
+            [coder encodeInt:neighbor_count forKey:@"neighbor_count"];
+        }
+        
+        [coder encodePoint:center forKey:@"center"];
+        [coder encodePoint:floor_origin forKey:@"floor_origin"];
+        [coder encodePoint:ceiling_origin forKey:@"ceiling_origin"];
+        
+        if (useIndexNumbersInstead) {
+            tmpShort = GetIndexAdv(media_object);
+            [coder encodeInt:tmpShort forKey:@"media_object index"];
+            tmpShort = GetIndexAdv(media_lightsource_object);
+            [coder encodeInt:tmpShort forKey:@"media_lightsource_object index"];
+        } else {
+            [coder encodeObject:media_object forKey:@"media_object"];
+            [coder encodeObject:media_lightsource_object forKey:@"media_lightsource_object"];
+            
+            [coder encodeObject:sound_source_objects forKey:@"sound_source_objects"];
+        }
+        
+        if (useIndexNumbersInstead) {
+            tmpShort = GetIndexAdv(ambient_sound_image_object);
+            [coder encodeInt:tmpShort forKey:@"random_sound_image_object index"];
+            tmpShort = GetIndexAdv(random_sound_image_object);
+            [coder encodeInt:tmpShort forKey:@"random_sound_image_object index"];
+        } else {
+            [coder encodeObject:ambient_sound_image_object forKey:@"ambient_sound_image_object"];
+            [coder encodeObject:random_sound_image_object forKey:@"random_sound_image_object"];
+        }
+    } else {
+        encodeNumInt(coder, 1);
+        
+        
+        if (!useIndexNumbersInstead)
+            encodeObj(coder, polyLayer);
+        
+        encodeBOOL(coder, polygonConcave);
+        
+        encodeShort(coder, type);
+        encodeUnsignedShort(coder, flags);
+        
+        switch (type) {
+            case _polygon_is_base:
+            case _polygon_is_minor_ouch:
+            case _polygon_is_major_ouch:
+            case _polygon_is_glue:
+            case _polygon_is_glue_trigger:
+            case _polygon_is_superglue:
+            case _polygon_is_goal:
+            case _polygon_is_visible_monster_trigger:
+            case _polygon_is_invisible_monster_trigger:
+            case _polygon_is_dual_monster_trigger:
+            case _polygon_is_item_trigger:
+            case _polygon_must_be_explored:
+            case _polygon_is_zone_border:
+            case _polygon_is_normal:
+            case _polygon_is_item_impassable:
+            case _polygon_is_monster_impassable:
+            case _polygon_is_hill:
+                permutationObject = nil;
+                break;
+            default:
+                break;
+        }
+        
+        if (useIndexNumbersInstead) {
+            switch (type) {
+                case _polygon_is_base:
+                    tmpShort = 0;
+                    encodeShort(coder, tmpShort);
+                    break;
+                case _polygon_is_light_on_trigger:
+                case _polygon_is_platform_on_trigger:
+                case _polygon_is_light_off_trigger:
+                case _polygon_is_platform_off_trigger:
+                case _polygon_is_teleporter:
+                    tmpShort = GetIndexAdv(permutationObject);
+                    encodeShort(coder, tmpShort);
+                    break;
+                case _polygon_is_automatic_exit:
+                    tmpShort = 0;
+                    encodeShort(coder, tmpShort);
+                    break;
+                case _polygon_is_platform:
+                    [permutationObject setEncodeIndexNumbersInstead:YES];
+                    encodeObj(coder, permutationObject);
+                    [permutationObject setEncodeIndexNumbersInstead:NO];
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/) {
+                encodeObj(coder, permutationObject);
+            } else {
+                short tmpn = [permutationObject shortValue];
+                encodeShort(coder, tmpn);
+            }
+        }
+        
+        
+        encodeShort(coder, vertexCountForPoly);
+        
+        for (i = 0; i < vertexCountForPoly; i++) {
+            if (useIndexNumbersInstead) {
+                NSLog(@"POLYGON: vertexObjects[%d]: %d", i, [vertexObjects[i] index]);
+                [vertexObjects[i] setEncodeIndexNumbersInstead:YES];
+                [lineObjects[i] setEncodeIndexNumbersInstead:YES];
+                //[side_objects[i] setEncodeIndexNumbersInstead:YES];
+            }
+            
+            encodeObj(coder, vertexObjects[i]);
+            encodeObj(coder, lineObjects[i]);
+            
+            if (!useIndexNumbersInstead)
+                encodeObj(coder, adjacent_polygon_objects[i]);
+            
+            if (!useIndexNumbersInstead)
+                encodeObj(coder, side_objects[i]);
+            
+            if (useIndexNumbersInstead) {
+                [vertexObjects[i] setEncodeIndexNumbersInstead:NO];
+                [lineObjects[i] setEncodeIndexNumbersInstead:NO];
+                //[side_objects[i] setEncodeIndexNumbersInstead:NO];
+            }
+            else
+                side_objects[i] = nil;
+        }
+        
+        encodeShort(coder, floor_texture);
+        encodeShort(coder, ceiling_texture);
+        encodeShort(coder, floor_height);
+        encodeShort(coder, ceiling_height);
+        
+        if (useIndexNumbersInstead) {
+            tmpShort = GetIndexAdv(floor_lightsource_object);
+            encodeShort(coder, tmpShort);
+            tmpShort = GetIndexAdv(ceiling_lightsource_object);
+            encodeShort(coder, tmpShort);
+        } else {
+            encodeObj(coder, floor_lightsource_object);
+            encodeObj(coder, ceiling_lightsource_object);
+        }
+        
+        encodeLong(coder, area);
+        
+        if (!useIndexNumbersInstead) {
+            encodeObj(coder, first_object_pointer);
+            
+            encodeObj(coder, first_exclusion_zone_object);
+            encodeShort(coder, line_exclusion_zone_count);
+            encodeShort(coder, point_exclusion_zone_count);
+        }
+        
+        encodeShort(coder, floor_transfer_mode);
+        encodeShort(coder, ceiling_transfer_mode);
+        
+        if (!useIndexNumbersInstead) {
+            encodeObj(coder, first_neighbor_object);
+            encodeShort(coder, neighbor_count);
+        }
+        
+        tempInt = center.x;
+        encodeInt(coder, tempInt);
+        tempInt = center.y;
+        encodeInt(coder, tempInt);
+        
+        tempInt = floor_origin.x;
+        encodeInt(coder, tempInt);
+        tempInt = floor_origin.y;
+        encodeInt(coder, tempInt);
+        
+        tempInt = ceiling_origin.x;
+        encodeInt(coder, tempInt);
+        tempInt = ceiling_origin.y;
+        encodeInt(coder, tempInt);
+        
+        if (useIndexNumbersInstead)
+        {
+            tmpShort = GetIndexAdv(media_object);
+            encodeShort(coder, tmpShort);
+            tmpShort = GetIndexAdv(media_lightsource_object);
+            encodeShort(coder, tmpShort);
+        }
+        else
+        {
+            encodeObj(coder, media_object);
+            encodeObj(coder, media_lightsource_object);
+            
+            encodeObj(coder, sound_source_objects);
+        }
+        
+        if (useIndexNumbersInstead)
+        {
+            tmpShort = GetIndexAdv(ambient_sound_image_object);
+            encodeShort(coder, tmpShort);
+            tmpShort = GetIndexAdv(random_sound_image_object);
+            encodeShort(coder, tmpShort);
+        }
+        else
+        {
+            encodeObj(coder, ambient_sound_image_object);
+            encodeObj(coder, random_sound_image_object);
+        }
+    }
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    int i;
+    
+    int versionNum = 0;
+    self = [super initWithCoder:coder];
+    if (coder.allowsKeyedCoding) {
+        if (!useIndexNumbersInstead) {
+            polyLayer = [coder decodeObjectForKey:@"polyLayer"];
+        }
+        
+        polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
+        
+        type = [coder decodeIntForKey:@"type"];
+        flags = [coder decodeIntForKey:@"flags"];
+        
+        if (useIndexNumbersInstead) {
+            short tmpShort;
+            switch (type) {
+                case _polygon_is_base:
+                    ///tmpShort = 0;
+                    //decodeShort(coder);
+                    break;
+                case _polygon_is_light_on_trigger:
+                case _polygon_is_light_off_trigger:
+                    tmpShort = [coder decodeIntForKey:@"permutationObject index"];
+                    permutationObject = [self getLightFromIndex:tmpShort];
+                    break;
+                case _polygon_is_platform_on_trigger:
+                case _polygon_is_platform_off_trigger:
+                case _polygon_is_teleporter:
+                    tmpShort = [coder decodeIntForKey:@"permutationObject index"];
+                    permutationObject = [self getPolygonFromIndex:tmpShort];
+                    break;
+                case _polygon_is_automatic_exit:
+                    ///tmpShort = 0;
+                    //decodeShort(coder);
+                    break;
+                case _polygon_is_platform:
+                    permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+        }
+        
+        @autoreleasepool {
+            NSArray *tmpVertex = [coder decodeObjectForKey:@"vertexObjects"];
+            NSArray *tmpLine = [coder decodeObjectForKey:@"lineObjects"];
+            vertexCountForPoly = tmpVertex.count;
+            
+            for (int i = 0; i<vertexCountForPoly; i++) {
+                vertexObjects[i]=tmpVertex[i];
+                lineObjects[i]=tmpLine[i];
+            }
+            
+            if (!useIndexNumbersInstead) {
+                NSDictionary *tmpAdj = [coder decodeObjectForKey:@"adjacent_polygon_objects"];
+                NSDictionary *tmpSide = [coder decodeObjectForKey:@"side_objects"];
+                for (int i = 0; i<vertexCountForPoly; i++) {
+                    adjacent_polygon_objects[i]=tmpAdj[@(i)];
+                    side_objects[i]=tmpSide[@(i)];
+                }
+            }
+        }
+        
+        floor_texture = [coder decodeIntForKey:@"floor_texture"];
+        ceiling_texture = [coder decodeIntForKey:@"ceiling_texture"];
+        floor_height = [coder decodeIntForKey:@"floor_height"];
+        ceiling_height = [coder decodeIntForKey:@"ceiling_height"];
+        
+        if (useIndexNumbersInstead) {
+            short tmpShort;
+            tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
+            floor_lightsource_object = [self getLightFromIndex:tmpShort];
+            tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
+            ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
+        } else {
+            floor_lightsource_object = [coder decodeObjectForKey:@"floor_lightsource_object"];
+            ceiling_lightsource_object = [coder decodeObjectForKey:@"ceiling_lightsource_object"];
+        }
+        
+        area = [coder decodeIntForKey:@"area"];
+        
+        if (!useIndexNumbersInstead) {
+            first_object_pointer = [coder decodeObjectForKey:@"first_object_pointer"];
+            
+            first_exclusion_zone_object = [coder decodeObjectForKey:@"first_exclusion_zone_object"];
+            line_exclusion_zone_count = [coder decodeIntForKey:@"line_exclusion_zone_count"];
+            point_exclusion_zone_count = [coder decodeIntForKey:@"point_exclusion_zone_count"];
+        }
+        
+        floor_transfer_mode = [coder decodeIntForKey:@"floor_transfer_mode"];
+        ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
+        
+        if (!useIndexNumbersInstead) {
+            first_neighbor_object = [coder decodeObjectForKey:@"first_neighbor_object"];
+            neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
+        }
+        
+        center = [coder decodePointForKey:@"center"];
+        floor_origin = [coder decodePointForKey:@"floor_origin"];
+        ceiling_origin = [coder decodePointForKey:@"ceiling_origin"];
+        
+        if (useIndexNumbersInstead) {
+            short tmpShort;
+            tmpShort = [coder decodeIntForKey:@"media_object index"];
+            media_object = [self getMediaFromIndex:tmpShort];
+            tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
+            media_lightsource_object = [self getLightFromIndex:tmpShort];
+        } else {
+            media_object = [coder decodeObjectForKey:@"media_object"];
+            media_lightsource_object = [coder decodeObjectForKey:@"media_lightsource_object"];
+            
+            sound_source_objects = [coder decodeObjectForKey:@"sound_source_objects"];
+        }
+        
+        if (useIndexNumbersInstead) {
+            short tmpShort;
+            tmpShort = [coder decodeIntForKey:@"ambient_sound_image_object index"];
+            ambient_sound_image_object = [self getAmbientSoundFromIndex:tmpShort];
+            tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
+            random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
+        } else {
+            ambient_sound_image_object = [coder decodeObjectForKey:@"ambient_sound_image_object"];
+            random_sound_image_object = [coder decodeObjectForKey:@"random_sound_image_object"];
+        }
+        
+        //if (useIndexNumbersInstead)
+        //    [theLELevelDataST addPolygonDirectly:self];
+        
+        //useIndexNumbersInstead = NO;
+        
+        
+        switch (type) {
+            case _polygon_is_base:
+            case _polygon_is_minor_ouch:
+            case _polygon_is_major_ouch:
+            case _polygon_is_glue:
+            case _polygon_is_glue_trigger:
+            case _polygon_is_superglue:
+            case _polygon_is_goal:
+            case _polygon_is_visible_monster_trigger:
+            case _polygon_is_invisible_monster_trigger:
+            case _polygon_is_dual_monster_trigger:
+            case _polygon_is_item_trigger:
+            case _polygon_must_be_explored:
+            case _polygon_is_zone_border:
+            case _polygon_is_normal:
+            case _polygon_is_item_impassable:
+            case _polygon_is_monster_impassable:
+            case _polygon_is_hill:
+                permutationObject = nil;
+                break;
+            default:
+                break;
+        }
+    } else {
+        versionNum = decodeNumInt(coder);
+        
+        if (!useIndexNumbersInstead)
+            polyLayer = decodeObj(coder);
+        
+        polygonConcave = decodeBOOL(coder);
+        
+        type = decodeShort(coder);
+        flags = decodeUnsignedShort(coder);
+/*
+-(id)getLightFromIndex:(short)theIndex;
+-(id)getMediaFromIndex:(short)theIndex;
+-(id)getAmbientSoundFromIndex:(short)theIndex;
+-(id)getRandomSoundFromIndex:(short)theIndex;
+-(id)getPolygonFromIndex:(short)theIndex;
+*/
+
+
+
+        if (useIndexNumbersInstead) {
+            switch (type) {
+                case _polygon_is_base:
+                    ///tmpShort = 0;
+                    decodeShort(coder);
+                    break;
+                case _polygon_is_light_on_trigger:
+                case _polygon_is_light_off_trigger:
+                    permutationObject = [self getLightFromIndex:decodeShort(coder)];
+                    break;
+                case _polygon_is_platform_on_trigger:
+                case _polygon_is_platform_off_trigger:
+                case _polygon_is_teleporter:
+                    ///tmpShort = [permutationObject getIndex];
+                    permutationObject = [self getPolygonFromIndex:decodeShort(coder)];
+                    break;
+                case _polygon_is_automatic_exit:
+                    ///tmpShort = 0;
+                    decodeShort(coder);
+                    break;
+                case _polygon_is_platform:
+                    permutationObject = decodeObj(coder);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            if (_polygon_is_automatic_exit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
+                if (versionNum < 1) {
+                    decodeObj(coder);
+                    permutationObject = [numShort(256) copy];
+                } else
+                    permutationObject = [numShort(decodeShort(coder)) copy];
+            }
+            else
+                permutationObject = decodeObj(coder);
+        }
+        vertexCountForPoly = decodeShort(coder);
+    //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
+        for (i = 0; i < vertexCountForPoly; i++) {
+            vertexObjects[i] = decodeObj(coder);
+            lineObjects[i] = decodeObj(coder);
+            
+            if (!useIndexNumbersInstead)
+                adjacent_polygon_objects[i] = decodeObj(coder);
+            
+            if (!useIndexNumbersInstead)
+                side_objects[i] = decodeObj(coder);
+        }
+        
+        floor_texture = decodeShort(coder);
+        ceiling_texture = decodeShort(coder);
+        floor_height = decodeShort(coder);
+        ceiling_height = decodeShort(coder);
+        
+        if (useIndexNumbersInstead) {
+            floor_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            ceiling_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+        } else {
+            floor_lightsource_object = decodeObj(coder);
+            ceiling_lightsource_object = decodeObj(coder);
+        }
+        
+        area = decodeLong(coder);
+        
+        if (!useIndexNumbersInstead) {
+            first_object_pointer = decodeObj(coder);
+            
+            first_exclusion_zone_object = decodeObj(coder);
+            line_exclusion_zone_count = decodeShort(coder);
+            point_exclusion_zone_count = decodeShort(coder);
+        }
+        
+        floor_transfer_mode = decodeShort(coder);
+        ceiling_transfer_mode = decodeShort(coder);
+        
+        if (!useIndexNumbersInstead) {
+            first_neighbor_object = decodeObj(coder);
+            neighbor_count = decodeShort(coder);
+        }
+        
+        center.x = decodeInt(coder);
+        center.y = decodeInt(coder);
+        
+        floor_origin.x = decodeInt(coder);
+        floor_origin.y = decodeInt(coder);
+        
+        ceiling_origin.x = decodeInt(coder);
+        ceiling_origin.y = decodeInt(coder);
+        
+        if (useIndexNumbersInstead) {
+            media_object = [self getMediaFromIndex:decodeShort(coder)];
+            media_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+        } else {
+            media_object = decodeObj(coder);
+            media_lightsource_object = decodeObj(coder);
+            
+            sound_source_objects = decodeObj(coder);
+        }
+        
+        if (useIndexNumbersInstead) {
+            ambient_sound_image_object = [self getAmbientSoundFromIndex:decodeShort(coder)];
+            random_sound_image_object = [self getRandomSoundFromIndex:decodeShort(coder)];
+        } else {
+            ambient_sound_image_object = decodeObj(coder);
+            random_sound_image_object = decodeObj(coder);
+        }
+        
+        //if (useIndexNumbersInstead)
+        //    [theLELevelDataST addPolygonDirectly:self];
+        
+        //useIndexNumbersInstead = NO;
+        
+        
+        switch (type) {
+            case _polygon_is_base:
+            case _polygon_is_minor_ouch:
+            case _polygon_is_major_ouch:
+            case _polygon_is_glue:
+            case _polygon_is_glue_trigger:
+            case _polygon_is_superglue:
+            case _polygon_is_goal:
+            case _polygon_is_visible_monster_trigger:
+            case _polygon_is_invisible_monster_trigger:
+            case _polygon_is_dual_monster_trigger:
+            case _polygon_is_item_trigger:
+            case _polygon_must_be_explored:
+            case _polygon_is_zone_border:
+            case _polygon_is_normal:
+            case _polygon_is_item_impassable:
+            case _polygon_is_monster_impassable:
+            case _polygon_is_hill:
+                permutationObject = nil;
+                break;
+            default:
+                break;
+        }
+    }
     return self;
 }
 

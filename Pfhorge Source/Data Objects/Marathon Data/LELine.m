@@ -233,172 +233,171 @@
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeObject:mapPoint1 forKey:@"mapPoint1"];
-		[coder encodeObject:mapPoint2 forKey:@"mapPoint2"];
-		
-		[coder encodeInt:flags forKey:@"LineFlags"];
-		
-		[coder encodeInt:_Length forKey:@"length"];
-		[coder encodeInt:highestAdjacentFloor forKey:@"highestAdjacentFloor"];
-		[coder encodeInt:lowestAdjacentCeiling forKey:@"lowestAdjacentCeiling"];
-
+    if (coder.allowsKeyedCoding) {
+        [coder encodeObject:mapPoint1 forKey:@"mapPoint1"];
+        [coder encodeObject:mapPoint2 forKey:@"mapPoint2"];
+        
+        [coder encodeInt:flags forKey:@"LineFlags"];
+        
+        [coder encodeInt:_Length forKey:@"length"];
+        [coder encodeInt:highestAdjacentFloor forKey:@"highestAdjacentFloor"];
+        [coder encodeInt:lowestAdjacentCeiling forKey:@"lowestAdjacentCeiling"];
+        
         //encodeObject(coder, clockwisePolygonSideObject);
         [coder encodeObject:clockwisePolygonSideObject forKey:@"clockwisePolygonSideObject"];
         [coder encodeObject:counterclockwisePolygonSideObject forKey:@"counterclockwisePolygonSideObject"];
         //encodeObject(coder, counterclockwisePolygonSideObject);
         
-		[coder encodeConditionalObject:clockwisePolygon forKey:@"clockwisePolygon"];
-		[coder encodeConditionalObject:conterclockwisePolygon forKey:@"conterclockwisePolygon"];
-
-		// Below is verion 2 additions
-		[coder encodeBool:permanentNoSides forKey:@"permanentNoSides"];
-		
-		// Below is version 1 additions
-		[coder encodeBool:permanentSolidLine forKey:@"permanentSolidLine"];
-		[coder encodeBool:permanentLandscapeLine forKey:@"permanentLandscapeLine"];
-		[coder encodeBool:permanentTransparentLine forKey:@"permanentTransparentLine"];
-		[coder encodeBool:usePermanentSettings forKey:@"usePermanentSettings"];
-	} else {
-    encodeNumInt(coder, 2);
-    
-    /*
-    if (useIndexNumbersInstead)
-    {
-        [mapPoint1 setEncodeIndexNumbersInstead:YES];
-        [mapPoint2 setEncodeIndexNumbersInstead:YES];
-        encodeObj(coder, mapPoint1);
-        encodeObj(coder, mapPoint2);
-        [mapPoint1 setEncodeIndexNumbersInstead:NO];
-        [mapPoint2 setEncodeIndexNumbersInstead:NO];
-    }
-    else
-    {*/
-        encodeObj(coder, mapPoint1);
-        encodeObj(coder, mapPoint2);
-    /*}*/
-    
-    encodeUnsignedShort(coder, flags);
-    
-    encodeShort(coder, _Length);
-    encodeShort(coder, highestAdjacentFloor);
-    encodeShort(coder, lowestAdjacentCeiling);
-    
-    if (/*!useIndexNumbersInstead*/ /* DISABLES CODE */ (YES))
-    {
-        //encodeObject(coder, clockwisePolygonSideObject);
-        [coder encodeObject:clockwisePolygonSideObject];
-        [coder encodeObject:counterclockwisePolygonSideObject];
-        //encodeObject(coder, counterclockwisePolygonSideObject);
+        [coder encodeConditionalObject:clockwisePolygon forKey:@"clockwisePolygon"];
+        [coder encodeConditionalObject:conterclockwisePolygon forKey:@"conterclockwisePolygon"];
         
-        encodeConditionalObject(coder, clockwisePolygon);
-        encodeConditionalObject(coder, conterclockwisePolygon);
-    }
-    else
-    {
-        LEMapDraw *theDrawView = [[[NSDocumentController
-                                    sharedDocumentController]
-                                    currentDocument]
-                                    getMapDrawView];
+        // Below is verion 2 additions
+        [coder encodeBool:permanentNoSides forKey:@"permanentNoSides"];
         
-        NSSet *thePolygonSelections = [theDrawView getSelectionsOfType:LEMapDrawSelectionPolygons];
+        // Below is version 1 additions
+        [coder encodeBool:permanentSolidLine forKey:@"permanentSolidLine"];
+        [coder encodeBool:permanentLandscapeLine forKey:@"permanentLandscapeLine"];
+        [coder encodeBool:permanentTransparentLine forKey:@"permanentTransparentLine"];
+        [coder encodeBool:usePermanentSettings forKey:@"usePermanentSettings"];
+    } else {
+        encodeNumInt(coder, 2);
         
-        BOOL hasClock = [thePolygonSelections containsObject:clockwisePolygon];
-        BOOL hasCClock = [thePolygonSelections containsObject:conterclockwisePolygon];
-        
-        [clockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
-        [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
-        
-        if (hasClock)
+        /*
+        if (useIndexNumbersInstead)
         {
-            NSLog(@"hasClock was true #%d", [self index]);
-            encodeObj(coder, clockwisePolygonSideObject);
+            [mapPoint1 setEncodeIndexNumbersInstead:YES];
+            [mapPoint2 setEncodeIndexNumbersInstead:YES];
+            encodeObj(coder, mapPoint1);
+            encodeObj(coder, mapPoint2);
+            [mapPoint1 setEncodeIndexNumbersInstead:NO];
+            [mapPoint2 setEncodeIndexNumbersInstead:NO];
+        }
+        else
+        {*/
+            encodeObj(coder, mapPoint1);
+            encodeObj(coder, mapPoint2);
+        /*}*/
+        
+        encodeUnsignedShort(coder, flags);
+        
+        encodeShort(coder, _Length);
+        encodeShort(coder, highestAdjacentFloor);
+        encodeShort(coder, lowestAdjacentCeiling);
+        
+        if (/*!useIndexNumbersInstead*/ /* DISABLES CODE */ (YES))
+        {
+            //encodeObject(coder, clockwisePolygonSideObject);
+            [coder encodeObject:clockwisePolygonSideObject];
+            [coder encodeObject:counterclockwisePolygonSideObject];
+            //encodeObject(coder, counterclockwisePolygonSideObject);
+            
+            encodeConditionalObject(coder, clockwisePolygon);
+            encodeConditionalObject(coder, conterclockwisePolygon);
         }
         else
         {
-            NSLog(@"hasClock was false, set to nil #%d", [self index]);
-            encodeObj(coder, nil);
+            LEMapDraw *theDrawView = [[[NSDocumentController
+                                        sharedDocumentController]
+                                        currentDocument]
+                                        getMapDrawView];
+            
+            NSSet *thePolygonSelections = [theDrawView getSelectionsOfType:LEMapDrawSelectionPolygons];
+            
+            BOOL hasClock = [thePolygonSelections containsObject:clockwisePolygon];
+            BOOL hasCClock = [thePolygonSelections containsObject:conterclockwisePolygon];
+            
+            [clockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
+            [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
+            
+            if (hasClock)
+            {
+                NSLog(@"hasClock was true #%d", [self index]);
+                encodeObj(coder, clockwisePolygonSideObject);
+            }
+            else
+            {
+                NSLog(@"hasClock was false, set to nil #%d", [self index]);
+                encodeObj(coder, nil);
+            }
+            
+            if (hasCClock)
+            {
+                NSLog(@"hasCClock was true #%d", [self index]);
+                encodeObj(coder, counterclockwisePolygonSideObject);
+            }
+            else
+            {
+                NSLog(@"hasCClock was false, set to nil #%d", [self index]);
+                encodeObj(coder, nil);
+            }
+        
+            if (hasClock)
+                encodeObj(coder, clockwisePolygon);
+            else
+                encodeObj(coder, nil);
+            
+            if (hasCClock)
+                encodeObj(coder, conterclockwisePolygon);
+            else
+                encodeObj(coder, nil); 
+            
+            [clockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
+            [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
         }
         
-        if (hasCClock)
-        {
-            NSLog(@"hasCClock was true #%d", [self index]);
-            encodeObj(coder, counterclockwisePolygonSideObject);
-        }
-        else
-        {
-            NSLog(@"hasCClock was false, set to nil #%d", [self index]);
-            encodeObj(coder, nil);
-        }
-    
-        if (hasClock)
-            encodeObj(coder, clockwisePolygon);
-        else
-            encodeObj(coder, nil);
+        // Below is verion 2 additions
+        encodeBOOL(coder, permanentNoSides);
         
-        if (hasCClock)
-            encodeObj(coder, conterclockwisePolygon);
-        else
-            encodeObj(coder, nil); 
-        
-        [clockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
-        [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
-    }
-    
-    // Below is verion 2 additions
-    encodeBOOL(coder, permanentNoSides);
-    
-    // Below is version 1 additions
-    encodeBOOL(coder, permanentSolidLine);
-    encodeBOOL(coder, permanentLandscapeLine);
-    encodeBOOL(coder, permanentTransparentLine);
-    encodeBOOL(coder, usePermanentSettings);
+        // Below is version 1 additions
+        encodeBOOL(coder, permanentSolidLine);
+        encodeBOOL(coder, permanentLandscapeLine);
+        encodeBOOL(coder, permanentTransparentLine);
+        encodeBOOL(coder, usePermanentSettings);
 	}
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		mapPoint1 = [coder decodeObjectForKey:@"mapPoint1"];
-		mapPoint2 = [coder decodeObjectForKey:@"mapPoint2"];
-		flags = [coder decodeIntForKey:@"LineFlags"];
-		
-		_Length = [coder decodeIntForKey:@"length"];
-		highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
-		lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
-		
-		clockwisePolygonSideObject = [coder decodeObjectForKey:@"clockwisePolygonSideObject"];
-		counterclockwisePolygonSideObject = [coder decodeObjectForKey:@"counterclockwisePolygonSideObject"];
-		
-		
-		clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
-		conterclockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"conterclockwisePolygon"];
-
-		permanentNoSides = [coder decodeBoolForKey:@"permanentNoSides"];
-		
-		permanentSolidLine = [coder decodeBoolForKey:@"permanentSolidLine"];
-		permanentLandscapeLine = [coder decodeBoolForKey:@"permanentLandscapeLine"];
-		permanentTransparentLine = [coder decodeBoolForKey:@"permanentTransparentLine"];
-		usePermanentSettings = [coder decodeBoolForKey:@"usePermanentSettings"];
-	} else {
-    versionNum = decodeNumInt(coder);
-    
-    mapPoint1 = decodeObj(coder);
-    mapPoint2 = decodeObj(coder);
-    flags = decodeUnsignedShort(coder);
-    
-    _Length = decodeShort(coder);
-    highestAdjacentFloor = decodeShort(coder);
-    lowestAdjacentCeiling = decodeShort(coder);
-    
-    clockwisePolygonSideObject = decodeObj(coder);
-    counterclockwisePolygonSideObject = decodeObj(coder);
-    
-    
-    clockwisePolygon = decodeObj(coder);
-    conterclockwisePolygon = decodeObj(coder);
+    if (coder.allowsKeyedCoding) {
+        mapPoint1 = [coder decodeObjectForKey:@"mapPoint1"];
+        mapPoint2 = [coder decodeObjectForKey:@"mapPoint2"];
+        flags = [coder decodeIntForKey:@"LineFlags"];
+        
+        _Length = [coder decodeIntForKey:@"length"];
+        highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
+        lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
+        
+        clockwisePolygonSideObject = [coder decodeObjectForKey:@"clockwisePolygonSideObject"];
+        counterclockwisePolygonSideObject = [coder decodeObjectForKey:@"counterclockwisePolygonSideObject"];
+        
+        
+        clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
+        conterclockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"conterclockwisePolygon"];
+        
+        permanentNoSides = [coder decodeBoolForKey:@"permanentNoSides"];
+        
+        permanentSolidLine = [coder decodeBoolForKey:@"permanentSolidLine"];
+        permanentLandscapeLine = [coder decodeBoolForKey:@"permanentLandscapeLine"];
+        permanentTransparentLine = [coder decodeBoolForKey:@"permanentTransparentLine"];
+        usePermanentSettings = [coder decodeBoolForKey:@"usePermanentSettings"];
+    } else {
+        int versionNum = decodeNumInt(coder);
+        
+        mapPoint1 = decodeObj(coder);
+        mapPoint2 = decodeObj(coder);
+        flags = decodeUnsignedShort(coder);
+        
+        _Length = decodeShort(coder);
+        highestAdjacentFloor = decodeShort(coder);
+        lowestAdjacentCeiling = decodeShort(coder);
+        
+        clockwisePolygonSideObject = decodeObj(coder);
+        counterclockwisePolygonSideObject = decodeObj(coder);
+        
+        
+        clockwisePolygon = decodeObj(coder);
+        conterclockwisePolygon = decodeObj(coder);
     
     // *** *** *** Additions *** *** ***
     
@@ -409,8 +408,7 @@
     permanentTransparentLine = NO;
     usePermanentSettings = NO;
     
-    switch (versionNum)
-    {
+    switch (versionNum) {
         case 2:
             permanentNoSides = decodeBOOL(coder);
         case 1:
@@ -422,25 +420,25 @@
             break;
     }
 
-    // *** *** *** END Additions *** *** ***
-    /*
-    if (useIndexNumbersInstead)
-        [theLELevelDataST addLine:self];*/
-    /*
-    if (useIndexNumbersInstead)
-    {
-        if (clockwisePolygon == nil)
-            NSLog(@"clockwisePolygon was nil #%d", [self index]);
-        else
-            NSLog(@"clockwisePolygon was not nil #%d", [self index]);
+        // *** *** *** END Additions *** *** ***
+        /*
+        if (useIndexNumbersInstead)
+            [theLELevelDataST addLine:self];*/
+        /*
+        if (useIndexNumbersInstead)
+        {
+            if (clockwisePolygon == nil)
+                NSLog(@"clockwisePolygon was nil #%d", [self index]);
+            else
+                NSLog(@"clockwisePolygon was not nil #%d", [self index]);
+            
+            if (conterclockwisePolygon == nil)
+                NSLog(@"conterclockwisePolygon was nil #%d", [self index]);
+            else
+                NSLog(@"conterclockwisePolygon was not nil #%d", [self index]);
+        }*/
         
-        if (conterclockwisePolygon == nil)
-            NSLog(@"conterclockwisePolygon was nil #%d", [self index]);
-        else
-            NSLog(@"conterclockwisePolygon was not nil #%d", [self index]);
-    }*/
-    
-    //useIndexNumbersInstead = NO;
+        //useIndexNumbersInstead = NO;
 	}
     return self;
 }

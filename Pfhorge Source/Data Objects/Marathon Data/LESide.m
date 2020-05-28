@@ -489,14 +489,11 @@
         polygon_object = decodeObj(coder);
         line_object = decodeObj(coder);
         
-        if (useIndexNumbersInstead)
-        {
+        if (useIndexNumbersInstead) {
             primary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
             secondary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
             transparent_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        }
-        else
-        {
+        } else {
             primary_lightsource_object = decodeObj(coder);
             secondary_lightsource_object = decodeObj(coder);
             transparent_lightsource_object = decodeObj(coder);
@@ -505,8 +502,7 @@
         
         ambient_delta = decodeLong(coder);
         
-        if (polygon_object == nil || line_object == nil)
-        {
+        if (polygon_object == nil || line_object == nil) {
             if (self == nil)
                 NSLog(@"************************************ Side - nil - 2...");
             //return nil;

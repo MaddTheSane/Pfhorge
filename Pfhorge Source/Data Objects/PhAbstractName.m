@@ -61,25 +61,25 @@
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		[coder encodeObject:myName forKey:@"PhAbstractName"];
-	} else {
-		encodeNumInt(coder, 0);
-		
-		encodeObj(coder, myName);
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeObject:myName forKey:@"PhAbstractName"];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        encodeObj(coder, myName);
+    }
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
-	} else {
-		/*int versionNum = */decodeNumInt(coder);
-		
-		self.phName = decodeObj(coder);
-	}
+    if (coder.allowsKeyedCoding) {
+        self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
+    } else {
+        /*int versionNum = */decodeNumInt(coder);
+        
+        self.phName = decodeObj(coder);
+    }
     
     return self;
 }

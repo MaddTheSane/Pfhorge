@@ -64,13 +64,13 @@
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
-	if (coder.allowsKeyedCoding) {
-		[coder encodeBool:useIndexNumbersInstead forKey:@"useIndexNumbersInstead"];
-	} else {
-		encodeNumInt(coder, 0);
-		
-		encodeBOOL(coder, useIndexNumbersInstead); // 2
-	}
+    if (coder.allowsKeyedCoding) {
+        [coder encodeBool:useIndexNumbersInstead forKey:@"useIndexNumbersInstead"];
+    } else {
+        encodeNumInt(coder, 0);
+        
+        encodeBOOL(coder, useIndexNumbersInstead); // 2
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -78,19 +78,19 @@
     int versionNum = 0;
     
     self = [super init];
-	if (coder.allowsKeyedCoding) {
-		useIndexNumbersInstead = [coder decodeBoolForKey:@"useIndexNumbersInstead"];
-	} else {
-		versionNum = decodeNumInt(coder);
-		useIndexNumbersInstead = decodeBOOL(coder); // 2
-	}
+    if (coder.allowsKeyedCoding) {
+        useIndexNumbersInstead = [coder decodeBoolForKey:@"useIndexNumbersInstead"];
+    } else {
+        versionNum = decodeNumInt(coder);
+        useIndexNumbersInstead = decodeBOOL(coder); // 2
+    }
     
-    if (useIndexNumbersInstead)
-    { // Get the ST's from the front map...
+    if (useIndexNumbersInstead) {
+        // Get the ST's from the front map...
         [[[[NSDocumentController sharedDocumentController]
-                                 currentDocument]
-                                 getCurrentLevelLoaded]
-                                 setUpArrayPointersFor:self];
+           currentDocument]
+          getCurrentLevelLoaded]
+         setUpArrayPointersFor:self];
         everythingLoadedST = YES;
     }
     

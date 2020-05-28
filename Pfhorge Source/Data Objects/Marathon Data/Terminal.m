@@ -170,23 +170,22 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int versionNum = 0;
     self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		theSections = [coder decodeObjectForKey:@"theSections"];
-		
-		flags = [coder decodeIntForKey:@"flags"];
-		lineCount = [coder decodeIntForKey:@"lineCount"];
-		textEncoded = [coder decodeBoolForKey:@"textEncoded"];
-	} else {
-		versionNum = decodeNumInt(coder);
-		
-		theSections = decodeObjRetain(coder);
-		
-		flags = decodeUnsignedShort(coder);
-		lineCount = decodeShort(coder);
-		textEncoded = decodeBOOL(coder);
-	}
+    if (coder.allowsKeyedCoding) {
+        theSections = [coder decodeObjectForKey:@"theSections"];
+        
+        flags = [coder decodeIntForKey:@"flags"];
+        lineCount = [coder decodeIntForKey:@"lineCount"];
+        textEncoded = [coder decodeBoolForKey:@"textEncoded"];
+    } else {
+        /*int versionNum = */decodeNumInt(coder);
+        
+        theSections = decodeObjRetain(coder);
+        
+        flags = decodeUnsignedShort(coder);
+        lineCount = decodeShort(coder);
+        textEncoded = decodeBOOL(coder);
+    }
     
     /*if (useIndexNumbersInstead)
         [theLELevelDataST addPlatform:self];*/

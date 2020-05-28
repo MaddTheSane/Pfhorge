@@ -53,14 +53,11 @@
 #pragma mark Coding/Copy Protocal Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
-    // Do I need to encode the NSObject super class?
-    //[super encodeWithCoder:coder];
-    
-	if (coder.allowsKeyedCoding) {
-		
-	} else {
-		encodeNumInt(coder, 0);
-	}
+    if (coder.allowsKeyedCoding) {
+        
+    } else {
+        encodeNumInt(coder, 0);
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -71,11 +68,11 @@
     
     self = [self init];
     
-	if (coder.allowsKeyedCoding) {
-		
-	} else {
-		versionNum = decodeNumInt(coder);
-	}
+    if (coder.allowsKeyedCoding) {
+        
+    } else {
+        versionNum = decodeNumInt(coder);
+    }
     
     twoBytesCount = 2;
     fourBytesCount = 4;
