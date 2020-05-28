@@ -361,11 +361,13 @@
         
         [self setUpArrayPointersForEveryObject];
         
-        if (versionNum > 0) // this is if versionNum == 1...
-        { [noteTypes setArray:decodeObj(coder)]; }
+        if (versionNum > 0) { // this is if versionNum == 1...
+            [noteTypes setArray:decodeObj(coder)];
+        }
         
-        if (versionNum > 1)
-        { [layerNotes setArray:decodeObj(coder)]; }
+        if (versionNum > 1) {
+            [layerNotes setArray:decodeObj(coder)];
+        }
         
         if (versionNum > 2) {
             

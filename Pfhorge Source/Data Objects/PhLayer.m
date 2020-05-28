@@ -74,22 +74,12 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
- #pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark -
+#pragma mark Init and Dealloc Methods
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    [self setPhName:@"No Name"];
-    objectsInThisLayer = [[NSMutableArray alloc] init];
-    
-    layerColor = nil;
-    
-    return self;
+    return self = [self initWithName:@"No Name"];
 }
 
 -(id)initWithName:(NSString *)theString

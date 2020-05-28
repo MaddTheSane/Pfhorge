@@ -503,8 +503,9 @@
         ambient_delta = decodeLong(coder);
         
         if (polygon_object == nil || line_object == nil) {
-            if (self == nil)
+            if (self == nil) {
                 NSLog(@"************************************ Side - nil - 2...");
+            }
             //return nil;
         }
     }

@@ -1181,7 +1181,7 @@
                 permutationObject = decodeObj(coder);
         }
         vertexCountForPoly = decodeShort(coder);
-    //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
+        //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
         for (i = 0; i < vertexCountForPoly; i++) {
             vertexObjects[i] = decodeObj(coder);
             lineObjects[i] = decodeObj(coder);

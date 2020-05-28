@@ -284,8 +284,7 @@
         encodeShort(coder, highestAdjacentFloor);
         encodeShort(coder, lowestAdjacentCeiling);
         
-        if (/*!useIndexNumbersInstead*/ /* DISABLES CODE */ (YES))
-        {
+        if (/*!useIndexNumbersInstead*/ /* DISABLES CODE */ (YES)) {
             //encodeObject(coder, clockwisePolygonSideObject);
             [coder encodeObject:clockwisePolygonSideObject];
             [coder encodeObject:counterclockwisePolygonSideObject];
@@ -293,9 +292,7 @@
             
             encodeConditionalObject(coder, clockwisePolygon);
             encodeConditionalObject(coder, conterclockwisePolygon);
-        }
-        else
-        {
+        } else {
             LEMapDraw *theDrawView = [[[NSDocumentController
                                         sharedDocumentController]
                                         currentDocument]
@@ -309,37 +306,33 @@
             [clockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
             [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:YES];
             
-            if (hasClock)
-            {
+            if (hasClock) {
                 NSLog(@"hasClock was true #%d", [self index]);
                 encodeObj(coder, clockwisePolygonSideObject);
-            }
-            else
-            {
+            } else {
                 NSLog(@"hasClock was false, set to nil #%d", [self index]);
                 encodeObj(coder, nil);
             }
             
-            if (hasCClock)
-            {
+            if (hasCClock) {
                 NSLog(@"hasCClock was true #%d", [self index]);
                 encodeObj(coder, counterclockwisePolygonSideObject);
-            }
-            else
-            {
+            } else {
                 NSLog(@"hasCClock was false, set to nil #%d", [self index]);
                 encodeObj(coder, nil);
             }
         
-            if (hasClock)
+            if (hasClock) {
                 encodeObj(coder, clockwisePolygon);
-            else
+            } else {
                 encodeObj(coder, nil);
+            }
             
-            if (hasCClock)
+            if (hasCClock) {
                 encodeObj(coder, conterclockwisePolygon);
-            else
-                encodeObj(coder, nil); 
+            } else {
+                encodeObj(coder, nil);
+            }
             
             [clockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
             [counterclockwisePolygonSideObject setEncodeIndexNumbersInstead:NO];
@@ -398,27 +391,27 @@
         
         clockwisePolygon = decodeObj(coder);
         conterclockwisePolygon = decodeObj(coder);
-    
-    // *** *** *** Additions *** *** ***
-    
-    permanentNoSides = NO;
-    
-    permanentSolidLine = NO;
-    permanentLandscapeLine = NO;
-    permanentTransparentLine = NO;
-    usePermanentSettings = NO;
-    
-    switch (versionNum) {
-        case 2:
-            permanentNoSides = decodeBOOL(coder);
-        case 1:
-            permanentSolidLine = decodeBOOL(coder);
-            permanentLandscapeLine = decodeBOOL(coder);
-            permanentTransparentLine = decodeBOOL(coder);
-            usePermanentSettings = decodeBOOL(coder);
-        default:
-            break;
-    }
+        
+        // *** *** *** Additions *** *** ***
+        
+        permanentNoSides = NO;
+        
+        permanentSolidLine = NO;
+        permanentLandscapeLine = NO;
+        permanentTransparentLine = NO;
+        usePermanentSettings = NO;
+        
+        switch (versionNum) {
+            case 2:
+                permanentNoSides = decodeBOOL(coder);
+            case 1:
+                permanentSolidLine = decodeBOOL(coder);
+                permanentLandscapeLine = decodeBOOL(coder);
+                permanentTransparentLine = decodeBOOL(coder);
+                usePermanentSettings = decodeBOOL(coder);
+            default:
+                break;
+        }
 
         // *** *** *** END Additions *** *** ***
         /*
