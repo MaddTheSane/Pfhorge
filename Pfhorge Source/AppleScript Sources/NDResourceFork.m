@@ -64,32 +64,22 @@ static OSErr createResourceFork(NSURL * aURL);
 	return [self initForPermission:fsWrPerm AtURL:aURL];
 }
 
+- (instancetype)initForReadingAtURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable *)outError
+{
+	return [self initForPermission:fsRdPerm AtURL:aURL error:outError];
+}
+
+- (instancetype)initForWritingAtURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
+{
+	return [self initForPermission:fsWrPerm AtURL:aURL error:outError];
+}
+
 /*
  * initForPermission:AtURL:
  */
 - (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL
 {
-	OSErr			theError = !noErr;
-	FSRef			theFsRef;
-
-	if ((self = [self init]) && [aURL getFSRef:&theFsRef]) {
-		HFSUniStr255 forkName;
-		FSGetResourceForkName(&forkName);
-		theError = FSOpenResourceFile(&theFsRef, forkName.length, forkName.unicode, aPermission, &fileReference);
-		
-/*
-		if (noErr != theError) {	// file has no resource fork
-			theError = createResourceFork(aURL);
-			fileReference = FSOpenResFile(&theFsRef, aPermission);
-			theError = fileReference > 0 ? ResError() : !noErr;
-		}
- */	}
-
-	if (noErr != theError) {
-		return nil;
-	}
-
-	return self;
+	return self = [self initForPermission:aPermission AtURL:aURL error:NULL];
 }
 
 - (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
@@ -97,18 +87,28 @@ static OSErr createResourceFork(NSURL * aURL);
 	OSErr			theError = !noErr;
 	FSRef			theFsRef;
 
-	if ((self = [self init]) && [aURL getFSRef:&theFsRef]) {
+	if ((self = [super init])) {
+		if (![aURL getFSRef:&theFsRef]) {
+			if (outError) {
+				*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: aURL}];
+			}
+			return nil;
+		}
 		HFSUniStr255 forkName;
 		FSGetResourceForkName(&forkName);
 		theError = FSOpenResourceFile(&theFsRef, forkName.length, forkName.unicode, aPermission, &fileReference);
 		
-/*
-		if (noErr != theError) {	// file has no resource fork
+		if (resFNotFound == theError && aPermission == fsWrPerm) {	// file has no resource fork
 			theError = createResourceFork(aURL);
-			fileReference = FSOpenResFile(&theFsRef, aPermission);
-			theError = fileReference > 0 ? ResError() : !noErr;
+			if (theError != noErr) {
+				if (outError) {
+					*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: aURL}];
+				}
+				return nil;
+			}
+			theError = FSOpenResourceFile(&theFsRef, forkName.length, forkName.unicode, aPermission, &fileReference);
 		}
- */	}
+	}
 
 	if (noErr != theError) {
 		if (outError) {
@@ -253,7 +253,7 @@ static OSErr createResourceFork(NSURL * aURL);
 	return YES;
 }
 
-- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID error:(NSError**)outError
+- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
 {
 	NSData			* theData = nil;
 	Handle			theResHandle;
@@ -344,8 +344,10 @@ OSErr createResourceFork(NSURL * aURL)
 		NSData			* theFileName;
 
 		theFileName = [[aURL lastPathComponent] dataUsingEncoding:NSUnicodeStringEncoding];
-		FSCreateResFile(&theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL);
+		HFSUniStr255 forkName;
+		FSGetResourceForkName(&forkName);
+		return FSCreateResourceFile(&theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, forkName.length, forkName.unicode, &theFsRef, NULL);
 	}
 	
-	return ResError();
+	return fnfErr;
 }
