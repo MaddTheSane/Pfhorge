@@ -801,11 +801,9 @@ static NSCursor *crosshairCursor = nil;
                 stringWithFormat:@"Enter New Name For Polygon #%d",
                 [thePoly index]]];
         // Open the sheet...
-    [NSApp  beginSheet:rdSheet
-            modalForWindow:mainWindow
-            modalDelegate:self
-            didEndSelector:NULL
-            contextInfo:nil];
+    [mainWindow beginSheet:rdSheet completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     
     sheetOpen = YES;
 }
@@ -817,7 +815,7 @@ static NSCursor *crosshairCursor = nil;
             to:[rdTextInputTB stringValue]];
     
     [rdSheet orderOut:nil];
-    [NSApp endSheet:rdSheet];
+    [mainWindow endSheet:rdSheet returnCode:NSModalResponseOK];
     
     sheetOpen = NO;
 }
@@ -825,7 +823,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)rdCancelBtnAction:(id)sender
 {
     [rdSheet orderOut:nil];
-    [NSApp endSheet:rdSheet];
+    [mainWindow endSheet:rdSheet returnCode:NSModalResponseCancel];
     
     sheetOpen = NO;
 }
@@ -836,7 +834,7 @@ static NSCursor *crosshairCursor = nil;
             removeNameOfPolygon:objectToRename];
     
     [rdSheet orderOut:nil];
-    [NSApp endSheet:rdSheet];
+    [mainWindow endSheet:rdSheet returnCode:2];
     
     sheetOpen = NO;
 }
@@ -851,11 +849,9 @@ static NSCursor *crosshairCursor = nil;
         return;
     
         // Open the sheet...
-    [NSApp  beginSheet:gotoSheet
-            modalForWindow:mainWindow
-            modalDelegate:self
-            didEndSelector:NULL
-            contextInfo:nil];
+    [mainWindow beginSheet:gotoSheet completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     
     sheetOpen = YES;
 }
@@ -870,7 +866,7 @@ static NSCursor *crosshairCursor = nil;
         [gotoMsgIT setStringValue:theReply];
     } else {
         [gotoSheet orderOut:nil];
-        [NSApp endSheet:gotoSheet];
+        [mainWindow endSheet:gotoSheet returnCode:NSModalResponseOK];
         
         sheetOpen = NO;
     }
@@ -879,7 +875,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)gotoCancelBtnAction:(id)sender
 {
     [gotoSheet orderOut:nil];
-    [NSApp endSheet:gotoSheet];
+    [mainWindow endSheet:gotoSheet returnCode:NSModalResponseCancel];
     
     sheetOpen = NO;
 }
@@ -893,11 +889,9 @@ static NSCursor *crosshairCursor = nil;
     if ([self isSheetAlreadyOpen])
         return;
     
-    [NSApp  beginSheet:newHeightWindowSheet
-                        modalForWindow:[self window]
-                        modalDelegate:self
-                        didEndSelector:NULL
-                        contextInfo:nil];
+    [[self window] beginSheet:newHeightWindowSheet completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     sheetOpen = YES;
 }
 
@@ -911,7 +905,7 @@ static NSCursor *crosshairCursor = nil;
     sheetOpen = NO;
     
     [newHeightWindowSheet orderOut:nil];
-    [NSApp endSheet:newHeightWindowSheet];
+    [[self window] endSheet:newHeightWindowSheet returnCode:NSModalResponseOK];
 }
 
 - (IBAction)cancelNewHeightSheetBtn:(id)sender
@@ -921,7 +915,7 @@ static NSCursor *crosshairCursor = nil;
     sheetOpen = NO;
     
     [newHeightWindowSheet orderOut:nil];
-    [NSApp endSheet:newHeightWindowSheet];
+    [[self window] endSheet:newHeightWindowSheet returnCode:NSModalResponseCancel];
 }
 
 // ************************ Note Group Manager Actions/Methods ************************
@@ -938,11 +932,9 @@ static NSCursor *crosshairCursor = nil;
     if ([self isSheetAlreadyOpen])
         return;
     
-    [NSApp  beginSheet:noteGroupWindow
-                        modalForWindow:[self window]
-                        modalDelegate:self
-                        didEndSelector:NULL
-                        contextInfo:nil];
+    [[self window] beginSheet:noteGroupWindow completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     sheetOpen = YES;
 }
 
@@ -953,7 +945,7 @@ static NSCursor *crosshairCursor = nil;
     sheetOpen = NO;
     
     [noteGroupWindow orderOut:nil];
-    [NSApp endSheet:noteGroupWindow];
+    [[self window] endSheet:noteGroupWindow];
 }
 
 
@@ -1008,11 +1000,9 @@ static NSCursor *crosshairCursor = nil;
     
     [noteTextTB setStringValue:[tmpNote text]];
     
-    [NSApp  beginSheet:annotationNoteEditorSheet
-                        modalForWindow:[self window]
-                        modalDelegate:self
-                        didEndSelector:NULL
-                        contextInfo:nil];
+    [[self window] beginSheet:annotationNoteEditorSheet completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     
     [noteTextTB selectText:nil];
     sheetOpen = YES;
@@ -1036,7 +1026,7 @@ static NSCursor *crosshairCursor = nil;
     sheetOpen = NO;
     
     [annotationNoteEditorSheet orderOut:nil];
-    [NSApp endSheet:annotationNoteEditorSheet];
+    [[self window] endSheet:annotationNoteEditorSheet];
     tmpNote = nil;
 }
 
