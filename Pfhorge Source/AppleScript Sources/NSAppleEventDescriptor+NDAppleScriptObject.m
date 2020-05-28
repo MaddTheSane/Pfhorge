@@ -147,9 +147,8 @@
 
 	theTarget = [self attributeDescriptorForKeyword:keyAddressAttr];
 
-	if( theTarget )
-	{
-		if( [theTarget descriptorType] != typeApplicationBundleID )
+	if (theTarget) {
+		if ([theTarget descriptorType] != typeApplicationBundleID)
 			theTarget = [theTarget coerceToDescriptorType:typeApplicationBundleID];
 
 		theProcessBundleID = [[NSString alloc] initWithData:[theTarget data] encoding:NSUTF8StringEncoding];

@@ -26,34 +26,44 @@
 + (id)compileExecuteString:(NSString *) aString;
 + (Component)findNextComponent;
 
-+ (instancetype)appleScriptObjectWithString:(NSString *) aString;
-+ (instancetype)appleScriptObjectWithData:(NSData *) aData;
-+ (instancetype)appleScriptObjectWithContentsOfFile:(NSString *) aPath;
-+ (instancetype)appleScriptObjectWithContentsOfURL:(NSURL *) aURL;
++ (instancetype)appleScriptObjectWithString:(NSString *) aString NS_SWIFT_UNAVAILABLE("");
++ (instancetype)appleScriptObjectWithData:(NSData *) aData NS_SWIFT_UNAVAILABLE("");
++ (instancetype)appleScriptObjectWithContentsOfFile:(NSString *) aPath NS_SWIFT_UNAVAILABLE("");
++ (instancetype)appleScriptObjectWithContentsOfURL:(NSURL *) aURL NS_SWIFT_UNAVAILABLE("");
 
-- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags;
-- (instancetype)initWithContentsOfFile:(NSString *)aPath;
-- (instancetype)initWithContentsOfFile:(NSString *)aPath component:(Component)aComponent;
-- (instancetype)initWithContentsOfURL:(NSURL *)anURL;
-- (instancetype)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent;
-- (instancetype)initWithData:(NSData *)aDesc;
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithContentsOfFile:(NSString *)aPath NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithContentsOfFile:(NSString *)aPath component:(Component)aComponent NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithContentsOfURL:(NSURL *)anURL NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithData:(NSData *)aDesc NS_SWIFT_UNAVAILABLE("");
 
-- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent NS_SWIFT_UNAVAILABLE("");
+- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent NS_SWIFT_UNAVAILABLE("");
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
+
+//NSError initializers
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags component:(Component)aComponent error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithData:(NSData *)aData component:(Component)aComponent error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags error:(NSError**)outError;
+- (instancetype)initWithContentsOfURL:(NSURL *)anURL error:(NSError**)outError;
+- (instancetype)initWithContentsOfURL:(NSURL *)aURL component:(Component)aComponent error:(NSError**)outError;
+- (instancetype)initWithData:(NSData *)aDesc error:(NSError**)outError;
 
 - (NSData *)data;
 
 - (BOOL)execute;
 - (BOOL)executeOpen:(NSArray *)aParameters;
-- (BOOL)executeEvent:(NSAppleEventDescriptor *)anEvent;
+- (BOOL)executeEvent:(NSAppleEventDescriptor *)anEvent NS_SWIFT_UNAVAILABLE("");
+- (BOOL)executeEvent:(NSAppleEventDescriptor *)anEvent error:(NSError**)outError;
 
 - (NSArray<NSString*> *)arrayOfEventIdentifier;
 - (BOOL)respondsToEventClass:(AEEventClass)aEventClass eventID:(AEEventID)aEventID;
 
 - (NSAppleEventDescriptor *)resultAppleEventDescriptor;
 - (id)resultObject;
-- (id)resultData;
+- (NSData*)resultData;
 - (NSString *)resultAsString;
 
 @property (strong) NDAppleScriptObject *contextAppleScriptObject;
@@ -68,10 +78,10 @@
 
 - (NSAppleEventDescriptor *)targetNoProcess;
 
-- (BOOL)writeToURL:(NSURL *)aURL;
-- (BOOL)writeToURL:(NSURL *)aURL Id:(ResID)anID;
-- (BOOL)writeToFile:(NSString *)aPath;
-- (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID;
+- (BOOL)writeToURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
+- (BOOL)writeToURL:(NSURL *)aURL Id:(ResID)anID NS_SWIFT_UNAVAILABLE("");
+- (BOOL)writeToFile:(NSString *)aPath NS_SWIFT_UNAVAILABLE("");
+- (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID NS_SWIFT_UNAVAILABLE("");
 
 //! If \c anID is INT16_MIN, writes to data fork instead.
 - (BOOL)writeToURL:(NSURL *)aURL ID:(ResID)anID error:(NSError**)outError;
