@@ -66,7 +66,7 @@
 
 // *********************** Table Delegate Notifications ***********************
 #pragma mark -
-#pragma mark ********* Table Delegate Notifications *********
+#pragma mark Table Delegate Notifications
 
 // *** Delegate Messages ***
 
@@ -99,7 +99,10 @@
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
-        [self savePanelDidEnd:theSavePanel returnCode:result contextInfo:NULL];
+        if (result != NSModalResponseOK)
+            return;
+        
+        [[self document] saveMergedMapTo:[theSavePanel URL].path];
     }];
 }
 
@@ -121,32 +124,17 @@
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
-        [self savePanelDidEndForSingleExport:theSavePanel returnCode:result contextInfo:NULL];
+        if (result != NSModalResponseOK)
+            return;
+        
+        [[self document] exportLevelToMarathonMap:[theSavePanel URL].path];
     }];
 }
 
 - (IBAction)deleteSelectedLevel:(id)sender
 {
-    SEND_INFO_MSG_TITLE(@"For now, delete level in finder then rescan the folder.",
+    SEND_INFO_MSG_TITLE(@"For now, delete level in Finder then rescan the folder.",
                          @"Not Directly Supported Yet");
-}
-
-// ********* END ACTIONS *********
-
-- (void)savePanelDidEnd:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
-{
-    if (returnCode != NSModalResponseOK)
-        return;
-    
-    [[self document] saveMergedMapTo:[sheet filename]];
-}
-
-- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
-{
-    if (returnCode != NSModalResponseOK)
-        return;
-    
-    [[self document] exportLevelToMarathonMap:[sheet filename]];
 }
 
 @end

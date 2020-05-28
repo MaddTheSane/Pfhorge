@@ -535,41 +535,36 @@ static NSCursor *crosshairCursor = nil;
     NSDictionary *theOptionDict = [theCurrentLevel getLevelOptionDictionary];
     float gridFactor = 0.00;
     
-	if ([theOptionDict count] == 1)
-	{
+	if ([theOptionDict count] == 1) {
 		[gridFactorMenu setEnabled:YES];
 			
 		gridFactor = [theCurrentLevel settingAsFloat:PhGridFactor];
 		
 		if (gridFactor == 0.125)
-					[gridFactorMenu selectItemAtIndex:_mm_1_8];
+            [gridFactorMenu selectItemAtIndex:_mm_1_8];
 		else if (gridFactor == 0.250)
-					[gridFactorMenu selectItemAtIndex:_mm_1_4];
+            [gridFactorMenu selectItemAtIndex:_mm_1_4];
 		else if (gridFactor == 0.500)
-					[gridFactorMenu selectItemAtIndex:_mm_1_2];
+            [gridFactorMenu selectItemAtIndex:_mm_1_2];
 		else if (gridFactor == 1.000)
-					[gridFactorMenu selectItemAtIndex:_mm_1];
+            [gridFactorMenu selectItemAtIndex:_mm_1];
 		else if (gridFactor == 2.000)
-					[gridFactorMenu selectItemAtIndex:_mm_2];
+            [gridFactorMenu selectItemAtIndex:_mm_2];
 		else if (gridFactor == 4.000)
-					[gridFactorMenu selectItemAtIndex:_mm_4];
+            [gridFactorMenu selectItemAtIndex:_mm_4];
 		else if (gridFactor == 8.000)
-					[gridFactorMenu selectItemAtIndex:_mm_8];
+            [gridFactorMenu selectItemAtIndex:_mm_8];
 		else
-					[gridFactorMenu selectItemAtIndex:-1];
+            [gridFactorMenu selectItemAtIndex:-1];
 		
 		return;
-	}
-    else if ([theOptionDict count] > 0)
-    {
+	} else if ([theOptionDict count] > 0) {
         [useMapManager setState:NSOnState];
         
         [gridOptionCheckboxes setEnabledOfMatrixCellsTo:YES];
         [objectVisabilityCheckboxes setEnabledOfMatrixCellsTo:YES];
         [gridFactorMenu setEnabled:YES];
-    }
-    else
-    {
+    } else {
         [useMapManager setState:NSOffState];
         
         [gridOptionCheckboxes setEnabledOfMatrixCellsTo:NO];
@@ -611,21 +606,21 @@ static NSCursor *crosshairCursor = nil;
     gridFactor = [theCurrentLevel settingAsFloat:PhGridFactor];
     
     if (gridFactor == 0.125)
-                [gridFactorMenu selectItemAtIndex:_mm_1_8];
+        [gridFactorMenu selectItemAtIndex:_mm_1_8];
     else if (gridFactor == 0.250)
-                [gridFactorMenu selectItemAtIndex:_mm_1_4];
+        [gridFactorMenu selectItemAtIndex:_mm_1_4];
     else if (gridFactor == 0.500)
-                [gridFactorMenu selectItemAtIndex:_mm_1_2];
+        [gridFactorMenu selectItemAtIndex:_mm_1_2];
     else if (gridFactor == 1.000)
-                [gridFactorMenu selectItemAtIndex:_mm_1];
+        [gridFactorMenu selectItemAtIndex:_mm_1];
     else if (gridFactor == 2.000)
-                [gridFactorMenu selectItemAtIndex:_mm_2];
+        [gridFactorMenu selectItemAtIndex:_mm_2];
     else if (gridFactor == 4.000)
-                [gridFactorMenu selectItemAtIndex:_mm_4];
+        [gridFactorMenu selectItemAtIndex:_mm_4];
     else if (gridFactor == 8.000)
-                [gridFactorMenu selectItemAtIndex:_mm_8];
+        [gridFactorMenu selectItemAtIndex:_mm_8];
     else
-                [gridFactorMenu selectItemAtIndex:-1];
+        [gridFactorMenu selectItemAtIndex:-1];
     
     
     
@@ -688,8 +683,7 @@ static NSCursor *crosshairCursor = nil;
 {
 	NSInteger menuSelection = [gridFactorMenu indexOfSelectedItem];
 	float theGridFactor = 0.00;
-    switch(menuSelection)
-    {
+    switch (menuSelection) {
         case _mm_1_8:
             theGridFactor = 0.125;
             break;
@@ -738,7 +732,7 @@ static NSCursor *crosshairCursor = nil;
     [theCurrentLevel setSettingFor:PhEnableObjectItem asBool:SState(objectVisabilityCheckboxes, _mm_item_vis)];
     [theCurrentLevel setSettingFor:PhEnableObjectGoal asBool:SState(objectVisabilityCheckboxes, _mm_goal_vis)];
     
-    switch(menuSelection) {
+    switch (menuSelection) {
         case _mm_1_8:
             theGridFactor = 0.125;
             break;
@@ -793,13 +787,10 @@ static NSCursor *crosshairCursor = nil;
     
     objectToRename = thePoly;
     
-    if ([thePoly doIHaveAName])
-    {
+    if ([thePoly doIHaveAName]) {
         [rdRemoveBtn setEnabled:YES];
         [rdTextInputTB setStringValue:[thePoly phName]];
-    }
-    else
-    {
+    } else {
         [rdRemoveBtn setEnabled:NO];
         [rdTextInputTB setStringValue:[NSString
                 stringWithFormat:@"Poly %d",
@@ -807,7 +798,7 @@ static NSCursor *crosshairCursor = nil;
     }
     
     [rdMessageIT setStringValue:[NSString
-                stringWithFormat:@"Enter New Name For Polygon#%d",
+                stringWithFormat:@"Enter New Name For Polygon #%d",
                 [thePoly index]]];
         // Open the sheet...
     [NSApp  beginSheet:rdSheet
@@ -875,12 +866,9 @@ static NSCursor *crosshairCursor = nil;
             gotoAndSelectIndex:[gotoTextInputTB intValue]
             ofType:(LEMapGoToType)[gotoPfhorgeObjectTypePopMenu indexOfSelectedItem]];
     
-    if (theReply != nil)
-    {
+    if (theReply != nil) {
         [gotoMsgIT setStringValue:theReply];
-    }
-    else
-    {
+    } else {
         [gotoSheet orderOut:nil];
         [NSApp endSheet:gotoSheet];
         
@@ -999,8 +987,7 @@ static NSCursor *crosshairCursor = nil;
     [noteGroupPM addItemWithTitle:@"[No Group]"];
     
     numer = [types objectEnumerator];
-    while (obj = [numer nextObject])
-    {
+    for (obj in types) {
         [noteGroupPM addItemWithTitle:[obj phName]];
     }
     
@@ -1013,12 +1000,9 @@ static NSCursor *crosshairCursor = nil;
     
     NSLog(@"index: %d", index);
     
-    if (index >= 0 && index < [types count])
-    {
+    if (index >= 0 && index < [types count]) {
         [noteGroupPM selectItemAtIndex:(index + 1)];
-    }
-    else
-    {
+    } else {
         [noteGroupPM selectItemAtIndex:0];
     }
     
@@ -1040,13 +1024,10 @@ static NSCursor *crosshairCursor = nil;
 	NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
     NSInteger index = [noteGroupPM indexOfSelectedItem];
     
-    if (index > 0)
-    {
+    if (index > 0) {
         PhNoteGroup *grp = [types objectAtIndex:(index - 1)];
         [grp addObject:tmpNote];
-    }
-    else
-    {
+    } else {
         [tmpNote setGroup:nil];
     }
     
@@ -1073,20 +1054,16 @@ static NSCursor *crosshairCursor = nil;
     [layerNamesMenu selectItemAtIndex:theCurLayerNumber];
 }
 
-- (void)setShowLevelSettingsSheetWhenWindowIsLoaded:(BOOL)theChoice
-{
-    showLevelSettingsSheetWhenWindowIsLoaded = theChoice;
-}
+@synthesize showLevelSettingsSheetWhenWindowIsLoaded;
 
 - (void)updateLevelInfoString
 {
     NSMutableString *levelInfoString;
     LELevelData *theLevel = [[self document] getCurrentLevelLoaded];   
-    NSSet *theSelections = [levelDrawView getSelectionsOfType:_all_selections];
+    NSSet *theSelections = [levelDrawView getSelectionsOfType:LEMapDrawSelectionAll];
     NSInteger theSelectionsCount = [theSelections count];
     
-    if (theSelections == nil || theSelectionsCount < 1)
-    {
+    if (theSelections == nil || theSelectionsCount < 1) {
         [theLevel updateCounts];
         
         ///levelInfoString = [[levelDrawView rectArrayDescription] retain];
@@ -1335,21 +1312,16 @@ static NSCursor *crosshairCursor = nil;
 	theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
-        [self savePanelDidEnd:theSavePanel returnCode:result contextInfo:NULL];
+        sheetOpen = NO;
+        
+        if (result != NSModalResponseOK)
+            return;
+        
+        //[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
+        [[self document] exportToMarathonFormatAtPath:[theSavePanel URL].path];
     }];
     
     sheetOpen = YES;
-}
-
-- (void)savePanelDidEnd:(NSSavePanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo
-{
-    sheetOpen = NO;
-    
-    if (returnCode != NSModalResponseOK)
-        return;
-	
-	//[[self document] writeToURL:[sheet URL] ofType:@"org.bungie.source.map" forSaveOperation:NSSaveToOperation originalContentsURL:[[self document] fileURL] error:NULL];
-    [[self document] exportToMarathonFormatAtPath:[sheet URL].path];
 }
 
 - (void)savePanelDidEndForMapImport:(NSOpenPanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo

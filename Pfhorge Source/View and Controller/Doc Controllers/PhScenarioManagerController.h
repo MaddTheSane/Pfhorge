@@ -24,7 +24,7 @@
 
 
 
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
 
 @interface PhScenarioManagerController : NSWindowController
@@ -43,8 +43,5 @@
 - (IBAction)editSelectedLevel:(id)sender;
 - (IBAction)exportSelectedToMarathonMap:(id)sender;
 - (IBAction)deleteSelectedLevel:(id)sender;
-
-- (void)savePanelDidEnd:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
-- (void)savePanelDidEndForSingleExport:(id)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
 
 @end

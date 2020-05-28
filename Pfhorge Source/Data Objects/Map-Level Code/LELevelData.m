@@ -601,7 +601,7 @@
         [tmpNumberList sortUsingSelector:@selector(compare:)];
     }
     
-    //if (heightMode == _drawAmbientSounds || _drawLiquidLights:_drawLiquids
+    //if (heightMode == LEMapDrawingModeAmbientSounds || LEMapDrawingModeLiquidLights:LEMapDrawingModeLiquids
     if ([tmpNumberList indexOfObject:@((short)(-1))] == NSNotFound) {
         listIncludesNone = NO;
 	//SEND_ERROR_MSG_TITLE(@"There is no -1 (NONE) tag", @"Information - Did Not Find NONE Tag");

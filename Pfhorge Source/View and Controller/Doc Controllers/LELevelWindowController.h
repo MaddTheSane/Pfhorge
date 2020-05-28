@@ -199,7 +199,7 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
 
 // ********* Regular Methods *********
 - (void)updateLayerSelection;
-- (void)setShowLevelSettingsSheetWhenWindowIsLoaded:(BOOL)theChoice;
+@property BOOL showLevelSettingsSheetWhenWindowIsLoaded;
 - (void)updateLevelInfoString;
 - (void)setUplevelDrawView;
 
@@ -224,6 +224,5 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
 
 // *** NSSavePanelForExportingLevelMethods ***
 - (IBAction)exportMeToMarathonMap:(id)sender;
-- (void)savePanelDidEnd:(NSSavePanel*)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void  *)contextInfo;
 
 @end

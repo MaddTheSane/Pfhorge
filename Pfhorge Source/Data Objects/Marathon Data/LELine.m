@@ -301,7 +301,7 @@
                                     currentDocument]
                                     getMapDrawView];
         
-        NSSet *thePolygonSelections = [theDrawView getSelectionsOfType:_polygon_selections];
+        NSSet *thePolygonSelections = [theDrawView getSelectionsOfType:LEMapDrawSelectionPolygons];
         
         BOOL hasClock = [thePolygonSelections containsObject:clockwisePolygon];
         BOOL hasCClock = [thePolygonSelections containsObject:conterclockwisePolygon];

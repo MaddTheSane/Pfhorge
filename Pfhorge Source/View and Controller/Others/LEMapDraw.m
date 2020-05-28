@@ -90,14 +90,14 @@ typedef NS_ENUM(short, LEEDrawMode) {
     ///NSMutableSet *selections, *affectedBySelections, *includeInBounds;
     
     switch (theSelectionsWanted) {
-        case _all_selections:           return selections;
-        case _point_selections:         return selectedPoints;
-        case _line_selections:          return selectedLines;
-        case _polygon_selections:       return selectedPolys;
-        case _object_selections:        return selectedMapObjects;
-        case _note_selections:          return selectedNotes;
-        case _affected_by_selections:   return affectedBySelections;
-        case _include_in_bounds:        return includeInBounds;
+        case LEMapDrawSelectionAll:           return selections;
+        case LEMapDrawSelectionPoints:         return selectedPoints;
+        case LEMapDrawSelectionLines:          return selectedLines;
+        case LEMapDrawSelectionPolygons:       return selectedPolys;
+        case LEMapDrawSelectionObjects:        return selectedMapObjects;
+        case LEMapDrawSelectionNotes:          return selectedNotes;
+        case LEMapDrawSelectionAffectedBySelections:   return affectedBySelections;
+        case LEMapDrawSelectionIncludeInBounds:        return includeInBounds;
         default:                        break;
     }
     
@@ -186,8 +186,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     needToCreatPolyMap = YES;
     drawingHeightMapNeedsUpdating = YES;
     numberListNeedsUpdating = YES;
-    //[self setCurrentDrawingMode:_drawNormaly];
-    drawingMode = _drawNormaly;
+    //[self setCurrentDrawingMode:LEMapDrawingModeNormal];
+    drawingMode = LEMapDrawingModeNormal;
     // selectedPoints = [[NSMutableSet alloc] initWithCapacity:1];
     
     tContext =[NSGraphicsContext currentContext];
@@ -266,7 +266,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     currentLevel = theLevel;
     // release with a new method called
     // setupLevelForFirstTime, or somthing like that...
-    [self setCurrentDrawingMode:_drawNormaly];
+    [self setCurrentDrawingMode:LEMapDrawingModeNormal];
     [self createPolyMap];
     [self createObjectMaps];
     caculateTheGrid = YES;
@@ -333,8 +333,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     needToCreatPolyMap = YES;
     drawingHeightMapNeedsUpdating = YES;
     numberListNeedsUpdating = YES;
-    //[self setCurrentDrawingMode:_drawNormaly];
-    drawingMode = _drawNormaly;
+    //[self setCurrentDrawingMode:LEMapDrawingModeNormal];
+    drawingMode = LEMapDrawingModeNormal;
     // selectedPoints = [[NSMutableSet alloc] initWithCapacity:1];
     
     //tContext = [NSGraphicsContext currentContext];
@@ -420,23 +420,23 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }*/
     
     switch ([self currentDrawingMode]) {
-        case _drawNormaly:
+        case LEMapDrawingModeNormal:
             [self drawNormal:aRect];
             break;
-        case _drawAbnormaly:
+        case LEMapDrawingModeAbnormal:
             [self drawNormal:aRect];
             break;
-        case _drawCeilingHeight:
-        case _drawFloorHeight:
-        case _drawLiquids:
-        case _drawFloorLights:
-        case _drawCeilingLights:
-        case _drawLiquidLights:
-        case _drawAmbientSounds:
-        case _drawLayers:
+        case LEMapDrawingModeCeilingHeight:
+        case LEMapDrawingModeFloorHeight:
+        case LEMapDrawingModeLiquids:
+        case LEMapDrawingModeFloorLights:
+        case LEMapDrawingModeCeilingLights:
+        case LEMapDrawingModeLiquidLights:
+        case LEMapDrawingModeAmbientSounds:
+        case LEMapDrawingModeLayers:
             [self drawCeilingHeight:aRect];
             break;
-        case _drawRandomSounds:
+        case LEMapDrawingModeRandomSounds:
             [self drawNormal:aRect];
             break;
         default:
@@ -449,25 +449,25 @@ typedef NS_ENUM(short, LEEDrawMode) {
 {
     BOOL needToReCache = NO;
     switch(drawingMode) {
-        case _drawLayers:
+        case LEMapDrawingModeLayers:
             if (theListFromNameManager == PhLevelNameMenuLayer)
                 needToReCache = YES;
             break;
-        case _drawFloorLights:
-        case _drawCeilingLights:
-        case _drawLiquidLights:
+        case LEMapDrawingModeFloorLights:
+        case LEMapDrawingModeCeilingLights:
+        case LEMapDrawingModeLiquidLights:
             if (theListFromNameManager == PhLevelNameMenuLight)
                 needToReCache = YES;
             break;
-        case _drawAmbientSounds:
+        case LEMapDrawingModeAmbientSounds:
             if (theListFromNameManager == PhLevelNameMenuAmbientSound)
                 needToReCache = YES;
             break;
-        case _drawRandomSounds:
+        case LEMapDrawingModeRandomSounds:
             if (theListFromNameManager == PhLevelNameMenuRandomSound)
                 needToReCache = YES;
             break;
-        case _drawLiquids:
+        case LEMapDrawingModeLiquids:
             if (theListFromNameManager == PhLevelNameMenuLiquid)
                 needToReCache = YES;
             break;
@@ -491,8 +491,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     [self clearRectCache];
     
-    if (mode != _drawNormaly) {
-        /*if (drawingMode == _drawNormaly)
+    if (mode != LEMapDrawingModeNormal) {
+        /*if (drawingMode == LEMapDrawingModeNormal)
         {
             //[[PhColorListController sharedColorListController] showWindow:self];
             
@@ -504,7 +504,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         [self createSpecialDrawingList];
         [self updateRectCacheIn:[self bounds]];
         [self createSpecialDrawingMap];
-    } else if (mode == _drawNormaly) {
+    } else if (mode == LEMapDrawingModeNormal) {
         drawingMode = mode;
 		
         numberList = nil;
@@ -526,7 +526,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     //[self setNeedsDisplay:YES];
     
-    if (previousDrawingMode == _drawLayers) {
+    if (previousDrawingMode == LEMapDrawingModeLayers) {
         [currentLevel recaculateTheCurrentLayer];
         [self createObjectMaps];
         [self createPolyMap];
@@ -572,7 +572,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSNumber *copyOfNumber = [theNewHeight copy];
     NSInteger indexOfNewNumber = 0;
     
-    if (!(drawingMode == _drawFloorHeight || drawingMode == _drawCeilingHeight)) {
+    if (!(drawingMode == LEMapDrawingModeFloorHeight || drawingMode == LEMapDrawingModeCeilingHeight)) {
         NSLog(@"WARNING: [LEMapDraw addNewHeight:%d] was called but drawingMode is not drawing heights...", 
                                                 [theNewHeight intValue]);
         return;
@@ -1400,28 +1400,28 @@ typedef NS_ENUM(short, LEEDrawMode) {
         short i;
         
         switch (heightMode) {
-            case _drawCeilingHeight:
+            case LEMapDrawingModeCeilingHeight:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ceilingHeight]]] objectAtIndex:0];
                 break;
-            case _drawFloorHeight:
+            case LEMapDrawingModeFloorHeight:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon floorHeight]]] objectAtIndex:0];
                 break;
-            case _drawLiquids:
+            case LEMapDrawingModeLiquids:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon mediaIndex]]] objectAtIndex:0];
                 break;
-            case _drawFloorLights:
+            case LEMapDrawingModeFloorLights:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon floorLightsourceIndex]]] objectAtIndex:0];
                 break;
-            case _drawCeilingLights:
+            case LEMapDrawingModeCeilingLights:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ceilingLightsourceIndex]]] objectAtIndex:0];
                 break;
-            case _drawLiquidLights:
+            case LEMapDrawingModeLiquidLights:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon mediaLightsourceIndex]]] objectAtIndex:0];
                 break;
-            case _drawAmbientSounds:
+            case LEMapDrawingModeAmbientSounds:
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[thisPolygon ambientSoundImageIndex]]] objectAtIndex:0];
                 break;
-            case _drawLayers: //currentLevel
+            case LEMapDrawingModeLayers: //currentLevel
                 curDrawingMap = [[numberTable objectForKey:[NSNumber numberWithShort:[[thisPolygon polyLayer] index]]] objectAtIndex:0];
                 break;
             default:
@@ -1678,7 +1678,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     //getRandomSounds
     //getPlatforms
     
-    if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
+    if (heightMode == LEMapDrawingModeCeilingHeight || heightMode == LEMapDrawingModeFloorHeight)
     {
         numer = [thePolys objectEnumerator];
         while (thisPolygon = [numer nextObject])
@@ -1686,10 +1686,10 @@ typedef NS_ENUM(short, LEEDrawMode) {
             // Get the correct height...
             switch (heightMode)
             {
-                case _drawCeilingHeight:
+                case LEMapDrawingModeCeilingHeight:
                     theNumber = [NSNumber numberWithShort:[thisPolygon ceilingHeight]];
                     break;
-                case _drawFloorHeight:
+                case LEMapDrawingModeFloorHeight:
                     theNumber = [NSNumber numberWithShort:[thisPolygon floorHeight]];
                     break;
                 default:
@@ -1721,27 +1721,27 @@ typedef NS_ENUM(short, LEEDrawMode) {
         // Get the correct height...
         switch (heightMode)
         {
-            case _drawCeilingHeight:
-            case _drawFloorHeight:
+            case LEMapDrawingModeCeilingHeight:
+            case LEMapDrawingModeFloorHeight:
                 SEND_ERROR_MSG(@"Sorry, but an error occured puting together the list, #101.");
                 [self setDrawModeToNormal:self];
                 return NO;
-            case _drawLiquids:
+            case LEMapDrawingModeLiquids:
                 theArray = theLiquids;
                 [tmpNumberList addObject:@-1];
                 [tmpNameList addObject:@"NONE"];
                 break;
-            case _drawFloorLights:
-            case _drawCeilingLights:
-            case _drawLiquidLights:
+            case LEMapDrawingModeFloorLights:
+            case LEMapDrawingModeCeilingLights:
+            case LEMapDrawingModeLiquidLights:
                theArray = theLights;
                 break;
-            case _drawAmbientSounds:
+            case LEMapDrawingModeAmbientSounds:
                 theArray = theAmbientSounds;
                 [tmpNumberList addObject:@-1];
                 [tmpNameList addObject:@"NONE"];
                 break;
-            case _drawLayers:
+            case LEMapDrawingModeLayers:
                 theArray = theLevelLayerArray;
                 break;
             default:
@@ -1763,7 +1763,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     for (NSNumber *theNumber in tmpNumberList)
     {
         // Get the correct height...
-        if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
+        if (heightMode == LEMapDrawingModeCeilingHeight || heightMode == LEMapDrawingModeFloorHeight)
             break;
         
         if ([theNumber intValue] == -1)
@@ -1771,22 +1771,22 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         switch (heightMode)
         {
-            case _drawLiquids:
+            case LEMapDrawingModeLiquids:
                 thisObj = [theLiquids objectAtIndex:[theNumber integerValue]];
                 break;
-            case _drawFloorLights:
+            case LEMapDrawingModeFloorLights:
                 thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
-            case _drawCeilingLights:
+            case LEMapDrawingModeCeilingLights:
                 thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
-            case _drawLiquidLights:
+            case LEMapDrawingModeLiquidLights:
                 thisObj = [theLights objectAtIndex:[theNumber integerValue]];
                 break;
-            case _drawAmbientSounds:
+            case LEMapDrawingModeAmbientSounds:
                 thisObj = [theAmbientSounds objectAtIndex:[theNumber integerValue]];
                 break;
-            case _drawLayers: //currentLevel
+            case LEMapDrawingModeLayers: //currentLevel
                 thisObj = [theLevelLayerArray objectAtIndex:[theNumber integerValue]];
                 break;
             default:
@@ -1818,7 +1818,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         }
     }
 
-    if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
+    if (heightMode == LEMapDrawingModeCeilingHeight || heightMode == LEMapDrawingModeFloorHeight)
     {
         for (NSNumber *curNumber in tmpNumberList)
         {
@@ -1830,7 +1830,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 // Get the correct height...
                 switch (heightMode)
                 {
-                    case _drawCeilingHeight:
+                    case LEMapDrawingModeCeilingHeight:
                         //theName = [[NSNumber numberWithFloat:(([curNumber floatValue])/((float)1024))] stringValue];
                         theName = [curNumber stringValue];
                         //theName = [[[NSDecimalNumber numberWithFloat:(([curNumber floatValue])/((float)1024))] decimalNumberByRoundingAccordingToBehavior:[currentLevel roundingSettings]] stringValue];
@@ -1838,7 +1838,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         //ceilingHeightAsDecimalString
                         
                         break;
-                    case _drawFloorHeight:
+                    case LEMapDrawingModeFloorHeight:
                         theName = [curNumber stringValue];
                         //theName = [[NSNumber numberWithFloat:(([curNumber floatValue])/((float)1024))] stringValue];
                         
@@ -1855,7 +1855,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             
             [tmpNameList addObject:theName];
         }
-    } // END if (heightMode == _drawCeilingHeight || heightMode == _drawFloorHeight)
+    } // END if (heightMode == LEMapDrawingModeCeilingHeight || heightMode == LEMapDrawingModeFloorHeight)
     
     tmpNumberListCount = [tmpNumberList count];
     
@@ -1871,7 +1871,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     //Allocate the array...
     tmpColorList = [[NSMutableArray alloc] initWithCapacity:1];
     
-    //if (heightMode == _drawAmbientSounds || _drawLiquidLights:_drawLiquids
+    //if (heightMode == LEMapDrawingModeAmbientSounds || LEMapDrawingModeLiquidLights:LEMapDrawingModeLiquids
     if ([tmpNumberList indexOfObject:[NSNumber numberWithShort:((short)(-1))]] == NSNotFound)
     {
         listIncludesNone = NO;
@@ -2213,20 +2213,20 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
     switch ([self currentDrawingMode])
     {
-        case _drawNormaly:
+        case LEMapDrawingModeNormal:
             [self mouseDownNormal:theEvent];
             break;
-        case _drawAbnormaly:
+        case LEMapDrawingModeAbnormal:
             [self mouseDownNormal:theEvent];
             break;
-        case _drawCeilingHeight:
-        case _drawFloorHeight:
-        case _drawLiquids:
-        case _drawFloorLights:
-        case _drawCeilingLights:
-        case _drawLiquidLights:
-        case _drawAmbientSounds:
-        case _drawLayers:
+        case LEMapDrawingModeCeilingHeight:
+        case LEMapDrawingModeFloorHeight:
+        case LEMapDrawingModeLiquids:
+        case LEMapDrawingModeFloorLights:
+        case LEMapDrawingModeCeilingLights:
+        case LEMapDrawingModeLiquidLights:
+        case LEMapDrawingModeAmbientSounds:
+        case LEMapDrawingModeLayers:
             [self mouseDownHeightMap:theEvent];
             break;
         default:
@@ -2278,49 +2278,49 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 foundSelection = YES;
                 switch (drawMode)
                 {
-                    case _drawCeilingHeight:
+                    case LEMapDrawingModeCeilingHeight:
                         if (!optionDown)
                             [curObj setCeilingHeight:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj ceilingHeight]];
                         break;
-                    case _drawFloorHeight:
+                    case LEMapDrawingModeFloorHeight:
                         if (!optionDown)
                             [curObj setFloorHeight:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj floorHeight]];
                         break;
-                    case _drawLiquids:
+                    case LEMapDrawingModeLiquids:
                         if (!optionDown)
                             [curObj setMediaIndex:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj mediaIndex]];
                         break;
-                    case _drawFloorLights:
+                    case LEMapDrawingModeFloorLights:
                         if (!optionDown)
                             [curObj setFloorLightsource:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj floorLightsourceIndex]];
                         break;
-                    case _drawCeilingLights:
+                    case LEMapDrawingModeCeilingLights:
                         if (!optionDown)
                             [curObj setCeilingLightsource:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj ceilingLightsourceIndex]];
                         break;
-                    case _drawLiquidLights:
+                    case LEMapDrawingModeLiquidLights:
                         if (!optionDown)
                             [curObj setMediaLightsource:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj mediaLightsourceIndex]];
                         break;
-                    case _drawAmbientSounds:
+                    case LEMapDrawingModeAmbientSounds:
                         if (!optionDown)
                             [curObj setAmbientSound:[selectedNumber shortValue]];
                         else
                             selectedNumber = [NSNumber numberWithInt:[curObj ambientSoundImageIndex]];
                         break;
-                    case _drawLayers: //currentLevel
+                    case LEMapDrawingModeLayers: //currentLevel
                         if (!optionDown)
                             [curObj setPolyLayer:[[currentLevel layersInLevel] objectAtIndex:[selectedNumber shortValue]]];
                         else
@@ -2579,25 +2579,25 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     
     
-    // - (NSSet *)getSelectionsOfType:(int)theSelectionsWanted _COUNT_OF_SELECTION_TYPES
+    // - (NSSet *)getSelectionsOfType:(int)theSelectionsWanted LEMapDrawSelectionCountOfTypes
     
     int i = 0;
     
-    for (i = 0; i < _COUNT_OF_SELECTION_TYPES; i++)
+    for (i = 0; i < LEMapDrawSelectionCountOfTypes; i++)
     {
         NSSet *theOrgSet = [self getSelectionsOfType:i];
         NSMutableSet *theCpySet = nil;
         
         switch (i)
         {
-            case _all_selections:           theCpySet = selectionsCpy; break;
-            case _point_selections:         theCpySet = selectedPointsCpy; break;
-            case _line_selections:          theCpySet = selectedLinesCpy; break;
-            case _polygon_selections:       theCpySet = selectedPolysCpy; break;
-            case _object_selections:        theCpySet = selectedMapObjectsCpy; break;
-            case _note_selections:          theCpySet = selectedNotesCpy; break;
-            case _affected_by_selections:   theCpySet = affectedBySelectionsCpy; break;
-            case _include_in_bounds:        theCpySet = includeInBoundsCpy; break;
+            case LEMapDrawSelectionAll:           theCpySet = selectionsCpy; break;
+            case LEMapDrawSelectionPoints:         theCpySet = selectedPointsCpy; break;
+            case LEMapDrawSelectionLines:          theCpySet = selectedLinesCpy; break;
+            case LEMapDrawSelectionPolygons:       theCpySet = selectedPolysCpy; break;
+            case LEMapDrawSelectionObjects:        theCpySet = selectedMapObjectsCpy; break;
+            case LEMapDrawSelectionNotes:          theCpySet = selectedNotesCpy; break;
+            case LEMapDrawSelectionAffectedBySelections:   theCpySet = affectedBySelectionsCpy; break;
+            case LEMapDrawSelectionIncludeInBounds:        theCpySet = includeInBoundsCpy; break;
             default:
                 SEND_ERROR_MSG(@"Selection Undo In Unknown State... Do Not Use Undo!\n\nDetails: Unknown Selection Type At End Of MoustDownNormal:(NSEvent *)event...");
                 continue; // continue for loop...
@@ -3097,8 +3097,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         newLine = nil;
                         [self clearRectCache];
                         [selectedPoints addObject:startPoint];
-                        [(id)undo undoSelection:startPoint ofType:_point_selections];
-                        [(id)undo undoSelection:startPoint ofType:_all_selections];
+                        [(id)undo undoSelection:startPoint ofType:LEMapDrawSelectionPoints];
+                        [(id)undo undoSelection:startPoint ofType:LEMapDrawSelectionAll];
                         [self updateTheSelections];
                     } else {
                         switch (currentDrawingMode) {
@@ -3142,8 +3142,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
                                         [selectedPoints addObject:endPoint];
                                         [self updateTheSelections];
                                         
-                                        [(id)undo undoSelection:endPoint ofType:_point_selections];
-                                        [(id)undo undoSelection:endPoint ofType:_all_selections];
+                                        [(id)undo undoSelection:endPoint ofType:LEMapDrawSelectionPoints];
+                                        [(id)undo undoSelection:endPoint ofType:LEMapDrawSelectionAll];
                                         
                                         // To make sure rect cache does not have
                                         // any objects that are no longer in the level...
@@ -4860,17 +4860,17 @@ typedef NS_ENUM(short, LEEDrawMode) {
     diffSet = [[NSMutableSet alloc] init];
     // these should be lines that have not been selected yet, because it's excluding
     // the 'selectedLines' set, and they should not be in the 'selections' set either...
-    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:_line_selections exclude:selectedLines];
+    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:LEMapDrawSelectionLines exclude:selectedLines];
     [selectedLines unionSet:tmpSet];
     
     if (regUndos == YES) {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer) {
             [currentLevel findObjectsAssociatedWith:theObj putIn:diffSet];
-            [(id)undo undoSelection:theObj ofType:_line_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionLines];
             // For now, assume that this object will be newly put into
             // the master 'selections' set...
-            [(id)undo undoSelection:theObj ofType:_all_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionAll];
         }
         
         // See what new additions there are...
@@ -4878,7 +4878,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         [includeInBounds unionSet:diffSet];
         numer = [diffSet objectEnumerator];
         for (theObj in numer)
-            [(id)undo undoSelection:theObj ofType:_include_in_bounds];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionIncludeInBounds];
     } else {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer)
@@ -4887,29 +4887,29 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     /*
     
-    _all_selections = 0,
-    _point_selections,
-    _line_selections,
-    _polygon_selections,
-    _object_selections,
-    _note_selections,
-    _affected_by_selections,
-    _include_in_bounds,
+    LEMapDrawSelectionAll = 0,
+    LEMapDrawSelectionPoints,
+    LEMapDrawSelectionLines,
+    LEMapDrawSelectionPolygons,
+    LEMapDrawSelectionObjects,
+    LEMapDrawSelectionNotes,
+    LEMapDrawSelectionAffectedBySelections,
+    LEMapDrawSelectionIncludeInBounds,
     
     */
     
     
     [diffSet removeAllObjects];
-    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:_point_selections exclude:selectedPoints];
+    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:LEMapDrawSelectionPoints exclude:selectedPoints];
     [selectedPoints unionSet:tmpSet];
     if (regUndos == YES) {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer) {
             [currentLevel findObjectsAssociatedWith:theObj putIn:diffSet];
-            [(id)undo undoSelection:theObj ofType:_point_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionPoints];
             // For now, assume that this object will be newly put into
             // the master 'selections' set...
-            [(id)undo undoSelection:theObj ofType:_all_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionAll];
         }
         
         // See what new additions there are...
@@ -4917,7 +4917,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         [includeInBounds unionSet:diffSet];
         numer = [diffSet objectEnumerator];
         for (theObj in numer)
-            [(id)undo undoSelection:theObj ofType:_include_in_bounds];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionIncludeInBounds];
     } else {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer)
@@ -4926,16 +4926,16 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     
     [diffSet removeAllObjects];
-    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:_polygon_selections exclude:selectedPolys];
+    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:LEMapDrawSelectionPolygons exclude:selectedPolys];
     [selectedPolys unionSet:tmpSet];
     if (regUndos == YES) {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer) {
             [currentLevel findObjectsAssociatedWith:theObj putIn:diffSet];
-            [(id)undo undoSelection:theObj ofType:_polygon_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionPolygons];
             // For now, assume that this object will be newly put into
             // the master 'selections' set...
-            [(id)undo undoSelection:theObj ofType:_all_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionAll];
         }
         
         // See what new additions there are...
@@ -4943,7 +4943,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         [includeInBounds unionSet:diffSet];
         numer = [diffSet objectEnumerator];
         for (theObj in numer)
-            [(id)undo undoSelection:theObj ofType:_include_in_bounds];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionIncludeInBounds];
     } else {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer)
@@ -4951,29 +4951,29 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     
-    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:_object_selections exclude:selectedMapObjects];
+    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:LEMapDrawSelectionObjects exclude:selectedMapObjects];
     [selectedMapObjects unionSet:tmpSet];
     if (regUndos == YES) {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer) {
-            [(id)undo undoSelection:theObj ofType:_object_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionObjects];
             // For now, assume that this object will be newly put into
             // the master 'selections' set...
-            [(id)undo undoSelection:theObj ofType:_all_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionAll];
         }
     }
     
     
-    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:_note_selections exclude:selectedMapObjects];
+    tmpSet = [self getRectCacheObjectsIn:aRect ofSelectionType:LEMapDrawSelectionNotes exclude:selectedMapObjects];
     [selectedNotes unionSet:tmpSet];
     if (regUndos == YES) {
         numer = [tmpSet objectEnumerator];
         for (theObj in numer) {
             //[currentLevel findObjectsAssociatedWith:theObj putIn:diffSet];
-            [(id)undo undoSelection:theObj ofType:_note_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionNotes];
             // For now, assume that this object will be newly put into
             // the master 'selections' set...
-            [(id)undo undoSelection:theObj ofType:_all_selections];
+            [(id)undo undoSelection:theObj ofType:LEMapDrawSelectionAll];
         }
     }
     
@@ -4995,7 +4995,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSMutableSet *rectSet = [[NSMutableSet alloc] init];
     
     switch(selectionType) {
-        case _point_selections:
+        case LEMapDrawSelectionPoints:
             if (boolArrayOptions[_mapoptions_select_points]) {
                 for (LEMapPoint *theObj in rectPoints)
                 {
@@ -5005,7 +5005,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
             break;
             
-        case _line_selections:
+        case LEMapDrawSelectionLines:
             if (boolArrayOptions[_mapoptions_select_lines]) {
                 for (LELine *theObj in rectLines) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
@@ -5015,7 +5015,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
             break;
             
-        case _polygon_selections:
+        case LEMapDrawSelectionPolygons:
             if (boolArrayOptions[_mapoptions_select_polygons]) {
                 for (LEPolygon *theObj in rectPolys) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
@@ -5025,7 +5025,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
             break;
             
-        case _object_selections:
+        case LEMapDrawSelectionObjects:
             if (boolArrayOptions[_mapoptions_select_objects]) {
                 for (LEMapObject *theObj in rectObjects) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect])
@@ -5033,7 +5033,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 }
             }
             break;
-        case _note_selections: // rectNotes
+        case LEMapDrawSelectionNotes: // rectNotes
             if (boolArrayOptions[_mapoptions_select_notes]) {
                 for (PhAnnotationNote *theObj in rectNotes) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
@@ -5153,15 +5153,15 @@ typedef NS_ENUM(short, LEEDrawMode) {
     id obj1 = nil, obj2 = nil;
 
     switch(typeOfPfhorgeObject) {
-        case _goto_polygon:
+        case LEMapGoToPolygon:
             arrayOne = [currentLevel polygons];
             arrayTwo = [currentLevel layerPolys];
             break;
-        case _goto_object:
+        case LEMapGoToObject:
             arrayOne = [currentLevel theMapObjects];
             arrayTwo = [currentLevel layerMapObjects];
             break;
-        case _goto_platform:
+        case LEMapGoToPlatform:
             arrayOne = [currentLevel platforms];
             
             if ([arrayOne count] <= theIndex)
@@ -5180,11 +5180,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [self scrollRectToVisible:[self drawingBoundsForSelections]];
             
             return nil;
-        case _goto_line:
+        case LEMapGoToLine:
             arrayOne = [currentLevel lines];
             arrayTwo = [currentLevel layerLines];
             break;
-        case _goto_point:
+        case LEMapGoToPoint:
             arrayOne = [currentLevel points];
             arrayTwo = [currentLevel layerPoints];
             break;
@@ -5263,7 +5263,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 {
     [self clearRectCache];
     
-    if (drawingMode == _drawNormaly || drawingMode == _drawAbnormaly) {
+    if (drawingMode == LEMapDrawingModeNormal || drawingMode == LEMapDrawingModeAbnormal) {
         [self createObjectMaps];
         [self createPolyMap];
         [self createLineMap];
@@ -5807,16 +5807,16 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 - (IBAction)redrawEverything:(id)sender { [self setNeedsDisplay:YES]; }
 
-- (IBAction)setDrawModeToNormal:(id)sender { [self setCurrentDrawingMode:_drawNormaly]; }
-- (IBAction)setDrawModeToCeilingHeight:(id)sender { [self setCurrentDrawingMode:_drawCeilingHeight]; }
-- (IBAction)enableFloorHeightViewMode:(id)sender { [self setCurrentDrawingMode:_drawFloorHeight]; }
-- (IBAction)enableLiquidViewMode:(id)sender { [self setCurrentDrawingMode:_drawLiquids]; }
-- (IBAction)enableFloorLightViewMode:(id)sender { [self setCurrentDrawingMode:_drawFloorLights]; }
-- (IBAction)enableCeilingLightViewMode:(id)sender { [self setCurrentDrawingMode:_drawCeilingLights]; }
-- (IBAction)enableLiquidLightViewMode:(id)sender { [self setCurrentDrawingMode:_drawLiquidLights]; }
-- (IBAction)enableAmbientSoundViewMode:(id)sender { [self setCurrentDrawingMode:_drawAmbientSounds]; }
-- (IBAction)enableRandomSoundViewMode:(id)sender { [self setCurrentDrawingMode:_drawRandomSounds]; }
-- (IBAction)enableLayerViewMode:(id)sender { [self setCurrentDrawingMode:_drawLayers]; }
+- (IBAction)setDrawModeToNormal:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeNormal]; }
+- (IBAction)setDrawModeToCeilingHeight:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeCeilingHeight]; }
+- (IBAction)enableFloorHeightViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeFloorHeight]; }
+- (IBAction)enableLiquidViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeLiquids]; }
+- (IBAction)enableFloorLightViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeFloorLights]; }
+- (IBAction)enableCeilingLightViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeCeilingLights]; }
+- (IBAction)enableLiquidLightViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeLiquidLights]; }
+- (IBAction)enableAmbientSoundViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeAmbientSounds]; }
+- (IBAction)enableRandomSoundViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeRandomSounds]; }
+- (IBAction)enableLayerViewMode:(id)sender { [self setCurrentDrawingMode:LEMapDrawingModeLayers]; }
 - (IBAction)recalculateTheGrid:(id)sender { caculateTheGrid = YES; }
 
 - (IBAction)renameSelectedPolygon:(id)sender

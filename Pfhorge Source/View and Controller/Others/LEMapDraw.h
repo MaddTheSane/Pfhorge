@@ -41,39 +41,39 @@ typedef NS_ENUM(int, LEMapDrawOption) {
 
 //! Pfhorge Go To Object Types
 typedef NS_ENUM(int, LEMapGoToType) {
-    _goto_polygon = 0,
-    _goto_object,
-    _goto_platform,
-    _goto_line,
-    _goto_point
+    LEMapGoToPolygon = 0,
+    LEMapGoToObject,
+    LEMapGoToPlatform,
+    LEMapGoToLine,
+    LEMapGoToPoint
 };
 
 //! Selection Types
 typedef NS_ENUM(int, LEMapDrawSelectionType) {
-    _all_selections = 0,
-    _point_selections,
-    _line_selections,
-    _polygon_selections,
-    _object_selections,
-    _note_selections,
-    _affected_by_selections,
-    _include_in_bounds,
-    _COUNT_OF_SELECTION_TYPES
+    LEMapDrawSelectionAll = 0,
+    LEMapDrawSelectionPoints,
+    LEMapDrawSelectionLines,
+    LEMapDrawSelectionPolygons,
+    LEMapDrawSelectionObjects,
+    LEMapDrawSelectionNotes,
+    LEMapDrawSelectionAffectedBySelections,
+    LEMapDrawSelectionIncludeInBounds,
+    LEMapDrawSelectionCountOfTypes
 };
 
 //! Drawing Modes
 typedef NS_ENUM(int, LEMapDrawingMode) {
-    _drawNormaly = 0,
-    _drawAbnormaly,
-    _drawCeilingHeight,
-    _drawFloorHeight,
-    _drawLiquids,
-    _drawFloorLights,
-    _drawCeilingLights,
-    _drawLiquidLights,
-    _drawAmbientSounds,
-    _drawRandomSounds,
-    _drawLayers
+    LEMapDrawingModeNormal = 0,
+    LEMapDrawingModeAbnormal,
+    LEMapDrawingModeCeilingHeight,
+    LEMapDrawingModeFloorHeight,
+    LEMapDrawingModeLiquids,
+    LEMapDrawingModeFloorLights,
+    LEMapDrawingModeCeilingLights,
+    LEMapDrawingModeLiquidLights,
+    LEMapDrawingModeAmbientSounds,
+    LEMapDrawingModeRandomSounds,
+    LEMapDrawingModeLayers
 };
 
 @class LEMapPoint, LELine, LEMapObject, PhAnnotationNote;

@@ -526,16 +526,16 @@
 
 - (IBAction)redrawEverything:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setNeedsDisplay:YES]; }
 
-- (IBAction)setDrawModeToNormal:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawNormaly]; }
-- (IBAction)setDrawModeToCeilingHeight:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawCeilingHeight]; }
-- (IBAction)enableFloorHeightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawFloorHeight]; }
-- (IBAction)enableLiquidViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawLiquids]; }
-- (IBAction)enableFloorLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawFloorLights]; }
-- (IBAction)enableCeilingLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawCeilingLights]; }
-- (IBAction)enableLiquidLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawLiquidLights]; }
-- (IBAction)enableAmbientSoundViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawAmbientSounds]; }
-- (IBAction)enableRandomSoundViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawRandomSounds]; }
-- (IBAction)enableLayerViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:_drawLayers]; }
+- (IBAction)setDrawModeToNormal:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeNormal]; }
+- (IBAction)setDrawModeToCeilingHeight:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeCeilingHeight]; }
+- (IBAction)enableFloorHeightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeFloorHeight]; }
+- (IBAction)enableLiquidViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeLiquids]; }
+- (IBAction)enableFloorLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeFloorLights]; }
+- (IBAction)enableCeilingLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeCeilingLights]; }
+- (IBAction)enableLiquidLightViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeLiquidLights]; }
+- (IBAction)enableAmbientSoundViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeAmbientSounds]; }
+- (IBAction)enableRandomSoundViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeRandomSounds]; }
+- (IBAction)enableLayerViewMode:(id)sender { [[self getCurrentLevelDrawViewShowErrors] setCurrentDrawingMode:LEMapDrawingModeLayers]; }
 
 - (IBAction)newPhorgeScenario:(id)sender
 {
@@ -599,8 +599,4 @@
     [newData release];
 }
 
-
 @end
-
-
-

@@ -92,16 +92,16 @@
 
 - (IBAction)redrawEverything:(id)sender { [currentLevelDrawView setNeedsDisplay:YES]; }
 
-- (IBAction)setDrawModeToNormal:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawNormaly]; }
-- (IBAction)setDrawModeToCeilingHeight:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawCeilingHeight]; }
-- (IBAction)enableFloorHeightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawFloorHeight]; }
-- (IBAction)enableLiquidViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawLiquids]; }
-- (IBAction)enableFloorLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawFloorLights]; }
-- (IBAction)enableCeilingLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawCeilingLights]; }
-- (IBAction)enableLiquidLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawLiquidLights]; }
-- (IBAction)enableAmbientSoundViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawAmbientSounds]; }
-- (IBAction)enableRandomSoundViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawRandomSounds]; }
-- (IBAction)enableLayerViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:_drawLayers]; }
+- (IBAction)setDrawModeToNormal:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeNormal]; }
+- (IBAction)setDrawModeToCeilingHeight:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeCeilingHeight]; }
+- (IBAction)enableFloorHeightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeFloorHeight]; }
+- (IBAction)enableLiquidViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeLiquids]; }
+- (IBAction)enableFloorLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeFloorLights]; }
+- (IBAction)enableCeilingLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeCeilingLights]; }
+- (IBAction)enableLiquidLightViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeLiquidLights]; }
+- (IBAction)enableAmbientSoundViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeAmbientSounds]; }
+- (IBAction)enableRandomSoundViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeRandomSounds]; }
+- (IBAction)enableLayerViewMode:(id)sender { [currentLevelDrawView setCurrentDrawingMode:LEMapDrawingModeLayers]; }
 
 - (void)windowDidLoad {
     
@@ -343,8 +343,8 @@ shouldEditTableColumn:(NSTableColumn *)col
         LEMapDrawingMode drawMode = [currentLevelDrawView currentDrawingMode];
         id newObj = nil;
         switch(drawMode) {
-            case _drawCeilingHeight:
-            case _drawFloorHeight:
+            case LEMapDrawingModeCeilingHeight:
+            case LEMapDrawingModeFloorHeight:
                 // Open the sheet...
                 [NSApp beginSheet:newHeightWindowSheet
                    modalForWindow:[self window]
@@ -355,21 +355,21 @@ shouldEditTableColumn:(NSTableColumn *)col
                 newHeightSheetOpen = YES;
                 [currentLevelDrawView setNewHeightSheetOpen:YES];
                 break;
-            case _drawLayers:
+            case LEMapDrawingModeLayers:
                 newObj = [currentLevel addObjectWithDefaults:[PhLayer class]];
                 break;
-            case _drawFloorLights:
-            case _drawCeilingLights:
-            case _drawLiquidLights:
+            case LEMapDrawingModeFloorLights:
+            case LEMapDrawingModeCeilingLights:
+            case LEMapDrawingModeLiquidLights:
                 newObj = [currentLevel addObjectWithDefaults:[PhLight class]];
                 break;
-            case _drawAmbientSounds:
+            case LEMapDrawingModeAmbientSounds:
                 newObj = [currentLevel addObjectWithDefaults:[PhAmbientSound class]];
                 break;
-            case _drawRandomSounds:
+            case LEMapDrawingModeRandomSounds:
                 newObj = [currentLevel addObjectWithDefaults:[PhRandomSound class]];
                 break;
-            case _drawLiquids:
+            case LEMapDrawingModeLiquids:
                 newObj = [currentLevel addObjectWithDefaults:[PhMedia class]];
                 break;
             default:
