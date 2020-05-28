@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="512" height="256"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <openGLView wantsLayer="YES" fixedFrame="YES" useAuxiliaryDepthBufferStencil="NO" translatesAutoresizingMaskIntoConstraints="NO" id="198" customClass="MyOpenGLView">
+                    <openGLView wantsLayer="YES" fixedFrame="YES" useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="198" customClass="MyOpenGLView">
                         <rect key="frame" x="0.0" y="0.0" width="512" height="256"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <connections>

@@ -35,9 +35,8 @@
             <rect key="frame" x="0.0" y="0.0" width="181" height="291"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                    <rect key="frame" x="1" y="262" width="179" height="26"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
+                    <rect key="frame" x="1" y="263" width="179" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Add, Delete, Etc." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="260" id="304">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
@@ -66,21 +65,20 @@
                         </menu>
                     </popUpButtonCell>
                 </popUpButton>
-                <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                    <rect key="frame" x="0.0" y="0.0" width="181" height="262"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <clipView key="contentView" ambiguous="YES" id="Pua-AP-LDm">
-                        <rect key="frame" x="1" y="0.0" width="179" height="261"/>
+                <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                    <rect key="frame" x="-1" y="-1" width="183" height="264"/>
+                    <clipView key="contentView" id="Pua-AP-LDm">
+                        <rect key="frame" x="1" y="0.0" width="181" height="263"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="327" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="45" id="44">
-                                <rect key="frame" x="0.0" y="0.0" width="179" height="236"/>
+                                <rect key="frame" x="0.0" y="0.0" width="181" height="238"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" red="0.98177468999999995" green="0.98317306999999998" blue="0.95874596000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="gridColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="176" minWidth="16" maxWidth="1000" id="45">
+                                    <tableColumn editable="NO" width="178" minWidth="16" maxWidth="1000" id="45">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Terminal Sections">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +87,7 @@
                                         <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="g" id="323">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
@@ -100,22 +98,31 @@
                                 </connections>
                             </outlineView>
                         </subviews>
-                        <color key="backgroundColor" red="0.98317306999999998" green="0.072875819999999994" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="backgroundColor"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="326">
                         <rect key="frame" x="-100" y="-100" width="193" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="325">
-                        <rect key="frame" x="164" y="25" width="16" height="236"/>
+                        <rect key="frame" x="166" y="25" width="16" height="238"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="327">
-                        <rect key="frame" x="0.0" y="0.0" width="179" height="25"/>
+                        <rect key="frame" x="0.0" y="0.0" width="181" height="25"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstItem="224" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="4Bp-Mi-OYN"/>
+                <constraint firstItem="224" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="4" id="FAw-KQ-YNw"/>
+                <constraint firstItem="43" firstAttribute="top" secondItem="224" secondAttribute="bottom" constant="3" id="faa-ak-zY2"/>
+                <constraint firstAttribute="bottom" secondItem="43" secondAttribute="bottom" constant="-1" id="gdz-Yj-oZd"/>
+                <constraint firstItem="224" firstAttribute="top" secondItem="6" secondAttribute="top" constant="4" id="hKt-Ly-Ws8"/>
+                <constraint firstItem="43" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="-1" id="hh6-mh-idl"/>
+                <constraint firstAttribute="trailing" secondItem="43" secondAttribute="trailing" constant="-1" id="nRD-Ze-E17"/>
+            </constraints>
             <point key="canvasLocation" x="139" y="155"/>
         </customView>
         <window title="Terminal Viewer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="TerminalWindowLocation" animationBehavior="default" id="7" userLabel="Parent Window">
@@ -594,7 +601,7 @@ Hint: Use Upper Right </string>
                                     <color key="color" red="0.50354611999999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </colorWell>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                                    <rect key="frame" x="186" y="41" width="98" height="17"/>
+                                    <rect key="frame" x="186" y="40" width="98" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Section Type:" id="309">
                                         <font key="font" metaFont="system"/>
@@ -900,8 +907,8 @@ Hint: Use Upper Right </string>
             <rect key="contentRect" x="91" y="585" width="494" height="139"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="213" height="107"/>
-            <view key="contentView" misplaced="YES" id="237">
-                <rect key="frame" x="0.0" y="0.0" width="494" height="139"/>
+            <view key="contentView" id="237">
+                <rect key="frame" x="0.0" y="0.0" width="494" height="126"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="238">
