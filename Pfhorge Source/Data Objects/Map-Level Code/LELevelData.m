@@ -650,9 +650,6 @@
  //		and to put those names in the name manager cache.
 -(void)setUpArrayNamesForEveryObject
 {
-    NSEnumerator *numer;
-    id theObj;
-    
     [tagNames removeAllObjects];
     [platformNames removeAllObjects];
     [lightNames removeAllObjects];
@@ -673,34 +670,34 @@
         if ([theObj type] == _polygon_is_platform) {
             if ([[theObj permutationObject] polygonObject] != theObj) {
                 // The polygon points to a platform which does not point back
-              //   to the polygon...  This will fix that, hopefully...
+                // to the polygon...  This will fix that, hopefully...
                 [[theObj permutationObject] setPolygonObject:theObj];
             }
         }
     }
     
-    for (theObj in lights)
+    for (PhLight *theObj in lights)
         [lightNames addObject:[theObj phName]];
     
-    for (theObj in media)
+    for (PhMedia *theObj in media)
         [liquidNames addObject:[theObj phName]];
     
-    for (theObj in ambientSounds)
+    for (PhAmbientSound *theObj in ambientSounds)
         [ambientSoundNames addObject:[theObj phName]];
     
-    for (theObj in randomSounds)
+    for (PhRandomSound *theObj in randomSounds)
         [randomSoundNames addObject:[theObj phName]];
     
-    for (theObj in platforms)
+    for (PhPlatform *theObj in platforms)
         [platformNames addObject:[theObj phName]];
     
-    for (theObj in layersInLevel)
+    for (PhLayer *theObj in layersInLevel)
         [layerNames addObject:[theObj phName]];
     
-    for (theObj in tags)
+    for (PhTag *theObj in tags)
         [tagNames addObject:[theObj phName]];
-
-    for (theObj in terimals)
+    
+    for (Terminal *theObj in terimals)
         [terminalNames addObject:[theObj phName]];
     
     [self refreshEveryMenu];

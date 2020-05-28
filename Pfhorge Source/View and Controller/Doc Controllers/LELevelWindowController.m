@@ -63,7 +63,6 @@ enum	// side flags
 #define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
 
 NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
-static NSCursor *crosshairCursor = nil;
 
 @implementation LELevelWindowController
 
@@ -178,8 +177,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)chooseLevelMenu:(id)sender
 {
     NSInteger selectedItem = [sender indexOfSelectedItem];
-    if (selectedItem != -1 && currentLevelLoaded != selectedItem)
-    {
+    if (selectedItem != -1 && currentLevelLoaded != selectedItem) {
         [[self document] loadLevel:(int)(selectedItem + 1)];
         //[generalDrawerContentView setNextKeyView:levelDrawView];
         //[sender selectItemAtIndex:[sender indexOfSelectedItem]];
@@ -196,8 +194,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)layerMenuAction:(id)sender
 {
     NSLog(@"Layer Menu Action Recived, Changing Layer...");
-    if ([sender indexOfSelectedItem] != -1)
-    {
+    if ([sender indexOfSelectedItem] != -1) {
         [[[self document] getCurrentLevelLoaded] setLayerModeToIndex:[sender indexOfSelectedItem]];
         [levelDrawView recaculateAndRedrawEverything];
         // I may or may not get rid of this in the future.
@@ -226,7 +223,7 @@ static NSCursor *crosshairCursor = nil;
     
     if ([self isSheetAlreadyOpen])
         return;
-        
+    
     [op	setAllowsMultipleSelection:NO];
     [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
     [op setPrompt:@"Combine/Import"];
@@ -245,7 +242,7 @@ static NSCursor *crosshairCursor = nil;
     
     if ([self isSheetAlreadyOpen])
         return;
-        
+    
     [op	setAllowsMultipleSelection:NO];
     [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
     [op setPrompt:@"Combine/Import"];
@@ -395,8 +392,7 @@ static NSCursor *crosshairCursor = nil;
     BOOL thereIsAGameType = NO;
     int i;
     
-    for (i = 1; i <= NUMBER_OF_GAME_TYPES; i++)
-    {
+    for (i = 1; i <= NUMBER_OF_GAME_TYPES; i++) {
         if (SState(gameType, i))
             thereIsAGameType = YES;
         /*if (SState(mission, i))
@@ -404,8 +400,7 @@ static NSCursor *crosshairCursor = nil;
     }
     
     
-    if (!thereIsAGameType /*|| !thereIsAMissionType*/)
-    {
+    if (!thereIsAGameType /*|| !thereIsAMissionType*/) {
         NSMutableString *theProblemMsg = [[NSMutableString alloc] initWithString:@"Need To Fix:\n\n"];
         
         if (!thereIsAGameType)
@@ -470,8 +465,8 @@ static NSCursor *crosshairCursor = nil;
     
     sheetOpen = NO;
     
-    if (closeIfLevelSettingsCancled)
-    { // Should Get Rid Of New Document...
+    if (closeIfLevelSettingsCancled) {
+        // Should Get Rid Of New Document...
         NSLog(@"Closing Document...");
         [[self document] close];
     }
@@ -483,10 +478,9 @@ static NSCursor *crosshairCursor = nil;
 {
 	static BOOL alreadyWarned = NO;
 	
-	if (!alreadyWarned)
-	{
+	if (!alreadyWarned) {
 		alreadyWarned = YES;
-		SEND_INFO_MSG_TITLE(@"This setting will tell Aleph One/Marathon what landscape testure set to load. If you wish to use a two diffrent landscapes, you will need to use MML to load the other landscape texture sets.", @"Please Note");
+		SEND_INFO_MSG_TITLE(@"This setting will tell Aleph One/Marathon what landscape texture set to load. If you wish to use a two diffrent landscapes, you will need to use MML to load the other landscape texture sets.", @"Please Note");
 	}
 }
 
@@ -510,14 +504,13 @@ static NSCursor *crosshairCursor = nil;
 
 - (BOOL)isSheetAlreadyOpen
 {
-    if (sheetOpen == YES)
-    {
+    if (sheetOpen == YES) {
         SEND_ERROR_MSG_TITLE(@"Sorry, sheet already opened in this document, finish with that sheet then do this",
                              @"Temporarily Can't Do Command");
         return YES;
-    }
-    else
+    } else {
         return NO;
+    }
 }
 
 // ************************ Map Manager ************************
@@ -535,30 +528,30 @@ static NSCursor *crosshairCursor = nil;
     NSDictionary *theOptionDict = [theCurrentLevel getLevelOptionDictionary];
     float gridFactor = 0.00;
     
-	if ([theOptionDict count] == 1) {
-		[gridFactorMenu setEnabled:YES];
-			
-		gridFactor = [theCurrentLevel settingAsFloat:PhGridFactor];
-		
-		if (gridFactor == 0.125)
+    if ([theOptionDict count] == 1) {
+        [gridFactorMenu setEnabled:YES];
+        
+        gridFactor = [theCurrentLevel settingAsFloat:PhGridFactor];
+        
+        if (gridFactor == 0.125)
             [gridFactorMenu selectItemAtIndex:_mm_1_8];
-		else if (gridFactor == 0.250)
+        else if (gridFactor == 0.250)
             [gridFactorMenu selectItemAtIndex:_mm_1_4];
-		else if (gridFactor == 0.500)
+        else if (gridFactor == 0.500)
             [gridFactorMenu selectItemAtIndex:_mm_1_2];
-		else if (gridFactor == 1.000)
+        else if (gridFactor == 1.000)
             [gridFactorMenu selectItemAtIndex:_mm_1];
-		else if (gridFactor == 2.000)
+        else if (gridFactor == 2.000)
             [gridFactorMenu selectItemAtIndex:_mm_2];
-		else if (gridFactor == 4.000)
+        else if (gridFactor == 4.000)
             [gridFactorMenu selectItemAtIndex:_mm_4];
-		else if (gridFactor == 8.000)
+        else if (gridFactor == 8.000)
             [gridFactorMenu selectItemAtIndex:_mm_8];
-		else
+        else
             [gridFactorMenu selectItemAtIndex:-1];
-		
-		return;
-	} else if ([theOptionDict count] > 0) {
+        
+        return;
+    } else if ([theOptionDict count] > 0) {
         [useMapManager setState:NSOnState];
         
         [gridOptionCheckboxes setEnabledOfMatrixCellsTo:YES];
@@ -578,8 +571,8 @@ static NSCursor *crosshairCursor = nil;
     [objectVisabilityCheckboxes deselectAllCells];
     
     /*
-        ??? --> PhSnapToPoints
-    */   
+     ??? --> PhSnapToPoints
+     */
     
     if ([theCurrentLevel settingAsBool:PhSnapObjectsToGrid])
         SelectS(gridOptionCheckboxes, _mm_objects_to_grid);
@@ -675,14 +668,14 @@ static NSCursor *crosshairCursor = nil;
     [levelDrawView setBoolOptionsFor:_mapoptions_select_lines to:SState(selectionOptionCheckboxes, _mm_select_lines)];
     [levelDrawView setBoolOptionsFor:_mapoptions_select_objects to:SState(selectionOptionCheckboxes, _mm_select_objects)];
     [levelDrawView setBoolOptionsFor:_mapoptions_select_polygons to:SState(selectionOptionCheckboxes, _mm_select_polygons)];
-	
-	[self updateMapManagerInterface];
+    
+    [self updateMapManagerInterface];
 }
 
 - (IBAction)mapManagerPerfOverrideForGridSizeDrawerAction:(id)sender
 {
-	NSInteger menuSelection = [gridFactorMenu indexOfSelectedItem];
-	float theGridFactor = 0.00;
+    NSInteger menuSelection = [gridFactorMenu indexOfSelectedItem];
+    float theGridFactor = 0.00;
     switch (menuSelection) {
         case _mm_1_8:
             theGridFactor = 0.125;
@@ -711,7 +704,7 @@ static NSCursor *crosshairCursor = nil;
     }
     
     [[[self document] getCurrentLevelLoaded] setSettingFor:PhGridFactor asFloat:theGridFactor];
-	[levelDrawView prefsChanged];
+    [levelDrawView prefsChanged];
 }
 
 - (IBAction)mapManagerPerfOverrideDrawerAction:(id)sender
@@ -793,14 +786,14 @@ static NSCursor *crosshairCursor = nil;
     } else {
         [rdRemoveBtn setEnabled:NO];
         [rdTextInputTB setStringValue:[NSString
-                stringWithFormat:@"Poly %d",
-                [thePoly index]]];
+                                       stringWithFormat:@"Poly %d",
+                                       [thePoly index]]];
     }
     
     [rdMessageIT setStringValue:[NSString
-                stringWithFormat:@"Enter New Name For Polygon #%d",
-                [thePoly index]]];
-        // Open the sheet...
+                                 stringWithFormat:@"Enter New Name For Polygon #%d",
+                                 [thePoly index]]];
+    // Open the sheet...
     [mainWindow beginSheet:rdSheet completionHandler:^(NSModalResponse returnCode) {
         
     }];
@@ -811,8 +804,8 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)rdOkBtnAction:(id)sender
 {
     [[[self document] getCurrentLevelLoaded]
-            namePolygon:objectToRename
-            to:[rdTextInputTB stringValue]];
+     namePolygon:objectToRename
+     to:[rdTextInputTB stringValue]];
     
     [rdSheet orderOut:nil];
     [mainWindow endSheet:rdSheet returnCode:NSModalResponseOK];
@@ -831,7 +824,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)rdRemoveBtnAction:(id)sender
 {
     [[[self document] getCurrentLevelLoaded]
-            removeNameOfPolygon:objectToRename];
+     removeNameOfPolygon:objectToRename];
     
     [rdSheet orderOut:nil];
     [mainWindow endSheet:rdSheet returnCode:2];
@@ -848,7 +841,7 @@ static NSCursor *crosshairCursor = nil;
     if ([self isSheetAlreadyOpen])
         return;
     
-        // Open the sheet...
+    // Open the sheet...
     [mainWindow beginSheet:gotoSheet completionHandler:^(NSModalResponse returnCode) {
         
     }];
@@ -859,8 +852,8 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)gotoOkBtnAction:(id)sender
 {
     NSString *theReply = [levelDrawView
-            gotoAndSelectIndex:[gotoTextInputTB intValue]
-            ofType:(LEMapGoToType)[gotoPfhorgeObjectTypePopMenu indexOfSelectedItem]];
+                          gotoAndSelectIndex:[gotoTextInputTB intValue]
+                          ofType:(LEMapGoToType)[gotoPfhorgeObjectTypePopMenu indexOfSelectedItem]];
     
     if (theReply != nil) {
         [gotoMsgIT setStringValue:theReply];
@@ -972,7 +965,7 @@ static NSCursor *crosshairCursor = nil;
     if ([self isSheetAlreadyOpen])
         return;
     
-	NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
+    NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
     
     [noteGroupPM removeAllItems];
     
@@ -1011,7 +1004,7 @@ static NSCursor *crosshairCursor = nil;
 - (IBAction)closeNoteEditorSheet:(id)sender
 {
     [tmpNote setText:[noteTextTB stringValue]];
-	NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
+    NSArray *types = [[[self document] getCurrentLevelLoaded] noteTypes];
     NSInteger index = [noteGroupPM indexOfSelectedItem];
     
     if (index > 0) {
@@ -1049,7 +1042,7 @@ static NSCursor *crosshairCursor = nil;
 - (void)updateLevelInfoString
 {
     NSMutableString *levelInfoString;
-    LELevelData *theLevel = [[self document] getCurrentLevelLoaded];   
+    LELevelData *theLevel = [[self document] getCurrentLevelLoaded];
     NSSet *theSelections = [levelDrawView getSelectionsOfType:LEMapDrawSelectionAll];
     NSInteger theSelectionsCount = [theSelections count];
     
@@ -1111,9 +1104,8 @@ static NSCursor *crosshairCursor = nil;
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating)
-    {
-	[self updateTheLevelNamesMenu];
+    if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating) {
+        [self updateTheLevelNamesMenu];
     }
 }
 
@@ -1122,8 +1114,7 @@ static NSCursor *crosshairCursor = nil;
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating)
-    {
+    if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating) {
         [levelDataObjectDeallocating removeMenu:layerNamesMenu thatsA:PhLevelNameMenuLayer];
     }
 }
@@ -1132,9 +1123,8 @@ static NSCursor *crosshairCursor = nil;
 {
     id levelDataObject = [notification object];
     
-    if ([[self document] getCurrentLevelLoaded] == levelDataObject)
-    {
-
+    if ([[self document] getCurrentLevelLoaded] == levelDataObject) {
+        
     }
 }
 
@@ -1144,20 +1134,11 @@ static NSCursor *crosshairCursor = nil;
     LEPaletteTool currentTool = [[LEPaletteController sharedPaletteController] currentTool];
     NSCursor *theCursor = nil;
     
-    
-    if (!crosshairCursor) {
-        NSImage *crosshairImage = [NSImage imageNamed:@"Cross"];
-        NSSize imageSize = [crosshairImage size];
-        crosshairCursor = [[NSCursor allocWithZone:[self zone]] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
-    }
-    
-    switch (currentTool)
-    {
+    switch (currentTool) {
         case LEPaletteToolLine:
-            //NSLog(@"toolJustChanged Line");
-            theCursor = crosshairCursor;
+            theCursor = NSCursor.crosshairCursor;
             break;
-       
+            
         case LEPaletteToolHand:
             theCursor = NSCursor.openHandCursor;
             break;
@@ -1182,15 +1163,6 @@ static NSCursor *crosshairCursor = nil;
     
     [[levelDrawView enclosingScrollView] setDocumentCursor:theCursor];
     //NSLog(@"toolJustChanged AFTER");
-}
-
-- (void)loadUpCursors
-{
-    if (!crosshairCursor) {
-        NSImage *crosshairImage = [NSImage imageNamed:@"Cross"];
-        NSSize imageSize = [crosshairImage size];
-        crosshairCursor = [[NSCursor alloc] initWithImage:crosshairImage hotSpot:NSMakePoint((imageSize.width / 2.0), (imageSize.height / 2.0))];
-    }
 }
 
 - (void)windowDidBecomeMain:(NSNotification *)aNotification
@@ -1281,8 +1253,8 @@ static NSCursor *crosshairCursor = nil;
 }
 
 -(id)tableView:(NSTableView *)aTableView
-    objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(NSInteger)rowIndex 
+objectValueForTableColumn:(NSTableColumn *)aTableColumn
+           row:(NSInteger)rowIndex
 {
     
     return @"TEST";
@@ -1299,7 +1271,7 @@ static NSCursor *crosshairCursor = nil;
         return;
     
     [theSavePanel setPrompt:@"Export"];
-	theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
+    theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         sheetOpen = NO;
@@ -1321,7 +1293,7 @@ static NSCursor *crosshairCursor = nil;
     if (returnCode != NSModalResponseOK)
         return;
     
-    NSLog(@"Importing....");
+    NSLog(@"Importing...");
     
     [[NSDocumentController sharedDocumentController]
      openDocumentWithContentsOfURL:[sheet URL] display:NO completionHandler:^(NSDocument * _Nullable theMapDocToImport, BOOL documentWasAlreadyOpen, NSError * _Nullable error) {

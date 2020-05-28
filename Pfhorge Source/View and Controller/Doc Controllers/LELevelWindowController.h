@@ -216,7 +216,6 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
 
 - (void)windowDidBecomeMain:(NSNotification *)aNotification;
 
-- (void)loadUpCursors;
 - (LEMapDraw *)levelDrawView;
 
 @property unsigned short flagNow;
