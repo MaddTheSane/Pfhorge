@@ -25,11 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)initForWritingAtURL:(NSURL *)aURL;
 - (nullable instancetype)initForReadingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForWritingAtPath:(NSString *)aPath;
-- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL;
+- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
+- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError;
 
-- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName;
-- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID;
-- (BOOL)removeType:(ResType)aType Id:(ResID)anID;
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName NS_SWIFT_UNAVAILABLE("");
+- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID NS_SWIFT_UNAVAILABLE("");
+- (BOOL)removeType:(ResType)aType Id:(ResID)anID NS_SWIFT_UNAVAILABLE("");
+
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName error:(NSError**)outError;
+- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID error:(NSError**)outError;
+- (BOOL)removeType:(ResType)aType Id:(ResID)anID error:(NSError**)outError;
 
 @end
 

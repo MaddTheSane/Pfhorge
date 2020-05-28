@@ -92,6 +92,34 @@ static OSErr createResourceFork(NSURL * aURL);
 	return self;
 }
 
+- (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
+{
+	OSErr			theError = !noErr;
+	FSRef			theFsRef;
+
+	if ((self = [self init]) && [aURL getFSRef:&theFsRef]) {
+		HFSUniStr255 forkName;
+		FSGetResourceForkName(&forkName);
+		theError = FSOpenResourceFile(&theFsRef, forkName.length, forkName.unicode, aPermission, &fileReference);
+		
+/*
+		if (noErr != theError) {	// file has no resource fork
+			theError = createResourceFork(aURL);
+			fileReference = FSOpenResFile(&theFsRef, aPermission);
+			theError = fileReference > 0 ? ResError() : !noErr;
+		}
+ */	}
+
+	if (noErr != theError) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:theError userInfo:@{NSURLErrorKey: aURL}];
+		}
+		return nil;
+	}
+
+	return self;
+}
+
 /*
  * initForReadingAtPath:
  */
@@ -126,7 +154,7 @@ static OSErr createResourceFork(NSURL * aURL);
 	
 	if( [self removeType:aType Id:anID] )
 	{
-		FSIORefNum		thePreviousRefNum;
+		ResFileRefNum		thePreviousRefNum;
 
 		thePreviousRefNum = CurResFile();	// save current resource
 		UseResFile(fileReference);    		// set this resource to be current
@@ -155,9 +183,9 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (NSData *)dataForType:(ResType)aType Id:(ResID)anID
 {
-	NSData		* theData = nil;
-	Handle		theResHandle;
-	FSIORefNum	thePreviousRefNum;
+	NSData			* theData = nil;
+	Handle			theResHandle;
+	ResFileRefNum	thePreviousRefNum;
 
 	thePreviousRefNum = CurResFile();	// save current resource
 	
@@ -196,6 +224,112 @@ static OSErr createResourceFork(NSURL * aURL);
 	return YES;
 }
 
+- (BOOL)removeType:(ResType)aType Id:(short)anID error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
+{
+	Handle		theResHandle;
+	OSErr		error;
+	
+	UseResFile(fileReference);    				// set this resource to be current
+
+	theResHandle = Get1Resource(aType, anID);
+	error = ResError();
+	if (error == noErr) {
+		RemoveResource(theResHandle);			// Disposed of in current resource file
+		error = ResError();
+		if (error != noErr) {
+			if (outError) {
+				*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];
+			}
+			
+			return NO;
+		}
+		return (ResError() == noErr);
+	} else if (error != resNotFound) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];
+		}
+		return NO;
+	}
+	return YES;
+}
+
+- (nullable NSData *)dataForType:(ResType)aType Id:(ResID)anID error:(NSError**)outError
+{
+	NSData			* theData = nil;
+	Handle			theResHandle;
+	ResFileRefNum	thePreviousRefNum;
+	OSErr			error;
+
+	thePreviousRefNum = CurResFile();	// save current resource
+	
+	UseResFile(fileReference);    		// set this resource to be current
+	
+	theResHandle = Get1Resource(aType, anID);
+	error = ResError();
+
+	if (error == noErr) {
+		HLock(theResHandle);
+		theData = [NSData dataWithBytes:*theResHandle length:GetHandleSize(theResHandle)];
+		HUnlock(theResHandle);
+	}
+	
+	if (theResHandle)
+		ReleaseResource(theResHandle);
+
+	UseResFile(thePreviousRefNum);     // reset back to resource previously set
+	
+	if (!theData) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];
+		}
+		return nil;
+	}
+	return theData;
+
+}
+
+- (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName error:(NSError**)outError
+{
+	Handle		theResHandle;
+	
+	if ([self removeType:aType Id:anID error:outError]) {
+		ResFileRefNum		thePreviousRefNum;
+
+		thePreviousRefNum = CurResFile();	// save current resource
+		UseResFile(fileReference);    		// set this resource to be current
+	
+		// copy NSData's bytes to a handle
+		OSErr error = PtrToHand([aData bytes], &theResHandle, [aData length]);
+		if (noErr == error) {
+			Str255			thePName;
+			CFStringGetPascalString((CFStringRef)aName, thePName, 255, kCFStringEncodingMacRoman);
+			
+			HLock(theResHandle);
+			AddResource(theResHandle, aType, anID, thePName);
+			HUnlock(theResHandle);
+			
+			UseResFile(thePreviousRefNum);     		// reset back to resource previously set
+	
+			DisposeHandle(theResHandle);
+			error = ResError();
+			if (error != noErr) {
+				if (outError) {
+					*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];
+				}
+				return NO;
+			}
+			return YES;
+		} else {
+			if (outError) {
+				*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];
+			}
+			return NO;
+		}
+	}
+	
+	return NO;
+}
+
 @end
 
 OSErr createResourceFork(NSURL * aURL)
@@ -213,5 +347,5 @@ OSErr createResourceFork(NSURL * aURL)
 		FSCreateResFile(&theParentFsRef, [theFileName length], [theFileName bytes], kFSCatInfoNone, NULL, &theFsRef, NULL);
 	}
 	
-	return (ResError() == noErr);
+	return ResError();
 }

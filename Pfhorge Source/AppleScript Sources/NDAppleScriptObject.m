@@ -582,12 +582,49 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	AEDesc		theDesc = { typeNull, NULL };
 	NSString	*theResult = nil;
 
-	if (OSAGetSource([self OSAComponent], compiledScriptID, typeChar, &theDesc) == noErr) {
-		theResult = [NSString stringWithAEDesc: &theDesc];
+	if (OSAGetSource([self OSAComponent], compiledScriptID, typeUTF8Text, &theDesc) == noErr) {
+		theResult = [NSString stringWithUTF8AEDesc: &theDesc];
 		AEDisposeDesc(&theDesc);
 	}
 
 	return theResult;
+}
+
+- (BOOL)writeToURL:(NSURL *)aURL ID:(ResID)anID error:(NSError**)outError
+{
+	NSData *theData/* = [self data]*/;
+	//taken from [self data] because I wanted to get the error value.
+	OSStatus			theError;
+	AEDesc				theDesc = { typeNull, NULL };
+	
+	theError = OSAStore([self OSAComponent], compiledScriptID, typeOSAGenericStorage, kOSAModeNull, &theDesc);
+	if (noErr == theError) {
+		theData = [NSData dataWithAEDesc: &theDesc];
+		AEDisposeDesc(&theDesc);
+	}
+	
+	if (noErr != theError) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:theError userInfo:nil];
+		}
+		return NO;
+	}
+
+	if (anID != INT16_MIN) {
+		NDResourceFork *theResourceFork = [NDResourceFork resourceForkForWritingAtURL:aURL];
+		return [theResourceFork addData:theData type:kOSAScriptResourceType Id:anID name:@"script" error:outError];
+	}
+	return [theData writeToURL:aURL options:NSDataWritingAtomic error:outError];
+}
+
+- (BOOL)writeToURL:(NSURL *)aURL resourceFork:(BOOL)useRes error:(NSError**)outError
+{
+	return [self writeToURL:aURL ID:useRes ? kScriptResourceID : INT16_MIN error:outError];
+}
+
+- (BOOL)writeToURL:(NSURL *)aURL error:(NSError**)outError
+{
+	return [self writeToURL:aURL resourceFork:NO error:outError];
 }
 
 /*
@@ -595,7 +632,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (BOOL)writeToURL:(NSURL *)aURL
 {
-	return [self writeToURL:aURL Id:kScriptResourceID];
+	return [self writeToURL:aURL ID:kScriptResourceID error:NULL];
 }
 
 /*
@@ -603,14 +640,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (BOOL)writeToURL:(NSURL *)aURL Id:(ResID)anID
 {
-	NSData			* theData;
-	NDResourceFork	* theResourceFork;
-	
-	if ((theData = [self data]) && (theResourceFork = [NDResourceFork resourceForkForWritingAtURL:aURL])) {
-		return [theResourceFork addData:theData type:kOSAScriptResourceType Id:anID name:@"script"];
-	} else {
-		return NO;
-	}
+	return [self writeToURL:aURL ID:anID error:NULL];
 }
 
 /*
@@ -618,7 +648,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (BOOL)writeToFile:(NSString *)aPath
 {
-	return [self writeToURL:[NSURL fileURLWithPath:aPath] Id:kScriptResourceID];
+	return [self writeToURL:[NSURL fileURLWithPath:aPath] ID:kScriptResourceID error:NULL];
 }
 
 /*
@@ -626,7 +656,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID
 {
-	return [self writeToURL:[NSURL fileURLWithPath:aPath] Id:anID];
+	return [self writeToURL:[NSURL fileURLWithPath:aPath] ID:anID error:NULL];
 }
 
 

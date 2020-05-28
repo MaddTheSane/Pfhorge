@@ -73,4 +73,10 @@
 - (BOOL)writeToFile:(NSString *)aPath;
 - (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID;
 
+//! If \c anID is INT16_MIN, writes to data fork instead.
+- (BOOL)writeToURL:(NSURL *)aURL ID:(ResID)anID error:(NSError**)outError;
+
+- (BOOL)writeToURL:(NSURL *)aURL resourceFork:(BOOL)useRes error:(NSError**)outError;
+- (BOOL)writeToURL:(NSURL *)aURL error:(NSError**)outError;
+
 @end
