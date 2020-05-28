@@ -432,11 +432,10 @@
 - (IBAction)exectuteScriptExample:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = @[@"scpt"];
+    panel.allowedFileTypes = @[@"scpt", @"applescript"];
     NSModalResponse returnCode = [panel runModal];
     
-    if (returnCode == NSModalResponseOK)
-    {
+    if (returnCode == NSModalResponseOK) {
         NSString *path = [panel URL].path;
         NSLog(@"The Path: %@", path);
         //NSString *thePath = @"Test Script.scpt";

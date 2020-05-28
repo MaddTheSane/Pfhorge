@@ -272,12 +272,11 @@ NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
 {
 	SendTarget		* theInstance;
 
-	if( (theInstance = [[[self alloc] init] autorelease]) )
-	{
+	if ((theInstance = [[self alloc] init])) {
 		theInstance->appleScriptObject = [anObject retain];
 		theInstance->OK_Enough = 0;
 	}
-	return theInstance;
+	return [theInstance autorelease];
 }
 
 -(void)dealloc
@@ -320,16 +319,13 @@ void createAndExecuteScriptObject( NSString * aPath )
 	
 	NSLog(@"Excuting Script Function Begining...");
 	
-	if( [[aPath pathExtension] isEqualToString:@"applescript"] )
-	{
+	if ([[aPath pathExtension] caseInsensitiveCompare:@"applescript"] == NSOrderedSame) {
 		/*
 		 * This shows creating a script object from a string
 		 */		
 		theScriptText = [NSString stringWithContentsOfFile:aPath usedEncoding:NULL error:NULL];
 		theScriptObject = [NDAppleScriptObject appleScriptObjectWithString:theScriptText];
-	}
-	else
-	{
+	} else {
 		/*
 		 * This shows creating a script object from a compiled AppleScript file,
 		 */
@@ -337,8 +333,7 @@ void createAndExecuteScriptObject( NSString * aPath )
 		theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfFile:aPath];
 	}
 	
-	if( theScriptObject )
-	{
+	if (theScriptObject) {
 		///id			theResult;
 		///NSArray		* theNamesList;
 		SendTarget		* theSendTarget;
@@ -361,7 +356,7 @@ void createAndExecuteScriptObject( NSString * aPath )
 		 * it simple prints a message and then calls NDAppleScriptObject
 		 * which also implements the NDAppleScriptObjectActive protocol.
 		 */
-		[theScriptObject  setActivateTarget:theSendTarget];
+		[theScriptObject setActivateTarget:theSendTarget];
 		
 		[theScriptObject setDefaultTargetAsCreator:(OSType)'PFrg'];
 		//[theScriptObject setFinderAsDefaultTarget];
@@ -371,13 +366,10 @@ void createAndExecuteScriptObject( NSString * aPath )
 		//[NDAppleScriptObject compileExecuteString:@"make new map at end of maps\n"];
 		[NDAppleScriptObject compileExecuteString:@"say \"Done\"\n"];
 		[NDAppleScriptObject compileExecuteString:@"display dialog \"Done\"\n"];
-		if( [[aPath pathExtension] isEqualToString:@"scpt"] )
-		{
+		if ([[aPath pathExtension] caseInsensitiveCompare:@"scpt"] == NSOrderedSame) {
 			[theScriptObject writeToFile:aPath];
 		}
-	}
-	else
-	{
+	} else {
 		printf("Could not create the AppleScript object... \n");
 	}
 	NSLog(@"Excuting Script END...");

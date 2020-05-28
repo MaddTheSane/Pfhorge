@@ -344,8 +344,7 @@ void createAndExecuteScriptObject(NSString * aPath);
 
 #pragma mark Enums
 
-enum
-{
+enum {
     _vm_wire_frame_render_mode = 0,
     _vm_color_render_mode = 1,
     _vm_texture_render_mode = 2

@@ -538,7 +538,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     // I will not do this anymore...
     // ******************************************** Temp Undo Manager Clear **************************************
     [myUndoManager removeAllActions];
-    [self display];
+    [self setNeedsDisplay:YES];
 }
 
 @synthesize currentDrawingMode=drawingMode;

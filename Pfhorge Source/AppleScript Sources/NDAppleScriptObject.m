@@ -675,7 +675,10 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 
 	if (anID != INT16_MIN) {
-		NDResourceFork *theResourceFork = [NDResourceFork resourceForkForWritingAtURL:aURL];
+		NDResourceFork *theResourceFork = [[NDResourceFork alloc] initForWritingAtURL:aURL error:outError];
+		if (!theResourceFork) {
+			return NO;
+		}
 		return [theResourceFork addData:theData type:kOSAScriptResourceType Id:anID name:@"script" error:outError];
 	}
 	return [theData writeToURL:aURL options:NSDataWritingAtomic error:outError];

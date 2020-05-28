@@ -40,12 +40,14 @@
 + (void)initialize {
     // Variables
 	// [preferences setInteger:[snapFromPointLengthSlider intValue] forKey:PhSnapFromLength];
-    NSMutableDictionary *theMutableColors;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *appDefaults = [NSMutableDictionary
         dictionaryWithObject:@"051" forKey:PhPhorgePrefVersion];
     
-    theMutableColors = [[NSMutableDictionary alloc] initWithCapacity:30];
+    @autoreleasepool {
+    NSMutableDictionary *theMutableColors = [[NSMutableDictionary alloc] initWithCapacity:30];
     
     // Set the values    
     [theMutableColors setObject:archive([NSColor colorWithCalibratedRed:0.0 green:.14 blue:0.0 alpha:1.00]) forKey:PhPolygonRegularColor];
@@ -103,6 +105,7 @@
     
     [appDefaults addEntriesFromDictionary:theMutableColors];
 	[theMutableColors release];
+    }
 	
      //Test...
     [appDefaults setObject:@"Default Registration Domain..." forKey:@"TEST"];
@@ -121,7 +124,7 @@
     [appDefaults setObject:@YES forKey:PhEnableObjectGoal];
     
     // *** Grid Defaults ***
-    [appDefaults setObject:[NSNumber numberWithFloat:1]  forKey:PhGridFactor];
+    [appDefaults setObject:@1.0f forKey:PhGridFactor];
     [appDefaults setObject:@YES  forKey:PhEnableGridBool];
     [appDefaults setObject:@YES  forKey:PhSnapToGridBool];
     
@@ -131,7 +134,7 @@
 
     [appDefaults setObject:@YES forKey:PhSnapToPoints];
     [appDefaults setObject:@YES forKey:PhSnapObjectsToGrid];
-    [appDefaults setObject:@NO forKey:PhSnapToLines];
+    [appDefaults setObject:@NO  forKey:PhSnapToLines];
     [appDefaults setObject:@YES forKey:PhSplitNonPolygonLines];
     [appDefaults setObject:@YES forKey:PhSplitPolygonLines];
     [appDefaults setObject:@YES forKey:PhSelectObjectWhenCreated];
@@ -140,18 +143,18 @@
     [appDefaults setObject:@15 forKey:PhSnapToPointsLength];
 
     // *** Visual Mode Defaults ***
-    [appDefaults setObject:@NO  forKey:VMInvertMouse];
-    [appDefaults setObject:@33  forKey:VMKeySpeed];
-    [appDefaults setObject:@1.0f  forKey:VMMouseSpeed];
+    [appDefaults setObject:@NO   forKey:VMInvertMouse];
+    [appDefaults setObject:@33   forKey:VMKeySpeed];
+    [appDefaults setObject:@1.0f forKey:VMMouseSpeed];
 
-    [appDefaults setObject:[NSNumber numberWithInt:0x38]  forKey:VMUpKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0x35]  forKey:VMDownKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0x34]  forKey:VMLeftKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0x36]  forKey:VMRightKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0xf700]  forKey:VMForwardKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0xf701]  forKey:VMBackwardKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0x37]  forKey:VMSlideLeftKey];
-    [appDefaults setObject:[NSNumber numberWithInt:0x39]  forKey:VMSlideRightKey];
+    [appDefaults setObject:@0x38   forKey:VMUpKey];
+    [appDefaults setObject:@0x35   forKey:VMDownKey];
+    [appDefaults setObject:@0x34   forKey:VMLeftKey];
+    [appDefaults setObject:@0x36   forKey:VMRightKey];
+    [appDefaults setObject:@0xf700 forKey:VMForwardKey];
+    [appDefaults setObject:@0xf701 forKey:VMBackwardKey];
+    [appDefaults setObject:@0x37   forKey:VMSlideLeftKey];
+    [appDefaults setObject:@0x39   forKey:VMSlideRightKey];
     
     
     
@@ -159,7 +162,7 @@
     [appDefaults setObject:@YES forKey:VMShowTransparent];
     [appDefaults setObject:@YES forKey:VMShowLandscapes];
     [appDefaults setObject:@YES forKey:VMShowInvalid];
-    [appDefaults setObject:@NO forKey:VMUseFog];
+    [appDefaults setObject:@NO  forKey:VMUseFog];
     [appDefaults setObject:@YES forKey:VMSmoothRendering];
     [appDefaults setObject:@YES forKey:VMUseLighting];
     
@@ -173,10 +176,10 @@
     [appDefaults setObject:@0  forKey:VMFieldOfView];
     [appDefaults setObject:@0  forKey:VMVisibilityMode];
     
-    [appDefaults setObject:@1.0f  forKey:VMFogDepth];
+    [appDefaults setObject:@1.0f forKey:VMFogDepth];
     
     [appDefaults setObject:@3 forKey:VMRenderMode];
-    [appDefaults setObject:@0  forKey:VMStartPosition];
+    [appDefaults setObject:@0 forKey:VMStartPosition];
      
     [appDefaults setObject:@"" forKey:VMShapesPath];
     
@@ -185,12 +188,13 @@
     
     // Default Settings For Recently Added Snap-From and Angle-Snap
     [appDefaults setObject:@YES forKey:PhUseRightAngleSnap];
-    [appDefaults setObject:@NO forKey:PhUseIsometricAngleSnap];
+    [appDefaults setObject:@NO  forKey:PhUseIsometricAngleSnap];
     [appDefaults setObject:@YES forKey:PhSnapFromPoints];
     [appDefaults setObject:@16  forKey:PhSnapFromLength];
     
     
     [defaults registerDefaults:appDefaults];
+    });
     NSLog(@"Done Registering The Prefrence Defaults...");
 }
 

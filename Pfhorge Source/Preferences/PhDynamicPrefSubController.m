@@ -295,21 +295,20 @@ extern NSString *VMBackwardKey;
 -(IBAction)chooseScriptFolder:(id)scriptFolder
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = @[@"scpt"];
+    panel.allowedFileTypes = @[@"scpt", @"applescript"];
     NSInteger returnCode = [panel runModal];
     
-    if (returnCode == NSModalResponseOK)
-    {
+    if (returnCode == NSModalResponseOK) {
         NSString *path = [panel URL].path;
         NSLog(@"The Path: %@", path);
         //NSString *thePath = @"Test Script.scpt";
-        createAndExecuteScriptObject( path );
+        createAndExecuteScriptObject(path);
     }
 }
 
 -(IBAction)enableGridCB:(id)sender
 {
-    [preferences setBool:[sender state] forKey:PhEnableGridBool];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:PhEnableGridBool];
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
@@ -321,8 +320,7 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)gridSizeMenu:(id)sender
 {
-    switch ([sender indexOfSelectedItem])
-    {
+    switch ([sender indexOfSelectedItem]) {
         case 0:
             [preferences setFloat:0.125 forKey:PhGridFactor];
             break;
@@ -344,7 +342,7 @@ extern NSString *VMBackwardKey;
         case 6:
             [preferences setFloat:8.000 forKey:PhGridFactor];
             break;
-        case 7: //get custom factor...
+        case 7: //TODO: get custom factor...
             //[preferences setFloat:0.125 forKey:PhGridFactor];
             break;
     }
@@ -354,19 +352,19 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)snapToGridCB:(id)sender
 {
-    [preferences setBool:[sender state] forKey:PhSnapToGridBool];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:PhSnapToGridBool];
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)enableAntialiasingCheckboxAction:(id)sender
 {
-    [preferences setBool:[sender state] forKey:PhEnableAntialiasing];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:PhEnableAntialiasing];
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
 -(IBAction)enableObjectOutliningAction:(id)sender
 {
-    [preferences setBool:[sender state] forKey:PhEnableObjectOutling];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:PhEnableObjectOutling];
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
@@ -384,15 +382,12 @@ extern NSString *VMBackwardKey;
     
     returnCode = [panel runModal];
     
-    if (returnCode == NSModalResponseOK)
-    {
+    if (returnCode == NSModalResponseOK) {
         NSURL *path = [panel URL];
         NSLog(@"The Shapes Path Choosen: %@", path);
         [shapesPathTB setStringValue:path.path];
         [preferences setURL:path forKey:VMShapesPath];
-    }
-    else
-    {
+    } else {
         [shapesPathTB setStringValue:NSLocalizedString(@"No Shapes Selected", @"No Shapes Selected")];
         [preferences setObject:@"" forKey:VMShapesPath];
     }
@@ -417,12 +412,12 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)showObjectsChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMShowObjects];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMShowObjects];
 }
 
 -(IBAction)liquidsTransparentChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMLiquidsTransparent];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMLiquidsTransparent];
 }
 
 -(IBAction)platformStatePMChanged:(id)sender
@@ -432,27 +427,27 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)showLiquidsChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMShowLiquids];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMShowLiquids];
 }
 
 -(IBAction)showTransparentChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMShowTransparent];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMShowTransparent];
 }
 
 -(IBAction)showLandscapesChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMShowLandscapes];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMShowLandscapes];
 }
 
 -(IBAction)showInvalidChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMShowInvalid];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMShowInvalid];
 }
 
 -(IBAction)useFogChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMUseFog];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMUseFog];
 }
 
 -(IBAction)fogDepthSliderChanged:(id)sender
@@ -464,12 +459,12 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)smoothRenderingCBChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMSmoothRendering];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMSmoothRendering];
 }
 
 -(IBAction)useLightingChanged:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMUseLighting];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMUseLighting];
 }
 
 -(IBAction)whatLightingPMChanged:(id)sender
@@ -502,7 +497,7 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)setInvertMouseAction:(id)sender
 {
-    [preferences setBool:[sender state] forKey:VMInvertMouse];
+    [preferences setBool:[sender state] == NSControlStateValueOn forKey:VMInvertMouse];
 }
 
 -(IBAction)setMouseSpeedAction:(id)sender
@@ -512,7 +507,7 @@ extern NSString *VMBackwardKey;
 
 -(IBAction)setKeySpeedAction:(id)sender
 {
-    [preferences setInteger:[sender intValue] forKey:VMKeySpeed];
+    [preferences setInteger:[sender integerValue] forKey:VMKeySpeed];
 }
 
 -(IBAction)setKeyButtonAction:(id)sender
