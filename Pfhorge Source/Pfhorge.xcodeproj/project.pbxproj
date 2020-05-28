@@ -179,7 +179,7 @@
 		AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
 		AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
 		AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; };
-		AE3C15890A04512100FBFFCD /* PluginManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */; };
+		AE3C15890A04512100FBFFCD /* PluginManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C158A0A04512100FBFFCD /* PhTextureInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */; };
 		AE3C158B0A04512100FBFFCD /* LELine-SideCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */; };
 		AE3C158C0A04512100FBFFCD /* LELevelData-Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = F58032D103E31DD90146BBD2 /* LELevelData-Settings.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };

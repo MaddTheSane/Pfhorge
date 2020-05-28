@@ -47,8 +47,8 @@
     
     self = [super initWithLevel:theLevel
                 withMapDocument:theMapDoc
-                withNibFile:@"RandomSoundInterface"
-                withEditingObj:theSound];
+                    withNibFile:@"RandomSoundInterface"
+                 withEditingObj:theSound];
     
     if (self == nil)
         return nil;
@@ -72,10 +72,10 @@
 - (void)registerNotifcations
 {
     [[NSNotificationCenter defaultCenter]
-            addObserver:self
-            selector:@selector(setupTagMenu)
-            name:PhUserDidChangeNamesNotification
-            object:nil];
+     addObserver:self
+     selector:@selector(setupTagMenu)
+     name:PhUserDidChangeNamesNotification
+     object:nil];
 }
 
 - (void)dealloc

@@ -323,7 +323,7 @@ enum {
 
 -(void)addSidesForLine:(LELine *)theLine;
 -(void)removeSidesFromLine:(LELine *)theLine;
--(void)setNameFor:(__kindof LEMapStuffParent*)theObject to:(NSString *)theName;
+-(void)setNameForObject:(__kindof LEMapStuffParent*)theObject toString:(NSString *)theName;
 -(void)namePolygon:(LEPolygon *)thePoly to:(NSString *)theName;
 -(void)removeNameOfPolygon:(LEPolygon *)thePoly;
 

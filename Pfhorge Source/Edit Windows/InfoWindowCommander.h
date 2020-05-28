@@ -29,7 +29,7 @@
 
 @class LELevelData, LEMap;
 
-@interface InfoWindowCommander : NSWindowController
+@interface InfoWindowCommander : NSWindowController <NSWindowDelegate>
 {
     IBOutlet NSWindow *theSheet;
     IBOutlet NSTextField *theInputBox;
@@ -48,9 +48,9 @@
 
 - (instancetype)initWithLevel:(LELevelData *)theLevel
               withMapDocument:(LEMap *)theDocument
-                  withNibFile:(NSString *)nibFileName
-               withEditingObj:(id)theObj;
+                  withNibFile:(NSNibName)nibFileName
+               withEditingObj:(__kindof LEMapStuffParent*)theObj;
 
 - (NSInteger)tagIndexNumberFromShort:(short)tagNumber;
-- (__kindof LEMapStuffParent*)objectBeingEdited;
+@property (readonly, assign) __kindof LEMapStuffParent *objectBeingEdited;
 @end

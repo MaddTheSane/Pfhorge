@@ -33,9 +33,9 @@
 @implementation InfoWindowCommander
 
 - (id)initWithLevel:(LELevelData *)theLevel
-                       withMapDocument:(LEMap *)theDocument
-                           withNibFile:(NSString *)nibFileName
-                        withEditingObj:(id)theObj;
+    withMapDocument:(LEMap *)theDocument
+        withNibFile:(NSString *)nibFileName
+     withEditingObj:(id)theObj;
 {
     self = [super initWithWindowNibName:nibFileName];
     
@@ -49,9 +49,9 @@
     [mapDocument addLevelInfoWinCon:self];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                          selector:@selector(levelDeallocating:)
-                                          name:PhLevelDeallocatingNotification
-                                          object:nil];
+                                             selector:@selector(levelDeallocating:)
+                                                 name:PhLevelDeallocatingNotification
+                                               object:nil];
     
     return self;
 }
@@ -60,8 +60,7 @@
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (mapLevel == levelDataObjectDeallocating)
-    {
+    if (mapLevel == levelDataObjectDeallocating) {
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
         mapDocument = nil;
@@ -77,7 +76,7 @@
     [super dealloc];
 }
 
-- (BOOL)windowShouldClose:(id)sender
+- (BOOL)windowShouldClose:(NSWindow *)sender
 {
     NSLog(@"InfoCommanderWindow should close");
     [mapDocument removeLevelInfoWinCon:self];
@@ -86,12 +85,9 @@
 
 - (IBAction)renameObjectAction:(id)sender
 {
-    if ([theObjBeingEdited doIHaveAName])
-    {
+    if ([theObjBeingEdited doIHaveAName]) {
         [theInputBox setStringValue:[theObjBeingEdited phName]];
-    }
-    else
-    {
+    } else {
         [theInputBox setStringValue:[NSString
                 stringWithFormat:@"Object %d",
                 [theObjBeingEdited index]]];
@@ -101,34 +97,32 @@
                 stringWithFormat:@"Enter New Name For Object %d",
                 [theObjBeingEdited index]]];
     
-        // Open the sheet...
-    [NSApp  beginSheet:theSheet
-            modalForWindow:[self window]
-            modalDelegate:self
-            didEndSelector:NULL
-            contextInfo:nil];
+    // Open the sheet...
+    [[self window] beginSheet:theSheet completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSModalResponseOK) {
+            [mapLevel setNameForObject:theObjBeingEdited
+                              toString:[theInputBox stringValue]];
+            [self setupTitlesAndNames];
+        }
+    }];
 }
 
 - (IBAction)renameSheetApplyAction:(id)sender
 {
-    [mapLevel setNameFor:theObjBeingEdited
-            to:[theInputBox stringValue]];
-    
     [theSheet orderOut:nil];
-    [NSApp endSheet:theSheet];
-    [self setupTitlesAndNames];
+    [[self window] endSheet:theSheet returnCode:NSModalResponseOK];
 }
 
 - (IBAction)renameSheetCancelAction:(id)sender
 {
     [theSheet orderOut:nil];
-    [NSApp endSheet:theSheet];
+    [[self window] endSheet:theSheet returnCode:NSModalResponseCancel];
 }
 
 - (void)setupTitlesAndNames
 {
-    SEND_ERROR_MSG(@"Sorry, but the name will not be updated on the window\
-                        [it was applied though, I think ]:=) ]…");
+    SEND_ERROR_MSG(@"Sorry, but the name will not be updated on the window\n"
+                   "[it was applied though, I think ]:=) ]…");
     return;
 }
 
@@ -144,12 +138,6 @@
     //return -1;
 }
 
-- (id)objectBeingEdited
-{
-    return theObjBeingEdited;
-}
-
+@synthesize objectBeingEdited=theObjBeingEdited;
 
 @end
-
-

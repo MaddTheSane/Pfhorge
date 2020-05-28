@@ -95,7 +95,7 @@
     else if (folderPath) {
         NSEnumerator* enumerator = [[NSBundle pathsForResourcesOfType:@"plugin" inDirectory:folderPath] objectEnumerator];
         for (NSString* pluginPath in enumerator) {
-                [self activatePlugin:pluginPath];
+            [self activatePlugin:pluginPath];
         }
     }
     

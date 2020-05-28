@@ -114,8 +114,7 @@
     long tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -154,12 +153,9 @@
     // or an already exsisting object... (for example, a teleport destination
     // that is not going to be exported)...
     
-    if (control_panel_permutation_object != nil && [mainObjs containsObject:control_panel_permutation_object])
-    {
+    if (control_panel_permutation_object != nil && [mainObjs containsObject:control_panel_permutation_object]) {
         ExportObj(control_panel_permutation_object);
-    }
-    else
-    {
+    } else {
         ExportNil();
     }
     
@@ -169,21 +165,15 @@
     ExportShort(secondary_transfer_mode);
     ExportShort(transparent_transfer_mode);
     
-    if (polygon_object != nil && [mainObjs containsObject:polygon_object])
-    {
+    if (polygon_object != nil && [mainObjs containsObject:polygon_object]) {
         ExportObj(polygon_object);
-    }
-    else
-    {
+    } else {
         ExportNil();
     }
     
-    if (line_object != nil && [mainObjs containsObject:line_object])
-    {
+    if (line_object != nil && [mainObjs containsObject:line_object]) {
         ExportObj(line_object);
-    }
-    else
-    {
+    } else {
         ExportNil();
     }
     
@@ -226,8 +216,7 @@
     [myData release];
     [futureData release];
     
-    if ([index indexOfObjectIdenticalTo:self] != myPosition)
-    {
+    if ([index indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
@@ -335,17 +324,14 @@
         
         // If So, Should Already Have This On:
         // setEncodeIndexNumbersInstead:YES];
-        if (useIndexNumbersInstead)
-        {
+        if (useIndexNumbersInstead) {
             tmpShort = GetIndexAdv(primary_lightsource_object);
             [coder encodeInt:tmpShort forKey:@"primary_lightsource_object index"];
             tmpShort = GetIndexAdv(secondary_lightsource_object);
             [coder encodeInt:tmpShort forKey:@"secondary_lightsource_object index"];
             tmpShort = GetIndexAdv(transparent_lightsource_object);
             [coder encodeInt:tmpShort forKey:@"transparent_lightsource_object index"];
-        }
-        else
-        {
+        } else {
             [coder encodeObject:primary_lightsource_object forKey:@"primary_lightsource_object"];
             [coder encodeObject:secondary_lightsource_object forKey:@"secondary_lightsource_object"];
             [coder encodeObject:transparent_lightsource_object forKey:@"transparent_lightsource_object"];
@@ -395,17 +381,14 @@
         encodeConditionalObject(coder, polygon_object);
         encodeConditionalObject(coder, line_object);
         
-        if (useIndexNumbersInstead)
-        {
+        if (useIndexNumbersInstead) {
             tmpShort = GetIndexAdv(primary_lightsource_object);
             encodeShort(coder, tmpShort);
             tmpShort = GetIndexAdv(secondary_lightsource_object);
             encodeShort(coder, tmpShort);
             tmpShort = GetIndexAdv(transparent_lightsource_object);
             encodeShort(coder, tmpShort);
-        }
-        else
-        {
+        } else {
             encodeObj(coder, primary_lightsource_object);
             encodeObj(coder, secondary_lightsource_object);
             encodeObj(coder, transparent_lightsource_object);
@@ -446,8 +429,7 @@
         polygon_object = [coder decodeObjectForKey:@"polygon_object"];
         line_object = [coder decodeObjectForKey:@"line_object"];
         
-        if (useIndexNumbersInstead)
-        {
+        if (useIndexNumbersInstead) {
             short tmpShort;
             tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
             primary_lightsource_object = [self getLightFromIndex:tmpShort];
@@ -455,9 +437,7 @@
             secondary_lightsource_object = [self getLightFromIndex:tmpShort];
             tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
             transparent_lightsource_object = [self getLightFromIndex:tmpShort];
-        }
-        else
-        {
+        } else {
             primary_lightsource_object = [coder decodeObjectForKey:@"primary_lightsource_object"];
             secondary_lightsource_object = [coder decodeObjectForKey:@"secondary_lightsource_object"];
             transparent_lightsource_object = [coder decodeObjectForKey:@"transparent_lightsource_object"];
@@ -571,22 +551,19 @@
 {
     LESide *theTarget = (LESide *)target;
     
-    if (primary_texture.texture != -1) // define NONE and use NONE here
-    {
+    if (primary_texture.texture != NONE) {
         [theTarget setPrimaryTextureStruct:primary_texture];
         [theTarget setPrimaryTransferMode:primary_transfer_mode];
         [theTarget setPrimaryLightsourceObject:primary_lightsource_object];
     }
     
-    if (secondary_texture.texture != -1) // define NONE and use NONE here
-    {
+    if (secondary_texture.texture != NONE) {
         [theTarget setSecondaryTextureStruct:secondary_texture];
         [theTarget setSecondaryTransferMode:secondary_transfer_mode];
         [theTarget setSecondaryLightsourceObject:secondary_lightsource_object];
     }
     
-    if (transparent_texture.texture != -1) // define NONE and use NONE here
-    {
+    if (transparent_texture.texture != NONE) {
         [theTarget setTransparentTextureStruct:transparent_texture];
         [theTarget setTransparentTransferMode:transparent_transfer_mode];
         [theTarget setTransparentLightsourceObject:transparent_lightsource_object];
@@ -596,13 +573,10 @@
     [theTarget setFlags:flags];
     
     // Should I also inlucd control panel settings? We will see what happens...
-    if (flags & LESideIsControlPanel)
-    {
+    if (flags & LESideIsControlPanel) {
         [theTarget setControlPanelType:control_panel_type];
         [theTarget setControlPanelPermutation:control_panel_permutation];
-    }
-    else
-    {
+    } else {
         [theTarget setControlPanelType:0];
         [theTarget setControlPanelPermutation:0];
     }
@@ -662,8 +636,7 @@
 
 -(BOOL)getFlagS:(short)theFlag;
 {
-    switch (theFlag)
-    {
+    switch (theFlag) {
         case 1:
             return GET_SIDE_FLAG(LESideControlPanelStatus);
             break;
@@ -755,63 +728,71 @@
 #pragma mark ********* Set Accsessors *********
 
 -(void)setPrimaryTexture:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&primary_texture.texture;
-    (theTexChar)[1] = number;
+    (theTexChar)[0] = number;
 }
 
 -(void)setSecondaryTexture:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&secondary_texture.texture;
-    (theTexChar)[1] = number;
+    (theTexChar)[0] = number;
 }
 
 -(void)setTransparentTexture:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&transparent_texture.texture;
-    (theTexChar)[1] = number;
+    (theTexChar)[0] = number;
 }
 
 -(void)setPrimaryTextureCollection:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&primary_texture.texture;
-    (theTexChar)[0] = 0x11 + number;
+    (theTexChar)[1] = 0x11 + number;
 }
 
 -(void)setSecondaryTextureCollection:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&secondary_texture.texture;
-    (theTexChar)[0] = 0x11 + number;
+    (theTexChar)[1] = 0x11 + number;
 }
 
 -(void)setTransparentTextureCollection:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&transparent_texture.texture;
-    (theTexChar)[0] = 0x11 + number;
+    (theTexChar)[1] = 0x11 + number;
 }
 
 -(void)resetTextureCollection
-{ 
+{
+    //TODO: make endian-safe
     // For right now it just sets it to the current levels
     // collection.
     char *thePTexChar = (char *)&primary_texture.texture;
     char *theSTexChar = (char *)&secondary_texture.texture;
     char *theTTexChar = (char *)&transparent_texture.texture;
     short theCurrentEnviroCode = [theLELevelDataST environmentCode];
-    (thePTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theSTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theTTexChar)[0] = (0x11 + theCurrentEnviroCode);
+    (thePTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theSTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theTTexChar)[1] = (0x11 + theCurrentEnviroCode);
 }
 
 -(void)setTextureCollection:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *thePTexChar = (char *)&primary_texture.texture;
     char *theSTexChar = (char *)&secondary_texture.texture;
     char *theTTexChar = (char *)&transparent_texture.texture;
     //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
-    (thePTexChar)[0] = (0x11 + number);
-    (theSTexChar)[0] = (0x11 + number);
-    (theTTexChar)[0] = (0x11 + number);
+    (thePTexChar)[1] = (0x11 + number);
+    (theSTexChar)[1] = (0x11 + number);
+    (theTTexChar)[1] = (0x11 + number);
 }
         
 -(void)setControlPanelType:(short)v
@@ -821,8 +802,7 @@
     permutationEffects = 0;
     control_panel_type = v;
     
-    switch (enviroCode)
-    {
+    switch (enviroCode) {
         case _water:
             modfiedControlPanelType = (control_panel_type - waterOffset);
             break;
@@ -844,10 +824,8 @@
             break;
     }
         
-    if (enviroCode == _water)
-    {
-        switch(modfiedControlPanelType)
-        {
+    if (enviroCode == _water) {
+        switch(modfiedControlPanelType) {
             case 3:
             case 6:
             case 9:
@@ -863,11 +841,8 @@
                 permutationEffects = _cpanel_effects_terminal;
                 break;
         }
-    }
-    else
-    {
-        switch(modfiedControlPanelType)
-        {
+    } else {
+        switch(modfiedControlPanelType) {
             case 5:
             case 9:
             case 10:
@@ -898,8 +873,7 @@
     NSArray *theObjectArray = nil;
     control_panel_permutation = v;
     
-    switch(permutationEffects)
-    {
+    switch (permutationEffects) {
         case 0:
             control_panel_permutation_object = nil;
             return;
@@ -921,7 +895,7 @@
             break;
     }
     
-    if (theObjectArray != nil && (int)[theObjectArray count] > v)
+    if (theObjectArray != nil && [theObjectArray count] > v)
    	control_panel_permutation_object = [theObjectArray objectAtIndex:control_panel_permutation];
     else
         control_panel_permutation_object = nil;
@@ -990,45 +964,51 @@
 #pragma mark ********* Get Accsessors *********
 
 -(char)primaryTexture
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&primary_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[1];
+    return (theTexChar)[0];
 }
 
 -(char)secondaryTexture
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&secondary_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[1];
+    return (theTexChar)[0];
 }
 
 -(char)transparentTexture
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&transparent_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[1];
+    return (theTexChar)[0];
 }
 
 -(char)primaryTextureCollection
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&primary_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[0] - 0x11;
+    return (theTexChar)[1] - 0x11;
 }
 
 -(char)secondaryTextureCollection
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&secondary_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[0] - 0x11;
+    return (theTexChar)[1] - 0x11;
 }
 
 -(char)transparentTextureCollection
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&transparent_texture.texture;
     //(theTexChar)[0]
-    return (theTexChar)[0] - 0x11;
+    return (theTexChar)[1] - 0x11;
 }
 
 -(char)textureCollection
@@ -1084,10 +1064,8 @@
     if ([self getFlagS:2] == NO)
         return -1; // This Side Is Not A Control Panel
     
-    if (control_panel_type < 10 && control_panel_type >= 0) // water
-    {
-        switch (control_panel_type)
-        {
+    if (control_panel_type < 10 && control_panel_type >= 0) { // water
+        switch (control_panel_type) {
             case 0:
                 return _panel_oxygen;
                 break;
@@ -1123,22 +1101,18 @@
                 return -1;
                 break;
         }
-    }
-    else if (control_panel_type < 21 && control_panel_type >= 10) // lava
+    } else if (control_panel_type < 21 && control_panel_type >= 10) { // lava
         return control_panel_type - lavaOffset;
-    else if (control_panel_type < 32 && control_panel_type >= 21) // sewage
+    } else if (control_panel_type < 32 && control_panel_type >= 21) { // sewage
         return control_panel_type - sewageOffset;
-    else if (control_panel_type < 43 && control_panel_type >= 32) // pfhor
+    } else if (control_panel_type < 43 && control_panel_type >= 32) { // pfhor
         return control_panel_type - pfhorOffset;
-    else if (control_panel_type < 54 && control_panel_type >= 43) // jjaro
+    } else if (control_panel_type < 54 && control_panel_type >= 43) { // jjaro
         return control_panel_type - jjaroOffset;
-    else if (control_panel_type >= 54) // to great
-    {
+    } else if (control_panel_type >= 54) { // to great
         SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 2");
         return -1;
-    }
-    else if (control_panel_type < 0) // to low
-    {
+    } else if (control_panel_type < 0) { // too low
         SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 3");
         return -1;
     }
@@ -1163,7 +1137,7 @@
 {
     self = [super init];
     if (self == nil)
-	return nil;
+        return nil;
     
     type = 0;
     flags = 0;

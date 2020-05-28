@@ -329,7 +329,7 @@
     /*NSParameterAssert(rowIndex >= 0 && rowIndex < [currentArray count]);
      
     if ([[col identifier] isEqualToString:PhNameOfObject])
-        [theLevelDataObject setNameFor:[currentArray objectAtIndex:rowIndex] to:anObject];
+        [theLevelDataObject setNameForObject:[currentArray objectAtIndex:rowIndex] toString:anObject];
     
     else if ([[col identifier] isEqualToString:PhNumberOfObject])
     {

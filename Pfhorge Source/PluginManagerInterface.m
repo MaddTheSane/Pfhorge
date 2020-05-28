@@ -38,7 +38,11 @@
 //    in order of front to back...
 - (NSArray<LEMap *> *)levelDocumentsOpen;
 {
-	NSArray *theArray = [[NSDocumentController sharedDocumentController] documents];
+	NSMutableArray *theArray = [[[NSDocumentController sharedDocumentController] documents] mutableCopy];
+    NSIndexSet *badIdxs = [theArray indexesOfObjectsPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return ![obj isKindOfClass:[LEMap class]];
+    }];
+    [theArray removeObjectsAtIndexes:badIdxs];
 	return ([theArray count] < 1) ? nil : theArray;
 }
 

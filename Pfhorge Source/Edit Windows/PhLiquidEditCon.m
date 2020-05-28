@@ -39,16 +39,16 @@
 #pragma mark ********* Overridden Methods *********
 
 - (id)initWithMedia:(id)theMedia
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc
+          withLevel:(LELevelData *)theLevel
+    withMapDocument:(LEMap *)theMapDoc
 {
     if (theMedia == nil || theLevel == nil || theMapDoc == nil)
         return nil;
     
     self = [super initWithLevel:theLevel
                 withMapDocument:theMapDoc
-                withNibFile:@"LiquidInterface"
-                withEditingObj:theMedia];
+                    withNibFile:@"LiquidInterface"
+                 withEditingObj:theMedia];
     
     if (self == nil)
         return nil;
@@ -74,18 +74,17 @@
 - (void)registerNotifcations
 {
     [[NSNotificationCenter defaultCenter]
-            addObserver:self
-            selector:@selector(setupTagMenu)
-            name:PhUserDidChangeNamesNotification
-            object:nil];
+     addObserver:self
+     selector:@selector(setupTagMenu)
+     name:PhUserDidChangeNamesNotification
+     object:nil];
 }
 
 - (void)levelDeallocating:(NSNotification *)notification
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (mapLevel == levelDataObjectDeallocating)
-    {
+    if (mapLevel == levelDataObjectDeallocating) {
         [mapLevel removeMenu:tideLightMenu thatsA:PhLevelNameMenuLight];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
@@ -113,14 +112,7 @@
 #pragma mark ********* Updater Methods  *********
 - (void)setupTitlesAndNames
 {
-    NSMutableString *infoString;
-    // *** Set the name, etc. ***
-    infoString = [[NSMutableString alloc] initWithString:@"Name: "];
-        //[infoString appendString:[[NSNumber numberWithShort:[curRandomSound index]] stringValue]];
-        //[infoString appendString:@" - Name: "];
-        [infoString appendString:[curMedia phName]];
-        [infoIT setStringValue:infoString];
-        [infoString release];
+    [infoIT setStringValue:[NSString stringWithFormat:@"Name: %@", curMedia.phName]];
     
     return;
 }
@@ -133,8 +125,7 @@
 -(void)refreshInterfaceFromData
 {
     [self setupTitlesAndNames];
-    if (curMedia == nil)
-    {
+    if (curMedia == nil) {
         NSLog(@"curMedia was nil in media editor when refrshing interface!!!");
         return;
     }
@@ -161,8 +152,7 @@
     NSArray *theLights = [mapLevel lights];
     NSLog(@"Saving Media Changes...");
     
-    if (curMedia == nil || mapLevel == nil || theLights == nil)
-    {
+    if (curMedia == nil || mapLevel == nil || theLights == nil) {
         NSLog(@"Somthing was nil in media editor when saving!!!");
         return;
     }

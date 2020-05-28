@@ -79,8 +79,7 @@ NS_ENUM(short)	// platform delays
 
 
 //! static platform flags
-typedef NS_ENUM(unsigned int, PhPlatformStaticFlags)
-{
+typedef NS_ENUM(unsigned int, PhPlatformStaticFlags) {
 	//! otherwise inactive
 	_platform_is_initially_active = 0x00000001,
 	//! high for floor platforms, low for ceiling platforms, closed for two_way platforms

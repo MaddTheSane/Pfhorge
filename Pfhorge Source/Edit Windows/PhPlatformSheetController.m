@@ -33,19 +33,19 @@
 @implementation PhPlatformSheetController
 // *********************** Overridden Methods ***********************
 #pragma mark -
-#pragma mark ********* Overridden Methods *********
+#pragma mark Overridden Methods
 
 - (id)initWithPlatform:(PhPlatform *)thePlatform
-            withLevel:(LELevelData *)theLevel
-            withMapDocument:(LEMap *)theMapDoc
+             withLevel:(LELevelData *)theLevel
+       withMapDocument:(LEMap *)theMapDoc
 {
     //if (thePlatform == nil || theLevel == nil || theMapDoc == nil)
     //    return nil;
     
     self = [super initWithLevel:theLevel
                 withMapDocument:theMapDoc
-                withNibFile:@"PlatformEditor"
-                withEditingObj:thePlatform];
+                    withNibFile:@"PlatformEditor"
+                 withEditingObj:thePlatform];
     
     if (self == nil)
         return nil;
@@ -67,8 +67,7 @@
 {
     id levelDataObjectDeallocating = [notification object];
     
-    if (mapLevel == levelDataObjectDeallocating)
-    {
+    if (mapLevel == levelDataObjectDeallocating) {
         [mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
@@ -92,22 +91,12 @@
 
 // *********************** Updater/Save Methods ***********************
 #pragma mark -
-#pragma mark ********* Updater Methods  *********
+#pragma mark Updater Methods
 - (void)setupTitlesAndNames
 {
-    NSMutableString *platformInfoString;
-    // [platform polygonObject];
     short platformPolygonIndex = [platform polygonIndex];
     
-    platformInfoString = [[NSMutableString alloc] initWithString:@"Level: Map - Name: "];
-    [platformInfoString appendString:[platform phName]];
-    [platformInfoString appendString:@" - Polygon#"];
-    [platformInfoString appendString:[[NSNumber numberWithShort:platformPolygonIndex] stringValue]];
-    [platformInfoString appendString:@" - Platform#"];
-    [platformInfoString appendString:[[NSNumber numberWithShort:[platform index]] stringValue]];
-    
-    [statusIT setStringValue:platformInfoString];
-    [platformInfoString release];
+    [statusIT setStringValue:[NSString stringWithFormat:@"Level: Map - Name: %@ - Polygon#%d - Platform#%d", platform.phName, platformPolygonIndex, [platform index]]];
     return;
 }
 
@@ -128,10 +117,9 @@
     
     [self setupTitlesAndNames];
     
-    if (platformTagMenuIndex >= 0)
+    if (platformTagMenuIndex >= 0) {
         [tagComboMenu selectItemAtIndex:platformTagMenuIndex];
-    else
-	{
+    } else {
 		[tagComboMenu selectItemAtIndex:-1];
         NSLog(@"A platform that just entered edit mode -> tag not found?");
 	}
@@ -159,24 +147,18 @@
     [minHeightTB setIntValue:[platform minimumHeight]];
     [maxHeightTB setIntValue:[platform maximumHeight]];
     
-    if ([platform minimumHeight] == -1)
-    {
+    if ([platform minimumHeight] == -1) {
         [autoCalcMinCB setState:NSOnState];
         [minHeightTB setEnabled:NO];
-    }
-    else
-    {
+    } else {
         [minHeightTB setEnabled:YES];
         [autoCalcMinCB setState:NSOffState];
     }
     
-    if ([platform maximumHeight] == -1)
-    {
+    if ([platform maximumHeight] == -1) {
         [autoCalcMaxCB setState:NSOnState];
         [maxHeightTB setEnabled:NO];
-    }
-    else
-    {
+    } else {
         [maxHeightTB setEnabled:YES];
         [autoCalcMaxCB setState:NSOffState];
     }
@@ -199,12 +181,9 @@
         [floorToCeilingCB setState:NSOffState];
     
     if ((platformFlags & _platform_comes_from_floor) &&
-        (platformFlags & _platform_comes_from_ceiling))
-    {
+        (platformFlags & _platform_comes_from_ceiling)) {
         SelectS(extendsFromRBMatrix, 2);
-    }
-    else
-    {
+    } else {
         if (platformFlags & _platform_comes_from_floor)
             SelectS(extendsFromRBMatrix, 0);
         if (platformFlags & _platform_comes_from_ceiling)
@@ -256,8 +235,7 @@
 {
     unsigned int theFlags = 0;
     
-    if (platform == nil)
-    {
+    if (platform == nil) {
         SEND_ERROR_MSG_TITLE(@"When I tried to save the changes to the platform, the platform was nil?", @"Platform Was Nil");
         return;
     }
@@ -338,13 +316,10 @@
 // maxHeightTB minHeightTB
 - (IBAction)autoCalcMinHeightAction:(id)sender
 {
-    if ([sender state] == NSOnState)
-    {
+    if ([sender state] == NSOnState) {
         [minHeightTB setIntValue:-1];
         [minHeightTB setEnabled:NO];
-    }
-    else
-    {
+    } else {
         [minHeightTB setIntValue:0];
         [minHeightTB setEnabled:YES];
     }
@@ -352,13 +327,10 @@
 
 - (IBAction)autoCalcMaxHeightAction:(id)sender
 {
-    if ([sender state] == NSOnState)
-    {
+    if ([sender state] == NSOnState) {
         [maxHeightTB setIntValue:-1];
         [maxHeightTB setEnabled:NO];
-    }
-    else
-    {
+    } else {
         [maxHeightTB setIntValue:0];
         [maxHeightTB setEnabled:YES];
     }

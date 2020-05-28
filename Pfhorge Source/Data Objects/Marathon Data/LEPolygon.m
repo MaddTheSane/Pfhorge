@@ -104,8 +104,7 @@
 		glEnd();
 	}
 	
-	if (ceiling_transfer_mode != 9)
-	{
+	if (ceiling_transfer_mode != 9) {
 		/*glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 		glColor3ub(255, 255, 255);
 		glBegin(GL_POLYGON);
@@ -134,8 +133,7 @@
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);*/
 		glColor3ub(0, 255, 0);
 		glBegin(GL_POLYGON);
-		switch (vertexCountForPoly)
-		{
+		switch (vertexCountForPoly) {
 			case 8:
 				glVertex3i([vertexObjects[7] xgl], ceiling_height/128, [vertexObjects[7] ygl]);
 			case 7:
@@ -311,12 +309,9 @@
 
 - (void)displayInfo
 {
-    if (type == _polygon_is_platform)
-    {
+    if (type == _polygon_is_platform) {
         [permutationObject displayInfo];
-    }
-    else
-    {
+    } else {
         SEND_INFO_MSG_TITLE(@"Only platform polygons support this for right now…", @"Detailed Polygon Info");
     }
 }
@@ -340,8 +335,7 @@
     int i = 0;
     short tmpShort;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -358,8 +352,7 @@
     // *** Only for a plaform for right now... ***
     //ExportObj(permutationObject);
     
-    switch (type)
-    {
+    switch (type) {
         case _polygon_is_base:
         case _polygon_is_minor_ouch:
         case _polygon_is_major_ouch:
@@ -383,8 +376,7 @@
 			break;
     }
     
-    switch (type)
-    {
+    switch (type) {
         /*case _polygon_is_base:
             tmpShort = 0;
             encodeShort(coder, tmpShort);
@@ -444,8 +436,7 @@
     ExportShort(x);
     ExportShort(y);
     
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
         ExportObj(side_objects[i]);
     }
     
@@ -857,13 +848,10 @@
 			default:
 				break;
         }
-    }
-    else
-    {
+    } else {
 		if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/) {
             encodeObj(coder, permutationObject);
-		} else
-        {
+		} else {
             short tmpn = [permutationObject shortValue];
             encodeShort(coder, tmpn);
         }
@@ -872,10 +860,8 @@
     
     encodeShort(coder, vertexCountForPoly);
     
-    for (i = 0; i < vertexCountForPoly; i++)
-    {
-        if (useIndexNumbersInstead)
-        {
+    for (i = 0; i < vertexCountForPoly; i++) {
+        if (useIndexNumbersInstead) {
             NSLog(@"POLYGON: vertexObjects[%d]: %d", i, [vertexObjects[i] index]);
             [vertexObjects[i] setEncodeIndexNumbersInstead:YES];
             [lineObjects[i] setEncodeIndexNumbersInstead:YES];
@@ -891,8 +877,7 @@
         if (!useIndexNumbersInstead)
             encodeObj(coder, side_objects[i]);
         
-        if (useIndexNumbersInstead)
-        {
+        if (useIndexNumbersInstead) {
             [vertexObjects[i] setEncodeIndexNumbersInstead:NO];
             [lineObjects[i] setEncodeIndexNumbersInstead:NO];
             //[side_objects[i] setEncodeIndexNumbersInstead:NO];
@@ -906,23 +891,19 @@
     encodeShort(coder, floor_height);
     encodeShort(coder, ceiling_height);
     
-    if (useIndexNumbersInstead)
-    {
+    if (useIndexNumbersInstead) {
         tmpShort = GetIndexAdv(floor_lightsource_object);
         encodeShort(coder, tmpShort);
         tmpShort = GetIndexAdv(ceiling_lightsource_object);
         encodeShort(coder, tmpShort);
-    }
-    else
-    {
+    } else {
         encodeObj(coder, floor_lightsource_object);
         encodeObj(coder, ceiling_lightsource_object);
     }
     
     encodeLong(coder, area);
     
-    if (!useIndexNumbersInstead)
-    {
+    if (!useIndexNumbersInstead) {
         encodeObj(coder, first_object_pointer);
         
         encodeObj(coder, first_exclusion_zone_object);
@@ -933,8 +914,7 @@
     encodeShort(coder, floor_transfer_mode);
     encodeShort(coder, ceiling_transfer_mode);
     
-    if (!useIndexNumbersInstead)
-    { 
+    if (!useIndexNumbersInstead) {
         encodeObj(coder, first_neighbor_object);
         encodeShort(coder, neighbor_count);
     }
@@ -991,8 +971,9 @@
     int versionNum = 0;
     self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
-		if (!useIndexNumbersInstead)
+        if (!useIndexNumbersInstead) {
 			polyLayer = [coder decodeObjectForKey:@"polyLayer"];
+        }
 		
 		polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
 		
@@ -1188,17 +1169,12 @@
 			default:
 				break;
         }
-    }
-    else
-    {
-        if (_polygon_is_automatic_exit == type   /*[permutationObject isKindOfClass:[NSNumber class]]*/)
-        {
-            if (versionNum < 1)
-            {
+    } else {
+        if (_polygon_is_automatic_exit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
+            if (versionNum < 1) {
                 decodeObj(coder);
                 permutationObject = [numShort(256) copy];
-            }
-            else
+            } else
                 permutationObject = [numShort(decodeShort(coder)) copy];
         }
         else
@@ -1206,8 +1182,7 @@
     }
     vertexCountForPoly = decodeShort(coder);
     //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
-    for (i = 0; i < vertexCountForPoly; i++)
-    {
+    for (i = 0; i < vertexCountForPoly; i++) {
         vertexObjects[i] = decodeObj(coder);
         lineObjects[i] = decodeObj(coder);
         
@@ -1223,21 +1198,17 @@
     floor_height = decodeShort(coder);
     ceiling_height = decodeShort(coder);
     
-    if (useIndexNumbersInstead)
-    {
+    if (useIndexNumbersInstead) {
         floor_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
         ceiling_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-    }
-    else
-    {
+    } else {
         floor_lightsource_object = decodeObj(coder);
         ceiling_lightsource_object = decodeObj(coder);
     }
     
     area = decodeLong(coder);
     
-    if (!useIndexNumbersInstead)
-    {
+    if (!useIndexNumbersInstead) {
         first_object_pointer = decodeObj(coder);
         
         first_exclusion_zone_object = decodeObj(coder);
@@ -1248,8 +1219,7 @@
     floor_transfer_mode = decodeShort(coder);
     ceiling_transfer_mode = decodeShort(coder);
     
-    if (!useIndexNumbersInstead)
-    {
+    if (!useIndexNumbersInstead) {
         first_neighbor_object = decodeObj(coder);
         neighbor_count = decodeShort(coder);
     }
@@ -1263,26 +1233,20 @@
     ceiling_origin.x = decodeInt(coder);
     ceiling_origin.y = decodeInt(coder);
     
-    if (useIndexNumbersInstead)
-    {
+    if (useIndexNumbersInstead) {
         media_object = [self getMediaFromIndex:decodeShort(coder)];
         media_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-    }
-    else
-    {
+    } else {
         media_object = decodeObj(coder);
         media_lightsource_object = decodeObj(coder);
         
         sound_source_objects = decodeObj(coder);
     }
     
-    if (useIndexNumbersInstead)
-    {
+    if (useIndexNumbersInstead) {
         ambient_sound_image_object = [self getAmbientSoundFromIndex:decodeShort(coder)];
         random_sound_image_object = [self getRandomSoundFromIndex:decodeShort(coder)];
-    }
-    else
-    {
+    } else {
         ambient_sound_image_object = decodeObj(coder);
         random_sound_image_object = decodeObj(coder);
     }
@@ -1293,8 +1257,7 @@
     //useIndexNumbersInstead = NO;
     
     
-        switch (type)
-        {
+        switch (type) {
             case _polygon_is_base:
             case _polygon_is_minor_ouch:
             case _polygon_is_major_ouch:
@@ -1344,15 +1307,11 @@
 -(id)init
 {
     self = [super init];
-    if (self != nil)
-    {
-        int i;
-        
+    if (self != nil) {
         useIndexNumbersInstead = NO;
         
         [self setVertextCount:0];
-        for(i = 0; i < 8; i++)
-        {
+        for(int i = 0; i < 8; i++) {
             lineIndexes[i] = -1;
             vertexIndexes[i] = -1;
             lineObjects[i] = nil;
@@ -1403,24 +1362,21 @@
 
 -(BOOL)uses:(id)theObj
 {
-    if ([theObj isKindOfClass:[LEMapPoint class]])
-    {
-        int i;
-        for(i = 0; i < vertexCountForPoly; i++)
-            if (vertexObjects[i] == theObj) return YES;
-    }
-    else if ([theObj isKindOfClass:[LELine class]])
-    {
-        int i;
-        for(i = 0; i < vertexCountForPoly; i++)
-            if (lineObjects[i] == theObj) return YES;
-    }
-    else if ([theObj isKindOfClass:[LEPolygon class]])
-    {
+    if ([theObj isKindOfClass:[LEMapPoint class]]) {
+        for (int i = 0; i < vertexCountForPoly; i++) {
+            if (vertexObjects[i] == theObj) {
+                return YES;
+            }
+        }
+    } else if ([theObj isKindOfClass:[LELine class]]) {
+        for(int i = 0; i < vertexCountForPoly; i++) {
+            if (lineObjects[i] == theObj) {
+                return YES;
+            }
+        }
+    } else if ([theObj isKindOfClass:[LEPolygon class]]) {
         return NO; // might want to check clockwise/counterclockwise stuff...
-    }
-    else if ([theObj isKindOfClass:[LEMapObject class]])
-    {
+    } else if ([theObj isKindOfClass:[LEMapObject class]]) {
         return NO; // check if object in this polygon?
     }
     return NO;      
@@ -1434,81 +1390,92 @@
 
 -(void)setCeilingTextureOnly:(char)number
 {
+    //TODO: make endian-safe
     char *theTexChar = (char *)&ceiling_texture;
-    (theTexChar)[1] = number;
+    (theTexChar)[0] = number;
 }
 
 -(void)setFloorTextureOnly:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&floor_texture;
-    (theTexChar)[1] = number;
+    (theTexChar)[0] = number;
 }
 
 -(void)setCeilingTextureCollectionOnly:(char)number
 {
+    //TODO: make endian-safe
     char *theTexChar = (char *)&ceiling_texture;
-    (theTexChar)[0] = number + 0x11;
+    (theTexChar)[1] = number + 0x11;
 }
 
 -(void)setFloorTextureCollectionOnly:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&floor_texture;
-    (theTexChar)[0] = number + 0x11;
+    (theTexChar)[1] = number + 0x11;
 }
 
 -(void)resetTextureCollectionOnly
-{ 
+{
+    //TODO: make endian-safe
     // For right now it just sets it to the current levels
     // collection.
     char *theFTexChar = (char *)&floor_texture;
     char *theCTexChar = (char *)&ceiling_texture;
     short theCurrentEnviroCode = [theLELevelDataST environmentCode];
-    (theFTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theCTexChar)[0] = (0x11 + theCurrentEnviroCode);
+    (theFTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theCTexChar)[1] = (0x11 + theCurrentEnviroCode);
 }
 
 -(void)setTextureCollectionOnly:(char)number
-{ 
+{
+    //TODO: make endian-safe
     char *theFTexChar = (char *)&floor_texture;
     char *theCTexChar = (char *)&ceiling_texture;
     //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
-    (theFTexChar)[0] = (0x11 + number);
-    (theCTexChar)[0] = (0x11 + number);
+    (theFTexChar)[1] = (0x11 + number);
+    (theCTexChar)[1] = (0x11 + number);
 }
 
 -(char)ceilingTextureOnly
 {
+    //TODO: make endian-safe
     char *theTexChar = (char *)&ceiling_texture;
-    return (theTexChar)[1];
+    return (theTexChar)[0];
 }
 
 -(char)floorTextureOnly
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&floor_texture;
-    return (theTexChar)[1];
+    return (theTexChar)[0];
 }
 
 -(char)ceilingTextureCollectionOnly
 {
+    //TODO: make endian-safe
     char *theTexChar = (char *)&ceiling_texture;
-    return (theTexChar)[0] - 0x11;
+    return (theTexChar)[1] - 0x11;
 }
 
 -(char)floorTextureCollectionOnly
-{ 
+{
+    //TODO: make endian-safe
     char *theTexChar = (char *)&floor_texture;
-    return (theTexChar)[0] - 0x11;
+    return (theTexChar)[1] - 0x11;
 }
 
 // I would not reccemend using this function any more, since the ceiling could be diffrent.
 // Before it was assumed that the floor and ceiling would be in the same colleciton,
 // that assumtion can not be made anymore...
 -(char)textureCollectionOnly
-{ 
+{
+    //TODO: make endian-safe
     char *theFTexChar = (char *)&floor_texture;
     //char *theCTexChar = (char *)&ceiling_texture;
     //short theCurrentEnviroCode = [theLELevelDataST environmentCode];
-    return (theFTexChar)[0] - 0x11;
+    return (theFTexChar)[1] - 0x11;
     //(theCTexChar)[0] = (0x11 + number);
 }
 
@@ -1523,8 +1490,7 @@
 
 -(void)calculateSidesForAllLines
 {
-    int i;
-    for (i = 0; i < vertexCountForPoly; i++)
+    for (int i = 0; i < vertexCountForPoly; i++)
         [lineObjects[i] caculateSides];
 }
 
@@ -1548,41 +1514,30 @@
 	// NEED: to add and rememove the platform from the level also...
 	
 	
-    if (thePreviousType == _polygon_is_platform && type != _polygon_is_platform)
-    {
+    if (thePreviousType == _polygon_is_platform && type != _polygon_is_platform) {
         [theTarget releasePlatform];
     }
     
-    switch (type)
-    {
+    switch (type) {
         case _polygon_is_platform:
-            if ([permutationObject class] == [PhPlatform class])
-            {
-				if ([theTarget permutationObject] != nil)
-				{
-					if ([[theTarget permutationObject] class] == [PhPlatform class])
-					{
+            if ([permutationObject class] == [PhPlatform class]) {
+				if ([theTarget permutationObject] != nil) {
+					if ([[theTarget permutationObject] class] == [PhPlatform class]) {
 						tempPermutationObj = [theTarget permutationObject];
 						[permutationObject copySettingsTo:tempPermutationObj];
-					}
-					else
-					{
+					} else {
 						tempPermutationObj = [permutationObject copy];
 							/* copy method should automatically do this */
 						//[permutationObject copySettingsTo:tempPermutationObj];
 						[tempPermutationObj setPolygonObject:theTarget];
 					}
-				}
-				else
-				{
+				} else {
 					tempPermutationObj = [permutationObject copy];
 						/* copy method should automatically do this */
 					//[permutationObject copySettingsTo:tempPermutationObj];
 					[tempPermutationObj setPolygonObject:theTarget];
 				}
-            }
-            else
-            {
+            } else {
                 SEND_ERROR_MSG(@"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!");
                 tempPermutationObj = nil;
             }
@@ -1628,11 +1583,9 @@
 
 -(int)getLineNumberFor:(LELine *)theLine
 {
-    int i;
-    for (i = 0; i < vertexCountForPoly; i++)
-    {
+    for (int i = 0; i < vertexCountForPoly; i++) {
         if (lineObjects[i] == theLine)
-        return i;
+            return i;
     }
     return -1;
 }
@@ -1648,14 +1601,10 @@
 
 -(void)thePolyMap:(NSBezierPath *)poly
 {
-    short i;
-        
-    //If there is not at least 3 points, there can be no polygon as far as marathon is concerned (in theory) :)
-    if (vertexCountForPoly > 2) 
-    {
+    //If there is not at least 3 points, there can be no polygon as far as Marathon is concerned (in theory) :)
+    if (vertexCountForPoly > 2)  {
         [poly moveToPoint:[vertexObjects[0] as32Point]];
-        for (i = 1; i < vertexCountForPoly; i++)
-        {            
+        for (short i = 1; i < vertexCountForPoly; i++) {
             [poly lineToPoint:[vertexObjects[i] as32Point]];
         }
         [poly closePath];
@@ -1667,46 +1616,43 @@
 -(void)removeLineAssotication:(LELine *)theLine
 {
     int i;
-    for(i = 0; i < vertexCountForPoly; i++)
-        if (lineObjects[i] == theLine)
+    for(i = 0; i < vertexCountForPoly; i++) {
+        if (lineObjects[i] == theLine) {
             lineObjects[i] = nil;
+        }
+    }
 }
 
 -(void)removePointAssotication:(LEMapPoint *)theLine
 {
-        int i;
-        for(i = 0; i < vertexCountForPoly; i++)
-            if (vertexObjects[i] == theLine)
-                vertexObjects[i] = nil;
+    int i;
+    for(i = 0; i < vertexCountForPoly; i++) {
+        if (vertexObjects[i] == theLine) {
+            vertexObjects[i] = nil;
+        }
+    }
 }
 
 -(void)removeAssociationOfObject:(id)theObj
 {
     int i;
     
-    if ([theObj isKindOfClass:[LEPolygon class]])
-    {
-        for(i = 0; i < 8; i++)
-        {
+    if ([theObj isKindOfClass:[LEPolygon class]]) {
+        for(i = 0; i < 8; i++) {
             if (adjacent_polygon_objects[i] == theObj)
                 adjacent_polygon_objects[i] = nil;
         }
-    }
-    else if ([theObj isKindOfClass:[LELine class]])
-    {
-        for(i = 0; i < vertexCountForPoly; i++)
-        {
+    } else if ([theObj isKindOfClass:[LELine class]]) {
+        for(i = 0; i < vertexCountForPoly; i++) {
             if (lineObjects[i] == theObj)
                 lineObjects[i] = nil;
         }
-    }
-    else if ([theObj isKindOfClass:[LEMapPoint class]])
-    {
-        for(i = 0; i < vertexCountForPoly; i++)
-        {
-            if (vertexObjects[i] == theObj)
+    } else if ([theObj isKindOfClass:[LEMapPoint class]]) {
+        for(i = 0; i < vertexCountForPoly; i++) {
+            if (vertexObjects[i] == theObj) {
                 vertexObjects[i] = nil;
             }
+        }
     }
     
     return;
@@ -1714,9 +1660,7 @@
 
 -(void)setAllAdjacentPolygonPointersToNil
 {
-    int i;
-    for(i = 0; i < 8; i++)
-    {
+    for (int i = 0; i < 8; i++) {
         adjacent_polygon_objects[i] = nil;
     }
 }
@@ -1753,8 +1697,7 @@
     int minY = [vertexObjects[0] y32];
     int maxY = minY;
     
-    for (i = 1; i < vertexCountForPoly; i++)
-    {
+    for (i = 1; i < vertexCountForPoly; i++) {
         int dpX = [vertexObjects[i] x32];
         int dpY = [vertexObjects[i] y32];
         
@@ -1776,11 +1719,9 @@
 {
     short i;
     
-    //If there is not at least 3 points, there can be no polygon as far as marathon is concerned (in thory) :)
-    if (vertexCountForPoly > 2) 
-    {
-        for (i = 0; i < vertexCountForPoly; i++)
-        {
+    //If there is not at least 3 points, there can be no polygon as far as Marathon is concerned (in thory) :)
+    if (vertexCountForPoly > 2)  {
+        for (i = 0; i < vertexCountForPoly; i++) {
             [vertexObjects[i] moveBy32Point:theOffset];
         }
         return;
@@ -2055,7 +1996,7 @@
 
 -(void)setSoundSources:(short)v 
 { 
-    sound_source_indexes = v;   // ******** FIRGURE THIS OUT SOMETIME *********
+    sound_source_indexes = v;   //TODO: FIRGURE THIS OUT SOMETIME
 } //
 @synthesize soundSourcesObject=sound_source_objects;
 
@@ -2240,20 +2181,15 @@
 	greatestY = [vertexObjects[0] y];
 	leastY = [vertexObjects[0] y];
     leftMostPoint = vertexObjects[0];
-    for (i = 1; i < vertexCountForPoly; i++)
-    {
-        if (vertexObjects[i] != nil)
-        {
-            if ([vertexObjects[i] x] < leftMostX)
-            {
+    for (i = 1; i < vertexCountForPoly; i++) {
+        if (vertexObjects[i] != nil) {
+            if ([vertexObjects[i] x] < leftMostX) {
                 leftMostX = [vertexObjects[i] x];
                 leftMostPoint = vertexObjects[i];
                 //NSLog(@"Less Then to leftMostX, point index: %d",
                 //[theMapPointsST indexOfObjectIdenticalTo:vertexObjects[i]]);
                 ////NSLog(@"leftMostX: %d", leftMostX);
-            }
-            else if ([vertexObjects[i] x] == leftMostX)
-            {
+            } else if ([vertexObjects[i] x] == leftMostX) {
                 leftMostX = [vertexObjects[i] x];
                 leftMostPoint = vertexObjects[i];
                 //NSLog(@"Equal to leftMostX, point index: %d",
@@ -2276,9 +2212,7 @@
             
 			if ([vertexObjects[i] y] < leastY) // Get The Top Most Point...
 				leastY = [vertexObjects[i] y];
-        }
-        else if (vertexObjects[i] == nil)
-        {
+        } else if (vertexObjects[i] == nil) {
             //   not suposed to be nil, error!!!
             // ****************** Somthing Wrong With Polgonal Data!!! **********************
             // Invalidate the polygon here!!!
@@ -2286,9 +2220,7 @@
             NSLog(@"vertextObject nil when it was not suposed to be...?");
             [self setPolygonConcaveFlag:NO];
             return NO;
-        }
-        else
-        {
+        } else {
             SEND_ERROR_MSG(@"Somthing wrong with program logic!!! MAJOR, proably even FATEL error!!!");
             [self setPolygonConcaveFlag:NO];
             return NO; // What would bring it here?
@@ -2343,8 +2275,7 @@
                 
                 // *** do the slope checking, etc... ***
                 
-                if ((topMost || bottomMost) && !pointOneGotten && !gettingSlope)
-                {
+                if ((topMost || bottomMost) && !pointOneGotten && !gettingSlope) {
 					thePrevPointY = [theCurSecPoint y];
 					thePrevPointX = [theCurSecPoint x];
 					theMainPointX = [leftMostPoint x];
@@ -2352,9 +2283,7 @@
                     gettingSlope = YES;
                     thePrevLine = lineObjects[i];
                   // NSLog(@"Found a line 1 for slop check, line %d", [lineObjects[i] index]);
-                }
-                else if ((topMost || bottomMost) && pointOneGotten && gettingSlope)
-                {
+                } else if ((topMost || bottomMost) && pointOneGotten && gettingSlope) {
                     double previousX = thePrevPointX - theMainPointX; //
                     double previousY = thePrevPointY - theMainPointY; //
 					double thisX = [theCurSecPoint x] - theMainPointX;
@@ -2366,10 +2295,9 @@
                   // NSLog(@"F slope: %g theY: %g", slope, thisY);
                   // NSLog(@"F theXfromSlop: %g", theXfromSlope);
 
-                    if (thisX < theXfromSlope) // other one ok
+                    if (thisX < theXfromSlope) { // other one ok
                         foundTheLine = YES;
-                    else if (thisX > theXfromSlope) //this one ok
-                    {
+                    } else if (thisX > theXfromSlope) { //this one ok
                         //Found A Qualified Left Most Line!!!
                         leftMostLine = thePrevLine;
                         indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
@@ -2377,23 +2305,18 @@
                         //foundTheLine = YES;
                       // NSLog(@"1-1 Found a line, line %d", [leftMostLine index]);
                         break;
-                    }
-                    else // if (thisX == theXfromSlope)
-                    {
+                    } else { // if (thisX == theXfromSlope)
                         // ???
                       // NSLog(@"???, the First Slope Check Equal Each Other (thisX == theXfromSlope)");
                         foundTheLine = YES;
                     }
                 }
                 
-                if (pointOneGotten || !(topMost || bottomMost) /* || (slope check thingy) */ )
-                {
+                if (pointOneGotten || !(topMost || bottomMost) /* || (slope check thingy) */ ) {
                     foundTheLine = YES;
                   // NSLog(@"foundTheLine set to YES at END");
                 }
-            }
-            else if ((topMost || bottomMost) && pointOneGotten)
-            {
+            } else if ((topMost || bottomMost) && pointOneGotten) {
                 //Found A Qualified Left Most Line!!!
                 leftMostLine = thePrevLine;
                 indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
@@ -2403,17 +2326,14 @@
                 break;
             }
             
-            if (foundTheLine)
-            {
+            if (foundTheLine) {
                     //Found A Qualified Left Most Line!!!
                     leftMostLine = lineObjects[i];
                     indexOfLineFound = [theMapLinesST indexOfObjectIdenticalTo:leftMostLine];
                     currentLine = leftMostLine;
                   // NSLog(@"2 Found a line(*), line %d", [leftMostLine index]);
                     break;
-            }
-            else if (pointOneGotten)
-            {
+            } else if (pointOneGotten) {
                 //of the two lines from that point
                 //both are not qualified?
                 NSLog(@"Sorry, but could not determin if polygon %d was concave, the left most points lines were not qualified?", [self index]);
@@ -2428,15 +2348,12 @@
             }
             
             pointOneGotten = YES;
-        }
-        else //previouse if was the one checking to see if points belong to the line...
-        {
+        } else { //previouse if was the one checking to see if points belong to the line...
             
         }
     }
     
-    for (i = 0; i < vertexCountForPoly; i++)
-    {
+    for (i = 0; i < vertexCountForPoly; i++) {
         if (lineObjects[i] == nil)
             NSLog(@"A line in the polgon line object array is NILL, This hsould of never have happened, Major Error!!!");
         else
@@ -2461,25 +2378,17 @@
     point1 = [[theMapPointsST objectAtIndex:[currentLine pointIndex1]] asPoint];
     point2 = [[theMapPointsST objectAtIndex:[currentLine pointIndex2]] asPoint];
     
-    if (point1.y < point2.y)
-    {
+    if (point1.y < point2.y) {
         currentLineMainPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex1]];
         currentLineSecondaryPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex2]];
-    }
-    else if (point1.y > point2.y)
-    {
+    } else if (point1.y > point2.y) {
         currentLineMainPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex2]];
         currentLineSecondaryPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex1]];
-    }
-    else
-    {
-        if (point1.x > point2.x)
-        {
+    } else {
+        if (point1.x > point2.x) {
             currentLineMainPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex2]];
             currentLineSecondaryPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex1]];
-        }
-        else
-        {
+        } else {
             currentLineMainPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex1]];
             currentLineSecondaryPoint = [theMapPointsST objectAtIndex:[currentLine pointIndex2]];
         }
@@ -2492,8 +2401,7 @@
     // NSLog(@"currentLine: %d", [currentLine index]);
     
     //while (keepFollowingTheLines)
-    for (i = 0; i < vertexCountForPoly; i++)
-    {
+    for (i = 0; i < vertexCountForPoly; i++) {
         LELine *smallestLine, *tmpLine;
         LEMapPoint *nextMainPoint;
         NSInteger smallestLineIndex = -1, nextMainPointIndex = -1;
@@ -2508,12 +2416,10 @@
         //theConnectedLines = [currentLineMainPoint getLinesAttachedToMe];
         
         numer = [polyLines objectEnumerator];
-        while (tmpLine = [numer nextObject])
-        {
+        for (tmpLine in numer) {
             if ((([tmpLine mapPoint1] == currentLineMainPoint) || //Used to be [currentLine getMapPoint1]
                 ([tmpLine mapPoint2] == currentLineMainPoint)) && //Used to be [currentLine mapPoint2]
-                    (tmpLine != currentLine))
-            {
+                    (tmpLine != currentLine)) {
                 thisMapLine = tmpLine;
                 break;
             }
@@ -2600,8 +2506,7 @@
                     // [theMapLinesST indexOfObjectIdenticalTo:thisMapLine], theta, xrot, yrot);
                 
                 
-                if (theta != 180.0)
-                {
+                if (theta != 180.0) {
                       // NSLog(@"For Line %d  theX: %g theY: %g", [theMapLinesST indexOfObjectIdenticalTo:thisMapLine], theX, theY);
                         if (0 < prevY) // Main Point Lower
                         {

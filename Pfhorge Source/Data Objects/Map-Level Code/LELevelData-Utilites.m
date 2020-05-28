@@ -401,7 +401,7 @@
     }
 }
 
--(void)setNameFor:(__kindof LEMapStuffParent*)theObject to:(NSString *)theName
+-(void)setNameForObject:(__kindof LEMapStuffParent*)theObject toString:(NSString *)theName
 {
     LEMapDraw *theDrawView = [theLevelDocument getMapDrawView];
     
