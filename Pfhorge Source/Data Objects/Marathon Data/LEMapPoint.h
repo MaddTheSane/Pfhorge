@@ -46,8 +46,6 @@
 // setting both, because there are a few things that need to be recaculated
 // and if you use  setX:  then a seperate  setY:  method, it will caculate it twice...
 -(void)setX:(short)theX Y:(short)theY;
--(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
--(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 
 @property (readonly) NSPoint asPoint;
 @property (readonly) NSPoint as32Point;

@@ -68,6 +68,6 @@ extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
 
 // *** Information ***
 - (id)dataObjectForLevelNameTable;
-- (NSArray<NSString*> *)getLevelNames;
+- (NSArray<NSString*> *)levelNames;
 
 @end

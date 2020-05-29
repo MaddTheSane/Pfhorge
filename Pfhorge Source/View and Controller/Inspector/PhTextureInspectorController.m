@@ -785,24 +785,27 @@
     theTexChar = (char *)&thePTex.texture;
     thePTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 1);
     thePTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 2);
-    (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theTexChar)[1] = (char)([primaryTextureNums indexOfSelectedItem]);
+    //TODO: make endian-safe
+    (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theTexChar)[0] = (char)([primaryTextureNums indexOfSelectedItem]);
     thePTex.textureNumber = [primaryTextureNums indexOfSelectedItem];
     [baseSideRef setPrimaryTextureStruct:thePTex];
     
     theTexChar = (char *)&theSTex.texture;
     theSTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 3);
     theSTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 4);
-    (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theTexChar)[1] = (char)([secondaryTextureNums indexOfSelectedItem]);
+    //TODO: make endian-safe
+    (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theTexChar)[0] = (char)([secondaryTextureNums indexOfSelectedItem]);
     theSTex.textureNumber = [secondaryTextureNums indexOfSelectedItem];
     [baseSideRef setSecondaryTextureStruct:theSTex];
     
     theTexChar = (char *)&theTTex.texture;
     theTTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 5);
     theTTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 6);
-    (theTexChar)[0] = (0x11 + theCurrentEnviroCode);
-    (theTexChar)[1] = (char)([transparentTextureNums indexOfSelectedItem]);
+    //TODO: make endian-safe
+    (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
+    (theTexChar)[0] = (char)([transparentTextureNums indexOfSelectedItem]);
     theTTex.textureNumber = [transparentTextureNums indexOfSelectedItem];
     [baseSideRef setTransparentTextureStruct:theTTex];
 }

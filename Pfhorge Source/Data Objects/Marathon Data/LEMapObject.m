@@ -41,8 +41,8 @@
 }
 
  // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark -
+#pragma mark Coding/Copy Protocal Methods
 
 - (long)exportWithIndex:(NSMutableArray *)theIndex withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
@@ -50,8 +50,7 @@
     int tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -77,12 +76,9 @@
     
     ExportUnsignedShort(flags);
     
-    if (polygonObject != nil && [mainObjs containsObject:polygonObject])
-    {
+    if (polygonObject != nil && [mainObjs containsObject:polygonObject]) {
         ExportObjIndex(polygonObject, theIndex);
-    }
-    else
-    {
+    } else {
         ExportNil();
     }
     
@@ -99,8 +95,7 @@
     [myData release];
     [futureData release];
     
-    if ((int)[theIndex indexOfObjectIdenticalTo:self] != myPosition)
-    {
+    if ([theIndex indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
@@ -287,7 +282,7 @@
 
 // **************************  Other Methods  *************************
 #pragma mark -
-#pragma mark ********* Other Methods *********
+#pragma mark Other Methods
 
 
 -(NSRect)drawingBounds
@@ -313,7 +308,7 @@
 
  // **************************  Overriden Standard Methods  *************************
 #pragma mark -
-#pragma mark ********* Overriden Standard Methods *********
+#pragma mark Overriden Standard Methods
 
 -(short)index { return [theMapObjectsST indexOfObjectIdenticalTo:self]; }
 
@@ -335,12 +330,12 @@
 
 // **************************  Flag Methods  *************************
 #pragma mark -
-#pragma mark ********* Flag Methods *********
+#pragma mark Flag Methods
 
 
 // *****************   Get Accsessors   *****************
 #pragma mark -
-#pragma mark ********* Get Accsessors  *********
+#pragma mark Get Accsessors
 
 -(NSRect)as32Rect { return NSMakeRect(x32 - 2, y32 - 2, 4, 4); }
 + (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Rect
@@ -384,7 +379,7 @@
 
 // *****************   Set Accsessors   *****************
 #pragma mark -
-#pragma mark ********* Set Accsessors  *********
+#pragma mark Set Accsessors
 
 -(void)setX:(short)s
 {
@@ -396,16 +391,6 @@
 {
     y = s;
     y32 = s / 16;
-}
-
--(void)set32X:(short)s
-{
-	self.x32 = s;
-}
-
--(void)set32Y:(short)s
-{
-	self.y32 = s;
 }
 
 -(void)setX32:(short)s
@@ -444,13 +429,10 @@
     if (index == s || s >= 64)
         return;
     
-    if (type == _saved_monster)
-    {
+    if (type == _saved_monster) {
         [theLELevelDataST adjustInitalItemPlacmentBy:-1 forIndex:index isMonster:YES];
         [theLELevelDataST adjustInitalItemPlacmentBy:1 forIndex:s isMonster:YES];
-    }
-    else if (type == _saved_item)
-    {
+    } else if (type == _saved_item) {
         [theLELevelDataST adjustInitalItemPlacmentBy:-1 forIndex:index isMonster:NO];
         [theLELevelDataST adjustInitalItemPlacmentBy:1 forIndex:s isMonster:NO];
     }

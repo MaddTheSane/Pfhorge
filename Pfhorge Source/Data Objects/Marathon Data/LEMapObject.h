@@ -93,13 +93,11 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 @property short facing;
 @property (nonatomic) short polygonIndex;
 @property (assign) id polygonObject;
--(LEMapObjectFlags)flags;
+-(LEMapObjectFlags)flags API_DEPRECATED_WITH_REPLACEMENT("-mapFlags", macos(10.0, 10.7));
 @property LEMapObjectFlags mapFlags;
 
 //-(void)moveBy32Point:(NSPoint)theOffset;
 
--(void)set32X:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setX32:", macos(10.0, 10.7));
--(void)set32Y:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setY32:", macos(10.0, 10.7));
 -(void)setIndex:(short)s;
 
 @end

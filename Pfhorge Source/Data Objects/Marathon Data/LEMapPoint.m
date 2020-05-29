@@ -46,12 +46,11 @@
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
+    int tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -70,7 +69,8 @@
     
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
+    tmpLong = (int)[myData length];
+    tmpLong = CFSwapInt32HostToBig(tmpLong);
     [theData appendBytes:&tmpLong length:4];
     [theData appendData:myData];
     [theData appendData:futureData];
@@ -82,8 +82,7 @@
     [myData release];
     [futureData release];
     
-    if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
-    {
+    if ([index indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: point %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
         //return [index indexOfObjectIdenticalTo:self]
@@ -190,8 +189,7 @@
 -(id)initX32:(short)theX32 Y32:(short)theY32
 {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         x = theX32 * 16;
         y = theY32 * 16;
         x32 = theX32;
@@ -254,15 +252,6 @@
     [self tellLinesAttachedToMeToRecalc];
 }
 
--(void)set32X:(short)theX
-{
-	self.x32 = theX;
-}
--(void)set32Y:(short)theY
-{
-	self.y32 = theY;
-}
-
 -(void)setX32:(short)theX
 {
     //[undo setX32:x32];
@@ -281,8 +270,8 @@
     //[self setX32:(x32 + theOffset.x)];
     //[self setY32:(y32 + theOffset.y)];
 	
-	float fx = (theOffset.x * ((float)16));
-	float fy = (theOffset.y * ((float)16));
+	CGFloat fx = (theOffset.x * ((float)16));
+	CGFloat fy = (theOffset.y * ((float)16));
 	x += (short)(fx + .5);
 	y += (short)(fy + .5);
 	x32 = x / 16;
@@ -291,8 +280,7 @@
 
 -(void)moveBy32Point:(NSPoint)theOffset pointsAlreadyMoved:(NSMutableSet *)pointsAlreadyMoved
 {
-    if (![pointsAlreadyMoved containsObject:self])
-    {
+    if (![pointsAlreadyMoved containsObject:self]) {
         [self setX32:(x32 + theOffset.x)];
         [self setY32:(y32 + theOffset.y)];
         [pointsAlreadyMoved addObject:self];
@@ -327,19 +315,13 @@
 
 -(void)scanAndUpdateLines
 {
-   /// int myIndex = [theMapPointsST indexOfObjectIdenticalTo:self];
-    //NSMutableSet *theLines;
-    NSEnumerator *numer;
-    LELine *thisMapLine;
-    
     [lines removeAllObjects];
     
     //theLines = [[NSMutableSet alloc] initWithCapacity:3];
-    numer = [theMapLinesST reverseObjectEnumerator];
-    while (thisMapLine = [numer nextObject])
-    {
-        if ([thisMapLine uses:self])
+    for (LELine *thisMapLine in [theMapLinesST reverseObjectEnumerator]) {
+        if ([thisMapLine uses:self]) {
             [lines addObject:thisMapLine];
+        }
     }
 }
 
@@ -418,7 +400,7 @@
 
 // **************************  High School Geometry Functions ;)  *************************
 #pragma mark -
-#pragma mark ********* High School Geometry Functions ;) *********
+#pragma mark High School Geometry Functions ;) 
 
 
 -(LEMapPoint *)nearestMapPointInRange:(int)maxDist
@@ -485,68 +467,56 @@
     int maxYCord = [self y32] + maxDist;
     int minYCord = [self y32] - maxDist;
 
-    for  (gridCordY = minYCord; gridCordY <= maxYCord ; gridCordY++)
-    {
-	if (gridCordY % numberOfGridLines == 0)
-	{
-	    for  (gridCordX = minXCord; gridCordX <= maxXCord; gridCordX++)
-	    {
-		if (gridCordX % numberOfGridLines == 0)
-		{
-		    if (pointCacheMax > pci)
-		    {
-			//NSLog(@"Grid Pint Found On: (%d, %d)", gridCordX, gridCordY);
+    for  (gridCordY = minYCord; gridCordY <= maxYCord ; gridCordY++) {
+        if (gridCordY % numberOfGridLines == 0) {
+            for  (gridCordX = minXCord; gridCordX <= maxXCord; gridCordX++) {
+                if (gridCordX % numberOfGridLines == 0) {
+                    if (pointCacheMax > pci) {
+                        //NSLog(@"Grid Pint Found On: (%d, %d)", gridCordX, gridCordY);
                         
                         // This has been explictily allocated, so we need to release it latter...
-			pointCache[pci] = [[LEMapPoint alloc] initX32:gridCordX Y32:gridCordY];
-			pci++;
-		    }
-		    else
-			break;
-		}
-	    }
-	}
+                        pointCache[pci] = [[LEMapPoint alloc] initX32:gridCordX Y32:gridCordY];
+                        pci++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     if (pci == 0) // No points in range...
     {
         free(pointCache);
-	return nil;
-    }
-    else if (pci == 1) // Only one point in range...
-    {
+        return nil;
+    } else if (pci == 1) { // Only one point in range...
         LEMapPoint *thePoint = pointCache[0];
         free(pointCache);
         
         // The reason for this autorelease is explained below...
-	return [thePoint autorelease];
-    }
-    else // More then one point in range...
-    {
+        return [thePoint autorelease];
+    } else { // More then one point in range...
         int bestDist = 50000;
-	int i;
-	LEMapPoint *bestPoint = nil;
+        int i;
+        LEMapPoint *bestPoint = nil;
         
         int theDist = 0;
         
-	for (i = 0; i < pci; i++)
-	{
-	    theDist = [self distanceToPoint:(pointCache[i])];
-
-	    if(theDist > maxDist)
-	    {
-		continue;
-	    }
-
-	    if (theDist < bestDist)
-	    {
+        for (i = 0; i < pci; i++) {
+            theDist = [self distanceToPoint:(pointCache[i])];
+            
+            if (theDist > maxDist) {
+                continue;
+            }
+            
+            if (theDist < bestDist) {
                 // If bestPoint is not nil, this will do nothing,
                 // but if it is not nil, it will release
                 // the previous best point...
                 [bestPoint release];
                 
-		bestDist = theDist;
-		bestPoint = pointCache[i];
+                bestDist = theDist;
+                bestPoint = pointCache[i];
                 
                 // This should not be nessary, but just in case, becuase
                 // this object could be potentialy released latter
@@ -554,9 +524,7 @@
                 // non-existent object, because a message to one (function call)
                 // will crash the program...
                 pointCache[i] = nil;
-	    }
-            else
-            {
+            } else {
                 // This point is for sure not a best point, so release it...
                 [pointCache[i] release];
                 
@@ -565,16 +533,15 @@
                 // want to set it to nil :)
                 pointCache[i] = nil;
             }
-	}
+        }
         
         // All points except for one should now be released,
         // and all pointers in the point Cache should be nil...
         free(pointCache);
         
-	if(bestPoint == nil)	// found none -- can't happen?
-	{
-	    return nil;
-	}
+        if(bestPoint == nil) {	// found none -- can't happen?
+            return nil;
+        }
         
         // Auto Release is the best thing to do here,
         // because whoever gets this point did not explictiy
@@ -586,7 +553,7 @@
         
         // We no longer need to own the point, but sense we are giving it to someone
         // autorelease it to delay release until next event loop...
-	return [bestPoint autorelease];
+        return [bestPoint autorelease];
     }
 }
 

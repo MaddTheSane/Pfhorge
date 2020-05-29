@@ -59,10 +59,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
     
-    if (exsists && !isDir)
+    if (exsists && !isDir) {
         return [[[NSImage alloc] initWithContentsOfFile:fullImagePath] autorelease];
-    else
-    {
+    } else {
         NSLog(@"image not found at: %@", fullImagePath);
         return nil;//[[[NSImage alloc] initWithData:[resource data]] autorelease];
     }
@@ -97,8 +96,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 {
     NSLog(@"*** Scenario Dealloc Post Notification ***");
     [[NSNotificationCenter defaultCenter]
-            postNotificationName:PhScenarioDeallocatingNotification
-            object:self];
+     postNotificationName:PhScenarioDeallocatingNotification
+     object:self];
     
     [super dealloc];
 }
@@ -537,7 +536,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     return scenarioData;
 }
 
-- (NSArray *)getLevelNames
+- (NSArray *)levelNames
 {
     return [scenarioData levelFileNames];
 }

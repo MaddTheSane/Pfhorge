@@ -187,23 +187,17 @@
 
 - (IBAction)openTerminalEditor:(id)sender
 {
-    NSEnumerator *numer;
-    id theWinController;
     BOOL terminalAlreadyOpen = NO;
     
-    numer = [infoWindows objectEnumerator];
-    while (theWinController = [numer nextObject])
-    {
-        if ([theWinController isKindOfClass:[TerminalEditorController class]])
-        {
+    for (NSWindowController *theWinController in infoWindows) {
+        if ([theWinController isKindOfClass:[TerminalEditorController class]]) {
             [theWinController showWindow:nil];
             terminalAlreadyOpen = YES;
             break;
         }
     }
     
-    if (!terminalAlreadyOpen)
-    {
+    if (!terminalAlreadyOpen) {
         TerminalEditorController *theTerminalEditor = [[TerminalEditorController alloc] initWithMapDocument:self];
         [theTerminalEditor showWindow:nil];
     }
@@ -409,7 +403,7 @@
     [super windowControllerDidLoadNib:aController];
     
     if (theLevel != nil) {
-        //currentLevelNames = [[theMap getLevelNames] copy];
+        //currentLevelNames = [[theMap levelNames] copy];
         [theLevel setLevelDocument:self];
         currentLevelNames = [[NSMutableArray alloc] initWithCapacity:1];
         [currentLevelNames addObject:[theLevel levelName]];
@@ -435,7 +429,7 @@
         [progress showWindow:self];
         
         theMap = [[LEMapData alloc] initWithMapNSData:theRawMapData];
-        //[comboLevelList addItemsWithObjectValues:[theMap getLevelNames]];
+        //[comboLevelList addItemsWithObjectValues:[theMap levelNames]];
         theLevel = [theMap getLevel:1];
         [theLevel setLevelDocument:self];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
