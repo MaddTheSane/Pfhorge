@@ -522,8 +522,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 		AEDesc		theResultDesc = { typeNull, NULL };
 		
 		if (OSACoerceToDesc([self OSAComponent], resultingValueID, typeWildCard, kOSAModeNull, &theResultDesc) == noErr) {
-			theResult = [NSData dataWithAEDesc: &theResultDesc];
-			AEDisposeDesc(&theResultDesc);
+			return [[NSAppleEventDescriptor alloc] initWithAEDescNoCopy:&theResultDesc].data;
 		}
 	}
 	

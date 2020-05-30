@@ -201,7 +201,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         
         archivedLevels = [LEMapData 
             convertMarathonDataToArchived:[NSData dataWithContentsOfURL:fileURL]
-                               levelNames:levelNames];
+                               levelNames:levelNames error:NULL];
                                
         [progress setStatusText:@"Saving All The Levels…"];
         
@@ -420,7 +420,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                       [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]] retain];
     }
     
-    tempData = [[LEMapData convertLevelToDataObject:theLevel] retain];
+    tempData = [[LEMapData convertLevelToDataObject:theLevel error:NULL] retain];
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
@@ -471,7 +471,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 
 - (void)saveMergedMapTo:(NSString *)fullPath
 {
-    NSData *mergedMap = [LEMapData mergeScenarioToMarathonMapFile:self];
+    NSData *mergedMap = [LEMapData mergeScenarioToMarathonMapFile:self error:NULL];
     NSFileManager *manager = [NSFileManager defaultManager];
     NSArray *subpaths;
     NSEnumerator *numer;

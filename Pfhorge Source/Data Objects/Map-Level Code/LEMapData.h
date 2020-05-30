@@ -125,18 +125,18 @@ enum {
 }
 
 // ***************** Class Convience Functions *****************
-+ (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel;
-+ (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario;
-+ (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNames;
++ (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel error:(NSError**)outError;
++ (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario error:(NSError**)outError;
++ (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNames error:(NSError**)outError;
 
 - (instancetype)initWithMapNSData:(NSData *)theMap;
 
 - (LELevelData *)getLevel:(short)levelToGet;
 - (LELevelData *)getLevel:(short)levelToGet log:(BOOL)logInfo;
 
-- (NSMutableData *)mergeScenario:(PhPfhorgeScenarioLevelDoc *)scenarioDocument;
+- (NSMutableData *)mergeScenario:(PhPfhorgeScenarioLevelDoc *)scenarioDocument error:(NSError**)outError;
 - (void)exportLevelDataToMarathonFormat:(LELevelData *)level;
-- (NSMutableData *)saveLevelAndGetMapNSData:(LELevelData *)level levelToSaveIn:(short)levelToSaveIn;
+- (NSMutableData *)saveLevelAndGetMapNSData:(LELevelData *)level levelToSaveIn:(short)levelToSaveIn error:(NSError**)outError;
 
 - (void)preAllocateArraysForLevel:(LELevelData *)level forLevelNumber:(int)theLevel;
 
@@ -176,64 +176,64 @@ enum {
 - (BOOL)initLevelHeaders;
 - (BOOL)initMainHeader;
 
--(void)getThePointsAtOffset:(long)theDataOffset
-				 withLength:(long)theDataLength
+-(void)getThePointsAtOffset:(int)theDataOffset
+				 withLength:(int)theDataLength
 				  withLevel:(LELevelData *)curLevel
 			  regularPoints:(BOOL)regPointStyle;
 
--(void)getTheLinesAtOffset:(long)theDataOffset
-				withLength:(long)theDataLength
+-(void)getTheLinesAtOffset:(int)theDataOffset
+				withLength:(int)theDataLength
 				 withLevel:(LELevelData *)curLevel;
 
--(void)getThePolygonsAtOffset:(long)theDataOffset
-				   withLength:(long)theDataLength
+-(void)getThePolygonsAtOffset:(int)theDataOffset
+				   withLength:(int)theDataLength
 					withLevel:(LELevelData *)curLevel;
 
--(void)getTheMapObjectsAtOffset:(long)theDataOffset
-					 withLength:(long)theDataLength
+-(void)getTheMapObjectsAtOffset:(int)theDataOffset
+					 withLength:(int)theDataLength
 					  withLevel:(LELevelData *)curLevel;
 
--(void)getTheSidesAtOffset:(long)theDataOffset
-				withLength:(long)theDataLength
+-(void)getTheSidesAtOffset:(int)theDataOffset
+				withLength:(int)theDataLength
 				 withLevel:(LELevelData *)curLevel;
 
--(void)getTheLightsAtOffset:(long)theDataOffset
-				 withLength:(long)theDataLength
+-(void)getTheLightsAtOffset:(int)theDataOffset
+				 withLength:(int)theDataLength
 				  withLevel:(LELevelData *)curLevel;
 
--(void)getTheAnnotationsAtOffset:(long)theDataOffset
-					  withLength:(long)theDataLength
+-(void)getTheAnnotationsAtOffset:(int)theDataOffset
+					  withLength:(int)theDataLength
 					   withLevel:(LELevelData *)curLevel;
 
--(void)getTheMediaAtOffset:(long)theDataOffset
-				withLength:(long)theDataLength
+-(void)getTheMediaAtOffset:(int)theDataOffset
+				withLength:(int)theDataLength
 				 withLevel:(LELevelData *)curLevel;
 
--(void)getTheAmbientSoundsAtOffset:(long)theDataOffset
-						withLength:(long)theDataLength
+-(void)getTheAmbientSoundsAtOffset:(int)theDataOffset
+						withLength:(int)theDataLength
 						 withLevel:(LELevelData *)curLevel;
 
--(void)getTheStaticPlatformsAtOffset:(long)theDataOffset
-						  withLength:(long)theDataLength
+-(void)getTheStaticPlatformsAtOffset:(int)theDataOffset
+						  withLength:(int)theDataLength
 						   withLevel:(LELevelData *)curLevel;
 
--(void)getTheDynamicPlatformsAtOffset:(long)theDataOffset
-						   withLength:(long)theDataLength
+-(void)getTheDynamicPlatformsAtOffset:(int)theDataOffset
+						   withLength:(int)theDataLength
 							withLevel:(LELevelData *)curLevel;
 
--(void)getTheItemPlacementAtOffset:(long)theDataOffset
-						withLength:(long)theDataLength
+-(void)getTheItemPlacementAtOffset:(int)theDataOffset
+						withLength:(int)theDataLength
 						 withLevel:(LELevelData *)curLevel;
 
--(void)getTheRandomSoundsAtOffset:(long)theDataOffset
-					   withLength:(long)theDataLength
+-(void)getTheRandomSoundsAtOffset:(int)theDataOffset
+					   withLength:(int)theDataLength
 						withLevel:(LELevelData *)curLevel;
 
--(void)getTheTerminalsAtOffset:(long)theDataOffset
-					withLength:(long)theDataLength
+-(void)getTheTerminalsAtOffset:(int)theDataOffset
+					withLength:(int)theDataLength
 					 withLevel:(LELevelData *)curLevel;
 
--(void)getTag:(long)theTag theLevel:(short)theLevel theCurrentLevelObject:(LELevelData *)curLevel;
+-(void)getTag:(int)theTag theLevel:(short)theLevel theCurrentLevelObject:(LELevelData *)curLevel;
 
 -(void)savePointsForLevel:(LELevelData *)level;
 -(void)saveLinesForLevel:(LELevelData *)level;

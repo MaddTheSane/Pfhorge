@@ -28,8 +28,8 @@
 
 @implementation PhTag
  // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark -
+#pragma mark Coding/Copy Protocal Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     int tagVersionNumber = 1;
@@ -65,8 +65,8 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
- #pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark -
+#pragma mark Init and Dealloc Methods
 -(PhTag *)init
 {
     self = [super initWithNumber:@-1];

@@ -34,7 +34,7 @@
     IBOutlet NSScrollView *colorListTableScrollView;
     IBOutlet NSTextField *status;
     
-    IBOutlet id drawerObject;
+    IBOutlet NSDrawer *drawerObject;
     
     IBOutlet NSPanel *newHeightWindowSheet;
     IBOutlet NSTextField *newHeightTextBox;

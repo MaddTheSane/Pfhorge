@@ -148,7 +148,7 @@
 {
     NSLog(@"*** Subclassed LEMap - makeWindowControllers ***");
     
-    theLevelDocumentWindowController = [[LELevelWindowController allocWithZone:[self zone]] init];
+    theLevelDocumentWindowController = [[LELevelWindowController alloc] init];
     [self addWindowController:theLevelDocumentWindowController];
     [theLevelDocumentWindowController disableTheLevelNamesMenu:YES];
 }
@@ -161,7 +161,7 @@
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
     if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"]) {
-        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel]];
+        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel error:outError]];
     } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
@@ -229,16 +229,22 @@
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
-        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,\
-                                export it in eariler, release candidate 1 release of pfhorge, then open it here.",
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the earlier version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too Old"}];
+        }
+        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,"
+                                "export it in earlier, release candidate 1 release of Pfhorge, then open it here.",
                              @"Level Is Too Old");
         loadedOk = NO;
     } else if (theVersionNumberFromData > theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
-        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,\
-                                export it in latter version of pfhorge, then open it here.",
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the newer version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too New"}];
+        }
+        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,"
+                                "export it in latter version of Pfhorge, then open it here.",
                              @"Level Is Too New");
         loadedOk = NO;
     } else if (theVersionNumberFromData == oldVersionNumber &&
@@ -249,8 +255,7 @@
         theRawMapData = nil;
         theLevel = [[NSUnarchiver unarchiveObjectWithData:
                         [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
-        if (theLevel != nil)
-        {
+        if (theLevel != nil){
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
             NSLog(@"theLevel != nil...");
@@ -260,15 +265,18 @@
             [theLevel setUpArrayPointersForEveryObject];
             [theLevel setupDefaultObjects];
         }
-    }
-    else if (theVersionNumberFromData == theVersionNumber &&
+    } else if (theVersionNumberFromData == theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
-        theLevel = [[NSKeyedUnarchiver unarchiveObjectWithData:
-                        [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
+        if (@available(macOS 10.13, *)) {
+            theLevel = [[NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
+        } else {
+            theLevel = [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
+        }
+
         if (theLevel != nil) {
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
@@ -302,6 +310,9 @@
             [theLevel setupDefaultObjects];
         }
     } else {
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load Map", NSLocalizedFailureReasonErrorKey: @"Can't Load File, Unknown Format."}];
+        }
         SEND_ERROR_MSG_TITLE(@"Can't Load File, Unknown Format.",
                              @"Can't Load Map");
         loadedOk = NO;

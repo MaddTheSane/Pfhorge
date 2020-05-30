@@ -480,7 +480,7 @@
     shouldExportToMarathonFormat = NO;
     
     if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
-        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel]];
+        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel error:outError]];
     } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);

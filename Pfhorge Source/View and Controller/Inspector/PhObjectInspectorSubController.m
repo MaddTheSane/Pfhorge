@@ -89,7 +89,7 @@
 -(void)updateInterface
 {
     LEMapObject *theObj = [mainInspectorController getTheCurrentSelection];
-    unsigned short theFlags = [theObj flags];
+    unsigned short theFlags = [theObj mapFlags];
     
     //[objBox setTitle:[NSString stringWithFormat:@"Object Index: %d", [theObj index]]];
     

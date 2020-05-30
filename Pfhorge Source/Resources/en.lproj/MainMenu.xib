@@ -18,6 +18,7 @@
                     <menu key="submenu" title="Pfhorge" systemMenu="apple" id="57">
                         <items>
                             <menuItem title="About Pfhorge…" id="58">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
@@ -31,6 +32,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Layer Defaults…" id="486">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="theLayerDefaults:" target="202" id="489"/>
                                 </connections>
@@ -49,12 +51,14 @@
                                     <action selector="hide:" target="-2" id="152"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Hide Others" id="145">
+                            <menuItem title="Hide Others" keyEquivalent="h" id="145">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="hideOtherApplications:" target="-2" id="146"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show All" id="150">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="unhideAllApplications:" target="-2" id="153"/>
                                 </connections>
@@ -92,6 +96,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Open Recent" id="124">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                     <items>
                                         <menuItem title="Clear Menu" id="126">
@@ -106,11 +111,13 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Import Marathon Map…" id="507">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="importMarathonMap:" target="-1" id="509"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Import Pathways Map…" id="571">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="importPathwaysMap:" target="-1" id="573"/>
                                 </connections>
@@ -119,6 +126,7 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Test Checksum…" id="579">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="testTheCheckSumOnAFile:" target="202" id="581"/>
                                 </connections>
@@ -375,12 +383,12 @@
                                     <action selector="theControlPanels:" target="202" id="524"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Light  Inspector" keyEquivalent="l" id="517">
+                            <menuItem title="Light Inspector" keyEquivalent="l" id="517">
                                 <connections>
                                     <action selector="theLights:" target="202" id="523"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Texture  Inspectors" keyEquivalent="x" id="516">
+                            <menuItem title="Texture Inspectors" keyEquivalent="x" id="516">
                                 <connections>
                                     <action selector="theTextures:" target="202" id="522"/>
                                 </connections>
@@ -407,6 +415,7 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Show Colors Palette" id="262">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontColorPanel:" target="-1" id="264"/>
                                 </connections>

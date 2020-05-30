@@ -84,7 +84,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 // **************************  Coding/Copy Protocal Methods  *************************
 #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark Coding/Copy Protocal Methods
 
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs

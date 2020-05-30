@@ -307,6 +307,31 @@
 				</array>
 			</dict>
 		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Aleph One Physics File</string>
+			<key>UTTypeIconFile</key>
+			<string>PhysIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.bungie.source.physics</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>phy∞</string>
+					<string>phy2</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>phyA</string>
+					<string>phys</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

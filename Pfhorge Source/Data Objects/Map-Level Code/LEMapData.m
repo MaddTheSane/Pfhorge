@@ -67,21 +67,21 @@ BOOL setupPointerArraysDurringLoading = YES;
 // ***************************** Class Convience Functions *****************************
 #pragma mark -
 #pragma mark ********* Class Convience Functions *********
-+ (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel
++ (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel error:(NSError**)outError
 {
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] init];
-    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1];
+    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap saveLevelAndGetMapNSData:theLevel levelToSaveIn:1 error:outError];
     return theMaraAlephFormatedData;
 }
 
-+ (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario
++ (NSMutableData *)mergeScenarioToMarathonMapFile:(PhPfhorgeScenarioLevelDoc *)theScenario error:(NSError**)outError
 {
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] init];
-    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap mergeScenario:theScenario];
+    NSMutableData *theMaraAlephFormatedData = [theTmpMarathonMap mergeScenario:theScenario error:outError];
     return theMaraAlephFormatedData;
 }
 
-+ (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNamesEXP
++ (NSMutableArray *)convertMarathonDataToArchived:(NSData *)theData levelNames:(NSMutableArray *)theLevelNamesEXP error:(NSError**)outError
 {
     // NOTE: Check for (theTmpMarathonMap == nil)
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] initWithMapNSData:theData];
@@ -187,7 +187,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 // ***************************** Advanced Data Processing Functions *****************************
 #pragma mark -
 #pragma mark ********* Advanced Data Processing Functions *********
-- (NSMutableData *)mergeScenario:(PhPfhorgeScenarioLevelDoc *)scenarioDocument
+- (NSMutableData *)mergeScenario:(PhPfhorgeScenarioLevelDoc *)scenarioDocument error:(NSError**)outError
 {
     PhScenarioData *scenarioData = [scenarioDocument dataObjectForLevelNameTable];
     int levelCount = [scenarioData levelCount]; // getLevelPathForLevel:(int)number
@@ -310,7 +310,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 
 
-- (NSMutableData *)saveLevelAndGetMapNSData:(LELevelData *)level levelToSaveIn:(short)levelToSaveIn
+- (NSMutableData *)saveLevelAndGetMapNSData:(LELevelData *)level levelToSaveIn:(short)levelToSaveIn error:(NSError**)outError
 {
     NSInteger projectedLevelByteCount = [self getByteCountForLevel:level];
     long levelLength;
@@ -1693,14 +1693,14 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 // ***************************** Save Level Headers *****************************
 #pragma mark -
-#pragma mark ********* Save Level Headers *********
+#pragma mark Save Level Headers
 
 // ***************************** Get Tag Data Functions *****************************
 #pragma mark -
-#pragma mark ********* Get Tag Data Functions *********
+#pragma mark Get Tag Data Functions
 
--(void)getThePointsAtOffset:(long)theDataOffset
-                 withLength:(long)theDataLength
+-(void)getThePointsAtOffset:(int)theDataOffset
+                 withLength:(int)theDataLength
                   withLevel:(LELevelData *)curLevel
               regularPoints:(BOOL)regPointStyle
 {
@@ -1738,8 +1738,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getTheLinesAtOffset:(long)theDataOffset
-                withLength:(long)theDataLength
+-(void)getTheLinesAtOffset:(int)theDataOffset
+                withLength:(int)theDataLength
                  withLevel:(LELevelData *)curLevel
 {
     // *** 'LINS' *** 32 bytes each
@@ -1810,8 +1810,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getThePolygonsAtOffset:(long)theDataOffset
-                   withLength:(long)theDataLength
+-(void)getThePolygonsAtOffset:(int)theDataOffset
+                   withLength:(int)theDataLength
                     withLevel:(LELevelData *)curLevel
 {
     // *** 'POLY' *** 128 bytes each
@@ -2095,8 +2095,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 // [ objectAtIndex:
 
--(void)getTheMapObjectsAtOffset:(long)theDataOffset
-                     withLength:(long)theDataLength
+-(void)getTheMapObjectsAtOffset:(int)theDataOffset
+                     withLength:(int)theDataLength
                       withLevel:(LELevelData *)curLevel
 {
     // *** 'OBJS' *** 16 bytes each
@@ -2125,8 +2125,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getTheSidesAtOffset:(long)theDataOffset
-                withLength:(long)theDataLength
+-(void)getTheSidesAtOffset:(int)theDataOffset
+                withLength:(int)theDataLength
                  withLevel:(LELevelData *)curLevel
 {
     // *** 'SIDS' *** 64 bytes each
@@ -2273,8 +2273,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getTheLightsAtOffset:(long)theDataOffset
-                 withLength:(long)theDataLength
+-(void)getTheLightsAtOffset:(int)theDataOffset
+                 withLength:(int)theDataLength
                   withLevel:(LELevelData *)curLevel
 {
     // *** 'LITE' *** 100 bytes each
@@ -2310,8 +2310,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getTheAnnotationsAtOffset:(long)theDataOffset
-                      withLength:(long)theDataLength
+-(void)getTheAnnotationsAtOffset:(int)theDataOffset
+                      withLength:(int)theDataLength
                        withLevel:(LELevelData *)curLevel
 {
     // *** 'NOTE' *** 72 bytes each
@@ -2336,8 +2336,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
 }
 
--(void)getTheMediaAtOffset:(long)theDataOffset
-                withLength:(long)theDataLength
+-(void)getTheMediaAtOffset:(int)theDataOffset
+                withLength:(int)theDataLength
                  withLevel:(LELevelData *)curLevel
 {
     // *** 'medi' *** 32 bytes each
@@ -2375,8 +2375,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
 }
 
--(void)getTheAmbientSoundsAtOffset:(long)theDataOffset
-                        withLength:(long)theDataLength
+-(void)getTheAmbientSoundsAtOffset:(int)theDataOffset
+                        withLength:(int)theDataLength
                          withLevel:(LELevelData *)curLevel
 {
     // *** 'ambi' *** 16 bytes each
@@ -2400,8 +2400,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
 }
 
--(void)getTheStaticPlatformsAtOffset:(long)theDataOffset
-                          withLength:(long)theDataLength
+-(void)getTheStaticPlatformsAtOffset:(int)theDataOffset
+                          withLength:(int)theDataLength
                            withLevel:(LELevelData *)curLevel
 {
     // *** 'plat' *** 32 bytes each   Merged Maps have 'PLAT' ???
@@ -2434,8 +2434,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
 }
 
--(void)getTheDynamicPlatformsAtOffset:(long)theDataOffset
-                           withLength:(long)theDataLength
+-(void)getTheDynamicPlatformsAtOffset:(int)theDataOffset
+                           withLength:(int)theDataLength
                             withLevel:(LELevelData *)curLevel
 {	// *** 'PLAT' ***
     NSArray *thePlatformArray = [curLevel platforms];
@@ -2460,8 +2460,8 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 
--(void)getTheItemPlacementAtOffset:(long)theDataOffset
-                        withLength:(long)theDataLength
+-(void)getTheItemPlacementAtOffset:(int)theDataOffset
+                        withLength:(int)theDataLength
                          withLevel:(LELevelData *)curLevel
 {
     // *** 'plac' *** 12 bytes each
@@ -2487,8 +2487,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     }
 }
 
--(void)getTheRandomSoundsAtOffset:(long)theDataOffset
-                       withLength:(long)theDataLength
+-(void)getTheRandomSoundsAtOffset:(int)theDataOffset
+                       withLength:(int)theDataLength
                         withLevel:(LELevelData *)curLevel
 {
     // *** 'bonk' *** 32 bytes each
@@ -2520,8 +2520,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     return;
 }
 
--(void)getTheTerminalsAtOffset:(long)theDataOffset
-                    withLength:(long)theDataLength
+-(void)getTheTerminalsAtOffset:(int)theDataOffset
+                    withLength:(int)theDataLength
                      withLevel:(LELevelData *)curLevel
 {
     ///[data getBytes:&length range:NSMakeRange(0, 2)];
@@ -2550,7 +2550,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 #pragma mark -
 
--(void)getTag:(long)theTag theLevel:(short)theLevel theCurrentLevelObject:(LELevelData *)curLevel
+-(void)getTag:(int)theTag theLevel:(short)theLevel theCurrentLevelObject:(LELevelData *)curLevel
 {
     BOOL GoOn, foundTheTag;
     long this_offset;
@@ -2570,7 +2570,8 @@ BOOL setupPointerArraysDurringLoading = YES;
     foundTheTag = NO;
     
     while (GoOn == YES  && myLevelHeaders[theLevel - 1].length > (this_offset - myLevelHeaders[theLevel - 1].offsetToStart)) {
-        long next_offset, length, offset, tag;
+        int next_offset, length, offset;
+        OSType tag;
         
         if (this_offset != -1)
             theCursor = this_offset;
@@ -2586,85 +2587,85 @@ BOOL setupPointerArraysDurringLoading = YES;
             //int theCount = 0;
             switch (tag) {
                 case 'PNTS':
-                    [self getThePointsAtOffset:(this_offset + 16)
+                    [self getThePointsAtOffset:(int)(this_offset + 16)
                                     withLength:length withLevel:curLevel regularPoints:YES];
                     foundTheTag = YES;
                     break;
                 case 'EPNT':
-                    [self getThePointsAtOffset:(this_offset + 16)
+                    [self getThePointsAtOffset:(int)(this_offset + 16)
                                     withLength:length withLevel:curLevel regularPoints:NO];
                     foundTheTag = YES;
                     break;
                 case 'LINS':
-                    [self getTheLinesAtOffset:(this_offset + 16)
+                    [self getTheLinesAtOffset:(int)(this_offset + 16)
                                    withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'POLY':
-                    [self getThePolygonsAtOffset:(this_offset + 16)
+                    [self getThePolygonsAtOffset:(int)(this_offset + 16)
                                       withLength:length withLevel:curLevel];
                     foundTheTag = YES; // <-- DEAL WITH THIS
                     break;
                 case 'OBJS':
-                    [self getTheMapObjectsAtOffset:(this_offset + 16)
+                    [self getTheMapObjectsAtOffset:(int)(this_offset + 16)
                                         withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'SIDS':
-                    [self getTheSidesAtOffset:(this_offset + 16)
+                    [self getTheSidesAtOffset:(int)(this_offset + 16)
                                    withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'LITE':
-                    [self getTheLightsAtOffset:(this_offset + 16)
+                    [self getTheLightsAtOffset:(int)(this_offset + 16)
                                     withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'NOTE':
-                    [self getTheAnnotationsAtOffset:(this_offset + 16)
+                    [self getTheAnnotationsAtOffset:(int)(this_offset + 16)
                                          withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'medi':
-                    [self getTheMediaAtOffset:(this_offset + 16)
+                    [self getTheMediaAtOffset:(int)(this_offset + 16)
                                    withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'ambi':
-                    [self getTheAmbientSoundsAtOffset:(this_offset + 16)
+                    [self getTheAmbientSoundsAtOffset:(int)(this_offset + 16)
                                            withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'plat':
-                    [self getTheStaticPlatformsAtOffset:(this_offset + 16)
+                    [self getTheStaticPlatformsAtOffset:(int)(this_offset + 16)
                                              withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                 case 'PLAT':
-                    [self getTheDynamicPlatformsAtOffset:(this_offset + 16)
+                    [self getTheDynamicPlatformsAtOffset:(int)(this_offset + 16)
                                               withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'plac':
-                    [self getTheItemPlacementAtOffset:(this_offset + 16)
+                    [self getTheItemPlacementAtOffset:(int)(this_offset + 16)
                                            withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'bonk':
-                    [self getTheRandomSoundsAtOffset:(this_offset + 16)
+                    [self getTheRandomSoundsAtOffset:(int)(this_offset + 16)
                                           withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
                     
                 case 'term':
-                    [self getTheTerminalsAtOffset:(this_offset + 16)
+                    [self getTheTerminalsAtOffset:(int)(this_offset + 16)
                                        withLength:length withLevel:curLevel];
                     foundTheTag = YES;
                     break;
