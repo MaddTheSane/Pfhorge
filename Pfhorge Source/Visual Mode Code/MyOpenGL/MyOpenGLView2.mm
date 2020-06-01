@@ -371,7 +371,7 @@ static unsigned short SetColor(short ID, int Indx) {
 	[[theLevelData polygons]  makeObjectsPerformSelector:@selector(render)];
 	
     // Swap the backbuffers to the foreground
-    //SDL_GL_SwapBuffers();
+    [[self openGLContext] flushBuffer];
 }
 
 - (void)Init
@@ -461,6 +461,7 @@ static unsigned short SetColor(short ID, int Indx) {
             [self renderScene];
 			
             glFinish();
+            
             // We'd break out of this loop instead of continuing in a real game (as mentioned above).
             continue; // <-- continue;
         }
