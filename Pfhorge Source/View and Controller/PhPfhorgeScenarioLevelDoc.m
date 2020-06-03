@@ -435,6 +435,60 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     [theLevel release];
 }
 
+- (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError **)outError
+{
+    NSString *fileName = [scenarioData getLevelPathForSelected];
+    NSData *theFileData = [NSData dataWithContentsOfFile:fileName options:0 error:outError];
+    if (!theFileData) {
+        return NO;
+    }
+    LELevelData *theLevel;
+    
+//    if (@available(macOS 10.13, *)) {
+//        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+//                      [LELevelData class] fromData:
+//                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
+//    } else {
+    theLevel =  [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:
+                  [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]
+                                                              error:outError] retain];
+//    }
+    
+    if (theLevel == nil) {
+        return NO;
+    }
+    
+    NSData *tempData = [[LEMapData convertLevelToDataObject:theLevel error:outError] retain];
+    
+    if (tempData == nil) {
+        [theLevel release];
+        return NO;
+    }
+
+    BOOL success = [tempData writeToFile:fullPath options:0 error:outError];
+    if (!success) {
+        [tempData release];
+        [theLevel release];
+        
+        return NO;
+    }
+    
+    NSError *tmpErr;
+    success = [[NSFileManager defaultManager] setAttributes:
+     @{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+       NSFileHFSTypeCode: @((OSType)'sce2')
+    } ofItemAtPath:fullPath error:&tmpErr];
+    if (!success) {
+        //Just write the error out into the log
+        NSLog(@"Unable to set file attributes: %@", tmpErr);
+    }
+    
+    [tempData release];
+    [theLevel release];
+    
+    return YES;
+}
+
 - (void)rescanProjectDirectoryNow
 {
     [scenarioData scanProjectDirectory];
@@ -529,6 +583,86 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     [maraResources saveToFile:fullPath oldFile:nil];
     [maraResources release];
+}
+
+- (BOOL)saveMergedMapToPath:(NSString *)fullPath error:(NSError**)outError
+{
+    NSData *mergedMap = [LEMapData mergeScenarioToMarathonMapFile:self error:outError];
+    if (!mergedMap) {
+        return NO;
+    }
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSArray *subpaths;
+    NSEnumerator *numer;
+    NSString *fileName;
+    BOOL isDir = YES;
+    BOOL exsists = NO;
+    NSString *fullImageDirPath = nil;
+    ScenarioResources *maraResources;
+    
+    [manager createFileAtPath:fullPath
+                     contents:mergedMap
+                   attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+                                NSFileHFSTypeCode: @((OSType)'sce2')
+                   }];
+    
+    NSLog(@"Scaning Images folder for resources now...");
+    
+    fullImageDirPath  = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
+    
+    exsists = [manager fileExistsAtPath:fullImageDirPath isDirectory:&isDir];
+    
+    if (!exsists || !isDir) {
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileNoSuchFileError userInfo:@{NSFilePathErrorKey: fullImageDirPath}];
+        }
+        return NO;
+    }
+    
+    maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fullPath];
+    
+    subpaths = [manager contentsOfDirectoryAtPath:fullImageDirPath error:NULL];
+    numer = [subpaths objectEnumerator];
+    while (fileName = [numer nextObject]) {
+        NSString *fullResourcePath = [fullImageDirPath stringByAppendingPathComponent:fileName];
+        
+        if (IsPathDirectory(manager, fullResourcePath)) {
+            continue;
+        } else if ([[fileName pathExtension] isEqualToString:@"pict"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128) {
+                continue;
+            }
+            
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:[manager contentsAtPath:fullResourcePath]];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
+            //TODO: convert to pict!
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            //Resource *theResource;
+            
+            if (thePictResourceNumber < 128) {
+                continue;
+            }
+            if ([maraResources resourceOfType:@"PICT" index:thePictResourceNumber load:NO] != nil) {
+                continue;
+            }
+            
+//            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+//            [theResource setData:[manager contentsAtPath:fullResourcePath]];
+//            [maraResources addResource:theResource];
+//            [theResource release];
+        }
+    }
+    
+    [maraResources saveToFile:fullPath oldFile:nil];
+    [maraResources release];
+
+    return YES;
 }
 
 // ****************** Information ******************

@@ -67,7 +67,7 @@ extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
 - (void)saveMergedMapTo:(NSString *)fullPath;
 
 - (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError**)outError;
-- (BOOL)saveMergedMapTo:(NSString *)fullPath error:(NSError**)outError;
+- (BOOL)saveMergedMapToPath:(NSString *)fullPath error:(NSError**)outError;
 
 // *** Information ***
 - (id)dataObjectForLevelNameTable;
