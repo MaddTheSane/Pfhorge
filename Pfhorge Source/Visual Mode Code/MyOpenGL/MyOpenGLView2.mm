@@ -22,7 +22,8 @@ _______________________________________________________________________________
 #import <Foundation/Foundation.h>
 #import "LEExtras.h"
 #import "LEPolygon.h"
-#import <GLKit/GLKit.h>
+#import <GLKit/GLKMatrix4.h>
+#import <GLKit/GLKMathUtils.h>
 #include "GLMain.h"
 #include "Camera.h"
 
