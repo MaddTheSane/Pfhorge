@@ -25,7 +25,7 @@
 
 @class PhPfhorgeScenarioLevelDoc;
 
-@interface PhScenarioData : NSObject <NSCoding, NSCopying, NSTableViewDataSource, NSTableViewDelegate>
+@interface PhScenarioData : NSObject <NSSecureCoding, NSCopying, NSTableViewDataSource, NSTableViewDelegate>
 {
     __unsafe_unretained PhPfhorgeScenarioLevelDoc *theScenarioDocument;
     

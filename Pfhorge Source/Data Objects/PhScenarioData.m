@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (coder.allowsKeyedCoding) {
-        levelFileNames = [[coder decodeObjectForKey:@"levelFileNames"] retain];
+        levelFileNames = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"] retain];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         
@@ -39,6 +39,11 @@
     }
     
     return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -162,7 +167,7 @@
         
         if (IsPathDirectory(manager, fullPath)) {
             continue;
-        } else if ([[fileName pathExtension] isEqualToString:@"pfhlev"]) {
+        } else if ([[fileName pathExtension] caseInsensitiveCompare:@"pfhlev"] == NSOrderedSame) {
             [levelFileNames addObject:[fileName stringByDeletingPathExtension]];
             //[levelFileFullPaths addObject:[[levelFileNames copy] autorelease]]
         } else if (![[fileName pathExtension] isEqualToString:@"sen"] && ![firstChar isEqualToString:@"."]) {

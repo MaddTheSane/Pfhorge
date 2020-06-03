@@ -378,16 +378,19 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    // Implement to provide a persistent data representation of your document OR remove this and implement the file-wrapper or file path based save methods.
 	if (@available(macOS 10.13, *)) {
-		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData requiringSecureCoding:NO error:outError];
+		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData requiringSecureCoding:YES error:outError];
 	} else {
 		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData];
 	}
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    scenarioData = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+    if (@available(macOS 10.13, *)) {
+        scenarioData = [[NSKeyedUnarchiver unarchivedObjectOfClass:[PhScenarioData class] fromData:data error:outError] retain];
+    } else {
+        scenarioData = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+    }
 	if (!scenarioData) {
 		scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
 	}
@@ -464,7 +467,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         [[NSFileManager defaultManager] createFileAtPath:fpath
                                                 contents:fdata
                                               // May want to set creator code, etc...
-                                              attributes:nil];
+                                              attributes:@{NSFileHFSTypeCode: @((OSType)'PfhL'),
+                                                           NSFileHFSCreatorCode: @((OSType)'PFrg')}];
     }
     
 }
