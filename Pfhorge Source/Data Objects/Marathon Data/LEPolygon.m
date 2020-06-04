@@ -1024,7 +1024,7 @@
             
             if (!useIndexNumbersInstead) {
                 NSDictionary *tmpAdj = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"adjacent_polygon_objects"];
-                NSDictionary *tmpSide = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"side_objects"];
+                NSDictionary *tmpSide = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LESide class], nil] forKey:@"side_objects"];
                 for (int i = 0; i<vertexCountForPoly; i++) {
                     adjacent_polygon_objects[i]=tmpAdj[@(i)];
                     side_objects[i]=tmpSide[@(i)];
