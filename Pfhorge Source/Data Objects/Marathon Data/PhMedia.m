@@ -260,8 +260,7 @@
 
 -(BOOL)getFlag:(unsigned short)theFlag;
 {
-    switch (theFlag)
-    {
+    switch (theFlag) {
         case _media_sound_obstructed_by_floor:
             return GET_MEDIA_FLAG(_media_sound_obstructed_by_floor);
             break;
@@ -271,8 +270,7 @@
 
 -(void)setFlag:(unsigned short)theFlag to:(BOOL)v
 {
-    switch (theFlag)
-    {
+    switch (theFlag) {
         case _media_sound_obstructed_by_floor:
             SET_MEDIA_FLAG(_media_sound_obstructed_by_floor, v);
             break;
@@ -316,10 +314,11 @@
 -(void)setLightIndex:(short)v
 {
     //light_index = v;
-    if (v == -1)
+    if (v == -1) {
         light_object = nil;
-    else if (everythingLoadedST)
+    } else if (everythingLoadedST) {
         light_object = [theMapLightsST objectAtIndex:v];
+    }
 }
 @synthesize lightObject=light_object;
 

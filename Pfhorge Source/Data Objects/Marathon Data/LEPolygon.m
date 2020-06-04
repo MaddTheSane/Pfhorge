@@ -1590,7 +1590,7 @@
     return -1;
 }
 
--(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight
+-(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight
 {
     if (floor_lightsource_object == theLightInQuestion)
         floor_lightsource_object = setToLight;

@@ -449,9 +449,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                       [LELevelData class] fromData:
                       [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:outError] retain];
     } else {
-    theLevel =  [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:
-                  [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]
-                                                              error:outError] retain];
+        theLevel =  [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:
+                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]
+                                                                  error:outError] retain];
     }
     
     if (theLevel == nil) {

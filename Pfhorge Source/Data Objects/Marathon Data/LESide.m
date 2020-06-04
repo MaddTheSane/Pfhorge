@@ -70,11 +70,6 @@
 	[coder encodeInt:_textureNumber forKey:@"textureNumber"];
 }
 
-+ (BOOL)supportsSecureCoding
-{
-    return YES;
-}
-
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
 	if (self = [super init]) {
 		if (!coder.allowsKeyedCoding) {
@@ -89,6 +84,11 @@
 		_textureNumber = [coder decodeIntForKey:@"textureNumber"];
 	}
 	return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (side_texture_definition)cStructSideTextureDefinition
@@ -431,8 +431,8 @@
         secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
         transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
         
-        polygon_object = [coder decodeObjectForKey:@"polygon_object"];
-        line_object = [coder decodeObjectForKey:@"line_object"];
+        polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
+        line_object = [coder decodeObjectOfClass:[LELine class] forKey:@"line_object"];
         
         if (useIndexNumbersInstead) {
             short tmpShort;
@@ -443,10 +443,10 @@
             tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
             transparent_lightsource_object = [self getLightFromIndex:tmpShort];
         } else {
-            primary_lightsource_object = [coder decodeObjectForKey:@"primary_lightsource_object"];
-            secondary_lightsource_object = [coder decodeObjectForKey:@"secondary_lightsource_object"];
-            transparent_lightsource_object = [coder decodeObjectForKey:@"transparent_lightsource_object"];
-            control_panel_permutation_object = [coder decodeObjectForKey:@"control_panel_permutation_object"];
+            primary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"primary_lightsource_object"];
+            secondary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"secondary_lightsource_object"];
+            transparent_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"transparent_lightsource_object"];
+            control_panel_permutation_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"control_panel_permutation_object"];
         }
         
         ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
@@ -523,6 +523,10 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
 
 -(void)dealloc
 {
@@ -533,7 +537,7 @@
 #pragma mark -
 #pragma mark ********* Utilites *********
 
--(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight
+-(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight
 {
     if (transparent_lightsource_object == theLightInQuestion)
         transparent_lightsource_object = setToLight;
