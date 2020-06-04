@@ -130,7 +130,7 @@
         x32 = x / 16;
         y32 = y / 16;
         
-        lines = [[coder decodeObjectForKey:@"lines"] retain];
+        lines = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableSet class], [LELine class], nil] forKey:@"lines"] retain];
     } else {
         int versionNum = decodeNumInt(coder);
         
@@ -152,6 +152,11 @@
     }
     
     return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone

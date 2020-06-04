@@ -80,6 +80,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhAbstractNumber *copy = [[PhAbstractNumber allocWithZone:zone] init];

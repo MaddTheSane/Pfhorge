@@ -353,16 +353,16 @@
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        mapPoint1 = [coder decodeObjectForKey:@"mapPoint1"];
-        mapPoint2 = [coder decodeObjectForKey:@"mapPoint2"];
+        mapPoint1 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint1"];
+        mapPoint2 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint2"];
         flags = [coder decodeIntForKey:@"LineFlags"];
         
         _Length = [coder decodeIntForKey:@"length"];
         highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
         lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
         
-        clockwisePolygonSideObject = [coder decodeObjectForKey:@"clockwisePolygonSideObject"];
-        counterclockwisePolygonSideObject = [coder decodeObjectForKey:@"counterclockwisePolygonSideObject"];
+        clockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"clockwisePolygonSideObject"];
+        counterclockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"counterclockwisePolygonSideObject"];
         
         
         clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
@@ -434,6 +434,11 @@
         //useIndexNumbersInstead = NO;
 	}
     return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone

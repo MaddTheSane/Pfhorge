@@ -54,7 +54,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    PhTag *copy = [[PhTag allocWithZone:zone] init];
+    PhTag *copy = [[PhTag alloc] init];
     
     if (copy == nil)
         return nil;
@@ -69,10 +69,7 @@
 #pragma mark Init and Dealloc Methods
 -(PhTag *)init
 {
-    self = [super initWithNumber:@-1];
-    if (self == nil)
-        return nil;
-    return self;
+    return self = [self initWithTagNumber:@-1];
 }
 
 -(PhTag *)initWithTagNumber:(NSNumber *)thePhNumber
@@ -81,6 +78,11 @@
     if (self == nil)
         return nil;
     return self;
+}
+
+- (instancetype)initWithNumber:(NSNumber *)thePhNumber
+{
+    return self = [self initWithTagNumber:thePhNumber];
 }
 
 -(short) getSpecialIndex { return [assignedNumber intValue]; }

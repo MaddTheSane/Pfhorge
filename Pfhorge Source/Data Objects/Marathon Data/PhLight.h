@@ -94,7 +94,7 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags)
 
 @class PhTag;
 
-@interface PhLight : PhAbstractName <NSCoding, NSCopying>
+@interface PhLight : PhAbstractName <NSSecureCoding, NSCopying>
 {
 	PhLightTypes type;
 	PhLightStaticFlags flags;

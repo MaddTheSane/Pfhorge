@@ -74,7 +74,9 @@ enum	// media sounds
 	NUMBER_OF_MEDIA_SOUNDS
 };
 
-@interface PhMedia : PhAbstractName <NSCoding> /* 32 bytes */
+@class PhLight;
+
+@interface PhMedia : PhAbstractName <NSSecureCoding> /* 32 bytes */
 {
 	PhMediaType	type;
 	PhMediaFlags	flags;
@@ -86,7 +88,7 @@ enum	// media sounds
 	light intensities; clearly discontinuous light functions
 	(e.g. strobes) should not be used */
 	short	light_index;
-	__kindof LEMapStuffParent	*light_object;
+	PhLight	*light_object;
 
 	/* this is the maximum external velocity due to current;
 	acceleration is 1/32nd of this */
@@ -118,7 +120,7 @@ enum	// media sounds
 @property PhMediaFlags flags;
 
 @property short lightIndex;
-@property (assign) __kindof LEMapStuffParent *lightObject;
+@property (assign) PhLight *lightObject;
 
 @property short currentDirection;
 @property short currentMagnitude;
@@ -132,6 +134,8 @@ enum	// media sounds
 @property int minimumLightIntensity; // ??? Object ???
 @property short texture;
 @property short transferMode;
+
+-(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight;
 
 // ************************** Inzlizations And Class Methods *************************
 

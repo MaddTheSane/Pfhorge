@@ -34,10 +34,10 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void) encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
--(PhTag *)initWithTagNumber:(NSNumber *)thePhNumber;
-
+- (instancetype)initWithTagNumber:(NSNumber *)thePhNumber NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
 
 //-(NSNumber *)phNumber;
 //-(void)setPhNumber:(NSNumber *)tagPhNumber;

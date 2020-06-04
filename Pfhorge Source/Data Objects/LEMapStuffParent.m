@@ -101,6 +101,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     LEMapStuffParent *copy = [[LEMapStuffParent allocWithZone:zone] init];
@@ -169,7 +174,7 @@
 {
     if (theIndex < 0 || [theMapPolysST count] == 0)
         return nil;
-    else if (theIndex >= (int)[theMapPolysST count])
+    else if (theIndex >= [theMapPolysST count])
         return [theMapPolysST lastObject];
     
     return [theMapPolysST objectAtIndex:theIndex];

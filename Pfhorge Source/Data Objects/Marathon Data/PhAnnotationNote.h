@@ -35,7 +35,7 @@
 
 @class PhNoteGroup, LEPolygon;
 
-@interface PhAnnotationNote : PhAbstractName <NSCoding>
+@interface PhAnnotationNote : PhAbstractName <NSSecureCoding>
 {
 	// From map_annotation structure, in LEMarathon2Structres.h...
         

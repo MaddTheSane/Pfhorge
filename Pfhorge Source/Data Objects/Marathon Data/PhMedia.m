@@ -24,6 +24,7 @@
 
 #import "PhMedia.h"
 #import "LEExtras.h"
+#import "PhLight.h"
 
 #define GET_MEDIA_FLAG(b) (flags & (b))
 #define SET_MEDIA_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
@@ -185,7 +186,7 @@
         type = [coder decodeIntForKey:@"type"];
         flags = [coder decodeIntForKey:@"flags"];
         
-        light_object = [coder decodeObjectForKey:@"light_object"];
+        light_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"light_object"];
         
         current_direction = [coder decodeIntForKey:@"current_direction"];
         current_magnitude = [coder decodeIntForKey:@"current_magnitude"];
@@ -225,6 +226,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhMedia *copy = [[PhMedia allocWithZone:zone] init];
@@ -241,7 +247,7 @@
 #pragma mark -
 #pragma mark ********* Utilites *********
 
--(void)setLightsThatAre:(id)theLightInQuestion to:(id)setToLight
+-(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight
 {
     if (light_object == theLightInQuestion)
         [self setLightObject:setToLight];

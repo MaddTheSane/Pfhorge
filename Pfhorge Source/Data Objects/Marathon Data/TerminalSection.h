@@ -134,7 +134,7 @@ typedef struct term_style {
 
 #import "PhAbstractName.h"
 
-@interface TerminalSection : PhAbstractName <NSCoding>
+@interface TerminalSection : PhAbstractName <NSSecureCoding>
 {
     NSMutableAttributedString *theText;
     TerminalSectionFlags flags;	/*!<	section flags, see above */

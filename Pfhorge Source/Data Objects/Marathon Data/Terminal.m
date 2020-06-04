@@ -93,8 +93,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     int tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -172,7 +171,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        theSections = [coder decodeObjectForKey:@"theSections"];
+        theSections = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [TerminalSection class], nil] forKey:@"theSections"];
         
         flags = [coder decodeIntForKey:@"flags"];
         lineCount = [coder decodeIntForKey:@"lineCount"];

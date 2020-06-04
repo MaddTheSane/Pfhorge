@@ -200,7 +200,7 @@ struct platform_data2 /* 140 bytes */
 
 // ••• ••• ••• Objective-C Stuff ••• ••• •••
 
-@class PhTag;
+@class PhTag, LEPolygon;
 
 @interface PhPlatform : PhAbstractName <NSCoding, NSCopying>
 {
@@ -214,7 +214,7 @@ struct platform_data2 /* 140 bytes */
 	PhPlatformStaticFlags static_flags;
 	
 	short polygon_index;
-	__kindof LEMapStuffParent	*polygon_object;
+	LEPolygon	*polygon_object;
 	
 	short tag;
 	PhTag *tagObject;
@@ -234,7 +234,7 @@ struct platform_data2 /* 140 bytes */
 @property short minimumHeight;
 @property PhPlatformStaticFlags staticFlags;
 @property short polygonIndex;
-@property (assign) id polygonObject;
+@property (assign) LEPolygon *polygonObject;
 @property (nonatomic) short tag;
 @property (assign) PhTag *tagObject;
 

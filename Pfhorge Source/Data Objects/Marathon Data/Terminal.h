@@ -60,7 +60,7 @@ typedef struct term_head {
 
 @class TerminalSection;
 
-@interface Terminal : PhAbstractName <NSCoding>
+@interface Terminal : PhAbstractName <NSSecureCoding>
 {
     NSMutableArray<TerminalSection*> *theSections;
     PhTerminalFlags flags;

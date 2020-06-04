@@ -190,6 +190,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhRandomSound *copy = [[PhRandomSound allocWithZone:zone] init];

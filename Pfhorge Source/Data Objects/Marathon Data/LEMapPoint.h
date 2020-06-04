@@ -29,9 +29,10 @@
 
 @interface LEMapPoint : LEMapStuffParent <NSCoding, NSCopying>
 {
-    short x, y, y32, x32; //Cordenates Of The Point
-    //BOOL cleanUp; //No Longer In The Map, and should be deleted at the next opportinuity...
-    NSMutableSet<LELine*> *lines; //Index of lines that this point is apart of
+    //! Coordinates of the point
+    short x, y, y32, x32;
+    //! Index of lines that this point is a part of
+    NSMutableSet<LELine*> *lines;
 }
 
 

@@ -28,7 +28,7 @@
 
 
 
-@interface PhAbstractName : LEMapStuffParent <NSCoding>
+@interface PhAbstractName : LEMapStuffParent <NSSecureCoding>
 {
     NSString *myName;
 }

@@ -132,6 +132,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhAmbientSound *copy = [[PhAmbientSound allocWithZone:zone] init];

@@ -271,11 +271,11 @@
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
-//        if (@available(macOS 10.13, *)) {
-//            theLevel = [[NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
-//        } else {
+        if (@available(macOS 10.13, *)) {
+            theLevel = [[NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
+        } else {
             theLevel = [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
-//        }
+        }
 
         if (theLevel != nil) {
             loadedOk = YES;

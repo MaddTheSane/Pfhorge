@@ -62,7 +62,7 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 
 @class LEPolygon;
 
-@interface LEMapObject : LEMapStuffParent <NSCoding>
+@interface LEMapObject : LEMapStuffParent <NSSecureCoding>
 {
     short index, facing, polygonIndex, x, y, z, x32, y32;
 	LEMapObjectType type;

@@ -46,7 +46,7 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 
 @class LEMapPoint, LEPolygon, LESide, PhPlatform, NSBezierPath;
 
-@interface LELine : LEMapStuffParent <NSCoding>
+@interface LELine : LEMapStuffParent <NSSecureCoding>
 {
     short p1, p2;
     LEMapPoint *mapPoint1, *mapPoint2;

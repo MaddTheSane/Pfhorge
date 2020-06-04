@@ -27,7 +27,7 @@
 #import <Foundation/Foundation.h>
 #import "PhAbstractName.h"
 
-@interface PhAbstractNumber : PhAbstractName <NSCoding>
+@interface PhAbstractNumber : PhAbstractName <NSSecureCoding>
 {
     NSNumber *assignedNumber;
 }

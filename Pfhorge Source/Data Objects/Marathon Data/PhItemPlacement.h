@@ -36,7 +36,7 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 	PhItemPlacementReappersInRandomLocation = 0x0001
 };
 
-@interface PhItemPlacement : LEMapStuffParent <NSCoding>
+@interface PhItemPlacement : LEMapStuffParent <NSSecureCoding>
 {
 	PhItemPlacementFlags flags;
 	

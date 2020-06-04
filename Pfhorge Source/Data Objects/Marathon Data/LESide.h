@@ -118,7 +118,7 @@ typedef struct side_exclusion_zone
 
 @class PhLight, LEPolygon, LELine;
 
-@interface LESide : LEMapStuffParent <NSCopying, NSCoding>
+@interface LESide : LEMapStuffParent <NSCopying, NSSecureCoding>
 {
 	// struct side_data // 64 bytes
 	LESideType	type;

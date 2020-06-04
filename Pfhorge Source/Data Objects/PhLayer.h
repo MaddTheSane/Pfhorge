@@ -32,9 +32,10 @@
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
 
-- (id)initWithName:(NSString *)theString;
+- (id)initWithName:(NSString *)theString NS_DESIGNATED_INITIALIZER;
 
 @property (readonly) BOOL doIHaveColor;
 

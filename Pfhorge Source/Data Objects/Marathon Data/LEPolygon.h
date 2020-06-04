@@ -87,7 +87,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 
 @class PhLight, LESide, PhMedia;
 
-@interface LEPolygon : PhAbstractName <NSCoding>
+@interface LEPolygon : PhAbstractName <NSSecureCoding>
 {
     __unsafe_unretained PhLayer *polyLayer;
     

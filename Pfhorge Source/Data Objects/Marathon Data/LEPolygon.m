@@ -972,7 +972,7 @@
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
         if (!useIndexNumbersInstead) {
-            polyLayer = [coder decodeObjectForKey:@"polyLayer"];
+            polyLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:@"polyLayer"];
         }
         
         polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
@@ -1003,18 +1003,18 @@
                     //decodeShort(coder);
                     break;
                 case _polygon_is_platform:
-                    permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+                    permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
                     break;
                 default:
                     break;
             }
         } else {
-            permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+            permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
         }
         
         @autoreleasepool {
-            NSArray *tmpVertex = [coder decodeObjectForKey:@"vertexObjects"];
-            NSArray *tmpLine = [coder decodeObjectForKey:@"lineObjects"];
+            NSArray *tmpVertex = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LEMapPoint class], [NSArray class], nil] forKey:@"vertexObjects"];
+            NSArray *tmpLine = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LELine class], [NSArray class], nil] forKey:@"lineObjects"];
             vertexCountForPoly = tmpVertex.count;
             
             for (int i = 0; i<vertexCountForPoly; i++) {
@@ -1023,8 +1023,8 @@
             }
             
             if (!useIndexNumbersInstead) {
-                NSDictionary *tmpAdj = [coder decodeObjectForKey:@"adjacent_polygon_objects"];
-                NSDictionary *tmpSide = [coder decodeObjectForKey:@"side_objects"];
+                NSDictionary *tmpAdj = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"adjacent_polygon_objects"];
+                NSDictionary *tmpSide = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"side_objects"];
                 for (int i = 0; i<vertexCountForPoly; i++) {
                     adjacent_polygon_objects[i]=tmpAdj[@(i)];
                     side_objects[i]=tmpSide[@(i)];
@@ -1044,16 +1044,16 @@
             tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
             ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
         } else {
-            floor_lightsource_object = [coder decodeObjectForKey:@"floor_lightsource_object"];
-            ceiling_lightsource_object = [coder decodeObjectForKey:@"ceiling_lightsource_object"];
+            floor_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"floor_lightsource_object"];
+            ceiling_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"ceiling_lightsource_object"];
         }
         
         area = [coder decodeIntForKey:@"area"];
         
         if (!useIndexNumbersInstead) {
-            first_object_pointer = [coder decodeObjectForKey:@"first_object_pointer"];
+            first_object_pointer = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_object_pointer"];
             
-            first_exclusion_zone_object = [coder decodeObjectForKey:@"first_exclusion_zone_object"];
+            first_exclusion_zone_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_exclusion_zone_object"];
             line_exclusion_zone_count = [coder decodeIntForKey:@"line_exclusion_zone_count"];
             point_exclusion_zone_count = [coder decodeIntForKey:@"point_exclusion_zone_count"];
         }
@@ -1062,7 +1062,7 @@
         ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
         
         if (!useIndexNumbersInstead) {
-            first_neighbor_object = [coder decodeObjectForKey:@"first_neighbor_object"];
+            first_neighbor_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_neighbor_object"];
             neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
         }
         
@@ -1077,10 +1077,10 @@
             tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
             media_lightsource_object = [self getLightFromIndex:tmpShort];
         } else {
-            media_object = [coder decodeObjectForKey:@"media_object"];
-            media_lightsource_object = [coder decodeObjectForKey:@"media_lightsource_object"];
+            media_object = [coder decodeObjectOfClass:[PhMedia class] forKey:@"media_object"];
+            media_lightsource_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"media_lightsource_object"];
             
-            sound_source_objects = [coder decodeObjectForKey:@"sound_source_objects"];
+            sound_source_objects = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"sound_source_objects"];
         }
         
         if (useIndexNumbersInstead) {
@@ -1090,8 +1090,8 @@
             tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
             random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
         } else {
-            ambient_sound_image_object = [coder decodeObjectForKey:@"ambient_sound_image_object"];
-            random_sound_image_object = [coder decodeObjectForKey:@"random_sound_image_object"];
+            ambient_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"ambient_sound_image_object"];
+            random_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"random_sound_image_object"];
         }
         
         //if (useIndexNumbersInstead)

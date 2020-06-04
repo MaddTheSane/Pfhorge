@@ -26,6 +26,7 @@
 #import "LEExtras.h"
 #import "LELevelData.h"
 #import "PhTag.h"
+#import "LEPolygon.h"
 
 
 #define PF(f) ((((static_flags)&(f)) != 0) ? YES : NO)
@@ -262,10 +263,10 @@
 		
 		static_flags = [coder decodeIntForKey:@"static_flags"];
 		
-		polygon_object = [coder decodeObjectForKey:@"polygon_object"];
+		polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
 		
 		tag = [coder decodeIntForKey:@"tag"];
-		tagObject = [coder decodeObjectForKey:@"tagObject"];
+		tagObject = [coder decodeObjectOfClass:[PhTag class] forKey:@"tagObject"];
 	} else {
 		/*int versionNum = */decodeNumInt(coder);
 		
@@ -289,6 +290,11 @@
 	useIndexNumbersInstead = NO;
 	
 	return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+	return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone

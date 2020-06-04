@@ -50,7 +50,7 @@
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
         layerColor = [[coder decodeObjectOfClass:[NSColor class] forKey:@"layerColor"] retain];
-        objectsInThisLayer = [[coder decodeObjectForKey:@"objectsInThisLayer"] retain];
+        objectsInThisLayer = [[coder decodeObjectOfClasses:[NSSet setWithObjects: [LEMapStuffParent class], [NSMutableArray class], nil] forKey:@"objectsInThisLayer"] retain];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         

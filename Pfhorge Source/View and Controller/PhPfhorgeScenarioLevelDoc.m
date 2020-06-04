@@ -414,14 +414,14 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     NSMutableData *tempData; //= [[NSMutableData alloc] initWithCapacity:200000];
     LELevelData *theLevel;
     
-//    if (@available(macOS 10.13, *)) {
-//        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
-//                      [LELevelData class] fromData:
-//                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
-//    } else {
+    if (@available(macOS 10.13, *)) {
+        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+                      [LELevelData class] fromData:
+                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
+    } else {
         theLevel =  [[NSKeyedUnarchiver unarchiveObjectWithData:
                       [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]] retain];
-//    }
+    }
     
     tempData = [[LEMapData convertLevelToDataObject:theLevel error:NULL] retain];
         
@@ -444,15 +444,15 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     }
     LELevelData *theLevel;
     
-//    if (@available(macOS 10.13, *)) {
-//        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
-//                      [LELevelData class] fromData:
-//                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
-//    } else {
+    if (@available(macOS 10.13, *)) {
+        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+                      [LELevelData class] fromData:
+                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:outError] retain];
+    } else {
     theLevel =  [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:
                   [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]
                                                               error:outError] retain];
-//    }
+    }
     
     if (theLevel == nil) {
         return NO;

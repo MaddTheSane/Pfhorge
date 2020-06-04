@@ -177,6 +177,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhItemPlacement *copy = [[PhItemPlacement allocWithZone:zone] init];

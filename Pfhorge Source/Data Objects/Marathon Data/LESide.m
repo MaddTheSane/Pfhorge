@@ -31,7 +31,7 @@
 
 #import "PhData.h"
 
-@interface LESideTextureDefinition : NSObject <NSCoding>
+@interface LESideTextureDefinition : NSObject <NSSecureCoding>
 @property world_distance		x0, y0;
 @property shape_descriptor	texture;
 
@@ -68,6 +68,11 @@
 	[coder encodeInt:_texture forKey:@"texture"];
 	[coder encodeInt:_textureCollection forKey:@"textureCollection"];
 	[coder encodeInt:_textureNumber forKey:@"textureNumber"];
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {

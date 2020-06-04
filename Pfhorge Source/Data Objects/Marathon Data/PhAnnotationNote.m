@@ -125,10 +125,10 @@
         
         location = [coder decodePointForKey:@"location"];
         
-        polygon_object = [coder decodeObjectForKey:@"polygon_object"];
-        text = [[coder decodeObjectForKey:@"text"] retain];
+        polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
+        text = [[coder decodeObjectOfClass:[NSString class] forKey:@"text"] retain];
         
-        group = [[coder decodeObjectForKey:@"group"] retain];
+        group = [[coder decodeObjectOfClass:[PhNoteGroup class] forKey:@"group"] retain];
     } else {
         int versionNum = decodeNumInt(coder);
         
@@ -148,6 +148,11 @@
     }
     
     return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone

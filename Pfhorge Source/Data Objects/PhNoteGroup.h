@@ -25,9 +25,11 @@
 #import <Cocoa/Cocoa.h>
 #import "PhAbstractName.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class PhAnnotationNote;
 
-@interface PhNoteGroup : PhAbstractName <NSCoding>
+@interface PhNoteGroup : PhAbstractName <NSSecureCoding>
 {
     NSColor *noteColor;
     NSMutableArray<PhAnnotationNote*> *notes;
@@ -40,13 +42,14 @@
 @property (getter=isVisible) BOOL visible;
 
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithName:(NSString *)theString NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
 
 @property (readonly) BOOL doIHaveColor;
 
-@property (copy) NSColor *color;
+@property (copy, nullable) NSColor *color;
 
 -(NSArray<PhAnnotationNote*> *)objectsInThisLayer;
 
@@ -55,3 +58,5 @@
 -(BOOL)isObjectInHere:(id)theObj;
 
 @end
+
+NS_ASSUME_NONNULL_END

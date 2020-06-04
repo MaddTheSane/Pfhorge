@@ -71,8 +71,8 @@
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        theText = [coder decodeObjectForKey:@"theText"];
-        permutationObject = [coder decodeObjectForKey:@"permutationObject"];
+        theText = [coder decodeObjectOfClass:[NSMutableAttributedString class] forKey:@"theText"];
+        permutationObject = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"permutationObject"];
         
         flags = [coder decodeIntForKey:@"flags"];
         type = [coder decodeIntForKey:@"type"];

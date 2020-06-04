@@ -25,9 +25,9 @@
 #import <Foundation/Foundation.h>
 #import "PhData.h"
 
-@class LELevelData, PhTag, PhData;
+@class LELevelData, PhTag, PhData, LEPolygon;
 
-@interface LEMapStuffParent : NSObject <NSCoding>
+@interface LEMapStuffParent : NSObject <NSSecureCoding>
 {
      // Pointers To Other Arrays (Data Structures)
     @protected
@@ -40,7 +40,8 @@
     // that this object is a part of...
     
     NSArray	*theMapPointsST, *theMapLinesST, *theMapObjectsST;
-    NSArray	*theMapPolysST, *theMapSidesST, *theMapPlatformsST;
+    NSArray<LEPolygon*>* theMapPolysST;
+    NSArray *theMapSidesST, *theMapPlatformsST;
     NSArray	*theAnnotationsST, *theMediaST, *theAmbientSoundsST;
     NSArray	*theRandomSoundsST, *theMapItemPlacmentST, *theMapLightsST;
     NSArray     *theNoteTypesST;
@@ -79,7 +80,7 @@
 -(id)getMediaFromIndex:(short)theIndex;
 -(id)getAmbientSoundFromIndex:(short)theIndex;
 -(id)getRandomSoundFromIndex:(short)theIndex;
--(id)getPolygonFromIndex:(short)theIndex;
+-(LEPolygon*)getPolygonFromIndex:(short)theIndex;
 
  // **************************  Basic Accsess To Level Objects  *************************
 @property (assign) NSUndoManager *myUndoManager;

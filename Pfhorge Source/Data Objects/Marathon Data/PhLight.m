@@ -250,14 +250,14 @@
         flags = [coder decodeIntForKey:@"flags"];
         
         phase = [coder decodeIntForKey:@"phase"];
-        NSArray *tmp = [coder decodeObjectForKey:@"light_states"];
+        NSArray *tmp = [coder decodeObjectOfClass:[PhLightingFunctionSpecificationObject class] forKey:@"light_states"];
         for (i = 0; i < 6; i++) {
             PhLightingFunctionSpecificationObject *obj = tmp[i];
             light_states[i] = obj.cStruct;
         }
         
         tag = [coder decodeIntForKey:@"tag"];
-        tagObject = [coder decodeObjectForKey:@"tagObject"];
+        tagObject = [coder decodeObjectOfClass:[PhTag class] forKey:@"tagObject"];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         

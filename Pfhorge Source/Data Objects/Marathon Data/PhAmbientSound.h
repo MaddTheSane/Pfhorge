@@ -31,7 +31,7 @@
 // Check out if Alpha has this limitation!!!
 #define MAXIMUM_AMBIENT_SOUND_IMAGES_PER_MAP 64
 
-@interface PhAmbientSound : PhAbstractName <NSCoding>
+@interface PhAmbientSound : PhAbstractName <NSSecureCoding>
 {
 	// Came from ambient_sound_image_data structure in LEMarathon2Structres.h... :)
 	
