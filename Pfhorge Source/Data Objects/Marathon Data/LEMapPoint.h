@@ -27,7 +27,7 @@
 
 @class LELine;
 
-@interface LEMapPoint : LEMapStuffParent <NSCoding, NSCopying>
+@interface LEMapPoint : LEMapStuffParent <NSSecureCoding, NSCopying>
 {
     //! Coordinates of the point
     short x, y, y32, x32;

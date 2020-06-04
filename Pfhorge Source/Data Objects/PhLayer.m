@@ -61,6 +61,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhLayer *copy = [[PhLayer allocWithZone:zone] init];

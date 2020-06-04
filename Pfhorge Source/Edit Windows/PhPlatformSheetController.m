@@ -68,7 +68,7 @@
     id levelDataObjectDeallocating = [notification object];
     
     if (mapLevel == levelDataObjectDeallocating) {
-        [mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
+        [mapLevel removeMenu:tagComboMenu thatIsOfMenuType:PhLevelNameMenuTag];
         [mapDocument removeLevelInfoWinCon:self];
         mapLevel = nil;
         mapDocument = nil;
@@ -85,7 +85,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
+    [mapLevel addMenu:tagComboMenu asMenuType:PhLevelNameMenuTag];
     [self refreshFromPlatformData];
 }
 

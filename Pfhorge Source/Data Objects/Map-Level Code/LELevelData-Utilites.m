@@ -78,7 +78,7 @@
     while (theObj = [numer nextObject])
         [terminalNames addObject:[theObj phName]];
     
-    [self refreshAllMenusOf:PhLevelNameMenuTerminal];
+    [self refreshMenusOfMenuType:PhLevelNameMenuTerminal];
 }
 
 - (void)adjustInitalItemPlacmentBy:(int)adjustmentNumber forIndex:(int)objectIndex isMonster:(BOOL)adjustingMonster
@@ -136,7 +136,7 @@
     [self recompileTerminalNamesCache];
     [self refreshEveryMenu];
     
-    [self refreshAllMenusOf:PhLevelNameMenuLayer];
+    [self refreshMenusOfMenuType:PhLevelNameMenuLayer];
     
     NSLog(@"layerNames: %@", [layerNames description]);
     
@@ -432,49 +432,49 @@
     {
         [layerNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuLayer];
+        [self refreshMenusOfMenuType:PhLevelNameMenuLayer];
         [theDrawView updateNameList:PhLevelNameMenuLayer];
     }
     else if ([theObject isKindOfClass:[PhTag class]])
     {
         [tagNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuTag];
+        [self refreshMenusOfMenuType:PhLevelNameMenuTag];
         [theDrawView updateNameList:PhLevelNameMenuTag];
     }
     else if ([theObject isKindOfClass:[PhPlatform class]])
     {
         [platformNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuPlatform];
+        [self refreshMenusOfMenuType:PhLevelNameMenuPlatform];
         [theDrawView updateNameList:PhLevelNameMenuPlatform];
     }
     else if ([theObject isKindOfClass:[PhRandomSound class]])
     {
         [randomSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuRandomSound];
+        [self refreshMenusOfMenuType:PhLevelNameMenuRandomSound];
         [theDrawView updateNameList:PhLevelNameMenuRandomSound];
     }
     else if ([theObject isKindOfClass:[PhAmbientSound class]])
     {
         [ambientSoundNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuAmbientSound];
+        [self refreshMenusOfMenuType:PhLevelNameMenuAmbientSound];
         [theDrawView updateNameList:PhLevelNameMenuAmbientSound];
     }
     else if ([theObject isKindOfClass:[PhMedia class]])
     {
         [liquidNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuLiquid];
+        [self refreshMenusOfMenuType:PhLevelNameMenuLiquid];
         [theDrawView updateNameList:PhLevelNameMenuLiquid];
     }
     else if ([theObject isKindOfClass:[PhLight class]])
     {
         [lightNames replaceObjectAtIndex:[theObject index]
                              withObject:[theName copy]];
-        [self refreshAllMenusOf:PhLevelNameMenuLight];
+        [self refreshMenusOfMenuType:PhLevelNameMenuLight];
         [theDrawView updateNameList:PhLevelNameMenuLight];
     }
 
@@ -510,7 +510,7 @@
         [polyNames addObject:[theName copy]];
     }
     
-    [self refreshAllMenusOf:PhLevelNameMenuPolygon];
+    [self refreshMenusOfMenuType:PhLevelNameMenuPolygon];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
 }
@@ -522,14 +522,14 @@
     if (theNamedPolyOrginalIndex < 0 || theNamedPolyOrginalIndex == NSNotFound)
     {
         [thePoly setPhName:nil];
-        [self refreshAllMenusOf:PhLevelNameMenuPolygon];
+        [self refreshMenusOfMenuType:PhLevelNameMenuPolygon];
         return;
     }
     
     [namedPolyObjects removeObject:thePoly];
     [thePoly setPhName:nil];
     [polyNames removeObjectAtIndex:theNamedPolyOrginalIndex];
-    [self refreshAllMenusOf:PhLevelNameMenuPolygon];
+    [self refreshMenusOfMenuType:PhLevelNameMenuPolygon];
 }
 
 

@@ -29,7 +29,7 @@
 #define GET_LIGHT_FLAG(b) (flags & (b))
 #define SET_LIGHT_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
-@interface PhLightingFunctionSpecificationObject: NSObject <NSCoding>
+@interface PhLightingFunctionSpecificationObject: NSObject <NSSecureCoding>
 {
 	PhLightFunction function;
 
@@ -92,6 +92,11 @@
 		delta_intensity = [coder decodeIntForKey:@"deltaIntensity"];
 	}
 	return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (struct lighting_function_specification)cStruct
@@ -250,7 +255,7 @@
         flags = [coder decodeIntForKey:@"flags"];
         
         phase = [coder decodeIntForKey:@"phase"];
-        NSArray *tmp = [coder decodeObjectOfClass:[PhLightingFunctionSpecificationObject class] forKey:@"light_states"];
+        NSArray *tmp = [coder decodeObjectOfClasses:[NSSet setWithObjects:[PhLightingFunctionSpecificationObject class], [NSArray class], nil] forKey:@"light_states"];
         for (i = 0; i < 6; i++) {
             PhLightingFunctionSpecificationObject *obj = tmp[i];
             light_states[i] = obj.cStruct;

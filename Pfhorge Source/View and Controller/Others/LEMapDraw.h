@@ -178,7 +178,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 
 - (void)drawRect:(NSRect)rect;
 
-- (void)updateNameList:(PhLevelNameMenu)theListFromNameManager; // 123 connected 321
+- (void)updateNameList:(PhLevelNameMenuType)theListFromNameManager; // 123 connected 321
 @property (nonatomic) LEMapDrawingMode currentDrawingMode;
 
 - (NSArray<NSNumber*> *)numberList;

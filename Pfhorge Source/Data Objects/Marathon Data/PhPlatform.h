@@ -202,7 +202,7 @@ struct platform_data2 /* 140 bytes */
 
 @class PhTag, LEPolygon;
 
-@interface PhPlatform : PhAbstractName <NSCoding, NSCopying>
+@interface PhPlatform : PhAbstractName <NSSecureCoding, NSCopying>
 {
 @private
 	PhPlatformType	type;

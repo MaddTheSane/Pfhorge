@@ -154,7 +154,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     //[mapLevelList setObjectValue:[mapLevelList objectValueOfSelectedItem]];
     //[mapLevelList setObjectValue:@"Choose Level:"];
     
-    [[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asA:PhLevelNameMenuLayer];
+    [[[self document] getCurrentLevelLoaded] addMenu:layerNamesMenu asMenuType:PhLevelNameMenuLayer];
     
     [self updateLayerSelection];
 }
@@ -1115,7 +1115,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     id levelDataObjectDeallocating = [notification object];
     
     if ([[self document] getCurrentLevelLoaded] == levelDataObjectDeallocating) {
-        [levelDataObjectDeallocating removeMenu:layerNamesMenu thatsA:PhLevelNameMenuLayer];
+        [levelDataObjectDeallocating removeMenu:layerNamesMenu thatIsOfMenuType:PhLevelNameMenuLayer];
     }
 }
 

@@ -24,7 +24,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
+typedef NS_ENUM(NSInteger, PhLevelNameMenuType) {
     PhLevelNameMenuTag = 0,
     PhLevelNameMenuLight,
     PhLevelNameMenuAmbientSound,
@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
 
 @class PhAbstractName;
 
-@interface PhLevelNameManager : NSObject <NSCoding>
+@interface PhLevelNameManager : NSObject <NSSecureCoding>
 {
     //! This is a cache of names that get updated
     //! when needed to reflect the current names for
@@ -79,20 +79,21 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenu) {
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 #pragma mark Others
+- (void)checkNameOfObject:(PhAbstractName *)obj withNameArray:(NSMutableArray<NSString*> *)arr;
 - (void)checkName:(PhAbstractName *)obj;
 
 
 #pragma mark Menu Name Managment
-- (void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind;
-- (void)removeMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
+- (void)addMenu:(NSPopUpButton*)theMenuUIO asMenuType:(PhLevelNameMenuType)menuKind;
+- (void)removeMenu:(NSPopUpButton*)theMenuUIO thatIsOfMenuType:(PhLevelNameMenuType)menuKind;
 - (void)removeMenu:(NSPopUpButton*)theMenuUIO;
-- (void)refreshAllMenusOf:(PhLevelNameMenu)menuKind;
+- (void)refreshMenusOfMenuType:(PhLevelNameMenuType)menuKind;
 - (void)refreshEveryMenu;
-- (void)refreshTheMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind;
-- (NSMutableSet<NSPopUpButton*> *)menuArrayUsingMenuType:(PhLevelNameMenu)menuKind;
-- (NSMutableArray<NSString*> *)nameArrayUsingMenuType:(PhLevelNameMenu)menuKind;
+- (void)refreshMenu:(NSPopUpButton*)theMenuUIO thatIsOfMenuType:(PhLevelNameMenuType)menuKind;
+- (NSMutableSet<NSPopUpButton*> *)menuArrayUsingMenuType:(PhLevelNameMenuType)menuKind;
+- (NSMutableArray<NSString*> *)nameArrayUsingMenuType:(PhLevelNameMenuType)menuKind;
 
-- (void)changeLevelNamesTo:(NSArray *)theNames;
+- (void)changeLevelNamesToStringArray:(NSArray<NSString*> *)theNames;
 
 #pragma mark Name Arrays
 -(NSMutableArray<NSString*> *)getLiquidNames;

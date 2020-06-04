@@ -81,6 +81,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhLevelNameManager *copy = [[PhLevelNameManager allocWithZone:zone] init];
@@ -182,7 +187,7 @@
 
 */
 
-- (void)checkNameOf:(PhAbstractName *)obj withNameArray:(NSMutableArray *)arr
+- (void)checkNameOfObject:(PhAbstractName *)obj withNameArray:(NSMutableArray<NSString*> *)arr
 {
     // TODO: implement!
 }
@@ -191,43 +196,43 @@
 {
     Class theClass = [obj class];
     
-    if (theClass == [PhTag class])
+    if ([theClass isKindOfClass:[PhTag class]])
     {
-        [self checkNameOf:obj withNameArray:tagNames];
+        [self checkNameOfObject:obj withNameArray:tagNames];
     }
-    else if (theClass == [Terminal class])
-    {
-        // TODO: implement!
-    }
-    else if (theClass == [PhLayer class])
+    else if ([theClass isKindOfClass:[Terminal class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [LEPolygon class])
+    else if ([theClass isKindOfClass:[PhLayer class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhMedia class])
+    else if ([theClass isKindOfClass:[LEPolygon class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhAmbientSound class])
+    else if ([theClass isKindOfClass:[PhMedia class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhRandomSound class])
+    else if ([theClass isKindOfClass:[PhAmbientSound class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhLight class])
+    else if ([theClass isKindOfClass:[PhRandomSound class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhItemPlacement class])
+    else if ([theClass isKindOfClass:[PhLight class]])
     {
         // TODO: implement!
     }
-    else if (theClass == [PhPlatform class])
+    else if ([theClass isKindOfClass:[PhItemPlacement class]])
+    {
+        // TODO: implement!
+    }
+    else if ([theClass isKindOfClass:[PhPlatform class]])
     {
         // TODO: implement!
     }
@@ -242,7 +247,7 @@
 #pragma mark -
 #pragma mark Menu Name Managment
 
--(void)addMenu:(NSPopUpButton*)theMenuUIO asA:(PhLevelNameMenu)menuKind
+-(void)addMenu:(NSPopUpButton*)theMenuUIO asMenuType:(PhLevelNameMenuType)menuKind
 {
     NSMutableSet *theMenuArray;
     
@@ -251,10 +256,10 @@
     
     theMenuArray = [self menuArrayUsingMenuType:menuKind];
     [theMenuArray addObject:theMenuUIO];
-    [self refreshTheMenu:theMenuUIO thatsA:menuKind];
+    [self refreshMenu:theMenuUIO thatIsOfMenuType:menuKind];
 }
 
--(void)removeMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind
+-(void)removeMenu:(NSPopUpButton*)theMenuUIO thatIsOfMenuType:(PhLevelNameMenuType)menuKind
 {
     NSMutableSet *theMenuArray;
     
@@ -281,12 +286,12 @@
     [polyNameMenus removeObject:theMenuUIO];
 }
 
--(void)refreshAllMenusOf:(PhLevelNameMenu)menuKind
+-(void)refreshMenusOfMenuType:(PhLevelNameMenuType)menuKind
 {
     NSMutableSet<NSPopUpButton*> *theMenuSet = [self menuArrayUsingMenuType:menuKind];
     
     for (NSPopUpButton *theMenu in theMenuSet)
-        [self refreshTheMenu:theMenu thatsA:menuKind];
+        [self refreshMenu:theMenu thatIsOfMenuType:menuKind];
     
     // [[PhColorListController sharedColorListController] updateInterfaceIfLevelDataSame:self];
 }
@@ -294,11 +299,11 @@
 -(void)refreshEveryMenu
 {
     for (int i = 0; i < PhLevelNameMenuCountOfLevelNameMenu; i++) {
-        [self refreshAllMenusOf:i];
+        [self refreshMenusOfMenuType:i];
     }
 }
 
--(void)refreshTheMenu:(NSPopUpButton*)theMenuUIO thatsA:(PhLevelNameMenu)menuKind
+-(void)refreshMenu:(NSPopUpButton*)theMenuUIO thatIsOfMenuType:(PhLevelNameMenuType)menuKind
 {
     // addItemsWithTitles   removeAllItems
     // indexOfSelectedItem  selectItemAtIndex:
@@ -351,7 +356,7 @@
     //[contentView addSubview:lineTextureExp];
 }
 
-- (NSMutableSet *)menuArrayUsingMenuType:(PhLevelNameMenu)menuKind;
+- (NSMutableSet *)menuArrayUsingMenuType:(PhLevelNameMenuType)menuKind;
 {    
     switch (menuKind) {
         case PhLevelNameMenuTag:
@@ -382,7 +387,7 @@
     return nil;
 }
 
-- (NSMutableArray *)nameArrayUsingMenuType:(PhLevelNameMenu)menuKind;
+- (NSMutableArray *)nameArrayUsingMenuType:(PhLevelNameMenuType)menuKind;
 {    
     switch (menuKind) {
         case PhLevelNameMenuTag:
@@ -413,12 +418,12 @@
     return nil;
 }
 
-- (void)changeLevelNamesTo:(NSArray *)theNames
+- (void)changeLevelNamesToStringArray:(NSArray *)theNames
 {
     NSLog(@"changeLevelNamesTo count: %lu", (unsigned long)[theNames count]);
     [levelNames removeAllObjects];
     [levelNames addObjectsFromArray:theNames];
-    [self refreshAllMenusOf:PhLevelNameMenuLevel];
+    [self refreshMenusOfMenuType:PhLevelNameMenuLevel];
 }
 
 // ************************* Name Array Accsess *************************

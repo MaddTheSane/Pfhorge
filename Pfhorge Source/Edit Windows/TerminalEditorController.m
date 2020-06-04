@@ -546,7 +546,7 @@
                 if ([(PhPfhorgeSingleLevelDoc *)theMap isThereAScenarioDocumentLinked]) {
                     NSLog(@"SETING UP LEVEL NAME MENU!!! confirmed");
                     [menuTextTabView selectTabViewItemAtIndex:0];
-                    [theLevel addMenu:premutationMenu asA:PhLevelNameMenuLevel];
+                    [theLevel addMenu:premutationMenu asMenuType:PhLevelNameMenuLevel];
                     if ([terminalObject permutation] < [premutationMenu numberOfItems]) {
 						[premutationMenu selectItemAtIndex:[terminalObject permutation]];
                     } else {
@@ -562,7 +562,7 @@
             
             break;
         case PhTerminalSectionTypeInMapTeleport:
-            [theLevel addMenu:premutationMenu asA:PhLevelNameMenuPolygon];
+            [theLevel addMenu:premutationMenu asMenuType:PhLevelNameMenuPolygon];
             [terminalTabView selectTabViewItemAtIndex:3];
             [menuTextTabView selectTabViewItemAtIndex:0];
             

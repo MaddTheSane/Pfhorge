@@ -126,7 +126,7 @@
     id theScenarioDallocating = [notification object];
     
     if (scenario == theScenarioDallocating) {
-        [theLevel changeLevelNamesTo:[scenario levelNames]];
+        [theLevel changeLevelNamesToStringArray:[scenario levelNames]];
     }
 }
 
@@ -140,7 +140,7 @@
     } else {
         NSLog(@"setScenarioDocument, scenario != nil");
         [self registerScenarioRelatedNotifications];
-        [theLevel changeLevelNamesTo:[scenario levelNames]];
+        [theLevel changeLevelNamesToStringArray:[scenario levelNames]];
     }
 }
 

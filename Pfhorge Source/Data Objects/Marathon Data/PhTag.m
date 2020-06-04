@@ -41,15 +41,18 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    int loadingVersionNumber;
-    
     self = [super initWithCoder:coder];
     
 	if (!coder.allowsKeyedCoding) {
-		loadingVersionNumber = decodeInt(coder);
+		/*int loadingVersionNumber = */decodeInt(coder);
 	}
     
     return self;
+}
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone

@@ -52,7 +52,7 @@
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
         noteColor = [[coder decodeObjectOfClass:[NSColor class] forKey:@"noteColor"] retain];
-        notes = [[coder decodeObjectOfClasses: [NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"] retain];
+        notes = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"] retain];
         visible = [coder decodeBoolForKey:@"visible"];
     } else {
         /*int versionNum = */decodeNumInt(coder);

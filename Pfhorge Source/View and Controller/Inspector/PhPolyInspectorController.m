@@ -160,7 +160,7 @@
             
             [platformParametersBtn setEnabled:NO];
             [permutation setEnabled:YES];
-            [theLevelData addMenu:permutation asA:PhLevelNameMenuLight];
+            [theLevelData addMenu:permutation asMenuType:PhLevelNameMenuLight];
             [permutation selectItemAtIndex:[thePoly permutation]];
             lastMenuTypeCache = PhLevelNameMenuLight;
             break;
@@ -173,7 +173,7 @@
             tmpObj = [thePoly permutationObject];
             [permutation setEnabled:YES];
             [platformParametersBtn setEnabled:NO];
-            [theLevelData addMenu:permutation asA:PhLevelNameMenuPolygon];
+            [theLevelData addMenu:permutation asMenuType:PhLevelNameMenuPolygon];
             lastMenuTypeCache = PhLevelNameMenuPolygon;
             
             NSInteger index = [[theLevelData namedPolyObjects] indexOfObjectIdenticalTo:tmpObj];

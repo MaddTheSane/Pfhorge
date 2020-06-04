@@ -445,7 +445,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
 }
 
-- (void)updateNameList:(PhLevelNameMenu)theListFromNameManager
+- (void)updateNameList:(PhLevelNameMenuType)theListFromNameManager
 {
     BOOL needToReCache = NO;
     switch(drawingMode) {

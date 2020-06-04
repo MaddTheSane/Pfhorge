@@ -78,12 +78,10 @@ struct lighting_function_specification	// 2*3 + 4*2 = 14 bytes
 };
 
 //! static flags
-typedef NS_OPTIONS(unsigned short, PhLightStaticFlags)
-{
+typedef NS_OPTIONS(unsigned short, PhLightStaticFlags) {
 	PhLightStaticFlagIsInitiallyActive = 0x0001,
 	PhLightStaticFlagHasSlavedIntensities = 0x0002,
 	PhLightStaticFlagIsStateless = 0x0004,
-	//NUMBER_OF_STATIC_LIGHT_FLAGS // <= 16
 };
 
 #define LIGHT_IS_INITIALLY_ACTIVE TEST_FLAG16(flags, PhLightStaticFlagIsInitiallyActive)
@@ -110,7 +108,8 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags)
 
 // **************************  Coding/Copy Protocal Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
-- (id)initWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder;
+- (instancetype)init;
 
 
 // ************************** Flag Accssors *************************

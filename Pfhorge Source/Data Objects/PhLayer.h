@@ -24,7 +24,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PhAbstractName.h"
 
-@interface PhLayer : PhAbstractName <NSCoding>
+@interface PhLayer : PhAbstractName <NSSecureCoding>
 {
     NSColor *layerColor;
     NSMutableArray<__kindof LEMapStuffParent*> *objectsInThisLayer;

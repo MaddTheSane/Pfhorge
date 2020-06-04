@@ -44,6 +44,7 @@
 #import "PhRandomSound.h"
 #import "PhItemPlacement.h"
 #import "PhPlatform.h"
+#import "PhNoteGroup.h"
 
 #import "Terminal.h"
 #import "TerminalSection.h"
@@ -117,6 +118,8 @@
     
     song_index = v;
 }
+
+#pragma mark -
 
 #define LELevelDataEnvironmentCodeCoderKey @"environment_code"
 #define LELevelDataphysics_modelCoderKey @"physics_model"
@@ -260,34 +263,34 @@
         entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
         
         // Objects are already inited due to -init being called by the super's -initWithCoder:
-        [points setArray:[coder decodeObjectForKey:LELevelDataPointsCoderKey]];
-        [lines setArray:[coder decodeObjectForKey:LELevelDataLinesCoderKey]];
-        [polys setArray:[coder decodeObjectForKey:LELevelDataPolysCoderKey]];
-        [mapObjects setArray:[coder decodeObjectForKey:LELevelDatamapObjectsCoderKey]];
-        [sides setArray:[coder decodeObjectForKey:LELevelDatasidesCoderKey]];
-        [lights setArray:[coder decodeObjectForKey:LELevelDatalightsCoderKey]];
-        [notes setArray:[coder decodeObjectForKey:LELevelDatanotesCoderKey]];
-        [media setArray:[coder decodeObjectForKey:LELevelDatamediaCoderKey]];
-        [ambientSounds setArray:[coder decodeObjectForKey:LELevelDataambientSoundsCoderKey]];
-        [randomSounds setArray:[coder decodeObjectForKey:LELevelDatarandomSoundsCoderKey]];
-        [itemPlacement setArray:[coder decodeObjectForKey:LELevelDataitemPlacementCoderKey]];
-        [platforms setArray:[coder decodeObjectForKey:LELevelDataplatformsCoderKey]];
+        [points setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDataPointsCoderKey]];
+        [lines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDataLinesCoderKey]];
+        [polys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDataPolysCoderKey]];
+        [mapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatamapObjectsCoderKey]];
+        [sides setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LESide class], nil] forKey:LELevelDatasidesCoderKey]];
+        [lights setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLight class], nil] forKey:LELevelDatalightsCoderKey]];
+        [notes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatanotesCoderKey]];
+        [media setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhMedia class], nil] forKey:LELevelDatamediaCoderKey]];
+        [ambientSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAmbientSound class], nil] forKey:LELevelDataambientSoundsCoderKey]];
+        [randomSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhRandomSound class], nil] forKey:LELevelDatarandomSoundsCoderKey]];
+        [itemPlacement setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhItemPlacement class], nil] forKey:LELevelDataitemPlacementCoderKey]];
+        [platforms setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhPlatform class], nil] forKey:LELevelDataplatformsCoderKey]];
         
-        [terimals setArray:[coder decodeObjectForKey:LELevelDataterimalsCoderKey]];
+        [terimals setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [Terminal class], nil] forKey:LELevelDataterimalsCoderKey]];
         
-        [layersInLevel setArray:[coder decodeObjectForKey:LELevelDatalayersInLevelCoderKey]];
-        currentLayer = [coder decodeObjectForKey:LELevelDatacurrentLayerCoderKey];
-        [layerPoints setArray:[coder decodeObjectForKey:LELevelDatalayerPointsCoderKey]];
-        [layerLines setArray:[coder decodeObjectForKey:LELevelDatalayerLinesCoderKey]];
-        [layerPolys setArray:[coder decodeObjectForKey:LELevelDatalayerPolysCoderKey]];
-        [layerMapObjects setArray:[coder decodeObjectForKey:LELevelDatalayerMapObjectsCoderKey]];
+        [layersInLevel setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLayer class], nil] forKey:LELevelDatalayersInLevelCoderKey]];
+        currentLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:LELevelDatacurrentLayerCoderKey];
+        [layerPoints setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDatalayerPointsCoderKey]];
+        [layerLines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDatalayerLinesCoderKey]];
+        [layerPolys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDatalayerPolysCoderKey]];
+        [layerMapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatalayerMapObjectsCoderKey]];
         
-        [tags setArray:[coder decodeObjectForKey:LELevelDatatagsCoderKey]];
+        [tags setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhTag class], nil] forKey:LELevelDatatagsCoderKey]];
         
-        self.levelName = [coder decodeObjectForKey:LELevelDatalevel_nameCoderKey];
+        self.levelName = [coder decodeObjectOfClass:[NSString class] forKey:LELevelDatalevel_nameCoderKey];
         
-        [noteTypes setArray:[coder decodeObjectForKey:LELevelDatanoteTypesCoderKey]];
-        [layerNotes setArray:[coder decodeObjectForKey:LELevelDatalayerNotesCoderKey]];
+        [noteTypes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhNoteGroup class], nil] forKey:LELevelDatanoteTypesCoderKey]];
+        [layerNotes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatalayerNotesCoderKey]];
         
         [self havePointsScanForLines];
     } else {
@@ -1018,8 +1021,6 @@ enum // export data types
 
 -(LELevelData *)initForNewPathwaysPIDLevel
 {
-    int i, j;
-    
     self = [self init];
     
     if (self == nil)
@@ -1028,11 +1029,10 @@ enum // export data types
     level_name = @"Untitled Level";
     
     enum {PID_LIGHT_SET_RANGE = 20};	// Kludgy way of doing "const" in plain C
-    for (i = PID_LIGHT_SET_RANGE; i >= 0; i--)
-    {
+    for (int i = PID_LIGHT_SET_RANGE; i >= 0; i--) {
         PhLight *newLight = [self addObjectWithDefaults:[PhLight class]];
-        long intensity = (long)(((float)(i)/PID_LIGHT_SET_RANGE) * 65534) + 1;
-        unsigned short theFlags = 0;
+        int intensity = (int)(((float)(i)/PID_LIGHT_SET_RANGE) * 65534) + 1;
+        PhLightStaticFlags theFlags = 0;
         
         theFlags |= PhLightStaticFlagIsInitiallyActive;
         
@@ -1041,8 +1041,7 @@ enum // export data types
         [newLight setPhase:0];
         [newLight setTag:0];
         
-        for (j = 0; j < _NUMBER_OF_LIGHT_STATES; j++)
-        {
+        for (int j = 0; j < _NUMBER_OF_LIGHT_STATES; j++) {
             [newLight setFunction:_constant_lighting_function forState:j];
             [newLight setPeriod:60 forState:j];
             [newLight setDeltaPeriod:0 forState:j];
@@ -1051,8 +1050,7 @@ enum // export data types
         }
     }
     
-    for (i = 0; i < 128; i++)
-    {
+    for (int i = 0; i < 128; i++) {
         PhItemPlacement *theNewItemPlacObj = [[PhItemPlacement alloc] init];
         [itemPlacement addObject:theNewItemPlacObj];
     }
@@ -1061,8 +1059,9 @@ enum // export data types
     [self compileAndSetNameArraysFromLevel];
     [self updateCounts];
     
-    for (i = 0; i < 15; i++)
+    for (int i = 0; i < 15; i++) {
         [self addObjectWithDefaults:[PhTag class]];
+    }
     
     [self setupDefaultObjects];
     
@@ -1075,20 +1074,17 @@ enum // export data types
 
 -(LELevelData *)initAndGenerateNewLevelObjects
 {
-    int i, j;
-    
     self = [self init];
     
     if (self == nil)
         return nil;
     
-    level_name = @"Untitled Level";
+    self.levelName = @"Untitled Level";
     
-    for (i = 20; i >= 0; i--)
-    {
+    for (int i = 20; i >= 0; i--) {
         PhLight *newLight = [self addObjectWithDefaults:[PhLight class]];
-        long intesity = (long)((float)((float)(i * 5) / 100) * 65534) + 1;
-        unsigned short theFlags = 0;
+        int intesity = (int)((float)((float)(i * 5) / 100) * 65534) + 1;
+        PhLightStaticFlags theFlags = 0;
         
         theFlags |= PhLightStaticFlagIsInitiallyActive;
         
@@ -1097,8 +1093,7 @@ enum // export data types
         [newLight setPhase:0];
         [newLight setTag:0];
         
-        for (j = 0; j < _NUMBER_OF_LIGHT_STATES; j++)
-        {
+        for (int j = 0; j < _NUMBER_OF_LIGHT_STATES; j++) {
             [newLight setFunction:_constant_lighting_function forState:j];
             [newLight setPeriod:60 forState:j];
             [newLight setDeltaPeriod:0 forState:j];
@@ -1107,8 +1102,7 @@ enum // export data types
         }
     }
     
-    for (i = 0; i < 128; i++)
-    {
+    for (int i = 0; i < 128; i++) {
         PhItemPlacement *theNewItemPlacObj = [[PhItemPlacement alloc] init];
         [itemPlacement addObject:theNewItemPlacObj];
     }
@@ -1117,8 +1111,9 @@ enum // export data types
     [self compileAndSetNameArraysFromLevel];
     [self updateCounts];
     
-    for (i = 0; i < 15; i++)
+    for (int i = 0; i < 15; i++) {
         [self addObjectWithDefaults:[PhTag class]];
+    }
     
     [self setupDefaultObjects];
     
@@ -1239,10 +1234,7 @@ enum // export data types
     
     // *** Deallocat Default Objects ***
     
-    int i = 0;
-    
-    for (i = 0; i < _NUMBER_OF_OBJECT_TYPES; i++)
-    {
+    for (int i = 0; i < _NUMBER_OF_OBJECT_TYPES; i++) {
         defaultObjects[i] = nil;
     }
 }

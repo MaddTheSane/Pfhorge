@@ -163,7 +163,7 @@ enum {
 // *****************  Class Blue Print  *****************
 #pragma mark Class Blueprint
 
-@interface LELevelData : PhLevelNameManager <NSCoding>
+@interface LELevelData : PhLevelNameManager <NSSecureCoding>
 {
     NSMutableArray<LEMapPoint*> *points;
     NSMutableArray<LELine*> *lines;

@@ -27,7 +27,7 @@
 #import <Foundation/Foundation.h>
 #import "PhAbstractNumber.h"
 
-@interface PhTag : PhAbstractNumber <NSCoding>
+@interface PhTag : PhAbstractNumber <NSSecureCoding>
 {
    // NSNumber *tagPhNumber;
 }
