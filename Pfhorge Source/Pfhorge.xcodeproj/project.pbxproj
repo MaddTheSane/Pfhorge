@@ -12,6 +12,9 @@
 		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
 		55D7334224640306008B33F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D7334424640306008B33F6 /* Localizable.strings */; };
+		55E91491248996C70005D451 /* PICTConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91490248996C70005D451 /* PICTConverter.swift */; };
+		55E914942489F9010005D451 /* EasyBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E914932489F9010005D451 /* EasyBMP.swift */; };
+		55E91496248A012B0005D451 /* PhDataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91495248A012B0005D451 /* PhDataAdditions.swift */; };
 		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
 		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
 		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
@@ -303,6 +306,11 @@
 		55B3DC5C24747EBE00499B7F /* LELevelData-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LELevelData-private.h"; sourceTree = "<group>"; };
 		55C4EF5C247C8FAB00424767 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = ../TODO; sourceTree = "<group>"; };
 		55D7334324640306008B33F6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55E9148F2489969B0005D451 /* Pfhorge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pfhorge-Bridging-Header.h"; sourceTree = "<group>"; usesTabs = 1; };
+		55E91490248996C70005D451 /* PICTConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PICTConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
+		55E914922489B4C20005D451 /* PfhorgeSwiftHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PfhorgeSwiftHelpers.h; sourceTree = "<group>"; usesTabs = 1; };
+		55E914932489F9010005D451 /* EasyBMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBMP.swift; sourceTree = "<group>"; usesTabs = 1; };
+		55E91495248A012B0005D451 /* PhDataAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhDataAdditions.swift; sourceTree = "<group>"; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
 		A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView2.h; sourceTree = "<group>"; };
 		A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyOpenGLView2.mm; sourceTree = "<group>"; };
@@ -579,8 +587,13 @@
 				00D18BC0010A18747F000001 /* PhTextureRepository.m */,
 				A597FC2C045763B20046BBD2 /* PhData.h */,
 				A597FC2D045763B20046BBD2 /* PhData.m */,
+				55E91495248A012B0005D451 /* PhDataAdditions.swift */,
 				A5CBB2CD04D630590046BBD2 /* trigTables.h */,
 				A5CBB2CC04D630590046BBD2 /* trigTables.c */,
+				55E9148F2489969B0005D451 /* Pfhorge-Bridging-Header.h */,
+				55E914922489B4C20005D451 /* PfhorgeSwiftHelpers.h */,
+				55E91490248996C70005D451 /* PICTConverter.swift */,
+				55E914932489F9010005D451 /* EasyBMP.swift */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -954,6 +967,11 @@
 			attributes = {
 				CLASSPREFIX = Ph;
 				LastUpgradeCheck = 1130;
+				TargetAttributes = {
+					AE3C149B0A04512100FBFFCD = {
+						LastSwiftMigration = 1130;
+					};
+				};
 			};
 			buildConfigurationList = AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1058,6 +1076,7 @@
 				AE3C156A0A04512100FBFFCD /* PhProgress.m in Sources */,
 				AE3C156B0A04512100FBFFCD /* PhLightEditorController.m in Sources */,
 				AE3C156C0A04512100FBFFCD /* InfoWindowCommander.m in Sources */,
+				55E914942489F9010005D451 /* EasyBMP.swift in Sources */,
 				AE3C156D0A04512100FBFFCD /* PhRandomSndEditCon.m in Sources */,
 				AE3C156E0A04512100FBFFCD /* PhAmbientSndEditCon.m in Sources */,
 				AE3C156F0A04512100FBFFCD /* PhLiquidEditCon.m in Sources */,
@@ -1067,6 +1086,7 @@
 				AE3C15730A04512100FBFFCD /* PhAbstractNumber.m in Sources */,
 				AE3C15740A04512100FBFFCD /* PhLevelNameManager.m in Sources */,
 				AE3C15750A04512100FBFFCD /* NSURL+NDCarbonUtilities.m in Sources */,
+				55E91491248996C70005D451 /* PICTConverter.swift in Sources */,
 				AE3C15760A04512100FBFFCD /* NDResourceFork.m in Sources */,
 				AE3C15770A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.m in Sources */,
 				AE3C15780A04512100FBFFCD /* NDAppleScriptObject.m in Sources */,
@@ -1081,6 +1101,7 @@
 				AE3C15810A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.m in Sources */,
 				AE3C15820A04512100FBFFCD /* PhScenarioManagerController.m in Sources */,
 				AE3C15830A04512100FBFFCD /* PhScenarioData.m in Sources */,
+				55E91496248A012B0005D451 /* PhDataAdditions.swift in Sources */,
 				AE3C15840A04512100FBFFCD /* Resource.m in Sources */,
 				AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */,
 				AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */,
@@ -1369,6 +1390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
@@ -1377,10 +1399,14 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				INFOPLIST_FILE = "Resources/Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -1390,16 +1416,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 0.96;
 				INFOPLIST_FILE = "Resources/Info-Pfhorge__Upgraded_.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SECTORDER_FLAGS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
