@@ -24,19 +24,6 @@
 import Cocoa
 
 
-
-
-enum BinaryFormats: Int {
-	/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
-	case best = -1
-	
-	case bitmap = 0
-	
-	case JPEG = 1
-	
-	case PNG = 2
-}
-
 class PICT {
 	struct Rect {
 		var top: Int16
@@ -387,14 +374,19 @@ class PICT {
 		}
 	}
 	
-	func convertPICT(from: URL, to format: BinaryFormats = .best) throws -> Data {
+	var jpegData = Data()
+
+	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) {
+		
+	}
+	
+	func load(from: URL) throws {
 		let preData = try Data(contentsOf: from)
 		let data = PhData(data: preData)!
+		jpegData.removeAll()
 		
 		let size = data.getInt16()
 		let rect = Rect(data: data)
-		
-		var jpegData = Data()
 		
 		var done = false
 		while done == false {
@@ -440,7 +432,7 @@ class PICT {
 				case .packBitsRect, .packBitsRgn, .directBitsRect, .directBitsRgn:
 					let packed = (opcode == .packBitsRect || opcode == .packBitsRgn)
 					let clipped = (opcode == .packBitsRgn || opcode == .directBitsRgn)
-					//LoadCopyBits(data, packed, clipped);
+					loadCopyBits(data, packed: packed, clipped: clipped)
 					if jpegData.count != 0 {
 						//bitmap_.SetSize(1, 1)
 					}/*else if (bitmap_.TellWidth() != rect.width && bitmap_.TellWidth() == 614) {
@@ -472,11 +464,10 @@ class PICT {
 				}
 			}
 		}
-		throw NSError(domain: NSCocoaErrorDomain, code: -1)
 	}
 	
 	private func loadJPEG(_ data: PhData, to: inout Data) throws {
-		var opcodeSize = UInt32(bitPattern: data.getInt32())
+		var opcodeSize = data.getUInt32()
 		if (opcodeSize & 1) != 0 {
 			opcodeSize += 1
 		}
@@ -492,27 +483,27 @@ class PICT {
 			throw PICTConversionError.containsBandedJPEG
 		}
 		
-		let matteSize = UInt32(bitPattern: data.getInt32())
+		let matteSize = data.getUInt32()
 		data.addP(22); // matte rect/srcRect/accuracy
 		
-		let maskSize = UInt32(bitPattern: data.getInt32())
+		let maskSize = data.getUInt32()
 		
 		if matteSize != 0 {
-			let matte_id_size = UInt32(bitPattern: data.getInt32())
+			let matte_id_size = data.getUInt32()
 			data.addP(Int(matte_id_size - 4));
 		}
 		
 		data.addP(Int(matteSize));
 		data.addP(Int(maskSize));
 		
-		let idSize = UInt32(bitPattern: data.getInt32())
-		let codecType = UInt32(bitPattern: data.getInt32())
+		let idSize = data.getUInt32()
+		let codecType = data.getUInt32()
 		guard codecType == PhJPEGCodecID else {
 			throw PICTConversionError.unsupportedQuickTimeCodec
 		}
 		
 		data.addP(36); // resvd1/resvd2/dataRefIndex/version/revisionLevel/vendor/temporalQuality/spatialQuality/width/height/hRes/vRes
-		let dataSize = UInt32(bitPattern: data.getInt32())
+		let dataSize = data.getUInt32()
 		data.addP(38); // frameCount/name/depth/clutID
 		
 		to = data.getSubData(withLength: Int(dataSize))
@@ -520,20 +511,37 @@ class PICT {
 		data.addP(opcodeStart + Int(opcodeSize) - data.currentPosition)
 	}
 
+	static func convertPICT(from: URL, to format: BinaryFormat = .best) throws -> (format: BinaryFormat, data: Data) {
+		let aPict = PICT()
+		try aPict.load(from: from)
+		
+		throw NSError(domain: NSCocoaErrorDomain, code: -1)
+	}
+	
+	enum PICTConversionError: Error {
+		case unimplementedOpCode(_ opCode: UInt16)
+		case containsBandedJPEG
+		case usesCinemascopeHack
+		case unsupportedQuickTimeCodec
+	}
+	
+	@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
+		/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
+		case best = -1
+		
+		case bitmap = 0
+		
+		case JPEG = 1
+		
+		case PNG = 2
+	}
 }
-
-enum PICTConversionError: Error {
-	case unimplementedOpCode(_ opCode: UInt16)
-	case containsBandedJPEG
-	case usesCinemascopeHack
-	case unsupportedQuickTimeCodec
-}
-
 
 @objc class PhPictConversion: NSObject {
-	@objc(convertPICTfromURL:error:) class func convertPICT(from: URL) throws -> Data {
-		let aPict = PICT()
-		return try aPict.convertPICT(from: from, to: .best)
+	@objc(convertPICTfromURL:returnedFormat:error:) class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<PICT.BinaryFormat>) throws -> Data {
+		let retVal = try PICT.convertPICT(from: from, to: .best)
+		returnedFormat.pointee = retVal.format
+		return retVal.data
 	}
 }
 

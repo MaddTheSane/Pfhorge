@@ -21,81 +21,79 @@
 
 import Cocoa
 
-struct RGBApixel: Comparable {
-    var blue: UInt8 = 0
-    var green: UInt8 = 0
-    var red: UInt8 = 0
-    var alpha: UInt8 = 0
-    
-    static func <(lhs: RGBApixel, rhs: RGBApixel) -> Bool {
-        if (lhs.blue != rhs.blue) {
-            return lhs.blue < rhs.blue
-        } else if (lhs.green != rhs.green) {
-            return lhs.green < rhs.green
-        } else if (lhs.red != rhs.red) {
-            return lhs.red < rhs.red
-        } else {
-            return lhs.alpha < rhs.alpha
-        }
-    }
-}
-
-struct BMFH: CustomDebugStringConvertible {
-    var bfType: UInt16 = 19778
-	var bfSize: UInt32 = 0
-	var bfReserved1: UInt16 = 0
-	var bfReserved2: UInt16 = 0
-	var bfOffBits: UInt32 = 0
-
-	var debugDescription: String {
-		return "bfType: \(bfType) bfSize: \(bfSize) bfReserved1: \(bfReserved1) bfReserved2: \(bfReserved2) bfOffBits: \(bfOffBits)"
-	}
-
-	mutating func switchEndianess() {
-		bfType = bfType.byteSwapped
-		bfSize = bfSize.byteSwapped
-		bfReserved1 = bfReserved1.byteSwapped
-		bfReserved2 = bfReserved2.byteSwapped
-		bfOffBits = bfOffBits.byteSwapped
-	}
-}
-
-struct BMIH: CustomDebugStringConvertible {
-	var biSize: UInt32 = 0
-	var biWidth: UInt32 = 0
-	var biHeight: UInt32 = 0
-	var biPlanes: UInt16 = 1
-	var biBitCount: UInt16 = 0
-	var biCompression: UInt32 = 0
-	var biSizeImage: UInt32 = 0
-	/// set to a default of 96 dpi
-	var biXPelsPerMeter: UInt32 = 3780
-	/// set to a default of 96 dpi
-	var biYPelsPerMeter: UInt32 = 3780
-	
-	var biClrUsed: UInt32 = 0
-	var biClrImportant: UInt32 = 0
-
-	var debugDescription: String {
-	 return "biSize: \(biSize) biWidth: \(biWidth) biHeight: \(biHeight) biPlanes: \(biPlanes) biBitCount: \(biBitCount) biCompression: \(biCompression) biSizeImage: \(biSizeImage) biXPelsPerMeter: \(biXPelsPerMeter) biYPelsPerMeter: \(biYPelsPerMeter) biClrUsed: \(biClrUsed) biClrImportant:\(biClrImportant)"
-	}
-
-	mutating func switchEndianess() {
-		biSize = biSize.byteSwapped
-		biWidth = biWidth.byteSwapped
-		biHeight = biHeight.byteSwapped
-		biPlanes = biPlanes.byteSwapped
-		biBitCount = biBitCount.byteSwapped
-		biCompression = biCompression.byteSwapped
-		biSizeImage = biSizeImage.byteSwapped
-		biXPelsPerMeter = biXPelsPerMeter.byteSwapped
-		biYPelsPerMeter = biYPelsPerMeter.byteSwapped
-		biClrUsed = biClrUsed.byteSwapped
-		biClrImportant = biClrImportant.byteSwapped
-	}
-}
-
 
 class EasyBMP {
+	struct RGBApixel: Comparable {
+		var blue: UInt8 = 0
+		var green: UInt8 = 0
+		var red: UInt8 = 0
+		var alpha: UInt8 = 0
+		
+		static func <(lhs: RGBApixel, rhs: RGBApixel) -> Bool {
+			if (lhs.blue != rhs.blue) {
+				return lhs.blue < rhs.blue
+			} else if (lhs.green != rhs.green) {
+				return lhs.green < rhs.green
+			} else if (lhs.red != rhs.red) {
+				return lhs.red < rhs.red
+			} else {
+				return lhs.alpha < rhs.alpha
+			}
+		}
+	}
 	
+	struct BMFH: CustomDebugStringConvertible {
+		var bfType: UInt16 = 19778
+		var bfSize: UInt32 = 0
+		var bfReserved1: UInt16 = 0
+		var bfReserved2: UInt16 = 0
+		var bfOffBits: UInt32 = 0
+		
+		var debugDescription: String {
+			return "bfType: \(bfType) bfSize: \(bfSize) bfReserved1: \(bfReserved1) bfReserved2: \(bfReserved2) bfOffBits: \(bfOffBits)"
+		}
+		
+		mutating func switchEndianess() {
+			bfType = bfType.byteSwapped
+			bfSize = bfSize.byteSwapped
+			bfReserved1 = bfReserved1.byteSwapped
+			bfReserved2 = bfReserved2.byteSwapped
+			bfOffBits = bfOffBits.byteSwapped
+		}
+	}
+	
+	struct BMIH: CustomDebugStringConvertible {
+		var biSize: UInt32 = 0
+		var biWidth: UInt32 = 0
+		var biHeight: UInt32 = 0
+		var biPlanes: UInt16 = 1
+		var biBitCount: UInt16 = 0
+		var biCompression: UInt32 = 0
+		var biSizeImage: UInt32 = 0
+		/// set to a default of 96 dpi
+		var biXPelsPerMeter: UInt32 = 3780
+		/// set to a default of 96 dpi
+		var biYPelsPerMeter: UInt32 = 3780
+		
+		var biClrUsed: UInt32 = 0
+		var biClrImportant: UInt32 = 0
+		
+		var debugDescription: String {
+			return "biSize: \(biSize) biWidth: \(biWidth) biHeight: \(biHeight) biPlanes: \(biPlanes) biBitCount: \(biBitCount) biCompression: \(biCompression) biSizeImage: \(biSizeImage) biXPelsPerMeter: \(biXPelsPerMeter) biYPelsPerMeter: \(biYPelsPerMeter) biClrUsed: \(biClrUsed) biClrImportant:\(biClrImportant)"
+		}
+		
+		mutating func switchEndianess() {
+			biSize = biSize.byteSwapped
+			biWidth = biWidth.byteSwapped
+			biHeight = biHeight.byteSwapped
+			biPlanes = biPlanes.byteSwapped
+			biBitCount = biBitCount.byteSwapped
+			biCompression = biCompression.byteSwapped
+			biSizeImage = biSizeImage.byteSwapped
+			biXPelsPerMeter = biXPelsPerMeter.byteSwapped
+			biYPelsPerMeter = biYPelsPerMeter.byteSwapped
+			biClrUsed = biClrUsed.byteSwapped
+			biClrImportant = biClrImportant.byteSwapped
+		}
+	}
 }
