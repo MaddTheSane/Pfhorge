@@ -61,7 +61,7 @@ extern unsigned eightBytesCount;*/
 
 #define ExportObjPosIndex(obj, i) if (obj != nil) { tmpLong = [obj index]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObjPos(obj) ExportObjPosIndex(obj, index)
-#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = [(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
+#define ExportObjIndex(obj, i) if (obj != nil) { tmpLong = (int)[(obj) exportWithIndex:(i) withData:futureData mainObjects:mainObjs]; } else { tmpLong = -1; } saveIntToNSData((int)tmpLong, myData)
 #define ExportObj(obj) ExportObjIndex(obj, index)
 #define ExportNil() tmpLong = -1; [myData appendBytes:&tmpLong length:4]
 

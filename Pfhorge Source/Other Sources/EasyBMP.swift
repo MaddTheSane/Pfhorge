@@ -21,9 +21,21 @@
 
 import Cocoa
 
+private func SafeFread(_ buffer: UnsafeMutableRawPointer, size: Int, number: Int, _ fp: UnsafeMutablePointer<FILE>) -> Bool
+{
+	if feof(fp) != 0 {
+		return false
+	}
+	let ItemsRead = fread(buffer, size, number, fp)
+	if ItemsRead < number {
+		return false
+	}
+	return true;
+}
+
 
 class EasyBMP {
-	struct RGBApixel: Comparable {
+	struct RGBApixel: Comparable, Hashable {
 		var blue: UInt8 = 0
 		var green: UInt8 = 0
 		var red: UInt8 = 0
@@ -95,5 +107,21 @@ class EasyBMP {
 			biClrUsed = biClrUsed.byteSwapped
 			biClrImportant = biClrImportant.byteSwapped
 		}
+	}
+	
+	private(set) var bitDepth = 24
+	private(set) var width = 1
+	private(set) var height = 1
+	
+	var XPelsPerMeter = 0;
+	var YPelsPerMeter = 0;
+
+	var metaData1 = Data()
+	var metaData2 = Data()
+	var pixels: [[RGBApixel]] = []
+	var colors: [RGBApixel] = []
+
+	init() {
+		
 	}
 }

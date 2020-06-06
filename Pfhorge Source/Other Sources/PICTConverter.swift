@@ -382,6 +382,11 @@ class PICT {
 	
 	func load(from: URL) throws {
 		let preData = try Data(contentsOf: from)
+
+		try load(from: preData)
+	}
+	
+	func load(from preData: Data) throws {
 		let data = PhData(data: preData)!
 		jpegData.removeAll()
 		
@@ -400,7 +405,7 @@ class PICT {
 					break;
 					
 				case .clippingRegion:
-					var size = UInt16(bitPattern: data.getInt16())
+					var size = data.getUInt16()
 					if ((size & 1) != 0) {
 						size += 1
 					}
@@ -446,18 +451,18 @@ class PICT {
 					try loadJPEG(data, to: &jpegData)
 					
 				default:
-					if (preOpcode >= 0x0300 && preOpcode < 0x8000) {
+					if preOpcode >= 0x0300 && preOpcode < 0x8000 {
 						data.addP(Int(preOpcode >> 8) * 2)
-					} else if (preOpcode >= 0x8000 && preOpcode < 0x8100) {
+					} else if preOpcode >= 0x8000 && preOpcode < 0x8100 {
 						break
 					} else {
 						throw PICTConversionError.unimplementedOpCode(preOpcode)
 					}
 				}
 			} else {
-				if (preOpcode >= 0x0300 && preOpcode < 0x8000) {
+				if preOpcode >= 0x0300 && preOpcode < 0x8000 {
 					data.addP(Int(preOpcode >> 8) * 2)
-				} else if (preOpcode >= 0x8000 && preOpcode < 0x8100) {
+				} else if preOpcode >= 0x8000 && preOpcode < 0x8100 {
 					//break;
 				} else {
 					throw PICTConversionError.unimplementedOpCode(preOpcode)
@@ -514,6 +519,19 @@ class PICT {
 	static func convertPICT(from: URL, to format: BinaryFormat = .best) throws -> (format: BinaryFormat, data: Data) {
 		let aPict = PICT()
 		try aPict.load(from: from)
+		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
+			return (.JPEG, aPict.jpegData)
+		}
+		
+		throw NSError(domain: NSCocoaErrorDomain, code: -1)
+	}
+	
+	static func convertPICT(from: Data, to format: BinaryFormat = .best) throws -> (format: BinaryFormat, data: Data) {
+		let aPict = PICT()
+		try aPict.load(from: from)
+		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
+			return (.JPEG, aPict.jpegData)
+		}
 		
 		throw NSError(domain: NSCocoaErrorDomain, code: -1)
 	}
@@ -524,21 +542,27 @@ class PICT {
 		case usesCinemascopeHack
 		case unsupportedQuickTimeCodec
 	}
+}
+
+@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
+	/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
+	case best = -1
 	
-	@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
-		/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
-		case best = -1
-		
-		case bitmap = 0
-		
-		case JPEG = 1
-		
-		case PNG = 2
-	}
+	case bitmap = 0
+	
+	case JPEG = 1
+	
+	case PNG = 2
 }
 
 @objc class PhPictConversion: NSObject {
-	@objc(convertPICTfromURL:returnedFormat:error:) class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<PICT.BinaryFormat>) throws -> Data {
+	@objc(convertPICTfromURL:returnedFormat:error:) class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+		let retVal = try PICT.convertPICT(from: from, to: .best)
+		returnedFormat.pointee = retVal.format
+		return retVal.data
+	}
+	
+	@objc(convertPICTfromData:returnedFormat:error:) class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
