@@ -375,6 +375,7 @@ class PICT {
 	}
 	
 	var jpegData = Data()
+	var bitmap = EasyBMP()
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) {
 		
@@ -439,7 +440,7 @@ class PICT {
 					let clipped = (opcode == .packBitsRgn || opcode == .directBitsRgn)
 					loadCopyBits(data, packed: packed, clipped: clipped)
 					if jpegData.count != 0 {
-						//bitmap_.SetSize(1, 1)
+						_=bitmap.setSize(width: 1, height: 1)
 					}/*else if (bitmap_.TellWidth() != rect.width && bitmap_.TellWidth() == 614) {
 					throw ParseError("PICT appears to use Cinemascope hack");
 					} */
@@ -517,13 +518,8 @@ class PICT {
 	}
 
 	static func convertPICT(from: URL, to format: BinaryFormat = .best) throws -> (format: BinaryFormat, data: Data) {
-		let aPict = PICT()
-		try aPict.load(from: from)
-		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
-			return (.JPEG, aPict.jpegData)
-		}
-		
-		throw NSError(domain: NSCocoaErrorDomain, code: -1)
+		let preData = try Data(contentsOf: from)
+		return try convertPICT(from: preData, to: format)
 	}
 	
 	static func convertPICT(from: Data, to format: BinaryFormat = .best) throws -> (format: BinaryFormat, data: Data) {
@@ -568,4 +564,3 @@ class PICT {
 		return retVal.data
 	}
 }
-
