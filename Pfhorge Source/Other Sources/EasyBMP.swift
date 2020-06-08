@@ -21,10 +21,10 @@
 
 import Cocoa
 
-private func IntPow<X>(_ base: X, _ exponent: X) -> X where X: FixedWidthInteger  {
-	var output: X = 1;
+private func IntPow<X, Y>(_ base: X, _ exponent: Y) -> X where X: FixedWidthInteger, Y: FixedWidthInteger {
+	var output: X = 1
 	for _ in 0 ..< exponent {
-		output *= base;
+		output *= base
 	}
 	return output;
 }
@@ -32,14 +32,6 @@ private func IntPow<X>(_ base: X, _ exponent: X) -> X where X: FixedWidthInteger
 private func square<X>(_ number: X) -> X where X: Numeric {
 	return number * number
 }
-/*
-inline double Square( double number )
-{ return number*number; }
-
-inline int IntSquare( int number )
-{ return number*number; }
-
-*/
 
 private var DefaultXPelsPerMeter: UInt32 {
 	return 3780
@@ -100,18 +92,19 @@ private func SafeFread(_ buffer: UnsafeMutableRawPointer, size: Int, number: Int
 
 
 class EasyBMP {
-	struct RGBApixel: Comparable, Hashable {
+	static var easyBMPwarnings = false
+	struct RGBAPixel: Comparable, Hashable {
 		var blue: UInt8 = 0
 		var green: UInt8 = 0
 		var red: UInt8 = 0
 		var alpha: UInt8 = 0
 		
-		static func <(lhs: RGBApixel, rhs: RGBApixel) -> Bool {
-			if (lhs.blue != rhs.blue) {
+		static func <(lhs: RGBAPixel, rhs: RGBAPixel) -> Bool {
+			if lhs.blue != rhs.blue {
 				return lhs.blue < rhs.blue
-			} else if (lhs.green != rhs.green) {
+			} else if lhs.green != rhs.green {
 				return lhs.green < rhs.green
-			} else if (lhs.red != rhs.red) {
+			} else if lhs.red != rhs.red {
 				return lhs.red < rhs.red
 			} else {
 				return lhs.alpha < rhs.alpha
@@ -183,11 +176,11 @@ class EasyBMP {
 
 	var metaData1 = Data()
 	var metaData2 = Data()
-	var pixels: [[RGBApixel]]
-	var colors: [RGBApixel] = []
+	var pixels: [[RGBAPixel]]
+	var colors: [RGBAPixel] = []
 
 	init() {
-		pixels = [[RGBApixel()]]
+		pixels = [[RGBAPixel()]]
 	}
 	
 	var numberOfColors: Int {
@@ -200,15 +193,18 @@ class EasyBMP {
 	
 	func setSize(width NewWidth: Int32, height NewHeight: Int32) -> Bool {
 		if NewWidth <= 0 || NewHeight <= 0  {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: User attempted to set a non-positive width or height.\nSize remains unchanged at \(width) ✕ \(height).")
+			}
 			return false;
 		}
 
 		width = NewWidth;
 		height = NewHeight;
-		pixels = [[RGBApixel]](repeating: [RGBApixel](), count: Int(width))
+		pixels = [[RGBAPixel]](repeating: [RGBAPixel](), count: Int(width))
 		
 		for i in 0 ..< Int(width) {
-			pixels[i] = [RGBApixel](repeating: RGBApixel(blue: 255, green: 255, red: 255, alpha: 0), count: Int(height))
+			pixels[i] = [RGBAPixel](repeating: RGBAPixel(blue: 255, green: 255, red: 255, alpha: 0), count: Int(height))
 		}
 		
 		return true;
@@ -216,6 +212,10 @@ class EasyBMP {
 	
 	func createStandardColorTable() -> Bool {
 		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Attempted to create color table at a bit depth that does not require a color table. Ignoring request.")
+			}
+
 			return false
 		}
 		
@@ -236,9 +236,9 @@ class EasyBMP {
 			for ell in 0 ..< 2 {
 				for k in 0 ..< 2 {
 					for j in 0 ..< 2 {
-						colors[i].red = UInt8(j*128)
-						colors[i].green = UInt8(k*128)
-						colors[i].blue = UInt8(ell*128)
+						colors[i].red = UInt8(clamping: j*128)
+						colors[i].green = UInt8(clamping: k*128)
+						colors[i].blue = UInt8(clamping: ell*128)
 						i += 1
 					}
 				}
@@ -275,9 +275,9 @@ class EasyBMP {
 			for ell in 0 ..< 4 {
 				for k in 0 ..< 8  {
 					for j in 0 ..< 8  {
-						colors[i].red = UInt8(j*32);
-						colors[i].green = UInt8(k*32);
-						colors[i].blue = UInt8(ell*64);
+						colors[i].red = UInt8(clamping: j*32);
+						colors[i].green = UInt8(clamping: k*32);
+						colors[i].blue = UInt8(clamping: ell*64);
 						colors[i].alpha = 0;
 						i += 1
 					}
@@ -289,9 +289,9 @@ class EasyBMP {
 			for ell in 0 ..< 2 {
 				for k in 0 ..< 2  {
 					for j in 0 ..< 2  {
-						colors[i].red = UInt8(j*128);
-						colors[i].green = UInt8(k*128);
-						colors[i].blue = UInt8(ell*128);
+						colors[i].red = UInt8(clamping: j*128);
+						colors[i].green = UInt8(clamping: k*128);
+						colors[i].blue = UInt8(clamping: ell*128);
 						colors[i].alpha = 0;
 						i += 1
 					}
@@ -367,6 +367,9 @@ class EasyBMP {
 		if NewDepth != 1 && NewDepth != 4 &&
 			NewDepth != 8 && NewDepth != 16 &&
 			NewDepth != 24 && NewDepth != 32  {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: User attempted to set unsupported bit depth \(NewDepth).\nBit depth remains unchanged at \(bitDepth).")
+			}
 			return false;
 		}
 	 
@@ -374,7 +377,7 @@ class EasyBMP {
 		
 		let NumberOfColors = IntPow(2, bitDepth)
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8 {
-			colors = [RGBApixel](repeating: EasyBMP.RGBApixel(), count: Int(NumberOfColors))
+			colors = [RGBAPixel](repeating: EasyBMP.RGBAPixel(), count: Int(NumberOfColors))
 			
 		} else{
 			colors.removeAll()
@@ -393,23 +396,23 @@ class EasyBMP {
 		
 		// some preliminaries
 		
-		let dBytesPerPixel = Double(bitDepth) / 8.0;
-		var dBytesPerRow = dBytesPerPixel * Double(width);
+		let dBytesPerPixel = Double(bitDepth) / 8.0
+		var dBytesPerRow = dBytesPerPixel * Double(width)
 		dBytesPerRow = ceil(dBytesPerRow);
 		 
-		var BytePaddingPerRow = 4 - Int(dBytesPerRow) % 4;
+		var BytePaddingPerRow = 4 - Int(dBytesPerRow) % 4
 		if BytePaddingPerRow == 4 {
 			BytePaddingPerRow = 0
 		}
 		
-		var dActualBytesPerRow = dBytesPerRow + Double(BytePaddingPerRow);
+		let dActualBytesPerRow = dBytesPerRow + Double(BytePaddingPerRow)
 		
-		var dTotalPixelBytes = Double(height) * dActualBytesPerRow;
+		let dTotalPixelBytes = Double(height) * dActualBytesPerRow
 		
-		var dPaletteSize: Double = 0;
+		var dPaletteSize: Double = 0
 
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8 {
-			dPaletteSize = Double(IntPow(2,bitDepth))*4.0;
+			dPaletteSize = Double(IntPow(2,bitDepth)) * 4.0
 		}
 
 		// leave some room for 16-bit masks
@@ -417,7 +420,7 @@ class EasyBMP {
 			dPaletteSize = 3*4
 		}
 		
-		var dTotalFileSize = 14 + 40 + dPaletteSize + dTotalPixelBytes;
+		let dTotalFileSize = 14 + 40 + dPaletteSize + dTotalPixelBytes
 
 		// write the file header
 		
@@ -436,12 +439,12 @@ class EasyBMP {
 		// write the info header
 		
 		var bmih = BMIH()
-		bmih.biSize = 40;
-		bmih.biWidth = UInt32(width);
-		bmih.biHeight = UInt32(height);
-		bmih.biPlanes = 1;
-		bmih.biBitCount = UInt16(bitDepth);
-		bmih.biCompression = 0;
+		bmih.biSize = 40
+		bmih.biWidth = UInt32(width)
+		bmih.biHeight = UInt32(height)
+		bmih.biPlanes = 1
+		bmih.biBitCount = UInt16(bitDepth)
+		bmih.biCompression = 0
 		bmih.biSizeImage =  UInt32(dTotalPixelBytes)
 		if XPelsPerMeter != 0 {
 			bmih.biXPelsPerMeter = UInt32(XPelsPerMeter)
@@ -480,7 +483,7 @@ class EasyBMP {
 			
 			// if there is no palette, create one
 			if colors.count == 0 {
-				colors = [RGBApixel](repeating: EasyBMP.RGBApixel(), count: Int(NumberOfColors))
+				colors = [RGBAPixel](repeating: EasyBMP.RGBAPixel(), count: Int(NumberOfColors))
 				_=createStandardColorTable()
 			}
 			
@@ -506,22 +509,81 @@ class EasyBMP {
 			
 			var buffer = Data(capacity: BufferSize)
 			
-			var j = height - 1
+			var j = Int(height) - 1
 			while j > -1 {
-				
+				switch bitDepth {
+				case 32:
+					write32BitRow(&buffer, row: j)
+					
+				case 24:
+					write24BitRow(&buffer, row: j)
+					
+				case 8:
+					write8BitRow(&buffer, row: j)
+
+				case 4:
+					write4BitRow(&buffer, row: j)
+
+				case 1:
+					write1BitRow(&buffer, row: j)
+
+				default:
+					//Should not reach this!
+					fatalError("Bad bit depth \(bitDepth)")
+				}
+
 				j -= 1
 			}
-
-		} else {
 			
+			fp.append(buffer)
+			closestColorMap.removeAll()
+		} else {
+			// write the bit masks
+
+			let BlueMask: UInt16 = 0x001F  // bits 12-16
+			let GreenMask: UInt16 = 0x07E0 // bits 6-11
+			let RedMask: UInt16 = 0xF800   // bits 1-5
+			let ZeroWORD: UInt16 = 0
+
+			[RedMask.littleEndian, ZeroWORD, GreenMask.littleEndian, ZeroWORD, BlueMask.littleEndian, ZeroWORD].withUnsafeBytes { (urbp) -> Void in
+				fp.append(Data(urbp))
+			}
+			
+			let DataBytes = width*2
+			let PaddingBytes = ( 4 - DataBytes % 4 ) % 4
+			
+			// write the actual pixels
+			for j in (0 ..< Int(height)).reversed() {
+				// write all row pixel data
+				var i = 0
+				var WriteNumber = 0
+				while WriteNumber < DataBytes {
+					let RedWORD = UInt16((pixels[i][j]).red / 8)
+					let GreenWORD = UInt16((pixels[i][j]).green / 4)
+					let BlueWORD = UInt16((pixels[i][j]).blue / 8)
+					
+					let TempWORD = (RedWORD<<11) | (GreenWORD<<5) | BlueWORD
+					bmpWrite(TempWORD, &fp)
+					WriteNumber += 2
+					i += 1
+				}
+				// write any necessary row padding
+				WriteNumber = 0;
+				while WriteNumber < PaddingBytes {
+					let tmpByte: UInt8 = 0
+					bmpWrite(tmpByte, &fp)
+					WriteNumber += 1;
+				}
+				
+			}
 		}
 		
 		return fp
 	}
 	
-	private var closestColorMap = [RGBApixel: UInt8]()
+	private var closestColorMap = [RGBAPixel: UInt8]()
 	
-	private func findClosestColor(to input: RGBApixel) -> UInt8 {
+	private func findClosestColor(to input: RGBAPixel) -> UInt8 {
 		if let num = closestColorMap[input] {
 			return num
 		}
@@ -546,7 +608,7 @@ class EasyBMP {
 		return bestI
 	}
 	
-	func makeColorIterator() -> IndexingIterator<Array<RGBApixel>>? {
+	func makeColorIterator() -> IndexingIterator<Array<RGBAPixel>>? {
 		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
 			return nil
 		}
@@ -556,5 +618,157 @@ class EasyBMP {
 		}
 
 		return colors.makeIterator()
+	}
+	
+	func setPixel(atX i: Int, y j: Int, _ newPixel: RGBAPixel) -> Bool {
+		pixels[i][j] = newPixel;
+		return true
+	}
+	
+	func getPixel(atX ii: Int, y jj: Int) -> RGBAPixel {
+		var i = ii
+		var j = jj
+		var warn = false
+		if i >= width {
+			i = Int(width - 1)
+			warn = true
+		}
+		if i < 0 {
+			i = 0
+			warn = true
+		}
+		if j >= height {
+			j = Int(height - 1)
+			warn = true
+		}
+		if j < 0 {
+			j = 0
+			warn = true
+		}
+		
+		if warn && EasyBMP.easyBMPwarnings {
+			print("EasyBMP Warning: Attempted to access non-existent pixel;\nTruncating request to fit in the range [0,\(width-1)] ✕ [0,\(height-1)].")
+		}
+		
+		return pixels[i][j]
+	}
+	
+	func setColor(at colorNumber: Int, to newColor: RGBAPixel) -> Bool {
+		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Attempted to change color table for a BMP object that lacks a color table. Ignoring request.")
+			}
+			return false
+		}
+		
+		if colors.count == 0 {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Attempted to set a color, but the color table is not defined. Ignoring request.")
+			}
+			return false
+		}
+		
+		if colorNumber >= numberOfColors {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Requested color number \(colorNumber) is outside the allowed range [0,\(numberOfColors - 1)]. Ignoring request to set this color.")
+			}
+			return false
+		}
+		colors[colorNumber] = newColor
+		return true
+	}
+	
+	func getColor(at colorNumber: Int) -> RGBAPixel? {
+		var output = RGBAPixel()
+		
+		output.red   = 255;
+		output.green = 255;
+		output.blue  = 255;
+		output.alpha = 0;
+		
+		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Attempted to access color table for a BMP object that lacks a color table. Ignoring request.")
+			}
+			return nil;
+		}
+		if colors.count == 0  {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Requested a color, but the color table is not defined. Ignoring request.")
+			}
+			return nil;
+		}
+		if colorNumber >= numberOfColors {
+			if EasyBMP.easyBMPwarnings {
+				print("EasyBMP Warning: Requested color number \(colorNumber) is outside the allowed range [0,\(numberOfColors - 1)]. Ignoring request to get this color.")
+			}
+			return nil;
+		}
+		return colors[colorNumber];
+	}
+	
+	private func write32BitRow(_ buffer: inout Data, row: Int) {
+		var pixelData = [UInt8]()
+		pixelData.reserveCapacity(Int(width) * 4)
+		for i in 0 ..< Int(width) {
+			let pix = pixels[i][row]
+			pixelData.append(contentsOf: [pix.blue, pix.green, pix.red, pix.alpha])
+		}
+		buffer.append(contentsOf: pixelData)
+	}
+	
+	private func write24BitRow(_ buffer: inout Data, row: Int) {
+		var pixelData = [UInt8]()
+		pixelData.reserveCapacity(Int(width) * 3)
+		for i in 0 ..< Int(width) {
+			let pix = pixels[i][row]
+			pixelData.append(contentsOf: [pix.blue, pix.green, pix.red])
+		}
+		buffer.append(contentsOf: pixelData)
+	}
+
+	private func write8BitRow(_ buffer: inout Data, row: Int) {
+		var pixelData = [UInt8]()
+		pixelData.reserveCapacity(Int(width))
+		for i in 0 ..< Int(width) {
+			pixelData.append(findClosestColor(to: pixels[i][row]))
+		}
+		buffer.append(contentsOf: pixelData)
+	}
+	
+	private func write4BitRow(_ buffer: inout Data, row: Int) {
+		let positionWeights: [UInt8] = [4, 0]
+		var i = 0
+		var pixelData = [UInt8]()
+		pixelData.reserveCapacity(Int(width) / 2)
+		while i < width {
+			var j = 0
+			var index: UInt8 = 0
+			while j < 2 && i < width {
+				index |= findClosestColor(to: pixels[i][row]) << positionWeights[j]
+				i += 1; j += 1;
+			}
+
+			pixelData.append(index)
+		}
+		buffer.append(contentsOf: pixelData)
+	}
+
+	private func write1BitRow(_ buffer: inout Data, row: Int) {
+		let positionWeights: [UInt8] = [7, 6, 5, 4, 3, 2, 1, 0]
+		var i = 0
+		var pixelData = [UInt8]()
+		pixelData.reserveCapacity(Int(width) / 8)
+		while i < width {
+			var j = 0
+			var index: UInt8 = 0
+			while j < 8 && i < width {
+				index |= findClosestColor(to: pixels[i][row]) << positionWeights[j]
+				i += 1; j += 1;
+			}
+
+			pixelData.append(index)
+		}
+		buffer.append(contentsOf: pixelData)
 	}
 }
