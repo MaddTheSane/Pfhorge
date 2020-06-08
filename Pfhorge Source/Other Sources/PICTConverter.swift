@@ -378,7 +378,147 @@ class PICT {
 	var bitmap = EasyBMP()
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) {
+		if (!packed) {
+			stream.addP(4); // pmBaseAddr
+		}
+
+		var rowBytes = stream.getUInt16()
+		let isPixmap = (rowBytes & 0x8000) == 0x8000
+		rowBytes &= 0x3fff;
+		var rect = Rect(data: stream)
 		
+		let width = rect.width
+		let height = rect.height
+		var pack_type: UInt16
+		var pixel_size: UInt16
+		if isPixmap {
+			stream.addP(2); // pmVersion
+			pack_type = stream.getUInt16()
+			stream.addP(14); // packSize/hRes/vRes/pixelType
+			pixel_size = stream.getUInt16()
+			stream.addP(16); // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
+		} else {
+			pack_type = 0;
+			pixel_size = 1;
+		}
+		
+		_=bitmap.setSize(width: Int32(width), height: Int32(height))
+		if (pixel_size <= 8) {
+			_=bitmap.setBitDepth(8);
+		} else {
+			_=bitmap.setBitDepth(Int32(pixel_size));
+		}
+
+		// read the color table
+		if (isPixmap && packed) {
+			stream.addP(4); // ctSeed
+			let flags = stream.getUInt16()
+			var num_colors = stream.getUInt16()
+			num_colors += 1
+			for i in 0 ..< num_colors {
+				var index: UInt16 = stream.getUInt16()
+				let red: UInt16 = stream.getUInt16()
+				let green: UInt16 = stream.getUInt16()
+				let blue: UInt16 = stream.getUInt16()
+
+				if (flags & 0x8000) != 0 {
+					index = i;
+				} else {
+					index &= 0xff;
+				}
+
+				let pixel = EasyBMP.RGBAPixel(blue: UInt8(blue >> 8), green: UInt8(green >> 8), red: UInt8(red >> 8), alpha: 0xff)
+				_=bitmap.setColor(at: Int(index), to: pixel)
+			}
+			
+			// src/dst/transfer mode
+			stream.addP(18)
+			
+			// clipping region
+			if clipped {
+				let size = stream.getUInt16()
+				stream.addP(Int(size - 2));
+			}
+			// the picture itself
+			if pixel_size <= 8 {
+				for y in 0 ..< Int(height) {
+					var scanLine = [UInt8]()
+					if rowBytes < 8 {
+						scanLine.reserveCapacity(Int(rowBytes))
+						for _ in 0 ..< rowBytes {
+							scanLine.append(stream.getUInt8())
+						}
+					} else {
+						scanLine = unpackRow8(stream, rowBytes: Int(rowBytes))
+					}
+					
+					if (pixel_size == 8) {
+						for x in 0 ..< Int(width) {
+							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(scanLine[x]))!);
+						}
+					} else {
+						let pixels = expandPixels(from: scanLine, depth: Int(pixel_size))
+						
+						for x in 0 ..< Int(width) {
+							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(pixels[x]))!);
+						}
+					}
+
+				}
+			} else if (pixel_size == 16) {
+				for y in 0 ..< Int(height) {
+					var scan_line = [UInt16]()
+					if rowBytes < 8 || pack_type == 1 {
+						for _ in 0 ..< Int(width) {
+							scan_line.append(stream.getUInt16())
+						}
+					} else if (pack_type == 0 || pack_type == 3) {
+						scan_line = unpackRow16(stream, rowBytes: Int(rowBytes));
+					}
+
+					for x in 0 ..< Int(width) {
+						var pixel = EasyBMP.RGBAPixel()
+						pixel.red = UInt8((scan_line[x] >> 10) & 0x1f);
+						pixel.green = UInt8((scan_line[x] >> 5) & 0x1f)
+						pixel.blue = UInt8(scan_line[x] & 0x1f)
+						pixel.red = (pixel.red * 255 + 16) / 31;
+						pixel.green = (pixel.green * 255 + 16) / 31;
+						pixel.blue = (pixel.blue * 255 + 16) / 31;
+						pixel.alpha = 0xff;
+						
+						_=bitmap.setPixel(atX: x, y: y, pixel);
+					}
+				}
+			} else if (pixel_size == 32) {
+				for y in 0 ..< Int(height) {
+					var scan_line = [UInt8]()
+					if rowBytes < 8 || pack_type == 1 {
+						scan_line = Array(repeating: 0, count: Int(width) * 3)// .reserveCapacity(Int(width) * 3);
+						for x in 0 ..< Int(width) {
+							let pixel = stream.getUInt32()
+							scan_line[x] = UInt8(pixel >> 16);
+							scan_line[x + Int(width)] = UInt8((pixel >> 8) & 0xff);
+							scan_line[x + Int(width) * 2] = UInt8(pixel & 0xFF);
+						}
+					} else if pack_type == 0 || pack_type == 4 {
+						scan_line = unpackRow8(stream, rowBytes: Int(rowBytes))
+					}
+
+					for x in 0 ..< Int(width) {
+						var pixel = EasyBMP.RGBAPixel()
+						pixel.red = scan_line[x];
+						pixel.green = scan_line[x + Int(width)];
+						pixel.blue = scan_line[x + Int(width) * 2];
+						pixel.alpha = 0xff;
+						_=bitmap.setPixel(atX: x, y: y, pixel);
+					}
+				}
+			}
+		}
+		
+		if (stream.currentPosition & 1) != 0 {
+			stream.addP(1)
+		}
 	}
 	
 	func load(from: URL) throws {
@@ -441,9 +581,9 @@ class PICT {
 					loadCopyBits(data, packed: packed, clipped: clipped)
 					if jpegData.count != 0 {
 						_=bitmap.setSize(width: 1, height: 1)
-					}/*else if (bitmap_.TellWidth() != rect.width && bitmap_.TellWidth() == 614) {
-					throw ParseError("PICT appears to use Cinemascope hack");
-					} */
+					} else if (bitmap.width != rect.width && bitmap.width == 614) {
+						throw PICTConversionError.usesCinemascopeHack
+					}
 					
 				case .compressedQuickTime:
 					if jpegData.count != 0 {
@@ -528,6 +668,18 @@ class PICT {
 		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
 			return (.JPEG, aPict.jpegData)
 		}
+		if aPict.bitmap.bitDepth <= 8 && (format == .best || format == .bitmap) {
+			return (.bitmap, aPict.bitmap.generateData())
+		}
+		if aPict.bitmap.bitDepth > 8 && (format == .best || format == .PNG) {
+			//Hackity-hack!
+			let dat = aPict.bitmap.generateData()
+			guard let bmpImgRep = NSBitmapImageRep(data: dat),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+					throw NSError(domain: NSCocoaErrorDomain, code: -1)
+			}
+			return (.PNG, pngDat)
+		}
 		
 		throw NSError(domain: NSCocoaErrorDomain, code: -1)
 	}
@@ -564,3 +716,94 @@ class PICT {
 		return retVal.data
 	}
 }
+
+private func unpackRow8(_ stream: PhData, rowBytes: Int) -> [UInt8] {
+	var result = [UInt8]()
+	
+	var row_length: Int
+	if rowBytes > 250 {
+		row_length = Int(stream.getUInt16())
+	} else {
+		row_length = Int(stream.getUInt8())
+	}
+	result.reserveCapacity(row_length)
+
+	let end = stream.currentPosition + row_length
+	while stream.currentPosition < end {
+		let c = stream.getInt8()
+		
+		if (c < 0) {
+			let size = -Int(c) + 1;
+			let data = stream.getUInt8()
+			for _ in 0 ..< size {
+				result.append(data);
+			}
+		} else if (c != -128) {
+			let size = Int(c) + 1;
+			for _ in 0..<size {
+				let data = stream.getUInt8()
+				result.append(data);
+			}
+		}
+
+	}
+	return result
+}
+
+private func unpackRow16(_ stream: PhData, rowBytes: Int) -> [UInt16] {
+	var result = [UInt16]()
+	
+	var row_length: Int
+	if rowBytes > 250 {
+		row_length = Int(stream.getUInt16())
+	} else {
+		row_length = Int(stream.getUInt8())
+	}
+	result.reserveCapacity(row_length)
+
+	let end = stream.currentPosition + row_length
+	while stream.currentPosition < end {
+		let c = stream.getInt8()
+		
+		if (c < 0) {
+			let size = -Int(c) + 1;
+			let data = stream.getUInt16()
+			for _ in 0 ..< size {
+				result.append(data);
+			}
+		} else if (c != -128) {
+			let size = Int(c) + 1;
+			for _ in 0..<size {
+				let data = stream.getUInt16()
+				result.append(data);
+			}
+		}
+
+	}
+	return result
+}
+
+private func expandPixels(from scanLines: [UInt8], depth: Int) -> [UInt8] {
+	var result = [UInt8]()
+	for it in scanLines {
+		if (depth == 4) {
+			result.append((it) >> 4)
+			result.append((it) & 0xf)
+		} else if (depth == 2) {
+			result.append((it) >> 6)
+			result.append(((it) >> 4) & 0x3)
+			result.append(((it) >> 2) & 0x3)
+			result.append((it) & 0x3)
+		} else if (depth == 1) {
+//			CFBitVectorCreate(kCFAllocatorDefault, &it, 8)
+//			std::bitset<8> bits(*it);
+//			for (int i = 0; i < 8; ++i)
+//			{
+//				result.push_back(bits[i] ? 1 : 0);
+//			}
+		}
+	}
+
+	return result;
+}
+
