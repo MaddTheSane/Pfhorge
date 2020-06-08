@@ -676,12 +676,67 @@ class PICT {
 			let dat = aPict.bitmap.generateData()
 			guard let bmpImgRep = NSBitmapImageRep(data: dat),
 				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
-					throw NSError(domain: NSCocoaErrorDomain, code: -1)
+					// brute force!
+					guard let bir = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(aPict.bitmap.width), pixelsHigh: Int(aPict.bitmap.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bitmapFormat: NSBitmapImageRep.Format.alphaFirst, bytesPerRow: Int(aPict.bitmap.width)*4, bitsPerPixel: 32) else {
+						throw NSError(domain: NSCocoaErrorDomain, code: -1)
+					}
+					for i in 0 ..< Int(aPict.bitmap.width) {
+						autoreleasepool {
+							for j in 0 ..< Int(aPict.bitmap.height) {
+								let pixCol = aPict.bitmap.getPixel(atX: i, y: j)
+								let col = NSColor(calibratedRed: CGFloat(pixCol.red) / CGFloat(UInt8.max), green: CGFloat(pixCol.green) / CGFloat(UInt8.max), blue: CGFloat(pixCol.blue) / CGFloat(UInt8.max), alpha: 1)
+								bir.setColor(col, atX: i, y: j)
+							}
+						}
+					}
+					guard let dat = bir.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+						throw NSError(domain: NSCocoaErrorDomain, code: -1)
+
+					}
+					return (.PNG, dat)
 			}
 			return (.PNG, pngDat)
 		}
-		
-		throw NSError(domain: NSCocoaErrorDomain, code: -1)
+		switch format {
+		case .bitmap:
+			if aPict.jpegData.count != 0 {
+				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
+					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.bmp, properties: [:]) {
+					return (.bitmap, pngDat)
+				}
+			}
+			return (.bitmap, aPict.bitmap.generateData())
+
+		case .JPEG:
+			if aPict.jpegData.count != 0 {
+				return (.JPEG, aPict.jpegData)
+			}
+			
+			if let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+				return (.JPEG, pngDat)
+			}
+
+			throw NSError(domain: NSCocoaErrorDomain, code: -1)
+
+		case .PNG:
+			if aPict.jpegData.count != 0 {
+				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
+					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) {
+					return (.PNG, pngDat)
+				}
+			}
+
+			guard let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+				throw NSError(domain: NSCocoaErrorDomain, code: -1)
+			}
+			return (.PNG, pngDat)
+
+			
+		default:
+			throw NSError(domain: NSCocoaErrorDomain, code: -1)
+		}
 	}
 	
 	enum PICTConversionError: Error {
@@ -795,12 +850,12 @@ private func expandPixels(from scanLines: [UInt8], depth: Int) -> [UInt8] {
 			result.append(((it) >> 2) & 0x3)
 			result.append((it) & 0x3)
 		} else if (depth == 1) {
-//			CFBitVectorCreate(kCFAllocatorDefault, &it, 8)
-//			std::bitset<8> bits(*it);
-//			for (int i = 0; i < 8; ++i)
-//			{
-//				result.push_back(bits[i] ? 1 : 0);
-//			}
+			var tmpIt = it
+			let bitset = CFBitVectorCreate(kCFAllocatorDefault, &tmpIt, 8)!
+			for i in 0 ..< 8 {
+				let val = CFBitVectorGetBitAtIndex(bitset, i)
+				result.append(UInt8(val))
+			}
 		}
 	}
 
