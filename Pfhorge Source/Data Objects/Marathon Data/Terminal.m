@@ -194,6 +194,11 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 -(id)init
 {
     self = [super init];

@@ -1284,6 +1284,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     LEPolygon *copy = [[LEPolygon allocWithZone:zone] init];

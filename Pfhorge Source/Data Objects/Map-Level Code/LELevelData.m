@@ -385,6 +385,12 @@
     
     return self;
 }
+
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 /*
 - (id)copyWithZone:(NSZone *)zone
 {

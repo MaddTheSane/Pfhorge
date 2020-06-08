@@ -41,7 +41,7 @@
 				theObject = [NSURL fileURLWithPath:theObject];
 			}
 			
-			[theEventList insertDescriptor:[self aliasDescriptorWithURL:theObject] atIndex:theIndex+1];
+			[theEventList insertDescriptor:[self bookmarkDescriptorWithURL:theObject] atIndex:theIndex+1];
 		}
 	}
 	
@@ -62,11 +62,23 @@
  */
 + (NSAppleEventDescriptor *)aliasDescriptorWithURL:(NSURL *)aURL
 {
+	NSAppleEventDescriptor *theTarget = [self bookmarkDescriptorWithURL:aURL];
+	NSAppleEventDescriptor *target2 = [theTarget coerceToDescriptorType:typeAlias];
+	if (target2.descriptorType == typeAlias) {
+		return target2;
+	}
+	return theTarget;
+}
+
+/*
+ * + bookmarkDescriptorWithURL:
+ */
++ (NSAppleEventDescriptor *)bookmarkDescriptorWithURL:(NSURL *)aURL
+{
 	NSAppleEventDescriptor		* theAppleEventDescriptor = nil;
 
 	NSData *bookData = [aURL bookmarkDataWithOptions:0 includingResourceValuesForKeys:nil relativeToURL:nil error:NULL];
-	if( bookData )
-	{
+	if (bookData) {
 		theAppleEventDescriptor = [self descriptorWithDescriptorType:typeBookmarkData data:bookData];
 	}
 

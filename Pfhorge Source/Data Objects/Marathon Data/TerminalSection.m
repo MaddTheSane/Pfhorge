@@ -106,6 +106,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 // **************************  Dealloc/Init Methods  *************************
 #pragma mark -
 #pragma mark Dealloc/Init Methods

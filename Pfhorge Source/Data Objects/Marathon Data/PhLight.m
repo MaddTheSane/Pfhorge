@@ -286,6 +286,11 @@
     return self;
 }
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     PhLight *copy = [[PhLight allocWithZone:zone] init];

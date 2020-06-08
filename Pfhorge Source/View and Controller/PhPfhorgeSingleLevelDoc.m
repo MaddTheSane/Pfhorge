@@ -172,7 +172,16 @@
         int thePfhorgeDataSig3 = 42296737;
         thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
         
-        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
+        NSData *theLevelMapData;
+        if (@available(macOS 10.13, *)) {
+            theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:YES error:outError];
+        } else {
+            theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
+        }
+        if (!theLevelMapData) {
+            [entireMapData release];
+            return nil;
+        }
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];

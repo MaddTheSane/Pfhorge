@@ -16,7 +16,8 @@
 + (NSAppleEventDescriptor *)aliasListDescriptorWithArray:(NSArray *)aArray;
 
 + (NSAppleEventDescriptor *)appleEventDescriptorWithURL:(NSURL *)aURL;
-+ (NSAppleEventDescriptor *)aliasDescriptorWithURL:(NSURL *)aURL;
++ (NSAppleEventDescriptor *)aliasDescriptorWithURL:(NSURL *)aURL DEPRECATED_ATTRIBUTE;
++ (NSAppleEventDescriptor *)bookmarkDescriptorWithURL:(NSURL *)aURL;
 
 + (NSAppleEventDescriptor *)appleEventDescriptorWithBOOL:(BOOL)aValue;
 + (NSAppleEventDescriptor *)trueBoolDescriptor;
