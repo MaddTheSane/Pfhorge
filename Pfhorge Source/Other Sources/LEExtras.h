@@ -27,6 +27,9 @@
 #import "ErrorNotificationWinController.h"
 #import "NDAppleScriptObject.h"
 #import "NSAppleEventDescriptor+NDAppleScriptObject.h"
+#import "LEMapStuffParent.h"
+#import "PhData.h"
+#import "PhTag.h"
 
 /*extern unsigned twoBytesCount;
 extern unsigned fourBytesCount;
@@ -40,18 +43,28 @@ extern unsigned eightBytesCount;*/
 #define notContain(arr, obj) [(arr) indexOfObjectIdenticalTo:(obj)] == NSNotFound
 #define contains(arr, obj) [(arr) indexOfObjectIdenticalTo:(obj)] != NSNotFound
 
-#define ImportTag(objp) objp = [self getTagForNumber:[myData getShort]]
+static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **theTag)
+{
+    short tagNum = 0;
+    BOOL valid = [myData getShort:&tagNum];
+    if (!valid) {
+        *theTag = nil;
+        return;
+    }
+    *theTag = [self getTagForNumber:tagNum];
+}
+#define ImportTag(objp) PreImportTag(self, (myData), &(objp))
 
 #define ImportObjIndexPos(objp, i) objp = [myData getObjectFromIndexUsingLast:(i)]
 //#define ImportObjPos(objp) objp = [myData getObjectFromIndex:index]
 #define ImportObjIndex(objp, i) objp = [myData getObjectFromIndex:(i) objTypesArr:objTypesArr]
 #define ImportObj(objp) objp = [myData getObjectFromIndex:index objTypesArr:objTypesArr]
-#define ImportShort(v) v = [myData getShort]
-#define ImportLong(v) v = [myData getLong]
-#define ImportInt(v) v = [myData getInt]
-#define ImportUnsignedShort(v) v = [myData getUnsignedShort]
-#define ImportUnsignedInt(v) v = [myData getUnsignedInt]
-#define ImportUnsignedLong(v) v = [myData getUnsignedLong]
+#define ImportShort(v) [myData getShort:&(v)]
+#define ImportLong(v) [myData getLong:&(v)]
+#define ImportInt(v) [myData getInt:&(v)]
+#define ImportUnsignedShort(v) [myData getUnsignedShort:&(v)]
+#define ImportUnsignedInt(v) [myData getUnsignedInt:&(v)]
+#define ImportUnsignedLong(v) [myData getUnsignedLong:&(v)]
 
 #define SkipObj() [myData skipObj]
 

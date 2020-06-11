@@ -310,7 +310,7 @@
 		55E91490248996C70005D451 /* PICTConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PICTConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55E914922489B4C20005D451 /* PfhorgeSwiftHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PfhorgeSwiftHelpers.h; sourceTree = "<group>"; usesTabs = 1; };
 		55E914932489F9010005D451 /* EasyBMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBMP.swift; sourceTree = "<group>"; usesTabs = 1; };
-		55E91495248A012B0005D451 /* PhDataAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhDataAdditions.swift; sourceTree = "<group>"; };
+		55E91495248A012B0005D451 /* PhDataAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhDataAdditions.swift; sourceTree = "<group>"; usesTabs = 1; };
 		A52DB02404016BFC0046BBD2 /* PhDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhDefs.h; sourceTree = "<group>"; };
 		A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenGLView2.h; sourceTree = "<group>"; };
 		A5902BC6069E1A8600B4AB92 /* MyOpenGLView2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyOpenGLView2.mm; sourceTree = "<group>"; };

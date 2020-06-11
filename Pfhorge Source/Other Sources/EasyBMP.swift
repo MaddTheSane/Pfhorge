@@ -33,10 +33,12 @@ private func square<X>(_ number: X) -> X where X: Numeric {
 	return number * number
 }
 
+/// The default of 96 dpi
 private var DefaultXPelsPerMeter: UInt32 {
 	return 3780
 }
 
+/// The default of 96 dpi
 private var DefaultYPelsPerMeter: UInt32 {
 	return 3780
 }
@@ -141,9 +143,9 @@ class EasyBMP {
 		var biCompression: UInt32 = 0
 		var biSizeImage: UInt32 = 0
 		/// set to a default of 96 dpi
-		var biXPelsPerMeter: UInt32 = 3780
+		var biXPelsPerMeter: UInt32 = DefaultXPelsPerMeter
 		/// set to a default of 96 dpi
-		var biYPelsPerMeter: UInt32 = 3780
+		var biYPelsPerMeter: UInt32 = DefaultYPelsPerMeter
 		
 		var biClrUsed: UInt32 = 0
 		var biClrImportant: UInt32 = 0
@@ -171,8 +173,8 @@ class EasyBMP {
 	private(set) var width: Int32 = 1
 	private(set) var height: Int32 = 1
 	
-	var XPelsPerMeter: Int32 = 3780
-	var YPelsPerMeter: Int32 = 3780
+	var XPelsPerMeter: UInt32 = DefaultXPelsPerMeter
+	var YPelsPerMeter: UInt32 = DefaultYPelsPerMeter
 
 	var metaData1 = Data()
 	var metaData2 = Data()

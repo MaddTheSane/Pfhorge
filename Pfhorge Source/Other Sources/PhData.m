@@ -14,14 +14,11 @@
 
 - (id)initWithData:(NSData *)value
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    position = 0;
-    
-    theData = [value copy];
+    if (self = [super init]) {
+        position = 0;
+        
+        theData = [value copy];
+    }
     
     return self;
 }
@@ -34,88 +31,115 @@
 
 - (BOOL)skipLengthLong
 {
-    int theLength = [self getInt];
+    int theLength;
+    BOOL valid = [self getInt:&theLength];
+    if (!valid) {
+        return NO;
+    }
     
-    [self addP:theLength];
-    
-    return [self checkPosition];
+    return [self addP:theLength];
 }
 
 - (NSData *)getSubDataWithLength:(NSInteger)theLength
 {
     [self checkPosition];
-    NSData *subData = [theData subdataWithRange:NSMakeRange(position, theLength)];
+    NSRange range = NSMakeRange(position, theLength);
+    if (theData.length < NSMaxRange(range)) {
+        return nil;
+    }
+    NSData *subData = [theData subdataWithRange:range];
     [self addP:theLength];
     return subData;
 }
 
-- (byte)getByte
+- (BOOL)getByte:(byte*)toGet
 {
-    byte value;
+    if (position + 1 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
-    [theData getBytes:&value range:NSMakeRange(position, 1)];
+    [theData getBytes:toGet range:NSMakeRange(position, 1)];
     position += 1;
-    return value;
+    return YES;
+
 }
 
-- (short)getShort
+- (BOOL)getShort:(short*)toGet
 {
     short value;
+    if (position + 2 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 2)];
-	value = CFSwapInt16BigToHost(value);
+    *toGet = CFSwapInt16BigToHost(value);
     position += 2;
-    return value;
+    return YES;
 }
 
-- (long long)getLong
+- (BOOL)getLong:(long long*)toGet
 {
     long long value;
+    if (position + 8 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
-	value = CFSwapInt64BigToHost(value);
+    *toGet = CFSwapInt64BigToHost(value);
     position += 8;
-    return value;
+    return YES;
 }
 
-- (int)getInt
+- (BOOL)getInt:(int*)toGet
 {
     int value;
+    if (position + 4 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 4)];
-	value = CFSwapInt32BigToHost(value);
+    *toGet = CFSwapInt32BigToHost(value);
     position += 4;
-    return value;
+    return YES;
 }
 
-- (unsigned short)getUnsignedShort
+- (BOOL)getUnsignedShort:(unsigned short*)toGet
 {
     unsigned short value;
+    if (position + 2 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 2)];
-	value = CFSwapInt16HostToBig(value);
+    *toGet = CFSwapInt16BigToHost(value);
     position += 2;
-    return value;
+    return YES;
 }
 
-- (unsigned long long)getUnsignedLong
+- (BOOL)getUnsignedLong:(unsigned long long*)toGet
 {
     unsigned long long value;
+    if (position + 8 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 8)];
-	value = CFSwapInt64HostToBig(value);
+    *toGet = CFSwapInt64BigToHost(value);
     position += 8;
-    return value;
+    return YES;
 }
 
-- (unsigned int)getUnsignedInt
+- (BOOL)getUnsignedInt:(unsigned int*)toGet
 {
     unsigned int value;
+    if (position + 4 >= theData.length) {
+        return NO;
+    }
     [self checkPosition];
     [theData getBytes:&value range:NSMakeRange(position, 4)];
-	value = CFSwapInt32HostToBig(value);
+    *toGet = CFSwapInt32BigToHost(value);
     position += 4;
-    return value;
+    return YES;
 }
 
 - (NSInteger)length { return [theData length]; };
@@ -135,11 +159,15 @@
 
 - (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr
 {
-    int indexNum = [self getInt];
+    int indexNum;
+    BOOL valid = [self getInt:&indexNum];
+    if (!valid) {
+        return nil;
+    }
     
     if (indexNum == -1) {
         return nil;
-    } else if (indexNum < ((int)[theIndex count]) && indexNum >= 0) {
+    } else if (indexNum < [theIndex count] && indexNum >= 0) {
         objTypesArr[indexNum] = _data_is_primary;
         return [theIndex objectAtIndex:indexNum];
     }
@@ -149,39 +177,104 @@
 
 - (id)getObjectFromIndexUsingLast:(NSArray *)theIndex
 {
-    int indexNum = [self getInt];
-    
+    int indexNum;
+    BOOL valid = [self getInt:&indexNum];
+    if (!valid) {
+        return nil;
+    }
+
     if (indexNum == -1) {
         return nil;
-    } else if (indexNum < ((int)[theIndex count]) && indexNum >= 0) {
+    } else if (indexNum < [theIndex count] && indexNum >= 0) {
         return [theIndex objectAtIndex:indexNum];
-    } else if (indexNum >= ((int)[theIndex count])) {
+    } else if (indexNum >= [theIndex count]) {
         return [theIndex lastObject];
     }
     
     return nil;
 }
 
-- (NSString *)getPascalString
+@end
+
+@implementation PhLEData
+
+- (BOOL)getShort:(short*)toGet
 {
-    int length = [self getByte];
-    
-    unsigned char theChar[length];
-    const unsigned char *theCharConstPntr;
-    NSString *theTmpCharString;
-    
-    for (int i = 0; i < length; i++) {
-        theChar[i] = [self getByte];
-        
-        // Just in case, although it should not be nessary...
-        if (theChar[i] == 0)
-            break;
+    short value;
+    if (position + 2 >= theData.length) {
+        return NO;
     }
-    
-    theCharConstPntr = theChar;
-    theTmpCharString = [NSString stringWithCString:(const char*)theCharConstPntr encoding:NSMacOSRomanStringEncoding];
-    
-    return theTmpCharString;
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 2)];
+    *toGet = CFSwapInt16LittleToHost(value);
+    position += 2;
+    return YES;
+
+}
+
+- (BOOL)getInt:(int*)toGet
+{
+    int value;
+    if (position + 4 >= theData.length) {
+        return NO;
+    }
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 4)];
+    *toGet = CFSwapInt32LittleToHost(value);
+    position += 4;
+    return YES;
+}
+
+- (BOOL)getLong:(long long*)toGet
+{
+    long long value;
+    if (position + 8 >= theData.length) {
+        return NO;
+    }
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 8)];
+    *toGet = CFSwapInt64LittleToHost(value);
+    position += 8;
+    return YES;
+}
+
+- (BOOL)getUnsignedShort:(unsigned short*)toGet
+{
+    unsigned short value;
+    if (position + 2 >= theData.length) {
+        return NO;
+    }
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 2)];
+    *toGet = CFSwapInt16LittleToHost(value);
+    position += 2;
+    return YES;
+}
+
+- (BOOL)getUnsignedInt:(unsigned int*)toGet
+{
+    unsigned int value;
+    if (position + 4 >= theData.length) {
+        return NO;
+    }
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 4)];
+    *toGet = CFSwapInt32LittleToHost(value);
+    position += 4;
+    return YES;
+}
+
+- (BOOL)getUnsignedLong:(unsigned long long*)toGet
+{
+    unsigned long long value;
+    if (position + 8 >= theData.length) {
+        return NO;
+    }
+    [self checkPosition];
+    [theData getBytes:&value range:NSMakeRange(position, 8)];
+    *toGet = CFSwapInt64LittleToHost(value);
+    position += 8;
+    return YES;
 }
 
 @end

@@ -830,7 +830,8 @@ enum // export data types
     ///NSEnumerator *numer = nil;
     id theObj = nil;
     
-    int totalObjects = [myData getInt];
+    int totalObjects;
+    [myData getInt:&totalObjects];
     ///long indexBytes = totalObjects*4;
     
     short objTypesArr[totalObjects];
@@ -845,10 +846,10 @@ enum // export data types
     #endif
     
     for (i = 0; i < totalObjects; i++) {
-        objTypesArr[i] = [myData getShort]; // Primary or Secondary?
+        [myData getShort:&objTypesArr[i]]; // Primary or Secondary?
         objImported[i] = NO;
-        objKindArr[i] = [myData getShort]; // Light or Polygon?, etc...
-        objNameStatusArr[i] = [myData getShort]; // Name Status...
+        [myData getShort:&objKindArr[i]]; // Light or Polygon?, etc...
+        [myData getShort:&objNameStatusArr[i]]; // Name Status...
         _data_type_export objKind = objKindArr[i];
         id obj = nil;
         

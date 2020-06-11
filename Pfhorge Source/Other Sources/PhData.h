@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "PhTypesStructresEnums.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 //! This assumes the data is in big-endian format.
 @interface PhData : NSObject {
@@ -26,21 +27,28 @@
 - (BOOL)skipObj;
 - (BOOL)skipLengthLong;
 
--(NSData *)getSubDataWithLength:(NSInteger)theLength;
+-(nullable NSData *)getSubDataWithLength:(NSInteger)theLength;
 
-- (byte)getByte NS_SWIFT_NAME(getUInt8());
-- (short)getShort NS_SWIFT_NAME(getInt16());
-- (int)getInt NS_SWIFT_NAME(getInt32());
-- (long long)getLong NS_SWIFT_NAME(getInt64());
-- (unsigned short)getUnsignedShort NS_SWIFT_NAME(getUInt16());
-- (unsigned int)getUnsignedInt NS_SWIFT_NAME(getUInt32());
-- (unsigned long long)getUnsignedLong NS_SWIFT_NAME(getUInt64());
+- (BOOL)getByte:(byte*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getShort:(short*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getInt:(int*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getLong:(long long*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getUnsignedShort:(unsigned short*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getUnsignedInt:(unsigned int*)toGet NS_REFINED_FOR_SWIFT;
+- (BOOL)getUnsignedLong:(unsigned long long*)toGet NS_REFINED_FOR_SWIFT;
 
 @property (readonly) NSInteger currentPosition;
 @property (readonly) NSInteger length;
 
 - (BOOL)checkPosition;
-- (id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;
-- (id)getObjectFromIndexUsingLast:(NSArray *)theIndex;
+- (nullable id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;
+- (nullable id)getObjectFromIndexUsingLast:(NSArray *)theIndex;
 
 @end
+
+//! This assumes the data is in little-endian format.
+@interface PhLEData : PhData
+
+@end
+
+NS_ASSUME_NONNULL_END
