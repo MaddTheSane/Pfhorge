@@ -93,6 +93,21 @@ private func SafeFread(_ buffer: UnsafeMutableRawPointer, size: Int, number: Int
 }
 
 
+fileprivate extension EasyBMP.RGBAPixel {
+	init?(data: PhLEData) {
+		guard let ablue = data.readUInt8(),
+			let agreen = data.readUInt8(),
+			let ared = data.readUInt8(),
+			let aalpha = data.readUInt8() else {
+				return nil
+		}
+		red = ared
+		green = agreen
+		blue = ablue
+		alpha = aalpha
+	}
+}
+
 class EasyBMP {
 	static var easyBMPwarnings = false
 	struct RGBAPixel: Comparable, Hashable {
@@ -132,12 +147,29 @@ class EasyBMP {
 			bfReserved2 = bfReserved2.byteSwapped
 			bfOffBits = bfOffBits.byteSwapped
 		}
+		
+		init() {}
+		
+		init?(data: PhLEData) {
+			guard let abfType = data.readUInt16(),
+			let abfSize = data.readUInt32(),
+			let abfReserved1 = data.readUInt16(),
+			let abfReserved2 = data.readUInt16(),
+				let abfOffBits = data.readUInt32() else {
+					return nil
+			}
+			bfType = abfType
+			bfSize = abfSize
+			bfReserved1 = abfReserved1
+			bfReserved2 = abfReserved2
+			bfOffBits = abfOffBits
+		}
 	}
 	
 	private struct BMIH: CustomDebugStringConvertible {
 		var biSize: UInt32 = 0
-		var biWidth: UInt32 = 0
-		var biHeight: UInt32 = 0
+		var biWidth: Int32 = 0
+		var biHeight: Int32 = 0
 		var biPlanes: UInt16 = 1
 		var biBitCount: UInt16 = 0
 		var biCompression: UInt32 = 0
@@ -166,6 +198,35 @@ class EasyBMP {
 			biYPelsPerMeter = biYPelsPerMeter.byteSwapped
 			biClrUsed = biClrUsed.byteSwapped
 			biClrImportant = biClrImportant.byteSwapped
+		}
+		
+		init() {}
+		
+		init?(data: PhLEData) {
+			guard let abiSize = data.readUInt32(),
+			let abiWidth = data.readInt32(),
+			let abiHeight = data.readInt32(),
+			let abiPlanes = data.readUInt16(),
+			let abiBitCount = data.readUInt16(),
+			let abiCompression = data.readUInt32(),
+			let abiSizeImage = data.readUInt32(),
+			let abiXPelsPerMeter = data.readUInt32(),
+			let abiYPelsPerMeter = data.readUInt32(),
+			let abiClrUsed = data.readUInt32(),
+				let abiClrImportant = data.readUInt32() else {
+					return nil
+			}
+			biSize = abiSize
+			biWidth = abiWidth
+			biHeight = abiHeight
+			biPlanes = abiPlanes
+			biBitCount = abiBitCount
+			biCompression = abiCompression
+			biSizeImage = abiSizeImage
+			biXPelsPerMeter = abiXPelsPerMeter
+			biYPelsPerMeter = abiYPelsPerMeter
+			biClrUsed = abiClrUsed
+			biClrImportant = abiClrImportant
 		}
 	}
 	
@@ -442,8 +503,8 @@ class EasyBMP {
 		
 		var bmih = BMIH()
 		bmih.biSize = 40
-		bmih.biWidth = UInt32(width)
-		bmih.biHeight = UInt32(height)
+		bmih.biWidth = width
+		bmih.biHeight = height
 		bmih.biPlanes = 1
 		bmih.biBitCount = UInt16(bitDepth)
 		bmih.biCompression = 0
@@ -772,5 +833,397 @@ class EasyBMP {
 			pixelData.append(index)
 		}
 		buffer.append(contentsOf: pixelData)
+	}
+	
+	private func read32BitRow(_ buffer: Data, row: Int) -> Bool {
+		guard width * 4 <= buffer.count else {
+			return false
+		}
+
+		let arrBuff = buffer.withUnsafeBytes { (ubp) -> [RGBAPixel] in
+			let wrapped = ubp.bindMemory(to: RGBAPixel.self)
+			return Array(wrapped)
+		}
+		for (i, val) in arrBuff.enumerated() {
+			guard i < width else {
+				break
+			}
+			pixels[i][row] = val
+		}
+		return true
+	}
+	
+	private func read24BitRow(_ buffer: Data, row: Int) -> Bool {
+		guard width * 3 <= buffer.count else {
+			return false
+		}
+		
+		struct RGBPixel {
+			var blue: UInt8 = 0
+			var green: UInt8 = 0
+			var red: UInt8 = 0
+		}
+		
+		let arrBuff = buffer.withUnsafeBytes { (ubp) -> [RGBPixel] in
+			let wrapped = ubp.bindMemory(to: RGBPixel.self)
+			return Array(wrapped)
+		}
+		for (i, val) in arrBuff.enumerated() {
+			guard i < width else {
+				break
+			}
+			pixels[i][row].blue = val.blue
+			pixels[i][row].green = val.green
+			pixels[i][row].red = val.red
+		}
+
+		return true
+	}
+	
+	private func read8BitRow(_ buffer: Data, row: Int) -> Bool {
+		guard width <= buffer.count else {
+			return false
+		}
+		
+		for (i, index) in buffer.enumerated() {
+			guard i < width else {
+				break
+			}
+			pixels[i][row] = getColor(at: Int(index))!
+		}
+
+		return true
+	}
+	
+	private func read4BitRow(_ buffer: Data, row: Int) -> Bool {
+		guard width <= buffer.count * 2 else {
+			return false
+		}
+		let shifts: [UInt8] = [4 ,0];
+		let masks: [UInt8]  = [240, 15];
+
+		var i = 0
+		var k = 0
+		
+		outerloop: while i < width {
+			for (shift, mask) in zip(shifts, masks) {
+				guard i < width else {
+					break outerloop
+				}
+
+				let index = (buffer[k] * mask) >> shift
+				pixels[i][row] = getColor(at: Int(index))!
+				i += 1;
+			}
+			k += 1
+		}
+
+		return true
+	}
+	
+	private func read1BitRow(_ buffer: Data, row: Int) -> Bool {
+		guard width <= buffer.count * 8 else {
+			return false
+		}
+		let shifts: [UInt8] = [7, 6, 5, 4, 3, 2, 1, 0]
+		let masks: [UInt8]  = [128, 64, 32, 16, 8, 4, 2, 1]
+
+		var i = 0
+		var k = 0
+		
+		outerloop: while i < width {
+			for (shift, mask) in zip(shifts, masks) {
+				guard i < width else {
+					break outerloop
+				}
+
+				let index = (buffer[k] * mask) >> shift
+				pixels[i][row] = getColor(at: Int(index))!
+				i += 1;
+			}
+			k += 1
+		}
+		
+		return true
+	}
+	
+	func read(from: Data) throws {
+		let data = PhLEData(data: from)
+		
+		guard let bmfh = BMFH(data: data) else {
+			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+		}
+		guard bmfh.bfType == 19778 else {
+			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+		}
+		
+		guard let bmih = BMIH(data: data) else {
+			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+		}
+		
+		XPelsPerMeter = bmih.biXPelsPerMeter;
+		YPelsPerMeter = bmih.biYPelsPerMeter;
+		
+		// if bmih.biCompression 1 or 2, then the file is RLE compressed
+		if bmih.biCompression == 1 || bmih.biCompression == 2 {
+			_=setSize(width: 1,height: 1)
+			_=setBitDepth(1)
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is (RLE) compressed. EasyBMP does not support compression."])
+		}
+
+		// if bmih.biCompression > 3, then something strange is going on
+		// it's probably an OS2 bitmap file.
+		
+		if bmih.biCompression > 3 {
+			_=setSize(width: 1,height: 1)
+			_=setBitDepth(1)
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is in an unsupported format. (bmih.biCompression = \(bmih.biCompression)) The file is probably an old OS2 bitmap or corrupted."])
+		}
+		if bmih.biCompression == 3 && bmih.biBitCount != 16 {
+			_=setSize(width: 1,height: 1)
+			_=setBitDepth(1)
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data uses bit fields and is not a 16-bit file. This is not supported."])
+		}
+
+		// set the bit depth
+		
+		let TempBitDepth =  bmih.biBitCount;
+		if(    TempBitDepth != 1  && TempBitDepth != 4
+			&& TempBitDepth != 8  && TempBitDepth != 16
+			&& TempBitDepth != 24 && TempBitDepth != 32 ) {
+		 _=setSize(width: 1,height: 1)
+		 _=setBitDepth(1)
+		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has unrecognized bit depth."])
+		}
+		_=setBitDepth(Int32(bmih.biBitCount))
+
+		// set the size
+
+		if (bmih.biWidth <= 0 || bmih.biHeight <= 0) {
+		 _=setSize(width: 1,height: 1)
+		 _=setBitDepth(1)
+		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has a non-positive width or height."])
+		}
+		_=setSize(width: bmih.biWidth, height: bmih.biHeight)
+
+		// some preliminaries
+
+		let dBytesPerPixel = Double(bitDepth) / 8.0;
+		var dBytesPerRow = dBytesPerPixel * Double(width)
+		dBytesPerRow = ceil(dBytesPerRow);
+		 
+		var BytePaddingPerRow = 4 - (Int(dBytesPerRow) ) % 4;
+		if BytePaddingPerRow == 4 {
+			BytePaddingPerRow = 0
+		}
+
+		// if < 16 bits, read the palette
+		
+		if bitDepth < 16  {
+			// determine the number of colors specified in the
+			// color table
+			
+			var NumberOfColorsToRead = (bmfh.bfOffBits - 54 )/4;
+			if NumberOfColorsToRead > IntPow(2,bitDepth) {
+				NumberOfColorsToRead = IntPow(2,bitDepth)
+			}
+			
+			if NumberOfColorsToRead < numberOfColors {
+				if EasyBMP.easyBMPwarnings {
+					print("Data has an underspecified color table. The table will be padded with extra white (255,255,255,0) entries.")
+				}
+			}
+			
+			var n = 0
+			while n < NumberOfColorsToRead {
+				guard let pixel = RGBAPixel(data: data) else {
+					throw NSError(domain: NSCocoaErrorDomain, code: -1, userInfo: nil)
+				}
+				colors[n] = pixel
+				//SafeFread( (char*) &(Colors[n]) , 4 , 1 , fp);
+				n += 1
+			}
+			let white = RGBAPixel(blue: 255, green: 255, red: 255, alpha: 0)
+			for n in Int(NumberOfColorsToRead)..<numberOfColors {
+				_=setColor(at: n, to: white)
+			}
+		}
+		
+		// skip blank data if bfOffBits so indicates
+		
+		var BytesToSkip = Int(bmfh.bfOffBits) - 54;
+		if bitDepth < 16 {
+			BytesToSkip -= 4 * IntPow(2, bitDepth)
+		}
+		if bitDepth == 16 && bmih.biCompression == 3 {
+			BytesToSkip -= 3*4
+		}
+		if BytesToSkip < 0 {
+			BytesToSkip = 0
+		}
+		if BytesToSkip > 0 && bitDepth != 16 {
+			if EasyBMP.easyBMPwarnings {
+				print("Extra metadata detected in data. Data will be skipped.")
+			}
+			data.addP(BytesToSkip)
+		}
+
+		// This code reads 1, 4, 8, 24, and 32-bpp files
+		// with a more-efficient buffered technique.
+
+		//int i,j;
+		if bitDepth != 16 {
+			var BufferSize = (width*bitDepth) / 8
+			while 8*BufferSize < width*bitDepth {
+				BufferSize+=1
+			}
+			while (BufferSize % 4) != 0 {
+				BufferSize+=1
+			}
+			for j in (0 ..< Int(height)).reversed() {
+				guard let buffer = data.getSubData(withLength: Int(BufferSize)) else {
+					if EasyBMP.easyBMPwarnings {
+						print("Could not read proper amount of data.")
+					}
+					break
+				}
+				
+				var Success = false;
+				switch bitDepth {
+				case 1:
+					Success = read1BitRow(buffer, row: j)
+					
+				case 4:
+					Success = read4BitRow(buffer, row: j)
+					
+				case 8:
+					Success = read8BitRow(buffer, row: j)
+					
+				case 24:
+					Success = read24BitRow(buffer, row: j)
+					
+				case 32:
+					Success = read32BitRow(buffer, row: j)
+					
+				default:
+					Success = false
+				}
+				if !Success {
+					if EasyBMP.easyBMPwarnings {
+						print("EasyBMP Error: Could not read enough pixel data!")
+					}
+					break;
+					
+				}
+			}
+		} else {
+			let DataBytes = width * 2
+			let PaddingBytes = ( 4 - DataBytes % 4 ) % 4
+			
+			// set the default mask
+			
+			var BlueMask: UInt16 = 0x1F; // bits 12-16
+			var GreenMask: UInt16 = 0x3E0; // bits 7-11
+			var RedMask: UInt16 = 0x7C00; // bits 2-6
+			
+			// read the bit fields, if necessary, to
+			// override the default 5-5-5 mask
+			
+			if bmih.biCompression != 0 {
+				// read the three bit masks
+								
+				guard let aRedMask = data.readUInt16() else {
+					//_=setSize(width: 1,height: 1)
+					//_=setBitDepth(1)
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+
+				}
+				RedMask = aRedMask
+				if data.readUInt16() == nil {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
+				
+				guard let aGreenMask = data.readUInt16() else {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
+				GreenMask = aGreenMask
+				if data.readUInt16() == nil {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
+
+				guard let aBlueMask = data.readUInt16() else {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
+				BlueMask = aBlueMask
+				if data.readUInt16() == nil {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
+			}
+			
+			// read and skip any metadata
+			
+			if BytesToSkip > 0 {
+				if EasyBMP.easyBMPwarnings {
+					print("Extra metadata detected in data. Data will be skipped.")
+				}
+				data.addP(BytesToSkip)
+			}
+			
+			// determine the red, green and blue shifts
+			
+			var GreenShift = 0
+			var TempShiftWORD = GreenMask
+			while TempShiftWORD > 31 {
+				TempShiftWORD = TempShiftWORD>>1
+				GreenShift+=1
+			}
+			var BlueShift = 0
+			TempShiftWORD = BlueMask
+			while TempShiftWORD > 31  {
+				TempShiftWORD = TempShiftWORD>>1
+				BlueShift+=1
+			}
+			var RedShift = 0
+			TempShiftWORD = RedMask
+			while TempShiftWORD > 31 {
+				TempShiftWORD = TempShiftWORD>>1
+				RedShift+=1
+			}
+			
+			// read the actual pixels
+			
+			outerLoop: for j in (0 ..< Int(height)).reversed() {
+				var i=0;
+				var ReadNumber = 0;
+				while ReadNumber < DataBytes  {
+					guard let TempWORD = data.readUInt16() else {
+						if EasyBMP.easyBMPwarnings {
+							print("Unexpected end of file reached.")
+						}
+						break outerLoop
+					}
+					ReadNumber += 2;
+					
+					let Red = RedMask & TempWORD;
+					let Green = GreenMask & TempWORD;
+					let Blue = BlueMask & TempWORD;
+					
+					let BlueBYTE = UInt8(8*(Blue>>BlueShift));
+					let GreenBYTE = UInt8(8*(Green>>GreenShift));
+					let RedBYTE = UInt8(8*(Red>>RedShift));
+					
+					(pixels[i][j]).red = RedBYTE;
+					(pixels[i][j]).green = GreenBYTE;
+					(pixels[i][j]).blue = BlueBYTE;
+					
+					i+=1;
+				}
+				ReadNumber = 0;
+				while ReadNumber < PaddingBytes {
+					data.addP(1)
+					ReadNumber+=1;
+				}
+			}
+		}
 	}
 }

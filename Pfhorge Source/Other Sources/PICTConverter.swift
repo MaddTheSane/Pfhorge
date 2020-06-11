@@ -760,7 +760,7 @@ class PICT {
 		if (aPict.bitmap.bitDepth <= 8 && format == .best) || format == .bitmap {
 			return (.bitmap, aPict.bitmap.generateData())
 		}
-		if aPict.bitmap.bitDepth > 8 && (format == .best || format == .PNG) {
+		if (aPict.bitmap.bitDepth > 8 && format == .best) || format == .PNG {
 			//Hackity-hack!
 			let dat = aPict.bitmap.generateData()
 			guard let bmpImgRep = NSBitmapImageRep(data: dat),
@@ -837,6 +837,7 @@ class PICT {
 	}
 }
 
+/// Obj-C bridging header for converting to/from PICT formats.
 @objc class PhPictConversion: NSObject {
 	@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
 		/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
