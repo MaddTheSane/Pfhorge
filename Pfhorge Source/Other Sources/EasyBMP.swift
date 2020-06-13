@@ -51,28 +51,7 @@ private func bmpWrite(_ toWrite: Int8, _ data: inout Data) {
 	data.append(contentsOf: [UInt8(bitPattern: toWrite)])
 }
 
-private func bmpWrite(_ toWrite: UInt16, _ data: inout Data) {
-	let arr = [toWrite.littleEndian]
-	arr.withUnsafeBytes { (rbp) -> Void in
-		data.append(Data(rbp))
-	}
-}
-
-private func bmpWrite(_ toWrite: Int16, _ data: inout Data) {
-	let arr = [toWrite.littleEndian]
-	arr.withUnsafeBytes { (rbp) -> Void in
-		data.append(Data(rbp))
-	}
-}
-
-private func bmpWrite(_ toWrite: UInt32, _ data: inout Data) {
-	let arr = [toWrite.littleEndian]
-	arr.withUnsafeBytes { (rbp) -> Void in
-		data.append(Data(rbp))
-	}
-}
-
-private func bmpWrite(_ toWrite: Int32, _ data: inout Data) {
+@inline(__always) private func bmpWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 	let arr = [toWrite.littleEndian]
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))
@@ -765,7 +744,7 @@ class EasyBMP {
 			if EasyBMP.easyBMPwarnings {
 				print("EasyBMP Warning: Requested color number \(colorNumber) is outside the allowed range [0,\(numberOfColors - 1)]. Ignoring request to get this color.")
 			}
-			return nil;
+			return output;
 		}
 		return colors[colorNumber];
 	}

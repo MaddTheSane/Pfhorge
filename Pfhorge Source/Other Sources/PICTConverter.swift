@@ -24,6 +24,21 @@
 import Cocoa
 
 
+@inline(__always) private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
+	let arr = [toWrite.bigEndian]
+	arr.withUnsafeBytes { (rbp) -> Void in
+		data.append(Data(rbp))
+	}
+}
+
+private func PICTWrite(_ toWrite: UInt8, _ data: inout Data) {
+	data.append(contentsOf: [toWrite])
+}
+
+private func PICTWrite(_ toWrite: Int8, _ data: inout Data) {
+	data.append(contentsOf: [UInt8(bitPattern: toWrite)])
+}
+
 class PICT {
 	struct Rect {
 		var top: Int16
@@ -375,7 +390,7 @@ class PICT {
 		}
 		
 		func save(to data: inout Data) {
-			var tmpData = Data()
+			var tmpData = Data(capacity: MemoryLayout<PixMap>.size)
 			let dat1 = [rowBytes.bigEndian]
 			dat1.withUnsafeBytes { (buf) -> Void in
 				tmpData.append(Data(buf))
@@ -399,10 +414,38 @@ class PICT {
 			}
 			data.append(tmpData)
 		}
+		
+		init(depth: Int16, rowBytes rowBytes_: Int16) {
+			rowBytes = rowBytes_ | Int16(bitPattern: 0x8000)
+			version = 0
+			packType = 0
+			packSize = 0
+			hRes = 72 << 16
+			vRes = 72 << 16
+			pixelSize = depth
+			planeBytes = 0
+			table = 0
+			reserved = 0
+			
+			if depth == 8 {
+				pixelType = 0;
+				cmpSize = 8;
+				cmpCount = 1;
+			} else if depth == 16 {
+				pixelType = 0x10;
+				cmpSize = 5;
+				cmpCount = 3;
+			} else {
+				pixelType = 0x10;
+				cmpSize = 8;
+				cmpCount = 3;
+			}
+			bounds = Rect()
+		}
 	}
 	
-	var jpegData = Data()
-	var bitmap = EasyBMP()
+	private var jpegData = Data()
+	private var bitmap = EasyBMP()
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) -> Bool {
 		if (!packed) {
@@ -447,7 +490,7 @@ class PICT {
 		}
 
 		// read the color table
-		if (isPixmap && packed) {
+		if isPixmap && packed {
 			stream.addP(4); // ctSeed
 			guard let flags = stream.readUInt16(),
 				var num_colors = stream.readUInt16() else {
@@ -767,7 +810,7 @@ class PICT {
 				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
 					// brute force!
 					guard let bir = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(aPict.bitmap.width), pixelsHigh: Int(aPict.bitmap.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bitmapFormat: NSBitmapImageRep.Format.alphaFirst, bytesPerRow: Int(aPict.bitmap.width)*4, bitsPerPixel: 32) else {
-						throw NSError(domain: NSCocoaErrorDomain, code: -1)
+						throw PICTConversionError.conversionFailed
 					}
 					for i in 0 ..< Int(aPict.bitmap.width) {
 						autoreleasepool {
@@ -779,8 +822,7 @@ class PICT {
 						}
 					}
 					guard let dat = bir.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
-						throw NSError(domain: NSCocoaErrorDomain, code: -1)
-
+						throw PICTConversionError.conversionFailed
 					}
 					return (.PNG, dat)
 			}
@@ -806,7 +848,7 @@ class PICT {
 				return (.JPEG, pngDat)
 			}
 
-			throw NSError(domain: NSCocoaErrorDomain, code: -1)
+			throw PICTConversionError.conversionFailed
 
 		case .PNG:
 			if aPict.jpegData.count != 0 {
@@ -818,13 +860,13 @@ class PICT {
 
 			guard let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
 				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
-				throw NSError(domain: NSCocoaErrorDomain, code: -1)
+					throw PICTConversionError.conversionFailed
 			}
 			return (.PNG, pngDat)
 
 			
 		default:
-			throw NSError(domain: NSCocoaErrorDomain, code: -1)
+			throw NSError(domain: NSOSStatusErrorDomain, code: paramErr)
 		}
 	}
 	
@@ -834,6 +876,303 @@ class PICT {
 		case usesCinemascopeHack
 		case unsupportedQuickTimeCodec
 		case unexpectedEndOfStream
+		case conversionFailed
+	}
+	
+	private func saveJPEG() -> Data? {
+		var result = Data()
+		
+		guard let (width, height) = parseJPEGDimensions(jpegData) else {
+			return nil
+		}
+		
+		// size(2), rect(8), versionOp(2), version(2), headerOp(26), clip(12)
+		var output_length = 10 + 2 + 2 + 26 + 12;
+
+		// PICT opcode
+		output_length += 76;
+		
+		// image description
+		output_length += 86;
+
+		output_length += jpegData.count
+
+		// end opcode
+		output_length += 2;
+
+		if (output_length & 1) != 0 {
+			output_length += 1
+		}
+		
+		result.reserveCapacity(output_length)
+
+		
+		let size: Int16 = 0;
+		let clipRect = Rect(width: width, height: height);
+		PICTWrite(size, &result)
+		clipRect.save(to: &result)
+
+		
+		let versionOp: Int16 = 0x0011;
+		let version: Int16 = 0x02ff;
+		PICTWrite(versionOp, &result)
+		PICTWrite(version, &result)
+
+		var headerOp = HeaderOp()
+		headerOp.srcRect = clipRect;
+		headerOp.save(to: &result);
+
+		let clip: Int16 = 0x0001;
+		let clipSize: Int16 = 10;
+		PICTWrite(clip, &result)
+		PICTWrite(clipSize, &result)
+		clipRect.save(to: &result);
+
+		let opcode: UInt16 = 0x8200;
+		let opcode_size: UInt32 = UInt32(154 + jpegData.count);
+		PICTWrite(opcode, &result)
+		PICTWrite(opcode_size, &result)
+
+		result.append(contentsOf: [0, 0]) // version
+		var matrix = [Int16](repeating: 0, count: 18)
+		matrix[0] = 1;
+		matrix[8] = 1;
+		matrix[16] = 0x4000;
+
+		for val in matrix {
+			PICTWrite(val, &result)
+		}
+		
+		
+		result.append(contentsOf: Array(repeating: 0, count: 4)) // matte size
+		result.append(contentsOf: Array(repeating: 0, count: 8)) // matte rect
+		
+		let transfer_mode: UInt16 = 0x0040;
+		PICTWrite(transfer_mode, &result)
+		clipRect.save(to: &result);
+		let accuracy: uint32 = 768;
+		PICTWrite(accuracy, &result)
+		result.append(contentsOf: Array(repeating: 0, count: 4)) // mask size
+		
+		let id_size: UInt32 = 86;
+		let codec_type = PhJPEGCodecID;
+		PICTWrite(id_size, &result)
+		PICTWrite(codec_type, &result)
+		result.append(contentsOf: Array(repeating: 0, count: 8)) // rsrvd1, rsrvd2, dataRefIndex
+		result.append(contentsOf: Array(repeating: 0, count: 4)) // revision, revisionLevel
+		result.append(contentsOf: Array(repeating: 0, count: 4)) // vendor
+		result.append(contentsOf: Array(repeating: 0, count: 4)) // temporalQuality
+		let res: UInt32 = 72 << 16;
+		PICTWrite(accuracy, &result) // spatialQuality
+		PICTWrite(width, &result)
+		PICTWrite(height, &result)
+		PICTWrite(res, &result) // hRes
+		PICTWrite(res, &result) // vRes
+
+		let data_size: uint32 = uint32(jpegData.count);
+		let frame_count: uint16 = 1;
+		PICTWrite(data_size, &result)
+		PICTWrite(frame_count, &result)
+		result.append(contentsOf: Array(repeating: 0, count: 32)) // name
+		let depth: Int16 = 32;
+		let clut_id: Int16 = -1;
+		PICTWrite(depth, &result)
+		PICTWrite(clut_id, &result)
+
+		result.append(jpegData)
+
+		if (result.count & 1) == 1 {
+			result.append(contentsOf: [0])
+		}
+
+		PICTWrite(OpCode.opEndPic.rawValue, &result)
+
+
+		return result
+	}
+	
+	/// saves a PICT
+	func save(toData: ()) throws -> Data {
+		if bitmap.height != 1 || bitmap.width != 1 {
+			return try saveBMP()
+		} else if jpegData.count != 0 {
+			guard let jpeg = saveJPEG() else {
+				throw NSError(domain: NSCocoaErrorDomain, code: NSFileWriteUnknownError, userInfo: nil)
+			}
+			return jpeg
+		}
+		
+		//last attempt
+		return try saveBMP()
+	}
+	
+	func save(to: URL) throws {
+		let dat = try save(toData: ())
+		try dat.write(to: to)
+	}
+	
+	private func saveBMP() throws -> Data {
+		var result = Data()
+		var depth = bitmap.bitDepth
+		let width = bitmap.width
+		let height = bitmap.height
+		if depth < 8 {
+			depth = 8
+		} else if depth == 24 {
+			depth = 32
+		}
+
+		// size(2), rect(8), versionOp(2), version(2), headerOp(26), clip(12)
+		var output_length = 10 + 2 + 2 + 26 + 12
+
+		var row_bytes: Int32
+		if depth == 8 {
+			row_bytes = width;
+			// opcode(2), pixmap(46), colorTable(8+256*8), srcRect/dstRect/mode(18)
+			output_length += 2 + 26 + 8 + 256 * 8 + 18
+		} else {
+			row_bytes = width * (depth == 16 ? 2 : 4)
+			// opcode(2), pmBaseAddr(4), pixmap(46), srcRect/dstRect/mode(18)
+			output_length += 2 + 4 + 26 + 18
+		}
+		
+		// data is variable--allocate twice what we need
+		output_length += Int(height * row_bytes * 2)
+		result.reserveCapacity(output_length)
+
+		let size: Int16 = 0;
+		let clipRect = Rect(width: Int16(width), height: Int16(height))
+		PICTWrite(size, &result)
+
+		clipRect.save(to: &result)
+
+		let versionOp: Int16 = 0x0011;
+		let version: Int16 = 0x02ff;
+		
+		PICTWrite(versionOp, &result)
+		PICTWrite(version, &result)
+
+		var headerOp = HeaderOp()
+		headerOp.srcRect = clipRect;
+		headerOp.save(to: &result);
+		let clip: Int16 = 0x0001;
+		let clipSize: Int16 = 10;
+		PICTWrite(clip, &result)
+		PICTWrite(clipSize, &result)
+
+		clipRect.save(to: &result)
+
+		var pixMap = PixMap(depth: Int16(depth), rowBytes: Int16(row_bytes));
+		pixMap.bounds = clipRect;
+		pixMap.save(to: &result);
+
+		// color table
+		if depth == 8 {
+			let seed: Int32 = 0;
+			let flags: Int16 = 0;
+			let size: Int16 = 255;
+			PICTWrite(seed, &result)
+			PICTWrite(flags, &result)
+			PICTWrite(size, &result)
+
+
+			for index in 0 ..< Int16(256) {
+				let pixel = bitmap.getColor(at: Int(index))!
+				let red = UInt16(pixel.red) << 8;
+				let green = UInt16(pixel.green) << 8;
+				let blue = UInt16(pixel.blue) << 8;
+				PICTWrite(index, &result)
+				PICTWrite(red, &result)
+				PICTWrite(green, &result)
+				PICTWrite(blue, &result)
+			}
+		}
+		
+		// source
+		clipRect.save(to: &result);
+		// destination
+		clipRect.save(to: &result);
+
+		let transfer_mode: Int16 = 0;
+		PICTWrite(transfer_mode, &result)
+
+		var color_map = [EasyBMP.RGBAPixel: UInt8]() // for faster saving of 8-bit images
+		if depth == 8 {
+			for i in (0...UInt8(255)).reversed() {
+				color_map[bitmap.getColor(at: Int(i))!] = i
+			}
+		}
+		
+		for y in 0 ..< Int(height) {
+			var scan_line: Data
+			if depth == 8 {
+				var pixels = [UInt8]()
+				
+				for x in 0 ..< Int(width) {
+					let aPix = color_map[bitmap.getPixel(atX: x, y: y)] ?? 0
+					pixels.append(aPix)
+				}
+				scan_line = packRow(pixels)
+			} else if depth == 16 {
+				var pixels = [UInt16]();
+				for x in 0 ..< Int(width) {
+					let red: UInt16 = UInt16(bitmap.getPixel(atX: x, y: y).red >> 3);
+					let green: UInt16 = UInt16(bitmap.getPixel(atX: x, y: y).green >> 3);
+					let blue: UInt16 = UInt16(bitmap.getPixel(atX: x, y: y).blue >> 3);
+					pixels.append((red << 10) | (green << 5) | blue);
+				}
+
+				scan_line = packRow(pixels);
+			} else {
+				var pixels = [UInt8](repeating: 0, count: Int(width) * 3)
+				for x in 0 ..< Int(width) {
+					let thePix = bitmap.getPixel(atX: x, y: y)
+					pixels[x] = thePix.red;
+					pixels[x + Int(width)] = thePix.green;
+					pixels[x + Int(width * 2)] = thePix.blue;
+				}
+
+				scan_line = packRow(pixels)
+			}
+			
+			if (row_bytes > 250) {
+				PICTWrite(UInt16(scan_line.count), &result)
+			} else {
+				PICTWrite(UInt8(scan_line.count), &result)
+			}
+			result.append(scan_line)
+		}		
+		
+		if (result.count & 1) != 0 {
+			result.append(0)
+		}
+
+		PICTWrite(OpCode.opEndPic.rawValue, &result)
+
+		return result
+	}
+	
+	func importData(from: URL) throws {
+		let resVal = try from.resourceValues(forKeys: [.typeIdentifierKey])
+		switch resVal.typeIdentifier! {
+		case (kUTTypeBMP as NSString as String):
+			let dataB = try Data(contentsOf: from)
+			try bitmap.read(from: dataB)
+			
+		case (kUTTypeJPEG as NSString as String):
+			jpegData = try Data(contentsOf: from)
+			
+		case (kUTTypePICT as NSString as String):
+			let dataB = try Data(contentsOf: from)
+			guard dataB.count >= 528 else {
+				throw CocoaError.error(.fileReadCorruptFile, url: from)
+			}
+			try load(from: dataB.advanced(by: 512))
+
+
+		default:
+			throw CocoaError.error(.fileReadCorruptFile, url: from)
+		}
 	}
 }
 
@@ -860,6 +1199,27 @@ class PICT {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
+	}
+	
+	@objc(convertPICTfromURL:toFormat:error:) class func convertPICT(from: URL, to: BinaryFormat) throws -> Data {
+		let retVal = try PICT.convertPICT(from: from, to: to)
+		guard to == retVal.format else {
+			abort()
+		}
+		return retVal.data
+	}
+	
+	@objc(convertPICTfromData:toFormat:error:) class func convertPICT(from: Data, to: BinaryFormat) throws -> Data {
+		let retVal = try PICT.convertPICT(from: from, to: to)
+		guard to == retVal.format else {
+			abort()
+		}
+		return retVal.data
+	}
+
+	
+	private override init() {
+		
 	}
 }
 
@@ -977,3 +1337,116 @@ private func expandPixels(from scanLines: [UInt8], depth: Int) -> [UInt8] {
 	return result;
 }
 
+private func packRow<X:FixedWidthInteger>(_ scanLine: [X]) -> Data {
+	var result = Data(capacity: scanLine.count * 2 * MemoryLayout<X>.size)
+	
+	var run = scanLine.startIndex
+	var start = scanLine.startIndex
+	var end = scanLine.index(after: scanLine.startIndex)
+
+	while end != scanLine.endIndex {
+		if scanLine[end] != scanLine[scanLine.index(before: end)] {
+			run = end
+		}
+
+		
+		end = scanLine.index(after: end)
+		if end.distance(to: run) == 3 {
+			if (run > start)
+			{
+				let block_length: UInt8 = UInt8(run - start - 1)
+				PICTWrite(block_length, &result)
+				while (start < run)
+				{
+					PICTWrite(scanLine[start], &result)
+
+					start = scanLine.index(after: start)
+				}
+			}
+			while (end != scanLine.endIndex && scanLine[end] == scanLine[end - 1] && end - run < 128)
+			{
+				end = scanLine.index(after: end)
+			}
+			let run_length: UInt8 = UInt8(1 - (end - run));
+			PICTWrite(run_length, &result)
+			PICTWrite(scanLine[run], &result)
+			run = end;
+			start = end;
+		} else if (end - start == 128) {
+			let block_length: UInt8 = UInt8(end - start - 1);
+			PICTWrite(block_length, &result)
+			while (start < end) {
+				PICTWrite(scanLine[start], &result)
+				scanLine.formIndex(after: &start)
+			}
+			run = end;
+		}
+	}
+	
+	if end > start {
+		let block_length: UInt8 = UInt8(end - start - 1);
+		PICTWrite(block_length, &result)
+		while start < end {
+			PICTWrite(scanLine[start], &result)
+			start = scanLine.index(after: start)
+		}
+	}
+
+	
+	return result
+}
+
+private func parseJPEGDimensions(_ preData: Data) -> (width: Int16, height: Int16)? {
+	let stream = PhData(data: preData)
+	guard let magic = stream.readUInt16(), magic == 0xffd8 else {
+		return nil
+	}
+	
+	while stream.currentPosition < stream.length {
+		// eat until we find 0xff
+		var c: UInt8
+		repeat {
+			guard let cc = stream.readUInt8() else {
+				return nil
+			}
+			c = cc
+		} while c != 0xff
+		
+		
+		// eat 0xffs until we find marker code
+		repeat {
+			guard let cc = stream.readUInt8() else {
+				return nil
+			}
+			c = cc
+		} while c == 0xff
+
+		switch c {
+		case 0xd9, // end of image
+		0xda: // start of scan
+			return nil
+			
+			
+		case 0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf:
+			// start of frame
+			guard let /*length*/_ = stream.readUInt16(), let /*precision*/_ = stream.readUInt8(), let height = stream.readInt16(), let width = stream.readInt16() else {
+				return nil
+			}
+			
+			return (width, height)
+			
+		default:
+			guard let length = stream.readUInt16() else {
+				return nil
+			}
+			if length < 2 {
+				return nil
+			} else {
+				stream.addP(Int(length - 2))
+			}
+			break
+		}
+	}
+	
+	return nil
+}
