@@ -44,14 +44,14 @@ private var DefaultYPelsPerMeter: UInt32 {
 }
 
 private func bmpWrite(_ toWrite: UInt8, _ data: inout Data) {
-	data.append(contentsOf: [toWrite])
+	data.append(toWrite)
 }
 
 private func bmpWrite(_ toWrite: Int8, _ data: inout Data) {
-	data.append(contentsOf: [UInt8(bitPattern: toWrite)])
+	data.append(UInt8(bitPattern: toWrite))
 }
 
-@inline(__always) private func bmpWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
+private func bmpWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 	let arr = [toWrite.littleEndian]
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))

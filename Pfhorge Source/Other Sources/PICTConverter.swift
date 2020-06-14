@@ -24,7 +24,7 @@
 import Cocoa
 
 
-@inline(__always) private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
+private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 	let arr = [toWrite.bigEndian]
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))
@@ -32,11 +32,11 @@ import Cocoa
 }
 
 private func PICTWrite(_ toWrite: UInt8, _ data: inout Data) {
-	data.append(contentsOf: [toWrite])
+	data.append(toWrite)
 }
 
 private func PICTWrite(_ toWrite: Int8, _ data: inout Data) {
-	data.append(contentsOf: [UInt8(bitPattern: toWrite)])
+	data.append(UInt8(bitPattern: toWrite))
 }
 
 class PICT {
@@ -1141,7 +1141,7 @@ class PICT {
 				PICTWrite(UInt8(scan_line.count), &result)
 			}
 			result.append(scan_line)
-		}		
+		}
 		
 		if (result.count & 1) != 0 {
 			result.append(0)
@@ -1159,6 +1159,16 @@ class PICT {
 			let dataB = try Data(contentsOf: from)
 			try bitmap.read(from: dataB)
 			
+		case (kUTTypePNG as NSString as String):
+			let dataB = try Data(contentsOf: from)
+			guard let bir = NSBitmapImageRep(data: dataB) else {
+				throw CocoaError.error(.fileReadCorruptFile, url: from)
+			}
+			guard let dataC = bir.representation(using: .bmp, properties: [.fallbackBackgroundColor: NSColor(calibratedWhite: 1, alpha: 1)]) else {
+				throw CocoaError.error(.fileReadCorruptFile, url: from)
+			}
+			try bitmap.read(from: dataC)
+
 		case (kUTTypeJPEG as NSString as String):
 			jpegData = try Data(contentsOf: from)
 			
