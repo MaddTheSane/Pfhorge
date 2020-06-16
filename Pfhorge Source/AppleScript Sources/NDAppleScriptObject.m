@@ -172,7 +172,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (id)initWithString:(NSString *)aString modeFlags:(SInt32)aModeFlags
 {
-	return [self initWithString:aString modeFlags:aModeFlags component:NULL];
+	return [self initWithString:aString modeFlags:aModeFlags component:NULL error:NULL];
 }
 
 /*
@@ -180,7 +180,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
  */
 - (id)initWithContentsOfFile:(NSString *)aPath
 {
-	return [self initWithContentsOfFile:aPath component:NULL];
+	return [self initWithContentsOfURL:[NSURL fileURLWithPath:aPath] component:NULL error:NULL];
 }
 
 /*

@@ -59,7 +59,7 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 //#define ImportObjPos(objp) objp = [myData getObjectFromIndex:index]
 #define ImportObjIndex(objp, i) objp = [myData getObjectFromIndex:(i) objTypesArr:objTypesArr]
 #define ImportObj(objp) objp = [myData getObjectFromIndex:index objTypesArr:objTypesArr]
-#define ImportShort(v) [myData getShort:&(v)]
+#define ImportShort(v) do {short tmp; [myData getShort:&(tmp)]; v = tmp;} while (0)
 #define ImportLong(v) [myData getLong:&(v)]
 #define ImportInt(v) [myData getInt:&(v)]
 #define ImportUnsignedShort(v) [myData getUnsignedShort:&(v)]
@@ -363,10 +363,9 @@ enum {
     _vm_texture_render_mode = 2
 };
 
-typedef NS_ENUM(int, LESideDirection)
-{
-    _clockwise,
-    _counter_clockwise
+typedef NS_ENUM(int, LESideDirection) {
+    LESideClockwise,
+    LESideCounterClockwise
 };
 
 #pragma mark - EXTERN Variables

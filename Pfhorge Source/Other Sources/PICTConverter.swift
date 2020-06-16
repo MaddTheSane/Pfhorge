@@ -68,8 +68,11 @@ class PICT {
 		}
 		
 		init?(data: PhData) {
-			guard let aTop = data.readInt16(), let aLeft = data.readInt16(), let aBottom = data.readInt16(), let aRight = data.readInt16() else {
-				return nil
+			guard let aTop = data.readInt16(),
+				let aLeft = data.readInt16(),
+				let aBottom = data.readInt16(),
+				let aRight = data.readInt16() else {
+					return nil
 			}
 			top = aTop
 			left = aLeft
@@ -303,11 +306,12 @@ class PICT {
 		}
 		
 		init?(data: PhData) {
-			guard let aheaderOp = data.readInt16(), let aheaderVersion = data.readUInt16(),
-			let areserved1 = data.readInt16(),
-			let ahRes = data.readInt32(),
-			let avRes = data.readInt32(),
-			let asrcRect = Rect(data: data),
+			guard let aheaderOp = data.readInt16(),
+				let aheaderVersion = data.readUInt16(),
+				let areserved1 = data.readInt16(),
+				let ahRes = data.readInt32(),
+				let avRes = data.readInt32(),
+				let asrcRect = Rect(data: data),
 				let areserved2 = data.readInt32() else {
 					return nil
 			}
@@ -428,17 +432,17 @@ class PICT {
 			reserved = 0
 			
 			if depth == 8 {
-				pixelType = 0;
-				cmpSize = 8;
-				cmpCount = 1;
+				pixelType = 0
+				cmpSize = 8
+				cmpCount = 1
 			} else if depth == 16 {
-				pixelType = 0x10;
-				cmpSize = 5;
-				cmpCount = 3;
+				pixelType = 0x10
+				cmpSize = 5
+				cmpCount = 3
 			} else {
-				pixelType = 0x10;
-				cmpSize = 8;
-				cmpCount = 3;
+				pixelType = 0x10
+				cmpSize = 8
+				cmpCount = 3
 			}
 			bounds = Rect()
 		}
@@ -449,14 +453,14 @@ class PICT {
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) -> Bool {
 		if (!packed) {
-			stream.addP(4); // pmBaseAddr
+			stream.addP(4) // pmBaseAddr
 		}
 
 		guard var rowBytes = stream.readUInt16() else {
 			return false
 		}
 		let isPixmap = (rowBytes & 0x8000) == 0x8000
-		rowBytes &= 0x3fff;
+		rowBytes &= 0x3fff
 		guard let rect = Rect(data: stream) else {
 			return false
 		}
@@ -466,27 +470,27 @@ class PICT {
 		var pack_type: UInt16
 		var pixel_size: UInt16
 		if isPixmap {
-			stream.addP(2); // pmVersion
+			stream.addP(2) // pmVersion
 			guard let tmpVal = stream.readUInt16() else {
 				return false
 			}
 			pack_type = tmpVal
-			stream.addP(14); // packSize/hRes/vRes/pixelType
+			stream.addP(14) // packSize/hRes/vRes/pixelType
 			guard let tmpVal2 = stream.readUInt16() else {
 				return false
 			}
 			pixel_size = tmpVal2
-			stream.addP(16); // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
+			stream.addP(16) // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
 		} else {
-			pack_type = 0;
-			pixel_size = 1;
+			pack_type = 0
+			pixel_size = 1
 		}
 		
 		_=bitmap.setSize(width: Int32(width), height: Int32(height))
 		if (pixel_size <= 8) {
-			_=bitmap.setBitDepth(8);
+			_=bitmap.setBitDepth(8)
 		} else {
-			_=bitmap.setBitDepth(Int32(pixel_size));
+			_=bitmap.setBitDepth(Int32(pixel_size))
 		}
 
 		// read the color table
@@ -506,9 +510,9 @@ class PICT {
 				}
 
 				if (flags & 0x8000) != 0 {
-					index = i;
+					index = i
 				} else {
-					index &= 0xff;
+					index &= 0xff
 				}
 
 				let pixel = EasyBMP.RGBAPixel(blue: UInt8(blue >> 8), green: UInt8(green >> 8), red: UInt8(red >> 8), alpha: 0xff)
@@ -523,7 +527,7 @@ class PICT {
 				guard let size = stream.readUInt16() else {
 					return false
 				}
-				stream.addP(Int(size - 2));
+				stream.addP(Int(size - 2))
 			}
 			// the picture itself
 			if pixel_size <= 8 {
@@ -546,13 +550,13 @@ class PICT {
 					
 					if (pixel_size == 8) {
 						for x in 0 ..< Int(width) {
-							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(scanLine[x]))!);
+							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(scanLine[x]))!)
 						}
 					} else {
 						let pixels = expandPixels(from: scanLine, depth: Int(pixel_size))
 						
 						for x in 0 ..< Int(width) {
-							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(pixels[x]))!);
+							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(pixels[x]))!)
 						}
 					}
 
@@ -579,12 +583,12 @@ class PICT {
 						pixel.red = UInt8((scan_line[x] >> 10) & 0x1f);
 						pixel.green = UInt8((scan_line[x] >> 5) & 0x1f)
 						pixel.blue = UInt8(scan_line[x] & 0x1f)
-						pixel.red = (pixel.red * 255 + 16) / 31;
-						pixel.green = (pixel.green * 255 + 16) / 31;
-						pixel.blue = (pixel.blue * 255 + 16) / 31;
-						pixel.alpha = 0xff;
+						pixel.red = (pixel.red * 255 + 16) / 31
+						pixel.green = (pixel.green * 255 + 16) / 31
+						pixel.blue = (pixel.blue * 255 + 16) / 31
+						pixel.alpha = 0xff
 						
-						_=bitmap.setPixel(atX: x, y: y, pixel);
+						_=bitmap.setPixel(atX: x, y: y, pixel)
 					}
 				}
 			} else if (pixel_size == 32) {
@@ -596,9 +600,9 @@ class PICT {
 							guard let pixel = stream.readUInt32() else {
 								return false
 							}
-							scan_line[x] = UInt8(pixel >> 16);
-							scan_line[x + Int(width)] = UInt8((pixel >> 8) & 0xff);
-							scan_line[x + Int(width) * 2] = UInt8(pixel & 0xFF);
+							scan_line[x] = UInt8(pixel >> 16)
+							scan_line[x + Int(width)] = UInt8((pixel >> 8) & 0xff)
+							scan_line[x + Int(width) * 2] = UInt8(pixel & 0xFF)
 						}
 					} else if pack_type == 0 || pack_type == 4 {
 						guard let tmpSL = unpackRow8(stream, rowBytes: Int(rowBytes)) else {
@@ -609,11 +613,11 @@ class PICT {
 
 					for x in 0 ..< Int(width) {
 						var pixel = EasyBMP.RGBAPixel()
-						pixel.red = scan_line[x];
-						pixel.green = scan_line[x + Int(width)];
-						pixel.blue = scan_line[x + Int(width) * 2];
-						pixel.alpha = 0xff;
-						_=bitmap.setPixel(atX: x, y: y, pixel);
+						pixel.red = scan_line[x]
+						pixel.green = scan_line[x + Int(width)]
+						pixel.blue = scan_line[x + Int(width) * 2]
+						pixel.alpha = 0xff
+						_=bitmap.setPixel(atX: x, y: y, pixel)
 					}
 				}
 			}
@@ -752,7 +756,7 @@ class PICT {
 		guard let matteSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(22); // matte rect/srcRect/accuracy
+		data.addP(22) // matte rect/srcRect/accuracy
 		
 		guard let maskSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
@@ -762,23 +766,23 @@ class PICT {
 			guard let matte_id_size = data.readUInt32() else {
 				throw PICTConversionError.unexpectedEndOfStream
 			}
-			data.addP(Int(matte_id_size - 4));
+			data.addP(Int(matte_id_size - 4))
 		}
 		
-		data.addP(Int(matteSize));
-		data.addP(Int(maskSize));
+		data.addP(Int(matteSize))
+		data.addP(Int(maskSize))
 		
-		let idSize = data.readUInt32()
-		let codecType = data.readUInt32()
-		guard codecType == PhJPEGCodecID else {
-			throw PICTConversionError.unsupportedQuickTimeCodec
+		guard let idSize = data.readUInt32(),
+			let codecType = data.readUInt32(),
+			codecType == PhJPEGCodecID else {
+				throw PICTConversionError.unsupportedQuickTimeCodec
 		}
 		
 		data.addP(36); // resvd1/resvd2/dataRefIndex/version/revisionLevel/vendor/temporalQuality/spatialQuality/width/height/hRes/vRes
 		guard let dataSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(38); // frameCount/name/depth/clutID
+		data.addP(38) // frameCount/name/depth/clutID
 		
 		guard let subDat = data.getSubData(withLength: Int(dataSize)) else {
 			data.addP(opcodeStart + Int(opcodeSize) - data.currentPosition)
@@ -887,18 +891,18 @@ class PICT {
 		}
 		
 		// size(2), rect(8), versionOp(2), version(2), headerOp(26), clip(12)
-		var output_length = 10 + 2 + 2 + 26 + 12;
+		var output_length = 10 + 2 + 2 + 26 + 12
 
 		// PICT opcode
-		output_length += 76;
+		output_length += 76
 		
 		// image description
-		output_length += 86;
+		output_length += 86
 
 		output_length += jpegData.count
 
 		// end opcode
-		output_length += 2;
+		output_length += 2
 
 		if (output_length & 1) != 0 {
 			output_length += 1
@@ -908,36 +912,36 @@ class PICT {
 
 		
 		let size: Int16 = 0;
-		let clipRect = Rect(width: width, height: height);
+		let clipRect = Rect(width: width, height: height)
 		PICTWrite(size, &result)
 		clipRect.save(to: &result)
 
 		
-		let versionOp: Int16 = 0x0011;
-		let version: Int16 = 0x02ff;
+		let versionOp: Int16 = 0x0011
+		let version: Int16 = 0x02ff
 		PICTWrite(versionOp, &result)
 		PICTWrite(version, &result)
 
 		var headerOp = HeaderOp()
-		headerOp.srcRect = clipRect;
-		headerOp.save(to: &result);
+		headerOp.srcRect = clipRect
+		headerOp.save(to: &result)
 
-		let clip: Int16 = 0x0001;
-		let clipSize: Int16 = 10;
+		let clip: Int16 = 0x0001
+		let clipSize: Int16 = 10
 		PICTWrite(clip, &result)
 		PICTWrite(clipSize, &result)
-		clipRect.save(to: &result);
+		clipRect.save(to: &result)
 
 		let opcode: UInt16 = 0x8200;
-		let opcode_size: UInt32 = UInt32(154 + jpegData.count);
+		let opcode_size: UInt32 = UInt32(154 + jpegData.count)
 		PICTWrite(opcode, &result)
 		PICTWrite(opcode_size, &result)
 
 		result.append(contentsOf: [0, 0]) // version
 		var matrix = [Int16](repeating: 0, count: 18)
-		matrix[0] = 1;
-		matrix[8] = 1;
-		matrix[16] = 0x4000;
+		matrix[0] = 1
+		matrix[8] = 1
+		matrix[16] = 0x4000
 
 		for val in matrix {
 			PICTWrite(val, &result)
@@ -974,8 +978,8 @@ class PICT {
 		PICTWrite(data_size, &result)
 		PICTWrite(frame_count, &result)
 		result.append(contentsOf: Array(repeating: 0, count: 32)) // name
-		let depth: Int16 = 32;
-		let clut_id: Int16 = -1;
+		let depth: Int16 = 32
+		let clut_id: Int16 = -1
 		PICTWrite(depth, &result)
 		PICTWrite(clut_id, &result)
 
@@ -1046,25 +1050,25 @@ class PICT {
 
 		clipRect.save(to: &result)
 
-		let versionOp: Int16 = 0x0011;
-		let version: Int16 = 0x02ff;
+		let versionOp: Int16 = 0x0011
+		let version: Int16 = 0x02ff
 		
 		PICTWrite(versionOp, &result)
 		PICTWrite(version, &result)
 
 		var headerOp = HeaderOp()
-		headerOp.srcRect = clipRect;
-		headerOp.save(to: &result);
-		let clip: Int16 = 0x0001;
-		let clipSize: Int16 = 10;
+		headerOp.srcRect = clipRect
+		headerOp.save(to: &result)
+		let clip: Int16 = 0x0001
+		let clipSize: Int16 = 10
 		PICTWrite(clip, &result)
 		PICTWrite(clipSize, &result)
 
 		clipRect.save(to: &result)
 
-		var pixMap = PixMap(depth: Int16(depth), rowBytes: Int16(row_bytes));
-		pixMap.bounds = clipRect;
-		pixMap.save(to: &result);
+		var pixMap = PixMap(depth: Int16(depth), rowBytes: Int16(row_bytes))
+		pixMap.bounds = clipRect
+		pixMap.save(to: &result)
 
 		// color table
 		if depth == 8 {
@@ -1135,7 +1139,7 @@ class PICT {
 				scan_line = packRow(pixels)
 			}
 			
-			if (row_bytes > 250) {
+			if row_bytes > 250 {
 				PICTWrite(UInt16(scan_line.count), &result)
 			} else {
 				PICTWrite(UInt8(scan_line.count), &result)
@@ -1214,7 +1218,7 @@ class PICT {
 	@objc(convertPICTfromURL:toFormat:error:) class func convertPICT(from: URL, to: BinaryFormat) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: to)
 		guard to == retVal.format else {
-			abort()
+			fatalError()
 		}
 		return retVal.data
 	}
@@ -1222,11 +1226,16 @@ class PICT {
 	@objc(convertPICTfromData:toFormat:error:) class func convertPICT(from: Data, to: BinaryFormat) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: to)
 		guard to == retVal.format else {
-			abort()
+			fatalError()
 		}
 		return retVal.data
 	}
 
+	@objc(convertFileAtURLToPICT:error:) class func convertFileToPICT(at loc: URL) throws -> Data {
+		let pict = PICT()
+		try pict.importData(from: loc)
+		return try pict.save(toData: ())
+	}
 	
 	private override init() {
 		
@@ -1256,21 +1265,21 @@ private func unpackRow8(_ stream: PhData, rowBytes: Int) -> [UInt8]? {
 			return nil
 		}
 		
-		if (c < 0) {
-			let size = -Int(c) + 1;
+		if c < 0 {
+			let size = -Int(c) + 1
 			guard let data = stream.readUInt8() else {
 				return nil
 			}
 			for _ in 0 ..< size {
-				result.append(data);
+				result.append(data)
 			}
-		} else if (c != -128) {
-			let size = Int(c) + 1;
+		} else if c != -128 {
+			let size = Int(c) + 1
 			for _ in 0..<size {
 				guard let data = stream.readUInt8() else {
 					return nil
 				}
-				result.append(data);
+				result.append(data)
 			}
 		}
 
@@ -1301,21 +1310,21 @@ private func unpackRow16(_ stream: PhData, rowBytes: Int) -> [UInt16]? {
 			return nil
 		}
 		
-		if (c < 0) {
+		if c < 0 {
 			let size = -Int(c) + 1;
 			guard let data = stream.readUInt16() else {
 				return nil
 			}
 			for _ in 0 ..< size {
-				result.append(data);
+				result.append(data)
 			}
-		} else if (c != -128) {
+		} else if c != -128 {
 			let size = Int(c) + 1;
 			for _ in 0..<size {
 				guard let data = stream.readUInt16() else {
 					return nil
 				}
-				result.append(data);
+				result.append(data)
 			}
 		}
 
@@ -1326,15 +1335,15 @@ private func unpackRow16(_ stream: PhData, rowBytes: Int) -> [UInt16]? {
 private func expandPixels(from scanLines: [UInt8], depth: Int) -> [UInt8] {
 	var result = [UInt8]()
 	for it in scanLines {
-		if (depth == 4) {
+		if depth == 4 {
 			result.append((it) >> 4)
 			result.append((it) & 0xf)
-		} else if (depth == 2) {
+		} else if depth == 2 {
 			result.append((it) >> 6)
 			result.append(((it) >> 4) & 0x3)
 			result.append(((it) >> 2) & 0x3)
 			result.append((it) & 0x3)
-		} else if (depth == 1) {
+		} else if depth == 1 {
 			var tmpIt = it
 			let bitset = CFBitVectorCreate(kCFAllocatorDefault, &tmpIt, 8)!
 			for i in 0 ..< 8 {
@@ -1344,7 +1353,7 @@ private func expandPixels(from scanLines: [UInt8], depth: Int) -> [UInt8] {
 		}
 	}
 
-	return result;
+	return result
 }
 
 private func packRow<X:FixedWidthInteger>(_ scanLine: [X]) -> Data {
@@ -1358,38 +1367,34 @@ private func packRow<X:FixedWidthInteger>(_ scanLine: [X]) -> Data {
 		if scanLine[end] != scanLine[scanLine.index(before: end)] {
 			run = end
 		}
-
 		
 		end = scanLine.index(after: end)
 		if end.distance(to: run) == 3 {
-			if (run > start)
-			{
+			if run > start {
 				let block_length: UInt8 = UInt8(run - start - 1)
 				PICTWrite(block_length, &result)
-				while (start < run)
-				{
+				while start < run {
 					PICTWrite(scanLine[start], &result)
 
 					start = scanLine.index(after: start)
 				}
 			}
-			while (end != scanLine.endIndex && scanLine[end] == scanLine[end - 1] && end - run < 128)
-			{
+			while end != scanLine.endIndex && scanLine[end] == scanLine[end - 1] && end - run < 128 {
 				end = scanLine.index(after: end)
 			}
-			let run_length: UInt8 = UInt8(1 - (end - run));
+			let run_length: UInt8 = UInt8(1 - (end - run))
 			PICTWrite(run_length, &result)
 			PICTWrite(scanLine[run], &result)
-			run = end;
-			start = end;
-		} else if (end - start == 128) {
-			let block_length: UInt8 = UInt8(end - start - 1);
+			run = end
+			start = end
+		} else if end - start == 128 {
+			let block_length: UInt8 = UInt8(end - start - 1)
 			PICTWrite(block_length, &result)
-			while (start < end) {
+			while start < end {
 				PICTWrite(scanLine[start], &result)
 				scanLine.formIndex(after: &start)
 			}
-			run = end;
+			run = end
 		}
 	}
 	

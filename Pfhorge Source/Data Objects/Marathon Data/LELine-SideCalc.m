@@ -527,13 +527,13 @@
     
     if (cLowSide && cHighSide) {
         // c Side Split...
-        [self setupSideFor:_clockwise asA:LESideSplit];
+        [self setupSideFor:LESideClockwise asA:LESideSplit];
     } else if (cLowSide && !cHighSide) {
         // c Side Low...
-        [self setupSideFor:_clockwise asA:LESideLow];
+        [self setupSideFor:LESideClockwise asA:LESideLow];
     } else if (!cLowSide && cHighSide) {
         // c Side High...
-        [self setupSideFor:_clockwise asA:LESideHigh];
+        [self setupSideFor:LESideClockwise asA:LESideHigh];
     }
     
     // ••• ••• ••• ••• ••• ••• ••• ••• •••
@@ -541,21 +541,21 @@
     
     if (ccLowSide && ccHighSide) {
         // cc Side Split...
-        [self setupSideFor:_counter_clockwise asA:LESideSplit];
+        [self setupSideFor:LESideCounterClockwise asA:LESideSplit];
     } else if (ccLowSide && !ccHighSide) {
         // cc Side Low...
-        [self setupSideFor:_counter_clockwise asA:LESideLow];
+        [self setupSideFor:LESideCounterClockwise asA:LESideLow];
     } else if (!ccLowSide && ccHighSide) {
         // cc Side High...
-        [self setupSideFor:_counter_clockwise asA:LESideHigh];
+        [self setupSideFor:LESideCounterClockwise asA:LESideHigh];
     }
     
     if (!cLowSide && !cHighSide) {
-        [self removeSideFor:_clockwise];
+        [self removeSideFor:LESideClockwise];
     }
     
     if (!ccLowSide && !ccHighSide) {
-        [self removeSideFor:_counter_clockwise];
+        [self removeSideFor:LESideCounterClockwise];
     }
     
     if (ccLowSide || cLowSide) {
@@ -576,7 +576,7 @@
     /*if (!ccLowSide && !ccHighSide)
     {
         NSLog(@"WARNING: cc side in setupWithClockPlat is not low or high!!!");
-        [self removeSideFor:_counter_clockwise];
+        [self removeSideFor:LESideCounterClockwise];
         flags |= LELineSolid;
         flags &= ~LELineTransparent;
     }
@@ -584,7 +584,7 @@
     if (!cLowSide && !cHighSide)
     {
         NSLog(@"WARNING: c side in setupWithClockPlat is not low or high!!!");
-        [self removeSideFor:_clockwise];
+        [self removeSideFor:LESideClockwise];
         flags |= LELineSolid;
         flags &= ~LELineTransparent;
     }*/
@@ -651,8 +651,8 @@
             //    c empty->   <-empty cc
             // -------------|------------
             
-            [self removeSideFor:_counter_clockwise];
-            [self removeSideFor:_clockwise];
+            [self removeSideFor:LESideCounterClockwise];
+            [self removeSideFor:LESideClockwise];
             flags |= LELineTransparent;
         }
         else if (cC > ccC)
@@ -663,8 +663,8 @@
             // cc none->
             //--------------------
             
-            [self setupSideFor:_clockwise asA:LESideHigh];
-            [self removeSideFor:_counter_clockwise];
+            [self setupSideFor:LESideClockwise asA:LESideHigh];
+            [self removeSideFor:LESideCounterClockwise];
             flags |= LELineTransparent;
         }
         else if (cC < ccC)
@@ -675,8 +675,8 @@
             // c  none->
             //--------------------
             
-            [self setupSideFor:_counter_clockwise asA:LESideHigh];
-            [self removeSideFor:_clockwise];
+            [self setupSideFor:LESideCounterClockwise asA:LESideHigh];
+            [self removeSideFor:LESideClockwise];
             flags |= LELineTransparent;
         }
     } // END if (cF == ccF)
@@ -684,8 +684,8 @@
     {
         if (ccF == cF)
         {
-            [self removeSideFor:_counter_clockwise];
-            [self removeSideFor:_clockwise];
+            [self removeSideFor:LESideCounterClockwise];
+            [self removeSideFor:LESideClockwise];
             flags |= LELineTransparent;
         }
         else if (cF > ccF)
@@ -696,8 +696,8 @@
             //          | <-low
             //          |---------
             
-            [self setupSideFor:_counter_clockwise asA:LESideLow];
-            [self removeSideFor:_clockwise];
+            [self setupSideFor:LESideCounterClockwise asA:LESideLow];
+            [self removeSideFor:LESideClockwise];
             flags |= LELineTransparent;
             flags |= LELineElevation;
         }
@@ -709,8 +709,8 @@
             //          | <-low
             //          |---------
             
-            [self setupSideFor:_clockwise asA:LESideLow];
-            [self removeSideFor:_counter_clockwise];
+            [self setupSideFor:LESideClockwise asA:LESideLow];
+            [self removeSideFor:LESideCounterClockwise];
             
             flags |= LELineTransparent;
             flags |= LELineElevation;
@@ -733,8 +733,8 @@
             //             | <-full cc
             //             |------------
             
-            [self setupSideFor:_clockwise asA:LESideFull];
-            [self setupSideFor:_counter_clockwise asA:LESideFull];
+            [self setupSideFor:LESideClockwise asA:LESideFull];
+            [self setupSideFor:LESideCounterClockwise asA:LESideFull];
             flags |= LELineSolid;
         }
         else if (cC > ccC)
@@ -746,8 +746,8 @@
                 //----------|
                 //          | <-low cc
                 //          |---------
-                [self setupSideFor:_clockwise asA:LESideHigh];
-                [self setupSideFor:_counter_clockwise asA:LESideLow];
+                [self setupSideFor:LESideClockwise asA:LESideHigh];
+                [self setupSideFor:LESideCounterClockwise asA:LESideLow];
                 flags |= LELineTransparent;
                 flags |= LELineElevation;
             }
@@ -759,8 +759,8 @@
                 //----------|
                 //          | <-split c
                 //          |------------
-                [self setupSideFor:_clockwise asA:LESideSplit];
-                [self removeSideFor:_counter_clockwise];
+                [self setupSideFor:LESideClockwise asA:LESideSplit];
+                [self removeSideFor:LESideCounterClockwise];
                 flags |= LELineTransparent;
                 flags |= LELineElevation;
             }
@@ -774,8 +774,8 @@
                 //----------|
                 //          | <-low c
                 //          |---------
-                [self setupSideFor:_clockwise asA:LESideLow];
-                [self setupSideFor:_counter_clockwise asA:LESideHigh];
+                [self setupSideFor:LESideClockwise asA:LESideLow];
+                [self setupSideFor:LESideCounterClockwise asA:LESideHigh];
                 flags |= LELineTransparent;
                 flags |= LELineElevation;
             }
@@ -787,8 +787,8 @@
                 //----------|
                 //          | <-split cc
                 //          |------------
-                [self setupSideFor:_counter_clockwise asA:LESideSplit];
-                [self removeSideFor:_clockwise];
+                [self setupSideFor:LESideCounterClockwise asA:LESideSplit];
+                [self removeSideFor:LESideClockwise];
                 flags |= LELineTransparent;
                 flags |= LELineElevation;
             }
@@ -799,8 +799,8 @@
 
 - (LESide *)setupSideFor:(LESideDirection)sideDirection asA:(LESideType)sideType
 {
-  // _clockwise
-    //  _counter_clockwise
+  // LESideClockwise
+    //  LESideCounterClockwise
 
  /*   
 enum // side types (largely redundant; most of this could bve guessed for examining adjacent polygons)
@@ -812,7 +812,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
 	LESideSplit // primary texture is mapped onto a panel coming down from the ceiling, secondary texture is mapped on a panel coming up from the floor
 };*/
 
-    if (sideDirection == _clockwise) {
+    if (sideDirection == LESideClockwise) {
         if (clockwisePolygonSideObject != nil) {
             [clockwisePolygonSideObject setType:sideType];
         } else {
@@ -846,7 +846,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
         }
         */
         return clockwisePolygonSideObject;
-    } else if (sideDirection == _counter_clockwise) {
+    } else if (sideDirection == LESideCounterClockwise) {
         if (counterclockwisePolygonSideObject != nil) {
             [counterclockwisePolygonSideObject setType:sideType];
         } else {
@@ -897,10 +897,10 @@ enum // side types (largely redundant; most of this could bve guessed for examin
 
 -(LESide *)setupSideFor:(LESideDirection)sideToReturn
 {
-    // _clockwise
-    //  _counter_clockwise
+    // LESideClockwise
+    //  LESideCounterClockwise
     
-    if (sideToReturn == _clockwise) {
+    if (sideToReturn == LESideClockwise) {
         if (clockwisePolygonSideObject != nil) {
             return clockwisePolygonSideObject;
         } else {
@@ -926,7 +926,7 @@ enum // side types (largely redundant; most of this could bve guessed for examin
             
             return theNewSide;
         }
-    } else if (sideToReturn == _counter_clockwise) {
+    } else if (sideToReturn == LESideCounterClockwise) {
         if (counterclockwisePolygonSideObject != nil) {
             return counterclockwisePolygonSideObject;
         } else {
@@ -960,14 +960,14 @@ enum // side types (largely redundant; most of this could bve guessed for examin
 
 -(void)removeSideFor:(LESideDirection)sideDirectionToRemove
 {
-    if (sideDirectionToRemove == _clockwise)
+    if (sideDirectionToRemove == LESideClockwise)
     {
         if (clockwisePolygonSideObject != nil)
             [theLELevelDataST deleteSide:clockwisePolygonSideObject];
         
         clockwisePolygonSideObject = nil;
     }
-    else if (sideDirectionToRemove == _counter_clockwise)
+    else if (sideDirectionToRemove == LESideCounterClockwise)
     {
         if (counterclockwisePolygonSideObject != nil)
             [theLELevelDataST deleteSide:counterclockwisePolygonSideObject];
