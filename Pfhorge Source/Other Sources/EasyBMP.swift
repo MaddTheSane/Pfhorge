@@ -59,19 +59,6 @@ private func bmpWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 }
 
 
-private func SafeFread(_ buffer: UnsafeMutableRawPointer, size: Int, number: Int, _ fp: UnsafeMutablePointer<FILE>) -> Bool
-{
-	if feof(fp) != 0 {
-		return false
-	}
-	let ItemsRead = fread(buffer, size, number, fp)
-	if ItemsRead < number {
-		return false
-	}
-	return true;
-}
-
-
 fileprivate extension EasyBMP.RGBAPixel {
 	init?(data: PhLEData) {
 		guard let ablue = data.readUInt8(),
@@ -87,7 +74,7 @@ fileprivate extension EasyBMP.RGBAPixel {
 	}
 }
 
-class EasyBMP {
+final class EasyBMP {
 	static var easyBMPwarnings = false
 	struct RGBAPixel: Comparable, Hashable {
 		var blue: UInt8 = 0
@@ -1002,7 +989,7 @@ class EasyBMP {
 			// determine the number of colors specified in the
 			// color table
 			
-			var NumberOfColorsToRead = (bmfh.bfOffBits - 54 )/4;
+			var NumberOfColorsToRead = (bmfh.bfOffBits - 54 )/4
 			if NumberOfColorsToRead > IntPow(2,bitDepth) {
 				NumberOfColorsToRead = IntPow(2,bitDepth)
 			}
@@ -1044,7 +1031,7 @@ class EasyBMP {
 			if EasyBMP.easyBMPwarnings {
 				print("Extra metadata detected in data. Data will be skipped.")
 			}
-			data.addP(BytesToSkip)
+			data.add(toPosition: BytesToSkip)
 		}
 
 		// This code reads 1, 4, 8, 24, and 32-bpp files
@@ -1091,8 +1078,7 @@ class EasyBMP {
 					if EasyBMP.easyBMPwarnings {
 						print("EasyBMP Error: Could not read enough pixel data!")
 					}
-					break;
-					
+					break
 				}
 			}
 		} else {
@@ -1101,9 +1087,9 @@ class EasyBMP {
 			
 			// set the default mask
 			
-			var BlueMask: UInt16 = 0x1F; // bits 12-16
-			var GreenMask: UInt16 = 0x3E0; // bits 7-11
-			var RedMask: UInt16 = 0x7C00; // bits 2-6
+			var BlueMask: UInt16 = 0x1F		// bits 12-16
+			var GreenMask: UInt16 = 0x3E0	// bits 7-11
+			var RedMask: UInt16 = 0x7C00	// bits 2-6
 			
 			// read the bit fields, if necessary, to
 			// override the default 5-5-5 mask
@@ -1145,7 +1131,9 @@ class EasyBMP {
 				if EasyBMP.easyBMPwarnings {
 					print("Extra metadata detected in data. Data will be skipped.")
 				}
-				data.addP(BytesToSkip)
+				guard data.add(toPosition: BytesToSkip) else {
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+				}
 			}
 			
 			// determine the red, green and blue shifts
@@ -1153,20 +1141,20 @@ class EasyBMP {
 			var GreenShift = 0
 			var TempShiftWORD = GreenMask
 			while TempShiftWORD > 31 {
-				TempShiftWORD = TempShiftWORD>>1
-				GreenShift+=1
+				TempShiftWORD = TempShiftWORD >> 1
+				GreenShift += 1
 			}
 			var BlueShift = 0
 			TempShiftWORD = BlueMask
 			while TempShiftWORD > 31  {
-				TempShiftWORD = TempShiftWORD>>1
-				BlueShift+=1
+				TempShiftWORD = TempShiftWORD >> 1
+				BlueShift += 1
 			}
 			var RedShift = 0
 			TempShiftWORD = RedMask
 			while TempShiftWORD > 31 {
-				TempShiftWORD = TempShiftWORD>>1
-				RedShift+=1
+				TempShiftWORD = TempShiftWORD >> 1
+				RedShift += 1
 			}
 			
 			// read the actual pixels
@@ -1181,25 +1169,30 @@ class EasyBMP {
 						}
 						break outerLoop
 					}
-					ReadNumber += 2;
+					ReadNumber += 2
 					
-					let Red = RedMask & TempWORD;
-					let Green = GreenMask & TempWORD;
-					let Blue = BlueMask & TempWORD;
+					let Red = RedMask & TempWORD
+					let Green = GreenMask & TempWORD
+					let Blue = BlueMask & TempWORD
 					
-					let BlueBYTE = UInt8(8*(Blue>>BlueShift));
-					let GreenBYTE = UInt8(8*(Green>>GreenShift));
-					let RedBYTE = UInt8(8*(Red>>RedShift));
+					let BlueBYTE = UInt8(8*(Blue>>BlueShift))
+					let GreenBYTE = UInt8(8*(Green>>GreenShift))
+					let RedBYTE = UInt8(8*(Red>>RedShift))
 					
-					(pixels[i][j]).red = RedBYTE;
-					(pixels[i][j]).green = GreenBYTE;
-					(pixels[i][j]).blue = BlueBYTE;
+					(pixels[i][j]).red = RedBYTE
+					(pixels[i][j]).green = GreenBYTE
+					(pixels[i][j]).blue = BlueBYTE
 					
-					i+=1;
+					i += 1
 				}
 				ReadNumber = 0;
 				while ReadNumber < PaddingBytes {
-					data.addP(1)
+					guard data.add(toPosition: 1) else {
+						if EasyBMP.easyBMPwarnings {
+							print("Unexpected end of file reached.")
+						}
+						break outerLoop
+					}
 					ReadNumber+=1;
 				}
 			}

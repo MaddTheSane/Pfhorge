@@ -87,4 +87,12 @@ extension PhData {
 			return nil
 		}
 	}
+	
+	func getObjectFromIndex<X: LEMapStuffParent>(_ theIndex: [X], objTypesArr: UnsafeMutablePointer<Int16>) -> X? {
+		return __getObjectFromIndex(theIndex, objTypesArr: objTypesArr) as? X
+	}
+
+	func getObjectFromIndex<X: LEMapStuffParent>(usingLast theIndex: [X]) -> X? {
+		return __getObjectFromIndex(usingLast: theIndex) as? X
+	}
 }

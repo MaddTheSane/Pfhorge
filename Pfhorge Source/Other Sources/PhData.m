@@ -23,11 +23,29 @@
     return self;
 }
 
-- (BOOL)setP:(long)value { position = value; return [self checkPosition]; }
-- (BOOL)addP:(long)value { position += value; return [self checkPosition]; }
-- (BOOL)subP:(long)value { position -= value; return [self checkPosition]; }
+- (BOOL)setPosition:(long)value
+{
+    [self willChangeValueForKey:@"position"];
+    position = value;
+    [self didChangeValueForKey:@"position"];
+    return [self checkPosition];
+}
+- (BOOL)addToPosition:(long)value
+{
+    [self willChangeValueForKey:@"position"];
+    position += value;
+    [self didChangeValueForKey:@"position"];
+    return [self checkPosition];
+}
+- (BOOL)subtractFromPosition:(long)value
+{
+    [self willChangeValueForKey:@"position"];
+    position -= value;
+    [self didChangeValueForKey:@"position"];
+    return [self checkPosition];
+}
 
-- (BOOL)skipObj { [self addP:4]; return [self checkPosition]; }
+- (BOOL)skipObject { [self addToPosition:4]; return [self checkPosition]; }
 
 - (BOOL)skipLengthLong
 {
@@ -37,7 +55,7 @@
         return NO;
     }
     
-    return [self addP:theLength];
+    return [self addToPosition:theLength];
 }
 
 - (NSData *)getSubDataWithLength:(NSInteger)theLength
@@ -48,7 +66,7 @@
         return nil;
     }
     NSData *subData = [theData subdataWithRange:range];
-    [self addP:theLength];
+    [self addToPosition:theLength];
     return subData;
 }
 

@@ -897,7 +897,7 @@ enum // export data types
             theObj = [index objectAtIndex:i];
             
             if (objImported[i] == NO && objTypesArr[i] == _data_is_primary) {
-                if ([myData addP:4] == NO)
+                if ([myData addToPosition:4] == NO)
                     NSLog(@"Went Beyond Import Bounds...");
                 
                 [theObj importWithIndex:index withData:myData useOrginals:NO objTypesArr:objTypesArr];

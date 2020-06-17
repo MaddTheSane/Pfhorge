@@ -453,7 +453,7 @@ class PICT {
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) -> Bool {
 		if (!packed) {
-			stream.addP(4) // pmBaseAddr
+			stream.add(toPosition: 4) // pmBaseAddr
 		}
 
 		guard var rowBytes = stream.readUInt16() else {
@@ -470,17 +470,17 @@ class PICT {
 		var pack_type: UInt16
 		var pixel_size: UInt16
 		if isPixmap {
-			stream.addP(2) // pmVersion
+			stream.add(toPosition: 2) // pmVersion
 			guard let tmpVal = stream.readUInt16() else {
 				return false
 			}
 			pack_type = tmpVal
-			stream.addP(14) // packSize/hRes/vRes/pixelType
+			stream.add(toPosition: 14) // packSize/hRes/vRes/pixelType
 			guard let tmpVal2 = stream.readUInt16() else {
 				return false
 			}
 			pixel_size = tmpVal2
-			stream.addP(16) // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
+			stream.add(toPosition: 16) // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
 		} else {
 			pack_type = 0
 			pixel_size = 1
@@ -495,7 +495,7 @@ class PICT {
 
 		// read the color table
 		if isPixmap && packed {
-			stream.addP(4); // ctSeed
+			stream.add(toPosition: 4); // ctSeed
 			guard let flags = stream.readUInt16(),
 				var num_colors = stream.readUInt16() else {
 					return false
@@ -520,14 +520,14 @@ class PICT {
 			}
 			
 			// src/dst/transfer mode
-			stream.addP(18)
+			stream.add(toPosition: 18)
 			
 			// clipping region
 			if clipped {
 				guard let size = stream.readUInt16() else {
 					return false
 				}
-				stream.addP(Int(size - 2))
+				stream.add(toPosition: Int(size - 2))
 			}
 			// the picture itself
 			if pixel_size <= 8 {
@@ -624,7 +624,7 @@ class PICT {
 		}
 		
 		if (stream.currentPosition & 1) != 0 {
-			stream.addP(1)
+			stream.add(toPosition: 1)
 		}
 		return true
 	}
@@ -664,32 +664,32 @@ class PICT {
 					if ((size & 1) != 0) {
 						size += 1
 					}
-					data.addP(Int(size - 2))
+					data.add(toPosition: Int(size - 2))
 					
 				case .txFont, .txFace, .txMode, .pnMode, .txSize, .pnLocHFrac, .chExtra, .shortLineFrom, .shortComment:
-					data.addP(2)
+					data.add(toPosition: 2)
 					
 				case .spExtra, .pnSize, .ovSize, .origin, .fgColor, .bgColor, .lineFrom:
-					data.addP(4)
+					data.add(toPosition: 4)
 					
 				case .RGBFgCol, .RGBBkCol, .hiliteColor, .opColor, .shortLine:
-					data.addP(6)
+					data.add(toPosition: 6)
 					
 				case .bkPat, .pnPat, .fillPat, .txRatio, .line, .frameRect, .paintRect, .eraseRect, .invertRect, .fillRect:
-					data.addP(8)
+					data.add(toPosition: 8)
 					
 				case .headerOp:
 					let headerOp = PICT.HeaderOp(data: data)
 					
 				case .longComment:
-					data.addP(2)
+					data.add(toPosition: 2)
 					guard var size = data.readInt16() else {
 						throw PICTConversionError.unexpectedEndOfStream
 					}
 					if (size & 1) != 0 {
 						size += 1
 					}
-					data.addP(Int(size))
+					data.add(toPosition: Int(size))
 					
 				case .packBitsRect, .packBitsRgn, .directBitsRect, .directBitsRgn:
 					let packed = (opcode == .packBitsRect || opcode == .packBitsRgn)
@@ -711,7 +711,7 @@ class PICT {
 					
 				default:
 					if preOpcode >= 0x0300 && preOpcode < 0x8000 {
-						data.addP(Int(preOpcode >> 8) * 2)
+						data.add(toPosition: Int(preOpcode >> 8) * 2)
 					} else if preOpcode >= 0x8000 && preOpcode < 0x8100 {
 						break
 					} else {
@@ -720,7 +720,7 @@ class PICT {
 				}
 			} else {
 				if preOpcode >= 0x0300 && preOpcode < 0x8000 {
-					data.addP(Int(preOpcode >> 8) * 2)
+					data.add(toPosition: Int(preOpcode >> 8) * 2)
 				} else if preOpcode >= 0x8000 && preOpcode < 0x8100 {
 					//break;
 				} else {
@@ -739,16 +739,16 @@ class PICT {
 		}
 		
 		let opcodeStart = data.currentPosition
-		data.addP(26); // version/matrix (hom. part)
+		data.add(toPosition: 26); // version/matrix (hom. part)
 		guard let offsetX = data.readInt16() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(2)
+		data.add(toPosition: 2)
 		guard let offsetY = data.readInt16() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(2)
-		data.addP(4) // rest of matrix
+		data.add(toPosition: 2)
+		data.add(toPosition: 4) // rest of matrix
 		guard offsetX == 0, offsetY == 0 else {
 			throw PICTConversionError.containsBandedJPEG
 		}
@@ -756,7 +756,7 @@ class PICT {
 		guard let matteSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(22) // matte rect/srcRect/accuracy
+		data.add(toPosition: 22) // matte rect/srcRect/accuracy
 		
 		guard let maskSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
@@ -766,11 +766,11 @@ class PICT {
 			guard let matte_id_size = data.readUInt32() else {
 				throw PICTConversionError.unexpectedEndOfStream
 			}
-			data.addP(Int(matte_id_size - 4))
+			data.add(toPosition: Int(matte_id_size - 4))
 		}
 		
-		data.addP(Int(matteSize))
-		data.addP(Int(maskSize))
+		data.add(toPosition: Int(matteSize))
+		data.add(toPosition: Int(maskSize))
 		
 		guard let idSize = data.readUInt32(),
 			let codecType = data.readUInt32(),
@@ -778,19 +778,19 @@ class PICT {
 				throw PICTConversionError.unsupportedQuickTimeCodec
 		}
 		
-		data.addP(36); // resvd1/resvd2/dataRefIndex/version/revisionLevel/vendor/temporalQuality/spatialQuality/width/height/hRes/vRes
+		data.add(toPosition: 36); // resvd1/resvd2/dataRefIndex/version/revisionLevel/vendor/temporalQuality/spatialQuality/width/height/hRes/vRes
 		guard let dataSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
 		}
-		data.addP(38) // frameCount/name/depth/clutID
+		data.add(toPosition: 38) // frameCount/name/depth/clutID
 		
 		guard let subDat = data.getSubData(withLength: Int(dataSize)) else {
-			data.addP(opcodeStart + Int(opcodeSize) - data.currentPosition)
+			data.add(toPosition: opcodeStart + Int(opcodeSize) - data.currentPosition)
 			throw PICTConversionError.unexpectedEndOfStream
 		}
 		to = subDat
 		
-		data.addP(opcodeStart + Int(opcodeSize) - data.currentPosition)
+		data.add(toPosition: opcodeStart + Int(opcodeSize) - data.currentPosition)
 	}
 
 	static func convertPICT(from: URL, to format: PhPictConversion.BinaryFormat = .best) throws -> (format: PhPictConversion.BinaryFormat, data: Data) {
@@ -1457,7 +1457,7 @@ private func parseJPEGDimensions(_ preData: Data) -> (width: Int16, height: Int1
 			if length < 2 {
 				return nil
 			} else {
-				stream.addP(Int(length - 2))
+				stream.add(toPosition: Int(length - 2))
 			}
 			break
 		}

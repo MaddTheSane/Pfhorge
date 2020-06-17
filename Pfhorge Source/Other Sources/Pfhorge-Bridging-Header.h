@@ -10,5 +10,6 @@
 
 #import "PhData.h"
 #import "PfhorgeSwiftHelpers.h"
+#import "LEMapStuffParent.h"
 
 #endif /* Pfhorge_Bridging_Header_h */

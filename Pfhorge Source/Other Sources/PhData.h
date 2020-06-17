@@ -20,11 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithData:(NSData *)value NS_DESIGNATED_INITIALIZER;
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
-- (BOOL)setP:(long)value;
-- (BOOL)addP:(long)value;
-- (BOOL)subP:(long)value;
+- (BOOL)setPosition:(long)value;
+- (BOOL)addToPosition:(long)value;
+- (BOOL)subtractFromPosition:(long)value;
 
-- (BOOL)skipObj;
+- (BOOL)skipObject;
 - (BOOL)skipLengthLong;
 
 -(nullable NSData *)getSubDataWithLength:(NSInteger)theLength;
@@ -41,12 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSInteger length;
 
 - (BOOL)checkPosition;
-- (nullable id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr;
-- (nullable id)getObjectFromIndexUsingLast:(NSArray *)theIndex;
+- (nullable id)getObjectFromIndex:(NSArray *)theIndex objTypesArr:(short *)objTypesArr NS_REFINED_FOR_SWIFT;
+- (nullable id)getObjectFromIndexUsingLast:(NSArray *)theIndex NS_REFINED_FOR_SWIFT;
 
 @end
 
-//! This assumes the data is in little-endian format.
+//! For little-endian data.
 @interface PhLEData : PhData
 
 @end
