@@ -66,7 +66,7 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 #define ImportUnsignedInt(v) [myData getUnsignedInt:&(v)]
 #define ImportUnsignedLong(v) [myData getUnsignedLong:&(v)]
 
-#define SkipObj() [myData skipObj]
+#define SkipObj() [myData skipObject]
 
 //#define ImportBool(v) v = [myData getBool]
 

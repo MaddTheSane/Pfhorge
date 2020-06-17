@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @class Resource;
+@class PhProgress;
+
+NS_ASSUME_NONNULL_BEGIN
 
 //TODO: Update to use MacBinary for cross-platform compatibility!
 @interface ScenarioResources : NSObject {
@@ -24,6 +27,7 @@
 - (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress;
+- (void)iterateResourcesOfType:(NSString *)type progress:(BOOL)showProgress block:(void(NS_NOESCAPE ^)(Resource*, NSData*, PhProgress*_Nullable))block;
 
 - (int)count;
 - (Resource *)objectAtIndex:(int)index;
@@ -33,3 +37,5 @@
 
 @property (readonly, strong) NSMutableDictionary<NSString*, NSMutableArray<Resource*>*> *typeDict;
 @end
+
+NS_ASSUME_NONNULL_END

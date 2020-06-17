@@ -29,6 +29,7 @@
 #import "LEMapData.h"
 #import "ScenarioResources.h"
 #import "Resource.h"
+#import "Pfhorge-Swift.h"
 
 #import "PhProgress.h"
 
@@ -52,12 +53,23 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     NSLog(@"getPICTResourceIndex in the scenerio document called...");
     
-    fullImagePath  = [[[self fullPathForDirectory]
-                            stringByAppendingPathComponent:@"Images/"]
-                            stringByAppendingPathComponent:[[@(PICTIndex) stringValue]
-                                stringByAppendingPathExtension:@"pict"]];
+    NSMutableArray *tmpImgPaths = [NSMutableArray arrayWithCapacity:5];
+    for (NSString *extension in @[@"pict", @"png", @"jpeg", @"jpg", @"bmp"]) {
+        fullImagePath  = [[[self fullPathForDirectory]
+                                stringByAppendingPathComponent:@"Images/"]
+                                stringByAppendingPathComponent:[[@(PICTIndex) stringValue]
+                                    stringByAppendingPathExtension:extension]];
+        
+        [tmpImgPaths addObject:fullImagePath];
+    }
     
-    exsists = [[NSFileManager defaultManager] fileExistsAtPath:fullImagePath isDirectory:&isDir];
+    for (NSString *path in tmpImgPaths) {
+        exsists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+        if (exsists) {
+            fullImagePath = path;
+            break;
+        }
+    }
     
     if (exsists && !isDir) {
         return [[[NSImage alloc] initWithContentsOfFile:fullImagePath] autorelease];
@@ -237,7 +249,50 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             }
         }
         
-        [maraResources saveResourcesOfType:@"PICT" to:imageDir extention:@"pict" progress:YES];
+        [maraResources iterateResourcesOfType:@"PICT" progress:YES block:^(Resource * resource, NSData *dat, PhProgress *progress) {
+            PhPictConversionBinaryFormat format;
+            NSError *err;
+            NSData *convDat = [PhPictConversion convertPICTfromData:dat returnedFormat:&format error:&err];
+            NSString *savePath;
+            if (!convDat) {
+                // TODO: store errors for later review by the user
+                NSLog(@"%@", err);
+                [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", @"PICT", [resource resID], nil]];
+                NSString * pictPath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"pict"]];
+                
+                [fileManager createFileAtPath:pictPath
+                                     contents:dat
+                                   attributes:@{NSFileHFSTypeCode: @((OSType)'PICT'),
+                                                NSFileHFSCreatorCode: @((OSType)'ttxt')
+                                   }];
+                return;
+            }
+            
+            switch (format) {
+                case PhPictConversionBinaryFormatJPEG:
+                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"jpeg"]];
+                    break;
+                    
+                case PhPictConversionBinaryFormatBitmap:
+                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"bmp"]];
+                    break;
+                    
+                case PhPictConversionBinaryFormatPNG:
+                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"png"]];
+                    break;
+
+                default:
+                    savePath = nil;
+                    break;
+            }
+            
+            [progress setInformationalText:[NSString stringWithFormat:@"Saving converted ‘%@’ Resource# %@…", @"PICT", [resource resID]]];
+            BOOL success = [convDat writeToFile:savePath options:NSDataWritingAtomic error:&err];
+            if (!success) {
+                // TODO: store errors for later review by the user
+                NSLog(@"%@", err);
+            }
+        }];
         [maraResources release];
         
         [progress increaseProgressBy:1.0];
@@ -562,12 +617,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     {
         NSString *fullResourcePath = [fullImageDirPath stringByAppendingPathComponent:fileName];
         
-        if (IsPathDirectory(manager, fullResourcePath))
-        {
+        if (IsPathDirectory(manager, fullResourcePath)) {
             continue;
-        }
-        else if ([[fileName pathExtension] isEqualToString:@"pict"])
-        {
+        } else if ([[fileName pathExtension] isEqualToString:@"pict"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
             
@@ -576,6 +628,57 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:[manager contentsAtPath:fullResourcePath]];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128)
+                continue;
+            
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"jpeg"] || [[fileName pathExtension] isEqualToString:@"jpg"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128)
+                continue;
+            
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128)
+                continue;
+            
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
             [maraResources addResource:theResource];
             [theResource release];
         }
@@ -641,9 +744,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             [maraResources addResource:theResource];
             [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
-            //TODO: convert to pict!
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
-            //Resource *theResource;
+            Resource *theResource;
             
             if (thePictResourceNumber < 128) {
                 continue;
@@ -652,10 +754,58 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                 continue;
             }
             
-//            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-//            [theResource setData:[manager contentsAtPath:fullResourcePath]];
-//            [maraResources addResource:theResource];
-//            [theResource release];
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"jpg"] || [[fileName pathExtension] isEqualToString:@"jpeg"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128) {
+                continue;
+            }
+            if ([maraResources resourceOfType:@"PICT" index:thePictResourceNumber load:NO] != nil) {
+                continue;
+            }
+            
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
+            [maraResources addResource:theResource];
+            [theResource release];
+        } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
+            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            Resource *theResource;
+            
+            if (thePictResourceNumber < 128) {
+                continue;
+            }
+            if ([maraResources resourceOfType:@"PICT" index:thePictResourceNumber load:NO] != nil) {
+                continue;
+            }
+            
+            NSError *err;
+            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
+            if (!pictData) {
+                NSLog(@"%@", err);
+                continue;
+            }
+            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
+            [theResource setData:pictData];
+            [maraResources addResource:theResource];
+            [theResource release];
         }
     }
     

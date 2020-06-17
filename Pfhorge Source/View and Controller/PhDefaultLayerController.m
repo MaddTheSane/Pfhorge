@@ -49,7 +49,7 @@
     static PhDefaultLayerController *sharedLayerDefaultsController = nil;
 
     if (!sharedLayerDefaultsController) {
-        sharedLayerDefaultsController = [[PhDefaultLayerController alloc/*WithZone:[self zone]*/] init];
+        sharedLayerDefaultsController = [[PhDefaultLayerController alloc] init];
     }
 
     return sharedLayerDefaultsController;
@@ -57,25 +57,28 @@
 
 + (void)initialize
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *theRecords = [[NSMutableArray alloc] init];
-    NSMutableDictionary *ARecord = [NSMutableDictionary dictionary];
-    NSDictionary *appDefaults;
-    
-    NSLog(@"Registering the Layer Defaults");
-    
-    [ARecord setObject:@"Default Layer"				forKey:PhDefaultLayer_Name];
-    [ARecord setObject:@-9216	forKey:PhDefaultLayer_FloorMin];
-    [ARecord setObject:@9216	forKey:PhDefaultLayer_FloorMax];
-    [ARecord setObject:@-9216	forKey:PhDefaultLayer_CeilingMin];
-    [ARecord setObject:@9216	forKey:PhDefaultLayer_CeilingMax];
-    
-    [theRecords addObject:ARecord];
-    
-    appDefaults = [NSDictionary dictionaryWithObject:theRecords forKey:PhDefaultLayers];
-	[theRecords release];
-    
-    [defaults registerDefaults:appDefaults];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *theRecords = [[NSMutableArray alloc] init];
+        NSMutableDictionary *ARecord = [NSMutableDictionary dictionary];
+        NSDictionary *appDefaults;
+        
+        NSLog(@"Registering the Layer Defaults");
+        
+        [ARecord setObject:@"Default Layer"                forKey:PhDefaultLayer_Name];
+        [ARecord setObject:@-9216    forKey:PhDefaultLayer_FloorMin];
+        [ARecord setObject:@9216     forKey:PhDefaultLayer_FloorMax];
+        [ARecord setObject:@-9216    forKey:PhDefaultLayer_CeilingMin];
+        [ARecord setObject:@9216     forKey:PhDefaultLayer_CeilingMax];
+        
+        [theRecords addObject:ARecord];
+        
+        appDefaults = [NSDictionary dictionaryWithObject:theRecords forKey:PhDefaultLayers];
+        [theRecords release];
+        
+        [defaults registerDefaults:appDefaults];
+    });
 }
 
 -(void)awakeFromNib
@@ -105,8 +108,7 @@
 -(IBAction)insertRecord:(id)sender
 {
     NSInteger index = [tableView selectedRow];
-    if (index >= 0)
-    {
+    if (index >= 0) {
         [records insertObject:[self createRecord] atIndex:index];
         [tableView reloadData];
     }
@@ -119,22 +121,17 @@
     NSMutableArray *tempArray = [NSMutableArray array];
     id tempObject;
     
-    while ( (index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound)
-    {
-        if (index != (((int)[records count]) - 1))
-        {
+    while ( (index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound) {
+        if (index != ([records count] - 1)) {
             tempObject = [records objectAtIndex:index]; // No modification, no problem
             [tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
-        }
-        else
-        {
+        } else {
             SEND_ERROR_MSG(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
         }
     }
     
     NSEnumerator *enumerator = [tempArray objectEnumerator];
-    for (id index in enumerator)
-    {
+    for (id index in enumerator) {
         [records removeObjectIdenticalTo:index]; // we're golden
     }
     
@@ -224,16 +221,12 @@
     
     NSString *theName = [nameTB stringValue];
     
-    while ( (index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound )
-    {
-        if (index != (((int)[records count]) - 1))
-        {
+    while ((index = [rowIndexes indexGreaterThanIndex:index]) != NSNotFound) {
+        if (index != ([records count] - 1)) {
             tempObject = [records objectAtIndex:index]; // No modification, no problem
             //[tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
             [tempObject setObject:theName forKey:PhDefaultLayer_Name];
-        }
-        else
-        {
+        } else {
             SEND_ERROR_MSG(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
         }
     }
@@ -280,20 +273,17 @@
 }
 
 -(id)tableView:(NSTableView *)aTableView
-    objectValueForTableColumn:(NSTableColumn *)aTableColumn 
-    row:(NSInteger)rowIndex
+objectValueForTableColumn:(NSTableColumn *)aTableColumn
+           row:(NSInteger)rowIndex
 {
     id theRecord, theValue;
     
     theRecord = [records objectAtIndex:rowIndex];
     theValue = [theRecord objectForKey:[aTableColumn identifier]];
     
-    if ([[aTableColumn identifier] isEqualToString:PhDefaultLayer_Name])
-    {
+    if ([[aTableColumn identifier] isEqualToString:PhDefaultLayer_Name]) {
         // Nothing Right Now...
-    }
-    else
-    {
+    } else {
         float floatValue = (float)(((float)[theValue floatValue]) / ((float)WORLD_ONE));
         theValue = @(floatValue);
     }

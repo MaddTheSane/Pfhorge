@@ -29,19 +29,19 @@
 
 @interface PhDefaultLayerController : NSWindowController <NSTableViewDataSource>
 {
-    IBOutlet id tableView;
+    IBOutlet NSTableView *tableView;
     
-    IBOutlet id nameTB;
+    IBOutlet NSTextField *nameTB;
     
-    IBOutlet id floorMaxTB;
-    IBOutlet id floorMinTB;
-    IBOutlet id ceilingMaxTB;
-    IBOutlet id ceilingMinTB;
+    IBOutlet NSTextField *floorMaxTB;
+    IBOutlet NSTextField *floorMinTB;
+    IBOutlet NSTextField *ceilingMaxTB;
+    IBOutlet NSTextField *ceilingMinTB;
     
-    IBOutlet id floorMaxSB;
-    IBOutlet id floorMinSB;
-    IBOutlet id ceilingMaxSB;
-    IBOutlet id ceilingMinSB;
+    IBOutlet NSSlider *floorMaxSB;
+    IBOutlet NSSlider *floorMinSB;
+    IBOutlet NSSlider *ceilingMaxSB;
+    IBOutlet NSSlider *ceilingMinSB;
     
     NSMutableArray *records;
 }

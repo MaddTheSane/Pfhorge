@@ -249,6 +249,31 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 }
 
 
+- (void)iterateResourcesOfType:(NSString *)type progress:(BOOL)showProgress block:(void(NS_NOESCAPE^)(Resource*, NSData*, PhProgress*))block
+{
+    NSArray         *array = [typeDict objectForKey:type];
+    NSEnumerator    *resEnum = [array objectEnumerator];
+    
+    PhProgress *progress;
+    if (showProgress) {
+        progress = [PhProgress sharedPhProgress];
+    } else {
+        progress = nil;
+    }
+    
+    for (Resource *resource in resEnum) @autoreleasepool {
+        Handle handle = ASGetResource(type, [resource resID], filename);
+        HLock(handle);
+        NSData *theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
+        HUnlock(handle);
+        
+        block(resource, theData, progress);
+        
+        DisposeHandle(handle);
+    }
+}
+
+
 - (int)count
 {
     int count = 0;
