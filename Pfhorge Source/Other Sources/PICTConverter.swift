@@ -730,6 +730,70 @@ class PICT {
 		}
 	}
 	
+	func load(from preData: Data, clut: Data) throws {
+		let stream = PhData(data: preData)
+		guard let rect = Rect(data: stream) else {
+			throw PICTConversionError.unexpectedEndOfStream
+		}
+		let height = rect.height
+		let width = rect.width
+		guard let depth = stream.readInt16() else {
+			throw PICTConversionError.unexpectedEndOfStream
+		}
+		
+		switch depth {
+		case 8:
+			_=bitmap.setBitDepth(Int32(depth))
+			_=bitmap.setSize(width: Int32(width), height: Int32(height))
+
+			guard clut.count == 6 + 256 * 6 else {
+				throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+			}
+			let clut_stream = PhData(data: clut)
+			for i in 0 ..< 256 {
+				let red = clut_stream.readInt16()!
+				let green = clut_stream.readInt16()!
+				let blue = clut_stream.readInt16()!
+				
+				let color = EasyBMP.RGBAPixel(blue: UInt8(blue >> 8), green: UInt8(green >> 8), red: UInt8(red >> 8), alpha: 0xff)
+				_=bitmap.setColor(at: i, to: color)
+			}
+			
+			for y in 0 ..< Int(height) {
+				for x in 0 ..< Int(width) {
+					guard let pixel = stream.readUInt8() else {
+						throw PICTConversionError.unexpectedEndOfStream
+					}
+					_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(pixel))!)
+				}
+			}
+			
+		case 16:
+			_=bitmap.setBitDepth(Int32(depth))
+			_=bitmap.setSize(width: Int32(width), height: Int32(height))
+
+			for y in 0 ..< Int(height) {
+				for x in 0 ..< Int(width) {
+					guard let color = stream.readUInt16() else {
+						throw PICTConversionError.unexpectedEndOfStream
+					}
+					var pixel = EasyBMP.RGBAPixel()
+					pixel.red = UInt8((color >> 10) & 0x1f);
+					pixel.green = UInt8((color >> 5) & 0x1f);
+					pixel.blue = UInt8(color & 0x1f);
+					pixel.red = UInt8((UInt16(pixel.red) * 255 + 16) / 31);
+					pixel.green = UInt8((UInt16(pixel.green) * 255 + 16) / 31);
+					pixel.blue = UInt8((UInt16(pixel.blue) * 255 + 16) / 31);
+					pixel.alpha = 0xff;
+					_=bitmap.setPixel(atX: x, y: y, pixel)
+				}
+			}
+
+		default:
+			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+		}
+	}
+	
 	private func loadJPEG(_ data: PhData, to: inout Data) throws {
 		guard var opcodeSize = data.readUInt32() else {
 			throw PICTConversionError.unexpectedEndOfStream
@@ -874,6 +938,82 @@ class PICT {
 		}
 	}
 	
+	static func convertRawPICT(from: Data, clut: Data, to format: PhPictConversion.BinaryFormat = .best) throws -> (format: PhPictConversion.BinaryFormat, data: Data) {
+		let aPict = PICT()
+		try aPict.load(from: from, clut: clut)
+		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
+			return (.JPEG, aPict.jpegData)
+		}
+		if (aPict.bitmap.bitDepth <= 8 && format == .best) || format == .bitmap {
+			return (.bitmap, aPict.bitmap.generateData())
+		}
+		if (aPict.bitmap.bitDepth > 8 && format == .best) || format == .PNG {
+			//Hackity-hack!
+			let dat = aPict.bitmap.generateData()
+			guard let bmpImgRep = NSBitmapImageRep(data: dat),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+					// brute force!
+					guard let bir = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(aPict.bitmap.width), pixelsHigh: Int(aPict.bitmap.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bitmapFormat: NSBitmapImageRep.Format.alphaFirst, bytesPerRow: Int(aPict.bitmap.width)*4, bitsPerPixel: 32) else {
+						throw PICTConversionError.conversionFailed
+					}
+					for i in 0 ..< Int(aPict.bitmap.width) {
+						autoreleasepool {
+							for j in 0 ..< Int(aPict.bitmap.height) {
+								let pixCol = aPict.bitmap.getPixel(atX: i, y: j)
+								let col = NSColor(calibratedRed: CGFloat(pixCol.red) / CGFloat(UInt8.max), green: CGFloat(pixCol.green) / CGFloat(UInt8.max), blue: CGFloat(pixCol.blue) / CGFloat(UInt8.max), alpha: 1)
+								bir.setColor(col, atX: i, y: j)
+							}
+						}
+					}
+					guard let dat = bir.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+						throw PICTConversionError.conversionFailed
+					}
+					return (.PNG, dat)
+			}
+			return (.PNG, pngDat)
+		}
+		switch format {
+		case .bitmap:
+			if aPict.jpegData.count != 0 {
+				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
+					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.bmp, properties: [:]) {
+					return (.bitmap, pngDat)
+				}
+			}
+			return (.bitmap, aPict.bitmap.generateData())
+
+		case .JPEG:
+			if aPict.jpegData.count != 0 {
+				return (.JPEG, aPict.jpegData)
+			}
+			
+			if let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+				return (.JPEG, pngDat)
+			}
+
+			throw PICTConversionError.conversionFailed
+
+		case .PNG:
+			if aPict.jpegData.count != 0 {
+				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
+					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) {
+					return (.PNG, pngDat)
+				}
+			}
+
+			guard let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
+				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+					throw PICTConversionError.conversionFailed
+			}
+			return (.PNG, pngDat)
+
+			
+		default:
+			throw NSError(domain: NSOSStatusErrorDomain, code: paramErr)
+		}
+	}
+
 	enum PICTConversionError: Error {
 		case unimplementedOpCode(_ opCode: UInt16)
 		case containsBandedJPEG
@@ -1211,6 +1351,12 @@ class PICT {
 	
 	@objc(convertPICTfromData:returnedFormat:error:) class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
+		returnedFormat.pointee = retVal.format
+		return retVal.data
+	}
+	
+	@objc(convertRawPICTfromData:clutData:returnedFormat:error:) class func convertRawPICT(from: Data, clut: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+		let retVal = try PICT.convertRawPICT(from: from, clut: clut, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
 	}

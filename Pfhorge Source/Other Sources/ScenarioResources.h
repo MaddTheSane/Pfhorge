@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 - (id)initWithContentsOfFile:(NSString *)fileName;
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
-- (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName;
+- (void)saveToFile:(NSString *)fileName oldFile:(nullable NSString *)oldFileName;
 
 - (Resource *)resourceOfType:(NSString *)type index:(ResID)index;
 - (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
