@@ -11,6 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(SInt8, NDResourceForkPermission) {
+	NDResourceForkPermissionCurrent = fsCurPerm,
+	NDResourceForkPermissionRead = fsRdPerm,
+	NDResourceForkPermissionWrite = fsWrPerm,
+	NDResourceForkPermissionReadWrite = fsRdWrPerm,
+	NDResourceForkPermissionReadWriteShare = fsRdWrShPerm,
+} NS_SWIFT_NAME(NDResourceFork.Permissions);
+
 @interface NDResourceFork : NSObject
 {
 	ResFileRefNum		fileReference;
@@ -27,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)initForWritingAtURL:(NSURL *)aURL error:(NSError**)outError;
 - (nullable instancetype)initForReadingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForWritingAtPath:(NSString *)aPath;
-- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
-- (nullable instancetype)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
+- (nullable instancetype)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 - (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName NS_SWIFT_UNAVAILABLE("");

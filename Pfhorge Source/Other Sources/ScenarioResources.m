@@ -13,6 +13,10 @@
 
 static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 
+@interface ScenarioResources ()
+- (BOOL)loadContentsOfURL:(NSURL *)fileURL error:(NSError**)outError;
+@end
+
 @implementation ScenarioResources
 
 
@@ -24,7 +28,22 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return self;
 }
 
+- (instancetype)initWithContentsOfURL:(NSURL *)fileName error:(NSError**)outError
+{
+    if (self = [super init]) {
+        if (![self loadContentsOfURL:fileName error:outError]) {
+            return nil;
+        }
+    }
+    return self;
+}
+
 - (BOOL)loadContentsOfFile:(NSString *)fileName
+{
+    return [self loadContentsOfURL:[NSURL fileURLWithPath:fileName] error:NULL];
+}
+
+- (BOOL)loadContentsOfURL:(NSURL *)fileURL error:(NSError**)outError
 {
     FSRef			fsref;
     FSCatalogInfo	catInfo;
@@ -35,17 +54,25 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     Resource		*res;
     ResFileRefNum	refNum;
     int				i, j;
+    OSStatus        err;
         
-    filename = [fileName copy];
+    filename = [fileURL.path copy];
     
     typeDict = [[NSMutableDictionary alloc] init];
         
-    @autoreleasepool {
-        NSURL *url = [NSURL fileURLWithPath:fileName];
-        CFURLGetFSRef((CFURLRef)url, &fsref);
+    if (!CFURLGetFSRef((CFURLRef)fileURL, &fsref)) {
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: fileURL}];
+        }
+        return NO;
     }
     
-    FSGetCatalogInfo(&fsref, kFSCatInfoRsrcSizes, &catInfo, NULL, NULL, NULL);
+    err = FSGetCatalogInfo(&fsref, kFSCatInfoRsrcSizes, &catInfo, NULL, NULL, NULL);
+    if (err != noErr) {
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:err userInfo:@{NSURLErrorKey: fileURL}];
+        }
+    }
     
     if (catInfo.rsrcLogicalSize && catInfo.rsrcPhysicalSize) {
         refNum = FSOpenResFile(&fsref, fsRdPerm);
@@ -264,7 +291,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     for (Resource *resource in resEnum) @autoreleasepool {
         Handle handle = ASGetResource(type, [resource resID], filename);
         HLock(handle);
-        NSData *theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
+        NSData *theData = [NSData dataWithBytes:*handle length:GetHandleSize(handle)];
         HUnlock(handle);
         
         block(resource, theData, progress);
@@ -274,9 +301,9 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 }
 
 
-- (int)count
+- (NSInteger)count
 {
-    int count = 0;
+    NSInteger count = 0;
     
     for (NSArray *resArray in [typeDict objectEnumerator]) {
         count += [resArray count];
@@ -285,10 +312,10 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return count;
 }
 
-- (Resource *)objectAtIndex:(int)index
+- (Resource *)objectAtIndex:(NSInteger)index
 {
-    id  object = nil;
-    int count = 0;
+    id          object = nil;
+    NSInteger   count = 0;
     
     for (NSArray *resArray in [typeDict objectEnumerator]) {
         for (NSInteger j = 0; j < [resArray count]; j++) {

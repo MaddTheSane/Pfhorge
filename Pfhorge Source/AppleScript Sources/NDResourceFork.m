@@ -77,12 +77,12 @@ static OSErr createResourceFork(NSURL * aURL);
 /*
  * initForPermission:AtURL:
  */
-- (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL
+- (id)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL
 {
 	return self = [self initForPermission:aPermission AtURL:aURL error:NULL];
 }
 
-- (id)initForPermission:(SInt8)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
+- (id)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
 {
 	OSErr			theError = !noErr;
 	FSRef			theFsRef;
@@ -243,7 +243,7 @@ static OSErr createResourceFork(NSURL * aURL);
 			
 			return NO;
 		}
-		return (ResError() == noErr);
+		return (error == noErr);
 	} else if (error != resNotFound) {
 		if (outError) {
 			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:error userInfo:nil];

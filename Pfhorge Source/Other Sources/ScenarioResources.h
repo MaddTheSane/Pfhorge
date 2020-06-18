@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSString		*filename;
 }
-- (id)initWithContentsOfFile:(NSString *)fileName;
+- (instancetype)initWithContentsOfFile:(NSString *)fileName;
+- (nullable instancetype)initWithContentsOfURL:(NSURL *)fileName error:(NSError**)outError;
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (void)saveToFile:(NSString *)fileName oldFile:(nullable NSString *)oldFileName;
 
@@ -29,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress;
 - (void)iterateResourcesOfType:(NSString *)type progress:(BOOL)showProgress block:(void(NS_NOESCAPE ^)(Resource*, NSData*, PhProgress*_Nullable))block;
 
-- (int)count;
-- (Resource *)objectAtIndex:(int)index;
+@property (readonly) NSInteger count;
+- (Resource *)objectAtIndex:(NSInteger)index;
 
 - (void)addResource:(Resource *)resource;
 - (void)removeResource:(Resource *)resource;
