@@ -25,23 +25,23 @@
 
 - (BOOL)setPosition:(long)value
 {
-    [self willChangeValueForKey:@"position"];
+    [self willChangeValueForKey:@"currentPosition"];
     position = value;
-    [self didChangeValueForKey:@"position"];
+    [self didChangeValueForKey:@"currentPosition"];
     return [self checkPosition];
 }
 - (BOOL)addToPosition:(long)value
 {
-    [self willChangeValueForKey:@"position"];
+    [self willChangeValueForKey:@"currentPosition"];
     position += value;
-    [self didChangeValueForKey:@"position"];
+    [self didChangeValueForKey:@"currentPosition"];
     return [self checkPosition];
 }
 - (BOOL)subtractFromPosition:(long)value
 {
-    [self willChangeValueForKey:@"position"];
+    [self willChangeValueForKey:@"currentPosition"];
     position -= value;
-    [self didChangeValueForKey:@"position"];
+    [self didChangeValueForKey:@"currentPosition"];
     return [self checkPosition];
 }
 

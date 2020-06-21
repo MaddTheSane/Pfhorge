@@ -446,12 +446,14 @@
         NSLog(@"Was NOT Able To Load 'Pathways Into Darkness' dpin 128 resource...");
     }
     
-    [self readFromData:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:type error:outError];
+    if (![self readFromData:[[NSFileManager defaultManager] contentsAtPath:fileName] ofType:type error:outError]) {
+        return NO;
+    }
     
     NS_DURING
     
     //[wad initWithContentsOfFile:fileName];
-    [resources initWithContentsOfFile:fileName];
+    [resources loadContentsOfFile:fileName];
     
     NS_HANDLER
     if (NSRunCriticalAlertPanel(@"Error opening file",
@@ -480,7 +482,12 @@
     shouldExportToMarathonFormat = NO;
     
     if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
-        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel error:outError]];
+        NSData *retDat = [LEMapData convertLevelToDataObject:theLevel error:outError];
+        if (!retDat) {
+            [entireMapData release];
+            return nil;
+        }
+        [entireMapData setData:retDat];
     } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
