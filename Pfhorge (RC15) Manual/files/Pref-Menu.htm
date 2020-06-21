@@ -1,1 +1,199 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML><HEAD>	<TITLE>Prefs & Menus</TITLE>	<META NAME="author" CONTENT="Sean Shaw">	<META NAME="generator" CONTENT="WebDesign"></HEAD><BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF"><P ALIGN="center"><b><FONT SIZE="5">Preferences &amp; Menus Guide</FONT></b></P> <BR><BR><P ALIGN="left"><b><FONT SIZE="4">General Prefs</FONT></b></P><P ALIGN="left"><b>Colours: </b>selects colors to be applied to the different components of the map. Also has facility to turn off the coloring for specialized polygons. The colors can be changed by double-clicking on each rectangle and selecting a new color on the system palette that appears. </P><p align="center"><IMG SRC="Prefs%20-%20Colours.jpg" HEIGHT="438" WIDTH="373" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Grid: </b>sets properties of the grid the map is built on. The colors are again editable by double-clicking and the grid size varies from 8 to 1/8 world units.</P><p align="center"><IMG SRC="Prefs%20-%20Grid.jpg" HEIGHT="439" WIDTH="374" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>General: </b>options to assist in drawing maps and adding objects. When a line is drawn the endpoints will "snap" to the nearest other point or grid cross-section; the sensitivity of this feature can be altered or disabled, as can the guiding algorithms. New objects can also be set to snap to a grid cross-section while invisible layers (see below) can be set to appear as points rather than empty polygons.</P><p align="center"><IMG SRC="Prefs%20-%20General.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Object Prefs: </b>sets colors for specific object types and determines whether they are visible on the map. The object borders can set to be highlighted for easier observation on the map. See <A HREF="Objects.htm">"Objects".</A></P><p align="center"><IMG SRC="Prefs%20-%20Objects.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><A HREF="Visual.htm"><b>Visual Mode</b></A></P><P ALIGN="left"><b>Environment:</b> 	Select Shapes enables you to specify the Shapes file you want to use when designing a map. 	Render Mode: options for how the textures appear in Visual Mode, ranging from full textures through wireframe. 	Starting Position: choice of player positions to start from. 	Plain colors: set of colors for use in untextured Render Mode.	Other Colors: similar to above.</P><p align="center"><IMG SRC="Prefs%20-%20Environment.jpg" HEIGHT="436" WIDTH="373" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">Visibility: options on what will be shown in Visual Mode and how it will be shown.</P><p align="center"><IMG SRC="Prefs%20-%20Visibility.jpg" HEIGHT="437" WIDTH="372" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">Keys: keyboard and mouse settings for manouvering around the map in Visual Mode.</P><p align="center"><IMG SRC="Prefs%20-%20Keys.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Default Layer Settings: </b> Pfhorge is capable of breaking an imported map into vertically separate layers pre-defined by the user. Each layer can be viewed and worked on separately in map-editting. In this preference panel individual layers can be defined and named, the floor &amp; ceiling values entered with sliders or directly in the boxes. Overlap between the layers is OK  as long as the Ceiling Min is greater than the Ceiling Max of the layer below and the the Floor Max less then the Floor Min of the layer above.</P><p align="center"><IMG SRC="Prefs%20-%20Layers.jpg" HEIGHT="579" WIDTH="516" ALIGN=middle BORDER="1"></p><BR><BR><P ALIGN="left"><b><FONT SIZE="4">Menus</FONT></b></P><P ALIGN="left"><b>File Menu</b><BR>New Pfhorge Level: opens a new Pfhorge map.<BR>New Pfhorge Scenario: opens a file in which a list of maps can be assembled to create a scenario. Encompasses all the map files within a selected folder. <BR>Open...: opens a saved map file.<BR>Open Recent: submenu containing a list of the 10 most recently opened maps. <BR>Import Marathon Map: imports maps from Aleph One, Marathon Infinity and Marathon 2 into a Pfhorge map. <BR>Import Pathways Map: imports maps from Pathways into Darkness into a Pfhorge map. <BR>Test Checksum...: tests saved maps for corruption. <BR>Close/Save/Save As...: usual functions.</P><p align="center"><IMG SRC="File%20menu.jpg" HEIGHT="279" WIDTH="240" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Edit Menu</b><BR>Usual Functions</P><BR><P ALIGN="left"><b>View Menu</b><BR>View Mode Normal: switches view to the map-editting window. <BR>Visual Mode: opens a new window and creates a 3D visualization of the map.These menu items open a drawer at the side of the map with names/numbers &amp; colors assigned to specific polygon properties and color the map-editting view to match this. New properties are created and assigned to polygons in this way. Submenus allow the selection of floor or ceiling. <BR><BR>View Layers: opens a drawer to view and assign layers to existing polygons. New layers can't be created this way. <BR>View Liquids: changes coloring in map-editting to reflect liquids dispersion on the map.<BR>View Heights: changes coloring in map-editting to reflect floor or ceiling height. <BR>View Lights: changes coloring in map-editting to reflect floor or ceiling lighting or liquid tide.<BR>View Sounds: shows any sounds associated with specific polygons. </P><p align="center"><IMG SRC="View%20Menu.jpg" HEIGHT="175" WIDTH="204" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Level menu</b><BR>Toggle Map Manager Drawer: opens drawer on map-editting window to enable quick alteration of some editting features. (See separate entry on Map Manager Drawer.)<BR><BR>Zoom In: zooms in step-by-step in the map.<BR>Zoom Out: zooms in step-by-step in the map.<BR>Zoom To 100%; returns to default zoom view.<BR><BR>Get Info on Selected: produces information on selected line, polygon, object, etc.<BR>Edit Polygon Name: polygons can be given specific names in addition to their index numbers. <BR>Calculate Sides On Selected Lines: trouble-shooting tool.<BR><BR>Go To Via Index: highlight specific lines or polygons  according to their index numbers. Mainly used during error tracking. <BR><BR>Marathon Settings Sheet: sets game properties of individual maps. <BR><BR>Redraw Level:<BR><BR>Import Marathon Map...: imports maps from Aleph One, Marathon Infinity &amp; Marathon 2.<BR>Export to Aleph One: exports map to an Aleph One file. </P><p align="center"><IMG SRC="Level%20Menu.jpg" HEIGHT="330" WIDTH="319" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Tools Menu</b><BR>Tools Palette: opens a palette containing the map-editting tools.<BR><BR>The Inspectors are windows that enable editting of the selected items:<BR>	Basic Inspector: holds the edittable variables of the selected line, polygon or object. <BR>	Control Panel Inspector: defines the type of control panel and what is controls.<BR>	Light Inspector: light intensity of the wall textures. <BR>	Texture inspector: editting of the wall textures. <BR><BR>The Editors are more general in their functions:<BR>	<A HREF="Terminals.htm">Terminal Editor</A>: enables the construction of messages attached to the terminal screens. <BR>	<A HREF="Configuration.htm">Configuration Editor</A>: global editor for tags, lights, sounds, platforms, named polygons and layers.<BR>	<A HREF="Objects.htm">Item/Object Placement Editor</A>: replenishment and placement of aliens and weapons. <BR><BR>Show Colors Palette: Apple's color palettes for selecting colors. </P><p align="center"><IMG SRC="Tools%20Menu.jpg" HEIGHT="237" WIDTH="293" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Scripts Menu</b><BR>Enables the loading and running of scripts to complete repetitive tasks.</P><BR><P ALIGN="left"><b>Plug-Ins Menu</b><BR>Plug-ins coming.</P><BR><P ALIGN="left"><b>Windows Menu</b><BR>Minimize, Bring to Front, Select a specific window. </P><BR><P ALIGN="left"><b>Help Menu</b><BR>No Pfhorge Help as yet. </P><BR><HR SIZE="2" WIDTH="100%"><P ALIGN="center"><FONT SIZE="1"><A HREF="../Contents.htm">Contents | <a href="./introduction.htm">Introduction</a> | <A HREF="./map-scenario.htm">New Map or Scenario</A> | <A HREF="./lines.htm">Lines</A> | <A HREF="./polygons.htm">Polygons</A> | <A HREF="./texturing.htm">Texturing</A> |<A HREF="./lights.htm">Lights</A> | <A HREF="./liquids.htm">Liquids</A> |<br> | <A HREF="./Sounds.htm">Sounds</A> | <A HREF="./controls.htm">Control Panels</A> | <A HREF="./Terminals.htm">Terminals</A> | <A HREF="./objects.htm">Objects</A> | <A HREF="./visual.htm">Visual Mode</A> | <A HREF="./Configuration.htm">Configuration Editor</P></BODY></HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>Prefs & Menus</TITLE>
+	<META NAME="author" CONTENT="Sean Shaw">
+	<META NAME="generator" CONTENT="WebDesign">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
+
+
+
+<P ALIGN="center">
+<b><FONT SIZE="5">Preferences &amp; Menus Guide</FONT></b>
+</P> 
+
+<BR>
+<BR>
+<P ALIGN="left">
+<b><FONT SIZE="4">General Prefs</FONT></b>
+</P>
+<P ALIGN="left">
+<b>Colours: </b>selects colors to be applied to the different components of the map. Also has facility to turn off the coloring for specialized polygons. The colors can be changed by double-clicking on each rectangle and selecting a new color on the system palette that appears. 
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Colours.jpg" HEIGHT="438" WIDTH="373" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Grid: </b>sets properties of the grid the map is built on. The colors are again editable by double-clicking and the grid size varies from 8 to 1/8 world units.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Grid.jpg" HEIGHT="439" WIDTH="374" ALIGN=middle BORDER="1"></p>
+
+
+<BR><P ALIGN="left">
+<b>General: </b>options to assist in drawing maps and adding objects. When a line is drawn the endpoints will "snap" to the nearest other point or grid cross-section; the sensitivity of this feature can be altered or disabled, as can the guiding algorithms. New objects can also be set to snap to a grid cross-section while invisible layers (see below) can be set to appear as points rather than empty polygons.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20General.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Object Prefs: </b>sets colors for specific object types and determines whether they are visible on the map. The object borders can set to be highlighted for easier observation on the map. See <A HREF="Objects.htm">"Objects".</A>
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Objects.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<A HREF="Visual.htm"><b>Visual Mode</b></A>
+</P>
+<P ALIGN="left">
+<b>Environment:</b> 
+	Select Shapes enables you to specify the Shapes file you want to use when designing a map. 
+	Render Mode: options for how the textures appear in Visual Mode, ranging from full textures through wireframe. 
+	Starting Position: choice of player positions to start from. 
+	Plain colors: set of colors for use in untextured Render Mode.
+	Other Colors: similar to above.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Environment.jpg" HEIGHT="436" WIDTH="373" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+Visibility: options on what will be shown in Visual Mode and how it will be shown.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Visibility.jpg" HEIGHT="437" WIDTH="372" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+Keys: keyboard and mouse settings for manouvering around the map in Visual Mode.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Keys.jpg" HEIGHT="437" WIDTH="373" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Default Layer Settings: </b> Pfhorge is capable of breaking an imported map into vertically separate layers pre-defined by the user. Each layer can be viewed and worked on separately in map-editting. In this preference panel individual layers can be defined and named, the floor &amp; ceiling values entered with sliders or directly in the boxes. Overlap between the layers is OK  as long as the Ceiling Min is greater than the Ceiling Max of the layer below and the the Floor Max less then the Floor Min of the layer above.
+</P>
+<p align="center"><IMG SRC="Prefs%20-%20Layers.jpg" HEIGHT="579" WIDTH="516" ALIGN=middle BORDER="1"></p>
+
+
+<BR>
+<BR><P ALIGN="left"><b><FONT SIZE="4">Menus</FONT></b>
+</P>
+<P ALIGN="left">
+<b>File Menu</b>
+<BR>New Pfhorge Level: opens a new Pfhorge map.
+<BR>New Pfhorge Scenario: opens a file in which a list of maps can be assembled to create a scenario. Encompasses all the map files within a selected folder. 
+<BR>Open...: opens a saved map file.
+<BR>Open Recent: submenu containing a list of the 10 most recently opened maps. 
+<BR>Import Marathon Map: imports maps from Aleph One, Marathon Infinity and Marathon 2 into a Pfhorge map. 
+<BR>Import Pathways Map: imports maps from Pathways into Darkness into a Pfhorge map. 
+<BR>Test Checksum...: tests saved maps for corruption. 
+<BR>Close/Save/Save As...: usual functions.
+</P>
+<p align="center"><IMG SRC="File%20menu.jpg" HEIGHT="279" WIDTH="240" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Edit Menu</b>
+<BR>Usual Functions
+</P>
+<BR><P ALIGN="left">
+<b>View Menu</b>
+<BR>View Mode Normal: switches view to the map-editting window. 
+<BR>Visual Mode: opens a new window and creates a 3D visualization of the map.
+
+These menu items open a drawer at the side of the map with names/numbers &amp; colors assigned to specific polygon properties and color the map-editting view to match this. New properties are created and assigned to polygons in this way. Submenus allow the selection of floor or ceiling. 
+<BR>
+<BR>View Layers: opens a drawer to view and assign layers to existing polygons. New layers can't be created this way. 
+<BR>View Liquids: changes coloring in map-editting to reflect liquids dispersion on the map.
+<BR>View Heights: changes coloring in map-editting to reflect floor or ceiling height. 
+<BR>View Lights: changes coloring in map-editting to reflect floor or ceiling lighting or liquid tide.
+<BR>View Sounds: shows any sounds associated with specific polygons. 
+</P>
+<p align="center"><IMG SRC="View%20Menu.jpg" HEIGHT="175" WIDTH="204" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Level menu</b>
+<BR>Toggle Map Manager Drawer: opens drawer on map-editting window to enable quick alteration of some editting features. (See separate entry on Map Manager Drawer.)
+<BR>
+<BR>Zoom In: zooms in step-by-step in the map.
+<BR>Zoom Out: zooms in step-by-step in the map.
+<BR>Zoom To 100%; returns to default zoom view.
+<BR>
+<BR>Get Info on Selected: produces information on selected line, polygon, object, etc.
+<BR>Edit Polygon Name: polygons can be given specific names in addition to their index numbers. 
+<BR>Calculate Sides On Selected Lines: trouble-shooting tool.
+<BR>
+<BR>Go To Via Index: highlight specific lines or polygons  according to their index numbers. Mainly used during error tracking. 
+<BR>
+<BR>Marathon Settings Sheet: sets game properties of individual maps. 
+<BR>
+<BR>Redraw Level:
+<BR>
+<BR>Import Marathon Map...: imports maps from Aleph One, Marathon Infinity &amp; Marathon 2.
+<BR>Export to Aleph One: exports map to an Aleph One file. 
+</P>
+<p align="center"><IMG SRC="Level%20Menu.jpg" HEIGHT="330" WIDTH="319" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Tools Menu</b>
+<BR>Tools Palette: opens a palette containing the map-editting tools.
+<BR>
+<BR>The Inspectors are windows that enable editting of the selected items:
+<BR>	Basic Inspector: holds the edittable variables of the selected line, polygon or object. 
+<BR>	Control Panel Inspector: defines the type of control panel and what is controls.
+<BR>	Light Inspector: light intensity of the wall textures. 
+<BR>	Texture inspector: editting of the wall textures. 
+<BR>
+<BR>The Editors are more general in their functions:
+<BR>	<A HREF="Terminals.htm">Terminal Editor</A>: enables the construction of messages attached to the terminal screens. 
+<BR>	<A HREF="Configuration.htm">Configuration Editor</A>: global editor for tags, lights, sounds, platforms, named polygons and layers.
+<BR>	<A HREF="Objects.htm">Item/Object Placement Editor</A>: replenishment and placement of aliens and weapons. 
+<BR>
+<BR>Show Colors Palette: Apple's color palettes for selecting colors. 
+</P>
+<p align="center"><IMG SRC="Tools%20Menu.jpg" HEIGHT="237" WIDTH="293" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+<b>Scripts Menu</b><BR>
+Enables the loading and running of scripts to complete repetitive tasks.
+</P>
+<BR>
+<P ALIGN="left">
+<b>Plug-Ins Menu</b>
+<BR>Plug-ins coming.
+</P>
+<BR>
+<P ALIGN="left">
+<b>Windows Menu</b>
+<BR>Minimize, Bring to Front, Select a specific window. 
+</P>
+<BR>
+<P ALIGN="left">
+<b>Help Menu</b>
+<BR>No Pfhorge Help as yet. 
+</P>
+<BR><HR SIZE="2" WIDTH="100%">
+<P ALIGN="center"><FONT SIZE="1">
+<A HREF="../Contents.htm">Contents
+ | 
+<a href="./introduction.htm">Introduction</a>
+ | 
+<A HREF="./map-scenario.htm">New Map or Scenario</A>
+ | 
+<A HREF="./lines.htm">Lines</A>
+ | 
+<A HREF="./polygons.htm">Polygons</A>
+ | 
+<A HREF="./texturing.htm">Texturing</A>
+ |
+<A HREF="./lights.htm">Lights</A>
+ | 
+<A HREF="./liquids.htm">Liquids</A>
+ |<br>
+ | 
+<A HREF="./Sounds.htm">Sounds</A>
+ | 
+<A HREF="./controls.htm">Control Panels</A>
+ | 
+<A HREF="./Terminals.htm">Terminals</A>
+ | 
+<A HREF="./objects.htm">Objects</A>
+ | 
+<A HREF="./visual.htm">Visual Mode</A>
+ | 
+<A HREF="./Configuration.htm">Configuration Editor
+</P>
+</BODY>
+</HTML>

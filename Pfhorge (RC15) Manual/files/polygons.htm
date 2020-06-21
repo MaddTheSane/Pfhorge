@@ -1,1 +1,127 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML><HEAD>	<TITLE>Polygons</TITLE>	<META NAME="author" CONTENT="Sean Shaw">	<META NAME="generator" CONTENT="WebDesign"></HEAD><BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF"><!--Drag items or enter code here--><P ALIGN="center"><B><FONT SIZE="5">Polygon Construction</FONT></B></P><BR><BR><P ALIGN="left">Polygons are constructed in the same way as Forge, Assuming the "Snap to Points" and "Snap to Grid" options in General Preferences has been checked the new points/lines will attach to the nearest point or grid cross-section as with Forge. These constraints can be temporarily over-ridden by "Over-ride Prefs" in the Map Manager Drawer. <BR><BR>The polygons are filled in the same way, using the Fill tool but unlike Forge are given set default properties rather than that of an adjacent polygon:<BR><BR>	Floor = 0 (0 WU)<BR>	Ceiling = 1024 (1 WU)<BR>	Floor Texture = 6<BR>	Ceiling Texture = 7<BR>	Floor Light = 0<BR>	Ceiling Light = 0<BR>	Liquid Light = 0<BR>	Whichever Layer is currently selected<BR><BR>These defaults can be altered by selecting a previously modified polygon with the Dropper tool; the defaults will be reset to match the parameters of that polygon. The Dropper can be used by selecting it off the Tool Palette or temporarily by holding down the Option key. <BR></P><BR><P ALIGN="left"><b>Polygon Specialization</b></P><P ALIGN="left">Polygon properties can be modified in two ways. The View Menu almost duplicates that of Forge's, the differences being the Polygon Types &amp; Textures that are now handled by Basic &amp; Texture <A HREF="Inspectors.htm">Inspectors</A> respectively (Tools menu).</P><p align="center"><IMG SRC="Forge-View.jpg" HEIGHT="162" WIDTH="146" ALIGN=middle BORDER="1"><IMG SRC="View%20Menu.jpg" HEIGHT="175" WIDTH="204" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">Selecting a menu or submenu entry for any of these five entries from View Layers to View Sounds produced a similar response to Forge, altering the map's appearance to a color-coded template and opening a drawer at the side of the map with related values in it. New values can be added to the drawer by double-clicking the text entry at the top of the drawer and values assigned to polygons with the Select tool. <BR><BR>Note: if the Map Manager Drawer is already open then you will need to close it to see these drawers. <BR><BR>Note: unused values disappear from these drawers when you switch back to Normal Mode. </P><BR><P ALIGN="left"><b>Application of the Basic Inspector to Polygon specialization</b><BR><BR>When a polygon is selected the Basic Inspector (Tools menu) enables the designation of a polygon type and definition of the necessary parameters through a series of drop-down menus. All the usual polygon types are available plus some Marathon 1 types: Ouch/Damage is currently operative and Glue may be. If the polygon is defined as a trigger then the second menu is activated with a list of options appropriate to that trigger. </P><p align="center"><IMG SRC="Basic%20-%20General.jpg" HEIGHT="269" WIDTH="210" ALIGN=middle BORDER="1"><IMG SRC="Basic%20-%20GeneralSub.jpg" HEIGHT="411" WIDTH="188" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">If the polygon is defined as a platform then the Platform Parameters button is activated and will produce a settings sheet similar to Forge's. The addition is the ability to attach a name to the platform, which facilitates in linking switches as the map develops. The default values do differ (speed &amp; delay) and heights are calculated in points rathe than WU. </P><IMG SRC="Platform%20Param.jpg" HEIGHT="417" WIDTH="567" ALIGN=middle BORDER="1"><BR><BR><BR><P ALIGN="left"><b>Application of Light Inspector</b><BR><BR>The Inspector enables the map-maker to identify and assign values to floor, ceiling and (assuming it exists) the liquid present in the chosen polygon. The standard 20 values are available plus any others added via the View Lights menu. </P><p align="center"><IMG SRC="Light-polygon.jpg" HEIGHT="110" WIDTH="206" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left"><b>Application of Texture Inspector</b><BR><BR>The Inspector offers a series of choices. Through two drop-down menus texture sets can be independently selected for floor and ceiling while two visual menus determine the texture chosen for each. The presentation of the textures are determined through two more drop-down menus, those entries with asterisks being those currently available. The "Offset" boxes enable the manual realignment of textures on the polygon surface. </P><p align="center"><IMG SRC="Texture-polygon.jpg" HEIGHT="236" WIDTH="298" ALIGN=middle BORDER="1"><br><IMG SRC="Texture-sets.jpg" HEIGHT="151" WIDTH="217" ALIGN=middle BORDER="1"><IMG SRC="Texture-type.jpg" HEIGHT="375" WIDTH="167" ALIGN=middle BORDER="1"></p><BR><HR SIZE="2" WIDTH="100%"><P ALIGN="center"><FONT SIZE="1"><A HREF="../Contents.htm">Contents | <a href="./introduction.htm">Introduction</a> | <a href="./Pref-Menu.htm">Preferences &amp; Menus</a> | <A HREF="./map-scenario.htm">New Map or Scenario</A> | <A HREF="./lines.htm">Lines</A> | <A HREF="./texturing.htm">Texturing</A> | <A HREF="./lights.htm">Lights</A> | <A HREF="./liquids.htm">Liquids</A> |<br>|<A HREF="./Sounds.htm">Sounds</A> |<A HREF="./controls.htm">Control Panels</A> | <A HREF="./Terminals.htm">Terminals</A> | <A HREF="./objects.htm">Objects</A> | <A HREF="./visual.htm">Visual Mode</A> | <A HREF="./Configuration.htm">Configuration Editor | <A HREF="./Inspectors.htm">Inspectors</A></P></BODY></HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>Polygons</TITLE>
+	<META NAME="author" CONTENT="Sean Shaw">
+	<META NAME="generator" CONTENT="WebDesign">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
+
+
+
+<!--Drag items or enter code here-->
+<P ALIGN="center"><B><FONT SIZE="5">
+Polygon Construction</FONT></B>
+</P>
+
+<BR>
+<BR><P ALIGN="left">
+Polygons are constructed in the same way as Forge, Assuming the "Snap to Points" and "Snap to Grid" options in General Preferences has been checked the new points/lines will attach to the nearest point or grid cross-section as with Forge. These constraints can be temporarily over-ridden by "Over-ride Prefs" in the Map Manager Drawer. 
+<BR>
+<BR>
+The polygons are filled in the same way, using the Fill tool but unlike Forge are given set default properties rather than that of an adjacent polygon:
+
+<BR>
+
+<BR>	Floor = 0 (0 WU)
+<BR>	Ceiling = 1024 (1 WU)
+<BR>	Floor Texture = 6
+<BR>	Ceiling Texture = 7
+<BR>	Floor Light = 0
+<BR>	Ceiling Light = 0
+<BR>	Liquid Light = 0
+<BR>	Whichever Layer is currently selected
+<BR>
+<BR>These defaults can be altered by selecting a previously modified polygon with the Dropper tool; the defaults will be reset to match the parameters of that polygon. The Dropper can be used by selecting it off the Tool Palette or temporarily by holding down the Option key. 
+<BR>
+</P>
+<BR><P ALIGN="left">
+<b>Polygon Specialization</b>
+</P>
+
+<P ALIGN="left">
+Polygon properties can be modified in two ways. The View Menu almost duplicates that of Forge's, the differences being the Polygon Types &amp; Textures that are now handled by Basic &amp; Texture <A HREF="Inspectors.htm">Inspectors</A> respectively (Tools menu).
+</P>
+<p align="center"><IMG SRC="Forge-View.jpg" HEIGHT="162" WIDTH="146" ALIGN=middle BORDER="1"><IMG SRC="View%20Menu.jpg" HEIGHT="175" WIDTH="204" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+Selecting a menu or submenu entry for any of these five entries from View Layers to View Sounds produced a similar response to Forge, altering the map's appearance to a color-coded template and opening a drawer at the side of the map with related values in it. New values can be added to the drawer by double-clicking the text entry at the top of the drawer and values assigned to polygons with the Select tool. 
+<BR>
+<BR>
+Note: if the Map Manager Drawer is already open then you will need to close it to see these drawers. 
+<BR>
+<BR>
+Note: unused values disappear from these drawers when you switch back to Normal Mode. 
+</P>
+
+
+<BR><P ALIGN="left">
+<b>Application of the Basic Inspector to Polygon specialization</b>
+<BR>
+<BR>
+When a polygon is selected the Basic Inspector (Tools menu) enables the designation of a polygon type and definition of the necessary parameters through a series of drop-down menus. All the usual polygon types are available plus some Marathon 1 types: Ouch/Damage is currently operative and Glue may be. If the polygon is defined as a trigger then the second menu is activated with a list of options appropriate to that trigger. 
+</P>
+<p align="center"><IMG SRC="Basic%20-%20General.jpg" HEIGHT="269" WIDTH="210" ALIGN=middle BORDER="1">
+<IMG SRC="Basic%20-%20GeneralSub.jpg" HEIGHT="411" WIDTH="188" ALIGN=middle BORDER="1">
+</p>
+
+<BR><P ALIGN="left">
+If the polygon is defined as a platform then the Platform Parameters button is activated and will produce a settings sheet similar to Forge's. The addition is the ability to attach a name to the platform, which facilitates in linking switches as the map develops. The default values do differ (speed &amp; delay) and heights are calculated in points rathe than WU. 
+</P>
+<IMG SRC="Platform%20Param.jpg" HEIGHT="417" WIDTH="567" ALIGN=middle BORDER="1">
+
+
+
+<BR><BR><BR><P ALIGN="left">
+<b>Application of Light Inspector</b>
+<BR>
+<BR>The Inspector enables the map-maker to identify and assign values to floor, ceiling and (assuming it exists) the liquid present in the chosen polygon. The standard 20 values are available plus any others added via the View Lights menu. 
+</P>
+<p align="center"><IMG SRC="Light-polygon.jpg" HEIGHT="110" WIDTH="206" ALIGN=middle BORDER="1"></p>
+
+
+<BR><P ALIGN="left">
+<b>Application of Texture Inspector</b>
+<BR>
+<BR>
+The Inspector offers a series of choices. Through two drop-down menus texture sets can be independently selected for floor and ceiling while two visual menus determine the texture chosen for each. The presentation of the textures are determined through two more drop-down menus, those entries with asterisks being those currently available. The "Offset" boxes enable the manual realignment of textures on the polygon surface. 
+</P>
+<p align="center"><IMG SRC="Texture-polygon.jpg" HEIGHT="236" WIDTH="298" ALIGN=middle BORDER="1"><br>
+<IMG SRC="Texture-sets.jpg" HEIGHT="151" WIDTH="217" ALIGN=middle BORDER="1">
+<IMG SRC="Texture-type.jpg" HEIGHT="375" WIDTH="167" ALIGN=middle BORDER="1"></p>
+
+
+<BR><HR SIZE="2" WIDTH="100%">
+<P ALIGN="center"><FONT SIZE="1">
+<A HREF="../Contents.htm">Contents
+ | 
+<a href="./introduction.htm">Introduction</a>
+ | 
+<a href="./Pref-Menu.htm">Preferences &amp; Menus</a>
+ | 
+<A HREF="./map-scenario.htm">New Map or Scenario</A>
+ | 
+<A HREF="./lines.htm">Lines</A>
+ | 
+<A HREF="./texturing.htm">Texturing</A>
+ | 
+<A HREF="./lights.htm">Lights</A>
+ | 
+<A HREF="./liquids.htm">Liquids</A>
+ |<br>|
+<A HREF="./Sounds.htm">Sounds</A>
+ |
+<A HREF="./controls.htm">Control Panels</A>
+ | 
+<A HREF="./Terminals.htm">Terminals</A>
+ | 
+<A HREF="./objects.htm">Objects</A>
+ | 
+<A HREF="./visual.htm">Visual Mode</A>
+ | 
+<A HREF="./Configuration.htm">Configuration Editor
+ | 
+<A HREF="./Inspectors.htm">Inspectors</A>
+</P>
+</BODY>
+</HTML>

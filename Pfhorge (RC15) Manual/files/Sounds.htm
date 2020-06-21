@@ -1,1 +1,131 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML><HEAD>	<TITLE>Sounds</TITLE>	<META NAME="author" CONTENT="Sean Shaw">	<META NAME="generator" CONTENT="WebDesign"></HEAD><BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF"><!--Drag items or enter code here--><p align="center"><FONT SIZE="5"><b>Sounds</b></FONT></p><br><p align="left"><b>Ambient Sounds</b></p><p align="left">Selecting "View Sounds..." offers the choice of Ambient or Random Sounds. Ambient Sounds switches to a colour-coded view (as with lights and liquids) and opens a drawer enabling the creation of specific sounds. Double-clicking on a value or creating a new one opens the parameter box below (similar to Forge's) through which a specific sound can be selected, the volume set and a name assigned to that combination. Once the box is closed that combination is saved and appers in the drawer. It can be assigned to a specific polygon using the Select tool. The Dropper tool will also identify a sound already assigned to a polygon. <BR><BR></p><p align="center"><IMG SRC="Forge-ambient.jpg" HEIGHT="111" WIDTH="162" ALIGN=middle BORDER="1"><IMG SRC="Ambient.jpg" HEIGHT="139" WIDTH="206" ALIGN=middle BORDER="1"><IMG SRC="Ambient-menu.jpg" HEIGHT="457" WIDTH="157" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">In Forge the volume was set on a sliding scale of 1 to 100. In the same way that Pfhorge uses absolute values instead of World Units sound volume is determined on a scale of 0 to 32767, Forge's 100 units being the equivalent of 255 Pfhorge units. Consequently the map sounds can be made noticeably louder. <BR>Formulae for conversion: <BR>Pfhorge = (Forge * 2.56)-1<BR>Forge = (Pfhorge + 1)/2.56</P><!--TABLE START--><TABLE>	<TR>		<TD>Forge Vol.</TD>		<TD>Pfhorge Vol.</TD>	</TR>	<TR>		<TD>1</TD>		<TD>0</TD>	</TR>	<TR>		<TD>100</TD>		<TD>255</TD>	</TR>	<TR>		<TD>200</TD>		<TD>511</TD>	</TR>	<TR>		<TD>400</TD>		<TD>1023</TD>	</TR>	<TR>		<TD>800</TD>		<TD>2047</TD>	</TR>	<TR>		<TD>1600</TD>		<TD>4095</TD>	</TR>	<TR>		<TD>3200</TD>		<TD>8191</TD>	</TR>	<TR>		<TD>6400</TD>		<TD>16383</TD>	</TR>	<TR>		<TD>12800</TD>		<TD>32767</TD>	</TR></TABLE><!--TABLE END--><BR><BR><p align="left"><b>Random Sounds</b></p><P ALIGN="left">Selecting "View Sound" currently leads to an inactive submenu. Random Sounds have to be defined through the <A HREF="Configuration.htm">Configuration Editor</A> by selecting the Random Sounds from the drop-down menu and adding a new sound to the list. A parameter box opens enabling you to select the sound via a drop-down menu and set phase, direction (0-512&deg;), volume, period and pitch. The combination can then be assigned a name and the this is automatically stored in the Configuration Editor. The parameter box is similar to that found in Forge with the exception the sound value scale being 0-32767 and the direction controls being numerical rather than manual. </P><p align="center"><IMG SRC="Config-menu1.jpg" HEIGHT="136" WIDTH="132" ALIGN=middle BORDER="1"><IMG SRC="Config-menu2.jpg" HEIGHT="127" WIDTH="153" ALIGN=middle BORDER="1"></p><p align="center"><IMG SRC="Random.jpg" HEIGHT="277" WIDTH="273" ALIGN=middle BORDER="1"></p><BR><P ALIGN="left">Random Sounds are assigned to individual polygons using the <A HREF="Inspectors.htm">Basic Inspector</A> when constructing <A HREF="Polygons.htm">Polygons</A>. One of the drop-down menus available duplicates the list of Random Sounds found in the Configuration Editor; by selecting a particular entry when a polygon is active that Random Sound will be assigned to it. It is possible for a polygon to possess both Random and Ambient Sounds. </P><p align="center"><IMG SRC="Random2.jpg" HEIGHT="322" WIDTH="211" ALIGN=middle BORDER="1"></p><BR><HR SIZE="2" WIDTH="100%"><P ALIGN="center"><FONT SIZE="1"><A HREF="../Contents.htm">Contents | <a href="./introduction.htm">Introduction</a> | <A HREF="./pref-menu.htm">Preferences &amp; Menus</A> | <A HREF="./map-scenario.htm">New Map or Scenario</A> | <A HREF="./lines.htm">Lines</A> | <A HREF="./polygons.htm">Polygons</A> | <A HREF="./texturing.htm">Texturing</A> | <br>| <A HREF="./lights.htm">Lights</A> | <A HREF="./liquids.htm">Liquids</A> | <A HREF="./controls.htm">Control Panels</A> | <A HREF="./Terminals.htm">Terminals</A> | <A HREF="./objects.htm">Objects</A> | <A HREF="./visual.htm">Visual Mode</A> | <A HREF="./Configuration.htm">Configuration Editor | <A HREF="./Inspectors.htm">Inspectors</P><BR></BODY></HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>Sounds</TITLE>
+	<META NAME="author" CONTENT="Sean Shaw">
+	<META NAME="generator" CONTENT="WebDesign">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF">
+
+
+
+<!--Drag items or enter code here-->
+<p align="center"><FONT SIZE="5">
+<b>Sounds</b></FONT>
+</p>
+<br>
+<p align="left">
+<b>Ambient Sounds</b>
+</p>
+
+<p align="left">
+Selecting "View Sounds..." offers the choice of Ambient or Random Sounds. Ambient Sounds switches to a colour-coded view (as with lights and liquids) and opens a drawer enabling the creation of specific sounds. Double-clicking on a value or creating a new one opens the parameter box below (similar to Forge's) through which a specific sound can be selected, the volume set and a name assigned to that combination. Once the box is closed that combination is saved and appers in the drawer. It can be assigned to a specific polygon using the Select tool. The Dropper tool will also identify a sound already assigned to a polygon. 
+<BR>
+<BR>
+</p>
+<p align="center"><IMG SRC="Forge-ambient.jpg" HEIGHT="111" WIDTH="162" ALIGN=middle BORDER="1"><IMG SRC="Ambient.jpg" HEIGHT="139" WIDTH="206" ALIGN=middle BORDER="1"><IMG SRC="Ambient-menu.jpg" HEIGHT="457" WIDTH="157" ALIGN=middle BORDER="1"></p>
+
+<BR><P ALIGN="left">
+In Forge the volume was set on a sliding scale of 1 to 100. In the same way that Pfhorge uses absolute values instead of World Units sound volume is determined on a scale of 0 to 32767, Forge's 100 units being the equivalent of 255 Pfhorge units. Consequently the map sounds can be made noticeably louder. 
+<BR>Formulae for conversion: 
+<BR>Pfhorge = (Forge * 2.56)-1
+<BR>Forge = (Pfhorge + 1)/2.56
+</P>
+<!--TABLE START-->
+<TABLE>
+	<TR>
+		<TD>Forge Vol.</TD>
+		<TD>Pfhorge Vol.</TD>
+	</TR>
+	<TR>
+		<TD>1</TD>
+		<TD>0</TD>
+	</TR>
+	<TR>
+		<TD>100</TD>
+		<TD>255</TD>
+	</TR>
+	<TR>
+		<TD>200</TD>
+		<TD>511</TD>
+	</TR>
+	<TR>
+		<TD>400</TD>
+		<TD>1023</TD>
+	</TR>
+	<TR>
+		<TD>800</TD>
+		<TD>2047</TD>
+	</TR>
+	<TR>
+		<TD>1600</TD>
+		<TD>4095</TD>
+	</TR>
+	<TR>
+		<TD>3200</TD>
+		<TD>8191</TD>
+	</TR>
+	<TR>
+		<TD>6400</TD>
+		<TD>16383</TD>
+	</TR>
+	<TR>
+		<TD>12800</TD>
+		<TD>32767</TD>
+	</TR>
+</TABLE>
+<!--TABLE END-->
+
+<BR><BR>
+<p align="left">
+<b>Random Sounds</b>
+</p>
+<P ALIGN="left">
+Selecting "View Sound" currently leads to an inactive submenu. Random Sounds have to be defined through the <A HREF="Configuration.htm">Configuration Editor</A> by selecting the Random Sounds from the drop-down menu and adding a new sound to the list. A parameter box opens enabling you to select the sound via a drop-down menu and set phase, direction (0-512&deg;), volume, period and pitch. The combination can then be assigned a name and the this is automatically stored in the Configuration Editor. The parameter box is similar to that found in Forge with the exception the sound value scale being 0-32767 and the direction controls being numerical rather than manual. 
+</P>
+<p align="center"><IMG SRC="Config-menu1.jpg" HEIGHT="136" WIDTH="132" ALIGN=middle BORDER="1">
+<IMG SRC="Config-menu2.jpg" HEIGHT="127" WIDTH="153" ALIGN=middle BORDER="1"></p>
+<p align="center"><IMG SRC="Random.jpg" HEIGHT="277" WIDTH="273" ALIGN=middle BORDER="1"></p>
+
+<BR>
+<P ALIGN="left">
+Random Sounds are assigned to individual polygons using the <A HREF="Inspectors.htm">Basic Inspector</A> when constructing <A HREF="Polygons.htm">Polygons</A>. One of the drop-down menus available duplicates the list of Random Sounds found in the Configuration Editor; by selecting a particular entry when a polygon is active that Random Sound will be assigned to it. It is possible for a polygon to possess both Random and Ambient Sounds. 
+</P>
+<p align="center"><IMG SRC="Random2.jpg" HEIGHT="322" WIDTH="211" ALIGN=middle BORDER="1"></p>
+
+
+<BR><HR SIZE="2" WIDTH="100%">
+<P ALIGN="center"><FONT SIZE="1">
+<A HREF="../Contents.htm">Contents
+ | 
+<a href="./introduction.htm">Introduction</a>
+ | 
+<A HREF="./pref-menu.htm">Preferences &amp; Menus</A>
+ | 
+<A HREF="./map-scenario.htm">New Map or Scenario</A>
+ | 
+<A HREF="./lines.htm">Lines</A>
+ | 
+<A HREF="./polygons.htm">Polygons</A>
+ | 
+<A HREF="./texturing.htm">Texturing</A>
+ | <br>| 
+<A HREF="./lights.htm">Lights</A>
+ | 
+<A HREF="./liquids.htm">Liquids</A>
+ | 
+<A HREF="./controls.htm">Control Panels</A>
+ | 
+<A HREF="./Terminals.htm">Terminals</A>
+ | 
+<A HREF="./objects.htm">Objects</A>
+ | 
+<A HREF="./visual.htm">Visual Mode</A>
+ | 
+<A HREF="./Configuration.htm">Configuration Editor
+ | 
+<A HREF="./Inspectors.htm">Inspectors
+</P>
+<BR>
+</BODY>
+</HTML>
