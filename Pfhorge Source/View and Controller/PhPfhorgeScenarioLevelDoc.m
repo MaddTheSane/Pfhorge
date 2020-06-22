@@ -212,7 +212,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             
             [maraResources iterateResourcesOfType:@"PICT" progress:YES block:^(Resource * resource, NSData *dat, PhProgress *progress) {
                 PhPictConversionBinaryFormat format;
-                NSError *err;
+                NSError *err=nil;
                 NSData *convDat = [PhPictConversion convertPICTfromData:dat returnedFormat:&format error:&err];
                 NSString *savePath;
                 if (!convDat) {

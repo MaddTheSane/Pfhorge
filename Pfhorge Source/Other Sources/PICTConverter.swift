@@ -1050,7 +1050,7 @@ class PICT {
 		}
 	}
 
-	enum PICTConversionError: Error, RawRepresentable {
+	enum PICTConversionError: Error, RawRepresentable, LocalizedError {
 		init?(rawValue: Int) {
 			switch rawValue {
 			case 1:
@@ -1108,24 +1108,52 @@ class PICT {
 		var localizedDescription: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String(format: "Unimplemented OpCode %02d", oc)
-				
+				return String(format: "Unimplemented OpCode %d (0x%02d)", oc, oc)
+
 			case .containsBandedJPEG:
-				return "Contains Banded JPEG"
+				return "Contains banded JPEG"
 				
 			case .usesCinemascopeHack:
-				return "Uses CinemaScope Hack"
+				return "Uses CinemaScope hack"
 				
 			case .unsupportedQuickTimeCodec:
-				return "Contains Unknown or Unsupported Codec"
+				return "Contains unknown or unsupported codec"
 				
 			case .unexpectedEndOfStream:
-				return "Unexpected End of File"
+				return "Unexpected end of file"
 				
 			case .conversionFailed:
 				return "Converting to anonther bitmap format failed"
 			}
 		}
+		
+		var errorDescription: String? {
+			switch self {
+			case .unimplementedOpCode(let oc):
+				return String(format: "Unimplemented OpCode %d (0x%02d)", oc, oc)
+				
+			case .containsBandedJPEG:
+				return "Contains banded JPEG"
+				
+			case .usesCinemascopeHack:
+				return "Uses CinemaScope hack"
+				
+			case .unsupportedQuickTimeCodec:
+				return "Contains unknown or unsupported codec"
+				
+			case .unexpectedEndOfStream:
+				return "Unexpected end of file"
+				
+			case .conversionFailed:
+				return "Converting to anonther bitmap format failed"
+			}
+		}
+
+		var failureReason: String? { return nil }
+
+		var recoverySuggestion: String? { return nil }
+
+		var helpAnchor: String? { return nil }
 		
 		case unimplementedOpCode(_ opCode: UInt16)
 		case containsBandedJPEG

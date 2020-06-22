@@ -62,4 +62,10 @@
     
     loaded = YES;
 }
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Resource '%@' (%@) named \"%@\", is loaded: %@", type, resID, name, loaded ? @"YES" : @"NO"];
+}
+
 @end

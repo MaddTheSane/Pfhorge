@@ -74,9 +74,13 @@ fileprivate extension EasyBMP.RGBAPixel {
 	}
 }
 
-extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible {
+extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible, CustomStringConvertible {
 	var playgroundDescription: Any {
 		return CGColor.init(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: 1)
+	}
+	
+	var description: String {
+		return "blue: \(blue), green: \(green), red: \(red)"
 	}
 }
 
@@ -455,8 +459,9 @@ final class EasyBMP {
 			dPaletteSize = 3*4
 		}
 		
-		let dTotalFileSize = 14 + 40 + dPaletteSize + dTotalPixelBytes
-
+		do {
+			let dTotalFileSize = Int(14 + 40 + dPaletteSize + dTotalPixelBytes)
+			fp.reserveCapacity(dTotalFileSize)
 		// write the file header
 		
 		var bmfh = BMFH()
@@ -511,7 +516,7 @@ final class EasyBMP {
 		bmpWrite(bmih.biYPelsPerMeter, &fp)
 		bmpWrite(bmih.biClrUsed, &fp)
 		bmpWrite(bmih.biClrImportant, &fp)
-		
+		}
 		
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8  {
 			let NumberOfColors = IntPow(2, bitDepth)
@@ -522,7 +527,7 @@ final class EasyBMP {
 				_=createStandardColorTable()
 			}
 			
-			for n in 0 ..< Int(NumberOfColors){
+			for n in 0 ..< Int(NumberOfColors) {
 				bmpWrite(colors[n].blue, &fp)
 				bmpWrite(colors[n].green, &fp)
 				bmpWrite(colors[n].red, &fp)
@@ -542,10 +547,8 @@ final class EasyBMP {
 				BufferSize += 1
 			}
 			
-			var buffer = Data(capacity: BufferSize)
-			
-			var j = Int(height) - 1
-			while j > -1 {
+			for j in (0..<Int(height)).reversed() {
+				var buffer = Data(count: BufferSize)
 				switch bitDepth {
 				case 32:
 					write32BitRow(&buffer, row: j)
@@ -567,10 +570,9 @@ final class EasyBMP {
 					fatalError("Bad bit depth \(bitDepth)")
 				}
 
-				j -= 1
+				fp.append(buffer)
 			}
 			
-			fp.append(buffer)
 			closestColorMap.removeAll()
 		} else {
 			// write the bit masks
@@ -743,39 +745,33 @@ final class EasyBMP {
 	}
 	
 	private func write32BitRow(_ buffer: inout Data, row: Int) {
-		var pixelData = [UInt8]()
-		pixelData.reserveCapacity(Int(width) * 4)
 		for i in 0 ..< Int(width) {
 			let pix = pixels[i][row]
-			pixelData.append(contentsOf: [pix.blue, pix.green, pix.red, pix.alpha])
+			buffer[i*4] = pix.blue
+			buffer[i*4+1] = pix.green
+			buffer[i*4+2] = pix.red
+			buffer[i*4+3] = pix.alpha
 		}
-		buffer.append(contentsOf: pixelData)
 	}
 	
 	private func write24BitRow(_ buffer: inout Data, row: Int) {
-		var pixelData = [UInt8]()
-		pixelData.reserveCapacity(Int(width) * 3)
 		for i in 0 ..< Int(width) {
 			let pix = pixels[i][row]
-			pixelData.append(contentsOf: [pix.blue, pix.green, pix.red])
+			buffer[i*3] = pix.blue
+			buffer[i*3+1] = pix.green
+			buffer[i*3+2] = pix.red
 		}
-		buffer.append(contentsOf: pixelData)
 	}
 
 	private func write8BitRow(_ buffer: inout Data, row: Int) {
-		var pixelData = [UInt8]()
-		pixelData.reserveCapacity(Int(width))
 		for i in 0 ..< Int(width) {
-			pixelData.append(findClosestColor(to: pixels[i][row]))
+			buffer[i] = findClosestColor(to: pixels[i][row])
 		}
-		buffer.append(contentsOf: pixelData)
 	}
 	
 	private func write4BitRow(_ buffer: inout Data, row: Int) {
 		let positionWeights: [UInt8] = [4, 0]
 		var i = 0
-		var pixelData = [UInt8]()
-		pixelData.reserveCapacity(Int(width) / 2)
 		while i < width {
 			var j = 0
 			var index: UInt8 = 0
@@ -784,16 +780,13 @@ final class EasyBMP {
 				i += 1; j += 1;
 			}
 
-			pixelData.append(index)
+			buffer[i/2] = index
 		}
-		buffer.append(contentsOf: pixelData)
 	}
 
 	private func write1BitRow(_ buffer: inout Data, row: Int) {
 		let positionWeights: [UInt8] = [7, 6, 5, 4, 3, 2, 1, 0]
 		var i = 0
-		var pixelData = [UInt8]()
-		pixelData.reserveCapacity(Int(width) / 8)
 		while i < width {
 			var j = 0
 			var index: UInt8 = 0
@@ -802,9 +795,8 @@ final class EasyBMP {
 				i += 1; j += 1;
 			}
 
-			pixelData.append(index)
+			buffer[i/8] = index
 		}
-		buffer.append(contentsOf: pixelData)
 	}
 	
 	private func read32BitRow(_ buffer: Data, row: Int) -> Bool {
