@@ -9,7 +9,9 @@
 #import "Resource.h"
 
 
-@implementation Resource
+@implementation Resource {
+    Str255 nameAsStr255;
+}
 - (id)initWithID:(ResID)newID type:(NSString *)resType name:(NSString *)resName
 {
     if (self = [super init]) {
@@ -40,14 +42,10 @@
 
 - (ConstStr255Param)nameAsStr255
 {
-    static unsigned char	*string;
-    
-    if (!string) {
-        string = malloc(256);
+    if (nameAsStr255[0] == 0 && name.length != 0) {
+        CFStringGetPascalString((CFStringRef)name, nameAsStr255, 256, kCFStringEncodingMacRoman);
     }
-    CFStringGetPascalString((CFStringRef)name, string, 256, kCFStringEncodingMacRoman);
-    
-    return string;
+    return nameAsStr255;
 }
 
 @synthesize loaded;
@@ -60,8 +58,8 @@
 
 - (void)setData:(NSData *)newData
 {
-    data = newData;
+    data = [newData copy];
     
-    [self setLoaded:YES];
+    loaded = YES;
 }
 @end

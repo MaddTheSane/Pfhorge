@@ -50,8 +50,6 @@ extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
 - (IBAction)copy:(id)sender;
 - (IBAction)paste:(id)sender;
 
-- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode contextInfo:(void *)contextInfo;
-
     
 // *** Document Methods ***
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController;

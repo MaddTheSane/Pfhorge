@@ -144,13 +144,13 @@
     
     NSLog(@"scanProjectDirectory");
     
-    for (NSString *fileName in levelFileNames) {
+    for (NSString *fileName in [[levelFileNames copy] autorelease]) {
         BOOL isDir = YES;
         NSString *fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
         BOOL exsists = [manager fileExistsAtPath:fullPath isDirectory:&isDir];
         
         if ((!exsists) || (isDir)) {
-            NSLog(@"REMOVE");
+            NSLog(@"REMOVE %@", fileName);
             [levelFileNames removeObject:fileName];
            // [levelFileFullPaths removeObject:fullPath];
         }
@@ -220,9 +220,15 @@
 objectValueForTableColumn:(NSTableColumn *)aTableColumn
            row:(NSInteger)rowIndex
 {
+    if ([self numberOfRowsInTableView:aTableView] == 0) {
+        return @"";
+    }
     if ([[aTableColumn identifier] isEqualToString:@"#"]) {
         return @(rowIndex);
     } else {
+        if (rowIndex > self.levelCount) {
+            return @"";
+        }
         return [self getLevelNameForLevel:(int)rowIndex];
     }
 }

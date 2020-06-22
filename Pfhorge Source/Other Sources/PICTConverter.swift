@@ -301,7 +301,7 @@ class PICT {
 	}
 	
 	struct HeaderOp {
-		var headerOp: Int16
+		var headerOp: Int16 = 0x0c00
 		var headerVersion: UInt16
 		var reserved1: Int16
 		var hRes: Int32
@@ -320,8 +320,7 @@ class PICT {
 		}
 		
 		init?(data: PhData) {
-			guard let aheaderOp = data.readInt16(),
-				let aheaderVersion = data.readUInt16(),
+			guard let aheaderVersion = data.readUInt16(),
 				let areserved1 = data.readInt16(),
 				let ahRes = data.readInt32(),
 				let avRes = data.readInt32(),
@@ -329,7 +328,6 @@ class PICT {
 				let areserved2 = data.readInt32() else {
 					return nil
 			}
-			headerOp = aheaderOp
 			headerVersion = aheaderVersion
 			reserved1 = areserved1
 			hRes = ahRes
@@ -484,17 +482,23 @@ class PICT {
 		var pack_type: UInt16
 		var pixel_size: UInt16
 		if isPixmap {
-			stream.add(toPosition: 2) // pmVersion
+			guard stream.add(toPosition: 2) else { // pmVersion
+				return false
+			}
 			guard let tmpVal = stream.readUInt16() else {
 				return false
 			}
 			pack_type = tmpVal
-			stream.add(toPosition: 14) // packSize/hRes/vRes/pixelType
+			guard stream.add(toPosition: 14) else { // packSize/hRes/vRes/pixelType
+				return false
+			}
 			guard let tmpVal2 = stream.readUInt16() else {
 				return false
 			}
 			pixel_size = tmpVal2
-			stream.add(toPosition: 16) // cmpCount/cmpSize/planeBytes/pmTable/pmReserved
+			guard stream.add(toPosition: 16) else {// cmpCount/cmpSize/planeBytes/pmTable/pmReserved
+				return false
+			}
 		} else {
 			pack_type = 0
 			pixel_size = 1
@@ -653,7 +657,7 @@ class PICT {
 		let data = PhData(data: preData)
 		jpegData.removeAll()
 		
-		guard let size = data.readInt16(),
+		guard let /*size*/ _ = data.readUInt16(),
 			let rect = Rect(data: data) else {
 				throw CocoaError(.fileReadCorruptFile)
 		}
@@ -693,7 +697,9 @@ class PICT {
 					data.add(toPosition: 8)
 					
 				case .headerOp:
-					let headerOp = PICT.HeaderOp(data: data)
+					guard let /*headerOp*/ _ = PICT.HeaderOp(data: data) else {
+						throw PICTConversionError.unexpectedEndOfStream
+					}
 					
 				case .longComment:
 					data.add(toPosition: 2)
@@ -703,7 +709,9 @@ class PICT {
 					if (size & 1) != 0 {
 						size += 1
 					}
-					data.add(toPosition: Int(size))
+					guard data.add(toPosition: Int(size)) else {
+						throw PICTConversionError.unexpectedEndOfStream
+					}
 					
 				case .packBitsRect, .packBitsRgn, .directBitsRect, .directBitsRgn:
 					let packed = (opcode == .packBitsRect || opcode == .packBitsRgn)
@@ -1042,7 +1050,83 @@ class PICT {
 		}
 	}
 
-	enum PICTConversionError: Error {
+	enum PICTConversionError: Error, RawRepresentable {
+		init?(rawValue: Int) {
+			switch rawValue {
+			case 1:
+				self = .unimplementedOpCode(0)
+				
+			case 2:
+				self = .containsBandedJPEG
+				
+			case 3:
+				self = .usesCinemascopeHack
+				
+			case 4:
+				self = .unsupportedQuickTimeCodec
+				
+			case 5:
+				self = .unexpectedEndOfStream
+				
+			case 6:
+				self = .conversionFailed
+								
+			default:
+				let op = rawValue >> 8
+				guard (rawValue & 0xf) == 1,
+					let op2 = UInt16(exactly: op) else {
+						return nil
+				}
+				self = .unimplementedOpCode(op2)
+			}
+		}
+		
+		typealias RawValue = Int
+		
+		var rawValue: Int {
+			switch self {
+			case .unimplementedOpCode(let oc):
+				return Int(oc) << 8 | 1
+				
+			case .containsBandedJPEG:
+				return 2
+				
+			case .usesCinemascopeHack:
+				return 3
+				
+			case .unsupportedQuickTimeCodec:
+				return 4
+				
+			case .unexpectedEndOfStream:
+				return 5
+				
+			case .conversionFailed:
+				return 6
+			}
+		}
+		
+		var localizedDescription: String {
+			switch self {
+			case .unimplementedOpCode(let oc):
+				return String(format: "Unimplemented OpCode %02d", oc)
+				
+			case .containsBandedJPEG:
+				return "Contains Banded JPEG"
+				
+			case .usesCinemascopeHack:
+				return "Uses CinemaScope Hack"
+				
+			case .unsupportedQuickTimeCodec:
+				return "Contains Unknown or Unsupported Codec"
+				
+			case .unexpectedEndOfStream:
+				return "Unexpected End of File"
+				
+			case .conversionFailed:
+				return "Converting to anonther bitmap format failed"
+			}
+		}
+		
 		case unimplementedOpCode(_ opCode: UInt16)
 		case containsBandedJPEG
 		case usesCinemascopeHack

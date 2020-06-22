@@ -148,7 +148,120 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     op.allowedFileTypes = fileTypes;
 
     [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
-        [self importMapScriptDone:op returnCode:result contextInfo:NULL];
+        NSString    *fileName = nil;
+        NSMutableArray *archivedLevels = nil;
+        NSMutableArray *levelNames = [NSMutableArray arrayWithCapacity:0];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *imageDir = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images"];
+        BOOL isDir = NO;
+        
+        BOOL exsists = NO;
+        
+        PhProgress *progress = [PhProgress sharedPhProgress];
+        
+        if (result == NSFileHandlingPanelOKButton) {
+            ScenarioResources *maraResources;
+            NSURL *fileURL = op.URL;
+            fileName = fileURL.path;
+            
+            [progress setMinProgress:0.0];
+            [progress setMaxProgress:100.0];
+            [progress setProgressPostion:0.0];
+            [progress setStatusText:@"Importing Marathon Data…"];
+            [progress setInformationalText:@"Loading Marathon Data Into Memory…"];
+            [progress showWindow:self];
+            
+            maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fileName];
+            
+            archivedLevels = [LEMapData
+                convertMarathonDataToArchived:[NSData dataWithContentsOfURL:fileURL]
+                                   levelNames:levelNames error:NULL];
+                                   
+            [progress setStatusText:@"Saving All The Levels…"];
+            
+            [self saveArrayOfNSDatas:archivedLevels
+                       withFileNames:levelNames
+                             baseDir:[self fullPathForDirectory]];
+                             
+            [progress setStatusText:@"Adding Level Names To Scenario Document…"];
+            
+            [scenarioData addLevelNames:levelNames];
+            
+            [progress setStatusText:@"Extracting and Saving Resources…"];
+            
+            exsists = [fileManager fileExistsAtPath:imageDir isDirectory:&isDir];
+            
+            if (exsists && !isDir) {
+                SEND_ERROR_MSG_TITLE(@"File named 'Image' already exsists in scenario folder, can get images.",
+                                     @"Can Create Images Folder");
+                [maraResources release];
+                [progress orderOutWin:self];
+                return;
+            }
+            
+            if (!exsists) {
+                BOOL succsessfull = YES;
+                succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
+                if (!succsessfull) {
+                    SEND_ERROR_MSG(@"Could not create images folder");
+                    [maraResources release];
+                    [progress orderOutWin:self];
+                    return;
+                }
+            }
+            
+            [maraResources iterateResourcesOfType:@"PICT" progress:YES block:^(Resource * resource, NSData *dat, PhProgress *progress) {
+                PhPictConversionBinaryFormat format;
+                NSError *err;
+                NSData *convDat = [PhPictConversion convertPICTfromData:dat returnedFormat:&format error:&err];
+                NSString *savePath;
+                if (!convDat) {
+                    // TODO: store errors for later review by the user
+                    NSLog(@"%@", err);
+                    [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", @"PICT", [resource resID], nil]];
+                    NSString * pictPath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"pict"]];
+                    
+                    [fileManager createFileAtPath:pictPath
+                                         contents:dat
+                                       attributes:@{NSFileHFSTypeCode: @((OSType)'PICT'),
+                                                    NSFileHFSCreatorCode: @((OSType)'ttxt')
+                                       }];
+                    return;
+                }
+                
+                switch (format) {
+                    case PhPictConversionBinaryFormatJPEG:
+                        savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"jpeg"]];
+                        break;
+                        
+                    case PhPictConversionBinaryFormatBitmap:
+                        savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"bmp"]];
+                        break;
+                        
+                    case PhPictConversionBinaryFormatPNG:
+                        savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"png"]];
+                        break;
+
+                    default:
+                        savePath = nil;
+                        break;
+                }
+                
+                [progress setInformationalText:[NSString stringWithFormat:@"Saving converted ‘%@’ Resource# %@…", @"PICT", [resource resID]]];
+                BOOL success = [convDat writeToFile:savePath options:NSDataWritingAtomic error:&err];
+                if (!success) {
+                    // TODO: store errors for later review by the user
+                    NSLog(@"%@", err);
+                }
+            }];
+            [maraResources release];
+            
+            [progress increaseProgressBy:1.0];
+            [progress setStatusText:@"Done Converting Level!"];
+            [progress orderOutWin:self];
+        }
+        
+        [self saveDocument:nil];
     }];
 
 }
@@ -164,7 +277,82 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     op.allowedFileTypes = fileTypes;
     
     [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
-        [self importPIDMapScriptDone:op returnCode:result contextInfo:NULL];
+        NSString        *fileName = nil;
+        NSMutableArray  *archivedLevels = [[NSMutableArray alloc] init];
+        NSMutableArray  *levelNames = [[NSMutableArray alloc] init];
+        NSFileManager   *fileManager = [NSFileManager defaultManager];
+        //NSString *imageDir = [[self fullPathForDirectory] stringByAppendingString:@"Images/"];
+        
+        PhProgress *progress = [PhProgress sharedPhProgress];
+        
+        if (result == NSModalResponseOK) {
+            fileName = op.URL.path;
+            
+            [progress setMinProgress:0.0];
+            [progress setMaxProgress:100.0];
+            [progress setProgressPostion:0.0];
+            [progress setStatusText:@"Importing Pathways Into Darkness Map…"];
+            [progress setInformationalText:@"Importing Pathways Into Darkness Map…"];
+            [progress showWindow:self];
+            
+            
+            BOOL isDir = NO;
+            
+            NSString *pathPathwaysApp = [fileName stringByDeletingLastPathComponent];
+            NSData *dpin128ResourceData = nil;
+            
+            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
+            
+            BOOL exsists = [fileManager fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
+            
+            if ((exsists) && (!isDir)) {
+                // Data will be dallocated after fileResources gets released...
+                ScenarioResources *fileResources = [[ScenarioResources alloc] initWithContentsOfFile:pathPathwaysApp];
+                // Copy data (or we could just retain it, since it's immutable, which is waht the copy method
+                //   probabaly does with NSData objects) so we will have it after fileResources gets released...
+                dpin128ResourceData = [[[fileResources resourceOfType:@"dpin" index:128] data] copy];
+                
+                // Should be able to just release it now, but just in case..
+                [fileResources autorelease];
+                [pathPathwaysApp release];
+                pathPathwaysApp = nil;
+
+                NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
+            } else {
+                [pathPathwaysApp release];
+                pathPathwaysApp = nil;
+                dpin128ResourceData = nil;
+                
+                NSLog(@"Was NOT Able To Load 'Pathways Into Darkness' dpin 128 resource...");
+            }
+            
+            
+            [PathwaysExchange convertPIDMapToArchived:[fileManager
+                                       contentsAtPath:fileName]
+                                               levels:archivedLevels
+                                           levelNames:levelNames
+                                         resourceData:dpin128ResourceData];
+            
+            // I don't need this any more, PathwaysExchange should have retained
+            // it if it needed it keep it...
+            [dpin128ResourceData release];
+            
+            [progress setStatusText:@"Saving All The Levels…"];
+            
+            [self saveArrayOfNSDatas:archivedLevels
+                       withFileNames:levelNames
+                             baseDir:[self fullPathForDirectory]];
+                             
+            [progress setStatusText:@"Adding Level Names To Scenario Document…"];
+            
+            [scenarioData addLevelNames:levelNames];
+            
+            [progress increaseProgressBy:1.0];
+            [progress setStatusText:@"Done Converting Level!"];
+            [progress orderOutWin:self];
+        }
+        
+        [self saveDocument:nil];
     }];
 }
 
@@ -179,210 +367,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 - (IBAction)paste:(id)sender
 {
 
-}
-
-
-
-- (void)importMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode
-    contextInfo:(void  *)contextInfo
-{
-    NSString	*fileName = nil;
-    NSMutableArray *archivedLevels = nil;
-    NSMutableArray *levelNames = [NSMutableArray arrayWithCapacity:0];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *imageDir = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images"];
-    BOOL isDir = NO;
-    
-    BOOL exsists = NO;
-    
-    PhProgress *progress = [PhProgress sharedPhProgress];
-    
-    if (returnCode == NSOKButton) {
-        ScenarioResources *maraResources;
-        NSURL *fileURL = sheet.URL;
-        fileName = fileURL.path;
-        
-        [progress setMinProgress:0.0];
-        [progress setMaxProgress:100.0];
-        [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Importing Marathon Data…"];
-        [progress setInformationalText:@"Loading Marathon Data Into Memory…"];
-        [progress showWindow:self];
-        
-        maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fileName];
-        
-        archivedLevels = [LEMapData 
-            convertMarathonDataToArchived:[NSData dataWithContentsOfURL:fileURL]
-                               levelNames:levelNames error:NULL];
-                               
-        [progress setStatusText:@"Saving All The Levels…"];
-        
-        [self saveArrayOfNSDatas:archivedLevels
-                   withFileNames:levelNames
-                         baseDir:[self fullPathForDirectory]];
-                         
-        [progress setStatusText:@"Adding Level Names To Scenario Document…"];
-        
-        [scenarioData addLevelNames:levelNames];
-        
-        [progress setStatusText:@"Extracting and Saving Resources…"];
-        
-        exsists = [fileManager fileExistsAtPath:imageDir isDirectory:&isDir];
-        
-        if (exsists && !isDir) {
-            SEND_ERROR_MSG_TITLE(@"File named 'Image' already exsists in scenario folder, can get images.",
-                                 @"Can Create Images Folder");
-            [maraResources release];
-            [progress orderOutWin:self];
-            return;
-        }
-        
-        if (!exsists) {
-            BOOL succsessfull = YES;
-            succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
-            if (!succsessfull)
-            {
-                SEND_ERROR_MSG(@"Could not create images folder");
-                [maraResources release];
-                [progress orderOutWin:self];
-                return;
-            }
-        }
-        
-        [maraResources iterateResourcesOfType:@"PICT" progress:YES block:^(Resource * resource, NSData *dat, PhProgress *progress) {
-            PhPictConversionBinaryFormat format;
-            NSError *err;
-            NSData *convDat = [PhPictConversion convertPICTfromData:dat returnedFormat:&format error:&err];
-            NSString *savePath;
-            if (!convDat) {
-                // TODO: store errors for later review by the user
-                NSLog(@"%@", err);
-                [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", @"PICT", [resource resID], nil]];
-                NSString * pictPath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"pict"]];
-                
-                [fileManager createFileAtPath:pictPath
-                                     contents:dat
-                                   attributes:@{NSFileHFSTypeCode: @((OSType)'PICT'),
-                                                NSFileHFSCreatorCode: @((OSType)'ttxt')
-                                   }];
-                return;
-            }
-            
-            switch (format) {
-                case PhPictConversionBinaryFormatJPEG:
-                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"jpeg"]];
-                    break;
-                    
-                case PhPictConversionBinaryFormatBitmap:
-                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"bmp"]];
-                    break;
-                    
-                case PhPictConversionBinaryFormatPNG:
-                    savePath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"png"]];
-                    break;
-
-                default:
-                    savePath = nil;
-                    break;
-            }
-            
-            [progress setInformationalText:[NSString stringWithFormat:@"Saving converted ‘%@’ Resource# %@…", @"PICT", [resource resID]]];
-            BOOL success = [convDat writeToFile:savePath options:NSDataWritingAtomic error:&err];
-            if (!success) {
-                // TODO: store errors for later review by the user
-                NSLog(@"%@", err);
-            }
-        }];
-        [maraResources release];
-        
-        [progress increaseProgressBy:1.0];
-        [progress setStatusText:@"Done Converting Level!"];
-        [progress orderOutWin:self];
-    }
-    
-    [self saveDocument:nil];
-}
-
-
-- (void)importPIDMapScriptDone:(NSOpenPanel *)sheet returnCode:(NSModalResponse)returnCode
-    contextInfo:(void  *)contextInfo
-{
-    NSString		*fileName = nil;
-    NSMutableArray 	*archivedLevels =[[NSMutableArray alloc] init];
-    NSMutableArray 	*levelNames = [[NSMutableArray alloc] init];
-    NSFileManager 	*fileManager = [NSFileManager defaultManager];
-    //NSString *imageDir = [[self fullPathForDirectory] stringByAppendingString:@"Images/"];
-    
-    PhProgress *progress = [PhProgress sharedPhProgress];
-    
-    if (returnCode == NSOKButton) {
-        fileName = sheet.URL.path;
-        
-        [progress setMinProgress:0.0];
-        [progress setMaxProgress:100.0];
-        [progress setProgressPostion:0.0];
-        [progress setStatusText:@"Importing Pathways Into Darkness Map…"];
-        [progress setInformationalText:@"Importing Pathways Into Darkness Map…"];
-        [progress showWindow:self];
-        
-        
-        BOOL isDir = NO;
-        
-        NSString *pathPathwaysApp = [fileName stringByDeletingLastPathComponent];
-        NSData *dpin128ResourceData = nil;
-        
-        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
-        
-        BOOL exsists = [fileManager fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
-        
-        if ((exsists) && (!isDir)) {
-            // Data will be dallocated after fileResources gets released...
-            ScenarioResources *fileResources = [[ScenarioResources alloc] initWithContentsOfFile:pathPathwaysApp];
-            // Copy data (or we could just retain it, since it's immutable, which is waht the copy method
-            //   probabaly does with NSData objects) so we will have it after fileResources gets released...
-            dpin128ResourceData = [[[fileResources resourceOfType:@"dpin" index:128] data] copy];
-            
-            // Should be able to just release it now, but just in case..
-            [fileResources autorelease];
-			[pathPathwaysApp release];
-            pathPathwaysApp = nil;
-
-            NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
-        } else {
-            [pathPathwaysApp release];
-            pathPathwaysApp = nil;
-            dpin128ResourceData = nil;
-            
-            NSLog(@"Was NOT Able To Load 'Pathways Into Darkness' dpin 128 resource...");
-        }
-        
-        
-        [PathwaysExchange convertPIDMapToArchived:[fileManager
-                                   contentsAtPath:fileName] 
-                                           levels:archivedLevels
-                                       levelNames:levelNames
-                                     resourceData:dpin128ResourceData];
-        
-        // I don't need this any more, PathwaysExchange should have retained
-        // it if it needed it keep it...
-        [dpin128ResourceData release];
-        
-        [progress setStatusText:@"Saving All The Levels…"];
-        
-        [self saveArrayOfNSDatas:archivedLevels
-                   withFileNames:levelNames
-                         baseDir:[self fullPathForDirectory]];
-                         
-        [progress setStatusText:@"Adding Level Names To Scenario Document…"];
-        
-        [scenarioData addLevelNames:levelNames];
-        
-        [progress increaseProgressBy:1.0];
-        [progress setStatusText:@"Done Converting Level!"];
-        [progress orderOutWin:self];
-    }
-    
-    [self saveDocument:nil];
 }
 
 

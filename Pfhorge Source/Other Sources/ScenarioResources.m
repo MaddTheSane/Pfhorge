@@ -234,8 +234,9 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     if ((value) && (![value loaded]) && load) {
         [value setLoaded:YES];
         handle = ASGetResource(type, indexAsNSNumber, filename);
-        [value setData:[NSData dataWithBytes:*handle length:GetHandleSize(handle)]];
-        DisposeHandle(handle);
+        [value setData:[[NSData alloc] initWithBytesNoCopy:*handle length:GetHandleSize(handle) deallocator:^(void * _Nonnull bytes, NSUInteger length) {
+            DisposeHandle(handle);
+        }]];
     }
     
     return value;
@@ -250,18 +251,19 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress
 {
     NSArray			*array = [typeDict objectForKey:type];
-    NSEnumerator	*resEnum = [array objectEnumerator];
     NSFileManager	*fileManager = [NSFileManager defaultManager];
     OSType 			osTyp = UTGetOSTypeFromString((__bridge CFStringRef)type);
     NSNumber		*nsOSTyp = @(osTyp);
     
     PhProgress *progress = [PhProgress sharedPhProgress];
     
-    for (Resource *resource in resEnum) {
+    for (Resource *resource in array) @autoreleasepool {
         Handle handle = ASGetResource(type, [resource resID], filename);
         HLock(handle);
-        NSData *theData = [NSData dataWithBytesNoCopy:*handle length:GetHandleSize(handle) freeWhenDone:NO];
-        HUnlock(handle);
+        NSData *theData = [[NSData alloc] initWithBytesNoCopy:*handle length:GetHandleSize(handle) deallocator:^(void * _Nonnull bytes, NSUInteger length) {
+            HUnlock(handle);
+            DisposeHandle(handle);
+        }];
         
         [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", type, [resource resID], nil]];
         
@@ -271,15 +273,13 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
                              contents:theData
                         // May want to set creator code, etc...
 						   attributes:@{NSFileHFSTypeCode: nsOSTyp}];
-        DisposeHandle(handle);
     }
 }
 
 
 - (void)iterateResourcesOfType:(NSString *)type progress:(BOOL)showProgress block:(void(NS_NOESCAPE^)(Resource*, NSData*, PhProgress*))block
 {
-    NSArray         *array = [typeDict objectForKey:type];
-    NSEnumerator    *resEnum = [array objectEnumerator];
+    NSArray<Resource*> *array = [typeDict objectForKey:type];
     
     PhProgress *progress;
     if (showProgress) {
@@ -288,15 +288,15 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
         progress = nil;
     }
     
-    for (Resource *resource in resEnum) @autoreleasepool {
+    for (Resource *resource in array) @autoreleasepool {
         Handle handle = ASGetResource(type, [resource resID], filename);
         HLock(handle);
-        NSData *theData = [NSData dataWithBytes:*handle length:GetHandleSize(handle)];
-        HUnlock(handle);
-        
+        NSData *theData = [[NSData alloc] initWithBytesNoCopy:*handle length:GetHandleSize(handle) deallocator:^(void * _Nonnull bytes, NSUInteger length) {
+            HUnlock(handle);
+            DisposeHandle(handle);
+        }];
+
         block(resource, theData, progress);
-        
-        DisposeHandle(handle);
     }
 }
 

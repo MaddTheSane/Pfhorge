@@ -72,7 +72,7 @@
 
 - (BOOL)getByte:(byte*)toGet
 {
-    if (position + 1 >= theData.length) {
+    if (position + 1 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -85,7 +85,7 @@
 - (BOOL)getShort:(short*)toGet
 {
     short value;
-    if (position + 2 >= theData.length) {
+    if (position + 2 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -98,7 +98,7 @@
 - (BOOL)getLong:(long long*)toGet
 {
     long long value;
-    if (position + 8 >= theData.length) {
+    if (position + 8 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -111,7 +111,7 @@
 - (BOOL)getInt:(int*)toGet
 {
     int value;
-    if (position + 4 >= theData.length) {
+    if (position + 4 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -124,7 +124,7 @@
 - (BOOL)getUnsignedShort:(unsigned short*)toGet
 {
     unsigned short value;
-    if (position + 2 >= theData.length) {
+    if (position + 2 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -137,7 +137,7 @@
 - (BOOL)getUnsignedLong:(unsigned long long*)toGet
 {
     unsigned long long value;
-    if (position + 8 >= theData.length) {
+    if (position + 8 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -150,7 +150,7 @@
 - (BOOL)getUnsignedInt:(unsigned int*)toGet
 {
     unsigned int value;
-    if (position + 4 >= theData.length) {
+    if (position + 4 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -219,7 +219,7 @@
 - (BOOL)getShort:(short*)toGet
 {
     short value;
-    if (position + 2 >= theData.length) {
+    if (position + 2 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -233,7 +233,7 @@
 - (BOOL)getInt:(int*)toGet
 {
     int value;
-    if (position + 4 >= theData.length) {
+    if (position + 4 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -246,7 +246,7 @@
 - (BOOL)getLong:(long long*)toGet
 {
     long long value;
-    if (position + 8 >= theData.length) {
+    if (position + 8 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -259,7 +259,7 @@
 - (BOOL)getUnsignedShort:(unsigned short*)toGet
 {
     unsigned short value;
-    if (position + 2 >= theData.length) {
+    if (position + 2 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -272,7 +272,7 @@
 - (BOOL)getUnsignedInt:(unsigned int*)toGet
 {
     unsigned int value;
-    if (position + 4 >= theData.length) {
+    if (position + 4 > theData.length) {
         return NO;
     }
     [self checkPosition];
@@ -285,7 +285,7 @@
 - (BOOL)getUnsignedLong:(unsigned long long*)toGet
 {
     unsigned long long value;
-    if (position + 8 >= theData.length) {
+    if (position + 8 > theData.length) {
         return NO;
     }
     [self checkPosition];

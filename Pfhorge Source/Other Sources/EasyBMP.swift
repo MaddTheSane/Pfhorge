@@ -74,6 +74,12 @@ fileprivate extension EasyBMP.RGBAPixel {
 	}
 }
 
+extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible {
+	var playgroundDescription: Any {
+		return CGColor.init(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: 1)
+	}
+}
+
 final class EasyBMP {
 	static var easyBMPwarnings = false
 	struct RGBAPixel: Comparable, Hashable {
