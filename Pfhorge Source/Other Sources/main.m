@@ -23,7 +23,6 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 #import <Cocoa/Cocoa.h>
-//#import "LEMarathon2Structres.h"
 
 int main(int argc, const char *argv[])
 {

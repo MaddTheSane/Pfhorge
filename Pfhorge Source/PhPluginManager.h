@@ -19,9 +19,9 @@
 @property (class, readonly, retain) PhPluginManager *sharedPhPluginManager;
 - (void)findPlugins;
 
-- (NSArray<NSString*> *)pluginInstanceNames;
-- (NSArray<Class> *)pluginClasses;
-- (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances;
+@property (readonly, copy) NSArray<NSString*> *pluginInstanceNames;
+@property (readonly, copy) NSArray<Class> *pluginClasses;
+@property (readonly, copy) NSArray<id<PhLevelPluginProtocol>> *pluginInstances;
 
 - (void)activatePluginIndex:(int)index;
 

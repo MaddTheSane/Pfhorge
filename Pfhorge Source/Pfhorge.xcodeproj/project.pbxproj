@@ -15,88 +15,6 @@
 		55E91491248996C70005D451 /* PICTConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91490248996C70005D451 /* PICTConverter.swift */; };
 		55E914942489F9010005D451 /* EasyBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E914932489F9010005D451 /* EasyBMP.swift */; };
 		55E91496248A012B0005D451 /* PhDataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91495248A012B0005D451 /* PhDataAdditions.swift */; };
-		AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEE00D3D8317F000001 /* LEMapData.h */; };
-		AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE5A0E00DC52C37F000001 /* LEMapPoint.h */; };
-		AE3C149F0A04512100FBFFCD /* LELine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0121ECA700DDCD937F000001 /* LELine.h */; };
-		AE3C14A00A04512100FBFFCD /* LEPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0112096A00DEC9357F000001 /* LEPolygon.h */; };
-		AE3C14A10A04512100FBFFCD /* LEMapObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F6628500E19BB67F000001 /* LEMapObject.h */; };
-		AE3C14A20A04512100FBFFCD /* LELevelData.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBE54800DBBE877F000001 /* LELevelData.h */; };
-		AE3C14A30A04512100FBFFCD /* LEMapDraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FCE08900DB2EFD7F000001 /* LEMapDraw.h */; };
-		AE3C14A40A04512100FBFFCD /* LEMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 011A1BEA00D3C7827F000001 /* LEMap.h */; };
-		AE3C14A50A04512100FBFFCD /* LEExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 035877BE00E7E7C67F000001 /* LEExtras.h */; };
-		AE3C14A60A04512100FBFFCD /* LEMapStuffParent.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FD2B8A00E806097F000001 /* LEMapStuffParent.h */; };
-		AE3C14A80A04512100FBFFCD /* LEPaletteController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3A700EAC1717F000001 /* LEPaletteController.h */; };
-		AE3C14A90A04512100FBFFCD /* LEDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FBF3AB00EACC4F7F000001 /* LEDelegate.h */; };
-		AE3C14AA0A04512100FBFFCD /* LELevelWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 010314F700ED57F57F000001 /* LELevelWindowController.h */; };
-		AE3C14AB0A04512100FBFFCD /* LEInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00F4A78A00F7E1DA7F000001 /* LEInspectorController.h */; };
-		AE3C14AC0A04512100FBFFCD /* LESide.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA85FD00F96CDD7F000001 /* LESide.h */; };
-		AE3C14AD0A04512100FBFFCD /* PhLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA860200F96F707F000001 /* PhLight.h */; };
-		AE3C14AE0A04512100FBFFCD /* PhItemPlacement.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA860A00F96FD57F000001 /* PhItemPlacement.h */; };
-		AE3C14AF0A04512100FBFFCD /* PhMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861200F970667F000001 /* PhMedia.h */; };
-		AE3C14B00A04512100FBFFCD /* PhAmbientSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861400F970667F000001 /* PhAmbientSound.h */; };
-		AE3C14B10A04512100FBFFCD /* PhRandomSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 01EA861600F970667F000001 /* PhRandomSound.h */; };
-		AE3C14B20A04512100FBFFCD /* PhPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 00DF106900FBCC6F7F000001 /* PhPlatform.h */; };
-		AE3C14B30A04512100FBFFCD /* PhAnnotationNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 00DF106D00FC00527F000001 /* PhAnnotationNote.h */; };
-		AE3C14B40A04512100FBFFCD /* PhPlatformSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00ED45AE0102B0FF7F000001 /* PhPlatformSheetController.h */; };
-		AE3C14B50A04512100FBFFCD /* PhLineInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */; };
-		AE3C14B60A04512100FBFFCD /* PhPolyInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */; };
-		AE3C14B70A04512100FBFFCD /* PhObjectInspectorSubController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C98A2B010513217F000001 /* PhObjectInspectorSubController.h */; };
-		AE3C14B80A04512100FBFFCD /* PhTextureRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D18BBF010A18747F000001 /* PhTextureRepository.h */; };
-		AE3C14B90A04512100FBFFCD /* PhColorListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00EC509E0110FB3D7F000001 /* PhColorListController.h */; };
-		AE3C14BA0A04512100FBFFCD /* PhPrefsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00CCECF30125C7647F000001 /* PhPrefsController.h */; };
-		AE3C14BB0A04512100FBFFCD /* PhDynamicPrefSubController.h in Headers */ = {isa = PBXBuildFile; fileRef = 00D4535A0144672D7F000001 /* PhDynamicPrefSubController.h */; };
-		AE3C14BC0A04512100FBFFCD /* ErrorNotificationWinController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D2B793019CEB5D01A8A806 /* ErrorNotificationWinController.h */; settings = {ATTRIBUTES = (); }; };
-		AE3C14BD0A04512100FBFFCD /* PhTypesStructresEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E36AC400FAA8537F000001 /* PhTypesStructresEnums.h */; };
-		AE3C14BE0A04512100FBFFCD /* PhNamesController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EFE97601ADC99101A8A806 /* PhNamesController.h */; };
-		AE3C14BF0A04512100FBFFCD /* PhTag.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EFE97E01ADCAEA01A8A806 /* PhTag.h */; };
-		AE3C14C00A04512100FBFFCD /* PhAbstractName.h in Headers */ = {isa = PBXBuildFile; fileRef = F532393001AF836201A8A806 /* PhAbstractName.h */; };
-		AE3C14C10A04512100FBFFCD /* PhProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = F5339DC301B0ACB801A8A806 /* PhProgress.h */; };
-		AE3C14C20A04512100FBFFCD /* PhLightEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F56B756001BC908701A8A806 /* PhLightEditorController.h */; };
-		AE3C14C30A04512100FBFFCD /* PhLevelNameManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F52974FE01C44D7B01A8A806 /* PhLevelNameManager.h */; };
-		AE3C14C40A04512100FBFFCD /* InfoWindowCommander.h in Headers */ = {isa = PBXBuildFile; fileRef = F52AB18A01CA949A01A8A806 /* InfoWindowCommander.h */; };
-		AE3C14C50A04512100FBFFCD /* PhRandomSndEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C3F01CBF6E401A8A806 /* PhRandomSndEditCon.h */; };
-		AE3C14C60A04512100FBFFCD /* PhAmbientSndEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C4301CBF70101A8A806 /* PhAmbientSndEditCon.h */; };
-		AE3C14C70A04512100FBFFCD /* PhLiquidEditCon.h in Headers */ = {isa = PBXBuildFile; fileRef = F54D4C4701CBF77601A8A806 /* PhLiquidEditCon.h */; };
-		AE3C14C80A04512100FBFFCD /* PhLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E215801D03C100146BBD2 /* PhLayer.h */; };
-		AE3C14C90A04512100FBFFCD /* PhDefaultLayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F52E216201D0500B0146BBD2 /* PhDefaultLayerController.h */; };
-		AE3C14CA0A04512100FBFFCD /* PhAbstractNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CC3620207B6C40146BBD2 /* PhAbstractNumber.h */; };
-		AE3C14CB0A04512100FBFFCD /* NDResourceFork.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F1021F01E90146BBD2 /* NDResourceFork.h */; };
-		AE3C14CC0A04512100FBFFCD /* NDAppleScriptObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F5021F01E90146BBD2 /* NDAppleScriptObject.h */; };
-		AE3C14CD0A04512100FBFFCD /* NSURL+NDCarbonUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F6021F01E90146BBD2 /* NSURL+NDCarbonUtilities.h */; };
-		AE3C14CE0A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F7021F01E90146BBD2 /* NSAppleEventDescriptor+NDAppleScriptObject.h */; };
-		AE3C14CF0A04512100FBFFCD /* NDAppleScriptObject_Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = F54738F8021F01E90146BBD2 /* NDAppleScriptObject_Protocols.h */; };
-		AE3C14D00A04512100FBFFCD /* OpenGLVisualModeController.h in Headers */ = {isa = PBXBuildFile; fileRef = F53CCE810228C0510146BBD2 /* OpenGLVisualModeController.h */; };
-		AE3C14D10A04512100FBFFCD /* Terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = F52BE6F7023C39CB0146BBD2 /* Terminal.h */; };
-		AE3C14D20A04512100FBFFCD /* TerminalSection.h in Headers */ = {isa = PBXBuildFile; fileRef = F52BE6FB023C56FA0146BBD2 /* TerminalSection.h */; };
-		AE3C14D30A04512100FBFFCD /* TerminalEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F520388C024156C10146BBD2 /* TerminalEditorController.h */; };
-		AE3C14D40A04512100FBFFCD /* shapes-structs.h in Headers */ = {isa = PBXBuildFile; fileRef = F536BD5C02824AA40146BBD2 /* shapes-structs.h */; };
-		AE3C14D50A04512100FBFFCD /* bitmap-decode.h in Headers */ = {isa = PBXBuildFile; fileRef = F536BD5E02824AA40146BBD2 /* bitmap-decode.h */; };
-		AE3C14D60A04512100FBFFCD /* extractbitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = F532A6C0029741880146BBD2 /* extractbitmap.h */; };
-		AE3C14D70A04512100FBFFCD /* PhStartupWinController.h in Headers */ = {isa = PBXBuildFile; fileRef = F530D715029862DA0146BBD2 /* PhStartupWinController.h */; };
-		AE3C14D80A04512100FBFFCD /* PhPfhorgeSingleLevelDoc.h in Headers */ = {isa = PBXBuildFile; fileRef = F530626502A2E53D0146BBD2 /* PhPfhorgeSingleLevelDoc.h */; };
-		AE3C14D90A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.h in Headers */ = {isa = PBXBuildFile; fileRef = F530626902A2E57E0146BBD2 /* PhPfhorgeScenarioLevelDoc.h */; };
-		AE3C14DA0A04512100FBFFCD /* PhScenarioManagerController.h in Headers */ = {isa = PBXBuildFile; fileRef = F519A31002AAFC0E0146BBD2 /* PhScenarioManagerController.h */; };
-		AE3C14DB0A04512100FBFFCD /* PhScenarioData.h in Headers */ = {isa = PBXBuildFile; fileRef = F51939C702AC7C150146BBD2 /* PhScenarioData.h */; };
-		AE3C14DC0A04512100FBFFCD /* Resource.h in Headers */ = {isa = PBXBuildFile; fileRef = F520576902B503430146BBD2 /* Resource.h */; };
-		AE3C14DD0A04512100FBFFCD /* ScenarioResources.h in Headers */ = {isa = PBXBuildFile; fileRef = F547848E02B505FB0146BBD2 /* ScenarioResources.h */; };
-		AE3C14DE0A04512100FBFFCD /* PhItemPlacementEditorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F528404102C13BE90146BBD2 /* PhItemPlacementEditorController.h */; };
-		AE3C14DF0A04512100FBFFCD /* PhColorListControllerDrawer.h in Headers */ = {isa = PBXBuildFile; fileRef = F5067F6702F4CC8F01743002 /* PhColorListControllerDrawer.h */; };
-		AE3C14E00A04512100FBFFCD /* PluginProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F5FB4BED032D90710146BBD2 /* PluginProtocol.h */; };
-		AE3C14E10A04512100FBFFCD /* PhPluginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E1A1D4032E9D1F0146BBD2 /* PhPluginManager.h */; };
-		AE3C14E20A04512100FBFFCD /* PluginManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = F521F7CB03302AB30146BBD2 /* PluginManagerInterface.h */; };
-		AE3C14E30A04512100FBFFCD /* PhTextureInspectorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F5D0FE42034026B60146BBD2 /* PhTextureInspectorController.h */; };
-		AE3C14E50A04512100FBFFCD /* PhDefs.h in Headers */ = {isa = PBXBuildFile; fileRef = A52DB02404016BFC0046BBD2 /* PhDefs.h */; };
-		AE3C14E60A04512100FBFFCD /* PhData.h in Headers */ = {isa = PBXBuildFile; fileRef = A597FC2C045763B20046BBD2 /* PhData.h */; };
-		AE3C14E70A04512100FBFFCD /* PathwaysExchange.h in Headers */ = {isa = PBXBuildFile; fileRef = A5EBBF6A04A3A5F70046BBD2 /* PathwaysExchange.h */; };
-		AE3C14E80A04512100FBFFCD /* PathwaysDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = A5EBBF6C04A3A6030046BBD2 /* PathwaysDocument.h */; };
-		AE3C14E90A04512100FBFFCD /* PathwaysMapSaveData.h in Headers */ = {isa = PBXBuildFile; fileRef = A59437BE04B01B520046BBD2 /* PathwaysMapSaveData.h */; };
-		AE3C14EA0A04512100FBFFCD /* crc.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CE3C7404B265440046BBD2 /* crc.h */; };
-		AE3C14EB0A04512100FBFFCD /* PathwaysToMarathon.h in Headers */ = {isa = PBXBuildFile; fileRef = CA84378E04BA60A500F0A839 /* PathwaysToMarathon.h */; };
-		AE3C14EC0A04512100FBFFCD /* trigTables.h in Headers */ = {isa = PBXBuildFile; fileRef = A5CBB2CD04D630590046BBD2 /* trigTables.h */; };
-		AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A59B9260054F9DED00E2A9DF /* PhNoteGroup.h */; };
-		AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */; };
-		AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902BC5069E1A8600B4AB92 /* MyOpenGLView2.h */; };
-		AE3C150B0A04512100FBFFCD /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = A5902CB5069F718C00B4AB92 /* Camera.h */; };
 		AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
 		AE3C150F0A04512100FBFFCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -181,7 +99,7 @@
 		AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F547848D02B505FB0146BBD2 /* ScenarioResources.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations -fobjc-arc"; }; };
 		AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F528404002C13BE90146BBD2 /* PhItemPlacementEditorController.m */; };
 		AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5067F6802F4CC8F01743002 /* PhColorListControllerDrawer.m */; };
-		AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; };
+		AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E1A1D5032E9D1F0146BBD2 /* PhPluginManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15890A04512100FBFFCD /* PluginManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = F521F7CD03302BF20146BBD2 /* PluginManagerInterface.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C158A0A04512100FBFFCD /* PhTextureInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D0FE43034026B60146BBD2 /* PhTextureInspectorController.m */; };
 		AE3C158B0A04512100FBFFCD /* LELine-SideCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A17F2603B231030146BBD2 /* LELine-SideCalc.m */; };
@@ -846,108 +764,14 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		AE3C149C0A04512100FBFFCD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AE3C149D0A04512100FBFFCD /* LEMapData.h in Headers */,
-				AE3C149E0A04512100FBFFCD /* LEMapPoint.h in Headers */,
-				AE3C149F0A04512100FBFFCD /* LELine.h in Headers */,
-				AE3C14A00A04512100FBFFCD /* LEPolygon.h in Headers */,
-				AE3C14A10A04512100FBFFCD /* LEMapObject.h in Headers */,
-				AE3C14A20A04512100FBFFCD /* LELevelData.h in Headers */,
-				AE3C14A30A04512100FBFFCD /* LEMapDraw.h in Headers */,
-				AE3C14A40A04512100FBFFCD /* LEMap.h in Headers */,
-				AE3C14A50A04512100FBFFCD /* LEExtras.h in Headers */,
-				AE3C14A60A04512100FBFFCD /* LEMapStuffParent.h in Headers */,
-				AE3C14A80A04512100FBFFCD /* LEPaletteController.h in Headers */,
-				AE3C14A90A04512100FBFFCD /* LEDelegate.h in Headers */,
-				AE3C14AA0A04512100FBFFCD /* LELevelWindowController.h in Headers */,
-				AE3C14AB0A04512100FBFFCD /* LEInspectorController.h in Headers */,
-				AE3C14AC0A04512100FBFFCD /* LESide.h in Headers */,
-				AE3C14AD0A04512100FBFFCD /* PhLight.h in Headers */,
-				AE3C14AE0A04512100FBFFCD /* PhItemPlacement.h in Headers */,
-				AE3C14AF0A04512100FBFFCD /* PhMedia.h in Headers */,
-				AE3C14B00A04512100FBFFCD /* PhAmbientSound.h in Headers */,
-				AE3C14B10A04512100FBFFCD /* PhRandomSound.h in Headers */,
-				AE3C14B20A04512100FBFFCD /* PhPlatform.h in Headers */,
-				AE3C14B30A04512100FBFFCD /* PhAnnotationNote.h in Headers */,
-				AE3C14B40A04512100FBFFCD /* PhPlatformSheetController.h in Headers */,
-				AE3C14B50A04512100FBFFCD /* PhLineInspectorController.h in Headers */,
-				AE3C14B60A04512100FBFFCD /* PhPolyInspectorController.h in Headers */,
-				AE3C14B70A04512100FBFFCD /* PhObjectInspectorSubController.h in Headers */,
-				AE3C14B80A04512100FBFFCD /* PhTextureRepository.h in Headers */,
-				AE3C14B90A04512100FBFFCD /* PhColorListController.h in Headers */,
-				AE3C14BA0A04512100FBFFCD /* PhPrefsController.h in Headers */,
-				AE3C14BB0A04512100FBFFCD /* PhDynamicPrefSubController.h in Headers */,
-				AE3C14BC0A04512100FBFFCD /* ErrorNotificationWinController.h in Headers */,
-				AE3C14BD0A04512100FBFFCD /* PhTypesStructresEnums.h in Headers */,
-				AE3C14BE0A04512100FBFFCD /* PhNamesController.h in Headers */,
-				AE3C14BF0A04512100FBFFCD /* PhTag.h in Headers */,
-				AE3C14C00A04512100FBFFCD /* PhAbstractName.h in Headers */,
-				AE3C14C10A04512100FBFFCD /* PhProgress.h in Headers */,
-				AE3C14C20A04512100FBFFCD /* PhLightEditorController.h in Headers */,
-				AE3C14C30A04512100FBFFCD /* PhLevelNameManager.h in Headers */,
-				AE3C14C40A04512100FBFFCD /* InfoWindowCommander.h in Headers */,
-				AE3C14C50A04512100FBFFCD /* PhRandomSndEditCon.h in Headers */,
-				AE3C14C60A04512100FBFFCD /* PhAmbientSndEditCon.h in Headers */,
-				AE3C14C70A04512100FBFFCD /* PhLiquidEditCon.h in Headers */,
-				AE3C14C80A04512100FBFFCD /* PhLayer.h in Headers */,
-				AE3C14C90A04512100FBFFCD /* PhDefaultLayerController.h in Headers */,
-				AE3C14CA0A04512100FBFFCD /* PhAbstractNumber.h in Headers */,
-				AE3C14CB0A04512100FBFFCD /* NDResourceFork.h in Headers */,
-				AE3C14CC0A04512100FBFFCD /* NDAppleScriptObject.h in Headers */,
-				AE3C14CD0A04512100FBFFCD /* NSURL+NDCarbonUtilities.h in Headers */,
-				AE3C14CE0A04512100FBFFCD /* NSAppleEventDescriptor+NDAppleScriptObject.h in Headers */,
-				AE3C14CF0A04512100FBFFCD /* NDAppleScriptObject_Protocols.h in Headers */,
-				AE3C14D00A04512100FBFFCD /* OpenGLVisualModeController.h in Headers */,
-				AE3C14D10A04512100FBFFCD /* Terminal.h in Headers */,
-				AE3C14D20A04512100FBFFCD /* TerminalSection.h in Headers */,
-				AE3C14D30A04512100FBFFCD /* TerminalEditorController.h in Headers */,
-				AE3C14D40A04512100FBFFCD /* shapes-structs.h in Headers */,
-				AE3C14D50A04512100FBFFCD /* bitmap-decode.h in Headers */,
-				AE3C14D60A04512100FBFFCD /* extractbitmap.h in Headers */,
-				AE3C14D70A04512100FBFFCD /* PhStartupWinController.h in Headers */,
-				AE3C14D80A04512100FBFFCD /* PhPfhorgeSingleLevelDoc.h in Headers */,
-				AE3C14D90A04512100FBFFCD /* PhPfhorgeScenarioLevelDoc.h in Headers */,
-				AE3C14DA0A04512100FBFFCD /* PhScenarioManagerController.h in Headers */,
-				AE3C14DB0A04512100FBFFCD /* PhScenarioData.h in Headers */,
-				AE3C14DC0A04512100FBFFCD /* Resource.h in Headers */,
-				AE3C14DD0A04512100FBFFCD /* ScenarioResources.h in Headers */,
-				AE3C14DE0A04512100FBFFCD /* PhItemPlacementEditorController.h in Headers */,
-				AE3C14DF0A04512100FBFFCD /* PhColorListControllerDrawer.h in Headers */,
-				AE3C14E00A04512100FBFFCD /* PluginProtocol.h in Headers */,
-				AE3C14E10A04512100FBFFCD /* PhPluginManager.h in Headers */,
-				AE3C14E20A04512100FBFFCD /* PluginManagerInterface.h in Headers */,
-				AE3C14E30A04512100FBFFCD /* PhTextureInspectorController.h in Headers */,
-				AE3C14E50A04512100FBFFCD /* PhDefs.h in Headers */,
-				AE3C14E60A04512100FBFFCD /* PhData.h in Headers */,
-				AE3C14E70A04512100FBFFCD /* PathwaysExchange.h in Headers */,
-				AE3C14E80A04512100FBFFCD /* PathwaysDocument.h in Headers */,
-				AE3C14E90A04512100FBFFCD /* PathwaysMapSaveData.h in Headers */,
-				AE3C14EA0A04512100FBFFCD /* crc.h in Headers */,
-				AE3C14EB0A04512100FBFFCD /* PathwaysToMarathon.h in Headers */,
-				AE3C14EC0A04512100FBFFCD /* trigTables.h in Headers */,
-				AE3C14ED0A04512100FBFFCD /* PhNoteGroup.h in Headers */,
-				AE3C14EE0A04512100FBFFCD /* PhNoteGroupsCon.h in Headers */,
-				AE3C150A0A04512100FBFFCD /* MyOpenGLView2.h in Headers */,
-				AE3C150B0A04512100FBFFCD /* Camera.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		AE3C149B0A04512100FBFFCD /* Pfhorge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE3C15B60A04512100FBFFCD /* Build configuration list for PBXNativeTarget "Pfhorge" */;
 			buildPhases = (
-				AE3C149C0A04512100FBFFCD /* Headers */,
 				AE3C150C0A04512100FBFFCD /* Resources */,
 				AE3C15470A04512100FBFFCD /* Sources */,
 				AE3C15AA0A04512100FBFFCD /* Frameworks */,
-				AE3C15B50A04512100FBFFCD /* Rez */,
 			);
 			buildRules = (
 			);
@@ -1023,16 +847,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		AE3C15B50A04512100FBFFCD /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AE3C15470A04512100FBFFCD /* Sources */ = {
@@ -1404,7 +1218,6 @@
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1429,7 +1242,6 @@
 				MARKETING_VERSION = 0.96;
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
-				SECTORDER_FLAGS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;

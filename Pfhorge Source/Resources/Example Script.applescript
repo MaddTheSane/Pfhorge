@@ -19,7 +19,7 @@
 tell application "Pfhorge"
 	-- Creates a new map
 	make new map at end of maps
-	tell front map
+	tell front map in maps
 		repeat with i from 1 to 5
 			-- I know there are better ways then using count all the time
 			-- could use some math to just use it once at the begining

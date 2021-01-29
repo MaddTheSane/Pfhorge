@@ -31,22 +31,13 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [pluginClasses release];
-    [pluginInstances release];
-    [pluginInstanceNames release];
-	
-	[super dealloc];
-}
-
 // ************************* Accsessor Methods *************************
 #pragma mark -
 #pragma mark •••••••••• Accsessor Methods •••••••••
 
-- (NSArray<NSString*> *)pluginInstanceNames { return [[pluginInstanceNames copy] autorelease]; }
-- (NSArray<Class> *)pluginClasses { return [[pluginClasses copy] autorelease]; }
-- (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances { return [[pluginInstances copy] autorelease]; }
+- (NSArray<NSString*> *)pluginInstanceNames { return [pluginInstanceNames copy]; }
+- (NSArray<Class> *)pluginClasses { return [pluginClasses copy]; }
+- (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances { return [pluginInstances copy]; }
  
 // ************************* Convience Methods *************************
 #pragma mark -
@@ -77,7 +68,7 @@
         }
     }
     
-    folderPath = [@"~/Library/Application Support/Pfhorge" stringByExpandingTildeInPath];
+    folderPath = [[[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL] URLByAppendingPathComponent:@"Pfhorge"] path];
     //NSLog(@"Getting Plugins At: %@", folderPath);
     exsists = [[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isDir];
     
