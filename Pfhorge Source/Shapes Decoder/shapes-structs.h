@@ -98,7 +98,7 @@ struct high_level_shape_definition {
 typedef struct high_level_shape_definition	high_level_shape_definition;
 
 /* --------- low-level shape definition */
-typedef CF_ENUM(word, low_level_shape_flags) {
+typedef CF_OPTIONS(word, low_level_shape_flags) {
 	_X_MIRRORED_BIT = 0x8000,
 	_Y_MIRRORED_BIT = 0x4000,
 	_KEYPOINT_OBSCURED_BIT = 0x2000,
@@ -123,7 +123,7 @@ struct low_level_shape_definition {
 typedef struct low_level_shape_definition low_level_shape_definition;
 
 
-typedef CF_ENUM(byte, rgb_color_flags) {
+typedef CF_OPTIONS(byte, rgb_color_flags) {
 	//! what is this??? Unshadable color?
 	SELF_LUMINESCENT_COLOR_FLAG= 0x80
 };
@@ -137,7 +137,7 @@ typedef struct rgb_color_value	rgb_color_value;
 
 
 /*! bitmap flags */
-typedef CF_ENUM(unsigned short, bitmap_definition_flags) {
+typedef CF_OPTIONS(unsigned short, bitmap_definition_flags) {
 	_COLUMN_ORDER_BIT= 0x8000,
 	_TRANSPARENT_BIT= 0x4000
 };

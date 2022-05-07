@@ -186,33 +186,33 @@
 
 @synthesize myUndoManager;
 
--(void)setTheNoteTypesST:(NSArray *)theNSArray { theNoteTypesST = theNSArray; }
+@synthesize theNoteTypesST;
 
 -(void)setEverythingLoadedST:(BOOL)theChoice { everythingLoadedST = theChoice; }
--(void)setTheMapPointsST:(NSArray *)theNSArray { theMapPointsST = theNSArray; }
--(void)setTheMapLinesST:(NSArray *)theNSArray { theMapLinesST = theNSArray; }
--(void)setTheMapObjectsST:(NSArray *)theNSArray { theMapObjectsST = theNSArray; }
--(void)setTheMapPolysST:(NSArray *)theNSArray { theMapPolysST = theNSArray; }
--(void)setTheMapLightsST:(NSArray *)theNSArray { theMapLightsST = theNSArray; }
+@synthesize theMapPointsST;
+@synthesize theMapLinesST;
+@synthesize theMapObjectsST;
+@synthesize theMapPolysST;
+@synthesize theMapLightsST;
 
--(void)setTheMapSidesST:(NSArray *)theNSArray { theMapSidesST = theNSArray; }
+@synthesize theMapSidesST;
 
--(void)setTheAnnotationsST:(NSArray *)theNSArray { theAnnotationsST = theNSArray; }
--(void)setTheMediaST:(NSArray *)theNSArray { theMediaST = theNSArray; }
--(void)setTheAmbientSoundsST:(NSArray *)theNSArray { theAmbientSoundsST = theNSArray; }
--(void)setTheRandomSoundsST:(NSArray *)theNSArray { theRandomSoundsST = theNSArray; }
--(void)setTheMapItemPlacmentST:(NSArray *)theNSArray { theMapItemPlacmentST = theNSArray; }
--(void)setTheMapPlatformsST:(NSArray *)theNSArray { theMapPlatformsST = theNSArray; }
+@synthesize theAnnotationsST;
+@synthesize theMediaST;
+@synthesize theAmbientSoundsST;
+@synthesize theRandomSoundsST;
+@synthesize theMapItemPlacmentST;
+@synthesize theMapPlatformsST;
 
--(void)setTheLevelTagObjectsST:(NSArray *)theNSArray { theLevelTagObjectsST = theNSArray; }
+@synthesize theLevelTagObjectsST;
 
--(void)setTheLELevelDataST:(LELevelData *)theLevel { theLELevelDataST = theLevel; }
+@synthesize theLELevelDataST;
 
 
 // Set The Map Layers
--(void)setTheMapLayersST:(NSArray *)theNSArray { theLayersST = theNSArray; }
+@synthesize theMapLayersST;
 
--(void)setTheTerminalsST:(NSArray *)theNSArray { theTerminalsST = theNSArray; }
+@synthesize theTerminalsST;
 
 
 -(void)setAllObjectSTsFor:(LEMapStuffParent *)copy

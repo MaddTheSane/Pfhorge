@@ -288,7 +288,7 @@ NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
 /*
  * sendAppleEvent:sendMode:sendPriority:timeOutInTicks:idleProc:filterProc:
  */
-- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
+- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(NDAESendMode)aSendMode sendPriority:(NDAESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
 {	
 	OK_Enough++;
 	/*if( OK_Enough < 2 )

@@ -1473,33 +1473,37 @@ class PICT {
 	@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
 		/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
 		case best = -1
-		
+		/// .BMP files.
 		case bitmap = 0
-		
+		/// JPEG
 		case JPEG = 1
-		
+		/// PNG
 		case PNG = 2
 	}
 
-	@objc(convertPICTfromURL:returnedFormat:error:) class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+	@objc(convertPICTfromURL:returnedFormat:error:)
+	class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
 	}
 	
-	@objc(convertPICTfromData:returnedFormat:error:) class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+	@objc(convertPICTfromData:returnedFormat:error:)
+	class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
 	}
 	
-	@objc(convertRawPICTfromData:clutData:returnedFormat:error:) class func convertRawPICT(from: Data, clut: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+	@objc(convertRawPICTfromData:clutData:returnedFormat:error:)
+	class func convertRawPICT(from: Data, clut: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
 		let retVal = try PICT.convertRawPICT(from: from, clut: clut, to: .best)
 		returnedFormat.pointee = retVal.format
 		return retVal.data
 	}
 	
-	@objc(convertPICTfromURL:toFormat:error:) class func convertPICT(from: URL, to: BinaryFormat) throws -> Data {
+	@objc(convertPICTfromURL:toFormat:error:)
+	class func convertPICT(from: URL, to: BinaryFormat) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: to)
 		guard to == retVal.format else {
 			fatalError()
@@ -1507,7 +1511,8 @@ class PICT {
 		return retVal.data
 	}
 	
-	@objc(convertPICTfromData:toFormat:error:) class func convertPICT(from: Data, to: BinaryFormat) throws -> Data {
+	@objc(convertPICTfromData:toFormat:error:)
+	class func convertPICT(from: Data, to: BinaryFormat) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: to)
 		guard to == retVal.format else {
 			fatalError()
@@ -1515,7 +1520,8 @@ class PICT {
 		return retVal.data
 	}
 
-	@objc(convertFileAtURLToPICT:error:) class func convertFileToPICT(at loc: URL) throws -> Data {
+	@objc(convertFileAtURLToPICT:error:)
+	class func convertFileToPICT(at loc: URL) throws -> Data {
 		let pict = PICT()
 		try pict.importData(from: loc)
 		return try pict.save(toData: ())

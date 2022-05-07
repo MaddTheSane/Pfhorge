@@ -69,7 +69,7 @@ static OSErr createResourceFork(NSURL * aURL);
 	return [self initForPermission:fsRdPerm AtURL:aURL error:outError];
 }
 
-- (instancetype)initForWritingAtURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
+- (instancetype)initForWritingToURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
 {
 	return [self initForPermission:fsWrPerm AtURL:aURL error:outError];
 }
@@ -150,32 +150,7 @@ static OSErr createResourceFork(NSURL * aURL);
 
 - (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(NSString *)aName
 {
-	Handle		theResHandle;
-	
-	if( [self removeType:aType Id:anID] )
-	{
-		ResFileRefNum		thePreviousRefNum;
-
-		thePreviousRefNum = CurResFile();	// save current resource
-		UseResFile(fileReference);    		// set this resource to be current
-	
-		// copy NSData's bytes to a handle
-		if (noErr == PtrToHand([aData bytes], &theResHandle, [aData length])) {
-			Str255			thePName;
-			CFStringGetPascalString((CFStringRef)aName, thePName, 255, kCFStringEncodingMacRoman);
-			
-			HLock(theResHandle);
-			AddResource(theResHandle, aType, anID, thePName);
-			HUnlock(theResHandle);
-			
-			UseResFile(thePreviousRefNum);     		// reset back to resource previously set
-	
-			DisposeHandle(theResHandle);
-			return (ResError() == noErr);
-		}
-	}
-	
-	return NO;
+	return [self addData:aData type:aType Id:anID name:aName error:NULL];
 }
 
 /*
@@ -183,28 +158,7 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (NSData *)dataForType:(ResType)aType Id:(ResID)anID
 {
-	NSData			* theData = nil;
-	Handle			theResHandle;
-	ResFileRefNum	thePreviousRefNum;
-
-	thePreviousRefNum = CurResFile();	// save current resource
-	
-	UseResFile(fileReference);    		// set this resource to be current
-	
-	theResHandle = Get1Resource(aType, anID);
-
-	if (noErr == ResError()) {
-		HLock(theResHandle);
-		theData = [NSData dataWithBytes:*theResHandle length:GetHandleSize(theResHandle)];
-		HUnlock(theResHandle);
-	}
-	
-	if (theResHandle)
-		ReleaseResource(theResHandle);
-
-	UseResFile(thePreviousRefNum);     // reset back to resource previously set
-	
-	return theData;
+	return [self dataForType:aType Id:anID error:NULL];
 }
 
 /*
@@ -212,16 +166,7 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (BOOL)removeType:(ResType)aType Id:(short)anID
 {
-	Handle		theResHandle;
-	
-	UseResFile(fileReference);    				// set this resource to be current
-
-	theResHandle = Get1Resource(aType, anID);
-	if (ResError() == noErr) {
-		RemoveResource(theResHandle);			// Disposed of in current resource file
-		return (ResError() == noErr);
-	}
-	return YES;
+	return [self removeType:aType Id:anID];
 }
 
 - (BOOL)removeType:(ResType)aType Id:(short)anID error:(NSError *__autoreleasing  _Nullable * _Nullable)outError

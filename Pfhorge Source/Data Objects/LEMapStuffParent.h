@@ -25,7 +25,12 @@
 #import <Foundation/Foundation.h>
 #import "PhData.h"
 
-@class LELevelData, PhTag, PhData, LEPolygon;
+@class LELevelData, LEPolygon, LESide, LEMapPoint, LELine;
+@class LEMapObject;
+@class Terminal;
+@class PhNoteGroup, PhLight, PhMedia, PhAmbientSound, PhRandomSound;
+@class PhItemPlacement, PhLayer, PhTag, PhData, PhAnnotationNote;
+@class PhPlatform;
 
 @interface LEMapStuffParent : NSObject <NSSecureCoding>
 {
@@ -39,16 +44,24 @@
     // These arrays are owned by the LELevelData object
     // that this object is a part of...
     
-    NSArray	*theMapPointsST, *theMapLinesST, *theMapObjectsST;
-    NSArray<LEPolygon*>* theMapPolysST;
-    NSArray *theMapSidesST, *theMapPlatformsST;
-    NSArray	*theAnnotationsST, *theMediaST, *theAmbientSoundsST;
-    NSArray	*theRandomSoundsST, *theMapItemPlacmentST, *theMapLightsST;
-    NSArray     *theNoteTypesST;
+    NSArray<LEMapPoint*> *theMapPointsST;
+    NSArray<LELine*> *theMapLinesST;
+    NSArray<LEMapObject*> *theMapObjectsST;
+    NSArray<LEPolygon*> *theMapPolysST;
+    NSArray<LESide*> *theMapSidesST;
+    NSArray<PhPlatform*> *theMapPlatformsST;
+    NSArray<PhAnnotationNote*> *theAnnotationsST;
+    NSArray<PhMedia*> *theMediaST;
+    NSArray<PhAmbientSound*> *theAmbientSoundsST;
+    NSArray<PhRandomSound*> *theRandomSoundsST;
+    NSArray<PhItemPlacement*> *theMapItemPlacmentST;
+    NSArray<PhLight*> *theMapLightsST;
+    NSArray<PhNoteGroup*> *theNoteTypesST;
     
-    NSArray	*theLayersST, *theLevelTagObjectsST;
+    NSArray<PhLayer*> *theLayersST;
+    NSArray<PhTag*> *theLevelTagObjectsST;
     
-    NSArray	*theTerminalsST;
+    NSArray<Terminal*> *theTerminalsST;
     
     LELevelData	*theLELevelDataST;
                         
@@ -69,17 +82,16 @@
 - (void)superClassImportWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg;
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet<__kindof LEMapStuffParent*> *)mainObjs;
 - (void)importWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg objTypesArr:(short *)objTypesArr;
-- (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
  // **************************  Object Settings  *************************
 -(void)setEncodeIndexNumbersInstead:(BOOL)theChoice;
 
  // **************************  Advanced Accsess To Level Objects  *************************
--(id)getLightFromIndex:(short)theIndex;
--(id)getMediaFromIndex:(short)theIndex;
--(id)getAmbientSoundFromIndex:(short)theIndex;
--(id)getRandomSoundFromIndex:(short)theIndex;
+-(PhLight*)getLightFromIndex:(short)theIndex;
+-(PhMedia*)getMediaFromIndex:(short)theIndex;
+-(PhAmbientSound*)getAmbientSoundFromIndex:(short)theIndex;
+-(PhRandomSound*)getRandomSoundFromIndex:(short)theIndex;
 -(LEPolygon*)getPolygonFromIndex:(short)theIndex;
 
  // **************************  Basic Accsess To Level Objects  *************************
@@ -87,26 +99,26 @@
  
 -(void)setEverythingLoadedST:(BOOL)theChoice;
 
--(void)setTheMapPointsST:(NSArray *)theNSArray;
--(void)setTheMapLinesST:(NSArray *)theNSArray;
--(void)setTheMapObjectsST:(NSArray *)theNSArray;
--(void)setTheMapPolysST:(NSArray *)theNSArray;
--(void)setTheMapLightsST:(NSArray *)theNSArray;
--(void)setTheMapSidesST:(NSArray *)theNSArray;
--(void)setTheAnnotationsST:(NSArray *)theNSArray;
--(void)setTheMediaST:(NSArray *)theNSArray;
--(void)setTheAmbientSoundsST:(NSArray *)theNSArray;
--(void)setTheRandomSoundsST:(NSArray *)theNSArray;
--(void)setTheMapItemPlacmentST:(NSArray *)theNSArray;
--(void)setTheMapPlatformsST:(NSArray *)theNSArray;
+@property (assign) NSArray<LEMapPoint*> *theMapPointsST;
+@property (assign) NSArray<LELine*> *theMapLinesST;
+@property (assign) NSArray<LEMapObject*> *theMapObjectsST;
+@property (assign) NSArray<LEPolygon*> *theMapPolysST;
+@property (assign) NSArray<PhLight*> *theMapLightsST;
+@property (assign) NSArray<LESide*> *theMapSidesST;
+@property (assign) NSArray<PhAnnotationNote*> *theAnnotationsST;
+@property (assign) NSArray<PhMedia*> *theMediaST;
+@property (assign) NSArray<PhAmbientSound*> *theAmbientSoundsST;
+@property (assign) NSArray<PhRandomSound*> *theRandomSoundsST;
+@property (assign) NSArray<PhItemPlacement*> *theMapItemPlacmentST;
+@property (assign) NSArray<PhPlatform*> *theMapPlatformsST;
 
--(void)setTheLevelTagObjectsST:(NSArray *)theNSArray;
+@property (assign) NSArray<PhTag*> *theLevelTagObjectsST;
 
--(void)setTheLELevelDataST:(LELevelData *)theLevel;
+@property (assign) LELevelData *theLELevelDataST;
 
--(void)setTheMapLayersST:(NSArray *)theNSArray;
--(void)setTheNoteTypesST:(NSArray *)theNSArray;
--(void)setTheTerminalsST:(NSArray *)theNSArray;
+@property (assign) NSArray<PhLayer*> *theMapLayersST;
+@property (assign) NSArray<PhNoteGroup*> *theNoteTypesST;
+@property (assign) NSArray<Terminal*> *theTerminalsST;
 
 -(void)setAllObjectSTsFor:(LEMapStuffParent *)copy;
 

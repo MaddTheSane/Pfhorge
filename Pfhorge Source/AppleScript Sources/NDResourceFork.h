@@ -32,7 +32,7 @@ typedef NS_ENUM(SInt8, NDResourceForkPermission) {
 - (nullable instancetype)initForReadingAtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
 - (nullable instancetype)initForWritingAtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
 - (nullable instancetype)initForReadingAtURL:(NSURL *)aURL error:(NSError**)outError;
-- (nullable instancetype)initForWritingAtURL:(NSURL *)aURL error:(NSError**)outError;
+- (nullable instancetype)initForWritingToURL:(NSURL *)aURL error:(NSError**)outError;
 - (nullable instancetype)initForReadingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForWritingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");

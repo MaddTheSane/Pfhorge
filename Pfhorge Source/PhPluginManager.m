@@ -7,7 +7,7 @@
 //
 
 #import "PhPluginManager.h"
-//#import "PluginInterface.h"
+#import "PluginManagerInterface.h"
 
 @interface PhPluginManager ()
 - (void)activatePlugin:(NSString*)path;

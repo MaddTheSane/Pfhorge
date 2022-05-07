@@ -418,10 +418,10 @@ final class EasyBMP {
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8 {
 			colors = [RGBAPixel](repeating: EasyBMP.RGBAPixel(), count: Int(NumberOfColors))
 			
-		} else{
+		} else {
 			colors.removeAll()
-		
 		}
+		
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8 {
 			let success = createStandardColorTable()
 			assert(success, "createStandardColorTable() failed")

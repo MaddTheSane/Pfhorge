@@ -597,7 +597,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 /*
  * sendAppleEvent:sendMode:sendPriority:timeOutInTicks:idleProc:filterProc:
  */
-- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(AESendMode)aSendMode sendPriority:(AESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
+- (NSAppleEventDescriptor *)sendAppleEvent:(NSAppleEventDescriptor *)theAppleEventDescriptor sendMode:(NDAESendMode)aSendMode sendPriority:(NDAESendPriority)aSendPriority timeOutInTicks:(SInt32)aTimeOutInTicks idleProc:(AEIdleUPP)anIdleProc filterProc:(AEFilterUPP)aFilterProc
 {
 	AppleEvent				theAppleEvent;
 	NSAppleEventDescriptor	* theReplyAppleEventDesc = nil;
@@ -674,7 +674,7 @@ static ComponentInstance		defaultOSAComponent = NULL;
 	}
 
 	if (anID != INT16_MIN) {
-		NDResourceFork *theResourceFork = [[NDResourceFork alloc] initForWritingAtURL:aURL error:outError];
+		NDResourceFork *theResourceFork = [[NDResourceFork alloc] initForWritingToURL:aURL error:outError];
 		if (!theResourceFork) {
 			return NO;
 		}
@@ -1206,6 +1206,9 @@ OSErr AppleScriptActiveProc( SRefCon aRefCon )
 			
 			theError = AEGetDescData(aDesc, mutDat.mutableBytes, theSize);
 			bookData = CFBridgingRelease(CFURLCreateBookmarkDataFromAliasRecord(kCFAllocatorDefault, (__bridge CFDataRef)mutDat));
+			if (!bookData) {
+				return theURL;
+			}
 
 			theURL = [NSURL URLByResolvingBookmarkData:bookData options:0 relativeToURL:nil bookmarkDataIsStale:NULL error:NULL];
 			break;
