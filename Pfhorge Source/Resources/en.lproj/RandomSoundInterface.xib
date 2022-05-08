@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,13 +33,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="158" y="402" width="273" height="255"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="273" height="259"/>
+                <rect key="frame" x="0.0" y="0.0" width="273" height="256"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                        <rect key="frame" x="66" y="208" width="190" height="22"/>
+                        <rect key="frame" x="65" y="206" width="192" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="184" id="fc0-U1-6dk"/>
                         </constraints>
@@ -58,7 +58,7 @@
                         </popUpButtonCell>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="27">
-                        <rect key="frame" x="22" y="213" width="41" height="14"/>
+                        <rect key="frame" x="22" y="211" width="41" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Sound:" id="77">
                             <font key="font" metaFont="message" size="11"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -66,14 +66,14 @@
                         </textFieldCell>
                     </textField>
                     <button imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28">
-                        <rect key="frame" x="17" y="182" width="105" height="18"/>
+                        <rect key="frame" x="19" y="181" width="105" height="16"/>
                         <buttonCell key="cell" type="check" title="Non-Directional" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="78">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="message" size="11"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                        <rect key="frame" x="202" y="13" width="57" height="32"/>
+                        <rect key="frame" x="209" y="13" width="51" height="32"/>
                         <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="79">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -86,7 +86,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                        <rect key="frame" x="122" y="13" width="80" height="32"/>
+                        <rect key="frame" x="137" y="13" width="74" height="32"/>
                         <buttonCell key="cell" type="push" title="Revert" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="80">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -96,7 +96,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="31">
-                        <rect key="frame" x="11" y="237" width="251" height="14"/>
+                        <rect key="frame" x="11" y="234" width="251" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Informational Text" id="81">
                             <font key="font" metaFont="message" size="11"/>
                             <color key="textColor" name="SpecialTextColor"/>
@@ -104,7 +104,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65">
-                        <rect key="frame" x="14" y="13" width="89" height="32"/>
+                        <rect key="frame" x="13" y="13" width="83" height="32"/>
                         <buttonCell key="cell" type="push" title="Rename" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="82">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -114,7 +114,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XYq-jw-Zza">
-                        <rect key="frame" x="203" y="184" width="50" height="19"/>
+                        <rect key="frame" x="203" y="183" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="WiH-kr-I2Z"/>
                         </constraints>
@@ -128,7 +128,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKI-Po-IMS">
-                        <rect key="frame" x="163" y="187" width="40" height="14"/>
+                        <rect key="frame" x="163" y="185" width="40" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="Phase:" id="iHo-Ni-ym2">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -136,7 +136,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VK3-SA-AdD">
-                        <rect key="frame" x="84" y="146" width="50" height="19"/>
+                        <rect key="frame" x="84" y="145" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="1au-pX-MGg"/>
                         </constraints>
@@ -150,7 +150,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVx-k6-5cA">
-                        <rect key="frame" x="29" y="149" width="55" height="14"/>
+                        <rect key="frame" x="29" y="147" width="55" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="Direction:" id="jpe-6A-onn">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -158,7 +158,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Qd-wE-1wO">
-                        <rect key="frame" x="84" y="119" width="50" height="19"/>
+                        <rect key="frame" x="84" y="118" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="2Uj-8n-kIk"/>
                         </constraints>
@@ -172,7 +172,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ihr-gk-weA">
-                        <rect key="frame" x="18" y="122" width="66" height="14"/>
+                        <rect key="frame" x="18" y="120" width="66" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="∆ Direction:" id="uOl-Zl-zAn">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -180,7 +180,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VXc-EY-t2h">
-                        <rect key="frame" x="84" y="88" width="50" height="19"/>
+                        <rect key="frame" x="84" y="87" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="6ev-bW-92I"/>
                         </constraints>
@@ -194,7 +194,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DK3-PT-qCW">
-                        <rect key="frame" x="37" y="91" width="47" height="14"/>
+                        <rect key="frame" x="37" y="89" width="47" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="Volume:" id="Glt-0d-i3H">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +202,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="AtX-cI-xOn">
-                        <rect key="frame" x="84" y="61" width="50" height="19"/>
+                        <rect key="frame" x="84" y="60" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="mfh-mX-whN"/>
                         </constraints>
@@ -216,7 +216,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Mn-dJ-xdD">
-                        <rect key="frame" x="27" y="64" width="57" height="14"/>
+                        <rect key="frame" x="27" y="62" width="57" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="∆ Volume:" id="Ke1-LE-21D">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -224,7 +224,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ySE-fx-4uk">
-                        <rect key="frame" x="203" y="146" width="50" height="19"/>
+                        <rect key="frame" x="203" y="145" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="aM1-AY-pVL"/>
                         </constraints>
@@ -238,7 +238,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VaQ-pc-V1s">
-                        <rect key="frame" x="162" y="149" width="41" height="14"/>
+                        <rect key="frame" x="162" y="147" width="41" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="Period:" id="mUp-C3-33f">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -246,7 +246,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="202-zC-GdO">
-                        <rect key="frame" x="203" y="119" width="50" height="19"/>
+                        <rect key="frame" x="203" y="118" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="K5r-Z6-PrG"/>
                         </constraints>
@@ -260,7 +260,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wTo-50-Vg2">
-                        <rect key="frame" x="151" y="122" width="52" height="14"/>
+                        <rect key="frame" x="151" y="120" width="52" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="∆ Period:" id="Qfp-Fb-awb">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -268,7 +268,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dYF-hW-4Nq">
-                        <rect key="frame" x="203" y="88" width="50" height="19"/>
+                        <rect key="frame" x="203" y="87" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="RHW-Ig-09v"/>
                         </constraints>
@@ -282,7 +282,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Egm-Zk-Mqh">
-                        <rect key="frame" x="169" y="91" width="34" height="14"/>
+                        <rect key="frame" x="169" y="89" width="34" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="Pitch:" id="R94-BP-CsR">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -290,7 +290,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="P7y-Ra-y9Q">
-                        <rect key="frame" x="203" y="61" width="50" height="19"/>
+                        <rect key="frame" x="203" y="60" width="50" height="19"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Wxa-yA-gGM"/>
                         </constraints>
@@ -304,7 +304,7 @@ DQ
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oRP-Uw-0EE">
-                        <rect key="frame" x="158" y="64" width="45" height="14"/>
+                        <rect key="frame" x="158" y="62" width="45" height="14"/>
                         <textFieldCell key="cell" controlSize="small" title="∆ Pitch:" id="10M-el-rld">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -396,13 +396,13 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="155" y="283" width="367" height="134"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" misplaced="YES" id="54">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="134"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="57">
-                        <rect key="frame" x="18" y="78" width="231" height="16"/>
+                        <rect key="frame" x="18" y="77" width="231" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For This Object:" id="84">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -410,7 +410,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58">
-                        <rect key="frame" x="20" y="49" width="327" height="21"/>
+                        <rect key="frame" x="20" y="48" width="327" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="85">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -418,7 +418,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59">
-                        <rect key="frame" x="271" y="13" width="82" height="32"/>
+                        <rect key="frame" x="278" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="86">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -431,7 +431,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56">
-                        <rect key="frame" x="189" y="13" width="82" height="32"/>
+                        <rect key="frame" x="204" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="83">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -465,7 +465,7 @@ Gw
     </objects>
     <resources>
         <namedColor name="SpecialTextColor">
-            <color red="0.19215473532676697" green="0.12433554977178574" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19200000166893005" green="0.12399999797344208" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

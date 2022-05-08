@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,7 +69,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="10" y="4" width="551" height="454"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="551" height="454"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -103,19 +103,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="352">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="352">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="21">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="21">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="20">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="20">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -138,13 +138,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="353">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="353">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="30">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="30">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="290">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -156,13 +156,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="32" id="91"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="31">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="31">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="289">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -174,8 +174,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="33" id="92"/>
                                                 </connections>
@@ -190,7 +190,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="30" id="87"/>
@@ -200,7 +200,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="330">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="31" id="88"/>
@@ -237,19 +237,19 @@
                         </cells>
                     </matrix>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="63">
-                        <rect key="frame" x="-35" y="416" width="104" height="14"/>
+                        <rect key="frame" x="-35" y="415" width="104" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Template:" id="309">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Template:" id="309">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
-                        <rect key="frame" x="-35" y="389" width="104" height="14"/>
+                        <rect key="frame" x="-35" y="388" width="104" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Copy From:" id="310">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Copy From:" id="310">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -257,26 +257,26 @@
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65">
                         <rect key="frame" x="219" y="414" width="52" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Phase:" id="311">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Phase:" id="311">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="67">
-                        <rect key="frame" x="272" y="412" width="122" height="19"/>
+                        <rect key="frame" x="272" y="413" width="122" height="19"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0" drawsBackground="YES" id="312">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0" drawsBackground="YES" id="312">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="68">
-                        <rect key="frame" x="225" y="390" width="42" height="14"/>
+                        <rect key="frame" x="225" y="389" width="42" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Tag:" id="313">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Tag:" id="313">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -311,19 +311,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="354">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="354">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="71">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="71">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="75">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="75">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -346,13 +346,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="355">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="355">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="76">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="76">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="279">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -364,13 +364,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="74" id="94"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="72">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="72">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="280">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -382,8 +382,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="85" id="93"/>
                                                 </connections>
@@ -398,7 +398,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="333">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="76" id="90"/>
@@ -408,7 +408,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="334">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="72" id="89"/>
@@ -447,19 +447,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="356">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="356">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="100">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="100">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="99">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="99">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -482,13 +482,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="357">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="357">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="103">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="103">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="281">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -500,13 +500,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="109" id="114"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="110">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="110">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="282">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -518,8 +518,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="111" id="115"/>
                                                 </connections>
@@ -534,7 +534,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="337">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="103" id="113"/>
@@ -544,7 +544,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="338">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="110" id="112"/>
@@ -586,19 +586,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="358">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="358">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="129">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="129">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="130">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="130">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -621,13 +621,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="359">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="359">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="125">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="125">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="291">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -639,13 +639,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="122" id="136"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="119">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="119">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="285">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -657,8 +657,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="123" id="135"/>
                                                 </connections>
@@ -673,7 +673,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="341">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="125" id="134"/>
@@ -683,7 +683,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="342">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="119" id="133"/>
@@ -722,19 +722,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="360">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="360">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="137">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="137">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="148">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="148">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -757,13 +757,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="361">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="361">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="151">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="151">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="283">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -775,13 +775,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="138" id="155"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="149">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="149">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="284">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -793,8 +793,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="152" id="157"/>
                                                 </connections>
@@ -809,7 +809,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="345">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="151" id="156"/>
@@ -819,7 +819,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="346">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="149" id="154"/>
@@ -858,19 +858,19 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="19"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="362">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="362">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="160">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Period:" stringValue="30" id="160">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="167">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Period:" stringValue="0" id="167">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                             </formCell>
                                         </column>
                                     </cells>
@@ -893,13 +893,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="112" height="17"/>
                                     <size key="intercellSpacing" width="1" height="8"/>
-                                    <formCell key="prototype" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="363">
-                                        <font key="font" metaFont="message" size="11"/>
-                                        <font key="titleFont" metaFont="message" size="11"/>
+                                    <formCell key="prototype" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Field:" id="363">
+                                        <font key="font" metaFont="smallSystem"/>
+                                        <font key="titleFont" metaFont="smallSystem"/>
                                     </formCell>
                                     <cells>
                                         <column>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="164">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="164">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="288">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -911,13 +911,13 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="170" id="178"/>
                                                 </connections>
                                             </formCell>
-                                            <formCell scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="159">
+                                            <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="159">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="287">
                                                     <attributedString key="attributedStringForNil"/>
                                                     <attributedString key="attributedStringForNotANumber">
@@ -929,8 +929,8 @@
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <font key="titleFont" metaFont="message" size="11"/>
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <font key="titleFont" metaFont="smallSystem"/>
                                                 <connections>
                                                     <action selector="takeIntValueFrom:" target="169" id="175"/>
                                                 </connections>
@@ -945,7 +945,7 @@
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="349">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="164" id="176"/>
@@ -955,7 +955,7 @@
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="350">
-                                        <font key="font" metaFont="user"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
                                     </sliderCell>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="159" id="177"/>
@@ -1004,8 +1004,8 @@ DQ
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="215">
                         <rect key="frame" x="6" y="438" width="537" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Light#(Insert Number) - Name: (Insert Name) - Map:(Insert Map Name)" id="317">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Light#(Insert Number) - Name: (Insert Name) - Map:(Insert Map Name)" id="317">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="SpecialTextColor"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -1024,8 +1024,8 @@ DQ
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="217">
                         <rect key="frame" x="21" y="39" width="526" height="14"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Name: (Insert Name Of Light Here)" id="319">
-                            <font key="font" metaFont="message" size="11"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Name: (Insert Name Of Light Here)" id="319">
+                            <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="VisualModeWarningTextColor"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -1035,7 +1035,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="246" id="320">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="message" size="11"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="244">
                                 <items>
                                     <menuItem title="Item1" state="on" id="246"/>
@@ -1050,7 +1050,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <popUpButtonCell key="cell" type="push" title="Lights Avaliable:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" enabled="NO" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="248" id="321">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="message" size="11"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="249">
                                 <items>
                                     <menuItem title="Lights Avaliable:" hidden="YES" id="248"/>
@@ -1068,7 +1068,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <popUpButtonCell key="cell" type="push" title="Link With:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="254" id="322">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="message" size="11"/>
+                            <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="253">
                                 <items>
                                     <menuItem title="Link With:" state="on" id="254"/>
@@ -1093,13 +1093,13 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="155" y="283" width="367" height="127"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="271">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="114"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="267">
-                        <rect key="frame" x="18" y="78" width="219" height="16"/>
+                        <rect key="frame" x="18" y="77" width="218" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please enter a name for this object:" id="323">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1107,7 +1107,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="268">
-                        <rect key="frame" x="20" y="49" width="327" height="21"/>
+                        <rect key="frame" x="20" y="48" width="327" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="324">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1115,7 +1115,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="269">
-                        <rect key="frame" x="271" y="13" width="82" height="32"/>
+                        <rect key="frame" x="278" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="325">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1128,7 +1128,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="272">
-                        <rect key="frame" x="189" y="13" width="82" height="32"/>
+                        <rect key="frame" x="204" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="326">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>

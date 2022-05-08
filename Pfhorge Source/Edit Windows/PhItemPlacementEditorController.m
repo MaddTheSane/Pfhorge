@@ -168,9 +168,9 @@
     [appearenceSlider setIntValue:randomChancePercent];
     
     if (flags & PhItemPlacementReappersInRandomLocation)
-        [randomCB setState:NSOnState];
+        [randomCB setState:NSControlStateValueOn];
     else
-        [randomCB setState:NSOffState];
+        [randomCB setState:NSControlStateValueOff];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -227,7 +227,7 @@
 
 - (IBAction)randomCheckboxDidChange:(id)sender
 {
-    if ([sender state] == NSOnState)
+    if ([sender state] == NSControlStateValueOn)
         [[self selectedObject] setFlags:PhItemPlacementReappersInRandomLocation];
     else
         [[self selectedObject] setFlags:0];

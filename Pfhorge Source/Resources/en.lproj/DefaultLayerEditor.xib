@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,7 +27,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="15" y="166" width="517" height="558"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="517" height="558"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -35,20 +35,19 @@
                     <scrollView fixedFrame="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="8">
                         <rect key="frame" x="0.0" y="261" width="517" height="297"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" ambiguous="YES" id="KIj-Eh-9p4">
-                            <rect key="frame" x="1" y="0.0" width="515" height="296"/>
+                        <clipView key="contentView" id="KIj-Eh-9p4">
+                            <rect key="frame" x="1" y="1" width="515" height="295"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" autosaveColumns="NO" headerView="112" floatsGroupRows="NO" id="9">
-                                    <rect key="frame" x="0.0" y="0.0" width="515" height="271"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="515" height="270"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
                                         <tableColumn identifier="Name" width="151" minWidth="40" maxWidth="1000" id="7">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.3333333432674408" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
@@ -61,7 +60,6 @@
                                         </tableColumn>
                                         <tableColumn identifier="Floor Min" width="77" minWidth="40" maxWidth="1000" id="10">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Floor Min">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="0.3333333432674408" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableHeaderCell>
@@ -74,7 +72,6 @@
                                         </tableColumn>
                                         <tableColumn identifier="Floor Max" width="71" minWidth="10" maxWidth="1000" id="11">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Floor Max">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -87,7 +84,6 @@
                                         </tableColumn>
                                         <tableColumn identifier="Ceiling Min" width="82" minWidth="10" maxWidth="1000" id="12">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Ceiling Min">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -98,9 +94,8 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="Ceiling Max" width="118.99998474121094" minWidth="66.738998413085938" maxWidth="1000" id="13">
+                                        <tableColumn identifier="Ceiling Max" width="109.99998474121094" minWidth="66.738998413085938" maxWidth="1000" id="13">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Ceiling Max">
-                                                <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             </tableHeaderCell>
@@ -126,10 +121,10 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="113">
-                            <rect key="frame" x="500" y="25" width="16" height="271"/>
+                            <rect key="frame" x="500" y="26" width="16" height="270"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <tableHeaderView key="headerView" id="112">
+                        <tableHeaderView key="headerView" wantsLayer="YES" id="112">
                             <rect key="frame" x="0.0" y="0.0" width="515" height="25"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
@@ -138,7 +133,7 @@
                         <rect key="frame" x="104" y="141" width="307" height="25"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="2.2204460492503131e-16" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="86">
-                            <font key="font" metaFont="user"/>
+                            <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
                         <connections>
                             <action selector="takeFloatValueFrom:" target="22" id="83"/>
@@ -148,7 +143,7 @@
                         <rect key="frame" x="104" y="109" width="307" height="25"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="87">
-                            <font key="font" metaFont="user"/>
+                            <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
                         <connections>
                             <action selector="takeFloatValueFrom:" target="23" id="38"/>
@@ -158,7 +153,7 @@
                         <rect key="frame" x="104" y="77" width="307" height="25"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="88">
-                            <font key="font" metaFont="user"/>
+                            <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
                         <connections>
                             <action selector="takeFloatValueFrom:" target="24" id="39"/>
@@ -168,14 +163,14 @@
                         <rect key="frame" x="104" y="45" width="307" height="25"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="89">
-                            <font key="font" metaFont="user"/>
+                            <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
                         <connections>
                             <action selector="takeFloatValueFrom:" target="25" id="40"/>
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                        <rect key="frame" x="10" y="120" width="91" height="17"/>
+                        <rect key="frame" x="10" y="115" width="91" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Floor Min:" id="90">
                             <font key="font" metaFont="system"/>
@@ -184,7 +179,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                        <rect key="frame" x="10" y="152" width="91" height="17"/>
+                        <rect key="frame" x="10" y="147" width="91" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Floor Max:" id="91">
                             <font key="font" metaFont="system"/>
@@ -193,7 +188,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20">
-                        <rect key="frame" x="10" y="88" width="91" height="17"/>
+                        <rect key="frame" x="10" y="83" width="91" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Ceiling Max:" id="92">
                             <font key="font" metaFont="system"/>
@@ -202,7 +197,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21">
-                        <rect key="frame" x="10" y="56" width="91" height="17"/>
+                        <rect key="frame" x="10" y="51" width="91" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Ceiling Min:" id="93">
                             <font key="font" metaFont="system"/>
@@ -211,7 +206,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22">
-                        <rect key="frame" x="417" y="150" width="80" height="22"/>
+                        <rect key="frame" x="417" y="144" width="80" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0.00" drawsBackground="YES" id="94">
                             <font key="font" metaFont="system"/>
@@ -225,7 +220,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                        <rect key="frame" x="417" y="118" width="80" height="22"/>
+                        <rect key="frame" x="417" y="112" width="80" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0.00" drawsBackground="YES" id="95">
                             <font key="font" metaFont="system"/>
@@ -239,7 +234,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24">
-                        <rect key="frame" x="417" y="86" width="80" height="22"/>
+                        <rect key="frame" x="417" y="80" width="80" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0.00" drawsBackground="YES" id="96">
                             <font key="font" metaFont="system"/>
@@ -253,7 +248,7 @@
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="25">
-                        <rect key="frame" x="417" y="54" width="80" height="22"/>
+                        <rect key="frame" x="417" y="48" width="80" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" title="0.00" drawsBackground="YES" id="97">
                             <font key="font" metaFont="system"/>

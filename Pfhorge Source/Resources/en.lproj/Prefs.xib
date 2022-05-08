@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,7 +60,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="91" y="246" width="373" height="415"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="373" height="415"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -71,7 +71,7 @@
                         <tabViewItems>
                             <tabViewItem label="Colors" identifier="1" id="80">
                                 <view key="view" id="82">
-                                    <rect key="frame" x="10" y="25" width="373" height="384"/>
+                                    <rect key="frame" x="10" y="29" width="373" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box fixedFrame="YES" title="Point Colors" translatesAutoresizingMaskIntoConstraints="NO" id="174">
@@ -634,7 +634,7 @@ DQ
                                                         <rect key="frame" x="125" y="227" width="203" height="17"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <sliderCell key="cell" controlSize="small" alignment="left" maxValue="30" doubleValue="9" tickMarkPosition="below" numberOfTickMarks="31" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1085">
-                                                            <font key="font" metaFont="user"/>
+                                                            <font key="font" usesAppearanceFont="YES"/>
                                                         </sliderCell>
                                                         <connections>
                                                             <action selector="generalCheckBoxMatrixAction:" target="466" id="723"/>
@@ -664,7 +664,7 @@ DQ
                                                         <rect key="frame" x="125" y="196" width="203" height="17"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <sliderCell key="cell" controlSize="small" alignment="left" maxValue="100" doubleValue="16" tickMarkPosition="below" numberOfTickMarks="26" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1088">
-                                                            <font key="font" metaFont="user"/>
+                                                            <font key="font" usesAppearanceFont="YES"/>
                                                         </sliderCell>
                                                         <connections>
                                                             <action selector="snapFromPointLengthSliderAction:" target="466" id="1006"/>
@@ -1464,7 +1464,7 @@ DQ
                                                                 <rect key="frame" x="145" y="184" width="164" height="25"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <sliderCell key="cell" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="16" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1058">
-                                                                    <font key="font" metaFont="user"/>
+                                                                    <font key="font" usesAppearanceFont="YES"/>
                                                                 </sliderCell>
                                                                 <connections>
                                                                     <action selector="fogDepthSliderChanged:" target="466" id="905"/>
@@ -1544,7 +1544,7 @@ DQ
                                                                 <rect key="frame" x="119" y="293" width="242" height="21"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.10000000000000001" maxValue="2" doubleValue="0.10000000000000001" tickMarkPosition="below" sliderType="linear" id="1064">
-                                                                    <font key="font" metaFont="user"/>
+                                                                    <font key="font" usesAppearanceFont="YES"/>
                                                                 </sliderCell>
                                                                 <connections>
                                                                     <action selector="setMouseSpeedAction:" target="466" id="880"/>
@@ -1554,7 +1554,7 @@ DQ
                                                                 <rect key="frame" x="119" y="265" width="242" height="21"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="1065">
-                                                                    <font key="font" metaFont="user"/>
+                                                                    <font key="font" usesAppearanceFont="YES"/>
                                                                 </sliderCell>
                                                                 <connections>
                                                                     <action selector="setKeySpeedAction:" target="466" id="887"/>

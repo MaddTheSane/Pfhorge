@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,10 +36,10 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
-                    <rect key="frame" x="1" y="263" width="179" height="25"/>
+                    <rect key="frame" x="1" y="263" width="180" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Add, Delete, Etc." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="260" id="304">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="227">
                             <items>
                                 <menuItem title="Add, Delete, Etc." hidden="YES" id="260"/>
@@ -66,21 +66,20 @@
                     </popUpButtonCell>
                 </popUpButton>
                 <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43">
-                    <rect key="frame" x="0.0" y="0.0" width="181" height="263"/>
+                    <rect key="frame" x="0.0" y="0.0" width="181" height="264"/>
                     <clipView key="contentView" drawsBackground="NO" id="Pua-AP-LDm">
-                        <rect key="frame" x="1" y="0.0" width="179" height="262"/>
+                        <rect key="frame" x="1" y="1" width="179" height="262"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="327" indentationPerLevel="16" autoresizesOutlineColumn="YES" outlineTableColumn="45" id="44">
                                 <rect key="frame" x="0.0" y="0.0" width="179" height="237"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="176" minWidth="16" maxWidth="1000" id="45">
+                                    <tableColumn editable="NO" width="167" minWidth="16" maxWidth="1000" id="45">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Terminal Sections">
-                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333333999999998" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableHeaderCell>
@@ -105,10 +104,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="325">
-                        <rect key="frame" x="164" y="25" width="16" height="237"/>
+                        <rect key="frame" x="164" y="26" width="16" height="237"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <tableHeaderView key="headerView" id="327">
+                    <tableHeaderView key="headerView" wantsLayer="YES" id="327">
                         <rect key="frame" x="0.0" y="0.0" width="179" height="25"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
@@ -129,7 +128,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="2" y="324" width="640" height="399"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="5">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="399"/>
@@ -146,18 +145,18 @@
                         <font key="font" size="11" name="CourierNewPSMT"/>
                         <tabViewItems>
                             <tabViewItem label="InformationView" identifier="1" id="15">
-                                <view key="view" ambiguous="YES" id="17">
+                                <view key="view" id="17">
                                     <rect key="frame" x="0.0" y="0.0" width="640" height="284"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18">
                                             <rect key="frame" x="0.0" y="-1" width="640" height="285"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <clipView key="contentView" ambiguous="YES" id="OnU-fX-6fi">
+                                            <clipView key="contentView" id="OnU-fX-6fi">
                                                 <rect key="frame" x="0.0" y="0.0" width="640" height="285"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="19">
+                                                    <textView importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="19">
                                                         <rect key="frame" x="0.0" y="0.0" width="640" height="285"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" red="0.0" green="1" blue="0.0078431377000000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -380,11 +379,11 @@ Hint: Use Upper Right </string>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20">
                         <rect key="frame" x="0.0" y="379" width="320" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" id="DJV-WI-X30">
+                        <clipView key="contentView" id="DJV-WI-X30">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="338">
+                                <textView importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="338">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -417,11 +416,11 @@ Hint: Use Upper Right </string>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25">
                         <rect key="frame" x="0.0" y="77" width="320" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" id="IH0-qX-e8B">
+                        <clipView key="contentView" id="IH0-qX-e8B">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="341">
+                                <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="341">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -454,11 +453,11 @@ Hint: Use Upper Right </string>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27">
                         <rect key="frame" x="320" y="77" width="320" height="18"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" id="7lm-Ti-x8V">
+                        <clipView key="contentView" id="7lm-Ti-x8V">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="344">
+                                <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="344">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="18"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -491,11 +490,11 @@ Hint: Use Upper Right </string>
                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66">
                         <rect key="frame" x="320" y="379" width="320" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" id="vd2-HT-apF">
+                        <clipView key="contentView" id="vd2-HT-apF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="347">
+                                <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="347">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -539,7 +538,7 @@ Hint: Use Upper Right </string>
                     <box fixedFrame="YES" boxType="oldStyle" borderType="none" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="122">
                         <rect key="frame" x="12" y="7" width="620" height="66"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <view key="contentView" ambiguous="YES" id="azO-5u-D2M">
+                        <view key="contentView" id="azO-5u-D2M">
                             <rect key="frame" x="0.0" y="0.0" width="620" height="66"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -734,11 +733,11 @@ Hint: Use Upper Right </string>
                                 <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="275">
                                     <rect key="frame" x="458" y="-3" width="1" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <clipView key="contentView" ambiguous="YES" id="Twa-rS-f6Q">
+                                    <clipView key="contentView" id="Twa-rS-f6Q">
                                         <rect key="frame" x="0.0" y="0.0" width="1" height="73"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="276">
+                                            <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="276">
                                                 <rect key="frame" x="0.0" y="0.0" width="1" height="73"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -762,11 +761,11 @@ Hint: Use Upper Right </string>
                                 <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="277">
                                     <rect key="frame" x="191" y="-9" width="1" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <clipView key="contentView" ambiguous="YES" id="Jdx-Jn-MDg">
+                                    <clipView key="contentView" id="Jdx-Jn-MDg">
                                         <rect key="frame" x="0.0" y="0.0" width="1" height="79"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="278">
+                                            <textView editable="NO" selectable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="278">
                                                 <rect key="frame" x="0.0" y="0.0" width="1" height="79"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -820,7 +819,7 @@ Hint: Use Upper Right </string>
                                     <font key="font" metaFont="system"/>
                                     <tabViewItems>
                                         <tabViewItem label="View" identifier="2" id="288">
-                                            <view key="view" ambiguous="YES" id="289">
+                                            <view key="view" id="289">
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -890,7 +889,6 @@ Hint: Use Upper Right </string>
         </drawer>
         <tableColumn width="50" minWidth="10" maxWidth="1000" id="47">
             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                <font key="font" metaFont="smallSystem"/>
                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
             </tableHeaderCell>
@@ -905,14 +903,14 @@ Hint: Use Upper Right </string>
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="91" y="585" width="494" height="139"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="237">
-                <rect key="frame" x="0.0" y="0.0" width="494" height="126"/>
+                <rect key="frame" x="0.0" y="0.0" width="494" height="125"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="238">
-                        <rect key="frame" x="102" y="89" width="164" height="17"/>
+                        <rect key="frame" x="102" y="88" width="164" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Delete Entire Terminal?" id="317">
                             <font key="font" metaFont="systemBold" size="14"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -920,7 +918,7 @@ Hint: Use Upper Right </string>
                         </textFieldCell>
                     </textField>
                     <imageView translatesAutoresizingMaskIntoConstraints="NO" id="239">
-                        <rect key="frame" x="20" y="35" width="76" height="81"/>
+                        <rect key="frame" x="20" y="34" width="76" height="81"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="76" id="GAv-uR-jwK"/>
                             <constraint firstAttribute="height" constant="81" id="smz-wo-IgA"/>
@@ -928,7 +926,7 @@ Hint: Use Upper Right </string>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="318"/>
                     </imageView>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="241">
-                        <rect key="frame" x="398" y="13" width="82" height="32"/>
+                        <rect key="frame" x="405" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="320">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -941,7 +939,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="242">
-                        <rect key="frame" x="316" y="13" width="82" height="32"/>
+                        <rect key="frame" x="331" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="321">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -951,7 +949,7 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="311" translatesAutoresizingMaskIntoConstraints="NO" id="240">
-                        <rect key="frame" x="102" y="49" width="374" height="32"/>
+                        <rect key="frame" x="102" y="48" width="374" height="32"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Are your sure you want to delete the entire terminal, including any sections it may have?" id="319">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
