@@ -166,7 +166,7 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (BOOL)removeType:(ResType)aType Id:(short)anID
 {
-	return [self removeType:aType Id:anID];
+	return [self removeType:aType Id:anID error:NULL];
 }
 
 - (BOOL)removeType:(ResType)aType Id:(short)anID error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
