@@ -258,6 +258,3 @@ int GetNumberOfBitmapsInCollection(int coll, int *theBitmapCount)
 	
 	return 0;
 }
-
-
-

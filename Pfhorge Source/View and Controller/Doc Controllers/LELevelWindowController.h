@@ -66,70 +66,13 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
 
 @interface LELevelWindowController : NSWindowController <NSTableViewDataSource>
 {
-    IBOutlet LEMapDraw *levelDrawView;
-    IBOutlet NSTextField *levelStatusBar;
-    
-    IBOutlet PhNoteGroupsCon *noteGroupWinController;
-    IBOutlet NSWindow *noteGroupWindow;
-    
-    IBOutlet NSPopUpButton *mapLevelList;
-    IBOutlet NSPopUpButton *layerNamesMenu;
-    
-    IBOutlet NSPanel *levelSettingsSheet;
-    IBOutlet NSWindow *mainWindow;
-    IBOutlet id generalDrawerContentView;
-    
-    IBOutlet PhNamesController *nameWindowController;
-    
-    IBOutlet NSMatrix *environmentFlags;
-    IBOutlet NSPopUpButton *environmentTexture;
-    IBOutlet NSMatrix *gameType;
-    IBOutlet NSPopUpButton *landscape;
-    IBOutlet NSTextField *levelName;
-    IBOutlet NSMatrix *mission;
-    IBOutlet NSButton *levelSCancelBtn;
-    
-    IBOutlet id theExSheet;
-    
     unsigned short theExpShort;
     
     // *** outlets For Rename Dialog ***
-    IBOutlet NSWindow *rdSheet;
-    IBOutlet NSButton *rdApplyBtn;
-    IBOutlet NSButton *rdCancelBtn;
-    IBOutlet NSButton *rdRemoveBtn;
-    IBOutlet NSTextField *rdTextInputTB;
-    IBOutlet NSTextField *rdMessageIT;
-    IBOutlet id rdTitleIT;
     id objectToRename;
     
-    // *** Stuff For GoTo Sheet ***
-    IBOutlet NSWindow *gotoSheet;
-    IBOutlet NSPopUpButton *gotoPfhorgeObjectTypePopMenu;
-    IBOutlet NSTextField *gotoTextInputTB;
-    IBOutlet NSTextField *gotoMsgIT;
-
-    // *** Stuff For Note Editor Sheet ***
-    IBOutlet NSWindow *annotationNoteEditorSheet;
-    IBOutlet NSPopUpButton *noteGroupPM;
-    IBOutlet NSTextField *noteTextTB;
-    
-    // *** Color Window Stuff ***
-    IBOutlet PhColorListControllerDrawer *colorObject;
-    IBOutlet NSDrawer *theColorDrawer;
-    IBOutlet NSPanel *newHeightWindowSheet;
-    IBOutlet NSTextField *newHeightTextBox;
-    
-    // *** Manager Stuff ***
-    IBOutlet NSDrawer *theManagerDrawer;
-    IBOutlet NSButton *useMapManager;
-    IBOutlet NSPopUpButton *gridFactorMenu;
-    IBOutlet NSMatrix *gridOptionCheckboxes;
-    IBOutlet NSMatrix *objectVisabilityCheckboxes;
-    
-    // *** Map Manager Non-Overide Options For ***
-    IBOutlet NSMatrix *selectionOptionCheckboxes;
-    
+    __weak NSPanel *newHeightWindowSheet;
+    __weak NSTextField *newHeightTextBox;
     
     BOOL showLevelSettingsSheetWhenWindowIsLoaded;
     BOOL disableLevelNameMenu;
@@ -142,6 +85,76 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
     
     PhAnnotationNote *tmpNote;
 }
+
+@property (weak) IBOutlet LEMapDraw *levelDrawView;
+@property (weak) IBOutlet NSTextField *levelStatusBar;
+
+@property (weak) IBOutlet PhNoteGroupsCon *noteGroupWinController;
+@property (weak) IBOutlet NSWindow *noteGroupWindow;
+
+@property (weak) IBOutlet NSPopUpButton *mapLevelList;
+@property (weak) IBOutlet NSPopUpButton *layerNamesMenu;
+
+@property (weak) IBOutlet NSPanel *levelSettingsSheet;
+@property (weak) IBOutlet NSWindow *mainWindow;
+@property (weak) IBOutlet id generalDrawerContentView;
+
+@property (weak) IBOutlet PhNamesController *nameWindowController;
+
+@property (weak) IBOutlet NSMatrix *environmentFlags;
+@property (weak) IBOutlet NSPopUpButton *environmentTexture;
+@property (weak) IBOutlet NSMatrix *gameType;
+@property (weak) IBOutlet NSPopUpButton *landscape;
+@property (weak) IBOutlet NSTextField *levelName;
+@property (weak) IBOutlet NSMatrix *mission;
+@property (weak) IBOutlet NSButton *levelSCancelBtn;
+
+@property (weak) IBOutlet id theExSheet;
+
+
+// *** outlets For Rename Dialog ***
+@property (weak) IBOutlet NSWindow *rdSheet;
+@property (weak) IBOutlet NSButton *rdApplyBtn;
+@property (weak) IBOutlet NSButton *rdCancelBtn;
+@property (weak) IBOutlet NSButton *rdRemoveBtn;
+@property (weak) IBOutlet NSTextField *rdTextInputTB;
+@property (weak) IBOutlet NSTextField *rdMessageIT;
+@property (weak) IBOutlet id rdTitleIT;
+
+// *** Stuff For GoTo Sheet ***
+@property (weak) IBOutlet NSWindow *gotoSheet;
+@property (weak) IBOutlet NSPopUpButton *gotoPfhorgeObjectTypePopMenu;
+@property (weak) IBOutlet NSTextField *gotoTextInputTB;
+@property (weak) IBOutlet NSTextField *gotoMsgIT;
+
+// *** Stuff For Note Editor Sheet ***
+@property (weak) IBOutlet NSWindow *annotationNoteEditorSheet;
+@property (weak) IBOutlet NSPopUpButton *noteGroupPM;
+@property (weak) IBOutlet NSTextField *noteTextTB;
+
+// *** Color Window Stuff ***
+@property (weak) IBOutlet PhColorListControllerDrawer *colorObject;
+@property (weak) IBOutlet NSDrawer *theColorDrawer;
+@property (weak) IBOutlet NSPanel *changeHeightWindowSheet;
+@property (weak) IBOutlet NSTextField *changeHeightTextBox;
+
+// *** Manager Stuff ***
+@property (weak) IBOutlet NSDrawer *theManagerDrawer;
+@property (weak) IBOutlet NSButton *useMapManager;
+@property (weak) IBOutlet NSPopUpButton *gridFactorMenu;
+@property (weak) IBOutlet NSButton *gridOptionPointsToGrid;
+@property (weak) IBOutlet NSButton *gridOptionObjectsToGrid;
+@property (weak) IBOutlet NSButton *gridOptionPointsToPoints;
+@property (weak) IBOutlet NSButton *gridOptionDraws;
+
+@property (weak) IBOutlet NSMatrix *objectVisabilityCheckboxes;
+
+
+// *** Map Manager Non-Overide Options For ***
+@property (weak) IBOutlet NSButton *selectionOptionCheckPoints;
+@property (weak) IBOutlet NSButton *selectionOptionCheckLines;
+@property (weak) IBOutlet NSButton *selectionOptionCheckObjects;
+@property (weak) IBOutlet NSButton *selectionOptionCheckPolygons;
 
  // Might want to use LELevelChangedNotification instead...
 - (void)mapLoaded;

@@ -65,6 +65,62 @@ enum	// side flags
 NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 @implementation LELevelWindowController
+@synthesize levelDrawView;
+@synthesize levelStatusBar;
+
+@synthesize noteGroupWinController;
+@synthesize noteGroupWindow;
+
+@synthesize mapLevelList;
+@synthesize layerNamesMenu;
+@synthesize levelSettingsSheet;
+@synthesize mainWindow;
+@synthesize generalDrawerContentView;
+
+@synthesize nameWindowController;
+
+@synthesize environmentFlags;
+@synthesize environmentTexture;
+@synthesize gameType;
+@synthesize landscape;
+@synthesize levelName;
+@synthesize mission;
+@synthesize levelSCancelBtn;
+
+@synthesize theExSheet;
+
+
+// *** outlets For Rename Dialog ***
+@synthesize rdSheet;
+@synthesize rdApplyBtn;
+@synthesize rdCancelBtn;
+@synthesize rdRemoveBtn;
+@synthesize rdTextInputTB;
+@synthesize rdMessageIT;
+@synthesize rdTitleIT;
+
+// *** Stuff For GoTo Sheet ***
+@synthesize gotoSheet;
+@synthesize gotoPfhorgeObjectTypePopMenu;
+@synthesize gotoTextInputTB;
+@synthesize gotoMsgIT;
+
+// *** Stuff For Note Editor Sheet ***
+@synthesize annotationNoteEditorSheet;
+@synthesize noteGroupPM;
+@synthesize noteTextTB;
+
+// *** Color Window Stuff ***
+@synthesize colorObject;
+@synthesize theColorDrawer;
+@synthesize changeHeightWindowSheet=newHeightWindowSheet;
+@synthesize changeHeightTextBox=newHeightTextBox;
+
+// *** Manager Stuff ***
+@synthesize theManagerDrawer;
+@synthesize useMapManager;
+@synthesize gridFactorMenu;
+@synthesize objectVisabilityCheckboxes;
 
 - (id)init
 {
@@ -554,20 +610,29 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     } else if ([theOptionDict count] > 0) {
         [useMapManager setState:NSControlStateValueOn];
         
-        [gridOptionCheckboxes setEnabledOfMatrixCellsTo:YES];
+        _gridOptionPointsToGrid.enabled = YES;
+        _gridOptionObjectsToGrid.enabled = YES;
+        _gridOptionPointsToPoints.enabled = YES;
+        _gridOptionDraws.enabled = YES;
         [objectVisabilityCheckboxes setEnabledOfMatrixCellsTo:YES];
         [gridFactorMenu setEnabled:YES];
     } else {
         [useMapManager setState:NSControlStateValueOff];
         
-        [gridOptionCheckboxes setEnabledOfMatrixCellsTo:NO];
+        _gridOptionPointsToGrid.enabled = NO;
+        _gridOptionObjectsToGrid.enabled = NO;
+        _gridOptionPointsToPoints.enabled = NO;
+        _gridOptionDraws.enabled = NO;
         [objectVisabilityCheckboxes setEnabledOfMatrixCellsTo:NO];
         [gridFactorMenu setEnabled:NO];
         
         return;
     }
     
-    [gridOptionCheckboxes deselectAllCells];
+    _gridOptionPointsToGrid.state = NSControlStateValueOff;
+    _gridOptionObjectsToGrid.state = NSControlStateValueOff;
+    _gridOptionPointsToPoints.state = NSControlStateValueOff;
+    _gridOptionDraws.state = NSControlStateValueOff;
     [objectVisabilityCheckboxes deselectAllCells];
     
     /*
@@ -575,13 +640,13 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
      */
     
     if ([theCurrentLevel settingAsBool:PhSnapObjectsToGrid])
-        SelectS(gridOptionCheckboxes, _mm_objects_to_grid);
+        _gridOptionObjectsToGrid.state = NSControlStateValueOn;
     if ([theCurrentLevel settingAsBool:PhEnableGridBool])
-        SelectS(gridOptionCheckboxes, _mm_draw_grid);
+        _gridOptionDraws.state = NSControlStateValueOn;
     if ([theCurrentLevel settingAsBool:PhSnapToGridBool])
-        SelectS(gridOptionCheckboxes, _mm_points_to_grid);
+        _gridOptionPointsToGrid.state = NSControlStateValueOn;
     if ([theCurrentLevel settingAsBool:PhSnapToPoints])
-        SelectS(gridOptionCheckboxes, _mm_snap_to_other_points);
+        _gridOptionPointsToPoints.state = NSControlStateValueOn;
     
     if ([theCurrentLevel settingAsBool:PhEnableObjectEnemyMonster])
         SelectS(objectVisabilityCheckboxes, _mm_monster_vis);
@@ -633,24 +698,24 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     //  SelectSIf(Matrix, Tag, BOOL);
     
     if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
-        [selectionOptionCheckboxes selectCellWithTag:_mm_select_points];
+        [_selectionOptionCheckPoints setState:NSControlStateValueOn];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_points] setState:NSControlStateValueOff];
+        [_selectionOptionCheckPoints setState:NSControlStateValueOff];
+
+    if ([levelDrawView boolOptionsFor:_mapoptions_select_lines])
+        [_selectionOptionCheckLines setState:NSControlStateValueOn];
+    else
+        [_selectionOptionCheckLines setState:NSControlStateValueOff];
     
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
-        [selectionOptionCheckboxes selectCellWithTag:_mm_select_lines];
+    if ([levelDrawView boolOptionsFor:_mapoptions_select_objects])
+        [_selectionOptionCheckObjects setState:NSControlStateValueOn];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_lines] setState:NSControlStateValueOff];
+        [_selectionOptionCheckObjects setState:NSControlStateValueOff];
     
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
-        [selectionOptionCheckboxes selectCellWithTag:_mm_select_objects];
+    if ([levelDrawView boolOptionsFor:_mapoptions_select_polygons])
+        [_selectionOptionCheckPolygons setState:NSControlStateValueOn];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_objects] setState:NSControlStateValueOff];
-    
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
-        [selectionOptionCheckboxes selectCellWithTag:_mm_select_polygons];
-    else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_polygons] setState:NSControlStateValueOff];
+        [_selectionOptionCheckPolygons setState:NSControlStateValueOff];
     
     /**************************************************
     SelectSIf(selectionOptionCheckboxes, _mm_select_points, [levelDrawView boolOptionsFor:_mapoptions_select_points]);
@@ -664,10 +729,10 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 {
     //LELevelData *theCurrentLevel = [[self document] getCurrentLevelLoaded];
     
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_points to:SState(selectionOptionCheckboxes, _mm_select_points)];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_lines to:SState(selectionOptionCheckboxes, _mm_select_lines)];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_objects to:SState(selectionOptionCheckboxes, _mm_select_objects)];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_polygons to:SState(selectionOptionCheckboxes, _mm_select_polygons)];
+    [levelDrawView setBoolOptionsFor:_mapoptions_select_points to: _selectionOptionCheckPoints.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:_mapoptions_select_lines to:_selectionOptionCheckLines.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:_mapoptions_select_objects to:_selectionOptionCheckObjects.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:_mapoptions_select_polygons to:_selectionOptionCheckPolygons.state == NSControlStateValueOn];
     
     [self updateMapManagerInterface];
 }
@@ -713,10 +778,10 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     LELevelData *theCurrentLevel = [[self document] getCurrentLevelLoaded];
     float theGridFactor = 0.00;
     
-    [theCurrentLevel setSettingFor:PhSnapObjectsToGrid asBool:SState(gridOptionCheckboxes, _mm_objects_to_grid)];
-    [theCurrentLevel setSettingFor:PhEnableGridBool asBool:SState(gridOptionCheckboxes, _mm_draw_grid)];
-    [theCurrentLevel setSettingFor:PhSnapToPoints asBool:SState(gridOptionCheckboxes, _mm_snap_to_other_points)];
-    [theCurrentLevel setSettingFor:PhSnapToGridBool asBool:SState(gridOptionCheckboxes, _mm_points_to_grid)];
+    [theCurrentLevel setSettingFor:PhSnapObjectsToGrid asBool:_gridOptionObjectsToGrid.state == NSControlStateValueOn];
+    [theCurrentLevel setSettingFor:PhEnableGridBool asBool:_gridOptionDraws.state == NSControlStateValueOn];
+    [theCurrentLevel setSettingFor:PhSnapToPoints asBool:_gridOptionPointsToPoints.state == NSControlStateValueOn];
+    [theCurrentLevel setSettingFor:PhSnapToGridBool asBool:_gridOptionPointsToGrid.state == NSControlStateValueOn];
     
     [theCurrentLevel setSettingFor:PhEnableObjectEnemyMonster asBool:SState(objectVisabilityCheckboxes, _mm_monster_vis)];
     [theCurrentLevel setSettingFor:PhEnableObjectPlayer asBool:SState(objectVisabilityCheckboxes, _mm_player_vis)];

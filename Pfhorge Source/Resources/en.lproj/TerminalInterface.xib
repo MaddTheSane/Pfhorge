@@ -78,7 +78,7 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn editable="NO" width="167" minWidth="16" maxWidth="1000" id="45">
+                                    <tableColumn editable="NO" width="138" minWidth="16" maxWidth="1000" id="45">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Terminal Sections">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333333999999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,11 +134,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="640" height="399"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <colorWell fixedFrame="YES" bordered="NO" continuous="NO" enabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="124">
-                        <rect key="frame" x="-2" y="-5" width="644" height="90"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="color" red="0.0" green="0.14184397000000001" blue="0.15140845" alpha="1" colorSpace="calibratedRGB"/>
-                    </colorWell>
                     <tabView fixedFrame="YES" drawsBackground="NO" controlSize="small" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="16">
                         <rect key="frame" x="0.0" y="95" width="640" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -192,7 +187,7 @@
                             <tabViewItem label="SignonAndSignoff" identifier="2" id="13">
                                 <view key="view" id="14">
                                     <rect key="frame" x="0.0" y="0.0" width="640" height="284"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <colorWell fixedFrame="YES" bordered="NO" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38">
                                             <rect key="frame" x="-2" y="49" width="647" height="237"/>
@@ -202,11 +197,11 @@
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35">
                                             <rect key="frame" x="0.0" y="0.0" width="640" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <clipView key="contentView" ambiguous="YES" id="isr-ph-HLf">
+                                            <clipView key="contentView" id="isr-ph-HLf">
                                                 <rect key="frame" x="0.0" y="0.0" width="640" height="51"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="36">
+                                                    <textView importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="36">
                                                         <rect key="frame" x="0.0" y="0.0" width="640" height="51"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" red="0.0" green="1" blue="0.0078431377000000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -247,7 +242,7 @@
                             <tabViewItem label="PictureView" identifier="" id="29">
                                 <view key="view" id="30">
                                     <rect key="frame" x="0.0" y="0.0" width="640" height="284"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <colorWell fixedFrame="YES" bordered="NO" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39">
                                             <rect key="frame" x="-5" y="-2" width="316" height="292"/>
@@ -257,11 +252,11 @@
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40">
                                             <rect key="frame" x="309" y="-2" width="331" height="286"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <clipView key="contentView" ambiguous="YES" id="3hT-4L-jOw">
+                                            <clipView key="contentView" id="3hT-4L-jOw">
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="286"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="41">
+                                                    <textView verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="41">
                                                         <rect key="frame" x="0.0" y="0.0" width="331" height="286"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" red="0.0" green="1" blue="0.0078431377000000007" alpha="1" colorSpace="calibratedRGB"/>
@@ -307,11 +302,11 @@
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55">
                                             <rect key="frame" x="0.0" y="-1" width="640" height="285"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <clipView key="contentView" ambiguous="YES" id="foj-ix-7a9">
+                                            <clipView key="contentView" id="foj-ix-7a9">
                                                 <rect key="frame" x="0.0" y="0.0" width="640" height="285"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" editable="NO" selectable="NO" importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="56">
+                                                    <textView editable="NO" selectable="NO" importsGraphics="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="56">
                                                         <rect key="frame" x="0.0" y="0.0" width="640" height="285"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" red="0.0" green="1" blue="0.75294119000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -600,7 +595,7 @@ Hint: Use Upper Right </string>
                                     <color key="color" red="0.50354611999999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </colorWell>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="142">
-                                    <rect key="frame" x="186" y="40" width="98" height="17"/>
+                                    <rect key="frame" x="189" y="40" width="95" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Section Type:" id="309">
                                         <font key="font" metaFont="system"/>
@@ -875,7 +870,7 @@ Hint: Use Upper Right </string>
             <connections>
                 <outlet property="delegate" destination="-2" id="49"/>
             </connections>
-            <point key="canvasLocation" x="139" y="-274"/>
+            <point key="canvasLocation" x="139" y="-274.5"/>
         </window>
         <drawer preferredEdge="minX" trailingOffset="15" id="8">
             <size key="contentSize" width="200" height="200"/>

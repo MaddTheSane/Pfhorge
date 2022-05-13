@@ -74,7 +74,6 @@ enum {
     IBOutlet NSPopUpButton 	*ceilingMode;
     IBOutlet NSPopUpButton 	*floorMode;
     
-    IBOutlet NSMatrix *sideTextureOffsetMatrix;
     IBOutlet NSMatrix *sideTextureRadioBtn;
     IBOutlet NSMatrix *sideLightRadioBtn;
     IBOutlet NSMatrix *sideControlRadioBtn;
@@ -97,6 +96,13 @@ enum {
     NSArray *curFImages; // floor
     NSArray *curCImages; // ceiling
 }
+
+@property (weak) IBOutlet NSTextField *sideTextureOffsetPrimaryX;
+@property (weak) IBOutlet NSTextField *sideTextureOffsetPrimaryY;
+@property (weak) IBOutlet NSTextField *sideTextureOffsetSecondaryX;
+@property (weak) IBOutlet NSTextField *sideTextureOffsetSecondaryY;
+@property (weak) IBOutlet NSTextField *sideTextureOffsetTransparentX;
+@property (weak) IBOutlet NSTextField *sideTextureOffsetTransparentY;
 
 - (void)reset;
 

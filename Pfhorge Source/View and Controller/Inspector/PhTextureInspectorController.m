@@ -382,9 +382,9 @@
     if (lTransparentSide == YES) {
         // Should Probably make another checkbox for this...
         // Might be useful for the user to set this manually...
-        [transparentTextureCheckBox setState:NSOnState];
+        [transparentTextureCheckBox setState:NSControlStateValueOn];
     } else {
-        [transparentTextureCheckBox setState:NSOffState];
+        [transparentTextureCheckBox setState:NSControlStateValueOff];
     }
     
     baseSideRef = nil;
@@ -485,7 +485,12 @@
         [transparentTextureNums setEnabled:NO];
         [secondaryTexture setEnabled:NO];
         [secondaryTextureNums setEnabled:NO];
-        [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:NO];
+        _sideTextureOffsetPrimaryX.enabled = NO;
+        _sideTextureOffsetPrimaryY.enabled = NO;
+        _sideTextureOffsetSecondaryX.enabled = NO;
+        _sideTextureOffsetSecondaryY.enabled = NO;
+        _sideTextureOffsetTransparentX.enabled = NO;
+        _sideTextureOffsetTransparentY.enabled = NO;
         [primaryLight setEnabled:NO];
         [secondaryLight setEnabled:NO];
         [transparentLight setEnabled:NO];
@@ -556,15 +561,19 @@
     }
     
     
-    [sideTextureOffsetMatrix setEnabledOfMatrixCellsTo:YES];
-    
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 1, [side primaryTextureStruct].x0);
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 2, [side primaryTextureStruct].y0);
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 3, [side secondaryTextureStruct].x0);
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 4, [side secondaryTextureStruct].y0);
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 5, [side transparentTextureStruct].x0);
-    SetMatrixObjectValue(sideTextureOffsetMatrix, 6, [side transparentTextureStruct].y0);
-    
+    _sideTextureOffsetPrimaryX.enabled = YES;
+    _sideTextureOffsetPrimaryY.enabled = YES;
+    _sideTextureOffsetSecondaryX.enabled = YES;
+    _sideTextureOffsetSecondaryY.enabled = YES;
+    _sideTextureOffsetTransparentX.enabled = YES;
+    _sideTextureOffsetTransparentY.enabled = YES;
+
+    _sideTextureOffsetPrimaryX.objectValue = [@([side primaryTextureStruct].x0) stringValue];
+    _sideTextureOffsetPrimaryY.objectValue = [@([side primaryTextureStruct].y0) stringValue];
+    _sideTextureOffsetSecondaryX.objectValue = [@([side secondaryTextureStruct].x0) stringValue];
+    _sideTextureOffsetSecondaryY.objectValue = [@([side secondaryTextureStruct].y0) stringValue];
+    _sideTextureOffsetTransparentX.objectValue = [@([side transparentTextureStruct].x0) stringValue];
+    _sideTextureOffsetTransparentY.objectValue = [@([side transparentTextureStruct].y0) stringValue];
     
     int pColl = [side primaryTextureCollection];
     int sColl = [side secondaryTextureCollection];
@@ -783,27 +792,27 @@
     short theCurrentEnviroCode = [[mainInspectorController currentLevel] environmentCode];
     
     theTexChar = (char *)&thePTex.texture;
-    thePTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 1);
-    thePTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 2);
-    //TODO: make endian-safe
+    thePTex.x0 = _sideTextureOffsetPrimaryX.intValue;
+    thePTex.y0 = _sideTextureOffsetPrimaryY.intValue;
+    //TODO: make endian-safe?
     (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[0] = (char)([primaryTextureNums indexOfSelectedItem]);
     thePTex.textureNumber = [primaryTextureNums indexOfSelectedItem];
     [baseSideRef setPrimaryTextureStruct:thePTex];
     
     theTexChar = (char *)&theSTex.texture;
-    theSTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 3);
-    theSTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 4);
-    //TODO: make endian-safe
+    theSTex.x0 = _sideTextureOffsetSecondaryX.intValue;
+    theSTex.y0 = _sideTextureOffsetSecondaryY.intValue;
+    //TODO: make endian-safe?
     (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[0] = (char)([secondaryTextureNums indexOfSelectedItem]);
     theSTex.textureNumber = [secondaryTextureNums indexOfSelectedItem];
     [baseSideRef setSecondaryTextureStruct:theSTex];
     
     theTexChar = (char *)&theTTex.texture;
-    theTTex.x0 = GetMatrixIntValue(sideTextureOffsetMatrix, 5);
-    theTTex.y0 = GetMatrixIntValue(sideTextureOffsetMatrix, 6);
-    //TODO: make endian-safe
+    theTTex.x0 = _sideTextureOffsetTransparentX.intValue;
+    theTTex.y0 = _sideTextureOffsetTransparentY.intValue;
+    //TODO: make endian-safe?
     (theTexChar)[1] = (0x11 + theCurrentEnviroCode);
     (theTexChar)[0] = (char)([transparentTextureNums indexOfSelectedItem]);
     theTTex.textureNumber = [transparentTextureNums indexOfSelectedItem];
@@ -823,7 +832,7 @@
 
 - (IBAction)sideTransparencyCheckBoxAction:(id)sender
 {
-    BOOL checkBoxState = (([sender state] == NSOnState) ? YES : NO);// NSOffState NSOnState
+    BOOL checkBoxState = (([sender state] == NSControlStateValueOn) ? YES : NO);// NSOffState NSOnState
     unsigned short flags = [theCurrentLine flags];
     //((flags & LELineVariableHasTransparentSide) ? YES : NO);
     

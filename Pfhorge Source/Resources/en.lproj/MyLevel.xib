@@ -10,6 +10,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="LELevelWindowController">
             <connections>
                 <outlet property="annotationNoteEditorSheet" destination="1086" id="1122"/>
+                <outlet property="changeHeightTextBox" destination="721" id="dE0-oo-vGH"/>
+                <outlet property="changeHeightWindowSheet" destination="719" id="4KP-gh-hzN"/>
                 <outlet property="colorObject" destination="1138" id="1139"/>
                 <outlet property="environmentFlags" destination="214" id="263"/>
                 <outlet property="environmentTexture" destination="198" id="265"/>
@@ -19,7 +21,10 @@
                 <outlet property="gotoSheet" destination="680" id="696"/>
                 <outlet property="gotoTextInputTB" destination="686" id="695"/>
                 <outlet property="gridFactorMenu" destination="983" id="1027"/>
-                <outlet property="gridOptionCheckboxes" destination="1000" id="1026"/>
+                <outlet property="gridOptionDraws" destination="mCD-Su-LJO" id="T6m-td-7mT"/>
+                <outlet property="gridOptionObjectsToGrid" destination="FHn-H2-Tqn" id="km5-hA-f9o"/>
+                <outlet property="gridOptionPointsToGrid" destination="MYj-VO-Lbn" id="edw-aQ-FxQ"/>
+                <outlet property="gridOptionPointsToPoints" destination="Wzw-Ne-phS" id="IaX-Dx-XnH"/>
                 <outlet property="landscape" destination="206" id="264"/>
                 <outlet property="layerNamesMenu" destination="628" id="655"/>
                 <outlet property="levelDrawView" destination="172" id="170"/>
@@ -31,8 +36,6 @@
                 <outlet property="mapLevelList" destination="623" id="648"/>
                 <outlet property="mission" destination="245" id="262"/>
                 <outlet property="nameWindowController" destination="552" id="574"/>
-                <outlet property="newHeightTextBox" destination="721" id="781"/>
-                <outlet property="newHeightWindowSheet" destination="719" id="782"/>
                 <outlet property="noteGroupPM" destination="1113" id="1120"/>
                 <outlet property="noteGroupWinController" destination="1077" id="1082"/>
                 <outlet property="noteGroupWindow" destination="1063" id="1083"/>
@@ -44,7 +47,10 @@
                 <outlet property="rdRemoveBtn" destination="674" id="676"/>
                 <outlet property="rdSheet" destination="661" id="673"/>
                 <outlet property="rdTextInputTB" destination="664" id="669"/>
-                <outlet property="selectionOptionCheckboxes" destination="1018" id="1031"/>
+                <outlet property="selectionOptionCheckLines" destination="7f5-tL-RrX" id="5wX-QI-5rh"/>
+                <outlet property="selectionOptionCheckObjects" destination="1cF-2z-iSM" id="HKw-Il-2cf"/>
+                <outlet property="selectionOptionCheckPoints" destination="jAx-Ft-sdL" id="NmV-ON-FiZ"/>
+                <outlet property="selectionOptionCheckPolygons" destination="SVI-Cy-RlN" id="5fc-mb-aH5"/>
                 <outlet property="theColorDrawer" destination="757" id="776"/>
                 <outlet property="theManagerDrawer" destination="793" id="1029"/>
                 <outlet property="useMapManager" destination="985" id="1030"/>
@@ -230,10 +236,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
-                        <rect key="frame" x="249" y="6" width="84" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="70" id="8Rb-5g-oVg"/>
-                        </constraints>
+                        <rect key="frame" x="265" y="6" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1170">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -246,10 +249,7 @@ Gw
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="258">
-                        <rect key="frame" x="331" y="6" width="84" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="70" id="7A8-Qx-i62"/>
-                        </constraints>
+                        <rect key="frame" x="339" y="6" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1171">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -273,8 +273,8 @@ DQ
                                         <rect key="frame" x="3" y="3" width="100" height="106"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <matrix verticalHuggingPriority="750" misplaced="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="245">
-                                                <rect key="frame" x="1" y="4" width="97" height="98"/>
+                                            <matrix verticalHuggingPriority="750" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="245">
+                                                <rect key="frame" x="1" y="4" width="98" height="98"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 <size key="cellSize" width="104" height="18"/>
                                                 <size key="intercellSpacing" width="5" height="2"/>
@@ -426,8 +426,8 @@ DQ
                                         <rect key="frame" x="3" y="3" width="135" height="127"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <matrix verticalHuggingPriority="750" misplaced="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="239">
-                                                <rect key="frame" x="1" y="1" width="132" height="125"/>
+                                            <matrix verticalHuggingPriority="750" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="239">
+                                                <rect key="frame" x="1" y="1" width="133" height="125"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 <size key="cellSize" width="132" height="16"/>
                                                 <size key="intercellSpacing" width="5" height="2"/>
@@ -534,12 +534,14 @@ DQ
                 </subviews>
                 <constraints>
                     <constraint firstItem="193" firstAttribute="top" secondItem="191" secondAttribute="top" id="6mG-kA-Rvs"/>
+                    <constraint firstItem="257" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="191" secondAttribute="leading" constant="20" symbolic="YES" id="8yd-pI-8xJ"/>
                     <constraint firstAttribute="bottom" secondItem="257" secondAttribute="bottom" constant="13" id="Fy1-1i-0Fz"/>
                     <constraint firstItem="193" firstAttribute="centerX" secondItem="191" secondAttribute="centerX" id="Ril-9u-QE0"/>
                     <constraint firstAttribute="trailing" secondItem="258" secondAttribute="trailing" constant="20" symbolic="YES" id="esN-nG-b6m"/>
                     <constraint firstItem="193" firstAttribute="leading" secondItem="191" secondAttribute="leading" constant="9" id="mgf-w8-U13"/>
                     <constraint firstItem="258" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="12" symbolic="YES" id="ozx-ih-wdT"/>
                     <constraint firstItem="257" firstAttribute="baseline" secondItem="258" secondAttribute="baseline" id="p96-wN-S5B"/>
+                    <constraint firstItem="258" firstAttribute="width" secondItem="257" secondAttribute="width" id="tyO-7d-wkN"/>
                     <constraint firstItem="257" firstAttribute="top" secondItem="193" secondAttribute="bottom" constant="9" id="xdi-9o-FX6"/>
                 </constraints>
             </view>
@@ -561,7 +563,7 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="322" height="298"/>
                         <clipView key="contentView" id="1Ds-nc-x4n">
                             <rect key="frame" x="1" y="1" width="320" height="296"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="1213" floatsGroupRows="NO" id="535">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="271"/>
@@ -1066,7 +1068,7 @@ DQ
                     <tabViewItems>
                         <tabViewItem label="General" identifier="1" id="956">
                             <view key="view" id="952">
-                                <rect key="frame" x="10" y="7" width="113" height="273"/>
+                                <rect key="frame" x="10" y="7" width="117" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
@@ -1132,26 +1134,44 @@ DQ
                                                             <buttonCell type="check" title="Monster" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="991">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="kTu-TQ-52d"/>
+                                                                </connections>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Player" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="988">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="DF3-ke-Z7l"/>
+                                                                </connections>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Scenery" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="1004">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="bgH-70-xmE"/>
+                                                                </connections>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="1003">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="v8p-OT-PtU"/>
+                                                                </connections>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Item" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="4" inset="2" id="999">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="9Ii-4H-i5t"/>
+                                                                </connections>
                                                             </buttonCell>
                                                             <buttonCell type="check" title="Goal" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="5" inset="2" id="1005">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="smallSystem"/>
+                                                                <connections>
+                                                                    <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="cvK-zT-y3g"/>
+                                                                </connections>
                                                             </buttonCell>
                                                         </column>
                                                     </cells>
@@ -1162,39 +1182,50 @@ DQ
                                             </subviews>
                                         </view>
                                     </box>
-                                    <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1000">
-                                        <rect key="frame" x="9" y="155" width="106" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        <size key="cellSize" width="106" height="18"/>
-                                        <buttonCell key="prototype" type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="-1" inset="2" id="1202">
+                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYj-VO-Lbn">
+                                        <rect key="frame" x="9" y="209" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1001">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
+                                            <connections>
+                                                <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="bC9-hb-tsO"/>
+                                            </connections>
                                         </buttonCell>
-                                        <cells>
-                                            <column>
-                                                <buttonCell type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1001">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <buttonCell type="check" title="Objects To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="1002">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <buttonCell type="check" title="Points To Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="990">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                                <buttonCell type="check" title="Draw Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="997">
-                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                </buttonCell>
-                                            </column>
-                                        </cells>
-                                        <connections>
-                                            <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="1024"/>
-                                        </connections>
-                                    </matrix>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="FHn-H2-Tqn">
+                                        <rect key="frame" x="9" y="191" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="check" title="Objects To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="1002">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <connections>
+                                                <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="Sqd-T4-tlf"/>
+                                            </connections>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ne-phS">
+                                        <rect key="frame" x="9" y="173" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="check" title="Points To Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="990">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <connections>
+                                                <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="zfe-eF-RyN"/>
+                                            </connections>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Su-LJO">
+                                        <rect key="frame" x="9" y="155" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="check" title="Draw Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="997">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <connections>
+                                                <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="Tfp-s9-7SP"/>
+                                            </connections>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                             </view>
                         </tabViewItem>
@@ -1203,57 +1234,79 @@ DQ
                                 <rect key="frame" x="10" y="7" width="117" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <box fixedFrame="YES" title="Select Only" translatesAutoresizingMaskIntoConstraints="NO" id="1016">
-                                        <rect key="frame" x="13" y="171" width="84" height="94"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <box title="Select Only" translatesAutoresizingMaskIntoConstraints="NO" id="1016">
+                                        <rect key="frame" x="13" y="157" width="84" height="96"/>
                                         <view key="contentView" id="IuV-c4-L29">
-                                            <rect key="frame" x="3" y="3" width="78" height="76"/>
+                                            <rect key="frame" x="3" y="3" width="78" height="78"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="highlight" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1018">
-                                                    <rect key="frame" x="2" y="5" width="70" height="72"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="cellSize" width="70" height="18"/>
-                                                    <buttonCell key="prototype" type="check" title="Points To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="-1" inset="2" id="1203">
+                                                <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jAx-Ft-sdL">
+                                                    <rect key="frame" x="2" y="61" width="54" height="16"/>
+                                                    <buttonCell key="cell" type="check" title="Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1020">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="smallSystem"/>
+                                                        <connections>
+                                                            <action selector="mapManagerDrawerAction:" target="-2" id="x10-5C-9jB"/>
+                                                        </connections>
                                                     </buttonCell>
-                                                    <cells>
-                                                        <column>
-                                                            <buttonCell type="check" title="Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" inset="2" id="1020">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="smallSystem"/>
-                                                            </buttonCell>
-                                                            <buttonCell type="check" title="Lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="1" inset="2" id="1022">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="smallSystem"/>
-                                                            </buttonCell>
-                                                            <buttonCell type="check" title="Objects" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="2" inset="2" id="1021">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="smallSystem"/>
-                                                            </buttonCell>
-                                                            <buttonCell type="check" title="Polygons" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="3" inset="2" id="1019">
-                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                <font key="font" metaFont="smallSystem"/>
-                                                            </buttonCell>
-                                                        </column>
-                                                    </cells>
-                                                    <connections>
-                                                        <action selector="mapManagerDrawerAction:" target="-2" id="1023"/>
-                                                    </connections>
-                                                </matrix>
+                                                </button>
+                                                <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7f5-tL-RrX">
+                                                    <rect key="frame" x="2" y="41" width="49" height="16"/>
+                                                    <buttonCell key="cell" type="check" title="Lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="1" inset="2" id="1022">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <connections>
+                                                            <action selector="mapManagerDrawerAction:" target="-2" id="ljt-ls-ykJ"/>
+                                                        </connections>
+                                                    </buttonCell>
+                                                </button>
+                                                <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1cF-2z-iSM">
+                                                    <rect key="frame" x="2" y="21" width="62" height="16"/>
+                                                    <buttonCell key="cell" type="check" title="Objects" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="2" inset="2" id="1021">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <connections>
+                                                            <action selector="mapManagerDrawerAction:" target="-2" id="IHP-vT-H48"/>
+                                                        </connections>
+                                                    </buttonCell>
+                                                </button>
+                                                <button tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Cy-RlN">
+                                                    <rect key="frame" x="2" y="1" width="69" height="16"/>
+                                                    <buttonCell key="cell" type="check" title="Polygons" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" state="on" tag="3" inset="2" id="1019">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <connections>
+                                                            <action selector="mapManagerDrawerAction:" target="-2" id="JNM-cw-mnB"/>
+                                                        </connections>
+                                                    </buttonCell>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SVI-Cy-RlN" firstAttribute="top" secondItem="1cF-2z-iSM" secondAttribute="bottom" constant="6" symbolic="YES" id="0a8-iQ-4Z7"/>
+                                                <constraint firstItem="1cF-2z-iSM" firstAttribute="leading" secondItem="jAx-Ft-sdL" secondAttribute="leading" id="1b8-WD-MZ6"/>
+                                                <constraint firstItem="jAx-Ft-sdL" firstAttribute="top" secondItem="IuV-c4-L29" secondAttribute="top" constant="2" id="5EK-Eg-HL0"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SVI-Cy-RlN" secondAttribute="bottom" constant="2" id="Az0-Y7-rdK"/>
+                                                <constraint firstItem="SVI-Cy-RlN" firstAttribute="leading" secondItem="jAx-Ft-sdL" secondAttribute="leading" id="Guv-L5-cem"/>
+                                                <constraint firstItem="jAx-Ft-sdL" firstAttribute="leading" secondItem="IuV-c4-L29" secondAttribute="leading" constant="3" id="MJd-hw-GLy"/>
+                                                <constraint firstItem="7f5-tL-RrX" firstAttribute="top" secondItem="jAx-Ft-sdL" secondAttribute="bottom" constant="6" symbolic="YES" id="Ryk-4u-46o"/>
+                                                <constraint firstItem="7f5-tL-RrX" firstAttribute="leading" secondItem="jAx-Ft-sdL" secondAttribute="leading" id="n7B-5V-nH5"/>
+                                                <constraint firstItem="1cF-2z-iSM" firstAttribute="top" secondItem="7f5-tL-RrX" secondAttribute="bottom" constant="6" symbolic="YES" id="up7-rW-xJf"/>
+                                            </constraints>
                                         </view>
                                         <font key="titleFont" size="11" name="Geneva"/>
                                     </box>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="1016" firstAttribute="leading" secondItem="954" secondAttribute="leading" constant="16" id="K1K-Ii-ggv"/>
+                                    <constraint firstItem="1016" firstAttribute="top" secondItem="954" secondAttribute="top" constant="20" symbolic="YES" id="dux-vQ-WO4"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1016" secondAttribute="trailing" constant="20" symbolic="YES" id="zyA-cf-RTZ"/>
+                                </constraints>
                             </view>
                         </tabViewItem>
                     </tabViewItems>
                 </tabView>
             </subviews>
-            <point key="canvasLocation" x="651" y="810"/>
+            <point key="canvasLocation" x="651" y="809.5"/>
         </customView>
         <drawer trailingOffset="15" id="793" userLabel="Manager Drawer">
             <size key="contentSize" width="142" height="247"/>
@@ -1290,7 +1343,7 @@ DQ
                         <rect key="frame" x="-1" y="60" width="423" height="190"/>
                         <clipView key="contentView" id="rir-hE-OT8">
                             <rect key="frame" x="1" y="1" width="421" height="188"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1218" floatsGroupRows="NO" id="1074">
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>
@@ -1433,6 +1486,7 @@ DQ
                     <constraint firstItem="1111" firstAttribute="leading" secondItem="1090" secondAttribute="leading" constant="20" symbolic="YES" id="ev7-gk-B5R"/>
                     <constraint firstItem="1112" firstAttribute="top" secondItem="1090" secondAttribute="top" constant="20" symbolic="YES" id="fRr-gn-LLW"/>
                     <constraint firstItem="1113" firstAttribute="top" secondItem="1111" secondAttribute="bottom" constant="4" id="pKE-dk-ZJh"/>
+                    <constraint firstItem="1112" firstAttribute="centerX" secondItem="1090" secondAttribute="centerX" id="wQ8-W0-vog"/>
                     <constraint firstItem="1112" firstAttribute="leading" secondItem="1090" secondAttribute="leading" constant="20" symbolic="YES" id="zab-a6-x7B"/>
                 </constraints>
             </view>
