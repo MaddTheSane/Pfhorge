@@ -36,7 +36,7 @@ typedef NS_ENUM(SInt8, NDResourceForkPermission) {
 - (nullable instancetype)initForReadingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForWritingAtPath:(NSString *)aPath;
 - (nullable instancetype)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL NS_SWIFT_UNAVAILABLE("");
-- (nullable instancetype)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError NS_DESIGNATED_INITIALIZER;
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 - (BOOL)addData:(NSData *)aData type:(ResType)aType Id:(ResID)anID name:(nullable NSString *)aName NS_SWIFT_UNAVAILABLE("");

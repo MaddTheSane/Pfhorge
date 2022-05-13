@@ -176,7 +176,7 @@ static uint32 calculate_file_crc(
 	int32 count;
 	//FileError err;
 	NSInteger file_length;
-	int32 place = 0;
+    NSInteger place = 0;
 	
 	// Save and restore the initial file position
 	//initial_position= get_fpos(refnum);

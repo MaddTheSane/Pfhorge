@@ -89,14 +89,10 @@ BOOL setupPointerArraysDurringLoading = YES;
     NSMutableArray *theLevelNames = [theTmpMarathonMap levelNames];
     int i = 0;
     
-    short theVersionNumber = currentVersionOfPfhorgeLevelData;
-    theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
-    short thePfhorgeDataSig1 = 26743;
-    thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
-    unsigned short thePfhorgeDataSig2 = 34521;
-    thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
-    int thePfhorgeDataSig3 = 42296737;
-    thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+    const short theVersionNumber = CFSwapInt16HostToBig(currentVersionOfPfhorgeLevelData);
+    const short thePfhorgeDataSig1 = OSSwapHostToBigConstInt16(26743);
+    const unsigned short thePfhorgeDataSig2 = OSSwapHostToBigConstInt16(34521);
+    const int thePfhorgeDataSig3 = OSSwapHostToBigConstInt32(42296737);
     
     NSMutableArray *theArchivedLevels = [[NSMutableArray alloc] initWithCapacity:numberOfLevels];
     
@@ -203,7 +199,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     for (i = 0; i < levelCount; i++) {
         NSString *fileName = [scenarioData getLevelPathForLevel:i];
-        NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
+        NSData *theFileData = [NSData dataWithContentsOfFile:fileName];
         NSMutableData *tempData = [[NSMutableData alloc] initWithCapacity:200000];
         
         theLevel =	[NSKeyedUnarchiver unarchiveObjectWithData:

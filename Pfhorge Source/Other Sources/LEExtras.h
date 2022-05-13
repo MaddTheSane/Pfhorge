@@ -117,7 +117,7 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 #define SET_OBJECTNUM_FLAG(o, b, v, f) ((v) ? [(o) setFlag:(f) with:([(o) getFlag] | (b))] : [(o) setFlag:(f) with:([(o) getFlag] & ~(b))])
 
 #define GetTagOfSelected(o) [[(o) selectedCell] tag]
-#define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
+#define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSControlStateValueOn)
 #define SelectS(o, t) ([(o) selectCellWithTag:(t)])
 
 // This will deselect if needed...
@@ -129,7 +129,7 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 #define SSetEnabled(m, t, v) [[(m) cellWithTag:(t)] setEnabled:(v)]
 
 
-#pragma mark Other Usful Data Micro Functions
+#pragma mark Other Useful Data Micro Functions
 #define numInt(v)				@((int)(v))
 #define numInteger(v)			@((NSInteger)(v))
 #define numShort(v)				@((short)(v))

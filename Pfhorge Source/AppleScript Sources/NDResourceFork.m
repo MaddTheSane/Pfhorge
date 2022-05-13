@@ -66,12 +66,12 @@ static OSErr createResourceFork(NSURL * aURL);
 
 - (instancetype)initForReadingAtURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable *)outError
 {
-	return [self initForPermission:fsRdPerm AtURL:aURL error:outError];
+	return [self initWithPermission:fsRdPerm AtURL:aURL error:outError];
 }
 
 - (instancetype)initForWritingToURL:(NSURL *)aURL error:(NSError *__autoreleasing  _Nullable * _Nullable)outError
 {
-	return [self initForPermission:fsWrPerm AtURL:aURL error:outError];
+	return [self initWithPermission:fsWrPerm AtURL:aURL error:outError];
 }
 
 /*
@@ -79,10 +79,10 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (id)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL
 {
-	return self = [self initForPermission:aPermission AtURL:aURL error:NULL];
+	return self = [self initWithPermission:aPermission AtURL:aURL error:NULL];
 }
 
-- (id)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
+- (id)initWithPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
 {
 	OSErr			theError = !noErr;
 	FSRef			theFsRef;

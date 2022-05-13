@@ -60,7 +60,7 @@ enum	// side flags
 
 #define THE_TEST_PLEASEWORK(p,v) ([p setFlagNow:[p getFlagNow] + v])
 
-#define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSOnState)
+#define SState(o, t) ([[(o) cellWithTag:(t)] state] == NSControlStateValueOn)
 
 NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
@@ -552,13 +552,13 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
         
         return;
     } else if ([theOptionDict count] > 0) {
-        [useMapManager setState:NSOnState];
+        [useMapManager setState:NSControlStateValueOn];
         
         [gridOptionCheckboxes setEnabledOfMatrixCellsTo:YES];
         [objectVisabilityCheckboxes setEnabledOfMatrixCellsTo:YES];
         [gridFactorMenu setEnabled:YES];
     } else {
-        [useMapManager setState:NSOffState];
+        [useMapManager setState:NSControlStateValueOff];
         
         [gridOptionCheckboxes setEnabledOfMatrixCellsTo:NO];
         [objectVisabilityCheckboxes setEnabledOfMatrixCellsTo:NO];
@@ -635,22 +635,22 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
         [selectionOptionCheckboxes selectCellWithTag:_mm_select_points];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_points] setState:NSOffState];
+        [[selectionOptionCheckboxes cellWithTag:_mm_select_points] setState:NSControlStateValueOff];
     
     if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
         [selectionOptionCheckboxes selectCellWithTag:_mm_select_lines];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_lines] setState:NSOffState];
+        [[selectionOptionCheckboxes cellWithTag:_mm_select_lines] setState:NSControlStateValueOff];
     
     if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
         [selectionOptionCheckboxes selectCellWithTag:_mm_select_objects];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_objects] setState:NSOffState];
+        [[selectionOptionCheckboxes cellWithTag:_mm_select_objects] setState:NSControlStateValueOff];
     
     if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
         [selectionOptionCheckboxes selectCellWithTag:_mm_select_polygons];
     else
-        [[selectionOptionCheckboxes cellWithTag:_mm_select_polygons] setState:NSOffState];
+        [[selectionOptionCheckboxes cellWithTag:_mm_select_polygons] setState:NSControlStateValueOff];
     
     /**************************************************
     SelectSIf(selectionOptionCheckboxes, _mm_select_points, [levelDrawView boolOptionsFor:_mapoptions_select_points]);
@@ -759,7 +759,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 - (IBAction)useMapManagerCheckboxDrawerAction:(id)sender
 {
-    if ([sender state] == NSOffState)
+    if ([sender state] == NSControlStateValueOff)
         [[[[self document] getCurrentLevelLoaded] getLevelOptionDictionary] removeAllObjects];
     else
         [[[self document] getCurrentLevelLoaded] copyOptionsFromPrefs];
