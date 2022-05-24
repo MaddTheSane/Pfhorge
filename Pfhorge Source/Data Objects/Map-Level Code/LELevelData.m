@@ -1048,8 +1048,8 @@ enum // export data types
         [newLight setPhase:0];
         [newLight setTag:0];
         
-        for (int j = 0; j < _NUMBER_OF_LIGHT_STATES; j++) {
-            [newLight setFunction:_constant_lighting_function forState:j];
+        for (int j = 0; j < PhLightStateTotalCount; j++) {
+            [newLight setFunction:PhLightFunctionConstant forState:j];
             [newLight setPeriod:60 forState:j];
             [newLight setDeltaPeriod:0 forState:j];
             [newLight setIntensity:intensity forState:j];
@@ -1100,8 +1100,8 @@ enum // export data types
         [newLight setPhase:0];
         [newLight setTag:0];
         
-        for (int j = 0; j < _NUMBER_OF_LIGHT_STATES; j++) {
-            [newLight setFunction:_constant_lighting_function forState:j];
+        for (int j = 0; j < PhLightStateTotalCount; j++) {
+            [newLight setFunction:PhLightFunctionConstant forState:j];
             [newLight setPeriod:60 forState:j];
             [newLight setDeltaPeriod:0 forState:j];
             [newLight setIntensity:intesity forState:j];

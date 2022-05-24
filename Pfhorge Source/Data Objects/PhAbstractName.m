@@ -35,7 +35,7 @@
 
 -(void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs
 {
-    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:myName];
+    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:myName requiringSecureCoding:YES error:NULL];
     long length = [theData length];
     ExportLong((int)length);
     [myData appendData:theData];
@@ -49,7 +49,7 @@
     
     ImportInt(length);
     theData = [myData getSubDataWithLength:length];
-    self.phName = [NSKeyedUnarchiver unarchiveObjectWithData:theData];
+    self.phName = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSString class] fromData:theData error:NULL];
     if (!myName) {
         self.phName = [NSUnarchiver unarchiveObjectWithData:theData];
     }

@@ -47,7 +47,7 @@
     
     ImportInt(length);
     theData = [myData getSubDataWithLength:length];
-    assignedNumber = [[NSKeyedUnarchiver unarchiveObjectWithData:theData] retain];
+    assignedNumber = [[NSKeyedUnarchiver unarchivedObjectOfClass:[NSNumber class] fromData:theData error:NULL] retain];
     if (!assignedNumber) {
         assignedNumber = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
     }

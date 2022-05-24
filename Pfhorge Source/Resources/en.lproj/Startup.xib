@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,7 +28,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="329" y="286" width="352" height="115"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="352" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -82,7 +82,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="151"/>
                     </imageView>
                     <popUpButton imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79">
-                        <rect key="frame" x="281" y="10" width="53" height="47"/>
+                        <rect key="frame" x="280" y="9" width="55" height="49"/>
                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="81" id="152">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -199,7 +199,7 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="42" y="419" width="458" height="228"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="97">
                 <rect key="frame" x="0.0" y="0.0" width="458" height="228"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -207,12 +207,12 @@
                     <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="108">
                         <rect key="frame" x="-4" y="-17" width="475" height="248"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PhorgeAppIcon" id="155"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="NSApplicationIcon" id="155"/>
                     </imageView>
                     <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="110">
                         <rect key="frame" x="16" y="16" width="425" height="59"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <view key="contentView" ambiguous="YES" id="bvL-MB-CLd">
+                        <view key="contentView" id="bvL-MB-CLd">
                             <rect key="frame" x="3" y="3" width="419" height="53"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -231,7 +231,6 @@
                                 </textField>
                             </subviews>
                         </view>
-                        <font key="titleFont" metaFont="smallSystem"/>
                     </box>
                 </subviews>
             </view>
@@ -244,12 +243,12 @@
                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="129">
                     <rect key="frame" x="-4" y="-16" width="467" height="248"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PhorgeAppIcon" id="156"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="NSApplicationIcon" id="156"/>
                 </imageView>
                 <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="127">
                     <rect key="frame" x="17" y="17" width="425" height="59"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <view key="contentView" ambiguous="YES" id="hWq-DO-qPh">
+                    <view key="contentView" id="hWq-DO-qPh">
                         <rect key="frame" x="3" y="3" width="419" height="53"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -268,7 +267,6 @@
                             </textField>
                         </subviews>
                     </view>
-                    <font key="titleFont" metaFont="smallSystem"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="139" y="725"/>
@@ -280,12 +278,12 @@
                 <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="134">
                     <rect key="frame" x="-3" y="79" width="467" height="146"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="PhorgeAppIcon" id="157"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" image="NSApplicationIcon" id="157"/>
                 </imageView>
                 <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="137">
                     <rect key="frame" x="17" y="17" width="425" height="59"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <view key="contentView" ambiguous="YES" id="cjm-ym-096">
+                    <view key="contentView" id="cjm-ym-096">
                         <rect key="frame" x="3" y="3" width="419" height="53"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -304,7 +302,6 @@
                             </textField>
                         </subviews>
                     </view>
-                    <font key="titleFont" metaFont="smallSystem"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="139" y="1022"/>
@@ -312,6 +309,5 @@
     </objects>
     <resources>
         <image name="NSApplicationIcon" width="32" height="32"/>
-        <image name="PhorgeAppIcon" width="128" height="128"/>
     </resources>
 </document>

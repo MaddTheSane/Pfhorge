@@ -111,15 +111,7 @@
                         <cells>
                             <column>
                                 <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Flow:" stringValue="0" id="123">
-                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="181">
-                                        <textAttributesForNegativeValues/>
-                                        <attributedString key="attributedStringForNil"/>
-                                        <attributedString key="attributedStringForNotANumber">
-                                            <fragment content="NaN"/>
-                                        </attributedString>
-                                        <attributedString key="attributedStringForZero">
-                                            <fragment content="0"/>
-                                        </attributedString>
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="181">
                                         <decimal key="minimum" value="-30000"/>
                                         <decimal key="maximum" value="30000"/>
                                     </numberFormatter>
@@ -127,14 +119,11 @@
                                     <font key="titleFont" metaFont="smallSystem"/>
                                 </formCell>
                                 <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="Angle:" stringValue="0º" id="124">
-                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0º" negativeFormat="0º" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="180">
-                                        <attributedString key="attributedStringForNil"/>
-                                        <attributedString key="attributedStringForNotANumber">
-                                            <fragment content="NaN"/>
-                                        </attributedString>
-                                        <attributedString key="attributedStringForZero">
-                                            <fragment content="0º"/>
-                                        </attributedString>
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0º" negativeFormat="0º" localizesFormat="NO" allowsFloats="NO" usesGroupingSeparator="NO" formatWidth="-1" roundingMode="halfUp" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," notANumberSymbol="NaN" id="180">
+                                        <textAttributesForNil/>
+                                        <textAttributesForNotANumber/>
+                                        <nil key="negativeInfinitySymbol"/>
+                                        <nil key="positiveInfinitySymbol"/>
                                         <decimal key="minimum" value="0"/>
                                         <decimal key="maximum" value="512"/>
                                     </numberFormatter>
@@ -142,15 +131,7 @@
                                     <font key="titleFont" metaFont="smallSystem"/>
                                 </formCell>
                                 <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="2" title="High Tide:" stringValue="0" id="125">
-                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="179">
-                                        <textAttributesForNegativeValues/>
-                                        <attributedString key="attributedStringForNil"/>
-                                        <attributedString key="attributedStringForNotANumber">
-                                            <fragment content="NaN"/>
-                                        </attributedString>
-                                        <attributedString key="attributedStringForZero">
-                                            <fragment content="0"/>
-                                        </attributedString>
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="179">
                                         <decimal key="minimum" value="-9216"/>
                                         <decimal key="maximum" value="9216"/>
                                     </numberFormatter>
@@ -158,15 +139,7 @@
                                     <font key="titleFont" metaFont="smallSystem"/>
                                 </formCell>
                                 <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="3" title="Low Tide:" stringValue="0" id="126">
-                                    <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0" negativeFormat="-0" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="178">
-                                        <textAttributesForNegativeValues/>
-                                        <attributedString key="attributedStringForNil"/>
-                                        <attributedString key="attributedStringForNotANumber">
-                                            <fragment content="NaN"/>
-                                        </attributedString>
-                                        <attributedString key="attributedStringForZero">
-                                            <fragment content="0"/>
-                                        </attributedString>
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="178">
                                         <decimal key="minimum" value="-9216"/>
                                         <decimal key="maximum" value="9216"/>
                                     </numberFormatter>
@@ -322,6 +295,7 @@ DQ
                     <constraint firstItem="130" firstAttribute="leading" secondItem="129" secondAttribute="trailing" constant="8" symbolic="YES" id="MxU-gY-HFY"/>
                     <constraint firstItem="17" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="QuE-O6-6cE"/>
                     <constraint firstItem="55" firstAttribute="leading" secondItem="27" secondAttribute="trailing" constant="8" symbolic="YES" id="RO4-fq-Sbj"/>
+                    <constraint firstItem="52" firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="VQO-Ky-P37"/>
                     <constraint firstItem="58" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="VkD-Fm-lbH"/>
                     <constraint firstItem="25" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" id="Vmj-vg-P3p"/>
                     <constraint firstItem="58" firstAttribute="top" secondItem="6" secondAttribute="top" constant="7" id="Vs5-5V-Mgj"/>
@@ -334,9 +308,11 @@ DQ
                     <constraint firstItem="58" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="isS-0t-wYg"/>
                     <constraint firstAttribute="trailing" secondItem="130" secondAttribute="trailing" constant="20" symbolic="YES" id="jrp-h3-WAQ"/>
                     <constraint firstItem="130" firstAttribute="top" secondItem="55" secondAttribute="bottom" constant="8" symbolic="YES" id="mLa-R4-p1R"/>
+                    <constraint firstItem="55" firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="nPX-sC-r0V"/>
                     <constraint firstAttribute="bottom" secondItem="60" secondAttribute="bottom" constant="20" symbolic="YES" id="o6t-Mm-ZyY"/>
                     <constraint firstItem="11" firstAttribute="top" secondItem="58" secondAttribute="bottom" constant="8" symbolic="YES" id="oP3-DL-rAc"/>
                     <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" constant="20" symbolic="YES" id="oy4-ku-CCX"/>
+                    <constraint firstItem="130" firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="q0l-aC-zOC"/>
                     <constraint firstItem="11" firstAttribute="firstBaseline" secondItem="17" secondAttribute="firstBaseline" id="tH6-a8-0Hc"/>
                     <constraint firstItem="52" firstAttribute="leading" secondItem="25" secondAttribute="trailing" constant="8" symbolic="YES" id="ua6-Ts-zCQ"/>
                     <constraint firstItem="8" firstAttribute="firstBaseline" secondItem="176" secondAttribute="firstBaseline" id="z0i-WW-spu"/>
@@ -352,7 +328,7 @@ DQ
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="164" userLabel="RenameSheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="194" y="482" width="367" height="127"/>
+            <rect key="contentRect" x="194" y="482" width="367" height="113"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="165">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>

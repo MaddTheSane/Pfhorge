@@ -73,8 +73,8 @@
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29">
-                        <rect key="frame" x="209" y="13" width="51" height="32"/>
-                        <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="79">
+                        <rect key="frame" x="207" y="13" width="53" height="32"/>
+                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="79">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -86,7 +86,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30">
-                        <rect key="frame" x="137" y="13" width="74" height="32"/>
+                        <rect key="frame" x="135" y="13" width="74" height="32"/>
                         <buttonCell key="cell" type="push" title="Revert" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="80">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -351,7 +351,7 @@ DQ
                     <constraint firstItem="VXc-EY-t2h" firstAttribute="leading" secondItem="DK3-PT-qCW" secondAttribute="trailing" constant="2" id="eNy-ma-Wec"/>
                     <constraint firstItem="AtX-cI-xOn" firstAttribute="leading" secondItem="4Mn-dJ-xdD" secondAttribute="trailing" constant="2" id="ejB-fY-Frd"/>
                     <constraint firstAttribute="trailing" secondItem="ySE-fx-4uk" secondAttribute="trailing" constant="20" symbolic="YES" id="f2R-nf-dZ9"/>
-                    <constraint firstItem="dYF-hW-4Nq" firstAttribute="top" secondItem="VXc-EY-t2h" secondAttribute="top" id="fAg-dp-Okz"/>
+                    <constraint firstItem="Egm-Zk-Mqh" firstAttribute="firstBaseline" secondItem="VXc-EY-t2h" secondAttribute="firstBaseline" id="fQ3-ec-ld1"/>
                     <constraint firstItem="VXc-EY-t2h" firstAttribute="leading" secondItem="VK3-SA-AdD" secondAttribute="leading" id="fwp-Q7-vFJ"/>
                     <constraint firstItem="aVx-k6-5cA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="hEp-s0-mdo"/>
                     <constraint firstItem="29" firstAttribute="firstBaseline" secondItem="65" secondAttribute="firstBaseline" id="iDs-PZ-TD3"/>
@@ -397,7 +397,7 @@ DQ
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="155" y="283" width="367" height="134"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
-            <view key="contentView" misplaced="YES" id="54">
+            <view key="contentView" id="54">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>

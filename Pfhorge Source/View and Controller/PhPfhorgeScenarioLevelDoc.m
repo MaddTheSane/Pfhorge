@@ -159,7 +159,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         
         PhProgress *progress = [PhProgress sharedPhProgress];
         
-        if (result == NSFileHandlingPanelOKButton) {
+        if (result == NSModalResponseOK) {
             ScenarioResources *maraResources;
             NSURL *fileURL = op.URL;
             fileName = fileURL.path;
@@ -417,19 +417,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-	if (@available(macOS 10.13, *)) {
-		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData requiringSecureCoding:YES error:outError];
-	} else {
-		return [NSKeyedArchiver archivedDataWithRootObject:scenarioData];
-	}
+    return [NSKeyedArchiver archivedDataWithRootObject:scenarioData requiringSecureCoding:YES error:outError];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    if (@available(macOS 10.13, *)) {
-        scenarioData = [[NSKeyedUnarchiver unarchivedObjectOfClass:[PhScenarioData class] fromData:data error:outError] retain];
-    } else {
-        scenarioData = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
-    }
+    scenarioData = [[NSKeyedUnarchiver unarchivedObjectOfClass:[PhScenarioData class] fromData:data error:outError] retain];
 	if (!scenarioData) {
 		scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
 	}
@@ -451,16 +443,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     NSString *fileName = [scenarioData getLevelPathForSelected];
     NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
     NSMutableData *tempData; //= [[NSMutableData alloc] initWithCapacity:200000];
-    LELevelData *theLevel;
     
-    if (@available(macOS 10.13, *)) {
-        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
-                      [LELevelData class] fromData:
-                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
-    } else {
-        theLevel =  [[NSKeyedUnarchiver unarchiveObjectWithData:
-                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]] retain];
-    }
+    LELevelData *theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+                  [LELevelData class] fromData:
+                  [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
     
     tempData = [[LEMapData convertLevelToDataObject:theLevel error:NULL] retain];
         
@@ -481,17 +467,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     if (!theFileData) {
         return NO;
     }
-    LELevelData *theLevel;
-    
-    if (@available(macOS 10.13, *)) {
-        theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
+    LELevelData *theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
                       [LELevelData class] fromData:
                       [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:outError] retain];
-    } else {
-        theLevel =  [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:
-                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))]
-                                                                  error:outError] retain];
-    }
     
     if (theLevel == nil) {
         return NO;

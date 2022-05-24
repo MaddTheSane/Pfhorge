@@ -37,8 +37,6 @@
     IBOutlet NSPopUpButton *copyFromComboMenu;
     IBOutlet NSPopUpButton *typeComboMenu;
     
-    IBOutlet NSFormCell *speedTB;
-    IBOutlet NSFormCell *delayTB;
     IBOutlet NSTextField *minHeightTB;
     IBOutlet NSTextField *maxHeightTB;
     
@@ -61,6 +59,9 @@
     
     PhPlatform *platform;
 }
+
+@property (weak) IBOutlet NSTextField *speedTB;
+@property (weak) IBOutlet NSTextField *delayTB;
 
 - (instancetype)initWithPlatform:(PhPlatform *)thePlatform
 					   withLevel:(LELevelData *)theLevel

@@ -38,8 +38,8 @@
 // ••• ••• ••• Platform Types and Constents ••• ••• •••
 
 
-
-typedef NS_ENUM(int16_t, PhPlatformType)	// platform types
+//! Platform types
+typedef NS_ENUM(int16_t, PhPlatformType)
 {
 	_platform_is_spht_door,
 	_platform_is_spht_split_door,
@@ -79,7 +79,7 @@ NS_ENUM(short)	// platform delays
 
 
 //! static platform flags
-typedef NS_ENUM(unsigned int, PhPlatformStaticFlags) {
+typedef NS_OPTIONS(unsigned int, PhPlatformStaticFlags) {
 	//! otherwise inactive
 	_platform_is_initially_active = 0x00000001,
 	//! high for floor platforms, low for ceiling platforms, closed for two_way platforms
@@ -102,6 +102,7 @@ typedef NS_ENUM(unsigned int, PhPlatformStaticFlags) {
 	_platform_causes_damage = 0x00000100,
 	//! does not reactive its parent (i.e. that platform which activated it)
 	_platform_does_not_activate_parent = 0x00000200,
+    //! only activates once
 	_platform_activates_only_once = 0x00000400,
 	//! activates floor and ceiling light sources while activating
 	_platform_activates_light = 0x00000800,
@@ -111,20 +112,25 @@ typedef NS_ENUM(unsigned int, PhPlatformStaticFlags) {
 	_platform_is_player_controllable = 0x00002000,
 	//! i.e. door: monsters can expect to be able to move this platofrm even if inactive
 	_platform_is_monster_controllable = 0x00004000,
+    //! platform reverses direction when it hits an obstruction
 	_platform_reverses_direction_when_obstructed = 0x00008000,
-	//! when acctive, can only be deactivated by itself
+	//! when active, can only be deactivated by itself
 	_platform_cannot_be_externally_deactivated = 0x00010000,
 	//! complicated interpretation; uses native polygon heights during automatic min,max calculation
 	_platform_uses_native_polygon_heights = 0x00020000,
 	//! whether or not the platform begins with the maximum delay before moving
 	_platform_delays_before_activation = 0x00040000,
+    
 	_platform_activates_adjacent_platforms_when_activating = 0x00080000,
 	_platform_deactivates_adjacent_platforms_when_activating = 0x00100000,
 	_platforms_deactivates_adjacent_platforms_when_deactivating = 0x00200000,
 	_platform_contracts_slower = 0x00400000,
 	_platform_activates_adjacent_platforms_at_each_level = 0x00800000,
+    //! platform cannot be open/used
 	_platform_is_locked = 0x01000000,
+    //! platform does not show up as a platform in the mini-map
 	_platform_is_secret = 0x02000000,
+    //! platform is a door.
 	_platform_is_door = 0x04000000,
 };
 

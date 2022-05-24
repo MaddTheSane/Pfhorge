@@ -353,9 +353,9 @@
 {
     NSMutableString *tis = [[NSMutableString alloc] init];
     
-    [tis appendString:[NSString stringWithFormat:@"Info on Platform %d\n\n", [self index]]];
+    [tis appendFormat:@"Info on Platform %d\n\n", [self index]];
     
-    [tis appendString:[NSString stringWithFormat:@"Polygon Index: %d\n", [polygon_object index], nil]];
+    [tis appendFormat:@"Polygon Index: %d\n", [polygon_object index], nil];
     
     
     [tis appendString:@"Platform Type: "];
@@ -395,12 +395,12 @@
     }
     
     [tis appendString:@"\n"];
-    [tis appendString:[NSString stringWithFormat:@"Speed : %d\n", [self speed]]];
-    [tis appendString:[NSString stringWithFormat:@"Delay : %d\n", [self delay]]];
-    [tis appendString:[NSString stringWithFormat:@"Tag Index : %d\n", [self tag]]];
+    [tis appendFormat:@"Speed : %d\n", [self speed]];
+    [tis appendFormat:@"Delay : %d\n", [self delay]];
+    [tis appendFormat:@"Tag Index : %d\n", [self tag]];
     
-    [tis appendString:[NSString stringWithFormat:@"Floor Height : %d\n", [self minimumHeight], nil]];
-    [tis appendString:[NSString stringWithFormat:@"Ceiling Height : %d\n", [self maximumHeight], nil]];
+    [tis appendFormat:@"Floor Height : %d\n", [self minimumHeight], nil];
+    [tis appendFormat:@"Ceiling Height : %d\n", [self maximumHeight], nil];
     
     [tis appendString:@"Platform Flags : \n"];
     [tis appendString:PFs(_platform_is_initially_active, @"_platform_is_initially_active")];

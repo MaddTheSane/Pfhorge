@@ -145,14 +145,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="30">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="290">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="290">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -163,14 +157,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="31">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="289">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="289">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -189,9 +177,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="30" id="87"/>
                                     </connections>
@@ -353,14 +339,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="76">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="279">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="279">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -371,14 +351,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="72">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="280">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="280">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -489,14 +463,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="103">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="281">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="281">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -507,14 +475,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="110">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="282">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="282">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -628,14 +590,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="125">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="291">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="291">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -646,14 +602,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="119">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="285">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="285">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -764,14 +714,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="151">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="283">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="283">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -782,14 +726,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="149">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="284">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="284">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -900,14 +838,8 @@
                                     <cells>
                                         <column>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" title="Intensity:" stringValue="100%" id="164">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="288">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="288">
+                                                    <bool key="multiplier" value="YES"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>
@@ -918,14 +850,8 @@
                                                 </connections>
                                             </formCell>
                                             <formCell controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="justified" tag="1" title="∆ Intensity:" stringValue="0%" id="159">
-                                                <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="287">
-                                                    <attributedString key="attributedStringForNil"/>
-                                                    <attributedString key="attributedStringForNotANumber">
-                                                        <fragment content="NaN"/>
-                                                    </attributedString>
-                                                    <attributedString key="attributedStringForZero">
-                                                        <fragment content="0%"/>
-                                                    </attributedString>
+                                                <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0%" negativeFormat="-0%" localizesFormat="NO" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" groupingSeparator="," id="287">
+                                                    <integer key="multiplier" value="1"/>
                                                     <decimal key="minimum" value="0"/>
                                                     <decimal key="maximum" value="100"/>
                                                 </numberFormatter>

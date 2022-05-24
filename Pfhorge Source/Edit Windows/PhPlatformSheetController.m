@@ -31,6 +31,9 @@
 #import "PhTag.h"
 
 @implementation PhPlatformSheetController
+@synthesize speedTB;
+@synthesize delayTB;
+
 // *********************** Overridden Methods ***********************
 #pragma mark -
 #pragma mark Overridden Methods
@@ -136,8 +139,8 @@
     //SelectS(extendsFromRBMatrix, 2);
     SelectS(deactivatesRBMatrix, 0);
     
-    [platformIsADoorCB setState:NSOffState];
-    [floorToCeilingCB setState:NSOffState];
+    [platformIsADoorCB setState:NSControlStateValueOff];
+    [floorToCeilingCB setState:NSControlStateValueOff];
     
     // *** Set Everything ***
     
@@ -148,19 +151,19 @@
     [maxHeightTB setIntValue:[platform maximumHeight]];
     
     if ([platform minimumHeight] == -1) {
-        [autoCalcMinCB setState:NSOnState];
+        [autoCalcMinCB setState:NSControlStateValueOn];
         [minHeightTB setEnabled:NO];
     } else {
         [minHeightTB setEnabled:YES];
-        [autoCalcMinCB setState:NSOffState];
+        [autoCalcMinCB setState:NSControlStateValueOff];
     }
     
     if ([platform maximumHeight] == -1) {
-        [autoCalcMaxCB setState:NSOnState];
+        [autoCalcMaxCB setState:NSControlStateValueOn];
         [maxHeightTB setEnabled:NO];
     } else {
         [maxHeightTB setEnabled:YES];
-        [autoCalcMaxCB setState:NSOffState];
+        [autoCalcMaxCB setState:NSControlStateValueOff];
     }
     
     if (platformFlags & _platform_is_initially_active)
@@ -176,9 +179,9 @@
     if (platformFlags & _platform_activates_adjacent_platforms_when_deactivating)
         SelectS(deactivatesCBMatrix, 2);
     if (platformFlags & _platform_extends_floor_to_ceiling)
-        [floorToCeilingCB setState:NSOnState];
+        [floorToCeilingCB setState:NSControlStateValueOn];
     else
-        [floorToCeilingCB setState:NSOffState];
+        [floorToCeilingCB setState:NSControlStateValueOff];
     
     if ((platformFlags & _platform_comes_from_floor) &&
         (platformFlags & _platform_comes_from_ceiling)) {
@@ -228,7 +231,7 @@
     if (platformFlags & _platform_is_secret)
         SelectS(otherOptionsCBMatrix, 6);
     if (platformFlags & _platform_is_door) // 27 ???
-        [platformIsADoorCB setState:NSOnState];
+        [platformIsADoorCB setState:NSControlStateValueOn];
 }
 
 -(void)saveChanges
@@ -255,7 +258,7 @@
     if SState(deactivatesRBMatrix, 2) 		(theFlags |= _platform_deactivates_at_initial_level);
     
     if SState(deactivatesCBMatrix, 2) 		(theFlags |= _platform_activates_adjacent_platforms_when_deactivating);
-    if ([floorToCeilingCB state] == NSOnState) 	(theFlags |= _platform_extends_floor_to_ceiling);
+    if ([floorToCeilingCB state] == NSControlStateValueOn) 	(theFlags |= _platform_extends_floor_to_ceiling);
     
     if (SState(extendsFromRBMatrix, 2))
     {
@@ -288,7 +291,7 @@
     if SState(activatesCBMatrix, 4) (theFlags |= _platform_activates_adjacent_platforms_at_each_level);
     if SState(otherOptionsCBMatrix, 5) (theFlags |= _platform_is_locked);
     if SState(otherOptionsCBMatrix, 6) (theFlags |= _platform_is_secret);
-    if ([platformIsADoorCB state] == NSOnState) (theFlags |= _platform_is_door);
+    if ([platformIsADoorCB state] == NSControlStateValueOn) (theFlags |= _platform_is_door);
     
     [platform setStaticFlags:theFlags];
     
@@ -316,7 +319,7 @@
 // maxHeightTB minHeightTB
 - (IBAction)autoCalcMinHeightAction:(id)sender
 {
-    if ([sender state] == NSOnState) {
+    if ([sender state] == NSControlStateValueOn) {
         [minHeightTB setIntValue:-1];
         [minHeightTB setEnabled:NO];
     } else {
@@ -327,7 +330,7 @@
 
 - (IBAction)autoCalcMaxHeightAction:(id)sender
 {
-    if ([sender state] == NSOnState) {
+    if ([sender state] == NSControlStateValueOn) {
         [maxHeightTB setIntValue:-1];
         [maxHeightTB setEnabled:NO];
     } else {

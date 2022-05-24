@@ -560,13 +560,13 @@ DQ
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="534">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="298"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="297"/>
                         <clipView key="contentView" id="1Ds-nc-x4n">
-                            <rect key="frame" x="1" y="1" width="320" height="296"/>
+                            <rect key="frame" x="1" y="1" width="320" height="295"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="1213" floatsGroupRows="NO" id="535">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="271"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -606,11 +606,11 @@ DQ
                         </clipView>
                         <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1212">
-                            <rect key="frame" x="1" y="281" width="320" height="16"/>
+                            <rect key="frame" x="1" y="280" width="320" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="1214">
-                            <rect key="frame" x="305" y="26" width="16" height="271"/>
+                            <rect key="frame" x="305" y="26" width="16" height="270"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" wantsLayer="YES" id="1213">
@@ -649,7 +649,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <popUpButton horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="586">
-                        <rect key="frame" x="170" y="302" width="146" height="23"/>
+                        <rect key="frame" x="170" y="301" width="146" height="23"/>
                         <popUpButtonCell key="cell" type="bevel" title="Commands" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" tag="2" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="593" id="1174">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
@@ -689,9 +689,10 @@ DQ
                     <constraint firstItem="547" firstAttribute="leading" secondItem="503" secondAttribute="leading" constant="4" id="2vG-tz-zca"/>
                     <constraint firstItem="539" firstAttribute="firstBaseline" secondItem="547" secondAttribute="firstBaseline" id="Fvo-SX-Utw"/>
                     <constraint firstItem="539" firstAttribute="leading" secondItem="547" secondAttribute="trailing" constant="8" symbolic="YES" id="PVf-34-zeb"/>
-                    <constraint firstItem="586" firstAttribute="top" secondItem="503" secondAttribute="top" constant="5" id="XEL-yC-PkC"/>
+                    <constraint firstItem="586" firstAttribute="top" secondItem="503" secondAttribute="top" constant="6" id="XEL-yC-PkC"/>
                     <constraint firstAttribute="trailing" secondItem="586" secondAttribute="trailing" constant="9" id="c2O-vl-dWU"/>
                     <constraint firstAttribute="bottom" secondItem="534" secondAttribute="bottom" id="cTW-ut-qQe"/>
+                    <constraint firstItem="586" firstAttribute="firstBaseline" secondItem="539" secondAttribute="firstBaseline" id="er4-G4-ocZ"/>
                     <constraint firstAttribute="trailing" secondItem="534" secondAttribute="trailing" id="gVt-of-Z0T"/>
                     <constraint firstItem="534" firstAttribute="top" secondItem="586" secondAttribute="bottom" constant="8" symbolic="YES" id="l8k-3i-4VC"/>
                     <constraint firstItem="586" firstAttribute="leading" secondItem="539" secondAttribute="trailing" constant="8" symbolic="YES" id="lzw-US-dOS"/>
@@ -716,7 +717,7 @@ DQ
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="661" userLabel="RenameSheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="142" y="151" width="367" height="137"/>
+            <rect key="contentRect" x="142" y="151" width="367" height="113"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="662">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>
@@ -801,7 +802,7 @@ Gw
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="680" userLabel="Go To Sheet">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="104" y="149" width="372" height="155"/>
+            <rect key="contentRect" x="104" y="149" width="372" height="141"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="684">
                 <rect key="frame" x="0.0" y="0.0" width="372" height="141"/>
@@ -1114,7 +1115,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <box fixedFrame="YES" title="Visibility" translatesAutoresizingMaskIntoConstraints="NO" id="995">
-                                        <rect key="frame" x="11" y="23" width="102" height="132"/>
+                                        <rect key="frame" x="11" y="18" width="102" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" id="bPu-4q-f7v">
                                             <rect key="frame" x="3" y="3" width="96" height="114"/>
@@ -1343,7 +1344,7 @@ DQ
                         <rect key="frame" x="-1" y="60" width="423" height="190"/>
                         <clipView key="contentView" id="rir-hE-OT8">
                             <rect key="frame" x="1" y="1" width="421" height="188"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1218" floatsGroupRows="NO" id="1074">
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>

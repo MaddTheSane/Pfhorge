@@ -121,7 +121,7 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 #define SelectS(o, t) ([(o) selectCellWithTag:(t)])
 
 // This will deselect if needed...
-#define SelectSIf(o, t, q) ((q) ? ([(o) selectCellWithTag:(t)]) : ([[(o) cellWithTag:(t)] setState:NSOffState]))
+#define SelectSIf(o, t, q) ((q) ? ([(o) selectCellWithTag:(t)]) : ([[(o) cellWithTag:(t)] setState:NSControlStateValueOff]))
 
 #define SetMatrixObjectValue(o, t, n) [[(o) cellWithTag:(t)] setObjectValue:[[NSNumber numberWithShort:(n)] stringValue]];
 #define GetMatrixIntValue(o, t) [[(o) cellWithTag:(t)] intValue];
@@ -288,9 +288,16 @@ static inline unsigned short decodeUnsignedShort(NSCoder *coder)
 #pragma mark Preferences Micro Functions
 #define preferences 				[NSUserDefaults standardUserDefaults]
 #define prefBool(key)				[preferences boolForKey:(key)]
-#define archive(Obj) 				[NSKeyedArchiver archivedDataWithRootObject:(Obj)]
+#define archive(Obj) 				[NSKeyedArchiver archivedDataWithRootObject:(Obj) requiringSecureCoding:YES error:NULL]
 static inline id unarchive(NSData *Obj) {
     id outObj = [NSKeyedUnarchiver unarchiveObjectWithData:Obj];
+    if (outObj) {
+        return outObj;
+    }
+    return [NSUnarchiver unarchiveObjectWithData:Obj];
+}
+static inline id unarchivedOfClass(NSData *Obj, Class cls) {
+    id outObj = [NSKeyedUnarchiver unarchivedObjectOfClass:cls fromData:Obj error:NULL];
     if (outObj) {
         return outObj;
     }
@@ -300,7 +307,7 @@ static inline id unarchive(NSData *Obj) {
 #define prefSetColor(colorKey, colorValue) 	[preferences setObject:(colorValue) forKey:(colorKey)]
 #define getArchColor(colorKey) 			unarchive(prefColor(colorKey))
 #define setArchColor(colorKey, colorValue) 	prefSetColor((colorKey), (archive(colorValue)))
-#define activateArchColor(colorKey) 		[(NSColor*)unarchive(prefColor(colorKey)) set]
+#define activateArchColor(colorKey) 		[(NSColor*)unarchivedOfClass(prefColor(colorKey), [NSColor class]) set]
 #define archColorWithAlpha(colorKey, alpha) 	[[getArchColor(colorKey) colorWithAlphaComponent:(alpha)] set];
 
 #pragma mark Undo Stuff...

@@ -124,7 +124,7 @@
     ccSide = [theCurrentSelection counterclockwisePolygonSideObject];
     
     [lineFlags deselectAllCells];
-    [emptyFlag setState:NSOffState];
+    [emptyFlag setState:NSControlStateValueOff];
     [lineControlPanelFlags deselectAllCells];
     
     if (lineFlagsNumber & LELineSolid)
@@ -152,13 +152,13 @@
     if (baseSideRef == nil)
     {
         lHasSide = NO;
-        [emptyFlag setState:NSOnState];
+        [emptyFlag setState:NSControlStateValueOn];
         [linePrimaryLight setEnabled:NO];
         [lineSecondaryLight setEnabled:NO];
         [lineTransparentLight setEnabled:NO];
         [lineIsControlPanel setEnabled:NO];
         
-        [lineIsControlPanel setState:NSOffState];
+        [lineIsControlPanel setState:NSControlStateValueOff];
         [lineControlPanelFlags setEnabledOfMatrixCellsTo:NO];
         [lineControlPanelType setEnabled:NO];
         [linePermutation setEnabled:NO];
@@ -219,7 +219,7 @@
             int permutationEffects = 0;
             NSInteger terminalIndex = -1;
             
-            [lineIsControlPanel setState:NSOnState];
+            [lineIsControlPanel setState:NSControlStateValueOn];
             
             [lineControlPanelFlags setEnabledOfMatrixCellsTo:YES];
             [lineControlPanelType setEnabled:YES];
@@ -394,7 +394,7 @@
         }
         else
         {
-            [lineIsControlPanel setState:NSOffState];
+            [lineIsControlPanel setState:NSControlStateValueOff];
             [lineControlPanelFlags setEnabledOfMatrixCellsTo:NO];
             [lineControlPanelType setEnabled:NO];
             [linePermutation setEnabled:NO];
@@ -435,7 +435,7 @@
 
 - (IBAction)controlPanelStatusAction:(id)sender
 {
-    if ([sender state] == NSOnState)
+    if ([sender state] == NSControlStateValueOn)
     {
         [lineControlPanelType selectItemAtIndex:0];
         [self controlPanelTypeAction:lineControlPanelType];
@@ -628,7 +628,7 @@
     }
     else
     {
-        NSLog(@"The empty checkbox does not support mixed states at this time, it will be set to the NSOffState.");
+        NSLog(@"The empty checkbox does not support mixed states at this time, it will be set to the NSControlStateValueOff.");
         [sender setState:NSControlStateValueOff];
         return;
     }

@@ -71,7 +71,6 @@
     NSEnumerator *numer1;
     NSEnumerator *numer2;
     //NSEnumerator *numer3;
-    id	theObj1;
     id	theObj2;
     //id  theObj3;
     
@@ -83,7 +82,7 @@
     
     // Make The Layers...
     numer1 = [records objectEnumerator];
-    while (theObj1 = [numer1 nextObject])
+    for (id theObj1 in numer1)
     {
         PhLayer *theNewLayer = [[PhLayer alloc] initWithName:[theObj1 objectForKey:PhDefaultLayer_Name]];
         [layersInLevel addObject:theNewLayer];
@@ -93,8 +92,7 @@
     if ([layersInLevel count] == 1)
     {
         PhLayer *theOnlyLayer = [layersInLevel objectAtIndex:0];
-        numer1 = [polys objectEnumerator];
-        while (theObj1 = [numer1 nextObject])
+        for (LEPolygon *theObj1 in polys)
         {
             [theObj1 setPolyLayer:theOnlyLayer];
         }
@@ -102,8 +100,7 @@
     else
     {
         // polys
-        numer1 = [polys objectEnumerator];
-        while (theObj1 = [numer1 nextObject])
+        for (LEPolygon *theObj1 in polys)
         {
             int floorHeight = [theObj1 floorHeight];
             int ceilingHeight = [theObj1 ceilingHeight];
@@ -113,10 +110,10 @@
             //numer3 = [layersInLevel objectEnumerator];
             while (theObj2 = [numer2 nextObject] /*|| theObj3 = [numer3 nextObject]*/)
             {
-                int minFloor = [unarchive([theObj2 objectForKey:PhDefaultLayer_FloorMin]) intValue];
-                int maxFloor = [unarchive([theObj2 objectForKey:PhDefaultLayer_FloorMax]) intValue];
-                int maxCeiling = [unarchive([theObj2 objectForKey:PhDefaultLayer_CeilingMax]) intValue];
-                int minCeiling = [unarchive([theObj2 objectForKey:PhDefaultLayer_CeilingMin]) intValue];
+                int minFloor = [unarchivedOfClass([theObj2 objectForKey:PhDefaultLayer_FloorMin], [NSNumber class]) intValue];
+                int maxFloor = [unarchivedOfClass([theObj2 objectForKey:PhDefaultLayer_FloorMax], [NSNumber class]) intValue];
+                int maxCeiling = [unarchivedOfClass([theObj2 objectForKey:PhDefaultLayer_CeilingMax], [NSNumber class]) intValue];
+                int minCeiling = [unarchivedOfClass([theObj2 objectForKey:PhDefaultLayer_CeilingMin], [NSNumber class]) intValue];
                 
                 if (((floorHeight >= minFloor) && (floorHeight <= maxFloor)) &&
                     ((ceilingHeight >= minCeiling) && (ceilingHeight <= maxCeiling)))

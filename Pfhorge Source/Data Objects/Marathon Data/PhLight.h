@@ -40,14 +40,14 @@ typedef NS_ENUM(short, PhLightTypes) {
 
 //! states
 typedef NS_ENUM(short, PhLightState) {
-	_light_primary_active = 0,
-	_light_secondary_active,
-	_light_becoming_active,
+	PhLightStatePrimaryActive = 0,
+	PhLightStateSecondaryActive,
+	PhLightStateBecomingActive,
 	
-	_light_primary_inactive,
-	_light_secondary_inactive,
-	_light_becoming_inactive,
-	_NUMBER_OF_LIGHT_STATES
+	PhLightStatePrimaryInactive,
+	PhLightStateSecondaryInactive,
+	PhLightStateBecomingInactive,
+	PhLightStateTotalCount
 };
 
 // static light data
@@ -55,15 +55,15 @@ typedef NS_ENUM(short, PhLightState) {
 //!lighting functions
 typedef NS_ENUM(short, PhLightFunction) {
 	//! maintain final intensity for period
-	_constant_lighting_function,
+	PhLightFunctionConstant,
 	//! linear transition between initial and final intensity over period
-	_linear_lighting_function,
+	PhLightFunctionLinear,
 	//! sine transition between inital and final intensity over period
-	_smooth__lighting_function,
+	PhLightFunctionSmooth,
 	//! intensity in [smooth_intensity(t),final_intensity]
-	_flicker_lighting_function,
+	PhLightFunctionFlicker,
 	
-	NUMBER_OF_LIGHTING_FUNCTIONS
+	PhLightFunctionTotalCount
 };
 
 /*! as intensities, transition function are given the primary
@@ -99,7 +99,7 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags) {
 
 	short phase;	// initializer, so lights may start out-of-phase with each other
         
-	struct lighting_function_specification light_states[6];
+	struct lighting_function_specification light_states[PhLightStateTotalCount];
         
 	short tag;
 	PhTag *tagObject;

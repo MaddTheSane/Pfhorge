@@ -366,7 +366,7 @@
     //NSLog(((flags & LELineVariableHasTransparentSide) ? @"TTRANSPARENT_SIDE: YES" : @"TTRANSPARENT_SIDE: NO"));
     // These are not managed by thie function...
     //[lineFlags deselectAllCells];
-    //[emptyFlag setState:NSOffState];
+    //[emptyFlag setState:NSControlStateValueOff];
     //[lineControlPanelFlags deselectAllCells];
     
     // Do I need these here?
@@ -832,7 +832,7 @@
 
 - (IBAction)sideTransparencyCheckBoxAction:(id)sender
 {
-    BOOL checkBoxState = (([sender state] == NSControlStateValueOn) ? YES : NO);// NSOffState NSOnState
+    BOOL checkBoxState = (([sender state] == NSControlStateValueOn) ? YES : NO);// NSControlStateValueOff NSControlStateValueOn
     unsigned short flags = [theCurrentLine flags];
     //((flags & LELineVariableHasTransparentSide) ? YES : NO);
     

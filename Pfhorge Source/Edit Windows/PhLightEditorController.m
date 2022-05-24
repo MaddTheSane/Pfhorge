@@ -95,54 +95,54 @@
 {
     [super windowDidLoad];
     
-    theLightPhases[_light_becoming_active][0] = becomeingActivePeriod;
-    theLightPhases[_light_becoming_active][1] = becomeingActivePeriodChng;
-    theLightPhases[_light_becoming_active][2] = becomeingActiveIntesity;
-    theLightPhases[_light_becoming_active][3] = becomeingActiveIntesityChng;
-    theLightPhases[_light_becoming_active][4] = becomeingActiveFunction;
-        theLightPhases[_light_becoming_active][5] = becomeingActiveIntesitySlider;
-    theLightPhases[_light_becoming_active][6] = becomeingActiveIntesityChngSlider;
+    theLightPhases[PhLightStateBecomingActive][0] = becomeingActivePeriod;
+    theLightPhases[PhLightStateBecomingActive][1] = becomeingActivePeriodChng;
+    theLightPhases[PhLightStateBecomingActive][2] = becomeingActiveIntesity;
+    theLightPhases[PhLightStateBecomingActive][3] = becomeingActiveIntesityChng;
+    theLightPhases[PhLightStateBecomingActive][4] = becomeingActiveFunction;
+        theLightPhases[PhLightStateBecomingActive][5] = becomeingActiveIntesitySlider;
+    theLightPhases[PhLightStateBecomingActive][6] = becomeingActiveIntesityChngSlider;
     
-    theLightPhases[_light_primary_active][0] = primaryActivePeriod;
-    theLightPhases[_light_primary_active][1] = primaryActivePeriodChng;
-    theLightPhases[_light_primary_active][2] = primaryActiveIntesity;
-    theLightPhases[_light_primary_active][3] = primaryActiveIntesityChng;
-    theLightPhases[_light_primary_active][4] = primaryActiveFunction;
-        theLightPhases[_light_primary_active][5] = primaryActiveIntesitySlider;
-    theLightPhases[_light_primary_active][6] = primaryActiveIntesityChngSlider;
+    theLightPhases[PhLightStatePrimaryActive][0] = primaryActivePeriod;
+    theLightPhases[PhLightStatePrimaryActive][1] = primaryActivePeriodChng;
+    theLightPhases[PhLightStatePrimaryActive][2] = primaryActiveIntesity;
+    theLightPhases[PhLightStatePrimaryActive][3] = primaryActiveIntesityChng;
+    theLightPhases[PhLightStatePrimaryActive][4] = primaryActiveFunction;
+        theLightPhases[PhLightStatePrimaryActive][5] = primaryActiveIntesitySlider;
+    theLightPhases[PhLightStatePrimaryActive][6] = primaryActiveIntesityChngSlider;
     
-    theLightPhases[_light_secondary_active][0] = secondaryActivePeriod;
-    theLightPhases[_light_secondary_active][1] = secondaryActivePeriodChng;
-    theLightPhases[_light_secondary_active][2] = secondaryActiveIntesity;
-    theLightPhases[_light_secondary_active][3] = secondaryActiveIntesityChng;
-    theLightPhases[_light_secondary_active][4] = secondaryActiveFunction;
-        theLightPhases[_light_secondary_active][5] = secondaryActiveIntesitySlider;
-    theLightPhases[_light_secondary_active][6] = secondaryActiveIntesityChngSlider;
+    theLightPhases[PhLightStateSecondaryActive][0] = secondaryActivePeriod;
+    theLightPhases[PhLightStateSecondaryActive][1] = secondaryActivePeriodChng;
+    theLightPhases[PhLightStateSecondaryActive][2] = secondaryActiveIntesity;
+    theLightPhases[PhLightStateSecondaryActive][3] = secondaryActiveIntesityChng;
+    theLightPhases[PhLightStateSecondaryActive][4] = secondaryActiveFunction;
+        theLightPhases[PhLightStateSecondaryActive][5] = secondaryActiveIntesitySlider;
+    theLightPhases[PhLightStateSecondaryActive][6] = secondaryActiveIntesityChngSlider;
     
         // InInactive
-    theLightPhases[_light_becoming_inactive][0] = becomeingInactivePeriod;
-    theLightPhases[_light_becoming_inactive][1] = becomeingInactivePeriodChng;
-    theLightPhases[_light_becoming_inactive][2] = becomeingInactiveIntesity;
-    theLightPhases[_light_becoming_inactive][3] = becomeingInactiveIntesityChng;
-    theLightPhases[_light_becoming_inactive][4] = becomeingInactiveFunction;
-        theLightPhases[_light_becoming_inactive][5] = becomeingInactiveIntesitySlider;
-    theLightPhases[_light_becoming_inactive][6] = becomeingInactiveIntesityChngSlider;
+    theLightPhases[PhLightStateBecomingInactive][0] = becomeingInactivePeriod;
+    theLightPhases[PhLightStateBecomingInactive][1] = becomeingInactivePeriodChng;
+    theLightPhases[PhLightStateBecomingInactive][2] = becomeingInactiveIntesity;
+    theLightPhases[PhLightStateBecomingInactive][3] = becomeingInactiveIntesityChng;
+    theLightPhases[PhLightStateBecomingInactive][4] = becomeingInactiveFunction;
+        theLightPhases[PhLightStateBecomingInactive][5] = becomeingInactiveIntesitySlider;
+    theLightPhases[PhLightStateBecomingInactive][6] = becomeingInactiveIntesityChngSlider;
     
-    theLightPhases[_light_primary_inactive][0] = primaryInactivePeriod;
-    theLightPhases[_light_primary_inactive][1] = primaryInactivePeriodChng;
-    theLightPhases[_light_primary_inactive][2] = primaryInactiveIntesity;
-    theLightPhases[_light_primary_inactive][3] = primaryInactiveIntesityChng;
-    theLightPhases[_light_primary_inactive][4] = primaryInactiveFunction;
-        theLightPhases[_light_primary_inactive][5] = primaryInactiveIntesitySlider;
-    theLightPhases[_light_primary_inactive][6] = primaryInactiveIntesityChngSlider;
+    theLightPhases[PhLightStatePrimaryInactive][0] = primaryInactivePeriod;
+    theLightPhases[PhLightStatePrimaryInactive][1] = primaryInactivePeriodChng;
+    theLightPhases[PhLightStatePrimaryInactive][2] = primaryInactiveIntesity;
+    theLightPhases[PhLightStatePrimaryInactive][3] = primaryInactiveIntesityChng;
+    theLightPhases[PhLightStatePrimaryInactive][4] = primaryInactiveFunction;
+        theLightPhases[PhLightStatePrimaryInactive][5] = primaryInactiveIntesitySlider;
+    theLightPhases[PhLightStatePrimaryInactive][6] = primaryInactiveIntesityChngSlider;
 
-    theLightPhases[_light_secondary_inactive][0] = secondaryInactivePeriod;
-    theLightPhases[_light_secondary_inactive][1] = secondaryInactivePeriodChng;
-    theLightPhases[_light_secondary_inactive][2] = secondaryInactiveIntesity;
-    theLightPhases[_light_secondary_inactive][3] = secondaryInactiveIntesityChng;
-    theLightPhases[_light_secondary_inactive][4] = secondaryInactiveFunction;
-        theLightPhases[_light_secondary_inactive][5] = secondaryInactiveIntesitySlider;
-    theLightPhases[_light_secondary_inactive][6] = secondaryInactiveIntesityChngSlider;
+    theLightPhases[PhLightStateSecondaryInactive][0] = secondaryInactivePeriod;
+    theLightPhases[PhLightStateSecondaryInactive][1] = secondaryInactivePeriodChng;
+    theLightPhases[PhLightStateSecondaryInactive][2] = secondaryInactiveIntesity;
+    theLightPhases[PhLightStateSecondaryInactive][3] = secondaryInactiveIntesityChng;
+    theLightPhases[PhLightStateSecondaryInactive][4] = secondaryInactiveFunction;
+        theLightPhases[PhLightStateSecondaryInactive][5] = secondaryInactiveIntesitySlider;
+    theLightPhases[PhLightStateSecondaryInactive][6] = secondaryInactiveIntesityChngSlider;
     
     [mapLevel addMenu:tagComboMenu asMenuType:PhLevelNameMenuTag];
     
@@ -235,16 +235,16 @@
 	
 	
 	
-	if ([theLightPhases[_light_primary_active][0] intValue]  == 0
-	 && [theLightPhases[_light_secondary_active][0] intValue]  == 0)
+	if ([theLightPhases[PhLightStatePrimaryActive][0] intValue]  == 0
+	 && [theLightPhases[PhLightStateSecondaryActive][0] intValue]  == 0)
 	{
 		SEND_ERROR_MSG_TITLE(@"The primary and secondary active periods are both zero, the light was not saved.",
 							 @"Problem");
 		return NO;
 	}
 	
-	if ([theLightPhases[_light_primary_inactive][0] intValue] == 0
-	 && [theLightPhases[_light_secondary_inactive][0] intValue]  == 0)
+	if ([theLightPhases[PhLightStatePrimaryInactive][0] intValue] == 0
+	 && [theLightPhases[PhLightStateSecondaryInactive][0] intValue]  == 0)
 	{
 		SEND_ERROR_MSG_TITLE(@"The primary and secondary inactive periods are both zero, the light was not saved.",
 							 @"Problem");
