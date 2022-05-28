@@ -98,7 +98,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //[mapLevel updateCounts];
     //NSLog(@"PhLightEditorController dealloc");
-    [super dealloc];
 }
 
 - (void)windowDidLoad

@@ -127,9 +127,11 @@
     
     [tis appendString:@"\n"];
     
-    SEND_INFO_MSG_TITLE(tis, @"Detailed Line Information…");
-    
-    [tis release];
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Detailed Line Information…";
+    alert.informativeText = tis;
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
 }
 
  // **************************  Coding/Copy Protocal Methods  *************************
@@ -195,9 +197,6 @@
     
     
     NSLog(@"Exporting Line: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
-    
-    [myData release];
-    [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
@@ -906,7 +905,13 @@
         case LELinePermanentNoSides:
             return permanentNoSides;
         default:
-            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting…", @"Unknown parmanent setting…");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Unknown parmanent setting…";
+            alert.informativeText = @"Unknown parmanent setting…";
+            alert.alertStyle = NSAlertStyleInformational;
+            [alert runModal];
+        }
             return NO;
     }
 }
@@ -1067,7 +1072,13 @@
             permanentNoSides = value;
             break;
         default:
-            SEND_ERROR_MSG_TITLE(@"Unknown parmanent setting…", @"Unknown parmanent setting…");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Unknown parmanent setting…";
+            alert.informativeText = @"Unknown parmanent setting…";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             break;
     }
 }
@@ -1492,7 +1503,11 @@
             
             if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
             {
-                SEND_ERROR_MSG(@"One of the lines was not concave reltive to the rest of the lines…");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"One of the lines was not concave reltive to the rest of the lines…";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 return nil;
             }
             
@@ -1502,7 +1517,11 @@
                 //NSLog(@"Second Phase Almost Complete...");
                 if (smallestLine != [theNewPolyLines objectAtIndex:0])
                 {
-                    SEND_ERROR_MSG(@"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!");
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = @"Generic Error";
+                    alert.informativeText = @"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!";
+                    alert.alertStyle = NSAlertStyleCritical;
+                    [alert runModal];
                     return nil;
                 }
                 
@@ -1602,14 +1621,13 @@
             NSLog(@"Should of never gotten here, something is/went HORABLY wrong while polygon filling, map data in memory could be mangled badly!!!");
             // ??? should of never gotten here, something is HORABLY wrong!!! :(
             SEND_ERROR_MSG(@"Somting is very wrong with the polygon line following, in LELine getPolyFromMe");
-            [theNewPolygon release];
             return nil;
     }
     
     
     //NSLog(@"Returning The Polygon...");
     
-    return [theNewPolygon autorelease];
+    return theNewPolygon;
     
     // Add the new polygon to the level...
     // Next step would be to tell the level object to add the polygon...

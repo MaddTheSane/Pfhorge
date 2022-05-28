@@ -665,8 +665,11 @@
         
         if (thisMapLine == nil || theCurPoint == nil)
         {
-            SEND_ERROR_MSG_TITLE(@"Polygon Lines Not All The Way Connected: level->whatIsDirectional method",
-                                 @"MAJOR Polygon Adding Error");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"MAJOR Polygon Adding Error";
+            alert.informativeText = @"Polygon Lines Not All The Way Connected: level->whatIsDirectional method";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             NSLog(@"Polygon Lines Not All The Way Connected: level->whatIsDirectional method.");
             return _poly_could_be_bad;
         }
@@ -698,8 +701,11 @@
                 return _line_is_counter_clockwise;
             else
             {
-                SEND_ERROR_MSG_TITLE(@"X There is one point directly over another: in level->whatIsDirectional method",
-                            @"Minor Polygon Adding Error");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Minor Polygon Adding Error";
+                alert.informativeText = @"X There is one point directly over another: in level->whatIsDirectional method";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 NSLog(@"X Two points with same cordianates with line apart of poly: in level->whatIsDirectional method... px: %g  py: %g", previousX, previousY);
                 return _poly_could_be_bad;
             }

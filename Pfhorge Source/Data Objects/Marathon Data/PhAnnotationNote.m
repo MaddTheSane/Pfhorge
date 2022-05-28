@@ -126,9 +126,9 @@
         location = [coder decodePointForKey:@"location"];
         
         polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
-        text = [[coder decodeObjectOfClass:[NSString class] forKey:@"text"] retain];
+        text = [coder decodeObjectOfClass:[NSString class] forKey:@"text"];
         
-        group = [[coder decodeObjectOfClass:[PhNoteGroup class] forKey:@"group"] retain];
+        group = [coder decodeObjectOfClass:[PhNoteGroup class] forKey:@"group"];
     } else {
         int versionNum = decodeNumInt(coder);
         
@@ -169,10 +169,6 @@
 
 - (void)dealloc
 {
-    [text release];
-    [group release];
-    
-    [super dealloc];
 }
 
 // *****************   Set Accsessors   *****************
@@ -185,8 +181,7 @@
         [group removeObject:self];
     }
     
-    [group release];
-    group = [grp retain];
+    group = grp;
 }
 
 @synthesize type;
@@ -213,7 +208,6 @@
 
 -(void)setText:(NSString *)v
 {
-    [text release];
     text = [v copy];
     [self updateBounds];
 }

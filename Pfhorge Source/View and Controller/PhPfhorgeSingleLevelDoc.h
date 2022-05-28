@@ -30,7 +30,7 @@
 
 @interface PhPfhorgeSingleLevelDoc : LEMap
 {
-    PhPfhorgeScenarioLevelDoc *scenario;
+    __unsafe_unretained PhPfhorgeScenarioLevelDoc *scenario;
 }
 
 - (id)initWithScenarioDocument:(PhPfhorgeScenarioLevelDoc *)theScenarioDoc;

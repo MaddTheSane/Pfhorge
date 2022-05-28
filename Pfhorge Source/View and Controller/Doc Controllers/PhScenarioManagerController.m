@@ -32,7 +32,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -80,7 +79,11 @@
 
 - (IBAction)notDoneYet:(id)sender
 {
-    SEND_INFO_MSG_TITLE(@"This does not work yet…", @"Please Be Aware");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Please Be Aware";
+    alert.informativeText = @"This does not work yet…";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
 }
 
 - (IBAction)reloadLevelTable:(id)sender
@@ -93,7 +96,11 @@
 {
     NSSavePanel *theSavePanel = [NSSavePanel savePanel];
     
-    SEND_INFO_MSG_TITLE(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…", @"Warning");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Warning";
+    alert.informativeText = @"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
     
     [theSavePanel setPrompt:@"Export"];
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
@@ -133,8 +140,11 @@
 
 - (IBAction)deleteSelectedLevel:(id)sender
 {
-    SEND_INFO_MSG_TITLE(@"For now, delete level in Finder then rescan the folder.",
-                         @"Not Directly Supported Yet");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Not Directly Supported Yet";
+    alert.informativeText = @"For now, delete level in Finder then rescan the folder.";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
 }
 
 @end

@@ -548,7 +548,13 @@ extern NSString *VMBackwardKey;
             break;
             
         default:
-            SEND_ERROR_MSG(@"Could not determine which button was pressed.");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Could not determine which button was pressed.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             break;
     }
     
@@ -557,7 +563,7 @@ extern NSString *VMBackwardKey;
 
 - (unichar)getKeyUnichar
 {
-    NSDate *distantPast = [[NSDate distantPast] retain];
+    NSDate *distantPast = [NSDate distantPast];
     BOOL done = NO;
     NSEvent *event;
     unichar c = 0;
@@ -606,7 +612,6 @@ extern NSString *VMBackwardKey;
         
         //[pool release];
     }
-	[distantPast release];
     return c;
 }
 

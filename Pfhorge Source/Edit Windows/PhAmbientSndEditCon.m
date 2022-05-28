@@ -86,7 +86,6 @@
     //[mapLevel updateCounts];
     //[mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
     //NSLog(@"PhAmbientSndEditCon dealloc");
-    [super dealloc];
 }
 
 - (void)windowDidLoad

@@ -72,7 +72,6 @@
     baseSideRef = nil;
     
     [[self window] saveFrameUsingName:@"Inspector5"];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -429,7 +428,11 @@
             [self setupTextureUIWithSide:cSide enableTransparentTexture:lTransparentSide];
             baseSideRef = cSide;
         } else {
-            SEND_ERROR_MSG_TITLE(@"Don't know which side to have inspector inspect", @"Please Report This Error");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Please Report This Error";
+            alert.informativeText = @"Don't know which side to have inspector inspect";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             [self reset];
             [self setupTextureUIWithSide:nil enableTransparentTexture:NO];
             [sideTextureRadioBtn setEnabledOfMatrixCellsTo:NO];
@@ -785,8 +788,8 @@
 - (IBAction)sideTextureOffsetMatrixAction:(id)sender
 {
 	struct side_texture_definition thePTex = {0};
-    struct side_texture_definition theSTex;
-    struct side_texture_definition theTTex;
+    struct side_texture_definition theSTex = {0};
+    struct side_texture_definition theTTex = {0};
     
     char *theTexChar = NULL;
     short theCurrentEnviroCode = [[mainInspectorController currentLevel] environmentCode];

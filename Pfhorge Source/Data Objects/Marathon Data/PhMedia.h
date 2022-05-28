@@ -88,7 +88,7 @@ enum	// media sounds
 	light intensities; clearly discontinuous light functions
 	(e.g. strobes) should not be used */
 	short	light_index;
-	PhLight	*light_object;
+    __unsafe_unretained PhLight	*light_object;
 
 	/* this is the maximum external velocity due to current;
 	acceleration is 1/32nd of this */

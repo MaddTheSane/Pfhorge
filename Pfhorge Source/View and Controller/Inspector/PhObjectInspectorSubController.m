@@ -66,7 +66,6 @@
 - (void)dealloc
 {
     [[self window] saveFrameUsingName:@"Inspector4"];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -102,7 +101,11 @@
         [objItem selectItemAtIndex:[theObj getObjTypeIndex]];
     } else {
         [objItem selectItemAtIndex:-1];
-		SEND_ERROR_MSG_TITLE(([NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %ld", [theObj getObjTypeIndex], (long)[objItem numberOfItems]]), @"Selected Object Kind Beyond Range");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Selected Object Kind Beyond Range";
+        alert.informativeText = [NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %ld", [theObj getObjTypeIndex], (long)[objItem numberOfItems]];
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
     }
     //NSLog(@"DONE: Setting The Index...");
     //[objItem setObjectValue:[objItem objectValueOfSelectedItem]];
@@ -213,7 +216,11 @@
             //GOT TO COME UP WITH DOCUMENT ERROR MESSAGING!!!
             //Perhaps though mainInspectorController and from there
             //the document controller?
-            SEND_ERROR_MSG(@"Some unkown object type was found?");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Some unkown object type was found?";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             [objFlags setEnabledOfMatrixCellsTo:NO];
             break;
     }

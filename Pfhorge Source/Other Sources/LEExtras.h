@@ -305,7 +305,7 @@ static inline id unarchivedOfClass(NSData *Obj, Class cls) {
 }
 #define prefColor(colorKey) 			[preferences objectForKey:(colorKey)]
 #define prefSetColor(colorKey, colorValue) 	[preferences setObject:(colorValue) forKey:(colorKey)]
-#define getArchColor(colorKey) 			unarchive(prefColor(colorKey))
+#define getArchColor(colorKey) 			unarchivedOfClass(prefColor(colorKey), [NSColor class])
 #define setArchColor(colorKey, colorValue) 	prefSetColor((colorKey), (archive(colorValue)))
 #define activateArchColor(colorKey) 		[(NSColor*)unarchivedOfClass(prefColor(colorKey), [NSColor class]) set]
 #define archColorWithAlpha(colorKey, alpha) 	[[getArchColor(colorKey) colorWithAlphaComponent:(alpha)] set];

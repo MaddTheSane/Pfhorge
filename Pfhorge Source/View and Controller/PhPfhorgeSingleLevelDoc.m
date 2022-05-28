@@ -75,8 +75,6 @@
 {
     if (scenario != nil)
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [super dealloc];
 }
 
 - (BOOL)isThereAScenarioDocumentLinked
@@ -179,7 +177,6 @@
             theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
         }
         if (!theLevelMapData) {
-            [entireMapData release];
             return nil;
         }
         
@@ -193,7 +190,7 @@
         cameFromMarathonFormatedFile = NO;
     }
     
-    return [entireMapData autorelease];
+    return entireMapData;
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
@@ -232,7 +229,11 @@
         thePfhorgeDataSig2FromData != thePfhorgeDataSig2 ||
         thePfhorgeDataSig3FromData != thePfhorgeDataSig3) {
         NSLog(@"--------- ERROR: Tried To Load Marathon Map In PhPfhorgeSingleLevelDoc... ---------");
-        SEND_ERROR_MSG_TITLE(@"Tried To load with wrong doc class!", @"Loading Error");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Loading Error";
+        alert.informativeText = @"Tried To load with wrong doc class!";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         loadedOk = NO;
     } else if (theVersionNumberFromData < 2 &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
@@ -241,9 +242,11 @@
         if (outError) {
             *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the earlier version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too Old"}];
         }
-        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,"
-                                "export it in earlier, release candidate 1 release of Pfhorge, then open it here.",
-                             @"Level Is Too Old");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Level Is Too Old";
+        alert.informativeText = @"Can't load this version of pfhorge map data, export it in earlier, release candidate 1 release of Pfhorge, then open it here.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         loadedOk = NO;
     } else if (theVersionNumberFromData > theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
@@ -252,9 +255,11 @@
         if (outError) {
             *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the newer version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too New"}];
         }
-        SEND_ERROR_MSG_TITLE(@"Can't load this version of pfhorge map data,"
-                                "export it in latter version of Pfhorge, then open it here.",
-                             @"Level Is Too New");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Level Is Too New";
+        alert.informativeText = @"Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         loadedOk = NO;
     } else if (theVersionNumberFromData == oldVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
@@ -262,8 +267,8 @@
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
         theRawMapData = nil;
-        theLevel = [[NSUnarchiver unarchiveObjectWithData:
-                        [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
+        theLevel = [NSUnarchiver unarchiveObjectWithData:
+                    [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]];
         if (theLevel != nil){
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
@@ -281,9 +286,9 @@
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
         if (@available(macOS 10.13, *)) {
-            theLevel = [[NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
+            theLevel = [NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError];
         } else {
-            theLevel = [[NSKeyedUnarchiver unarchiveTopLevelObjectWithData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError] retain];
+            theLevel = [NSKeyedUnarchiver unarchiveTopLevelObjectWithData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError];
         }
 
         if (theLevel != nil) {
@@ -303,11 +308,15 @@
         NSLog(@"EARILIER VERSION: %d, Current Version: %d --> I am converting it...", theVersionNumberFromData, theVersionNumber);
         NSLog(@"Loading Pfhorge Formated Map...");
         
-        SEND_INFO_MSG_TITLE(@"This is an eariler version of the Pfhorge level format, I will convert it for you…", @"Update Needed");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Update Needed";
+        alert.informativeText = @"This is an eariler version of the Pfhorge level format, I will convert it for you…";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
         
         theRawMapData = nil;
-        theLevel = [[NSUnarchiver unarchiveObjectWithData:
-                        [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]] retain];
+        theLevel = [NSUnarchiver unarchiveObjectWithData:
+                    [data subdataWithRange:NSMakeRange(10 ,([data length] - 10))]];
         if (theLevel != nil) {
             loadedOk = YES;
             cameFromMarathonFormatedFile = NO;
@@ -322,8 +331,11 @@
         if (outError) {
             *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load Map", NSLocalizedFailureReasonErrorKey: @"Can't Load File, Unknown Format."}];
         }
-        SEND_ERROR_MSG_TITLE(@"Can't Load File, Unknown Format.",
-                             @"Can't Load Map");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Can't Load Map";
+        alert.informativeText = @"Can't Load File, Unknown Format.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         loadedOk = NO;
     }
     

@@ -92,9 +92,6 @@
     
     NSLog(@"Exporting Map Object: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[theIndex indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
-    [myData release];
-    [futureData release];
-    
     if ([theIndex indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %d", [self index], myPosition);
         //return -1;
@@ -165,7 +162,6 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 }
 
 #define LEMapObjectCoderPolygonObjectKey @"polygonObject"

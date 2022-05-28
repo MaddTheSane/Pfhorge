@@ -220,10 +220,10 @@ struct platform_data2 /* 140 bytes */
 	PhPlatformStaticFlags static_flags;
 	
 	short polygon_index;
-	LEPolygon	*polygon_object;
+    __unsafe_unretained LEPolygon	*polygon_object;
 	
 	short tag;
-	PhTag *tagObject;
+    __unsafe_unretained PhTag *tagObject;
 }
 
 // **************************  Coding/Copy Protocal Methods  *************************

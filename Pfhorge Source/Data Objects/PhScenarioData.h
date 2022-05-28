@@ -36,7 +36,7 @@
     
     NSTableView *theTable;
     
-    id draggedLevel;
+    NSString *draggedLevel;
 }
 - (id)initWithProjectDirectory:(NSString *)theProjectDir;
 

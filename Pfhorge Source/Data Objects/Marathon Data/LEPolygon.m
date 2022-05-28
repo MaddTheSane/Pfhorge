@@ -312,7 +312,11 @@
     if (type == _polygon_is_platform) {
         [permutationObject displayInfo];
     } else {
-        SEND_INFO_MSG_TITLE(@"Only platform polygons support this for right now…", @"Detailed Polygon Info");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Detailed Polygon Info";
+        alert.informativeText = @"Only platform polygons support this for right now…";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
     }
 }
 
@@ -1543,7 +1547,11 @@
 					[tempPermutationObj setPolygonObject:theTarget];
 				}
             } else {
-                SEND_ERROR_MSG(@"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!";
+                alert.alertStyle = NSAlertStyleInformational;
+                [alert runModal];
                 tempPermutationObj = nil;
             }
             break;
@@ -1786,7 +1794,11 @@
         
     }
     else*/
-    SEND_ERROR_MSG(@"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
     //permutation = v;
 }
 
@@ -2226,7 +2238,11 @@
             [self setPolygonConcaveFlag:NO];
             return NO;
         } else {
-            SEND_ERROR_MSG(@"Somthing wrong with program logic!!! MAJOR, proably even FATEL error!!!");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Somthing wrong with program logic!!! MAJOR, proably even FATEL error!!!";
+            alert.alertStyle = NSAlertStyleInformational;
+            [alert runModal];
             [self setPolygonConcaveFlag:NO];
             return NO; // What would bring it here?
         }

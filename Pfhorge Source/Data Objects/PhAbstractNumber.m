@@ -47,9 +47,9 @@
     
     ImportInt(length);
     theData = [myData getSubDataWithLength:length];
-    assignedNumber = [[NSKeyedUnarchiver unarchivedObjectOfClass:[NSNumber class] fromData:theData error:NULL] retain];
+    assignedNumber = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSNumber class] fromData:theData error:NULL];
     if (!assignedNumber) {
-        assignedNumber = [[NSUnarchiver unarchiveObjectWithData:theData] retain];
+        assignedNumber = [NSUnarchiver unarchiveObjectWithData:theData];
     }
     
     [super superClassImportWithIndex:index withData:myData useOrginals:useOrg];
@@ -71,7 +71,7 @@
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        assignedNumber = [[coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"] retain];
+        assignedNumber = [coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         
@@ -115,12 +115,6 @@
     assignedNumber = [thePhNumber copy];
     [self setPhName:[assignedNumber stringValue]];
     return self;
-}
-
-- (void)dealloc
-{
-	[assignedNumber release];
-	[super dealloc];
 }
 
 @synthesize phNumber=assignedNumber;

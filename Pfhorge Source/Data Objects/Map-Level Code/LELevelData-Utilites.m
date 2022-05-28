@@ -105,8 +105,11 @@
     if (theLevelToImport == nil)
     {
         NSLog(@"In Union Level, theLevelToImport == nil");
-        SEND_ERROR_MSG_TITLE(@"Problem importing a level, the level to import was nil?",
-                             @"Problem Importing");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Problem Importing";
+        alert.informativeText = @"Problem importing a level, the level to import was nil?";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     

@@ -270,7 +270,6 @@
 
 -(void) dealloc
 {
-    [super dealloc];
 }
 
 // **************************  Abstract Methods  *************************

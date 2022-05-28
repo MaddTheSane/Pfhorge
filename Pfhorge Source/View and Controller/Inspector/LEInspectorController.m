@@ -76,7 +76,6 @@
 {
     [[self window] saveFrameUsingName:@"Inspector1"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -153,7 +152,7 @@
     static LEInspectorController *sharedInspectorController = nil;
 
     if (!sharedInspectorController) {
-        sharedInspectorController = [[LEInspectorController allocWithZone:[self zone]] init];
+        sharedInspectorController = [[LEInspectorController alloc] init];
     }
 
     return sharedInspectorController;
@@ -253,7 +252,11 @@
             else
             {
                 NSLog(@"The Notification Did Not Have A NSSet!");
-                SEND_ERROR_MSG(@"The - (void)selectionChanged:(NSNotification *)notification Did Not Have A NSSet!");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"The - (void)selectionChanged:(NSNotification *)notification Did Not Have A NSSet!";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 [self setTabMenusTo:3];
                 theCurrentSelection = nil;
                 return;
@@ -409,7 +412,7 @@
         [polyFloorLight addItemsWithTitles:theCurrentLevelLightNames];
         
         [polyLiquid addItemWithObjectValue:@"None"];
-        [polyLiquid addItemsWithObjectValues:[currentLevel getLiquidNamesCopy]];
+        [polyLiquid addItemsWithObjectValues:[currentLevel liquidNames]];
         
         [polyLiquidLight addItemsWithTitles:theCurrentLevelLightNames];
         

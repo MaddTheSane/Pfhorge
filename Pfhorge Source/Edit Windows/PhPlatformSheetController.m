@@ -82,7 +82,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -239,7 +238,11 @@
     unsigned int theFlags = 0;
     
     if (platform == nil) {
-        SEND_ERROR_MSG_TITLE(@"When I tried to save the changes to the platform, the platform was nil?", @"Platform Was Nil");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Platform Was Nil";
+        alert.informativeText = @"When I tried to save the changes to the platform, the platform was nil?";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     

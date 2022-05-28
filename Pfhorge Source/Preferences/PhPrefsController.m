@@ -104,7 +104,6 @@
     //[appDefaults setObject:theMutableColors forKey:PhPhorgeColors];
     
     [appDefaults addEntriesFromDictionary:theMutableColors];
-	[theMutableColors release];
     }
 	
      //Test...
@@ -201,7 +200,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad

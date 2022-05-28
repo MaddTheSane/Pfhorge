@@ -84,9 +84,6 @@
     
      NSLog(@"Exporting Media: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
-    [myData release];
-    [futureData release];
-    
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {
         NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);

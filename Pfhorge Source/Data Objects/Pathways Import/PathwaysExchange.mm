@@ -55,8 +55,11 @@
         [progress setUseSecondBarOnly:NO];
         
         if (currentLevel == nil) {
-            SEND_ERROR_MSG_TITLE(@"Could not convert one of the levels…",
-                                 @"Converting Error");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.informativeText = @"Converting Error";
+            alert.messageText = @"Could not convert one of the levels…";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             NSLog(@"Could not convert PID level: %d (One Based)", i);
             continue;
         }

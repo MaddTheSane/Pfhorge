@@ -105,7 +105,7 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenuType) {
 -(NSMutableArray<NSString*> *)getLayerNames;
 -(NSMutableArray<NSString*> *)getPolyNames;
 
--(NSArray<NSString*> *)getLiquidNamesCopy;
+@property (readonly, copy) NSArray<NSString*> *liquidNames;
 -(NSArray<NSString*> *)getRandomSoundNamesCopy;
 -(NSArray<NSString*> *)getAmbientSoundNamesCopy;
 -(NSArray<NSString*> *)getLightNamesCopy;

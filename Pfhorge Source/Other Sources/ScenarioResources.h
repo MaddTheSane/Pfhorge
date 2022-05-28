@@ -24,14 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (void)saveToFile:(NSString *)fileName oldFile:(nullable NSString *)oldFileName;
 
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index;
-- (Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
+- (nullable Resource *)resourceOfType:(NSString *)type index:(ResID)index;
+- (nullable Resource *)resourceOfType:(NSString *)type index:(ResID)index load:(BOOL)load;
 
 - (void)saveResourcesOfType:(NSString *)type to:(NSString *)baseDirPath extention:(NSString *)fileExt progress:(BOOL)showProgress;
 - (void)iterateResourcesOfType:(NSString *)type progress:(BOOL)showProgress block:(void(NS_NOESCAPE ^)(Resource*, NSData*, PhProgress*_Nullable))block;
 
 @property (readonly) NSInteger count;
-- (Resource *)objectAtIndex:(NSInteger)index;
+- (nullable Resource *)objectAtIndex:(NSInteger)index;
 
 - (void)addResource:(Resource *)resource;
 - (void)removeResource:(Resource *)resource;

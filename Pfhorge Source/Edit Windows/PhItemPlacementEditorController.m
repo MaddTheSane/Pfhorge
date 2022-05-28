@@ -94,11 +94,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [theMap removeLevelInfoWinCon:self];
-    
-    [theMonsterNames release];
-    [theItemNames release];
-    
-    [super dealloc];
 }
 
 /*- (void)nibDidLoad

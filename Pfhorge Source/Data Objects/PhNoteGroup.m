@@ -51,8 +51,8 @@
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        noteColor = [[coder decodeObjectOfClass:[NSColor class] forKey:@"noteColor"] retain];
-        notes = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"] retain];
+        noteColor = [coder decodeObjectOfClass:[NSColor class] forKey:@"noteColor"];
+        notes = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"];
         visible = [coder decodeBoolForKey:@"visible"];
     } else {
         /*int versionNum = */decodeNumInt(coder);
@@ -100,11 +100,6 @@
     for (PhAnnotationNote *thisObj in notes) {
         [thisObj setNoteType:nil];
     }
-    
-    [noteColor release];
-    [notes release];
-    
-    [super dealloc];
 }
 
 // ********* Overridden Methods *********

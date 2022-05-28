@@ -87,13 +87,8 @@
 -(void)dealloc
 {
     resources = nil;
-    [pidMap release];
     pidMap = nil;
-    
-    [dpin128ResourceData release];
     dpin128ResourceData = nil;
-    
-    [super dealloc];
 }
 
 
@@ -120,17 +115,13 @@
 
 - (BOOL)exportToMarathonFormatAtPath:(NSString *)fullPath
 {
-    NSData *tempData;
-    
-    tempData = [[self dataOfType:@"org.bungie.source.map" error:NULL] retain];
+    NSData *tempData = [self dataOfType:@"org.bungie.source.map" error:NULL];
 
     [[NSFileManager defaultManager] createFileAtPath:fullPath
                                             contents:tempData
                                           attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
                                                        NSFileHFSTypeCode: @((OSType)'sce2')
                                           }];
-    
-    [tempData release];
     
     return YES;
 }
@@ -171,7 +162,7 @@
         
         //pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData];
         pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData resourceData:dpin128ResourceData];
-        theLevel = [[pidMap getPIDLevel:1] retain];
+        theLevel = [pidMap getPIDLevel:1];
         
         [progress setStatusText:@"Sending PID Level Changed Notification…"];
         [progress increaseProgressBy:5.0];
@@ -250,7 +241,7 @@
         //theLevel = [theMap getLevel:1];
         
         pidMap = [[PathwaysExchange alloc] initWithData:theRawMapData];
-        theLevel = [[pidMap getPIDLevel:1] retain];
+        theLevel = [pidMap getPIDLevel:1];
         
         [theLevel setLevelDocument:self];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
@@ -325,11 +316,10 @@
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:PhLevelDeallocatingNotification
                 object:theLevel];
-            [theLevel release];
         }
         
         // The pidMap object returns a autoreleased LELevel, so need to retain it...
-        theLevel = [[pidMap getPIDLevel:levelNumber] retain];
+        theLevel = [pidMap getPIDLevel:levelNumber];
         [[theLevelDocumentWindowController levelDrawView] setTheLevel:theLevel];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:LELevelChangedNotification object:theLevel];
@@ -414,12 +404,12 @@
     if ([pathPathwaysApp length] > 1)
     {
         // No slash, need to prepend it...
-        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"/Pathways Into Darkness"] retain];
+        pathPathwaysApp = [pathPathwaysApp stringByAppendingPathComponent:@"/Pathways Into Darkness"];
     }
     else
     {
         // root path is a single slash, so don't need to prepend a slash...
-        pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
+        pathPathwaysApp = [pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"];
     }
     
     BOOL exsists = [[NSFileManager defaultManager] fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
@@ -433,13 +423,11 @@
         dpin128ResourceData = [[[fileResources resourceOfType:@"dpin" index:128] data] copy];
         
         // Should be able to just release it now, but just in case..
-        [fileResources autorelease];
         
         NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
     }
     else
     {
-        [pathPathwaysApp release];
         pathPathwaysApp = nil;
         dpin128ResourceData = nil;
         
@@ -484,7 +472,6 @@
     if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
         NSData *retDat = [LEMapData convertLevelToDataObject:theLevel error:outError];
         if (!retDat) {
-            [entireMapData release];
             return nil;
         }
         [entireMapData setData:retDat];
@@ -510,7 +497,7 @@
         cameFromMarathonFormatedFile = NO;
     }
     
-    return [entireMapData autorelease];
+    return [entireMapData copy];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
@@ -520,7 +507,7 @@
     NSLog(@"loadDataRepresentation");
     
     NSLog(@"Loading Pathways Into Darkness Map...");
-    theRawMapData = [data retain];
+    theRawMapData = data;
     theLevel = nil;
     
     cameFromMarathonFormatedFile = YES;

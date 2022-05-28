@@ -69,21 +69,41 @@ static NSString *const PhNameOfObject = @"Name";
     editingWindowController = nil;
     
     if (currentDisplayMode == _display_polys) {
-        SEND_ERROR_MSG(@"Can't Edit Polygons Here (Use General Inspector)");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Can't Edit Polygons Here (Use General Inspector)";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     } else if (currentDisplayMode == _display_layers) {
-        SEND_ERROR_MSG(@"Ability to edit the color of the layer comming soon!");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Ability to edit the color of the layer comming soon!";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     
     if ([self isSomthingSelected]) {
         [[theLevelWindowControllerOutlet document] openEditWindowForObject:[self getSelectedObject]];
     } else {
-        SEND_ERROR_MSG(@"Sorry, but you need to select something first…");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but you need to select something first…";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
     }
 }
 
-- (IBAction)defaultBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet…"); }
+- (IBAction)defaultBtnAction:(id)sender
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
+}
+
 - (IBAction)deleteBtnAction:(id)sender
 {
     if (currentDisplayMode == _display_polys && [self isSomthingSelected]) {
@@ -94,14 +114,23 @@ static NSString *const PhNameOfObject = @"Name";
     
     if ([self isSomthingSelected])
         [[(LEMap *)[theLevelWindowControllerOutlet document] level] deleteObject:[self getSelectedObject]];
-    else
-        SEND_ERROR_MSG(@"Sorry, but you need to select something first…");
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but you need to select something first…";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
+    }
     [self reloadDataFromLevel];
 }
 
 - (IBAction)deleteAllBtnAction:(id)sender
 {
-    SEND_ERROR_MSG(@"The Delete All Command Not Implemented Yet…");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"The Delete All Command Not Implemented Yet…";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
     //[self reloadDataFromLevel];
 }
 
@@ -128,22 +157,51 @@ static NSString *const PhNameOfObject = @"Name";
             [theLevelDataObject addObjectWithDefaults:[PhPlatform class]];
             break;
         case _display_polys:
-            SEND_ERROR_MSG(@"Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             return;
         case _display_layers:
             [theLevelDataObject addObjectWithDefaults:[PhLayer class]];
             break;
         default:
-            SEND_ERROR_MSG(@"Can't Add More Of These Yet…");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Can't Add More Of These Yet…";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             return;
     }
     
     [self reloadDataFromLevel];
 }
 
-- (IBAction)duplicateBtnAction:(id)sender {SEND_ERROR_MSG(@"Command Not Implemented Yet…"); }
-- (IBAction)okBtnAction:(id)sender { SEND_ERROR_MSG(@"Command Not Implemented Yet…");}
-- (IBAction)editingMenuAction:(id)sender { [self setDisplayEditMode:[sender indexOfSelectedItem]];  }
+- (IBAction)duplicateBtnAction:(id)sender
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
+}
+- (IBAction)okBtnAction:(id)sender
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
+}
+- (IBAction)editingMenuAction:(id)sender
+{
+    [self setDisplayEditMode:[sender indexOfSelectedItem]];
+}
 
 // *********************** Overridden Methods ***********************
 #pragma mark -
@@ -170,10 +228,6 @@ static NSString *const PhNameOfObject = @"Name";
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [editingWindowController release];
-    
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -251,7 +305,13 @@ static NSString *const PhNameOfObject = @"Name";
             currentNameArray = [theLevelData getLayerNames];
             break;
         default:
-            SEND_ERROR_MSG(([NSString stringWithFormat:@"Unkown Edit Item Currently Selected, %ld!", (long)currentDisplayMode]));
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = [NSString stringWithFormat:@"Unkown Edit Item Currently Selected, %ld!", (long)currentDisplayMode];
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             currentArray = nil;
             currentNameArray = nil;
             break;
@@ -275,7 +335,7 @@ static NSString *const PhNameOfObject = @"Name";
 
 - (NSString *)selectedName
 {
-    return [[[currentNameArray objectAtIndex:[theTable selectedRow]] copy] autorelease];
+    return [[currentNameArray objectAtIndex:[theTable selectedRow]] copy];
 }
 
 // *********************** Notifcations ***********************

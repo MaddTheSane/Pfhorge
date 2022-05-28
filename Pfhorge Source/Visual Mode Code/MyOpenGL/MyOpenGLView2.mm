@@ -347,7 +347,7 @@ static unsigned short SetColor(short ID, int Indx) {
 
 + (void)initialize;
 {
-    distantPast = [[NSDate distantPast] retain];
+    distantPast = [NSDate distantPast];
 }
 
 - (void)renderScene
@@ -754,8 +754,6 @@ static unsigned short SetColor(short ID, int Indx) {
     // Restore input system settings
     SetMouseScalingEnabled(YES);
     //SetKeyboardRepeatEnabled(YES);
-    
-    [super dealloc];
 }
 
 - (void)timerDraw:(NSTimer *)timer

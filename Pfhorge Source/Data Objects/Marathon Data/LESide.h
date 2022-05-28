@@ -135,7 +135,7 @@ typedef struct side_exclusion_zone
 	//! only valid if side->flags & LESideIsControlPanel
 	short		control_panel_type;
 	short		control_panel_permutation; //platform index, light source index, etc...
-	__kindof LEMapStuffParent	*control_panel_permutation_object;
+    __unsafe_unretained __kindof LEMapStuffParent	*control_panel_permutation_object;
 	
 	int 		permutationEffects;
 	
@@ -144,16 +144,16 @@ typedef struct side_exclusion_zone
 	short		transparent_transfer_mode;
 	
 	short		polygon_index, line_index;
-	LEPolygon	*polygon_object;
-	LELine		*line_object;
+    __unsafe_unretained LEPolygon	*polygon_object;
+    __unsafe_unretained LELine		*line_object;
 	
 	short		primary_lightsource_index;
 	short		secondary_lightsource_index;
 	short		transparent_lightsource_index;
 	
-	PhLight *primary_lightsource_object;
-	PhLight *secondary_lightsource_object;
-	PhLight *transparent_lightsource_object;
+    __unsafe_unretained PhLight *primary_lightsource_object;
+    __unsafe_unretained PhLight *secondary_lightsource_object;
+    __unsafe_unretained PhLight *transparent_lightsource_object;
 	
 	int		ambient_delta;
 }

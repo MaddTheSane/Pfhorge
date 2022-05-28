@@ -32,7 +32,7 @@
 {
     IBOutlet MyOpenGLView *OpenGLViewOGLV;
     
-    LELevelData *levelData;
+    __strong LELevelData *levelData;
 }
 
 - (id)initWithLevelData:(LELevelData *)theLevel;

@@ -99,8 +99,11 @@
     {
         [self setStatusText:@"Can't load, choose shapes location in prefs…"];
         [self closeWindow];
-        SEND_ERROR_MSG_TITLE(@"Could not load textures, please set shapes location in the prefs.",
-                             @"Shapes Not Found");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Shapes Not Found";
+        alert.informativeText = @"Could not load textures, please set shapes location in the prefs.";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
         return;
     }
     

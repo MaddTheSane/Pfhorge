@@ -147,35 +147,6 @@
 
 - (void)dealloc
 {
-    [tagNameMenus release];
-    [platformNameMenus release];
-    [lightNameMenus release];
-    [ambientSoundNameMenus release];
-    [randomSoundNameMenus release];
-    [liquidNameMenus release];
-    
-    [layerNameMenus release];
-    [polyNameMenus release];
-    
-    [terminalNameMenus release];
-    
-    
-    [ambientSoundNames release];
-    [randomSoundNames release];
-    [lightNames release];
-    [platformNames release];
-    [tagNames release];
-    [liquidNames release];
-    
-    [layerNames release];
-    [polyNames release];
-    
-    [levelNameMenus release];
-    [levelNames release];
-    
-    [terminalNames release];
-    
-    [super dealloc];
 }
 
 /*
@@ -439,13 +410,13 @@
 -(NSMutableArray *)getLayerNames { return layerNames; }
 -(NSMutableArray *)getPolyNames { return polyNames; }
 
--(NSArray<NSString*> *)getLiquidNamesCopy { return [[liquidNames copy] autorelease]; }
--(NSArray<NSString*> *)getRandomSoundNamesCopy { return [[randomSoundNames copy] autorelease]; }
--(NSArray<NSString*> *)getAmbientSoundNamesCopy { return [[ambientSoundNames copy] autorelease]; }
--(NSArray<NSString*> *)getLightNamesCopy { return [[lightNames copy] autorelease]; }
--(NSArray<NSString*> *)getPlatformNamesCopy { return [[platformNames copy] autorelease]; }
--(NSArray<NSString*> *)getTagNamesCopy { return [[tagNames copy] autorelease]; }
--(NSArray<NSString*> *)getLayerNamesCopy { return [[layerNames copy] autorelease]; }
--(NSArray<NSString*> *)getPolyNamesCopy { return [[polyNames copy] autorelease]; }
+-(NSArray<NSString*> *)liquidNames { return [liquidNames copy]; }
+-(NSArray<NSString*> *)getRandomSoundNamesCopy { return [randomSoundNames copy]; }
+-(NSArray<NSString*> *)getAmbientSoundNamesCopy { return [ambientSoundNames copy]; }
+-(NSArray<NSString*> *)getLightNamesCopy { return [lightNames copy]; }
+-(NSArray<NSString*> *)getPlatformNamesCopy { return [platformNames copy]; }
+-(NSArray<NSString*> *)getTagNamesCopy { return [tagNames copy]; }
+-(NSArray<NSString*> *)getLayerNamesCopy { return [layerNames copy]; }
+-(NSArray<NSString*> *)getPolyNamesCopy { return [polyNames copy]; }
 
 @end

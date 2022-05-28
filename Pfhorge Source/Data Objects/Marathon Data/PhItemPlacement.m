@@ -29,7 +29,7 @@
 
 + (PhItemPlacement *)itemPlacementObjWithDefaults
 {
-    return [[[PhItemPlacement alloc] init] autorelease];
+    return [[PhItemPlacement alloc] init];
 }
 
 - (id)init
@@ -93,9 +93,6 @@
     [theData appendData:futureData];
     
     NSLog(@"Exporting Item Placement: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
-    
-    [myData release];
-    [futureData release];
     
     if ((int)[index indexOfObjectIdenticalTo:self] != myPosition)
     {

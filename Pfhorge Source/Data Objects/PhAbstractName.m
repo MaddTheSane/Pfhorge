@@ -115,17 +115,11 @@
     return self;
 }
 
--(void)dealloc
-{
-    [myName release];
-    [super dealloc];
-}
-
 @synthesize phName=myName;
 
 -(NSString *)phName
 {
-    return (myName != nil) ? [[myName copy] autorelease] : [@([self index]) stringValue];
+    return (myName != nil) ? [myName copy] : [@([self index]) stringValue];
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingDoIHaveAName

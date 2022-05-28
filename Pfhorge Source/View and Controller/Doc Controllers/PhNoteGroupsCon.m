@@ -28,9 +28,9 @@
         NSLog(@"Awake From Nib Called!!! ---");
     */
     
-    NSButtonCell *toggleSwitch = [[[NSButtonCell alloc] init] autorelease];
+    NSButtonCell *toggleSwitch = [[NSButtonCell alloc] init];
     
-    [toggleSwitch setButtonType:NSSwitchButton];
+    [toggleSwitch setButtonType:NSButtonTypeSwitch];
     [toggleSwitch setEnabled:YES];
     [toggleSwitch setTitle:@""];
     //[toggleSwitch setSelectable:YES];

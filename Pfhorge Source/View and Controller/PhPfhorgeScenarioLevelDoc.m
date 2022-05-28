@@ -72,7 +72,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     }
     
     if (exsists && !isDir) {
-        return [[[NSImage alloc] initWithContentsOfFile:fullImagePath] autorelease];
+        return [[NSImage alloc] initWithContentsOfFile:fullImagePath];
     } else {
         NSLog(@"image not found at: %@", fullImagePath);
         return nil;//[[[NSImage alloc] initWithData:[resource data]] autorelease];
@@ -90,16 +90,12 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent].path;
     
     if (![myFullFilePath isEqualToString:@"/"])
-        myFullFilePath  = [[myFullFilePath stringByAppendingString:@"/"] retain];
-    else
-        [myFullFilePath retain];
+        myFullFilePath  = [myFullFilePath stringByAppendingString:@"/"];
     
     // May want the scenario data boject to get the path dynamicaly from me...
     
     //scenarioData = [[PhScenarioData alloc] initWithProjectDirectory:myFullFilePath];
     scenarioData = nil;
-    
-    [myFullFilePath release];
     
     return self;
 }
@@ -110,8 +106,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     [[NSNotificationCenter defaultCenter]
      postNotificationName:PhScenarioDeallocatingNotification
      object:self];
-    
-    [super dealloc];
 }
 
 - (void)openADocumentFile:(NSString *)fullPath
@@ -192,9 +186,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             exsists = [fileManager fileExistsAtPath:imageDir isDirectory:&isDir];
             
             if (exsists && !isDir) {
-                SEND_ERROR_MSG_TITLE(@"File named 'Image' already exsists in scenario folder, can get images.",
-                                     @"Can Create Images Folder");
-                [maraResources release];
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Can Create Images Folder";
+                alert.informativeText = @"File named 'Image' already exsists in scenario folder, can get images.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 [progress orderOutWin:self];
                 return;
             }
@@ -203,8 +199,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                 BOOL succsessfull = YES;
                 succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
                 if (!succsessfull) {
-                    SEND_ERROR_MSG(@"Could not create images folder");
-                    [maraResources release];
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = @"Generic Error";
+                    alert.informativeText = @"Could not create images folder";
+                    alert.alertStyle = NSAlertStyleCritical;
+                    [alert runModal];
                     [progress orderOutWin:self];
                     return;
                 }
@@ -254,7 +253,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                     NSLog(@"%@", err);
                 }
             }];
-            [maraResources release];
             
             [progress increaseProgressBy:1.0];
             [progress setStatusText:@"Done Converting Level!"];
@@ -301,7 +299,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             NSString *pathPathwaysApp = [fileName stringByDeletingLastPathComponent];
             NSData *dpin128ResourceData = nil;
             
-            pathPathwaysApp = [[pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"] retain];
+            pathPathwaysApp = [pathPathwaysApp stringByAppendingPathComponent:@"Pathways Into Darkness"];
             
             BOOL exsists = [fileManager fileExistsAtPath:pathPathwaysApp isDirectory:&isDir];
             
@@ -313,13 +311,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                 dpin128ResourceData = [[[fileResources resourceOfType:@"dpin" index:128] data] copy];
                 
                 // Should be able to just release it now, but just in case..
-                [fileResources autorelease];
-                [pathPathwaysApp release];
                 pathPathwaysApp = nil;
 
                 NSLog(@"Was Able To Load 'Pathways Into Darkness' dpin 128 resource...");
             } else {
-                [pathPathwaysApp release];
                 pathPathwaysApp = nil;
                 dpin128ResourceData = nil;
                 
@@ -335,7 +330,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             
             // I don't need this any more, PathwaysExchange should have retained
             // it if it needed it keep it...
-            [dpin128ResourceData release];
             
             [progress setStatusText:@"Saving All The Levels…"];
             
@@ -345,7 +339,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
                              
             [progress setStatusText:@"Adding Level Names To Scenario Document…"];
             
-            [scenarioData addLevelNames:levelNames];
+            [self->scenarioData addLevelNames:levelNames];
             
             [progress increaseProgressBy:1.0];
             [progress setStatusText:@"Done Converting Level!"];
@@ -376,7 +370,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 
 - (void)makeWindowControllers
 {
-    theScenarioDocumentWindowController = [[PhScenarioManagerController allocWithZone:[self zone]] init];
+    theScenarioDocumentWindowController = [[PhScenarioManagerController alloc] init];
     [self addWindowController:theScenarioDocumentWindowController];
 }
 
@@ -406,8 +400,13 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         
         [theScenarioDocumentWindowController setupDataSourceForLevelTable];
     }
-    else
-        SEND_ERROR_MSG(@"scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?");
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
+    }
 }
 
 - (BOOL)prepareSavePanel:(NSSavePanel *)savePanel
@@ -421,9 +420,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError * _Nullable *)outError {
-    scenarioData = [[NSKeyedUnarchiver unarchivedObjectOfClass:[PhScenarioData class] fromData:data error:outError] retain];
+    scenarioData = [NSKeyedUnarchiver unarchivedObjectOfClass:[PhScenarioData class] fromData:data error:outError];
 	if (!scenarioData) {
-		scenarioData = [[NSUnarchiver unarchiveObjectWithData:data] retain];
+		scenarioData = [NSUnarchiver unarchiveObjectWithData:data];
 	}
     
     return (scenarioData == nil) ? (NO) : (YES);
@@ -444,20 +443,17 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
     NSMutableData *tempData; //= [[NSMutableData alloc] initWithCapacity:200000];
     
-    LELevelData *theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
-                  [LELevelData class] fromData:
-                  [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL] retain];
+    LELevelData *theLevel =  [NSKeyedUnarchiver unarchivedObjectOfClass:
+                              [LELevelData class] fromData:
+                              [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL];
     
-    tempData = [[LEMapData convertLevelToDataObject:theLevel error:NULL] retain];
+    tempData = [LEMapData convertLevelToDataObject:theLevel error:NULL];
         
     [[NSFileManager defaultManager] createFileAtPath:fullPath
 	  contents:tempData
 	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
 				 NSFileHFSTypeCode: @((OSType)'sce2')
 	}];
-    
-    [tempData release];
-    [theLevel release];
 }
 
 - (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError **)outError
@@ -467,26 +463,22 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     if (!theFileData) {
         return NO;
     }
-    LELevelData *theLevel =  [[NSKeyedUnarchiver unarchivedObjectOfClass:
-                      [LELevelData class] fromData:
-                      [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:outError] retain];
+    LELevelData *theLevel =  [NSKeyedUnarchiver unarchivedObjectOfClass:
+                              [LELevelData class] fromData:
+                              [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:outError];
     
     if (theLevel == nil) {
         return NO;
     }
     
-    NSData *tempData = [[LEMapData convertLevelToDataObject:theLevel error:outError] retain];
+    NSData *tempData = [LEMapData convertLevelToDataObject:theLevel error:outError];
     
     if (tempData == nil) {
-        [theLevel release];
         return NO;
     }
 
     BOOL success = [tempData writeToFile:fullPath options:0 error:outError];
     if (!success) {
-        [tempData release];
-        [theLevel release];
-        
         return NO;
     }
     
@@ -499,9 +491,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         //Just write the error out into the log
         NSLog(@"Unable to set file attributes: %@", tmpErr);
     }
-    
-    [tempData release];
-    [theLevel release];
     
     return YES;
 }
@@ -591,7 +580,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:[manager contentsAtPath:fullResourcePath]];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -608,7 +596,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"jpeg"] || [[fileName pathExtension] isEqualToString:@"jpg"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -625,7 +612,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -642,12 +628,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         }
     }
     
     [maraResources saveToFile:fullPath oldFile:nil];
-    [maraResources release];
 }
 
 - (BOOL)saveMergedMapToPath:(NSString *)fullPath error:(NSError**)outError
@@ -704,7 +688,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:[manager contentsAtPath:fullResourcePath]];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -725,7 +708,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"jpg"] || [[fileName pathExtension] isEqualToString:@"jpeg"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -746,7 +728,6 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
             int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
@@ -767,12 +748,10 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             [theResource setData:pictData];
             [maraResources addResource:theResource];
-            [theResource release];
         }
     }
     
     [maraResources saveToFile:fullPath oldFile:nil];
-    [maraResources release];
 
     return YES;
 }

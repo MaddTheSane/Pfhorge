@@ -66,7 +66,7 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
 {
     short index, facing, polygonIndex, x, y, z, x32, y32;
 	LEMapObjectType type;
-    LEPolygon *polygonObject;
+    __unsafe_unretained LEPolygon *polygonObject;
     LEMapObjectFlags flags;
 }
 

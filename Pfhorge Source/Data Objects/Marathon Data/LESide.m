@@ -55,7 +55,7 @@
 	toRet.textureCollection = cTyp.textureCollection;
 	toRet.textureNumber = cTyp.textureNumber;
 
-	return [toRet autorelease];
+	return toRet;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
@@ -74,7 +74,6 @@
 	if (self = [super init]) {
 		if (!coder.allowsKeyedCoding) {
 			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileWriteUnknownError userInfo:nil]];
-			[self release];
 			return nil;
 		}
 		_x0 = [coder decodeIntForKey:@"x0"];
@@ -217,9 +216,6 @@
     
 
     NSLog(@"Exporting Side: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
-    
-    [myData release];
-    [futureData release];
     
     if ([index indexOfObjectIdenticalTo:self] != myPosition) {
         NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
@@ -530,7 +526,6 @@
 
 -(void)dealloc
 {
-    [super dealloc];
 }
 
 // ****************** Utilites ********************
@@ -1103,7 +1098,13 @@
                 return _panel_wires;
                 break;
             default:
-                SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 1");
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 1";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
+            }
                 return -1;
                 break;
         }
@@ -1115,15 +1116,27 @@
         return control_panel_type - pfhorOffset;
     } else if (control_panel_type < 54 && control_panel_type >= 43) { // jjaro
         return control_panel_type - jjaroOffset;
-    } else if (control_panel_type >= 54) { // to great
-        SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 2");
+    } else if (control_panel_type >= 54) { // too great
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 2";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return -1;
     } else if (control_panel_type < 0) { // too low
-        SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 3");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 3";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return -1;
     }
     
-    SEND_ERROR_MSG(@"Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
     return -1;
 }
 

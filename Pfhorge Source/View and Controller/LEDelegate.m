@@ -174,7 +174,6 @@
         [newItem setTarget:self];
         [newItem setAction:@selector(pluginMenuItemAction:)];
         [thePluginMenu addItem:newItem];
-        [newItem release];
     }
     // activatePluginIndex
 }
@@ -231,8 +230,11 @@
     if (!IsPathDirectory(manager, thePath))
     {
         NSLog(@"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.");
-        SEND_ERROR_MSG_TITLE(@"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.",
-                             @"Script Folder Error");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Script Folder Error";
+        alert.informativeText = @"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
         return;
     }
     
@@ -253,9 +255,7 @@
             newMenu = [[NSMenu alloc] initWithTitle:onlyName];
             
             [newItem setSubmenu:newMenu];
-            [newMenu release];
             [theMenu addItem:newItem];
-            [newItem release];
             
             [self recursiveBuildMenuAtFolder:fullPath usingMenu:newMenu];
         }
@@ -272,15 +272,17 @@
             [newItem setTarget:self];
             [newItem setAction:@selector(scriptMenuItemAction:)];
             [theMenu addItem:newItem];
-            [newItem release];
-            [copyOfFullPath release];
         }
         else
         {
             static BOOL alreadyHadLecture = NO;
-            if (!alreadyHadLecture)
-                SEND_ERROR_MSG_TITLE(@"Unknown file(s) in scripts folder, see console for details.",
-                                     @"Unknown Script File(s)");
+            if (!alreadyHadLecture) {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Unknown Script File(s)";
+                alert.informativeText = @"Unknown file(s) in scripts folder, see console for details.";
+                alert.alertStyle = NSAlertStyleInformational;
+                [alert runModal];
+            }
             
             NSLog(@"Unkown file '%@' in scripts folder at location: '%@'", fileName, fullPath);
             alreadyHadLecture = YES;
@@ -304,19 +306,25 @@
         //NSString *theExScriptPath = [[NSBundle mainBundle] pathForResource:@"Example Script" ofType:@"scpt"];
         BOOL isNewDir = NO;
         
-        SEND_ERROR_MSG_TITLE(@"Script folder does not exist. Please see read me for details about using this. Creating it…",
-                                @"Creating Script Folder");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Creating Script Folder";
+        alert.informativeText = @"Script folder does not exist. Please see read me for details about using this. Creating it…";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
         
         NSLog(@"Script folder does not exsist at: '%@', attempting to create it...", scriptFolder);
         
-            // In the future verifi that the folder where created!!!
+            // In the future verify that the folder where created!!!
         [manager createDirectoryAtPath:scriptFolder withIntermediateDirectories:YES attributes:nil error:NULL];
         //[manager createDirectoryAtPath:[scriptFolder stringByAppendingString:@"/You Can Have Sub-Folders"] attributes:nil];
         
         if (![manager fileExistsAtPath:scriptFolder isDirectory:&isNewDir])
         {
-            SEND_ERROR_MSG_TITLE(@"Could not create script folder, there will be no scripts in script menu. (See Console)",
-                                @"Can't Create Script Folder");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Can't Create Script Folder";
+            alert.informativeText = @"Could not create script folder, there will be no scripts in script menu. (See Console)";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             return;
         }
         
@@ -330,8 +338,11 @@
     else if (!isDir)
     {
         NSLog(@"Sorry, could not use or create script folder, a file is already at: %@", scriptFolder);
-        SEND_ERROR_MSG_TITLE(@"A File Is Already At Script Folder Location, see console for location.",
-                             @"Error Creating Script Folder");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Error Creating Script Folder";
+        alert.informativeText = @"A File Is Already At Script Folder Location, see console for location.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     
@@ -347,7 +358,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"See Read Me For Details On How To Use Scripts"
@@ -355,7 +365,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"   ********* Notes *********"
@@ -363,7 +372,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"Use Compiled Scripts Here Only"
@@ -371,7 +379,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"Files In Scripts Folder Need A '.scpt' Extension"
@@ -379,7 +386,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"You can use folders in the script folder ]:=>"
@@ -387,7 +393,6 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"The example script creates a new map and creates"
@@ -395,14 +400,13 @@
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
+        
         newItem = [[NSMenuItem alloc]
                     initWithTitle:@"   five polygons in the center of the map."
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
-        [newItem release];
         
         return;
     }
@@ -507,8 +511,13 @@
 {
 	LEMapDraw *view = [self getCurrentLevelDrawView];
 	
-	if (view == nil)
-		{ SEND_ERROR_MSG_TITLE(@"Could not find an open map.", @"No Current Map"); }
+	if (view == nil) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.informativeText = @"No Current Map";
+        alert.messageText = @"Could not find an open map.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
+    }
 	
 	return view;
 }
@@ -594,8 +603,6 @@
     
     // at 68 for 4 bytes...
     NSLog(@"Caculated Checksum: %d   -   The Old Checksum: %d   -   The Old Transfer Checksum: %d  -  Supposed To Be Zero: %d", theChecksum, oldCheckSum1, oldCheckSum2, oldCheckSum3);
-    
-    [newData release];
 }
 
 @end

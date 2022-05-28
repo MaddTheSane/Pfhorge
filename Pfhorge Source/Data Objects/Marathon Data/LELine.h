@@ -49,7 +49,7 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @interface LELine : LEMapStuffParent <NSSecureCoding>
 {
     short p1, p2;
-    LEMapPoint *mapPoint1, *mapPoint2;
+    __unsafe_unretained LEMapPoint *mapPoint1, __unsafe_unretained *mapPoint2;
     LELineFlags flags; /*!< no permutation field */
     short _Length;
     short _Angle;
@@ -61,12 +61,12 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
     //short clockwisePolygonSideIndex, counterclockwisePolygonSideIndex;
     /*! the side definition facing the clockwise polygon which references this side,
         and the side definition facing the counterclockwise polygon (can be NONE (-1)) */
-    LESide *clockwisePolygonSideObject, *counterclockwisePolygonSideObject;
+    __unsafe_unretained LESide *clockwisePolygonSideObject, __unsafe_unretained *counterclockwisePolygonSideObject;
     
     /*! a line can be owned by a clockwise polygon, a counterclockwise polygon,
         or both (but never two of the same) (can be NONE) */
     short clockwisePolygonIndex, conterclockwisePolygonIndex;
-    LEPolygon *clockwisePolygon, *conterclockwisePolygon;
+    __unsafe_unretained LEPolygon *clockwisePolygon, __unsafe_unretained *conterclockwisePolygon;
     
     BOOL permanentSolidLine;
     BOOL permanentLandscapeLine;

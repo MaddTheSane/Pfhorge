@@ -37,7 +37,7 @@
     
     LELevelData *mapLevel;
     LEMap	*mapDocument;
-    __kindof LEMapStuffParent	*theObjBeingEdited;
+    __unsafe_unretained __kindof LEMapStuffParent	*theObjBeingEdited;
 }
 
 - (IBAction)renameObjectAction:(id)sender;

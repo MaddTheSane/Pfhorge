@@ -49,8 +49,8 @@
 {
     self = [super initWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        layerColor = [[coder decodeObjectOfClass:[NSColor class] forKey:@"layerColor"] retain];
-        objectsInThisLayer = [[coder decodeObjectOfClasses:[NSSet setWithObjects: [LEMapStuffParent class], [NSMutableArray class], nil] forKey:@"objectsInThisLayer"] retain];
+        layerColor = [coder decodeObjectOfClass:[NSColor class] forKey:@"layerColor"];
+        objectsInThisLayer = [coder decodeObjectOfClasses:[NSSet setWithObjects: [LEMapStuffParent class], [NSMutableArray class], nil] forKey:@"objectsInThisLayer"];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         
@@ -104,10 +104,6 @@
 
 -(void)dealloc
 {
-    [layerColor release];
-    [objectsInThisLayer release];
-    
-    [super dealloc];
 }
 
 // ********* Overridden Methods *********

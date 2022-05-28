@@ -87,7 +87,6 @@
     NSLog(@"Terminal Controller Deallocating...");
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 /*- (void)nibDidLoad
@@ -154,8 +153,11 @@
     } else if ([item isKindOfClass:[Terminal class]]) {
         return [[item theSections] count];
     } else {
-        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
-                             @"Unknown Object");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Unknown Object";
+        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return 0;
     }
 }
@@ -169,8 +171,11 @@
     } else if ([item isKindOfClass:[Terminal class]]) {
         return YES;
     } else {
-        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
-                             @"Unknown Object");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Unknown Object";
+        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return NO;
     }
 }
@@ -182,11 +187,14 @@
     } else if ([item isKindOfClass:[Terminal class]]) {
         return [[item theSections] objectAtIndex:index];
     } else if ([item isKindOfClass:[TerminalSection class]]) {
-        return nil;
+        return @"";
     } else {
-        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data.",
-                             @"Unknown Object");
-        return nil;
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Unknown Object";
+        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
+        return @"";
     }
 }
 
@@ -251,18 +259,18 @@
     NSMutableArray *destArray = [item theSections];
     NSInteger rowNumberForItem = -1;
     
-    [draggedTerminalSection retain];
+    TerminalSection *tmpSect = draggedTerminalSection;
     [[theTerm theSections] removeObject:draggedTerminalSection];
     
-    if (((int)[destArray count]) <= index || NSOutlineViewDropOnItemIndex == index) {
-        [destArray addObject:draggedTerminalSection];
+    if (([destArray count]) <= index || NSOutlineViewDropOnItemIndex == index) {
+        [destArray addObject:tmpSect];
     } else {
-        [destArray insertObject:draggedTerminalSection atIndex:index];
+        [destArray insertObject:tmpSect atIndex:index];
     }
     
     [outlineView reloadData];
     
-    rowNumberForItem = [outlineView rowForItem:draggedTerminalSection];
+    rowNumberForItem = [outlineView rowForItem:tmpSect];
     if (rowNumberForItem > -1) {
         [outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:rowNumberForItem] byExtendingSelection:NO];
     } else {
@@ -307,8 +315,11 @@
         if (theTerm == nil) {
             NSArray *terminals = [theLevel terminals];
             if ([terminals count] <= 0) {
-                SEND_ERROR_MSG(@"Must have a terminal to add sections to first. 103");
-                [theNewSection release];
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Must have a terminal to add sections to first. 103";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 NSLog(@"past release...");
                 return;
             } else {
@@ -338,8 +349,6 @@
     } else {
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     }
-    
-    [theNewSection release];
 }
 
 - (IBAction)addANewTerminalAction:(id)sender
@@ -384,7 +393,6 @@
     else
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     
-    [theNewTerminal release];
     [theLevel recompileTerminalNamesCache];
 }
 
@@ -419,7 +427,11 @@
         [theTeriminalTableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
         [theLevel recompileTerminalNamesCache];
     } else {
-        SEND_ERROR_MSG(@"Selected item is not a Terminal or TerminalSection class???");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Selected item is not a Terminal or TerminalSection class???";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
     }
 }
 
@@ -485,8 +497,11 @@
         [sectionTypesPopM selectItemAtIndex:-1];
         [indexPopM setIntValue:0];
     } else {
-        SEND_ERROR_MSG_TITLE(@"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection",
-                             @"Unknown Object");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Unknown Object";
+        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         theType = PhTerminalSectionTypeNone;
         theText = nil;
         [sectionTypesPopM setEnabled:NO];
@@ -621,7 +636,6 @@
     [theTextAtriString setAttributedString:[[self getTheCurrentTextView] textStorage]];
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
-        [theTextAtriString release];
         return;
     }
     
@@ -671,7 +685,7 @@
 
 - (IBAction)applyPlainStyleAction:(id)sender
 {
-    NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
+    NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]])
@@ -693,7 +707,7 @@
 
 - (IBAction)applyBoldStyleAction:(id)sender
 {
-    NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
+    NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
     NSAttributedString *attrStr = theTextAtriString;
@@ -748,7 +762,6 @@
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
-        [theTextAtriString release];
         return;
     }
     
@@ -759,12 +772,11 @@
     
     [theSelectedObj setText:theTextAtriString];
     [self updateViewToTerminalSection:theSelectedObj];
-    [theTextAtriString release];
 }
 
 - (IBAction)applyItalicStyleAction:(id)sender
 {
-    NSMutableAttributedString *theTextAtriString = [[[NSMutableAttributedString alloc] initWithString:@""] autorelease];
+    NSMutableAttributedString *theTextAtriString = [[NSMutableAttributedString alloc] initWithString:@""];
     id theSelectedObj = [theTeriminalTableView itemAtRow:[theTeriminalTableView selectedRow]];
     
     NSAttributedString *attrStr = theTextAtriString;
@@ -833,7 +845,6 @@
     
     
     if (![theSelectedObj isKindOfClass:[TerminalSection class]]) {
-        [theTextAtriString release];
         return;
     }
     

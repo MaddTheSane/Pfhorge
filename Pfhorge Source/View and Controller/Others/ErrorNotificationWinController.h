@@ -25,17 +25,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+DEPRECATED_ATTRIBUTE
 @interface ErrorNotificationWinController : NSWindowController
 {
-    IBOutlet id genericErrorWindow;
-    IBOutlet id genericErrorWindowIcon;
-    IBOutlet id msgMain;
-    IBOutlet id msgTitle;
-    IBOutlet id okButton;
+    IBOutlet NSPanel *genericErrorWindow;
+    IBOutlet NSImageView *genericErrorWindowIcon;
+    IBOutlet NSTextField *msgMain;
+    IBOutlet NSTextField *msgTitle;
+    IBOutlet NSButton *okButton;
 }
 
 // *********************** Class Methods ***********************
-+ (id)sharedErrorController;
++ (ErrorNotificationWinController*)sharedErrorController;
 
 // *********************** Other Methods ***********************
 

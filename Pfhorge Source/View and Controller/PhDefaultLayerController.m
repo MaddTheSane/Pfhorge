@@ -75,7 +75,6 @@
         [theRecords addObject:ARecord];
         
         appDefaults = [NSDictionary dictionaryWithObject:theRecords forKey:PhDefaultLayers];
-        [theRecords release];
         
         [defaults registerDefaults:appDefaults];
     });
@@ -91,7 +90,6 @@
 {
     if (records != nil)
     {
-        [records release];
         records = nil;
     }
     records = [[NSMutableArray alloc] init];
@@ -126,7 +124,11 @@
             tempObject = [records objectAtIndex:index]; // No modification, no problem
             [tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
         } else {
-            SEND_ERROR_MSG(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
     
@@ -199,7 +201,11 @@
         }
         else
         {
-            SEND_ERROR_MSG(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
     [tableView reloadData];
@@ -227,7 +233,11 @@
             //[tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
             [tempObject setObject:theName forKey:PhDefaultLayer_Name];
         } else {
-            SEND_ERROR_MSG(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
     [tableView reloadData];

@@ -21,7 +21,7 @@
         <window title="An Error Ocurred :(" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="10" userLabel="Generic Error Window" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="70" y="553" width="420" height="131"/>
+            <rect key="contentRect" x="70" y="553" width="420" height="116"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <view key="contentView" id="7">
                 <rect key="frame" x="0.0" y="0.0" width="420" height="116"/>

@@ -588,9 +588,6 @@
         flags |= LELineSolid;
         flags &= ~LELineTransparent;
     }*/
-    
-    
-    [path release];
 }
 
 /*

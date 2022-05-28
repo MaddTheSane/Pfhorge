@@ -22,7 +22,6 @@
 - (void)dealloc
 {
     //[[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -35,7 +34,7 @@
     static ErrorNotificationWinController *sharedErrorController = nil;
 
     if (!sharedErrorController) {
-        sharedErrorController = [[ErrorNotificationWinController allocWithZone:[self zone]] init];
+        sharedErrorController = [[ErrorNotificationWinController alloc] init];
     }
 
     return sharedErrorController;

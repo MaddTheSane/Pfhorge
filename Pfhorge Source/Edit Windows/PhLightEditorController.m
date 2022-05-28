@@ -88,7 +88,6 @@
     NSLog(@"PhLightEditorController dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //[mapLevel updateCounts];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -238,16 +237,22 @@
 	if ([theLightPhases[PhLightStatePrimaryActive][0] intValue]  == 0
 	 && [theLightPhases[PhLightStateSecondaryActive][0] intValue]  == 0)
 	{
-		SEND_ERROR_MSG_TITLE(@"The primary and secondary active periods are both zero, the light was not saved.",
-							 @"Problem");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Problem";
+        alert.informativeText = @"The primary and secondary active periods are both zero, the light was not saved.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
 		return NO;
 	}
 	
 	if ([theLightPhases[PhLightStatePrimaryInactive][0] intValue] == 0
 	 && [theLightPhases[PhLightStateSecondaryInactive][0] intValue]  == 0)
 	{
-		SEND_ERROR_MSG_TITLE(@"The primary and secondary inactive periods are both zero, the light was not saved.",
-							 @"Problem");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Problem";
+        alert.informativeText = @"The primary and secondary inactive periods are both zero, the light was not saved.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
 		return NO;
 	}
 		

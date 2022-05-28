@@ -72,7 +72,6 @@
 {
     curPoly = nil;
     [[self window] saveFrameUsingName:@"Inspector3"];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -337,8 +336,11 @@
         case _polygon_is_light_on_trigger:
             if ([[theLevelData lights] count] < 1)
             {
-                SEND_ERROR_MSG_TITLE(@"Sorry, but there are no lights to choose for this level.",
-                                     @"Can't Change Type");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Can't Change Type";
+                alert.informativeText = @"Sorry, but there are no lights to choose for this level.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 [self updateInterface];
                 return;
             }
@@ -350,8 +352,11 @@
         case _polygon_is_teleporter:
             if ([[theLevelData namedPolyObjects] count] < 1)
             {
-                SEND_ERROR_MSG_TITLE(@"Sorry, but there are no named polygons to choose for this level.",
-                                     @"Can't Change Type");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Can't Change Type";
+                alert.informativeText = @"Sorry, but there are no named polygons to choose for this level.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 [self updateInterface];
                 return;
             }

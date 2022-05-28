@@ -154,7 +154,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 {
     tmpNote = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 /*- (void)windowDidLoad
@@ -201,7 +200,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
             [newItem setTarget:nil];
             [newItem setAction:nil];
             [[mapLevelList menu] addItem:newItem];
-            [newItem release];
     }
     
     //[mapLevelList addItemsWithTitles:[[self document] levelNames]];
@@ -410,7 +408,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     {
         NSLog(@"The level name was nil, setting it 'Untitled'");
         theLevelNameTmp = @"Untitled";
-        [theLevelNameTmp retain];
     }
     
     [levelName setStringValue:theLevelNameTmp];
@@ -1149,7 +1146,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
         }
     }
     [levelStatusBar setStringValue:levelInfoString];
-    [levelInfoString release];
 }
 
 - (void)setUplevelDrawView

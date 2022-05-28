@@ -82,7 +82,6 @@
 	if (self = [super init]) {
 		if (!coder.allowsKeyedCoding) {
 			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
-			[self release];
 			return nil;
 		}
 		function = [coder decodeIntForKey:@"function"];
@@ -167,9 +166,6 @@
     
     NSLog(@"Exporting Light: %d  -- Position: %lu --- myData: %lu", [self index], (unsigned long)[index indexOfObjectIdenticalTo:self], (unsigned long)[myData length]);
     
-    [myData release];
-    [futureData release];
-    
     if ([index indexOfObjectIdenticalTo:self] != myPosition) {
 		NSLog(@"BIG EXPORT ERROR: line %d was not at the end of the index... myPosition = %ld", [self index], (long)myPosition);
         //return -1;
@@ -197,8 +193,9 @@
         ImportInt(light_states[i].intensity);
         ImportInt(light_states[i].delta_intensity);
     }
-    
-    ImportTag(tagObject);
+    PhTag *tempTag;
+    ImportTag(tempTag);
+    tagObject = tempTag;
     
     [super superClassImportWithIndex:index withData:myData useOrginals:useOrg];
 }
@@ -217,7 +214,7 @@
         
         NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:6];
         for (i = 0; i < 6; i++) {
-            [tmp addObject:[[[PhLightingFunctionSpecificationObject alloc] initWithCStruct:light_states[i]] autorelease]];
+            [tmp addObject:[[PhLightingFunctionSpecificationObject alloc] initWithCStruct:light_states[i]]];
         }
         [coder encodeObject:tmp forKey:@"light_states"];
         

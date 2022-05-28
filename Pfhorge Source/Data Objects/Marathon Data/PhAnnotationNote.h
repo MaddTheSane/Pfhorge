@@ -46,7 +46,7 @@
 	NSPoint	location;
 	//! only displayed if this polygon is in the automap
 	//short	polygon_index;
-	LEPolygon *polygon_object;
+	__unsafe_unretained LEPolygon *polygon_object;
 
 	NSString	*text;
         

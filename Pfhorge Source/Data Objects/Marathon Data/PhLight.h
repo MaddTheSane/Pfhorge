@@ -102,7 +102,7 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags) {
 	struct lighting_function_specification light_states[PhLightStateTotalCount];
         
 	short tag;
-	PhTag *tagObject;
+	__unsafe_unretained PhTag *tagObject;
 }
 
 

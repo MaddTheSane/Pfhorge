@@ -51,7 +51,7 @@
     if (self == nil)
         return nil;
     
-    levelData = [theLevel retain];
+    levelData = theLevel;
     
     return self;
 }
@@ -66,10 +66,7 @@
 {
     ///[[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [levelData release];
     levelData = nil;
-    
-    [super dealloc];
 }
 
 - (void)windowDidLoad

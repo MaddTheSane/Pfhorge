@@ -522,7 +522,17 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //[[PhColorListController sharedColorListController] performClose:self];
     } else {
         [self updateRectCacheIn:[self bounds]];
-        SEND_ERROR_MSG(@"Was not _drawNormal but it was a the same time? LOGIC ERROR");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Was not _drawNormal but it was a the same time? LOGIC ERROR";
+        alert.alertStyle = NSAlertStyleCritical;
+        if (self.window) {
+            [alert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+                //Do nothing
+            }];
+        } else {
+            [alert runModal];
+        }
     }
     //[self setNeedsDisplay:YES];
     
@@ -579,8 +589,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     if ([numberList containsObject:copyOfNumber]) {
-        SEND_ERROR_MSG_TITLE(@"A Height With That Number Already Exsists",
-                             @"Already Exsists");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Already Exsists";
+        alert.informativeText = @"A Height With That Number Already Exsists";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     
@@ -732,7 +745,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         [tmpBP stroke];
     }
     if (![tmpBP2 isEmpty]) {
-        [[NSColor colorWithCalibratedRed:0.0 green:0.85 blue:0.85 alpha:1.0] set];
+        activateArchColor(PhLineConnectsPolysColor);
         [tmpBP2 stroke];
     }
     
@@ -1431,7 +1444,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         if (curDrawingMap == nil)
         {
-            SEND_ERROR_MSG(@"ERROR: no key value for height!!! 101");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"ERROR: no key value for height!!! 101";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             return NO;
         }
         
@@ -1690,7 +1707,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
                     theNumber = [NSNumber numberWithShort:[thisPolygon floorHeight]];
                     break;
                 default:
-                    SEND_ERROR_MSG(@"Unkown list query mode, #103.");
+                {
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = @"Generic Error";
+                    alert.informativeText = @"Unkown list query mode, #103.";
+                    alert.alertStyle = NSAlertStyleCritical;
+                    [alert runModal];
+                }
                     [self setDrawModeToNormal:self];
                     return NO;
                     break;
@@ -1715,7 +1738,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
         switch (heightMode) {
             case LEMapDrawingModeCeilingHeight:
             case LEMapDrawingModeFloorHeight:
-                SEND_ERROR_MSG(@"Sorry, but an error occured puting together the list, #101.");
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Sorry, but an error occured puting together the list, #101.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
+            }
                 [self setDrawModeToNormal:self];
                 return NO;
             case LEMapDrawingModeLiquids:
@@ -1737,7 +1766,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 theArray = theLevelLayerArray;
                 break;
             default:
-                SEND_ERROR_MSG(@"Unkown list query mode, #102.");
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Unkown list query mode, #102.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
+            }
                 [self setDrawModeToNormal:self];
                 return NO;
         } // end switch (heightMode)
@@ -1779,7 +1814,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 thisObj = [theLevelLayerArray objectAtIndex:[theNumber integerValue]];
                 break;
             default:
-                SEND_ERROR_MSG(@"Unkown list query mode, #105.");
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Unkown list query mode, #105.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
+            }
                 [self setDrawModeToNormal:self];
                 return NO;
                 break;
@@ -1787,7 +1828,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         if (thisObj == nil) {
             // thisObj should not be nil at this point, ERROR
-            SEND_ERROR_MSG(@"When geting objects from the list, one of them was nil!");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"When geting objects from the list, one of them was nil!";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             [self setDrawModeToNormal:self];
             return NO;
         }
@@ -1797,7 +1842,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         if ([tmpObjsList indexOfObjectIdenticalTo:thisObj] == NSNotFound) {
             [tmpObjsList addObject:thisObj];
         } else { // there should be no duplicates, ERROR
-            SEND_ERROR_MSG(@"When geting objects from the list, there was a duplicate!");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"When geting objects from the list, there was a duplicate!";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             [self setDrawModeToNormal:self];
             return NO;
         }
@@ -1828,7 +1877,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         
                         break;
                     default:
-                        SEND_ERROR_MSG(@"Unkown list query mode, #104.");
+                    {
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        alert.messageText = @"Generic Error";
+                        alert.informativeText = @"Unkown list query mode, #104.";
+                        alert.alertStyle = NSAlertStyleCritical;
+                        [alert runModal];
+                    }
                         [self setDrawModeToNormal:self];
                         return NO;
                         break;
@@ -2092,7 +2147,13 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         cSoundM = YES;
                         break;
                     default:
-                        SEND_ERROR_MSG(@"ERROR: unkown object type in selections!");
+                    {
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        alert.messageText = @"Generic Error";
+                        alert.informativeText = @"ERROR: unkown object type in selections!";
+                        alert.alertStyle = NSAlertStyleCritical;
+                        [alert runModal];
+                    }
                         break;
                 }
             }
@@ -2129,7 +2190,14 @@ typedef NS_ENUM(short, LEEDrawMode) {
                         cSoundM = YES;
                         break;
                     default:
-                        SEND_ERROR_MSG(@"ERROR: unkown object type in affectedBySelections!");
+                    {
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        alert.messageText = @"Generic Error";
+                        alert.informativeText = @"ERROR: unkown object type in affectedBySelections!";
+                        alert.alertStyle = NSAlertStyleCritical;
+                        [alert runModal];
+                    }
+
                         break;
                 }
             }
@@ -2295,8 +2363,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 
                 if (selectedNumber == nil && optionDown) {
                     NSLog(@"Tried to get number information to set color table with, but selectedNumber was nil?");
-                    SEND_ERROR_MSG_TITLE(@"Tried to get number information to set color table with, but selectedNumber was nil?",
-                                         @"Color Table Option Feature Error");
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = @"Color Table Option Feature Error";
+                    alert.informativeText = @"Tried to get number information to set color table with, but selectedNumber was nil?";
+                    alert.alertStyle = NSAlertStyleCritical;
+                    [alert runModal];
                 } else if (optionDown) {
                     [theColorListController setSelectionToNumber:selectedNumber];
                 } else {
@@ -2531,8 +2602,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // - (NSSet *)getSelectionsOfType:(int)theSelectionsWanted LEMapDrawSelectionCountOfTypes
     
-    int i = 0;
-    
     for (LEMapDrawSelectionType i = 0; i < LEMapDrawSelectionCountOfTypes; i++) {
         NSSet *theOrgSet = [self getSelectionsOfType:i];
         NSMutableSet *theCpySet = nil;
@@ -2547,7 +2616,14 @@ typedef NS_ENUM(short, LEEDrawMode) {
             case LEMapDrawSelectionAffectedBySelections:   theCpySet = affectedBySelectionsCpy; break;
             case LEMapDrawSelectionIncludeInBounds:        theCpySet = includeInBoundsCpy; break;
             default:
-                SEND_ERROR_MSG(@"Selection Undo In Unknown State... Do Not Use Undo!\n\nDetails: Unknown Selection Type At End Of MoustDownNormal:(NSEvent *)event...");
+            {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"Selection Undo In Unknown State... Do Not Use Undo!\n\nDetails: Unknown Selection Type At End Of MoustDownNormal:(NSEvent *)event...";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
+
+            }
                 continue; // continue for loop...
         }
         
@@ -3454,8 +3530,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
         //{
             if ([curObj LEhitTest:mouseLoc]) {
-                SEND_ERROR_MSG_TITLE(@"Already a polygon there (if this is wrong, sorry, will be more acurate in future)...",
-                                     @"Polygon Filling Error");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Polygon Filling Error";
+                alert.informativeText = @"Already a polygon there (if this is wrong, sorry, will be more acurate in future)...";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 return NO;
             }
         //}
@@ -3477,7 +3556,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
             keepPolyFinding = NO;
             foundTheLine = NO;
             indexOfLineFound = -1;
-            SEND_ERROR_MSG(@"Did not find a leftmost line.");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Did not find a leftmost line.";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             return NO;
         }
         for (LELine *thisMapLine in thePossibleLeftMostLines) {
@@ -3500,7 +3583,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     //NSLog(@"Got Thought With Line Finding...");
     // If the line was not found, return NO...
     if (!foundTheLine && currentLine == nil) {
-        SEND_ERROR_MSG(@"Could not fill polygon, could not find the leftmost line.");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Could not fill polygon, could not find the leftmost line.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return NO;
     }
     NSLog(@"Found the line index: %lu", (unsigned long)[theLines indexOfObjectIdenticalTo:currentLine]);
@@ -3555,7 +3642,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         theConnectedLines = [currentLineMainPoint getLinesAttachedToMe];
         
         if ([theConnectedLines count] < 2) {
-            SEND_ERROR_MSG(@"When I was following the line around (clockwise) I found a line with no other line connecting from it (dead end).");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"When I was following the line around (clockwise) I found a line with no other line connecting from it (dead end).";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
             return NO;
         } else {
             //NSLog(@"Found connected lines, processesing them now...");
@@ -3693,7 +3784,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
             NSLog(@"FINNAL Lowest Line Index: %ld  With Angle Of: %g", (long)smallestLineIndex, smallestAngle);
             
             if (smallestLineIndex < 0 || smallestLine == nil) { // Proably -1, means it did not find a line that passed all the tests...
-                SEND_ERROR_MSG(@"One of the lines was not concave.");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Generic Error";
+                alert.informativeText = @"One of the lines was not concave.";
+                alert.alertStyle = NSAlertStyleCritical;
+                [alert runModal];
                 return NO;
             }
             
@@ -3702,7 +3797,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 // as the first line that was found...
                 //NSLog(@"Second Phase Almost Complete...");
                 if (smallestLine != [theNewPolyLines objectAtIndex:0]) {
-                    SEND_ERROR_MSG(@"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!");
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    alert.messageText = @"Generic Error";
+                    alert.informativeText = @"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!";
+                    alert.alertStyle = NSAlertStyleCritical;
+                    [alert runModal];
                     return NO;
                 }
                 
@@ -3715,7 +3814,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 if ([theNewPolyVectors objectAtIndex:0] == nextMainPoint) {
                     // Will there be more then 8 vectors/lines in this poly?
                     if ([theNewPolyVectors count] > 8) {
-                        SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        alert.messageText = @"Generic Error";
+                        alert.informativeText = @"More then 8 vertices when trying to fill polygon!";
+                        alert.alertStyle = NSAlertStyleCritical;
+                        [alert runModal];
                         return NO;
                     }
                     
@@ -3733,7 +3836,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 } else { // Polygon Not Yet Completed...
                     // Will there be more then 8 vectors/lines in this poly?
                     if ([theNewPolyVectors count] > 7) {
-                        SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        alert.messageText = @"Generic Error";
+                        alert.informativeText = @"More then 8 vertices when trying to fill polygon!";
+                        alert.alertStyle = NSAlertStyleCritical;
+                        [alert runModal];
                         return NO;
                     }
                     
@@ -3807,7 +3914,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     NSLog(@"the new polygon hit test ok!");
     // Add the new polygon to the level...
     if (theNewPolygon == nil) {
-        SEND_ERROR_MSG(@"theNewPolygon was nil, ERROR");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"theNewPolygon was nil, ERROR";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return NO;
     } else {
         //*rectPolys, *rectLines, *rectPoints, *rectObjects;
@@ -4173,7 +4284,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         
         return YES;
     } else {
-        SEND_ERROR_MSG(@"Sorry, but you need to have a polygon where you click.");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but you need to have a polygon where you click.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return NO;
     }
 }
@@ -4230,7 +4345,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         LEPolygon *poly = nil;
         
         while ((theMapObj = [objsCopy anyObject])) {
-            theMapObj = [objsCopy anyObject];
+//            theMapObj = [objsCopy anyObject];
             thePoint = [theMapObj as32Point];
             poly = [self findPolygonAtPoint:thePoint];
             [theMapObj setPolygonObject:poly];
@@ -4257,8 +4372,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         }
         
         if (polyWasNotFoundForAtLeastOneObject) {
-            SEND_ERROR_MSG_TITLE(@"Selected map object is not in a polygon: if you do not fix this, the object it is in danger of being deleted!",
-                @"Map Object Error");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Map Object Error";
+            alert.informativeText = @"Selected map object is not in a polygon: if you do not fix this, the object it is in danger of being deleted!";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
 }
@@ -4286,7 +4404,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         LEPolygon *poly = nil;
         
         while ((theNote = [objsCopy anyObject])) {
-            theNote = [objsCopy anyObject];
+//            theNote = [objsCopy anyObject];
             // could be: [theNote locationAdjusted]
             thePoint = [theNote locationAdjusted];
             poly = [self findPolygonAtPoint:thePoint];
@@ -4314,8 +4432,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
         }
         
         if (polyWasNotFoundForAtLeastOneObject) {
-            SEND_ERROR_MSG_TITLE(@"Selected annotation note is not in a polygon: if you do not fix this, the object it is in danger of being deleted!",
-                @"Map Object Error");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Map Object Error";
+            alert.informativeText = @"Selected annotation note is not in a polygon: if you do not fix this, the object it is in danger of being deleted!";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
 }
@@ -5228,7 +5349,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
     } else {
         [self updateTheSelections];
         [self setNeedsDisplay:YES];
-        SEND_ERROR_MSG(@"Tried To Select An Object Of Unknown Class...");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Tried To Select An Object Of Unknown Class…";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     
@@ -5739,7 +5864,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [winController renamePolyWithSheet:thisPolygon];
         }
     } else {
-        SEND_ERROR_MSG(@"Sorry, but you need to select a polygon first");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but you need to select a polygon first";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
     }
 }
 

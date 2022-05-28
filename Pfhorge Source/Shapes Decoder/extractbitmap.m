@@ -96,6 +96,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	
 	theTextures = [[NSMutableArray alloc] initWithCapacity:MAX(30, theBitmapCount)];
 	
+	__strong NSError *tmpError;
 	@autoreleasepool {
 	for (i = 0; i < theBitmapCount; i++) {
 		NSImage *theImage = [[NSImage alloc] initWithSize:NSMakeSize(32.0, 32.0)];
@@ -104,7 +105,8 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 		NSBitmapImageRep *rep = getRawImageBits(theCollection, theColorTable, i, &tmpErr);
 		if (!rep) {
 			if (outError) {
-				*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportReturnedNilImageRep userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not create image for bitmap (possible end-of-file?)", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSUnderlyingErrorKey: tmpErr}]}];
+				tmpError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportReturnedNilImageRep userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not create image for bitmap (possible end-of-file?)", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSUnderlyingErrorKey: tmpErr}]}];
+				*outError = tmpError;
 			}
 			
 			UnloadCollection(theCollection);

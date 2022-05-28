@@ -208,5 +208,5 @@ static uint32 calculate_file_crc(
 	// Restore the file position
 	//set_fpos(refnum, initial_position);
 
-	return (crc ^= 0xFFFFFFFFL);
+	return (crc ^ 0xFFFFFFFFL);
 }

@@ -44,26 +44,26 @@
     // These arrays are owned by the LELevelData object
     // that this object is a part of...
     
-    NSArray<LEMapPoint*> *theMapPointsST;
-    NSArray<LELine*> *theMapLinesST;
-    NSArray<LEMapObject*> *theMapObjectsST;
-    NSArray<LEPolygon*> *theMapPolysST;
-    NSArray<LESide*> *theMapSidesST;
-    NSArray<PhPlatform*> *theMapPlatformsST;
-    NSArray<PhAnnotationNote*> *theAnnotationsST;
-    NSArray<PhMedia*> *theMediaST;
-    NSArray<PhAmbientSound*> *theAmbientSoundsST;
-    NSArray<PhRandomSound*> *theRandomSoundsST;
-    NSArray<PhItemPlacement*> *theMapItemPlacmentST;
-    NSArray<PhLight*> *theMapLightsST;
-    NSArray<PhNoteGroup*> *theNoteTypesST;
+    __unsafe_unretained NSArray<LEMapPoint*> *theMapPointsST;
+    __unsafe_unretained NSArray<LELine*> *theMapLinesST;
+    __unsafe_unretained NSArray<LEMapObject*> *theMapObjectsST;
+    __unsafe_unretained NSArray<LEPolygon*> *theMapPolysST;
+    __unsafe_unretained NSArray<LESide*> *theMapSidesST;
+    __unsafe_unretained NSArray<PhPlatform*> *theMapPlatformsST;
+    __unsafe_unretained NSArray<PhAnnotationNote*> *theAnnotationsST;
+    __unsafe_unretained NSArray<PhMedia*> *theMediaST;
+    __unsafe_unretained NSArray<PhAmbientSound*> *theAmbientSoundsST;
+    __unsafe_unretained NSArray<PhRandomSound*> *theRandomSoundsST;
+    __unsafe_unretained NSArray<PhItemPlacement*> *theMapItemPlacmentST;
+    __unsafe_unretained NSArray<PhLight*> *theMapLightsST;
+    __unsafe_unretained NSArray<PhNoteGroup*> *theNoteTypesST;
     
     NSArray<PhLayer*> *theLayersST;
-    NSArray<PhTag*> *theLevelTagObjectsST;
+    __unsafe_unretained NSArray<PhTag*> *theLevelTagObjectsST;
     
-    NSArray<Terminal*> *theTerminalsST;
+    __unsafe_unretained NSArray<Terminal*> *theTerminalsST;
     
-    LELevelData	*theLELevelDataST;
+    __unsafe_unretained LELevelData	*theLELevelDataST;
                         
     BOOL everythingLoadedST;
     
@@ -71,7 +71,7 @@
     NSUInteger fourBytesCount;
     NSUInteger eightBytesCount;
     
-    NSUndoManager *myUndoManager;
+    __unsafe_unretained NSUndoManager *myUndoManager;
 }
 
 - (void)displayInfo;

@@ -70,7 +70,6 @@
 - (void)dealloc
 {
     [[self window] saveFrameUsingName:@"Inspector2"];
-    [super dealloc];
 }
 
 - (void)windowDidLoad
@@ -487,7 +486,13 @@
             //[ccSide  setControlPanelType:([sender indexOfSelectedItem] + pfhorOffset)];
             break;
         default:
-            SEND_ERROR_MSG(@"ERROR: An unknown contol panel type Attempted to be selected...");
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"ERROR: An unknown contol panel type Attempted to be selected...";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
+        }
             break;
     }
     

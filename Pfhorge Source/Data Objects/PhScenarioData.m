@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (coder.allowsKeyedCoding) {
-        levelFileNames = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"] retain];
+        levelFileNames = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         
@@ -95,16 +95,9 @@
 
 -(void)dealloc
 {
-    [levelFileNames release];
     levelFileNames = nil;
-    
-    [pictFileNames release];
     pictFileNames = nil;
-    
-    [projectDir release];
     projectDir = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark -
@@ -122,7 +115,6 @@
 
 -(void)setProjectDirectory:(NSString *)theProjectDir
 {
-	[projectDir autorelease];
 	projectDir = [theProjectDir copy];
 	[self scanProjectDirectory];
 }
@@ -144,7 +136,7 @@
     
     NSLog(@"scanProjectDirectory");
     
-    for (NSString *fileName in [[levelFileNames copy] autorelease]) {
+    for (NSString *fileName in [levelFileNames copy]) {
         BOOL isDir = YES;
         NSString *fullPath = [projectDir stringByAppendingPathComponent:[fileName stringByAppendingPathExtension:@"pfhlev"]];
         BOOL exsists = [manager fileExistsAtPath:fullPath isDirectory:&isDir];
@@ -173,8 +165,11 @@
         } else if (![[fileName pathExtension] isEqualToString:@"sen"] && ![firstChar isEqualToString:@"."]) {
             static BOOL alreadyHadLecture2 = NO;
             if (!alreadyHadLecture2) {
-                SEND_ERROR_MSG_TITLE(@"Unknown File(s) in Scenario Directory.",
-                                     @"Unknown Files(s)");
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = @"Unknown Files(s)";
+                alert.informativeText = @"Unknown File(s) in Scenario Directory.";
+                alert.alertStyle = NSAlertStyleInformational;
+                [alert runModal];
             }
             
             NSLog(@"Unkown file '%@' in scenario directory: '%@'", fileName, projectDir);
@@ -257,7 +252,11 @@ shouldEditTableColumn:(NSTableColumn *)col
               row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
-    SEND_ERROR_MSG(@"Level List Table (Senerio) Attempted To Set Object.");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Level List Table (Senerio) Attempted To Set Object.";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
     return;
 }
 
@@ -328,13 +327,13 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
     NSMutableArray *destArray = levelFileNames;
     NSInteger rowNumberForItem = -1;
     
-    [draggedLevel retain];
-    [destArray removeObject:draggedLevel];
+    __strong NSString *drag2 = draggedLevel;
+    [destArray removeObject:drag2];
     
     if ([destArray count] <= row || NSOutlineViewDropOnItemIndex == row) {
-        [destArray addObject:draggedLevel];
+        [destArray addObject:drag2];
     } else {
-        [destArray insertObject:draggedLevel atIndex:row];
+        [destArray insertObject:drag2 atIndex:row];
     }
     
     [tableView reloadData];
@@ -345,8 +344,6 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
     } else {
         [tableView selectRowIndexes:[NSIndexSet indexSet] byExtendingSelection:NO];
     }
-    
-    [draggedLevel release];
     
     //[theTeriminalTableView selectItems:[NSArray arrayWithObjects:draggedTerminalSection, nil] byExtendingSelection: NO];
     

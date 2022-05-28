@@ -73,7 +73,6 @@
     NSLog(@"InfoCommanderWindow dealloc");
     [mapDocument removeLevelInfoWinCon:self];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (BOOL)windowShouldClose:(NSWindow *)sender
@@ -121,8 +120,12 @@
 
 - (void)setupTitlesAndNames
 {
-    SEND_ERROR_MSG(@"Sorry, but the name will not be updated on the window\n"
-                   "[it was applied though, I think ]:=) ]…");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Sorry, but the name will not be updated on the window\n"
+    "[it was applied though, I think ]:=) ]…";
+    alert.alertStyle = NSAlertStyleInformational;
+    [alert runModal];
     return;
 }
 

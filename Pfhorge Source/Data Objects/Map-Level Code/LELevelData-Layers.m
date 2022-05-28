@@ -153,8 +153,13 @@
         [self setLayerModeTo:[layersInLevel objectAtIndex:(layerIndexNumber - 1)]];
     else if (layerIndexNumber == 0)
         [self setLayerModeTo:nil];
-    else
-        SEND_ERROR_MSG(@"Pfhorge atempted to set the layer index mode lower then zero, ERROR! Layer will not be changed, sorry, please try reloading the level then changing it after that.");
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Pfhorge atempted to set the layer index mode lower then zero, ERROR! Layer will not be changed, sorry, please try reloading the level then changing it after that.";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
+    }
 }
 
 -(void)setCurrentLayerToLastLayer
@@ -169,7 +174,11 @@
     
     if (![layersInLevel containsObject:theLayer] && theLayer != nil)
     {
-        SEND_ERROR_MSG(@"Sorry, but requested layer was not found in level data object!");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but requested layer was not found in level data object!";
+        alert.alertStyle = NSAlertStyleCritical;
+        [alert runModal];
         return;
     }
     

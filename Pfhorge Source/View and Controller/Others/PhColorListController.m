@@ -77,7 +77,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 /*
@@ -134,7 +133,7 @@
     static PhColorListController *sharedColorListController = nil;
     
     if (!sharedColorListController) {
-        sharedColorListController = [[PhColorListController allocWithZone:[self zone]] init];
+        sharedColorListController = [[PhColorListController alloc] init];
     }
     
     return sharedColorListController;
@@ -229,7 +228,7 @@
     if ([self getSelection] < 0) {
         return nil;
     } else {
-        return [[[numbers objectAtIndex:[self getSelection]] copy] autorelease];
+        return [[numbers objectAtIndex:[self getSelection]] copy];
     }
 }
 
@@ -281,7 +280,6 @@
                            [[NSNumber numberWithInteger:[numbers count]] stringValue]];
         [levelInfoString appendString:@" Listed"];
         [status setStringValue:levelInfoString];
-        [levelInfoString release];
         
         if (numbers == nil || colors == nil) {
             [[self window] orderOut:self];
@@ -293,7 +291,11 @@
         /// NSLog(@"Numbers Array Count: %d and Colors Array Count: %d, if these are not equal, ERROR!", [numbers count], [colors count]);
         if ([numbers count] != [colors count]) {
             NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
-            SEND_ERROR_MSG(@"Numbers array count and colors array count are not equal (check console for more details), ERROR!");
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Generic Error";
+            alert.informativeText = @"Numbers array count and colors array count are not equal (check console for more details), ERROR!";
+            alert.alertStyle = NSAlertStyleCritical;
+            [alert runModal];
         }
     }
     
@@ -408,7 +410,11 @@ shouldEditTableColumn:(NSTableColumn *)col
               row:(NSInteger)rowIndex
 {
     // Should never get here for right now, acutally...
-    SEND_ERROR_MSG(@"Color List Table Attempted To Set Object.");
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.messageText = @"Generic Error";
+    alert.informativeText = @"Color List Table Attempted To Set Object.";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert runModal];
     return;
 }
 

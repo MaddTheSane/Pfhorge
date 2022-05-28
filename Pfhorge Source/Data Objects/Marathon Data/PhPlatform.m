@@ -434,8 +434,13 @@
     
     [tis appendString:@"\n"];
     
-    SEND_INFO_MSG_TITLE(tis, @"Detailed Platform Info…");
-    
+	NSAlert *alert = [[NSAlert alloc] init];
+	alert.messageText = @"Detailed Platform Info…";
+	alert.informativeText = tis;
+	alert.alertStyle = NSAlertStyleInformational;
+	[alert runModal];
+	[alert release];
+
     [tis release];
 }
 

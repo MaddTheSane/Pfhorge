@@ -704,8 +704,11 @@
             [theLevel updateCounts];
         }*/
     } else {
-        SEND_ERROR_MSG_TITLE(@"Can't Load File, Unknown Format.",
-                             @"Can't Load File");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Can't Load File";
+        alert.informativeText = @"Can't Load File, Unknown Format.";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert runModal];
         loadedOk = NO;
     }
     
@@ -731,7 +734,14 @@
     theNewPoly = [[[theLevel lines] objectAtIndex:lineNum] getPolyFromMe];
     
     if (theNewPoly == nil) {
-        SEND_ERROR_MSG(@"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)");
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.messageText = @"Generic Error";
+        alert.informativeText = @"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)";
+        alert.alertStyle = NSAlertStyleInformational;
+        [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
+            
+        }];
+        
         return nil;
     }
     

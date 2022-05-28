@@ -64,7 +64,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (void)windowDidLoad {
@@ -98,7 +97,7 @@
     static PhProgress *sharedPhProgress = nil;
 
     if (!sharedPhProgress) {
-        sharedPhProgress = [[PhProgress allocWithZone:[self zone]] init];
+        sharedPhProgress = [[PhProgress alloc] init];
     }
 
     return sharedPhProgress;

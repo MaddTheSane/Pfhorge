@@ -37,14 +37,14 @@
 		AE3C15450A04512100FBFFCD /* MapManager.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5EE9AB7040439D60046BBD2 /* MapManager.xib */; };
 		AE3C15460A04512100FBFFCD /* ItemPlacementEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */; };
 		AE3C15480A04512100FBFFCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		AE3C15490A04512100FBFFCD /* LEMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FE5A0F00DC52C37F000001 /* LEMapPoint.m */; };
+		AE3C15490A04512100FBFFCD /* LEMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FE5A0F00DC52C37F000001 /* LEMapPoint.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AE3C154A0A04512100FBFFCD /* LELine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0121ECA800DDCD937F000001 /* LELine.m */; };
 		AE3C154B0A04512100FBFFCD /* LEPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 0112096B00DEC9357F000001 /* LEPolygon.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154C0A04512100FBFFCD /* LEMapObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F6628600E19BB67F000001 /* LEMapObject.m */; };
 		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154E0A04512100FBFFCD /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
+		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FD2B8B00E806097F000001 /* LEMapStuffParent.m */; };
 		AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3A800EAC1717F000001 /* LEPaletteController.m */; };
 		AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3AC00EACC4F7F000001 /* LEDelegate.m */; };
@@ -65,7 +65,7 @@
 		AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC509F0110FB3D7F000001 /* PhColorListController.m */; };
 		AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CCECF40125C7647F000001 /* PhPrefsController.m */; };
 		AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */; };
-		AE3C15660A04512100FBFFCD /* PhPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF106A00FBCC6F7F000001 /* PhPlatform.m */; };
+		AE3C15660A04512100FBFFCD /* PhPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF106A00FBCC6F7F000001 /* PhPlatform.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AE3C15670A04512100FBFFCD /* ErrorNotificationWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5D2B794019CEB5D01A8A806 /* ErrorNotificationWinController.m */; };
 		AE3C15680A04512100FBFFCD /* PhNamesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EFE97701ADC99101A8A806 /* PhNamesController.m */; };
 		AE3C15690A04512100FBFFCD /* PhTag.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EFE97F01ADCAEA01A8A806 /* PhTag.m */; };
@@ -87,7 +87,7 @@
 		AE3C15790A04512100FBFFCD /* PhAbstractName.m in Sources */ = {isa = PBXBuildFile; fileRef = F532393101AF836201A8A806 /* PhAbstractName.m */; };
 		AE3C157A0A04512100FBFFCD /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6F8023C39CB0146BBD2 /* Terminal.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157B0A04512100FBFFCD /* TerminalSection.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BE6FC023C56FA0146BBD2 /* TerminalSection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		AE3C157C0A04512100FBFFCD /* TerminalEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F520388D024156C10146BBD2 /* TerminalEditorController.m */; };
+		AE3C157C0A04512100FBFFCD /* TerminalEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F520388D024156C10146BBD2 /* TerminalEditorController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157D0A04512100FBFFCD /* bitmap-decode.c in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5D02824AA40146BBD2 /* bitmap-decode.c */; };
 		AE3C157E0A04512100FBFFCD /* extractbitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = F536BD5F02824AA40146BBD2 /* extractbitmap.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C157F0A04512100FBFFCD /* PhStartupWinController.m in Sources */ = {isa = PBXBuildFile; fileRef = F530D716029862DA0146BBD2 /* PhStartupWinController.m */; };
@@ -1208,6 +1208,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
@@ -1240,6 +1241,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;

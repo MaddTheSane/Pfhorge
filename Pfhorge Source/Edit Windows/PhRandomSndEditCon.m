@@ -84,7 +84,6 @@
     //[mapLevel updateCounts];
     //[mapLevel removeMenu:tagComboMenu thatsA:PhLevelNameMenuTag];
     //NSLog(@"PhLightEditorController dealloc");
-    [super dealloc];
 }
 
 - (void)windowDidLoad
