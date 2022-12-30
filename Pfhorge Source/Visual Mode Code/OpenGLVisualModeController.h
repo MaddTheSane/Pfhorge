@@ -24,7 +24,7 @@
 
 
 #import <AppKit/AppKit.h>
-#import "LELevelData.h"
+#import <PfhorgeKit/LELevelData.h>
 
 @class MyOpenGLView;
 

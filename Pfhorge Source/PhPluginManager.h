@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PluginProtocol.h"
+#import <PfhorgeKit/PluginProtocol.h>
+
+@protocol PhLevelPluginProtocol;
 
 @interface PhPluginManager : NSObject {
 @private

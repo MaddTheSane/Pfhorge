@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -213,7 +213,7 @@
                         <rect key="frame" x="16" y="16" width="425" height="59"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="bvL-MB-CLd">
-                            <rect key="frame" x="3" y="3" width="419" height="53"/>
+                            <rect key="frame" x="4" y="5" width="417" height="51"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="111">
@@ -249,7 +249,7 @@
                     <rect key="frame" x="17" y="17" width="425" height="59"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView" id="hWq-DO-qPh">
-                        <rect key="frame" x="3" y="3" width="419" height="53"/>
+                        <rect key="frame" x="4" y="5" width="417" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="128">
@@ -284,7 +284,7 @@
                     <rect key="frame" x="17" y="17" width="425" height="59"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <view key="contentView" id="cjm-ym-096">
-                        <rect key="frame" x="3" y="3" width="419" height="53"/>
+                        <rect key="frame" x="4" y="5" width="417" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" maxValue="60" bezeled="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="133">

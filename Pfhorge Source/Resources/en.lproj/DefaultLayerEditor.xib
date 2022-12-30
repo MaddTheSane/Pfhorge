@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -93,7 +93,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         </tableColumn>
-                                        <tableColumn identifier="Ceiling Max" width="80.999984741210938" minWidth="66.738998413085938" maxWidth="1000" id="13">
+                                        <tableColumn identifier="Ceiling Max" width="81" minWidth="66.738998413085938" maxWidth="1000" id="13">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Ceiling Max">
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -128,8 +128,8 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="14">
-                        <rect key="frame" x="104" y="150" width="307" height="25"/>
+                    <slider horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="14">
+                        <rect key="frame" x="99" y="150" width="312" height="25"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="2.2204460492503131e-16" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="86">
                             <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
@@ -137,8 +137,8 @@
                             <action selector="takeFloatValueFrom:" target="22" id="83"/>
                         </connections>
                     </slider>
-                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="15">
-                        <rect key="frame" x="104" y="118" width="307" height="25"/>
+                    <slider horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="15">
+                        <rect key="frame" x="99" y="118" width="312" height="25"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="87">
                             <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
@@ -146,8 +146,8 @@
                             <action selector="takeFloatValueFrom:" target="23" id="38"/>
                         </connections>
                     </slider>
-                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="16">
-                        <rect key="frame" x="104" y="86" width="307" height="25"/>
+                    <slider horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                        <rect key="frame" x="99" y="86" width="312" height="25"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="88">
                             <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
@@ -155,8 +155,8 @@
                             <action selector="takeFloatValueFrom:" target="24" id="39"/>
                         </connections>
                     </slider>
-                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17">
-                        <rect key="frame" x="104" y="54" width="307" height="25"/>
+                    <slider horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="17">
+                        <rect key="frame" x="99" y="54" width="312" height="25"/>
                         <sliderCell key="cell" continuous="YES" alignment="left" minValue="-9" maxValue="9" doubleValue="1.8189894035458565e-12" tickMarkPosition="below" numberOfTickMarks="19" sliderType="linear" id="89">
                             <font key="font" usesAppearanceFont="YES"/>
                         </sliderCell>
@@ -165,7 +165,7 @@
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="18">
-                        <rect key="frame" x="10" y="124" width="91" height="17"/>
+                        <rect key="frame" x="32" y="124" width="64" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Floor Min:" id="90">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -173,10 +173,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="19">
-                        <rect key="frame" x="10" y="156" width="91" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="87" id="FFP-2x-Pk0"/>
-                        </constraints>
+                        <rect key="frame" x="28" y="156" width="68" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Floor Max:" id="91">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -184,7 +181,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="20">
-                        <rect key="frame" x="10" y="92" width="91" height="17"/>
+                        <rect key="frame" x="18" y="92" width="78" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Ceiling Max:" id="92">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -192,7 +189,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="21">
-                        <rect key="frame" x="10" y="60" width="91" height="17"/>
+                        <rect key="frame" x="21" y="60" width="75" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Ceiling Min:" id="93">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -255,7 +252,7 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                        <rect key="frame" x="444" y="220" width="59" height="32"/>
+                        <rect key="frame" x="445" y="220" width="59" height="32"/>
                         <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="98">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -294,7 +291,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                        <rect key="frame" x="144" y="220" width="138" height="32"/>
+                        <rect key="frame" x="142" y="220" width="138" height="32"/>
                         <buttonCell key="cell" type="push" title="Change Selected" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="102">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -304,7 +301,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72">
-                        <rect key="frame" x="375" y="220" width="69" height="32"/>
+                        <rect key="frame" x="378" y="220" width="69" height="32"/>
                         <buttonCell key="cell" type="push" title="Insert" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="103">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -336,7 +333,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="27" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="11" id="29f-Ku-8s1"/>
-                    <constraint firstItem="26" firstAttribute="leading" secondItem="72" secondAttribute="trailing" constant="14" id="44N-Vu-Ha6"/>
+                    <constraint firstItem="26" firstAttribute="leading" secondItem="72" secondAttribute="trailing" constant="12" symbolic="YES" id="44N-Vu-Ha6"/>
                     <constraint firstItem="25" firstAttribute="baseline" secondItem="17" secondAttribute="firstBaseline" id="5iK-gj-aHl"/>
                     <constraint firstItem="21" firstAttribute="top" secondItem="17" secondAttribute="top" id="7d5-0y-H7t"/>
                     <constraint firstItem="19" firstAttribute="top" secondItem="14" secondAttribute="top" id="9VE-6M-6NL"/>
@@ -344,8 +341,8 @@
                     <constraint firstItem="20" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" id="B0n-8M-yN0"/>
                     <constraint firstItem="18" firstAttribute="top" secondItem="15" secondAttribute="top" id="CFW-sd-rW1"/>
                     <constraint firstItem="22" firstAttribute="baseline" secondItem="14" secondAttribute="firstBaseline" id="CaG-fM-lQL"/>
-                    <constraint firstItem="19" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="12" id="Cc9-S8-Vtb"/>
-                    <constraint firstItem="47" firstAttribute="leading" secondItem="27" secondAttribute="trailing" constant="14" id="Ckx-VQ-A71"/>
+                    <constraint firstItem="19" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="Cc9-S8-Vtb"/>
+                    <constraint firstItem="47" firstAttribute="leading" secondItem="27" secondAttribute="trailing" constant="12" symbolic="YES" id="Ckx-VQ-A71"/>
                     <constraint firstItem="19" firstAttribute="firstBaseline" secondItem="22" secondAttribute="firstBaseline" id="DHU-Fj-e2l"/>
                     <constraint firstItem="14" firstAttribute="leading" secondItem="15" secondAttribute="leading" id="DPC-K8-M7g"/>
                     <constraint firstItem="18" firstAttribute="baseline" secondItem="23" secondAttribute="baseline" id="Dpw-m9-aQl"/>
@@ -359,6 +356,7 @@
                     <constraint firstItem="18" firstAttribute="trailing" secondItem="20" secondAttribute="trailing" id="K6u-9O-gqe"/>
                     <constraint firstAttribute="trailing" secondItem="74" secondAttribute="trailing" constant="20" symbolic="YES" id="Kcu-cA-UdD"/>
                     <constraint firstItem="22" firstAttribute="leading" secondItem="14" secondAttribute="trailing" constant="8" symbolic="YES" id="L4P-6b-Ti3"/>
+                    <constraint firstItem="21" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="N8U-hL-gl1"/>
                     <constraint firstItem="23" firstAttribute="top" secondItem="22" secondAttribute="bottom" constant="10" symbolic="YES" id="NFT-fg-DIT"/>
                     <constraint firstItem="23" firstAttribute="trailing" secondItem="24" secondAttribute="trailing" id="NIx-fM-Iiy"/>
                     <constraint firstItem="15" firstAttribute="leading" secondItem="16" secondAttribute="leading" id="Nk2-EY-gyw"/>
@@ -369,7 +367,6 @@
                     <constraint firstItem="20" firstAttribute="firstBaseline" secondItem="24" secondAttribute="firstBaseline" id="TJr-ZZ-Iff"/>
                     <constraint firstItem="76" firstAttribute="baseline" secondItem="74" secondAttribute="baseline" id="TUi-Lc-Bn8"/>
                     <constraint firstAttribute="bottom" secondItem="76" secondAttribute="bottom" constant="20" symbolic="YES" id="Tt9-lG-5Sy"/>
-                    <constraint firstItem="18" firstAttribute="leading" secondItem="20" secondAttribute="leading" id="Tv9-TU-7k9"/>
                     <constraint firstItem="19" firstAttribute="trailing" secondItem="18" secondAttribute="trailing" id="V7P-WU-nWv"/>
                     <constraint firstItem="8" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="VJe-fA-dsp"/>
                     <constraint firstItem="46" firstAttribute="firstBaseline" secondItem="45" secondAttribute="firstBaseline" id="Vv1-Cw-b6m"/>
@@ -377,20 +374,23 @@
                     <constraint firstItem="22" firstAttribute="trailing" secondItem="23" secondAttribute="trailing" id="Xcy-tv-oIO"/>
                     <constraint firstItem="24" firstAttribute="baseline" secondItem="16" secondAttribute="firstBaseline" id="YLU-Yd-4YB"/>
                     <constraint firstItem="72" firstAttribute="baseline" secondItem="26" secondAttribute="baseline" id="Yk1-KJ-aiJ"/>
+                    <constraint firstItem="20" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="ZEp-J7-ft2"/>
                     <constraint firstItem="24" firstAttribute="leading" secondItem="16" secondAttribute="trailing" constant="8" symbolic="YES" id="a2c-oN-h4S"/>
                     <constraint firstItem="45" firstAttribute="trailing" secondItem="22" secondAttribute="trailing" id="a51-XR-aKF"/>
-                    <constraint firstItem="20" firstAttribute="leading" secondItem="21" secondAttribute="leading" id="dpA-Q7-rXo"/>
+                    <constraint firstItem="16" firstAttribute="trailing" secondItem="14" secondAttribute="trailing" id="bun-97-bvN"/>
+                    <constraint firstItem="15" firstAttribute="trailing" secondItem="14" secondAttribute="trailing" id="ckG-JN-Tct"/>
                     <constraint firstItem="22" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="13" id="eKQ-O3-r2i"/>
                     <constraint firstItem="20" firstAttribute="trailing" secondItem="21" secondAttribute="trailing" id="eRu-UI-URG"/>
                     <constraint firstItem="18" firstAttribute="firstBaseline" secondItem="23" secondAttribute="firstBaseline" id="fu2-bh-juR"/>
                     <constraint firstItem="16" firstAttribute="leading" secondItem="17" secondAttribute="leading" id="gW6-iA-yFd"/>
                     <constraint firstItem="19" firstAttribute="bottom" secondItem="14" secondAttribute="bottom" id="gks-nR-oJQ"/>
                     <constraint firstItem="22" firstAttribute="leading" secondItem="23" secondAttribute="leading" id="hUu-ZZ-geM"/>
+                    <constraint firstItem="18" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="haQ-2l-4zX"/>
                     <constraint firstItem="20" firstAttribute="baseline" secondItem="24" secondAttribute="baseline" id="jS7-LN-gRq"/>
                     <constraint firstItem="47" firstAttribute="baseline" secondItem="72" secondAttribute="baseline" id="jf1-S3-kpv"/>
                     <constraint firstItem="24" firstAttribute="leading" secondItem="25" secondAttribute="leading" id="jkm-ax-0ki"/>
                     <constraint firstItem="23" firstAttribute="baseline" secondItem="15" secondAttribute="firstBaseline" id="kCE-r9-pFe"/>
-                    <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="21" id="llr-vh-ROA"/>
+                    <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="20" symbolic="YES" id="llr-vh-ROA"/>
                     <constraint firstItem="14" firstAttribute="leading" secondItem="19" secondAttribute="trailing" constant="7" id="lnc-kh-bac"/>
                     <constraint firstItem="19" firstAttribute="baseline" secondItem="22" secondAttribute="baseline" id="n0N-g6-Fvc"/>
                     <constraint firstItem="74" firstAttribute="leading" secondItem="76" secondAttribute="trailing" constant="12" symbolic="YES" id="nmO-gw-uOo"/>
@@ -399,8 +399,8 @@
                     <constraint firstItem="25" firstAttribute="top" secondItem="24" secondAttribute="bottom" constant="10" symbolic="YES" id="pY5-tK-F7L"/>
                     <constraint firstAttribute="trailing" secondItem="45" secondAttribute="trailing" constant="20" symbolic="YES" id="qgH-IS-nGt"/>
                     <constraint firstItem="21" firstAttribute="firstBaseline" secondItem="25" secondAttribute="firstBaseline" id="r1T-xv-Byu"/>
-                    <constraint firstItem="19" firstAttribute="leading" secondItem="18" secondAttribute="leading" id="t3B-yU-tB4"/>
                     <constraint firstItem="45" firstAttribute="top" secondItem="27" secondAttribute="bottom" constant="18" id="uxN-rU-LV4"/>
+                    <constraint firstItem="17" firstAttribute="trailing" secondItem="14" secondAttribute="trailing" id="x0c-Sa-z4C"/>
                     <constraint firstItem="18" firstAttribute="bottom" secondItem="15" secondAttribute="bottom" id="xCE-JD-X32"/>
                     <constraint firstItem="20" firstAttribute="top" secondItem="16" secondAttribute="top" id="ydr-DR-c7v"/>
                     <constraint firstItem="76" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="zxm-1r-gKr"/>

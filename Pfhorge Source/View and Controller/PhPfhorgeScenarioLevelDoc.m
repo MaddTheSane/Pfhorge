@@ -24,11 +24,11 @@
 
 
 #import "PhPfhorgeScenarioLevelDoc.h"
-#import "PhPfhorgeSingleLevelDoc.h"
-#import "LEExtras.h"
-#import "LEMapData.h"
-#import "ScenarioResources.h"
-#import "Resource.h"
+#import <PfhorgeKit/PhPfhorgeSingleLevelDoc.h>
+#import <PfhorgeKit/LEExtras.h>
+#import <PfhorgeKit/LEMapData.h>
+#import <PfhorgeKit/ScenarioResources.h>
+#import <PfhorgeKit/Resource.h>
 #import "Pfhorge-Swift.h"
 
 #import "PhProgress.h"
@@ -36,9 +36,6 @@
 #import "LEMapData.h"
 
 #import "PathwaysExchange.h"
-
-NSString *const PhScenarioDeallocatingNotification = @"PhScenarioDeallocatingNotification";
-NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNamesChangedNotification";
 
 @implementation PhPfhorgeScenarioLevelDoc
 

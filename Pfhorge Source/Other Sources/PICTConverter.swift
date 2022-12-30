@@ -22,6 +22,7 @@
 //
 
 import Cocoa
+import PfhorgeKit.PhData
 
 
 private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
@@ -1108,7 +1109,7 @@ class PICT {
 		var localizedDescription: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String(format: "Unimplemented OpCode %d (0x%02d)", oc, oc)
+				return String(format: "Unimplemented OpCode %d (0x%02x)", oc, oc)
 
 			case .containsBandedJPEG:
 				return "Contains banded JPEG"
@@ -1130,7 +1131,7 @@ class PICT {
 		var errorDescription: String? {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String(format: "Unimplemented OpCode %d (0x%02d)", oc, oc)
+				return String(format: "Unimplemented OpCode %d (0x%02x)", oc, oc)
 				
 			case .containsBandedJPEG:
 				return "Contains banded JPEG"

@@ -10,7 +10,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PhPluginManager.h"
+//#import <PfhorgeKit/PhPluginManager.h>
 
 @class LEMap;
 

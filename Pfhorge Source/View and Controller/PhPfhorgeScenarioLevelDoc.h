@@ -28,9 +28,6 @@
 #import "PhScenarioData.h"
 #import "PhScenarioManagerController.h"
 
-extern NSNotificationName const PhScenarioDeallocatingNotification;
-extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
-
 @interface PhPfhorgeScenarioLevelDoc : NSDocument
 {
     PhScenarioData *scenarioData;

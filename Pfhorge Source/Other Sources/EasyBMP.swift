@@ -20,6 +20,7 @@
 
 
 import Cocoa
+import PfhorgeKit.PhData
 
 private func IntPow<X, Y>(_ base: X, _ exponent: Y) -> X where X: FixedWidthInteger, Y: FixedWidthInteger {
 	var output: X = 1
@@ -523,11 +524,11 @@ final class EasyBMP {
 			
 			// if there is no palette, create one
 			if colors.count == 0 {
-				colors = [RGBAPixel](repeating: EasyBMP.RGBAPixel(), count: Int(NumberOfColors))
+				colors = [RGBAPixel](repeating: EasyBMP.RGBAPixel(), count: NumberOfColors)
 				_=createStandardColorTable()
 			}
 			
-			for n in 0 ..< Int(NumberOfColors) {
+			for n in 0 ..< NumberOfColors {
 				bmpWrite(colors[n].blue, &fp)
 				bmpWrite(colors[n].green, &fp)
 				bmpWrite(colors[n].red, &fp)
@@ -938,7 +939,7 @@ final class EasyBMP {
 		// if bmih.biCompression > 3, then something strange is going on
 		// it's probably an OS2 bitmap file.
 		
-		if bmih.biCompression > 3 {
+		guard bmih.biCompression <= 3 else {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
 			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is in an unsupported format. (bmih.biCompression = \(bmih.biCompression)) The file is probably an old OS2 bitmap or corrupted."])
@@ -963,7 +964,7 @@ final class EasyBMP {
 
 		// set the size
 
-		if (bmih.biWidth <= 0 || bmih.biHeight <= 0) {
+		guard bmih.biWidth > 0, bmih.biHeight > 0 else {
 		 _=setSize(width: 1,height: 1)
 		 _=setBitDepth(1)
 		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has a non-positive width or height."])

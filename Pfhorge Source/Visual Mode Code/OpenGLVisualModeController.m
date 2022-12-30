@@ -25,7 +25,7 @@
 
 #import "OpenGLVisualModeController.h"
 #import "MyOpenGLView2.h"
-#include "LEExtras.h"
+#include <PfhorgeKit/LEExtras.h>
 
 @implementation OpenGLVisualModeController
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,21 +24,21 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tabView controlSize="small" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                        <rect key="frame" x="-10" y="-13" width="228" height="323"/>
+                        <rect key="frame" x="-10" y="-13" width="233" height="323"/>
                         <tabViewItems>
                             <tabViewItem label="Levels" identifier="1" id="8">
                                 <view key="view" id="9">
-                                    <rect key="frame" x="10" y="25" width="208" height="285"/>
+                                    <rect key="frame" x="10" y="25" width="213" height="285"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="15">
-                                            <rect key="frame" x="0.0" y="0.0" width="203" height="285"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="213" height="285"/>
                                             <clipView key="contentView" id="1g2-8K-spN">
-                                                <rect key="frame" x="1" y="1" width="201" height="283"/>
+                                                <rect key="frame" x="1" y="1" width="211" height="283"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="122" floatsGroupRows="NO" id="14">
-                                                        <rect key="frame" x="0.0" y="0.0" width="201" height="258"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="211" height="258"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +56,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="File Name" width="127" minWidth="60.464000701904297" maxWidth="1000" id="16">
+                                                            <tableColumn identifier="File Name" width="98" minWidth="60.464000701904297" maxWidth="1000" id="16">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="File Name">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.3333333432674408" alpha="1" colorSpace="calibratedWhite"/>
@@ -81,11 +81,11 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="123">
-                                                <rect key="frame" x="186" y="26" width="16" height="258"/>
+                                                <rect key="frame" x="196" y="26" width="16" height="258"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" wantsLayer="YES" id="122">
-                                                <rect key="frame" x="0.0" y="0.0" width="201" height="25"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="211" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                             <connections>
@@ -104,7 +104,7 @@
                         </tabViewItems>
                     </tabView>
                     <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="46">
-                        <rect key="frame" x="17" y="315" width="175" height="25"/>
+                        <rect key="frame" x="17" y="315" width="180" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Scenario Options" bezelStyle="rounded" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="70" id="118">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>

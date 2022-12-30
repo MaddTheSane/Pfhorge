@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -78,7 +78,7 @@
                         <rect key="frame" x="20" y="222" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="mV6-Cs-oEZ">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13">
@@ -177,7 +177,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329"/>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="329"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="30" id="87"/>
                                     </connections>
@@ -185,9 +185,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33">
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="330">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="330"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="31" id="88"/>
                                     </connections>
@@ -271,7 +269,7 @@
                         <rect key="frame" x="195" y="222" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="lgn-TD-0Ga">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="82">
@@ -371,9 +369,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="333">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="333"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="76" id="90"/>
                                     </connections>
@@ -381,9 +377,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85">
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="334">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="334"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="72" id="89"/>
                                     </connections>
@@ -396,7 +390,7 @@
                         <rect key="frame" x="370" y="222" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="LU5-Mr-WEm">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97">
@@ -523,7 +517,7 @@
                         <rect key="frame" x="370" y="56" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="Jcp-Xb-n7T">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="128">
@@ -622,9 +616,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="122">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="341">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="341"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="125" id="134"/>
                                     </connections>
@@ -632,9 +624,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="123">
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="342">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="342"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="119" id="133"/>
                                     </connections>
@@ -647,7 +637,7 @@
                         <rect key="frame" x="195" y="56" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="olW-Zc-xBG">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="153">
@@ -746,9 +736,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="138">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="345">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="345"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="151" id="156"/>
                                     </connections>
@@ -756,9 +744,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="152">
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="346">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="346"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="149" id="154"/>
                                     </connections>
@@ -771,7 +757,7 @@
                         <rect key="frame" x="20" y="56" width="170" height="159"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <view key="contentView" id="abS-tk-d0T">
-                            <rect key="frame" x="3" y="3" width="164" height="139"/>
+                            <rect key="frame" x="4" y="5" width="162" height="137"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="174">
@@ -870,9 +856,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="170">
                                     <rect key="frame" x="121" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="349">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="right" numberOfTickMarks="11" sliderType="linear" id="349"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="164" id="176"/>
                                     </connections>
@@ -880,9 +864,7 @@
                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="169">
                                     <rect key="frame" x="135" y="4" width="19" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="350">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </sliderCell>
+                                    <sliderCell key="cell" controlSize="mini" continuous="YES" alignment="left" maxValue="100" tickMarkPosition="left" numberOfTickMarks="11" sliderType="linear" id="350"/>
                                     <connections>
                                         <action selector="takeIntValueFrom:" target="159" id="177"/>
                                     </connections>

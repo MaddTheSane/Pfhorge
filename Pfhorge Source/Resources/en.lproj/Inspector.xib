@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,7 +111,7 @@
                                             <rect key="frame" x="8" y="106" width="286" height="87"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="sfh-gl-Cm8">
-                                                <rect key="frame" x="3" y="3" width="280" height="69"/>
+                                                <rect key="frame" x="4" y="5" width="278" height="67"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2269">
@@ -292,11 +292,11 @@
                                             <rect key="frame" x="8" y="10" width="286" height="90"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" id="FeP-yj-0Uz">
-                                                <rect key="frame" x="3" y="3" width="280" height="72"/>
+                                                <rect key="frame" x="4" y="5" width="278" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2292">
-                                                        <rect key="frame" x="69" y="24" width="54" height="46"/>
+                                                        <rect key="frame" x="69" y="24" width="53" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="2300" id="2895">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -312,7 +312,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2293">
-                                                        <rect key="frame" x="6" y="23" width="54" height="46"/>
+                                                        <rect key="frame" x="6" y="23" width="53" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="2288" id="2896">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -328,7 +328,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2297">
-                                                        <rect key="frame" x="133" y="25" width="54" height="46"/>
+                                                        <rect key="frame" x="132" y="25" width="53" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="2289" id="2897">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -355,7 +355,7 @@
                                                         </connections>
                                                     </button>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2461">
-                                                        <rect key="frame" x="187" y="48" width="92" height="22"/>
+                                                        <rect key="frame" x="185" y="46" width="92" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Primary Transfer Mode:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2462" id="2899">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -393,7 +393,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2531">
-                                                        <rect key="frame" x="187" y="26" width="92" height="22"/>
+                                                        <rect key="frame" x="185" y="24" width="92" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Secondary Transfer Mode:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2541" id="2900">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -431,7 +431,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2555">
-                                                        <rect key="frame" x="187" y="4" width="92" height="22"/>
+                                                        <rect key="frame" x="185" y="2" width="92" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Transparent Transfer Mode:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2561" id="2901">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -515,7 +515,7 @@
                                             <rect key="frame" x="7" y="139" width="281" height="74"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="SeF-5U-vRc">
-                                                <rect key="frame" x="3" y="3" width="275" height="56"/>
+                                                <rect key="frame" x="4" y="5" width="273" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2351">
@@ -576,7 +576,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <matrix verticalHuggingPriority="750" fixedFrame="YES" mode="track" allowsEmptySelection="NO" autosizesCells="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2353">
-                                                        <rect key="frame" x="150" y="11" width="112" height="41"/>
+                                                        <rect key="frame" x="150" y="11" width="110" height="41"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="cellSize" width="54" height="19"/>
@@ -632,11 +632,11 @@
                                             <rect key="frame" x="7" y="54" width="281" height="77"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <view key="contentView" id="Hz0-Re-rav">
-                                                <rect key="frame" x="3" y="3" width="275" height="59"/>
+                                                <rect key="frame" x="4" y="5" width="273" height="57"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2357">
-                                                        <rect key="frame" x="74" y="10" width="54" height="46"/>
+                                                        <rect key="frame" x="73" y="10" width="54" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="2345" id="2885">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -652,7 +652,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2360">
-                                                        <rect key="frame" x="8" y="9" width="54" height="46"/>
+                                                        <rect key="frame" x="8" y="9" width="53.5" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                         <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="2347" id="2886">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -668,7 +668,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2579">
-                                                        <rect key="frame" x="131" y="33" width="146" height="22"/>
+                                                        <rect key="frame" x="130" y="31" width="145" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Ceiling Transfer Mode:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2576" id="2887">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -706,7 +706,7 @@
                                                         </connections>
                                                     </popUpButton>
                                                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2606">
-                                                        <rect key="frame" x="131" y="10" width="146" height="22"/>
+                                                        <rect key="frame" x="130" y="8" width="145" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                                         <popUpButtonCell key="cell" type="push" title="Floor Transfer Mode:" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="2596" id="2888">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -931,6 +931,7 @@
                                         <constraint firstAttribute="trailing" secondItem="2657" secondAttribute="trailing" constant="8" id="D9x-kv-WLz"/>
                                         <constraint firstItem="632" firstAttribute="leading" secondItem="631" secondAttribute="leading" id="DK6-ER-UsP"/>
                                         <constraint firstItem="2634" firstAttribute="top" secondItem="614" secondAttribute="top" constant="4" id="LSU-gV-oR2"/>
+                                        <constraint firstAttribute="bottom" secondItem="2634" secondAttribute="bottom" constant="73" id="Lwc-kD-nct"/>
                                         <constraint firstItem="2664" firstAttribute="top" secondItem="2670" secondAttribute="bottom" constant="8" symbolic="YES" id="OWK-si-oxL"/>
                                         <constraint firstItem="2664" firstAttribute="leading" secondItem="2657" secondAttribute="leading" id="Skr-dX-Wj3"/>
                                         <constraint firstItem="2670" firstAttribute="leading" secondItem="2657" secondAttribute="leading" id="UJV-Kx-d2G"/>
@@ -1434,7 +1435,7 @@
                                             <rect key="frame" x="34" y="72" width="151" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="ogn-Ol-PoN">
-                                                <rect key="frame" x="3" y="3" width="145" height="110"/>
+                                                <rect key="frame" x="4" y="5" width="143" height="108"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1089">
@@ -1668,11 +1669,11 @@
                                             <tabViewItems>
                                                 <tabViewItem label="Menu" identifier="1" id="1420">
                                                     <view key="view" id="1411">
-                                                        <rect key="frame" x="0.0" y="0.0" width="188" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="188" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1414">
-                                                                <rect key="frame" x="-2" y="-1" width="181" height="22"/>
+                                                                <rect key="frame" x="-2" y="1" width="181" height="22"/>
                                                                 <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1418" id="2854">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="smallSystem"/>
