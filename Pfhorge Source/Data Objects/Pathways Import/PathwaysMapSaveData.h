@@ -145,8 +145,7 @@ struct PID_Sector {
 		Pillar,				//!< Pillar in the middle -- can't walk through
 		OtherTrigger,		//!< Not exactly sure what this one does
 		Save,				//!< Can save game here
-		NUMBER_OF_TYPES,
-		pid_sector_type_none = -1
+		NUMBER_OF_TYPES
 	};
 	
 	// The various kinds of door triggers
@@ -187,10 +186,10 @@ struct PID_Sector {
 	PID_Wall WallList[NUMBER_OF_WALLS_AND_CORNERS];
 	
 	//! What item ID (-1 is NONE)
-	pid_sector_type Item;
+	short Item;
 	
 	//! Sector type
-	byte Type;
+    pid_sector_type Type;
 	
 	//! Extra info for the type
 	//! Meaning:
@@ -349,11 +348,11 @@ struct PID_PlayerState {
 		USABLE_WEAPON_TYPES = 5
 	};
 
-	long Unknown1;			//!< A magic number? A random-number seed?
+	int Unknown1;			//!< A magic number? A random-number seed?
 	short Index;			//!< Which savegame slot
-	long Time;				//!< Amount of game time elapsed in units of 1/60 second
+	int Time;				//!< Amount of game time elapsed in units of 1/60 second
 	short Points;			//!< One's score in the game
-	long Treasure;			//!< How much found, in 100's of dollars
+	int Treasure;			//!< How much found, in 100's of dollars
 	short Unknown2[32];
 	short Handedness;		//!< 0 = right-handed, 1 = left-handed
 	short Unknown3;
@@ -364,11 +363,11 @@ struct PID_PlayerState {
 	short MaxHealth;		//!< Displayed value * 10
 	PID_WeaponPerform WeapPerf[TOTAL_WEAPON_TYPES];
 	short Unknown4[22];
-	long Damage;			//!< How much taken; in health units
+	int Damage;			//!< How much taken; in health units
 	short Unknown4a[2];
-	long ShotsFired[USABLE_WEAPON_TYPES];
-	long ShotsHit[USABLE_WEAPON_TYPES];
-	long BodyCount[PID_Monster::NUMBER_OF_TYPES];
+	int ShotsFired[USABLE_WEAPON_TYPES];
+	int ShotsHit[USABLE_WEAPON_TYPES];
+	int BodyCount[PID_Monster::NUMBER_OF_TYPES];
 	short Unknown4b[2];
 	short VisionMode;		//!< 1 = normal, 257 = wearing IR goggles
 	short Flashlight;		//!< 1 = on, 0 = off
