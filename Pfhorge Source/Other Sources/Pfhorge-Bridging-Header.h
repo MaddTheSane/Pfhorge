@@ -8,16 +8,16 @@
 #ifndef Pfhorge_Bridging_Header_h
 #define Pfhorge_Bridging_Header_h
 
-//#import <PfhorgeKit/PhData.h>
+#import "PhData.h"
 #import "PfhorgeSwiftHelpers.h"
-//#import "LEMapStuffParent.h"
-//#import "LELine.h"
-//#import "PhLayer.h"
-//#import "PhNoteGroup.h"
-//#import "Resource.h"
-//#import "ScenarioResources.h"
-//#import "PhProgress.h"
-//#import "Terminal.h"
-//#import "TerminalSection.h"
+#import "LEMapStuffParent.h"
+#import "LELine.h"
+#import "PhLayer.h"
+#import "PhNoteGroup.h"
+#import "Resource.h"
+#import "ScenarioResources.h"
+#import "PhProgress.h"
+#import "Terminal.h"
+#import "TerminalSection.h"
 
 #endif /* Pfhorge_Bridging_Header_h */

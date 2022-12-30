@@ -1,8 +1,8 @@
 //
-//  OpenGLVisualModeController.h
+//  PhPfhorgeSingleLevelDoc.h
 //  Pfhorge
 //
-//  Created by Joshua D. Orr on Sat Feb 23 2002.
+//  Created by Joshua D. Orr on Mon May 27 2002.
 //  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
 //  
 //  E-Mail:   dragons@xmission.com
@@ -24,17 +24,27 @@
 
 
 #import <AppKit/AppKit.h>
-#import "LELevelData.h"
+#import "LEMap.h"
 
-@class MyOpenGLView;
+extern NSNotificationName const PhScenarioDeallocatingNotification;
+extern NSNotificationName const PhScenarioLevelNamesChangedNotification;
 
-@interface OpenGLVisualModeController : NSWindowController
+@class PhPfhorgeScenarioLevelDoc;
+
+@interface PhPfhorgeSingleLevelDoc : LEMap
 {
-    IBOutlet MyOpenGLView *OpenGLViewOGLV;
-    
-    __strong LELevelData *levelData;
+    __unsafe_unretained PhPfhorgeScenarioLevelDoc *scenario;
 }
 
-- (id)initWithLevelData:(LELevelData *)theLevel;
+- (id)initWithScenarioDocument:(PhPfhorgeScenarioLevelDoc *)theScenarioDoc;
+
+- (BOOL)isThereAScenarioDocumentLinked;
+
+- (void)registerScenarioRelatedNotifications;
+- (void)registerLevelRelatedNotifications;
+
+- (void)scenarioDeallocating:(NSNotification *)notification;
+
+@property (nonatomic, assign) PhPfhorgeScenarioLevelDoc *scenarioDocument;
 
 @end

@@ -20,7 +20,6 @@
 
 
 import Cocoa
-import PfhorgeKit.PhData
 
 private func IntPow<X, Y>(_ base: X, _ exponent: Y) -> X where X: FixedWidthInteger, Y: FixedWidthInteger {
 	var output: X = 1

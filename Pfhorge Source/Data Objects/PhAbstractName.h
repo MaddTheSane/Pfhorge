@@ -1,8 +1,8 @@
 //
-//  OpenGLVisualModeController.h
+//  PhAbstractName.h
 //  Pfhorge
 //
-//  Created by Joshua D. Orr on Sat Feb 23 2002.
+//  Created by Joshua D. Orr on Sat Nov 24 2001.
 //  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
 //  
 //  E-Mail:   dragons@xmission.com
@@ -23,18 +23,25 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 
-#import <AppKit/AppKit.h>
-#import "LELevelData.h"
+#import <Foundation/Foundation.h>
+#import "LEMapStuffParent.h"
 
-@class MyOpenGLView;
 
-@interface OpenGLVisualModeController : NSWindowController
+
+@interface PhAbstractName : LEMapStuffParent <NSSecureCoding>
 {
-    IBOutlet MyOpenGLView *OpenGLViewOGLV;
-    
-    __strong LELevelData *levelData;
+    NSString *myName;
 }
 
-- (id)initWithLevelData:(LELevelData *)theLevel;
+// **************************  Coding/Copy Protocal Methods  *************************
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
+
+@property (nonatomic, copy) NSString *phName;
+@property (nonatomic, readonly) BOOL doIHaveAName;
+@property (nonatomic, readonly) BOOL doIHaveACustomName;
+- (void)resetNameToMyIndex;
 
 @end

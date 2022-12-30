@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PfhorgeKit/PluginProtocol.h>
+#import "PluginProtocol.h"
 
 @protocol PhLevelPluginProtocol;
 

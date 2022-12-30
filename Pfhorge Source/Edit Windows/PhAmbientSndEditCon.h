@@ -1,8 +1,8 @@
 //
-//  OpenGLVisualModeController.h
+//  PhAmbientSndEditCon.h
 //  Pfhorge
 //
-//  Created by Joshua D. Orr on Sat Feb 23 2002.
+//  Created by Joshua D. Orr on Mon Dec 03 2001.
 //  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
 //  
 //  E-Mail:   dragons@xmission.com
@@ -23,18 +23,36 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 
-#import <AppKit/AppKit.h>
-#import "LELevelData.h"
+#import <Cocoa/Cocoa.h>
+#import "InfoWindowCommander.h"
 
-@class MyOpenGLView;
+@class PhAmbientSound, LELevelData, LEMap;
 
-@interface OpenGLVisualModeController : NSWindowController
+@interface PhAmbientSndEditCon : InfoWindowCommander
 {
-    IBOutlet MyOpenGLView *OpenGLViewOGLV;
+    IBOutlet NSTextField *infoIT;
     
-    __strong LELevelData *levelData;
+    IBOutlet NSPopUpButton *typeMenu;
+    IBOutlet NSTextField *volumeTB;
+    
+    __unsafe_unretained PhAmbientSound	*curSound;
 }
 
-- (id)initWithLevelData:(LELevelData *)theLevel;
+- (instancetype)initWithSound:(PhAmbientSound*)theSound
+                    withLevel:(LELevelData *)theLevel
+              withMapDocument:(LEMap *)theMapDoc;
+
+- (void)registerNotifcations;
+
+- (void)refreshInterfaceFromData;
+- (void)saveChanges;
+
+//- (IBAction)templateAction:(id)sender;
+//- (IBAction)copyFromMenuAction:(id)sender;
+
+- (IBAction)saveBtnAction:(id)sender;
+//- (IBAction)saveAndCloseBtnAction:(id)sender;
+- (IBAction)revertBtnAction:(id)sender;
+- (IBAction)renameBtnAction:(id)sender;
 
 @end

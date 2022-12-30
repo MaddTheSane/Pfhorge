@@ -22,7 +22,6 @@
 //
 
 import Cocoa
-import PfhorgeKit.PhData
 
 
 private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {

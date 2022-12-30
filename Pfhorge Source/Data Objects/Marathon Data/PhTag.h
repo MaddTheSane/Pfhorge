@@ -1,8 +1,8 @@
 //
-//  OpenGLVisualModeController.h
+//  PhTag.h
 //  Pfhorge
 //
-//  Created by Joshua D. Orr on Sat Feb 23 2002.
+//  Created by Joshua D. Orr on Thu Nov 22 2001.
 //  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
 //  
 //  E-Mail:   dragons@xmission.com
@@ -23,18 +23,23 @@
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
 
-#import <AppKit/AppKit.h>
-#import "LELevelData.h"
 
-@class MyOpenGLView;
+#import <Foundation/Foundation.h>
+#import "PhAbstractNumber.h"
 
-@interface OpenGLVisualModeController : NSWindowController
+@interface PhTag : PhAbstractNumber <NSSecureCoding>
 {
-    IBOutlet MyOpenGLView *OpenGLViewOGLV;
-    
-    __strong LELevelData *levelData;
+   // NSNumber *tagPhNumber;
 }
 
-- (id)initWithLevelData:(LELevelData *)theLevel;
+// **************************  Coding/Copy Protocal Methods  *************************
+- (void) encodeWithCoder:(NSCoder *)coder;
+- (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithTagNumber:(NSNumber *)thePhNumber NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
+
+//-(NSNumber *)phNumber;
+//-(void)setPhNumber:(NSNumber *)tagPhNumber;
 
 @end

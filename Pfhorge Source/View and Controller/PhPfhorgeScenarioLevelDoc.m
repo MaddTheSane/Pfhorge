@@ -24,11 +24,11 @@
 
 
 #import "PhPfhorgeScenarioLevelDoc.h"
-#import <PfhorgeKit/PhPfhorgeSingleLevelDoc.h>
-#import <PfhorgeKit/LEExtras.h>
-#import <PfhorgeKit/LEMapData.h>
-#import <PfhorgeKit/ScenarioResources.h>
-#import <PfhorgeKit/Resource.h>
+#import "PhPfhorgeSingleLevelDoc.h"
+#import "LEExtras.h"
+#import "LEMapData.h"
+#import "ScenarioResources.h"
+#import "Resource.h"
 #import "Pfhorge-Swift.h"
 
 #import "PhProgress.h"

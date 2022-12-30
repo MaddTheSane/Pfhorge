@@ -1,8 +1,8 @@
 //
-//  OpenGLVisualModeController.h
+//  PhLayer.h
 //  Pfhorge
 //
-//  Created by Joshua D. Orr on Sat Feb 23 2002.
+//  Created by Joshua D. Orr on Tue Dec 18 2001.
 //  Copyright (c) 2001 Joshua D. Orr. All rights reserved.
 //  
 //  E-Mail:   dragons@xmission.com
@@ -21,20 +21,30 @@
 //  along with this program; if not, write to the Free Software
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  or you can read it by running the program and selecting Phorge->About Phorge
+#import <Cocoa/Cocoa.h>
+#import "PhAbstractName.h"
 
-
-#import <AppKit/AppKit.h>
-#import "LELevelData.h"
-
-@class MyOpenGLView;
-
-@interface OpenGLVisualModeController : NSWindowController
+@interface PhLayer : PhAbstractName <NSSecureCoding>
 {
-    IBOutlet MyOpenGLView *OpenGLViewOGLV;
-    
-    __strong LELevelData *levelData;
+    NSColor *layerColor;
+    NSMutableArray<__kindof LEMapStuffParent*> *objectsInThisLayer;
 }
 
-- (id)initWithLevelData:(LELevelData *)theLevel;
+// **************************  Coding/Copy Protocal Methods  *************************
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
+
+- (id)initWithName:(NSString *)theString NS_DESIGNATED_INITIALIZER;
+
+@property (readonly) BOOL doIHaveColor;
+
+@property (copy) NSColor *layerColor;
+
+-(NSArray<__kindof LEMapStuffParent*> *)objectsInThisLayer;
+
+-(void)addObjectToLayer:(__kindof LEMapStuffParent*)theObj;
+-(void)removeObjectFromLayer:(__kindof LEMapStuffParent*)theObj;
+-(BOOL)isObjectInLayer:(__kindof LEMapStuffParent*)theObj;
 
 @end
