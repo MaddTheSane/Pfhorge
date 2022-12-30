@@ -457,12 +457,12 @@ BOOL setupPointerArraysDurringLoading = YES;
     
     unsigned char *buffer = [entireMapData mutableBytes];
     long theLength = [entireMapData length];
-    unsigned long theChecksum = calculate_data_crc(buffer, theLength);
+    unsigned int theChecksum = calculate_data_crc(buffer, theLength);
     // at 68 for 4 bytes...
 #ifdef useDebugingLogs
     NSLog(@"Checksum In Single Level: %d", theChecksum);
 #endif
-    NSRange checksumRange = {68, 4};
+    NSRange checksumRange = NSMakeRange(68, 4);
     [entireMapData replaceBytesInRange:checksumRange withBytes:&theChecksum];
     
     return entireMapData;

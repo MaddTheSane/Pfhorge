@@ -68,13 +68,14 @@
 - (NSImage *)getPICTResourceIndex:(ResID)PICTIndex
 {
     Resource	*resource;
+    NSImage     *image;
     
     /*resource = [resources resourceOfType:@"PICT"
         index:CHAPTER_SCREEN_BASE + [levelPopUp indexOfSelectedItem]];*/
     
     resource = [resources resourceOfType:@"PICT" index:PICTIndex];  
         
-    return [[NSImage alloc] initWithData:[resource data]];
+    image = [[NSImage alloc] initWithData:[resource data]];
     
     /*if (resource) {
         [chapterScreen setImage:[[NSImage alloc] initWithData:[resource data]]];
@@ -82,6 +83,8 @@
     else {
         [chapterScreen setImage:nil];
     }*/
+    
+    return image;
 }
 
 -(id)init
@@ -230,12 +233,10 @@
     
     tempData = [self dataOfType:@"org.bungie.source.map" error:NULL];
     
-    [[NSFileManager defaultManager] createFileAtPath:fullPath
+    return [[NSFileManager defaultManager] createFileAtPath:fullPath
                                             contents:tempData
                                           attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
                                                        NSFileHFSTypeCode: @((OSType)'sce2')}];
-    
-    return YES;
 }
 
 // *********************** Info Window Managment ***********************

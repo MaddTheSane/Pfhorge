@@ -213,10 +213,10 @@
 // *********************** Class Methods ***********************
 + (id)sharedPrefController {
     static PhPrefsController *sharedPrefController = nil;
-
-    if (!sharedPrefController) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedPrefController = [[PhPrefsController alloc] init];
-    }
+    });
 
     return sharedPrefController;
 }

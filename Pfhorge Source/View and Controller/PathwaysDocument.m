@@ -69,12 +69,9 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    cameFromMarathonFormatedFile = YES;
+    if (self = [super init]) {
+        cameFromMarathonFormatedFile = YES;
+    }
     
     return self;
 }
@@ -117,13 +114,13 @@
 {
     NSData *tempData = [self dataOfType:@"org.bungie.source.map" error:NULL];
 
-    [[NSFileManager defaultManager] createFileAtPath:fullPath
+    BOOL success = [[NSFileManager defaultManager] createFileAtPath:fullPath
                                             contents:tempData
                                           attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
                                                        NSFileHFSTypeCode: @((OSType)'sce2')
                                           }];
     
-    return YES;
+    return success;
 }
 
 // *********************** Loading and Saving Levels ***********************
@@ -444,10 +441,12 @@
     [resources loadContentsOfFile:fileName];
     
     NS_HANDLER
-    if (NSRunCriticalAlertPanel(@"Error opening file",
-                                @"\"%@\" has the following problems:\n\n%@",
-                                @"Close", nil, nil, fileName, localException)
-                                == NSAlertDefaultReturn) {
+    NSAlert *fatalAlert = [[NSAlert alloc] init];
+    fatalAlert.alertStyle = NSAlertStyleCritical;
+    fatalAlert.messageText = @"Error opening file";
+    fatalAlert.informativeText = [NSString stringWithFormat:@"\"%@\" has the following problems:\n\n%@", fileName, localException];
+    [fatalAlert addButtonWithTitle:@"Close"];
+    if ([fatalAlert runModal] == NSAlertFirstButtonReturn) {
         value = NO;
         [localException raise];
     }
@@ -485,7 +484,10 @@
         int thePfhorgeDataSig3 = 42296737;
         thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
 
-        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
+        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:NO error:outError];
+        if (!theLevelMapData) {
+            return nil;
+        }
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
