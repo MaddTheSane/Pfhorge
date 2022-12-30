@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(SInt16, NDAESendPriority) {
 	/// Post message at the end of the event queue
 	NDAESendPriorityNormal = kAENormalPriority,
-	/// Post message at the front of the event queue (same as \c nAttnMsg )
+	/// Post message at the front of the event queue (same as \c nAttnMsg  )
 	NDAESendPriorityHigh = kAEHighPriority,
 };
 

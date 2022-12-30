@@ -246,7 +246,7 @@ static OSErr createResourceFork(NSURL * aURL);
 		// copy NSData's bytes to a handle
 		OSErr error = PtrToHand([aData bytes], &theResHandle, [aData length]);
 		if (noErr == error) {
-			Str255			thePName;
+			Str255			thePName = {0};
 			CFStringGetPascalString((CFStringRef)aName, thePName, 255, kCFStringEncodingMacRoman);
 			
 			HLock(theResHandle);
