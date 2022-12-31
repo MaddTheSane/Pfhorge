@@ -24,7 +24,8 @@
 import Foundation
 import AudioToolbox
 
-final class SNDConverter {
+@objcMembers
+final class SNDConverter: NSObject {
 	var sixteenBits = false
 	var stereo = false
 	var signed8Bit = false
@@ -37,13 +38,14 @@ final class SNDConverter {
 		try load(from: data)
 	}
 	
-	enum Errors: Int, Error {
+	@objc(SNDConverterError) enum Errors: Int, Error {
 		case unexpectedEOF
 		case badFormat
 		case noSamples
 		case unsupportedCompression
 	}
     
+	@objc(loadFromData:error:)
 	func load(from dat: Data) throws {
 		let stream = PhData(data: dat)
 		guard let format = stream.readUInt16() else {
@@ -225,7 +227,7 @@ final class SNDConverter {
 			if (format != PhTwosEncoderID || comp_id != -1) {
 				throw Errors.unsupportedCompression
 			}
-			signed8Bit = true;
+			signed8Bit = true
 			guard stream.add(toPosition: 4) else {
 				throw Errors.unexpectedEOF
 			}
@@ -239,24 +241,26 @@ final class SNDConverter {
 			throw Errors.unexpectedEOF
 		}
 
-		if (header_type != 0xfe) {
+		if header_type != 0xfe {
 			guard stream.add(toPosition: 14) else {
 				throw Errors.unexpectedEOF
 			}
 		}
 
-		sixteenBits = (sample_size == 16);
-		bytesPerFrame = (sixteenBits ? 2 : 1) * (stereo ? 2 : 1);
+		sixteenBits = (sample_size == 16)
+		bytesPerFrame = (sixteenBits ? 2 : 1) * (stereo ? 2 : 1)
 		guard let tmpDat = stream.getSubData(withLength: Int(num_frames) * bytesPerFrame) else {
 			throw Errors.unexpectedEOF
 		}
 		data = tmpDat
 	}
 
+	@objc(importFromURL:error:)
 	func importFrom(_ url: URL) throws {
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr)
 	}
 	
+	@objc(exportToURL:error:)
 	func export(to url: URL) throws {
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr)
 	}
