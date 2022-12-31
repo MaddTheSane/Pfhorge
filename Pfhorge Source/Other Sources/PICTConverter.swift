@@ -1482,16 +1482,16 @@ class PICT {
 	}
 
 	@objc(convertPICTfromURL:returnedFormat:error:)
-	class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+	class func convertPICT(from: URL, returnedFormat: UnsafeMutablePointer<BinaryFormat>?) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
-		returnedFormat.pointee = retVal.format
+		returnedFormat?.pointee = retVal.format
 		return retVal.data
 	}
 	
 	@objc(convertPICTfromData:returnedFormat:error:)
-	class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>) throws -> Data {
+	class func convertPICT(from: Data, returnedFormat: UnsafeMutablePointer<BinaryFormat>?) throws -> Data {
 		let retVal = try PICT.convertPICT(from: from, to: .best)
-		returnedFormat.pointee = retVal.format
+		returnedFormat?.pointee = retVal.format
 		return retVal.data
 	}
 	

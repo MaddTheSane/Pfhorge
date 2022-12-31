@@ -55,6 +55,7 @@
 
 #import "ScenarioResources.h"
 #import "Resource.h"
+#import "Pfhorge-Swift.h"
 
 @implementation LEMap
 
@@ -76,7 +77,10 @@
     resource = [resources resourceOfType:@"PICT" index:PICTIndex];  
         
     image = [[NSImage alloc] initWithData:[resource data]];
-    
+    if (!image) {
+        NSData *convDat = [PhPictConversion convertPICTfromData:[resource data] returnedFormat:NULL error:NULL];
+        image = [[NSImage alloc] initWithData:convDat];
+    }
     /*if (resource) {
         [chapterScreen setImage:[[NSImage alloc] initWithData:[resource data]]];
     }

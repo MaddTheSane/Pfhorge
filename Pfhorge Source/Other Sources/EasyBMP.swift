@@ -76,11 +76,11 @@ fileprivate extension EasyBMP.RGBAPixel {
 
 extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible, CustomStringConvertible {
 	var playgroundDescription: Any {
-		return CGColor.init(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: 1)
+		return CGColor.init(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: CGFloat(alpha)/CGFloat(UInt8.max))
 	}
 	
 	var description: String {
-		return "blue: \(blue), green: \(green), red: \(red)"
+		return "blue: \(blue), green: \(green), red: \(red), alpha: \(alpha)"
 	}
 }
 
