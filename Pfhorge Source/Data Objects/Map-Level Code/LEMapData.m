@@ -458,6 +458,7 @@ BOOL setupPointerArraysDurringLoading = YES;
     unsigned char *buffer = [entireMapData mutableBytes];
     long theLength = [entireMapData length];
     unsigned int theChecksum = calculate_data_crc(buffer, theLength);
+    theChecksum = CFSwapInt32HostToBig(theChecksum);
     // at 68 for 4 bytes...
 #ifdef useDebugingLogs
     NSLog(@"Checksum In Single Level: %d", theChecksum);

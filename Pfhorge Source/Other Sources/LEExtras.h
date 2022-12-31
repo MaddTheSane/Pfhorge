@@ -289,13 +289,6 @@ static inline unsigned short decodeUnsignedShort(NSCoder *coder)
 #define preferences 				[NSUserDefaults standardUserDefaults]
 #define prefBool(key)				[preferences boolForKey:(key)]
 #define archive(Obj) 				[NSKeyedArchiver archivedDataWithRootObject:(Obj) requiringSecureCoding:YES error:NULL]
-static inline id unarchive(NSData *Obj) {
-    id outObj = [NSKeyedUnarchiver unarchiveObjectWithData:Obj];
-    if (outObj) {
-        return outObj;
-    }
-    return [NSUnarchiver unarchiveObjectWithData:Obj];
-}
 static inline id unarchivedOfClass(NSData *Obj, Class cls) {
     id outObj = [NSKeyedUnarchiver unarchivedObjectOfClass:cls fromData:Obj error:NULL];
     if (outObj) {

@@ -162,7 +162,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:(500 * 1000)];
     
     if (shouldExportToMarathonFormat == YES || [typeName isEqualToString:@"org.bungie.source.map"]) {
-        [entireMapData setData:[LEMapData convertLevelToDataObject:theLevel error:outError]];
+        NSData *maraMap = [LEMapData convertLevelToDataObject:theLevel error:outError];
+        if (!maraMap) {
+            return nil;
+        }
+        [entireMapData setData:maraMap];
     } else {
         short theVersionNumber = currentVersionOfPfhorgeLevelData;
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
@@ -203,11 +207,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     //short version, dataVersion;
     BOOL loadedOk = NO;
     
-    short theVersionNumber = currentVersionOfPfhorgeLevelData;
-    short oldVersionNumber = oldVersionOfPfhorgeLevelData;
-    short thePfhorgeDataSig1 = 26743;
-    unsigned short thePfhorgeDataSig2 = 34521;
-    int thePfhorgeDataSig3 = 42296737;
+    const short theVersionNumber = currentVersionOfPfhorgeLevelData;
+    const short oldVersionNumber = oldVersionOfPfhorgeLevelData;
+    const short thePfhorgeDataSig1 = 26743;
+    const unsigned short thePfhorgeDataSig2 = 34521;
+    const int thePfhorgeDataSig3 = 42296737;
     
     short theVersionNumberFromData = 0;
     short thePfhorgeDataSig1FromData = 0;
@@ -247,7 +251,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         }
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = @"Level Is Too Old";
-        alert.informativeText = @"Can't load this version of pfhorge map data, export it in earlier, release candidate 1 release of Pfhorge, then open it here.";
+        alert.informativeText = @"Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here.";
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         loadedOk = NO;

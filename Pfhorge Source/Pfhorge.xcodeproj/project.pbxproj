@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551278EE2960E23F00D40309 /* SNDConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551278ED2960E23F00D40309 /* SNDConverter.swift */; };
 		553A981924705758003B6AEC /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553A981824705758003B6AEC /* GLKit.framework */; };
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
@@ -196,6 +197,7 @@
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		551278ED2960E23F00D40309 /* SNDConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
 		553A981824705758003B6AEC /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AmbientSoundEditor.xib; sourceTree = "<group>"; };
 		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorList.xib; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				55E914922489B4C20005D451 /* PfhorgeSwiftHelpers.h */,
 				55E91490248996C70005D451 /* PICTConverter.swift */,
 				55E914932489F9010005D451 /* EasyBMP.swift */,
+				551278ED2960E23F00D40309 /* SNDConverter.swift */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -790,7 +793,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Ph;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					AE3C149B0A04512100FBFFCD = {
 						LastSwiftMigration = 1130;
@@ -919,6 +922,7 @@
 				AE3C15840A04512100FBFFCD /* Resource.m in Sources */,
 				AE3C15850A04512100FBFFCD /* ScenarioResources.m in Sources */,
 				AE3C15860A04512100FBFFCD /* PhItemPlacementEditorController.m in Sources */,
+				551278EE2960E23F00D40309 /* SNDConverter.swift in Sources */,
 				AE3C15870A04512100FBFFCD /* PhColorListControllerDrawer.m in Sources */,
 				AE3C15880A04512100FBFFCD /* PhPluginManager.m in Sources */,
 				AE3C15890A04512100FBFFCD /* PluginManagerInterface.m in Sources */,
@@ -1148,6 +1152,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1191,6 +1196,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;

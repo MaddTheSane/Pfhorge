@@ -1022,7 +1022,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 - (void)openAnnotationNoteEditor:(PhAnnotationNote *)note
 {
     id obj = nil;
-    NSEnumerator *numer = nil;
     
     if ([self isSheetAlreadyOpen])
         return;
@@ -1033,7 +1032,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     
     [noteGroupPM addItemWithTitle:@"[No Group]"];
     
-    numer = [types objectEnumerator];
     for (obj in types) {
         [noteGroupPM addItemWithTitle:[obj phName]];
     }
@@ -1294,10 +1292,6 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 - (void)setDocument:(NSDocument *)document {
     [super setDocument:document];
     [self setUplevelDrawView];
-}
-
-- (LEMapDraw *)levelDrawView {
-    return levelDrawView;
 }
 
 @synthesize flagNow=theExpShort;

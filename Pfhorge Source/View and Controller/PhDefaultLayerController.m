@@ -260,15 +260,15 @@
     theRecord = [records objectAtIndex:theSelectedRow];
     [nameTB setStringValue:[theRecord objectForKey:PhDefaultLayer_Name]];
     
-    [floorMinSB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_FloorMin]) floatValue] / ((float)WORLD_ONE))];
-    [ceilingMinSB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_CeilingMin]) floatValue] / ((float)WORLD_ONE))];
-    [ceilingMaxSB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_CeilingMax]) floatValue] / ((float)WORLD_ONE))];
-    [floorMaxSB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_FloorMax]) floatValue] / ((float)WORLD_ONE))];
+    [floorMinSB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_FloorMin], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [ceilingMinSB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_CeilingMin], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [ceilingMaxSB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_CeilingMax], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [floorMaxSB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_FloorMax], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
     
-    [floorMaxTB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_FloorMax]) floatValue] / ((float)WORLD_ONE))];
-    [ceilingMaxTB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_CeilingMax]) floatValue] / ((float)WORLD_ONE))];
-    [ceilingMinTB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_CeilingMin]) floatValue] / ((float)WORLD_ONE))];
-    [floorMinTB setFloatValue:([unarchive([theRecord objectForKey:PhDefaultLayer_FloorMin]) floatValue] / ((float)WORLD_ONE))];
+    [floorMaxTB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_FloorMax], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [ceilingMaxTB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_CeilingMax], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [ceilingMinTB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_CeilingMin], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
+    [floorMinTB setFloatValue:([unarchivedOfClass([theRecord objectForKey:PhDefaultLayer_FloorMin], [NSNumber class]) floatValue] / ((float)WORLD_ONE))];
 }
 
 // *********************** Table Data Source Updater Methods ***********************

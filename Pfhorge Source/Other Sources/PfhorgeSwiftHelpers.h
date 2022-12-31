@@ -11,7 +11,8 @@
 #import <Foundation/Foundation.h>
 
 NS_ENUM(OSType) {
-	PhJPEGCodecID = 'jpeg'
+	PhJPEGCodecID = 'jpeg',
+	PhTwosEncoderID = 'twos'
 };
 
 #endif /* PfhorgeSwiftHelpers_h */

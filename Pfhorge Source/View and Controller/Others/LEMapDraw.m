@@ -1216,7 +1216,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             color = [NSColor greenColor];
         
         if ([selectedNotes containsObject:note]) {
-            color = unarchive(prefColor(PhLineSelectedColor));
+            color = unarchivedOfClass(prefColor(PhLineSelectedColor), [NSColor class]);
         }
         
         // sizeWithAttributes:

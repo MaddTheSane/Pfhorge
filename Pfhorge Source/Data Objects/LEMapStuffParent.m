@@ -122,9 +122,7 @@
  #pragma mark -
 #pragma mark ********* Object Settings *********
 
--(void)setEncodeIndexNumbersInstead:(BOOL)theChoice {
-    useIndexNumbersInstead = theChoice;
-}
+@synthesize encodeIndexNumbersInstead=useIndexNumbersInstead;
 
  // **************************  Advanced Accsess To Level Objects  *************************
  #pragma mark -
@@ -160,7 +158,7 @@
     return [theAmbientSoundsST objectAtIndex:theIndex];
 }
 
--(id)getRandomSoundFromIndex:(short)theIndex
+-(PhRandomSound*)getRandomSoundFromIndex:(short)theIndex
 {
     if (theIndex < 0 || [theRandomSoundsST count] == 0)
         return nil;

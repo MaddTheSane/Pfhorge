@@ -24,7 +24,7 @@
 import Cocoa
 
 
-private func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
+internal func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 	let arr = [toWrite.bigEndian]
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))

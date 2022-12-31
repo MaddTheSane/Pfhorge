@@ -72,7 +72,10 @@
 #pragma mark Init and Dealloc Methods
 -(PhTag *)init
 {
-    return self = [self initWithTagNumber:@-1];
+    if (self = [self initWithTagNumber:@-1]) {
+        
+    }
+    return self;
 }
 
 -(PhTag *)initWithTagNumber:(NSNumber *)thePhNumber
@@ -85,7 +88,10 @@
 
 - (instancetype)initWithNumber:(NSNumber *)thePhNumber
 {
-    return self = [self initWithTagNumber:thePhNumber];
+    if (self = [self initWithTagNumber:thePhNumber]) {
+        
+    }
+    return self;
 }
 
 -(short) getSpecialIndex { return [assignedNumber intValue]; }

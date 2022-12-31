@@ -38,6 +38,7 @@
 
 - (instancetype)initWithTagNumber:(NSNumber *)thePhNumber NS_DESIGNATED_INITIALIZER;
 - (instancetype)init;
+- (instancetype)initWithNumber:(NSNumber *)thePhNumber;
 
 //-(NSNumber *)phNumber;
 //-(void)setPhNumber:(NSNumber *)tagPhNumber;

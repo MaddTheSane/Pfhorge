@@ -86,6 +86,7 @@
 
  // **************************  Object Settings  *************************
 -(void)setEncodeIndexNumbersInstead:(BOOL)theChoice;
+@property BOOL encodeIndexNumbersInstead;
 
  // **************************  Advanced Accsess To Level Objects  *************************
 -(PhLight*)getLightFromIndex:(short)theIndex;

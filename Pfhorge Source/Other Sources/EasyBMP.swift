@@ -76,7 +76,7 @@ fileprivate extension EasyBMP.RGBAPixel {
 
 extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible, CustomStringConvertible {
 	var playgroundDescription: Any {
-		return CGColor.init(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: CGFloat(alpha)/CGFloat(UInt8.max))
+		return CGColor(red: CGFloat(red)/CGFloat(UInt8.max), green: CGFloat(green)/CGFloat(UInt8.max), blue: CGFloat(blue)/CGFloat(UInt8.max), alpha: CGFloat(alpha)/CGFloat(UInt8.max))
 	}
 	
 	var description: String {
@@ -128,11 +128,11 @@ final class EasyBMP {
 		
 		init?(data: PhLEData) {
 			guard let abfType = data.readUInt16(),
-			let abfSize = data.readUInt32(),
-			let abfReserved1 = data.readUInt16(),
-			let abfReserved2 = data.readUInt16(),
-				let abfOffBits = data.readUInt32() else {
-					return nil
+				  let abfSize = data.readUInt32(),
+				  let abfReserved1 = data.readUInt16(),
+				  let abfReserved2 = data.readUInt16(),
+				  let abfOffBits = data.readUInt32() else {
+				return nil
 			}
 			bfType = abfType
 			bfSize = abfSize
@@ -180,17 +180,17 @@ final class EasyBMP {
 		
 		init?(data: PhLEData) {
 			guard let abiSize = data.readUInt32(),
-			let abiWidth = data.readInt32(),
-			let abiHeight = data.readInt32(),
-			let abiPlanes = data.readUInt16(),
-			let abiBitCount = data.readUInt16(),
-			let abiCompression = data.readUInt32(),
-			let abiSizeImage = data.readUInt32(),
-			let abiXPelsPerMeter = data.readUInt32(),
-			let abiYPelsPerMeter = data.readUInt32(),
-			let abiClrUsed = data.readUInt32(),
-				let abiClrImportant = data.readUInt32() else {
-					return nil
+				  let abiWidth = data.readInt32(),
+				  let abiHeight = data.readInt32(),
+				  let abiPlanes = data.readUInt16(),
+				  let abiBitCount = data.readUInt16(),
+				  let abiCompression = data.readUInt32(),
+				  let abiSizeImage = data.readUInt32(),
+				  let abiXPelsPerMeter = data.readUInt32(),
+				  let abiYPelsPerMeter = data.readUInt32(),
+				  let abiClrUsed = data.readUInt32(),
+				  let abiClrImportant = data.readUInt32() else {
+				return nil
 			}
 			biSize = abiSize
 			biWidth = abiWidth
