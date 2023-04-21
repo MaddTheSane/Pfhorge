@@ -91,17 +91,17 @@ enum /* environment_code codes */
 	_pfhor
 };
 
-/*! environment_code wall textre collection */
+/*! environment_code wall texture collection */
 typedef NS_ENUM(short, LELevelEnvironmentCode) {
-	_water_collection = 0x11, // 17
-	_lava_collection, // 18
-	_sewage_collection, // 19
-	_jjaro_collection, // 20
-	_pfhor_collection, // 21
-	_landscape_collection_1 = 0x1B,
-	_landscape_collection_2,
-	_landscape_collection_3,
-	_landscape_collection_4
+    LELevelEnvironmentWater = 0x11, // 17
+    LELevelEnvironmentLava, // 18
+    LELevelEnvironmentSewage, // 19
+    LELevelEnvironmentJjaro, // 20
+    LELevelEnvironmentPfhor, // 21
+    LELevelEnvironmentLandscape1 = 0x1B,
+    LELevelEnvironmentLandscape2,
+    LELevelEnvironmentLandscape3,
+    LELevelEnvironmentLandscape4
 };
 
 //! entry point types - this is per map level (long)
@@ -469,3 +469,14 @@ enum {
 - (NSScriptObjectSpecifier *)objectSpecifier;
 
 @end
+
+static const LELevelEnvironmentCode _water_collection API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentWater", macos(10.0, 10.7)) = LELevelEnvironmentWater;
+static const LELevelEnvironmentCode _lava_collection API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentLava", macos(10.0, 10.7)) = LELevelEnvironmentLava;
+static const LELevelEnvironmentCode _sewage_collection API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentSewage", macos(10.0, 10.7)) = LELevelEnvironmentSewage;
+static const LELevelEnvironmentCode _jjaro_collection API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentJjaro", macos(10.0, 10.7)) = LELevelEnvironmentJjaro;
+static const LELevelEnvironmentCode _pfhor_collection API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentPfhor", macos(10.0, 10.7)) = LELevelEnvironmentPfhor;
+
+static const LELevelEnvironmentCode _landscape_collection_1 API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentLandscape1", macos(10.0, 10.7)) = LELevelEnvironmentLandscape1;
+static const LELevelEnvironmentCode _landscape_collection_2 API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentLandscape2", macos(10.0, 10.7)) = LELevelEnvironmentLandscape2;
+static const LELevelEnvironmentCode _landscape_collection_3 API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentLandscape3", macos(10.0, 10.7)) = LELevelEnvironmentLandscape3;
+static const LELevelEnvironmentCode _landscape_collection_4 API_DEPRECATED_WITH_REPLACEMENT("LELevelEnvironmentLandscape4", macos(10.0, 10.7)) = LELevelEnvironmentLandscape4;

@@ -46,8 +46,6 @@
 #import "PhMedia.h"
 #import "PhLight.h"
 
-#import "PhTextureRepository.h"
-
 //Other Classes...
 #import "LEExtras.h"
 

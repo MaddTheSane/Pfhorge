@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		551278EE2960E23F00D40309 /* SNDConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551278ED2960E23F00D40309 /* SNDConverter.swift */; };
+		55166FA429EB67DB00B1E5CA /* TextureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55166FA329EB67DB00B1E5CA /* TextureRepository.swift */; };
 		553A981924705758003B6AEC /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553A981824705758003B6AEC /* GLKit.framework */; };
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
@@ -62,7 +63,6 @@
 		AE3C155F0A04512100FBFFCD /* PhLineInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */; };
 		AE3C15600A04512100FBFFCD /* PhPolyInspectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D2ACA60103D0887F000001 /* PhPolyInspectorController.m */; };
 		AE3C15610A04512100FBFFCD /* PhObjectInspectorSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */; };
-		AE3C15620A04512100FBFFCD /* PhTextureRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D18BC0010A18747F000001 /* PhTextureRepository.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EC509F0110FB3D7F000001 /* PhColorListController.m */; };
 		AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CCECF40125C7647F000001 /* PhPrefsController.m */; };
 		AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D4535B0144672D7F000001 /* PhDynamicPrefSubController.m */; };
@@ -136,8 +136,6 @@
 		00C98A2C010513217F000001 /* PhObjectInspectorSubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhObjectInspectorSubController.m; sourceTree = "<group>"; };
 		00CCECF30125C7647F000001 /* PhPrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPrefsController.h; sourceTree = "<group>"; };
 		00CCECF40125C7647F000001 /* PhPrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhPrefsController.m; sourceTree = "<group>"; };
-		00D18BBF010A18747F000001 /* PhTextureRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhTextureRepository.h; sourceTree = "<group>"; };
-		00D18BC0010A18747F000001 /* PhTextureRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhTextureRepository.m; sourceTree = "<group>"; };
 		00D2ACA10103C59A7F000001 /* PhLineInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhLineInspectorController.h; sourceTree = "<group>"; };
 		00D2ACA20103C59A7F000001 /* PhLineInspectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhLineInspectorController.m; sourceTree = "<group>"; };
 		00D2ACA50103D0887F000001 /* PhPolyInspectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhPolyInspectorController.h; sourceTree = "<group>"; };
@@ -198,6 +196,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		551278ED2960E23F00D40309 /* SNDConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
+		55166FA329EB67DB00B1E5CA /* TextureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureRepository.swift; sourceTree = "<group>"; };
 		553A981824705758003B6AEC /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AmbientSoundEditor.xib; sourceTree = "<group>"; };
 		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorList.xib; sourceTree = "<group>"; };
@@ -503,8 +502,7 @@
 				035877BE00E7E7C67F000001 /* LEExtras.h */,
 				035877BF00E7E7C67F000001 /* LEExtras.m */,
 				A52DB02404016BFC0046BBD2 /* PhDefs.h */,
-				00D18BBF010A18747F000001 /* PhTextureRepository.h */,
-				00D18BC0010A18747F000001 /* PhTextureRepository.m */,
+				55166FA329EB67DB00B1E5CA /* TextureRepository.swift */,
 				A597FC2C045763B20046BBD2 /* PhData.h */,
 				A597FC2D045763B20046BBD2 /* PhData.m */,
 				55E91495248A012B0005D451 /* PhDataAdditions.swift */,
@@ -874,6 +872,7 @@
 				AE3C15570A04512100FBFFCD /* LESide.m in Sources */,
 				AE3C15580A04512100FBFFCD /* PhLight.m in Sources */,
 				AE3C15590A04512100FBFFCD /* PhItemPlacement.m in Sources */,
+				55166FA429EB67DB00B1E5CA /* TextureRepository.swift in Sources */,
 				AE3C155A0A04512100FBFFCD /* PhMedia.m in Sources */,
 				AE3C155B0A04512100FBFFCD /* PhAmbientSound.m in Sources */,
 				AE3C155C0A04512100FBFFCD /* PhRandomSound.m in Sources */,
@@ -882,7 +881,6 @@
 				AE3C155F0A04512100FBFFCD /* PhLineInspectorController.m in Sources */,
 				AE3C15600A04512100FBFFCD /* PhPolyInspectorController.m in Sources */,
 				AE3C15610A04512100FBFFCD /* PhObjectInspectorSubController.m in Sources */,
-				AE3C15620A04512100FBFFCD /* PhTextureRepository.m in Sources */,
 				AE3C15630A04512100FBFFCD /* PhColorListController.m in Sources */,
 				AE3C15640A04512100FBFFCD /* PhPrefsController.m in Sources */,
 				AE3C15650A04512100FBFFCD /* PhDynamicPrefSubController.m in Sources */,

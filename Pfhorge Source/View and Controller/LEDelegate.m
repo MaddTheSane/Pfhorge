@@ -26,7 +26,6 @@
 #import "PhStartupWinController.h"
 #import "LEInspectorController.h"
 #import "LEPaletteController.h"
-#import "PhTextureRepository.h"
 #import "PhPrefsController.h"
 #import "LEDelegate.h"
 #import "LEExtras.h"

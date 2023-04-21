@@ -62,10 +62,10 @@ private func bmpWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) {
 fileprivate extension EasyBMP.RGBAPixel {
 	init?(data: PhLEData) {
 		guard let ablue = data.readUInt8(),
-			let agreen = data.readUInt8(),
-			let ared = data.readUInt8(),
-			let aalpha = data.readUInt8() else {
-				return nil
+			  let agreen = data.readUInt8(),
+			  let ared = data.readUInt8(),
+			  let aalpha = data.readUInt8() else {
+			return nil
 		}
 		red = ared
 		green = agreen
@@ -941,7 +941,7 @@ final class EasyBMP {
 		guard bmih.biCompression <= 3 else {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
-			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is in an unsupported format. (bmih.biCompression = \(bmih.biCompression)) The file is probably an old OS2 bitmap or corrupted."])
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is in an unsupported format. (bmih.biCompression = \(bmih.biCompression)) The file is probably an old OS/2 bitmap or corrupted."])
 		}
 		if bmih.biCompression == 3 && bmih.biBitCount != 16 {
 			_=setSize(width: 1,height: 1)
@@ -957,7 +957,7 @@ final class EasyBMP {
 			&& TempBitDepth != 24 && TempBitDepth != 32 ) {
 		 _=setSize(width: 1,height: 1)
 		 _=setBitDepth(1)
-		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has unrecognized bit depth."])
+		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has unrecognized bit depth (\(TempBitDepth))."])
 		}
 		_=setBitDepth(Int32(bmih.biBitCount))
 

@@ -19,5 +19,7 @@
 #import "PhProgress.h"
 #import "Terminal.h"
 #import "TerminalSection.h"
+#import "LELevelData.h"
+#import "extractbitmap.h"
 
 #endif /* Pfhorge_Bridging_Header_h */

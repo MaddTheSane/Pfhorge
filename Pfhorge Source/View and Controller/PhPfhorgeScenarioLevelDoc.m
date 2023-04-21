@@ -176,7 +176,7 @@
                              
             [progress setStatusText:@"Adding Level Names To Scenario Document…"];
             
-            [scenarioData addLevelNames:levelNames];
+            [self->scenarioData addLevelNames:levelNames];
             
             [progress setStatusText:@"Extracting and Saving Resources…"];
             

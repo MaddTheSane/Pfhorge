@@ -1,10 +1,10 @@
 #import "PhStartupWinController.h"
-#import "PhTextureRepository.h"
 #import "LELevelData.h"
 
 #import "LEExtras.h"
+#import "Pfhorge-Swift.h"
 
-#define waterTex(i) [[[PhTextureRepository sharedTextureRepository] getTextureCollection:_water] objectAtIndex:(i)]
+#define waterTex(i) [[[TextureRepository sharedTextureRepository] textureCollection:_water] objectAtIndex:(i)]
 
 @interface PhStartupWinController ()
 - (void)setupWindow;
@@ -84,7 +84,7 @@
 
 - (void)loadTexturesNow
 {
-    PhTextureRepository *textures = [PhTextureRepository sharedTextureRepository];
+    TextureRepository *textures = [TextureRepository sharedTextureRepository];
     
     [self setupWindow];
     
@@ -93,9 +93,9 @@
     [self setMaxProgress:60.0];
       
     [self setStatusText:@"Loading Water Textures…"];
-    [textures loadTextureSet:_water];
+    [textures loadTextureSet:_water error:NULL];
     
-    if ([textures getTextureCollection:_water] == nil)
+    if ([textures textureCollection:_water] == nil)
     {
         [self setStatusText:@"Can't load, choose shapes location in prefs…"];
         [self closeWindow];
@@ -110,24 +110,24 @@
     [self increaseProgressBy:10.0];
     
     [self setStatusText:@"Loading Lava Textures…"];
-    [textures loadTextureSet:_lava];
+    [textures loadTextureSet:_lava error:NULL];
     [self increaseProgressBy:10.0];
     
     [self setStatusText:@"Loading Sewage Textures…"];
-    [textures loadTextureSet:_sewage];
+    [textures loadTextureSet:_sewage error:NULL];
     [self increaseProgressBy:10.0];
     
     [self setStatusText:@"Loading Jjaro Textures…"];
-    [textures loadTextureSet:_jjaro];
+    [textures loadTextureSet:_jjaro error:NULL];
     [self increaseProgressBy:10.0];
     
     [self setStatusText:@"Loading Pfhor Textures…"];
-    [textures loadTextureSet:_pfhor];
+    [textures loadTextureSet:_pfhor error:NULL];
     [self increaseProgressBy:10.0];
     
     // Loads landscape textures…
     [self setStatusText:@"Loading Landscape Textures…"];
-    [textures loadTextureSet:99.0];
+    [textures loadTextureSet:99 error:NULL];
     [self increaseProgressBy:10.0];
     
     [self setStatusText:@"Done Loading Textures…"];

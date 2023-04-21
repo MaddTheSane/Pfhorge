@@ -1,5 +1,4 @@
 #import "PhTextureInspectorController.h"
-#import "PhTextureRepository.h"
 #import "LELevelData.h"
 
 #include <stdio.h>
@@ -31,6 +30,7 @@
 
 //Other Classes...
 #import "LEExtras.h"
+#import "Pfhorge-Swift.h"
 
 @interface PhTextureInspectorController ()
 
@@ -265,7 +265,7 @@
         
         [floorTextureNums selectItemAtIndex:-1];
     } else {
-        [self updateMenu:floorTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(fColl + 0x11)]];
+        [self updateMenu:floorTexture withImages:[[TextureRepository sharedTextureRepository] texturesForEnvironment:(fColl + 0x11)]];
         
         if (fColl > 4) {
             [floorTextureNums selectItemAtIndex:(fColl - 5)];
@@ -282,7 +282,7 @@
         
         [ceilingTextureNums selectItemAtIndex:-1];
     } else {
-        [self updateMenu:ceilingTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(cColl + 0x11)]];
+        [self updateMenu:ceilingTexture withImages:[[TextureRepository sharedTextureRepository] texturesForEnvironment:(cColl + 0x11)]];
         
         if (cColl > 4) {
             [ceilingTextureNums selectItemAtIndex:(cColl - 5)];
@@ -591,7 +591,7 @@
         [primaryTextureNums selectItemAtIndex:-1];
         doPriT = NO;
     } else {
-        [self updateMenu:primaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(pColl + 0x11)]];
+        [self updateMenu:primaryTexture withImages:[[TextureRepository sharedTextureRepository] texturesForEnvironment:(pColl + 0x11)]];
         
         if (pColl > 4)
             [primaryTextureNums selectItemAtIndex:(pColl - 5)];
@@ -608,7 +608,7 @@
         [secondaryTextureNums selectItemAtIndex:-1];
         doSecT = NO;
     } else {
-        [self updateMenu:secondaryTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(sColl + 0x11)]];
+        [self updateMenu:secondaryTexture withImages:[[TextureRepository sharedTextureRepository] texturesForEnvironment:(sColl + 0x11)]];
         
         if (sColl > 4)
             [secondaryTextureNums selectItemAtIndex:(sColl - 5)];
@@ -625,7 +625,7 @@
         [transparentTextureNums selectItemAtIndex:-1];
         doTraT = NO;
     } else {
-        [self updateMenu:transparentTexture withImages:[[PhTextureRepository sharedTextureRepository] collection:(tColl + 0x11)]];
+        [self updateMenu:transparentTexture withImages:[[TextureRepository sharedTextureRepository] texturesForEnvironment:(tColl + 0x11)]];
         
         if (tColl > 4) {
             [transparentTextureNums selectItemAtIndex:(tColl - 5)];
