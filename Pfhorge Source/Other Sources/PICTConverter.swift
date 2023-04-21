@@ -1279,7 +1279,7 @@ class PICT {
 			return try saveBMP()
 		} else if jpegData.count != 0 {
 			guard let jpeg = saveJPEG() else {
-				throw NSError(domain: NSCocoaErrorDomain, code: NSFileWriteUnknownError, userInfo: nil)
+				throw CocoaError(.fileWriteUnknown)
 			}
 			return jpeg
 		}
@@ -1473,11 +1473,11 @@ class PICT {
 	@objc(PhPictConversionBinaryFormat) enum BinaryFormat: Int {
 		/// `.bitmap` if 8-bit, `.JPEG` if JPEG data is encoded, otherwise `.PNG`.
 		case best = -1
-		/// .BMP files.
+		/// Windows bitmap files.
 		case bitmap = 0
-		/// JPEG
+		/// JPEG.
 		case JPEG = 1
-		/// PNG
+		/// PNG.
 		case PNG = 2
 	}
 
@@ -1736,7 +1736,10 @@ private func parseJPEGDimensions(_ preData: Data) -> (width: Int16, height: Int1
 			
 		case 0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf:
 			// start of frame
-			guard let /*length*/_ = stream.readUInt16(), let /*precision*/_ = stream.readUInt8(), let height = stream.readInt16(), let width = stream.readInt16() else {
+			guard let /*length*/_ = stream.readUInt16(),
+				  let /*precision*/_ = stream.readUInt8(),
+				  let height = stream.readInt16(),
+				  let width = stream.readInt16() else {
 				return nil
 			}
 			

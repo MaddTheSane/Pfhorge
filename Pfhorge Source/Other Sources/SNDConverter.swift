@@ -38,7 +38,8 @@ final class SNDConverter: NSObject {
 		try load(from: data)
 	}
 	
-	@objc(SNDConverterError) enum Errors: Int, Error {
+	@objc(SNDConverterErrors)
+	enum Errors: Int, Error {
 		case unexpectedEOF
 		case badFormat
 		case noSamples
