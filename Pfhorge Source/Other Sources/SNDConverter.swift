@@ -33,7 +33,7 @@ final class SNDConverter: NSObject {
 	var rate: UInt32 = 0
 	var data = Data()
 	
-	convenience init(data: Data) throws {
+	convenience init(data: Data) throws(Errors) {
 		self.init()
 		try load(from: data)
 	}
@@ -47,7 +47,7 @@ final class SNDConverter: NSObject {
 	}
     
 	@objc(loadFromData:error:)
-	func load(from dat: Data) throws {
+	func load(from dat: Data) throws(Errors) {
 		let stream = PhData(data: dat)
 		guard let format = stream.readUInt16() else {
 			throw Errors.unexpectedEOF
@@ -140,7 +140,7 @@ final class SNDConverter: NSObject {
 		return result
 	}
 	
-	private func unpackStandardSystem7Header(_ stream: PhData) throws {
+	private func unpackStandardSystem7Header(_ stream: PhData) throws(Errors) {
 		bytesPerFrame = 1
 		signed8Bit = false
 		sixteenBits = false
@@ -174,7 +174,7 @@ final class SNDConverter: NSObject {
 		data = preDat
 	}
 	
-	private func unpackExtendedSystem7Header(_ stream: PhData) throws {
+	private func unpackExtendedSystem7Header(_ stream: PhData) throws(Errors) {
 		signed8Bit = false;
 		// sample pointer
 		guard stream.add(toPosition: 4) else {

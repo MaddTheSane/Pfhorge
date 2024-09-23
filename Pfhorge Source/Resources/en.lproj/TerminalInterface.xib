@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,11 +35,11 @@
             <rect key="frame" x="0.0" y="0.0" width="181" height="291"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="224">
+                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="224">
                     <rect key="frame" x="1" y="263" width="180" height="25"/>
                     <popUpButtonCell key="cell" type="push" title="Add, Delete, Etc." bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="260" id="304">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
+                        <font key="font" metaFont="message"/>
                         <menu key="menu" title="OtherViews" id="227">
                             <items>
                                 <menuItem title="Add, Delete, Etc." hidden="YES" id="260"/>
@@ -128,7 +128,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="2" y="324" width="640" height="399"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="5">
                 <rect key="frame" x="0.0" y="0.0" width="640" height="399"/>
@@ -519,7 +519,7 @@ Hint: Use Upper Right </string>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28">
+                    <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="28">
                         <rect key="frame" x="358" y="379" width="282" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="square" title="Open Drawer" bezelStyle="shadowlessSquare" alignment="center" controlSize="small" transparent="YES" inset="2" id="307">
@@ -542,12 +542,12 @@ Hint: Use Upper Right </string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </colorWell>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126">
+                                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="126">
                                     <rect key="frame" x="286" y="35" width="167" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="Delimiter" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="147" id="308">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" id="138">
                                             <items>
                                                 <menuItem title="Logon - Picture id#" id="133"/>
@@ -594,7 +594,7 @@ Hint: Use Upper Right </string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="color" red="0.50354611999999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </colorWell>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="142">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="142">
                                     <rect key="frame" x="189" y="40" width="95" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Section Type:" id="309">
@@ -618,7 +618,7 @@ Hint: Use Upper Right </string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </colorWell>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="154">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="94" translatesAutoresizingMaskIntoConstraints="NO" id="154">
                                     <rect key="frame" x="8" y="12" width="98" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Apply Color:" id="310">
@@ -627,7 +627,7 @@ Hint: Use Upper Right </string>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="64" translatesAutoresizingMaskIntoConstraints="NO" id="160">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="64" translatesAutoresizingMaskIntoConstraints="NO" id="160">
                                     <rect key="frame" x="216" y="10" width="68" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Index #:" id="311">
@@ -636,12 +636,12 @@ Hint: Use Upper Right </string>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="177">
+                                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="177">
                                     <rect key="frame" x="13" y="37" width="173" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="Apply Style:" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="180" id="312">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" id="176">
                                             <items>
                                                 <menuItem title="Apply Style:" hidden="YES" id="180"/>
@@ -781,12 +781,12 @@ Hint: Use Upper Right </string>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
-                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="279">
+                                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="279">
                                     <rect key="frame" x="481" y="9" width="128" height="26"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <popUpButtonCell key="cell" type="push" title="32 bit" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" enabled="NO" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="282" id="313">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="menu"/>
+                                        <font key="font" metaFont="message"/>
                                         <menu key="menu" title="OtherViews" id="283">
                                             <items>
                                                 <menuItem title="8 bit" id="281"/>
@@ -799,7 +799,7 @@ Hint: Use Upper Right </string>
                                         <action selector="pictBitRatePMChanged:" target="-2" id="286"/>
                                     </connections>
                                 </popUpButton>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="143" translatesAutoresizingMaskIntoConstraints="NO" id="284">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="143" translatesAutoresizingMaskIntoConstraints="NO" id="284">
                                     <rect key="frame" x="469" y="41" width="147" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Preferred Pic Sample:" id="314">
@@ -818,12 +818,12 @@ Hint: Use Upper Right </string>
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="294">
+                                                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="294">
                                                         <rect key="frame" x="-2" y="-1" width="167" height="26"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="296" id="315">
                                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="menu"/>
+                                                            <font key="font" metaFont="message"/>
                                                             <menu key="menu" title="OtherViews" id="293">
                                                                 <items>
                                                                     <menuItem title="Item1" state="on" id="296"/>
@@ -844,7 +844,7 @@ Hint: Use Upper Right </string>
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="292">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="292">
                                                         <rect key="frame" x="0.0" y="2" width="161" height="22"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="border" alignment="left" title="0" id="316">
@@ -898,13 +898,13 @@ Hint: Use Upper Right </string>
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="91" y="585" width="494" height="139"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="237">
                 <rect key="frame" x="0.0" y="0.0" width="494" height="125"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="238">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="238">
                         <rect key="frame" x="102" y="88" width="164" height="17"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Delete Entire Terminal?" id="317">
                             <font key="font" metaFont="systemBold" size="14"/>
@@ -920,7 +920,7 @@ Hint: Use Upper Right </string>
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="318"/>
                     </imageView>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="241">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="241">
                         <rect key="frame" x="405" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="320">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -936,7 +936,7 @@ DQ
                             <action selector="deleteTerminalConfirmation:" target="-2" id="247"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="242">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="242">
                         <rect key="frame" x="331" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="321">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -946,7 +946,7 @@ DQ
                             <action selector="deleteTerminalConfirmation:" target="-2" id="248"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="311" translatesAutoresizingMaskIntoConstraints="NO" id="240">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" preferredMaxLayoutWidth="311" translatesAutoresizingMaskIntoConstraints="NO" id="240">
                         <rect key="frame" x="102" y="48" width="374" height="32"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Are your sure you want to delete the entire terminal, including any sections it may have?" id="319">
                             <font key="font" metaFont="system"/>

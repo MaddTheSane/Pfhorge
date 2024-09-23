@@ -172,7 +172,7 @@ struct PID_Sector {
 		OpenNgbrDoor_Flag=141		//!< Opens neighboring door if some flag is set
 	};
 	
-	enum {
+	enum CornerWall: short {
 		Wall_Y,					//!< Wall on -Y side of sector
 		Wall_X,					//!< Wall on -X side of sector
 		Corner_HighX_LowY,
@@ -314,19 +314,19 @@ struct PID_PlayerItem {
 //! Weapon performance
 //!
 //! The weapons are, in order:
-//! Survival knife
-//! Colt .45 Pistol
-//! Walther P4 Pistol
-//! MP-41 Submachine Gun
-//! M-16 Rifle
-//! AK-47 Assault Rifle
-//! M-79 Grenade Launcher
+//! - Survival knife
+//! - Colt .45 Pistol
+//! - Walther P4 Pistol
+//! - MP-41 Submachine Gun
+//! - M-16 Rifle
+//! - AK-47 Assault Rifle
+//! - M-79 Grenade Launcher
 //!
 //! The proficiency levels are, in order:
 //! (weapon not listed)
-//! Beginner
-//! Novice
-//! Expert
+//! - Beginner
+//! - Novice
+//! - Expert
 struct PID_WeaponPerform {
 	short NumKilled;		//!< How many monsters killed with this weapon
 	short Proficiency;		//!< Proficiency level (0 to 3)

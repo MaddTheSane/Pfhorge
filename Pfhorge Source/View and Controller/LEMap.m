@@ -547,6 +547,15 @@
 
 // ****************** NEW METHODS ******************
 
+- (NSArray<NSString *> *)writableTypesForSaveOperation:(NSSaveOperationType)saveOperation
+{
+    if (shouldExportToMarathonFormat == YES) {
+        return @[@"org.bungie.source.map"];
+    } else {
+        return @[@"com.xmission.dragons.pfhorge.level"];
+    }
+}
+
 -(NSDictionary<NSString *,id> *)fileAttributesToWriteToURL:(NSURL *)url ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation originalContentsURL:(NSURL *)absoluteOriginalContentsURL error:(NSError * _Nullable *)outError
 {
     NSMutableDictionary	*dict = [NSMutableDictionary dictionaryWithDictionary:
@@ -563,6 +572,11 @@
     return dict;
 }
 
+- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing  _Nullable *)outError
+{
+    return [super writeToURL:url ofType:typeName error:outError];
+}
+
 -(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError * _Nullable *)outError
 {
     NSString *fileName = url.path;
@@ -577,12 +591,12 @@
     if (value == NO)
         return NO;
     
-    NS_DURING
+    @try {
     
     //[wad initWithContentsOfFile:fileName];
     [resources loadContentsOfFile:fileName];
     
-    NS_HANDLER
+    } @catch (NSException *localException) {
     if (NSRunCriticalAlertPanel(@"Error opening file",
                                 @"\"%@\" has the following problems:\n\n%@",
                                 @"Close", nil, nil, fileName, localException)
@@ -590,7 +604,7 @@
         value = NO;
         [localException raise];
     }
-    NS_ENDHANDLER
+    }
     
     //[[self undoManager] removeAllActions];
     
@@ -618,7 +632,7 @@
         int thePfhorgeDataSig3 = 42296737;
         thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
 
-        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
+        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:NO error:outError];
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
@@ -631,6 +645,11 @@
     }
     
     return entireMapData;
+}
+
++ (BOOL)autosavesInPlace
+{
+    return YES;
 }
 
 -(BOOL)readFromData:(NSData *)data ofType:(NSString *)aType error:(NSError * _Nullable *)outError
@@ -674,16 +693,17 @@
             loadedOk = YES;
         }
     }
-    /*else if (theVersionNumberFromData != theVersionNumber &&
+    else if (theVersionNumberFromData != theVersionNumber &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
     {
-        SEND_ERROR_MSG_TITLE(@"Can't Load This Version Of Pfhorge Map Data,\
-                                Export It In Previous Version Then Open It Here.",
-                             @"Can't Load Map");
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load This Version Of Pfhorge Map Data, Export It In Previous Version Then Open It Here."}];
+        }
+
         loadedOk = NO;
-    }*/
+    }
     else if (/*theVersionNumberFromData == theVersionNumber &&*/
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
@@ -693,10 +713,11 @@
         loadedOk = NO;
         cameFromMarathonFormatedFile = NO;
         theRawMapData = nil;
-        
-        SEND_ERROR_MSG_TITLE(@"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev",
-                             @"Change File's Extention");
-        
+            
+            if (outError) {
+                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev"}];
+            }
+
         /*
         
         theLevel = [[NSUnarchiver unarchiveObjectWithData:
@@ -709,11 +730,9 @@
             [theLevel updateCounts];
         }*/
     } else {
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Can't Load File";
-        alert.informativeText = @"Can't Load File, Unknown Format.";
-        alert.alertStyle = NSAlertStyleInformational;
-        [alert runModal];
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load File: Unknown Format."}];
+        }
         loadedOk = NO;
     }
     

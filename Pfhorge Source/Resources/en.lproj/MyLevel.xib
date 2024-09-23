@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -63,7 +63,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="252" y="396" width="442" height="304"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="32">
                 <rect key="frame" x="0.0" y="0.0" width="442" height="304"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -72,7 +72,7 @@
                         <rect key="frame" x="0.0" y="265" width="442" height="4"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="138">
                         <rect key="frame" x="3" y="272" width="432" height="13"/>
                         <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Status Bar…" usesSingleLineMode="YES" id="1158">
                             <font key="font" metaFont="system" size="10"/>
@@ -109,7 +109,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="623">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="623">
                         <rect key="frame" x="266" y="282" width="99" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Level Names" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="624" id="1159">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -126,7 +126,7 @@
                             <action selector="chooseLevelMenu:" target="-2" id="649"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="626">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="626">
                         <rect key="frame" x="229" y="287" width="35" height="14"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Level:" usesSingleLineMode="YES" id="1160">
                             <font key="font" metaFont="smallSystem"/>
@@ -134,7 +134,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="628">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="628">
                         <rect key="frame" x="39" y="282" width="100" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Layer Names" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="630" id="1161">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -151,7 +151,7 @@
                             <action selector="layerMenuAction:" target="-2" id="656"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="632">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="632">
                         <rect key="frame" x="1" y="287" width="36" height="14"/>
                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Layer:" id="1162">
                             <font key="font" metaFont="smallSystem"/>
@@ -159,7 +159,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="701">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="701">
                         <rect key="frame" x="365" y="282" width="74" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Options" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1033" id="1163">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -230,12 +230,12 @@
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="105" y="154" width="428" height="263"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="191">
                 <rect key="frame" x="0.0" y="0.0" width="430" height="263"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
                         <rect key="frame" x="267" y="6" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1170">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -248,7 +248,7 @@ Gw
                             <action selector="cancelLevelSettings:" target="-2" id="268"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="258">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="258">
                         <rect key="frame" x="341" y="6" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1171">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -316,11 +316,8 @@ DQ
                                     </view>
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
-                                <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="198">
+                                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
                                     <rect key="frame" x="90" y="149" width="98" height="22"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="90" id="khg-LZ-HN6"/>
-                                    </constraints>
                                     <popUpButtonCell key="cell" type="push" title="Water" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="199" id="1164">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="message" size="11"/>
@@ -334,8 +331,11 @@ DQ
                                             </items>
                                         </menu>
                                     </popUpButtonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="90" id="khg-LZ-HN6"/>
+                                    </constraints>
                                 </popUpButton>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="202">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="202">
                                     <rect key="frame" x="-6" y="154" width="94" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="cUX-bE-vpF"/>
@@ -346,7 +346,7 @@ DQ
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="206">
+                                <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="206">
                                     <rect key="frame" x="268" y="149" width="142" height="22"/>
                                     <popUpButtonCell key="cell" type="push" title="Daytime Lh'owon" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="204" id="1166">
                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -364,7 +364,7 @@ DQ
                                         <action selector="warnAboutLandscapeSetting:" target="-2" id="1156"/>
                                     </connections>
                                 </popUpButton>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="208">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="208">
                                     <rect key="frame" x="190" y="155" width="76" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="72" id="MIj-t4-Pdb"/>
@@ -478,7 +478,7 @@ DQ
                                     </view>
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
-                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="255">
+                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="255">
                                     <rect key="frame" x="78" y="178" width="329" height="19"/>
                                     <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1168">
                                         <font key="font" metaFont="smallSystem"/>
@@ -486,7 +486,7 @@ DQ
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
+                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
                                     <rect key="frame" x="-6" y="182" width="79" height="11"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="1Ye-sH-Okg"/>
@@ -554,7 +554,7 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="136" y="285" width="322" height="327"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="503">
                 <rect key="frame" x="0.0" y="0.0" width="322" height="327"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -618,7 +618,7 @@ DQ
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="539">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="539">
                         <rect key="frame" x="48" y="301" width="121" height="22"/>
                         <popUpButtonCell key="cell" type="push" title="Tags" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="540" id="1172">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -640,7 +640,7 @@ DQ
                             <action selector="editingMenuAction:" target="552" id="568"/>
                         </connections>
                     </popUpButton>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="547">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="547">
                         <rect key="frame" x="2" y="306" width="44" height="14"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Editing:" usesSingleLineMode="YES" id="1173">
                             <font key="font" metaFont="message" size="11"/>
@@ -648,7 +648,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="586">
+                    <popUpButton imageHugsTitle="YES" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="586">
                         <rect key="frame" x="170" y="301" width="146" height="23"/>
                         <popUpButtonCell key="cell" type="bevel" title="Commands" bezelStyle="regularSquare" controlSize="small" lineBreakMode="clipping" borderStyle="borderAndBezel" tag="2" inset="2" pullsDown="YES" preferredEdge="maxX" selectedItem="593" id="1174">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -718,12 +718,12 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="142" y="151" width="367" height="113"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="662">
                 <rect key="frame" x="0.0" y="0.0" width="367" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="663">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="663">
                         <rect key="frame" x="18" y="77" width="302" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For Polygon#[PolyNumber]:" id="1175">
                             <font key="font" metaFont="system"/>
@@ -731,7 +731,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="664">
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="664">
                         <rect key="frame" x="20" y="48" width="327" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1176">
                             <font key="font" metaFont="system"/>
@@ -739,7 +739,7 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="665">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="665">
                         <rect key="frame" x="278" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1177">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -752,7 +752,7 @@ DQ
                             <action selector="rdOkBtnAction:" target="-2" id="671"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="666">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="666">
                         <rect key="frame" x="204" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1178">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -765,7 +765,7 @@ Gw
                             <action selector="rdCancelBtnAction:" target="-2" id="672"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="674">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="674">
                         <rect key="frame" x="13" y="13" width="122" height="32"/>
                         <buttonCell key="cell" type="push" title="Remove Name" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1179">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -803,12 +803,12 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="104" y="149" width="372" height="141"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="684">
                 <rect key="frame" x="0.0" y="0.0" width="372" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="685">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="685">
                         <rect key="frame" x="18" y="77" width="237" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter Index Number For Above:" id="1182">
                             <font key="font" metaFont="system"/>
@@ -816,7 +816,7 @@ Gw
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="686">
+                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="686">
                         <rect key="frame" x="20" y="48" width="332" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1183">
                             <font key="font" metaFont="system"/>
@@ -824,7 +824,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="683">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="683">
                         <rect key="frame" x="248" y="13" width="111" height="32"/>
                         <buttonCell key="cell" type="push" title="Go To Above" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1181">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -837,7 +837,7 @@ DQ
                             <action selector="gotoOkBtnAction:" target="-2" id="698"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="682">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="682">
                         <rect key="frame" x="174" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1180">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -850,11 +850,11 @@ Gw
                             <action selector="gotoCancelBtnAction:" target="-2" id="699"/>
                         </connections>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="687">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="687">
                         <rect key="frame" x="65" y="97" width="91" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Polygon" bezelStyle="rounded" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="688" id="1184">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
+                            <font key="font" metaFont="message"/>
                             <menu key="menu" title="OtherViews" id="689">
                                 <items>
                                     <menuItem title="Polygon" state="on" id="688"/>
@@ -866,7 +866,7 @@ Gw
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="694">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="694">
                         <rect key="frame" x="18" y="104" width="44" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Go To:" id="1185">
                             <font key="font" metaFont="system"/>
@@ -901,7 +901,7 @@ Gw
             <rect key="frame" x="0.0" y="0.0" width="83" height="214"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
+                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="715">
                     <rect key="frame" x="2" y="0.0" width="79" height="14"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="??? Listed" id="1186">
                         <font key="font" metaFont="message" size="11"/>
@@ -972,12 +972,12 @@ Gw
             <windowStyleMask key="styleMask" titled="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="43" y="58" width="225" height="102"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="723">
                 <rect key="frame" x="0.0" y="0.0" width="225" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="721">
+                    <textField focusRingType="none" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="721">
                         <rect key="frame" x="103" y="48" width="102" height="21"/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" drawsBackground="YES" id="1188">
                             <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0000" negativeFormat="-0000" localizesFormat="NO" hasThousandSeparators="NO" thousandSeparator="," id="725">
@@ -997,7 +997,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="724">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="724">
                         <rect key="frame" x="136" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Create" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1190">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1010,7 +1010,7 @@ DQ
                             <action selector="createNewHeightSheetBtn:" target="-2" id="779"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="720">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="720">
                         <rect key="frame" x="62" y="13" width="76" height="32"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1187">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1020,7 +1020,7 @@ DQ
                             <action selector="cancelNewHeightSheetBtn:" target="-2" id="780"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="722">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="722">
                         <rect key="frame" x="18" y="51" width="79" height="16"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="New Height:" id="1189">
                             <font key="font" metaFont="system"/>
@@ -1072,7 +1072,7 @@ DQ
                                 <rect key="frame" x="10" y="7" width="113" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
+                                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="983">
                                         <rect key="frame" x="49" y="228" width="66" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="982" id="1191">
@@ -1094,7 +1094,7 @@ DQ
                                             <action selector="mapManagerPerfOverrideDrawerAction:" target="-2" id="1047"/>
                                         </connections>
                                     </popUpButton>
-                                    <button fixedFrame="YES" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="985">
+                                    <button imageHugsTitle="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="985">
                                         <rect key="frame" x="0.0" y="251" width="134" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="check" title="Override Prefs…" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" inset="2" id="1192">
@@ -1105,7 +1105,7 @@ DQ
                                             <action selector="useMapManagerCheckboxDrawerAction:" target="-2" id="1012"/>
                                         </connections>
                                     </button>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="994">
+                                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="994">
                                         <rect key="frame" x="7" y="232" width="40" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Grid:" id="1193">
@@ -1194,7 +1194,7 @@ DQ
                                             </connections>
                                         </buttonCell>
                                     </button>
-                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="FHn-H2-Tqn">
+                                    <button tag="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHn-H2-Tqn">
                                         <rect key="frame" x="9" y="191" width="106" height="18"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="check" title="Objects To Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="1" inset="2" id="1002">
@@ -1205,7 +1205,7 @@ DQ
                                             </connections>
                                         </buttonCell>
                                     </button>
-                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ne-phS">
+                                    <button tag="2" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-Ne-phS">
                                         <rect key="frame" x="9" y="173" width="106" height="18"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="check" title="Points To Points" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="2" inset="2" id="990">
@@ -1216,7 +1216,7 @@ DQ
                                             </connections>
                                         </buttonCell>
                                     </button>
-                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Su-LJO">
+                                    <button tag="3" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCD-Su-LJO">
                                         <rect key="frame" x="9" y="155" width="106" height="18"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="check" title="Draw Grid" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="small" tag="3" inset="2" id="997">
@@ -1322,12 +1322,12 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="156" y="244" width="421" height="249"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="1072">
                 <rect key="frame" x="0.0" y="0.0" width="421" height="249"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1059">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1059">
                         <rect key="frame" x="339" y="13" width="69" height="32"/>
                         <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1194">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1422,12 +1422,12 @@ DQ
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="109" y="46" width="416" height="134"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
             <view key="contentView" id="1090">
                 <rect key="frame" x="0.0" y="0.0" width="416" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1089">
+                    <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1089">
                         <rect key="frame" x="337" y="13" width="66" height="32"/>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1195">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1440,7 +1440,7 @@ DQ
                             <action selector="closeNoteEditorSheet:" target="-2" id="1121"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1111">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1111">
                         <rect key="frame" x="18" y="44" width="127" height="18"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Group To Belong To:" id="1196">
                             <font key="font" metaFont="system"/>
@@ -1448,7 +1448,7 @@ DQ
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1112">
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1112">
                         <rect key="frame" x="20" y="70" width="376" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="9fW-iK-eoy"/>
@@ -1459,11 +1459,11 @@ DQ
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1113">
+                    <popUpButton imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1113">
                         <rect key="frame" x="17" y="16" width="74" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1114" id="1198">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
+                            <font key="font" metaFont="message"/>
                             <menu key="menu" title="OtherViews" id="1115">
                                 <items>
                                     <menuItem title="Item1" state="on" id="1114"/>

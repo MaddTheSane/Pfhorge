@@ -31,15 +31,22 @@ internal func PICTWrite<X: FixedWidthInteger>(_ toWrite: X, _ data: inout Data) 
 	}
 }
 
-private func PICTWrite<X: RawRepresentable>(_ toWrite: X, _ data: inout Data)  where X.RawValue: FixedWidthInteger {
+private func PICTWrite<X: RawRepresentable>(_ toWrite: X, _ data: inout Data) where X.RawValue: FixedWidthInteger {
 	let arr = [toWrite.rawValue.bigEndian]
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))
 	}
 }
 
-private func PICTWrite<X: Collection>(_ toWrite: X, _ data: inout Data)  where X.Element: FixedWidthInteger {
+private func PICTWrite<X: Collection>(_ toWrite: X, _ data: inout Data) where X.Element: FixedWidthInteger {
 	let arr = toWrite.map({$0.bigEndian})
+	arr.withUnsafeBytes { (rbp) -> Void in
+		data.append(Data(rbp))
+	}
+}
+
+private func PICTWrite<X: Collection, Y: RawRepresentable>(_ toWrite: X, _ data: inout Data) where Y.RawValue: FixedWidthInteger, X.Element == Y {
+	let arr = toWrite.map({$0.rawValue.bigEndian})
 	arr.withUnsafeBytes { (rbp) -> Void in
 		data.append(Data(rbp))
 	}
@@ -977,7 +984,7 @@ class PICT {
 	static func convertRawPICT(from: Data, clut: Data, to format: PhPictConversion.BinaryFormat = .best) throws -> (format: PhPictConversion.BinaryFormat, data: Data) {
 		let aPict = PICT()
 		try aPict.load(from: from, clut: clut)
-		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
+		if !aPict.jpegData.isEmpty && (format == .best || format == .JPEG) {
 			return (.JPEG, aPict.jpegData)
 		}
 		if (aPict.bitmap.bitDepth <= 8 && format == .best) || format == .bitmap {
@@ -1010,7 +1017,7 @@ class PICT {
 		}
 		switch format {
 		case .bitmap:
-			if aPict.jpegData.count != 0 {
+			if !aPict.jpegData.isEmpty {
 				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
 					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.bmp, properties: [:]) {
 					return (.bitmap, pngDat)
@@ -1031,7 +1038,7 @@ class PICT {
 			throw PICTConversionError.conversionFailed
 
 		case .PNG:
-			if aPict.jpegData.count != 0 {
+			if !aPict.jpegData.isEmpty {
 				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
 					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) {
 					return (.PNG, pngDat)

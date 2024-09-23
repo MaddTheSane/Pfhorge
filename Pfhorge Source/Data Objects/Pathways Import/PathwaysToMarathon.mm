@@ -37,7 +37,7 @@ NSString *GetLevelName(PID_Level& PL)
 
 
 //! Addressing a sector
-inline int SectorAddr(int x, int y)
+static inline int SectorAddr(int x, int y)
 {return (x + PID_Level::NUMBER_X_SECTORS*y);}
 
 //! Map positions
@@ -46,9 +46,9 @@ inline int SectorAddr(int x, int y)
 //! XPos(x,0) XPos(x,4)
 //! YPos(y,0) YPos(y,4)
 //! const int WORLD_ONE = 1024;
-inline int XPos(int x, int which)
+static inline int XPos(int x, int which)
 {return ((x - PID_Level::NUMBER_X_SECTORS/2)*WORLD_ONE + which*(WORLD_ONE/4));}
-inline int YPos(int y, int which)
+static inline int YPos(int y, int which)
 {return ((y - PID_Level::NUMBER_Y_SECTORS/2)*WORLD_ONE + which*(WORLD_ONE/4));}
 
 
@@ -235,7 +235,7 @@ const PolygonDef PgDefs[NumPolygonDefs] = {
 struct BevelDef
 {
     short x, y;		//!< Neighbor offset
-    short c, nc;	//!< Corner line of the sector and its neighbor
+    PID_Sector::CornerWall c, nc;	//!< Corner line of the sector and its neighbor
     short p;		//!< Type of bevel polygon to add
 };
 
@@ -253,7 +253,7 @@ struct SideDef {
     short dir;		//!< Traversal direction when loading edges
     short wall;		//!< Which one to look at
     short full, lomid, midhi, lo, mid, hi;	//!< All the possible side segments
-    short crnr_lo_src, crnr_hi_src;		//!< Corners: low and high sources
+    PID_Sector::CornerWall crnr_lo_src, crnr_hi_src;		//!< Corners: low and high sources
     short crnr_lo_dst, crnr_hi_dst;		//!< Corners: low and high dests
 };
 
@@ -281,11 +281,11 @@ const SideDef SdDefs[NumSideDefs] = {
 
 
 //! Are two point/line defs equal?
-bool Equal(LnPtDef& D1, LnPtDef& D2)
+static bool Equal(LnPtDef& D1, LnPtDef& D2)
 {return (D1.x == D2.x && D1.y == D2.y && D1.w == D2.w);}
 
 //! Do two lines share a point?
-bool SharedPoint(LineDef& L1, LineDef& L2, LnPtDef& P)
+static bool SharedPoint(LineDef& L1, LineDef& L2, LnPtDef& P)
 {
     if(Equal(L1.p0,L2.p0))
     {P = L1.p0; return true;}
@@ -844,7 +844,7 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
 
 // For adding all the doors -- they are Marathon-engine platforms
 
-const PhPlatformStaticFlags PlainDoorFlags =
+static const PhPlatformStaticFlags PlainDoorFlags =
     _platform_uses_native_polygon_heights |
     _platform_comes_from_ceiling |
     _platform_is_player_controllable |
@@ -854,7 +854,7 @@ const PhPlatformStaticFlags PlainDoorFlags =
     _platform_activates_only_once |
     _platform_is_initially_extended;
 
-const PhPlatformStaticFlags SecretDoorFlags =
+static const PhPlatformStaticFlags SecretDoorFlags =
     _platform_uses_native_polygon_heights |
     _platform_comes_from_ceiling |
     _platform_is_player_controllable |
