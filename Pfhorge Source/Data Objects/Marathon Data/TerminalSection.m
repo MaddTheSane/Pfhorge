@@ -145,159 +145,159 @@
          withText:(NSData *)textData
         withLevel:(LELevelData *)levelDataObj
 {
-    int fontLength = (int)[fontData length];
-    NSInteger newTextLength = 0;
-    int i = 0;
-    NSMutableParagraphStyle *theParagraphStyle; /* = [[NSMutableParagraphStyle alloc] init]; */
-    
-    
-    
-    /// , NSFontAttributeName,
-                        
-    //NSFont *myFont = [fontManager convertFont:regularFont toHaveTrait:NSItalicFontMask];
-    
-    term_style theCurrentFont;
-    NSRange theTextRange;
-    NSString *theRawString;
-    NSData *sectionText;
-    
-    NSFontManager *fontManager = [NSFontManager sharedFontManager];
-    
-    
-    [levelDataObj setUpArrayPointersFor:self];
-    
-    regularFont = [NSFont fontWithName:@"Courier" size:12.0];
-    boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
-    
-    /* [theParagraphStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]]; */
-    
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    flags = loadShortFromNSData(data, 0);
-    // / NSLog(@"   term section flags: %d", flags);
-    type = loadShortFromNSData(data, 2);
-    [self setNameAndReturnStyleFromType];
-    // / NSLog(@"   term section type: %d   type name: %@", type, [self phName]);
-    permutation = loadShortFromNSData(data, 4);
-    // / NSLog(@"   term section permutation: %d", permutation);
-    text_offset = loadShortFromNSData(data, 6);
-    // / NSLog(@"   term section text_offset: %d", text_offset);
-    text_length = loadShortFromNSData(data, 8);
-    // / NSLog(@"   term section text_length: %d", text_length);
-    lines = loadShortFromNSData(data, 10);
-    // / NSLog(@"   term section lines: %d", lines);
-    
-    
-    if (type == PhTerminalSectionTypeInMapTeleport)
-    {
-        permutationObject = [theMapPolysST objectAtIndex:permutation];
-        [theLELevelDataST namePolygon:permutationObject to:stringFromInt([(LEMapStuffParent*)permutationObject index])];
-    }
-    else
-        permutationObject = nil;
-    
-    
-    theParagraphStyle = [self setNameAndReturnStyleFromType];
-    
-    theTextRange = NSMakeRange(text_offset, text_length);
-    
-    sectionText = [textData subdataWithRange:theTextRange];
-
-    theRawString = [[NSString alloc] initWithData:sectionText
-                    encoding:NSMacOSRomanStringEncoding];
-                    /*NSASCIIStringEncoding*/
-    
-    theText = [[NSMutableAttributedString alloc]
-               initWithString:theRawString
-               attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
-                            NSFontAttributeName:regularFont}];
-    
-    newTextLength = [theText length];
-    
-    for (i = 0; i < fontLength; i += 6)
-    {
-        [fontData getBytes:&theCurrentFont range:NSMakeRange(i, 6)];
+    if (self = [super init]) {
+        int fontLength = (int)[fontData length];
+        NSInteger newTextLength = 0;
+        int i = 0;
+        NSMutableParagraphStyle *theParagraphStyle; /* = [[NSMutableParagraphStyle alloc] init]; */
         
-        if (NSLocationInRange(theCurrentFont.offset, theTextRange))
+        
+        
+        /// , NSFontAttributeName,
+        
+        //NSFont *myFont = [fontManager convertFont:regularFont toHaveTrait:NSItalicFontMask];
+        
+        term_style theCurrentFont;
+        NSRange theTextRange;
+        NSString *theRawString;
+        NSData *sectionText;
+        
+        NSFontManager *fontManager = [NSFontManager sharedFontManager];
+        
+        
+        [levelDataObj setUpArrayPointersFor:self];
+        
+        regularFont = [NSFont fontWithName:@"Courier" size:12.0];
+        boldFont = [NSFont fontWithName:@"Courier-Bold" size:12.0];
+        
+        /* [theParagraphStyle setParagraphStyle:[NSParagraphStyle defaultParagraphStyle]]; */
+        
+        if (self == nil)
+            return nil;
+        
+        flags = loadShortFromNSData(data, 0);
+        // / NSLog(@"   term section flags: %d", flags);
+        type = loadShortFromNSData(data, 2);
+        [self setNameAndReturnStyleFromType];
+        // / NSLog(@"   term section type: %d   type name: %@", type, [self phName]);
+        permutation = loadShortFromNSData(data, 4);
+        // / NSLog(@"   term section permutation: %d", permutation);
+        text_offset = loadShortFromNSData(data, 6);
+        // / NSLog(@"   term section text_offset: %d", text_offset);
+        text_length = loadShortFromNSData(data, 8);
+        // / NSLog(@"   term section text_length: %d", text_length);
+        lines = loadShortFromNSData(data, 10);
+        // / NSLog(@"   term section lines: %d", lines);
+        
+        
+        if (type == PhTerminalSectionTypeInMapTeleport)
         {
-            NSColor *theTextColor = nil;
-            NSFontTraitMask    theFontAtributeMast = 0;
-            NSUnderlineStyle	underlineValue = NSUnderlineStyleNone;
-            NSFont *theFontToUse = nil;
-            NSNumber *italicValue = @NO;
-            NSNumber *boldValue = @NO;
-            NSNumber *colorValue = @(theCurrentFont.color);
-            /*
-                0=green, 1=white, 2=red, 3=dim green,
-                4=cyan, 5=yellow, 6=dim red, 7=blue.
-                for exact info, see the last eight colours
-                of clut #130 in the Marathon 2 application
-            */
-            
-            switch (theCurrentFont.color)
-            {
-                case 0:
-                    theTextColor = [NSColor greenColor];
-                    break;
-                case 1:
-                    theTextColor = [NSColor whiteColor];
-                    break;
-                case 2:
-                    theTextColor = [NSColor redColor];
-                    break;
-                case 3: // dim green
-                    theTextColor = [NSColor colorWithCalibratedRed:0.00 green:0.50 blue:0.00 alpha:1.00];
-                    break;
-                case 4:
-                    theTextColor = [NSColor cyanColor];
-                    break;
-                case 5:
-                    theTextColor = [NSColor yellowColor];
-                    break;
-                case 6:  // dim red
-                    theTextColor = [NSColor colorWithCalibratedRed:0.50 green:0.00 blue:0.00 alpha:1.00];
-                    break;
-                case 7:
-                    theTextColor = [NSColor blueColor];
-                    break;
-                default:
-                    theTextColor = [NSColor greenColor];
-                    break;
-            }
-            
-            theFontToUse = regularFont;
-            
-            if (theCurrentFont.face & PhTerminalSectionItalic) {
-                theFontAtributeMast |= NSItalicFontMask;
-                italicValue = @YES;
-            }
-            if (theCurrentFont.face & PhTerminalSectionBold) {
-                // NSBoldFontMask
-                theFontToUse = boldFont;
-                boldValue = @YES;
-            }
-            if (theCurrentFont.face & PhTerminalSectionUnderline) {
-                underlineValue = NSUnderlineStyleSingle;
-            }
-            
-            [theText setAttributes:@{
-                NSForegroundColorAttributeName: theTextColor,
-                NSFontAttributeName: [fontManager convertFont:theFontToUse toHaveTrait:theFontAtributeMast],
-                PhTerminalItalicAttributeName: italicValue,
-                PhTerminalBoldAttributeName: boldValue,
-                PhTerminalColorAttributeName: colorValue,
-                NSUnderlineStyleAttributeName: @(underlineValue),
-                NSParagraphStyleAttributeName: theParagraphStyle}
-                             range:NSMakeRange((theCurrentFont.offset - text_offset),
-                                               (newTextLength - (theCurrentFont.offset - text_offset)))];
+            permutationObject = [theMapPolysST objectAtIndex:permutation];
+            [theLELevelDataST namePolygon:permutationObject to:stringFromInt([(LEMapStuffParent*)permutationObject index])];
         }
+        else
+            permutationObject = nil;
+        
+        
+        theParagraphStyle = [self setNameAndReturnStyleFromType];
+        
+        theTextRange = NSMakeRange(text_offset, text_length);
+        
+        sectionText = [textData subdataWithRange:theTextRange];
+        
+        theRawString = [[NSString alloc] initWithData:sectionText
+                                             encoding:NSMacOSRomanStringEncoding];
+        /*NSASCIIStringEncoding*/
+        
+        theText = [[NSMutableAttributedString alloc]
+                   initWithString:theRawString
+                   attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
+                                NSFontAttributeName:regularFont}];
+        
+        newTextLength = [theText length];
+        
+        for (i = 0; i < fontLength; i += 6)
+        {
+            [fontData getBytes:&theCurrentFont range:NSMakeRange(i, 6)];
+            
+            if (NSLocationInRange(theCurrentFont.offset, theTextRange))
+            {
+                NSColor *theTextColor = nil;
+                NSFontTraitMask    theFontAtributeMast = 0;
+                NSUnderlineStyle	underlineValue = NSUnderlineStyleNone;
+                NSFont *theFontToUse = nil;
+                NSNumber *italicValue = @NO;
+                NSNumber *boldValue = @NO;
+                NSNumber *colorValue = @(theCurrentFont.color);
+                /*
+                 0=green, 1=white, 2=red, 3=dim green,
+                 4=cyan, 5=yellow, 6=dim red, 7=blue.
+                 for exact info, see the last eight colours
+                 of clut #130 in the Marathon 2 application
+                 */
+                
+                switch (theCurrentFont.color)
+                {
+                    case 0:
+                        theTextColor = [NSColor greenColor];
+                        break;
+                    case 1:
+                        theTextColor = [NSColor whiteColor];
+                        break;
+                    case 2:
+                        theTextColor = [NSColor redColor];
+                        break;
+                    case 3: // dim green
+                        theTextColor = [NSColor colorWithCalibratedRed:0.00 green:0.50 blue:0.00 alpha:1.00];
+                        break;
+                    case 4:
+                        theTextColor = [NSColor cyanColor];
+                        break;
+                    case 5:
+                        theTextColor = [NSColor yellowColor];
+                        break;
+                    case 6:  // dim red
+                        theTextColor = [NSColor colorWithCalibratedRed:0.50 green:0.00 blue:0.00 alpha:1.00];
+                        break;
+                    case 7:
+                        theTextColor = [NSColor blueColor];
+                        break;
+                    default:
+                        theTextColor = [NSColor greenColor];
+                        break;
+                }
+                
+                theFontToUse = regularFont;
+                
+                if (theCurrentFont.face & PhTerminalSectionItalic) {
+                    theFontAtributeMast |= NSItalicFontMask;
+                    italicValue = @YES;
+                }
+                if (theCurrentFont.face & PhTerminalSectionBold) {
+                    // NSBoldFontMask
+                    theFontToUse = boldFont;
+                    boldValue = @YES;
+                }
+                if (theCurrentFont.face & PhTerminalSectionUnderline) {
+                    underlineValue = NSUnderlineStyleSingle;
+                }
+                
+                [theText setAttributes:@{
+                    NSForegroundColorAttributeName: theTextColor,
+                    NSFontAttributeName: [fontManager convertFont:theFontToUse toHaveTrait:theFontAtributeMast],
+                    PhTerminalItalicAttributeName: italicValue,
+                    PhTerminalBoldAttributeName: boldValue,
+                    PhTerminalColorAttributeName: colorValue,
+                    NSUnderlineStyleAttributeName: @(underlineValue),
+                    NSParagraphStyleAttributeName: theParagraphStyle}
+                                 range:NSMakeRange((theCurrentFont.offset - text_offset),
+                                                   (newTextLength - (theCurrentFont.offset - text_offset)))];
+            }
+        }
+        
+        //[theParagraphStyle release];
+        
     }
-    
-    //[theParagraphStyle release];
-    
     return self;
 }
 

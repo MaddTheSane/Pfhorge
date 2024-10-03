@@ -229,9 +229,7 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     NSData	  *textData;
     NSData	  *fontData;
     
-    self = [super init];
-    
-    if (self == nil)
+    if (!(self = [super init]))
         return nil;
     
     [levelDataObj setUpArrayPointersFor:self];

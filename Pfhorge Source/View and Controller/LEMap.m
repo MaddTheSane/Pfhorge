@@ -77,7 +77,7 @@
     resource = [resources resourceOfType:@"PICT" index:PICTIndex];  
         
     image = [[NSImage alloc] initWithData:[resource data]];
-    if (!image) {
+    if (!image || NSEqualSizes([image size], NSZeroSize)) {
         NSData *convDat = [PhPictConversion convertPICTfromData:[resource data] returnedFormat:NULL error:NULL];
         image = [[NSImage alloc] initWithData:convDat];
     }
