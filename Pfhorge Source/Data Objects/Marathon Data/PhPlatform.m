@@ -255,8 +255,8 @@
 	self = [super initWithCoder:coder];
 	if (coder.allowsKeyedCoding) {
 		type = [coder decodeIntForKey:@"type"];
-		speed = [coder decodeIntForKey:@"type"];
-		delay = [coder decodeIntForKey:@"type"];
+		speed = [coder decodeIntForKey:@"speed"];
+		delay = [coder decodeIntForKey:@"delay"];
 		
 		maximum_height = [coder decodeIntForKey:@"maximum_height"];
 		minimum_height = [coder decodeIntForKey:@"minimum_height"];

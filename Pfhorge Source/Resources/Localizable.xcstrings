@@ -64,6 +64,9 @@
     "Import Pathways Map" : {
       "comment" : "Import Pathways Map"
     },
+    "Import Problem" : {
+      "comment" : "Import Problem"
+    },
     "Importing Pathways Into Darkness Map…" : {
       "comment" : "Importing Pathways Into Darkness Map…"
     },
@@ -200,6 +203,9 @@
     },
     "When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!" : {
       "comment" : "When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!"
+    },
+    "While importing, the new document was nil?" : {
+      "comment" : "While importing, the new document was nil?"
     },
     "X There is one point directly over another: in level->whatIsDirectional method" : {
       "comment" : "X There is one point directly over another: in level->whatIsDirectional method"

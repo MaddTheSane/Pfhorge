@@ -265,7 +265,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 - (IBAction)turnOnUseOptimizedDrawing:(id)sender
 {
-    [mainWindow useOptimizedDrawing:YES];
+//    [mainWindow useOptimizedDrawing:YES];
     NSLog(@"window optimized drawing flag on!");
 }
 
@@ -1357,9 +1357,9 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
             [theMapDocToImport close];
             [[(LEMap *)[self document] level] setCurrentLayerToLastLayer];
             [self updateLayerSelection];
-            [levelDrawView recaculateAndRedrawEverything];
+            [self->levelDrawView recaculateAndRedrawEverything];
         } else {
-            SEND_ERROR_MSG_TITLE(@"While importing, the new document was nil?", @"Import Problem");
+            SEND_ERROR_MSG_TITLE(NSLocalizedString(@"While importing, the new document was nil?", @"While importing, the new document was nil?"), NSLocalizedString(@"Import Problem", @"Import Problem"));
         }
     }];
 }

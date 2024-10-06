@@ -31,6 +31,7 @@
 #import "LELevelData.h"
 
 #import "PhAbstractName.h"
+#import "PhAmbientSound.h"
 
 #import "PhLayer.h"
 
