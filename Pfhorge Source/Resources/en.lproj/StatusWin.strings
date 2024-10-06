@@ -1,0 +1,12 @@
+
+/* Class = "NSWindow"; title = "Please Wait…"; ObjectID = "6"; */
+"6.title" = "Please Wait…";
+
+/* Class = "NSTextFieldCell"; title = "Informational Text"; ObjectID = "24"; */
+"24.title" = "Informational Text";
+
+/* Class = "NSTextFieldCell"; title = "Informational Text"; ObjectID = "25"; */
+"25.title" = "Informational Text";
+
+/* Class = "NSTextFieldCell"; title = "..."; ObjectID = "26"; */
+"26.title" = "...";

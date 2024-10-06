@@ -42,13 +42,13 @@
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] init];
         
-        [progress setStatusText:[NSString stringWithFormat:@"Converting “%@”…",
+        [progress setStatusText:[NSString stringWithFormat:NSLocalizedString(@"Converting “%@”…", @"Converting \"%@\"..."),
                 [theLevelNames objectAtIndex:(i - 1)], nil]];
         
         [progress setSecondMinProgress:0.0];
         [progress setSecondMaxProgress:10.0];
         [progress setSecondProgressPostion:0.0];
-        [progress setSecondStatusText:@"Loading Level, Please Wait…"];
+        [progress setSecondStatusText:NSLocalizedString(@"Loading Level, Please Wait…", @"Loading Level, Please Wait…")];
         
         [progress setUseSecondBarOnly:YES];
         currentLevel = [exchange getPIDLevel:i]; // Autoreleased....
@@ -56,20 +56,20 @@
         
         if (currentLevel == nil) {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.informativeText = @"Converting Error";
-            alert.messageText = @"Could not convert one of the levels…";
+            alert.informativeText = NSLocalizedString(@"Converting Error", @"Converting Error");
+            alert.messageText = NSLocalizedString(@"Could not convert one of the levels…", @"Could not convert one of the levels…");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
             NSLog(@"Could not convert PID level: %d (One Based)", i);
             continue;
         }
         
-        [progress setSecondStatusText:@"Archiving Level Into Binary Data…"];
+        [progress setSecondStatusText:NSLocalizedString(@"Archiving Level Into Binary Data…", @"Archiving Level Into Binary Data…")];
         [progress increaseSecondProgressBy:5.0];
         
-        theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:currentLevel];
+        theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:currentLevel requiringSecureCoding:NO error:NULL];
         
-        [progress setSecondStatusText:@"Saving Level…"];
+        [progress setSecondStatusText:NSLocalizedString(@"Saving Level…", @"Saving Level…")];
         [progress increaseSecondProgressBy:5.0];
         
         theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);

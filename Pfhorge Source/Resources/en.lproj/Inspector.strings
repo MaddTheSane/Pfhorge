@@ -1,0 +1,1134 @@
+
+/* Class = "NSWindow"; title = "Texture Offsets"; ObjectID = "605"; */
+"605.title" = "Texture Offsets";
+
+/* Class = "NSWindow"; title = "Lights"; ObjectID = "607"; */
+"607.title" = "Lights";
+
+/* Class = "NSWindow"; title = "Control Panel"; ObjectID = "609"; */
+"609.title" = "Control Panel";
+
+/* Class = "NSTabViewItem"; label = "Line"; ObjectID = "613"; */
+"613.label" = "Line";
+
+/* Class = "NSTabViewItem"; label = "Poly"; ObjectID = "616"; */
+"616.label" = "Poly";
+
+/* Class = "NSTabViewItem"; label = "Obj"; ObjectID = "618"; */
+"618.label" = "Obj";
+
+/* Class = "NSTabViewItem"; label = "Ukn"; ObjectID = "620"; */
+"620.label" = "Ukn";
+
+/* Class = "NSTabViewItem"; label = "Line"; ObjectID = "652"; */
+"652.label" = "Line";
+
+/* Class = "NSTabViewItem"; label = "Poly"; ObjectID = "654"; */
+"654.label" = "Poly";
+
+/* Class = "NSTabViewItem"; label = "Obj"; ObjectID = "656"; */
+"656.label" = "Obj";
+
+/* Class = "NSTabViewItem"; label = "N/A"; ObjectID = "658"; */
+"658.label" = "N/A";
+
+/* Class = "NSButtonCell"; title = "Destructive Switch (uses item)?"; ObjectID = "660"; */
+"660.title" = "Destructive Switch (uses item)?";
+
+/* Class = "NSButtonCell"; title = "Repair Switch"; ObjectID = "661"; */
+"661.title" = "Repair Switch";
+
+/* Class = "NSButtonCell"; title = "Light Must Be On To Use"; ObjectID = "664"; */
+"664.title" = "Light Must Be On To Use";
+
+/* Class = "NSButtonCell"; title = "Can Be Destroyed"; ObjectID = "667"; */
+"667.title" = "Can Be Destroyed";
+
+/* Class = "NSButtonCell"; title = "Toggled Only By Projectiles"; ObjectID = "669"; */
+"669.title" = "Toggled Only By Projectiles";
+
+/* Class = "NSButtonCell"; title = "Initially On"; ObjectID = "671"; */
+"671.title" = "Initially On";
+
+/* Class = "NSTabViewItem"; label = "Poly"; ObjectID = "675"; */
+"675.label" = "Poly";
+
+/* Class = "NSTabViewItem"; label = "Line"; ObjectID = "677"; */
+"677.label" = "Line";
+
+/* Class = "NSTabViewItem"; label = "N/A"; ObjectID = "680"; */
+"680.label" = "N/A";
+
+/* Class = "NSTabViewItem"; label = "Obj"; ObjectID = "682"; */
+"682.label" = "Obj";
+
+/* Class = "NSWindow"; title = "General Settings"; ObjectID = "942"; */
+"942.title" = "General Settings";
+
+/* Class = "NSTabViewItem"; label = "N/A"; ObjectID = "946"; */
+"946.label" = "N/A";
+
+/* Class = "NSTabViewItem"; label = "Poly"; ObjectID = "949"; */
+"949.label" = "Poly";
+
+/* Class = "NSTabViewItem"; label = "Line"; ObjectID = "962"; */
+"962.label" = "Line";
+
+/* Class = "NSTabViewItem"; label = "Obj"; ObjectID = "966"; */
+"966.label" = "Obj";
+
+/* Class = "NSMenuItem"; title = "Sound"; ObjectID = "982"; */
+"982.title" = "Sound";
+
+/* Class = "NSMenuItem"; title = "Player"; ObjectID = "983"; */
+"983.title" = "Player";
+
+/* Class = "NSMenuItem"; title = "Item"; ObjectID = "985"; */
+"985.title" = "Item";
+
+/* Class = "NSMenuItem"; title = "Scenery"; ObjectID = "986"; */
+"986.title" = "Scenery";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "989"; */
+"989.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Monster"; ObjectID = "990"; */
+"990.title" = "Monster";
+
+/* Class = "NSMenuItem"; title = "Goal"; ObjectID = "991"; */
+"991.title" = "Goal";
+
+/* Class = "NSButtonCell"; title = "Floats"; ObjectID = "1027"; */
+"1027.title" = "Floats";
+
+/* Class = "NSButtonCell"; title = "Network Only"; ObjectID = "1028"; */
+"1028.title" = "Network Only";
+
+/* Class = "NSButtonCell"; title = "Platform Sound"; ObjectID = "1029"; */
+"1029.title" = "Platform Sound";
+
+/* Class = "NSButtonCell"; title = "Hangs From Ceiling"; ObjectID = "1030"; */
+"1030.title" = "Hangs From Ceiling";
+
+/* Class = "NSButtonCell"; title = "Initially Invisible (Teleports)"; ObjectID = "1031"; */
+"1031.title" = "Initially Invisible (Teleports)";
+
+/* Class = "NSButtonCell"; title = "Blind"; ObjectID = "1032"; */
+"1032.title" = "Blind";
+
+/* Class = "NSButtonCell"; title = "Deaf"; ObjectID = "1033"; */
+"1033.title" = "Deaf";
+
+/* Class = "NSMenuItem"; title = "Platform Off Trigger"; ObjectID = "1038"; */
+"1038.title" = "Platform Off Trigger";
+
+/* Class = "NSMenuItem"; title = "Monster Impassable"; ObjectID = "1039"; */
+"1039.title" = "Monster Impassable";
+
+/* Class = "NSMenuItem"; title = "Teleporter"; ObjectID = "1040"; */
+"1040.title" = "Teleporter";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1041"; */
+"1041.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Invisible Monster Trigger"; ObjectID = "1042"; */
+"1042.title" = "Invisible Monster Trigger";
+
+/* Class = "NSMenuItem"; title = "Goal"; ObjectID = "1044"; */
+"1044.title" = "Goal";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "1045"; */
+"1045.title" = "Normal";
+
+/* Class = "NSMenuItem"; title = "Light Off Trigger"; ObjectID = "1046"; */
+"1046.title" = "Light Off Trigger";
+
+/* Class = "NSMenuItem"; title = "Item Impassable"; ObjectID = "1047"; */
+"1047.title" = "Item Impassable";
+
+/* Class = "NSMenuItem"; title = "Base"; ObjectID = "1048"; */
+"1048.title" = "Base";
+
+/* Class = "NSMenuItem"; title = "Dual Monster Trigger"; ObjectID = "1049"; */
+"1049.title" = "Dual Monster Trigger";
+
+/* Class = "NSMenuItem"; title = "Zone Border"; ObjectID = "1050"; */
+"1050.title" = "Zone Border";
+
+/* Class = "NSMenuItem"; title = "Hill"; ObjectID = "1051"; */
+"1051.title" = "Hill";
+
+/* Class = "NSMenuItem"; title = "Visible Monster Trigger"; ObjectID = "1052"; */
+"1052.title" = "Visible Monster Trigger";
+
+/* Class = "NSMenuItem"; title = "Automatic Exit"; ObjectID = "1053"; */
+"1053.title" = "Automatic Exit";
+
+/* Class = "NSMenuItem"; title = "Light On Trigger"; ObjectID = "1054"; */
+"1054.title" = "Light On Trigger";
+
+/* Class = "NSMenuItem"; title = "Platform On Trigger"; ObjectID = "1055"; */
+"1055.title" = "Platform On Trigger";
+
+/* Class = "NSMenuItem"; title = "Item Trigger"; ObjectID = "1056"; */
+"1056.title" = "Item Trigger";
+
+/* Class = "NSMenuItem"; title = "Must Be Explored"; ObjectID = "1057"; */
+"1057.title" = "Must Be Explored";
+
+/* Class = "NSMenuItem"; title = "Platform"; ObjectID = "1058"; */
+"1058.title" = "Platform";
+
+/* Class = "NSBox"; title = "Line Flags"; ObjectID = "1085"; */
+"1085.title" = "Line Flags";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1265"; */
+"1265.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Types Go Here"; ObjectID = "1267"; */
+"1267.title" = "Types Go Here";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1388"; */
+"1388.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "1390"; */
+"1390.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "1391"; */
+"1391.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "1392"; */
+"1392.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "1400"; */
+"1400.title" = "Item3";
+
+/* Class = "NSTabViewItem"; label = "Menu"; ObjectID = "1403"; */
+"1403.label" = "Menu";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "1404"; */
+"1404.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1405"; */
+"1405.title" = "OtherViews";
+
+/* Class = "NSTabViewItem"; label = "Text"; ObjectID = "1409"; */
+"1409.label" = "Text";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "1410"; */
+"1410.title" = "Item2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1413"; */
+"1413.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "1416"; */
+"1416.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "1417"; */
+"1417.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "1418"; */
+"1418.title" = "Item1";
+
+/* Class = "NSTabViewItem"; label = "Menu"; ObjectID = "1420"; */
+"1420.label" = "Menu";
+
+/* Class = "NSTabViewItem"; label = "Text"; ObjectID = "1421"; */
+"1421.label" = "Text";
+
+/* Class = "NSWindow"; title = "Textures"; ObjectID = "1673"; */
+"1673.title" = "Textures";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "1924"; */
+"1924.title" = "Menu";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "1942"; */
+"1942.title" = "Menu";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "1943"; */
+"1943.title" = "Menu";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "1944"; */
+"1944.title" = "Menu";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "1945"; */
+"1945.title" = "Menu";
+
+/* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "1954"; */
+"1954.label" = "Tab";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1958"; */
+"1958.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1966"; */
+"1966.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1970"; */
+"1970.title" = "OtherViews";
+
+/* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "1975"; */
+"1975.label" = "Tab";
+
+/* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "1977"; */
+"1977.label" = "Tab";
+
+/* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "2000"; */
+"2000.label" = "Tab";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2004"; */
+"2004.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2006"; */
+"2006.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2262"; */
+"2262.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2265"; */
+"2265.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Walls 1 (Water)"; ObjectID = "2266"; */
+"2266.title" = "Walls 1 (Water)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2274"; */
+"2274.title" = "OtherViews";
+
+/* Class = "NSBox"; title = "                 Texture Collection  Offset X  Offset Y"; ObjectID = "2277"; */
+"2277.title" = "                 Texture Collection  Offset X  Offset Y";
+
+/* Class = "NSBox"; title = " Primary    Secondary  Transparent"; ObjectID = "2283"; */
+"2283.title" = " Primary    Secondary  Transparent";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2285"; */
+"2285.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2296"; */
+"2296.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2298"; */
+"2298.title" = "OtherViews";
+
+/* Class = "NSButtonCell"; title = "Clockwise"; ObjectID = "2317"; */
+"2317.title" = "Clockwise";
+
+/* Class = "NSButtonCell"; title = "Counter-Clockwise"; ObjectID = "2318"; */
+"2318.title" = "Counter-Clockwise";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2341"; */
+"2341.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2343"; */
+"2343.title" = "OtherViews";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2349"; */
+"2349.title" = "OtherViews";
+
+/* Class = "NSBox"; title = "          Texture Collection    Offset X    Offset Y"; ObjectID = "2350"; */
+"2350.title" = "          Texture Collection    Offset X    Offset Y";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2366"; */
+"2366.title" = "OtherViews";
+
+/* Class = "NSBox"; title = "  Ceiling          Floor"; ObjectID = "2373"; */
+"2373.title" = "  Ceiling          Floor";
+
+/* Class = "NSMenuItem"; title = "* Normal *"; ObjectID = "2458"; */
+"2458.title" = "* Normal *";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2459"; */
+"2459.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Fade Out To Black"; ObjectID = "2460"; */
+"2460.title" = "Fade Out To Black";
+
+/* Class = "NSMenuItem"; title = "Primary Transfer Mode:"; ObjectID = "2462"; */
+"2462.title" = "Primary Transfer Mode:";
+
+/* Class = "NSMenuItem"; title = "Invisibility"; ObjectID = "2500"; */
+"2500.title" = "Invisibility";
+
+/* Class = "NSMenuItem"; title = "Subtle Invisibility"; ObjectID = "2501"; */
+"2501.title" = "Subtle Invisibility";
+
+/* Class = "NSMenuItem"; title = "50 Percent Static"; ObjectID = "2502"; */
+"2502.title" = "50 Percent Static";
+
+/* Class = "NSMenuItem"; title = "* Landscape *"; ObjectID = "2503"; */
+"2503.title" = "* Landscape *";
+
+/* Class = "NSMenuItem"; title = "Smear"; ObjectID = "2504"; */
+"2504.title" = "Smear";
+
+/* Class = "NSMenuItem"; title = "* Pulsate *"; ObjectID = "2505"; */
+"2505.title" = "* Pulsate *";
+
+/* Class = "NSMenuItem"; title = "Static"; ObjectID = "2506"; */
+"2506.title" = "Static";
+
+/* Class = "NSMenuItem"; title = "* Fast Wobble *"; ObjectID = "2507"; */
+"2507.title" = "* Fast Wobble *";
+
+/* Class = "NSMenuItem"; title = "* Wobble *"; ObjectID = "2508"; */
+"2508.title" = "* Wobble *";
+
+/* Class = "NSMenuItem"; title = "Fade Out Static"; ObjectID = "2509"; */
+"2509.title" = "Fade Out Static";
+
+/* Class = "NSMenuItem"; title = "Pulsating Static"; ObjectID = "2510"; */
+"2510.title" = "Pulsating Static";
+
+/* Class = "NSMenuItem"; title = "Fold In"; ObjectID = "2511"; */
+"2511.title" = "Fold In";
+
+/* Class = "NSMenuItem"; title = "Fold Out"; ObjectID = "2512"; */
+"2512.title" = "Fold Out";
+
+/* Class = "NSMenuItem"; title = "* Horizontal Slide *"; ObjectID = "2513"; */
+"2513.title" = "* Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Fast Horizontal Slide *"; ObjectID = "2514"; */
+"2514.title" = "* Fast Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Vertical Slide *"; ObjectID = "2515"; */
+"2515.title" = "* Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "* Fast Vertical Slide *"; ObjectID = "2516"; */
+"2516.title" = "* Fast Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "* Wander *"; ObjectID = "2517"; */
+"2517.title" = "* Wander *";
+
+/* Class = "NSMenuItem"; title = "* Fast Wander *"; ObjectID = "2518"; */
+"2518.title" = "* Fast Wander *";
+
+/* Class = "NSMenuItem"; title = "Big Landscape"; ObjectID = "2519"; */
+"2519.title" = "Big Landscape";
+
+/* Class = "NSMenuItem"; title = "Pulsating Static"; ObjectID = "2520"; */
+"2520.title" = "Pulsating Static";
+
+/* Class = "NSMenuItem"; title = "Fade Out Static"; ObjectID = "2521"; */
+"2521.title" = "Fade Out Static";
+
+/* Class = "NSMenuItem"; title = "* Wobble *"; ObjectID = "2522"; */
+"2522.title" = "* Wobble *";
+
+/* Class = "NSMenuItem"; title = "Invisibility"; ObjectID = "2523"; */
+"2523.title" = "Invisibility";
+
+/* Class = "NSMenuItem"; title = "* Horizontal Slide *"; ObjectID = "2524"; */
+"2524.title" = "* Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Vertical Slide *"; ObjectID = "2525"; */
+"2525.title" = "* Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "* Normal *"; ObjectID = "2526"; */
+"2526.title" = "* Normal *";
+
+/* Class = "NSMenuItem"; title = "* Fast Vertical Slide *"; ObjectID = "2527"; */
+"2527.title" = "* Fast Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "Big Landscape"; ObjectID = "2528"; */
+"2528.title" = "Big Landscape";
+
+/* Class = "NSMenuItem"; title = "* Pulsate *"; ObjectID = "2529"; */
+"2529.title" = "* Pulsate *";
+
+/* Class = "NSMenuItem"; title = "Subtle Invisibility"; ObjectID = "2530"; */
+"2530.title" = "Subtle Invisibility";
+
+/* Class = "NSMenuItem"; title = "Smear"; ObjectID = "2532"; */
+"2532.title" = "Smear";
+
+/* Class = "NSMenuItem"; title = "* Landscape *"; ObjectID = "2533"; */
+"2533.title" = "* Landscape *";
+
+/* Class = "NSMenuItem"; title = "Fold In"; ObjectID = "2534"; */
+"2534.title" = "Fold In";
+
+/* Class = "NSMenuItem"; title = "* Wander *"; ObjectID = "2535"; */
+"2535.title" = "* Wander *";
+
+/* Class = "NSMenuItem"; title = "Static"; ObjectID = "2536"; */
+"2536.title" = "Static";
+
+/* Class = "NSMenuItem"; title = "Fold Out"; ObjectID = "2537"; */
+"2537.title" = "Fold Out";
+
+/* Class = "NSMenuItem"; title = "* Fast Horizontal Slide *"; ObjectID = "2538"; */
+"2538.title" = "* Fast Horizontal Slide *";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2539"; */
+"2539.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "* Fast Wander *"; ObjectID = "2540"; */
+"2540.title" = "* Fast Wander *";
+
+/* Class = "NSMenuItem"; title = "Secondary Transfer Mode:"; ObjectID = "2541"; */
+"2541.title" = "Secondary Transfer Mode:";
+
+/* Class = "NSMenuItem"; title = "Fade Out To Black"; ObjectID = "2542"; */
+"2542.title" = "Fade Out To Black";
+
+/* Class = "NSMenuItem"; title = "50 Percent Static"; ObjectID = "2543"; */
+"2543.title" = "50 Percent Static";
+
+/* Class = "NSMenuItem"; title = "* Fast Wobble *"; ObjectID = "2544"; */
+"2544.title" = "* Fast Wobble *";
+
+/* Class = "NSMenuItem"; title = "Fade Out Static"; ObjectID = "2545"; */
+"2545.title" = "Fade Out Static";
+
+/* Class = "NSMenuItem"; title = "* Fast Horizontal Slide *"; ObjectID = "2546"; */
+"2546.title" = "* Fast Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Horizontal Slide *"; ObjectID = "2547"; */
+"2547.title" = "* Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "Fade Out To Black"; ObjectID = "2548"; */
+"2548.title" = "Fade Out To Black";
+
+/* Class = "NSMenuItem"; title = "Pulsating Static"; ObjectID = "2549"; */
+"2549.title" = "Pulsating Static";
+
+/* Class = "NSMenuItem"; title = "Static"; ObjectID = "2550"; */
+"2550.title" = "Static";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2551"; */
+"2551.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Smear"; ObjectID = "2552"; */
+"2552.title" = "Smear";
+
+/* Class = "NSMenuItem"; title = "* Fast Wobble *"; ObjectID = "2553"; */
+"2553.title" = "* Fast Wobble *";
+
+/* Class = "NSMenuItem"; title = "* Wobble *"; ObjectID = "2554"; */
+"2554.title" = "* Wobble *";
+
+/* Class = "NSMenuItem"; title = "* Pulsate *"; ObjectID = "2556"; */
+"2556.title" = "* Pulsate *";
+
+/* Class = "NSMenuItem"; title = "Fold Out"; ObjectID = "2557"; */
+"2557.title" = "Fold Out";
+
+/* Class = "NSMenuItem"; title = "Fold In"; ObjectID = "2558"; */
+"2558.title" = "Fold In";
+
+/* Class = "NSMenuItem"; title = "* Wander *"; ObjectID = "2559"; */
+"2559.title" = "* Wander *";
+
+/* Class = "NSMenuItem"; title = "* Landscape *"; ObjectID = "2560"; */
+"2560.title" = "* Landscape *";
+
+/* Class = "NSMenuItem"; title = "Transparent Transfer Mode:"; ObjectID = "2561"; */
+"2561.title" = "Transparent Transfer Mode:";
+
+/* Class = "NSMenuItem"; title = "* Vertical Slide *"; ObjectID = "2562"; */
+"2562.title" = "* Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "* Fast Vertical Slide *"; ObjectID = "2563"; */
+"2563.title" = "* Fast Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "50 Percent Static"; ObjectID = "2564"; */
+"2564.title" = "50 Percent Static";
+
+/* Class = "NSMenuItem"; title = "Invisibility"; ObjectID = "2565"; */
+"2565.title" = "Invisibility";
+
+/* Class = "NSMenuItem"; title = "* Fast Wander *"; ObjectID = "2566"; */
+"2566.title" = "* Fast Wander *";
+
+/* Class = "NSMenuItem"; title = "* Normal *"; ObjectID = "2567"; */
+"2567.title" = "* Normal *";
+
+/* Class = "NSMenuItem"; title = "Big Landscape"; ObjectID = "2568"; */
+"2568.title" = "Big Landscape";
+
+/* Class = "NSMenuItem"; title = "Subtle Invisibility"; ObjectID = "2569"; */
+"2569.title" = "Subtle Invisibility";
+
+/* Class = "NSMenuItem"; title = "Pulsating Static"; ObjectID = "2570"; */
+"2570.title" = "Pulsating Static";
+
+/* Class = "NSMenuItem"; title = "* Landscape *"; ObjectID = "2571"; */
+"2571.title" = "* Landscape *";
+
+/* Class = "NSMenuItem"; title = "* Horizontal Slide *"; ObjectID = "2572"; */
+"2572.title" = "* Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Normal *"; ObjectID = "2573"; */
+"2573.title" = "* Normal *";
+
+/* Class = "NSMenuItem"; title = "* Wander *"; ObjectID = "2574"; */
+"2574.title" = "* Wander *";
+
+/* Class = "NSMenuItem"; title = "* Fast Wander *"; ObjectID = "2575"; */
+"2575.title" = "* Fast Wander *";
+
+/* Class = "NSMenuItem"; title = "Ceiling Transfer Mode:"; ObjectID = "2576"; */
+"2576.title" = "Ceiling Transfer Mode:";
+
+/* Class = "NSMenuItem"; title = "Fold Out"; ObjectID = "2577"; */
+"2577.title" = "Fold Out";
+
+/* Class = "NSMenuItem"; title = "50 Percent Static"; ObjectID = "2578"; */
+"2578.title" = "50 Percent Static";
+
+/* Class = "NSMenuItem"; title = "Big Landscape"; ObjectID = "2580"; */
+"2580.title" = "Big Landscape";
+
+/* Class = "NSMenuItem"; title = "* Wobble *"; ObjectID = "2581"; */
+"2581.title" = "* Wobble *";
+
+/* Class = "NSMenuItem"; title = "Fold In"; ObjectID = "2582"; */
+"2582.title" = "Fold In";
+
+/* Class = "NSMenuItem"; title = "Invisibility"; ObjectID = "2583"; */
+"2583.title" = "Invisibility";
+
+/* Class = "NSMenuItem"; title = "Fade Out Static"; ObjectID = "2584"; */
+"2584.title" = "Fade Out Static";
+
+/* Class = "NSMenuItem"; title = "* Vertical Slide *"; ObjectID = "2585"; */
+"2585.title" = "* Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "Fade Out To Black"; ObjectID = "2586"; */
+"2586.title" = "Fade Out To Black";
+
+/* Class = "NSMenuItem"; title = "* Pulsate *"; ObjectID = "2587"; */
+"2587.title" = "* Pulsate *";
+
+/* Class = "NSMenuItem"; title = "* Fast Horizontal Slide *"; ObjectID = "2588"; */
+"2588.title" = "* Fast Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "Smear"; ObjectID = "2589"; */
+"2589.title" = "Smear";
+
+/* Class = "NSMenuItem"; title = "* Fast Wobble *"; ObjectID = "2590"; */
+"2590.title" = "* Fast Wobble *";
+
+/* Class = "NSMenuItem"; title = "Static"; ObjectID = "2591"; */
+"2591.title" = "Static";
+
+/* Class = "NSMenuItem"; title = "Subtle Invisibility"; ObjectID = "2592"; */
+"2592.title" = "Subtle Invisibility";
+
+/* Class = "NSMenuItem"; title = "* Fast Vertical Slide *"; ObjectID = "2593"; */
+"2593.title" = "* Fast Vertical Slide *";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2594"; */
+"2594.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Smear"; ObjectID = "2595"; */
+"2595.title" = "Smear";
+
+/* Class = "NSMenuItem"; title = "Floor Transfer Mode:"; ObjectID = "2596"; */
+"2596.title" = "Floor Transfer Mode:";
+
+/* Class = "NSMenuItem"; title = "Big Landscape"; ObjectID = "2597"; */
+"2597.title" = "Big Landscape";
+
+/* Class = "NSMenuItem"; title = "* Fast Wobble *"; ObjectID = "2598"; */
+"2598.title" = "* Fast Wobble *";
+
+/* Class = "NSMenuItem"; title = "Fold Out"; ObjectID = "2599"; */
+"2599.title" = "Fold Out";
+
+/* Class = "NSMenuItem"; title = "Fold In"; ObjectID = "2600"; */
+"2600.title" = "Fold In";
+
+/* Class = "NSMenuItem"; title = "Pulsating Static"; ObjectID = "2601"; */
+"2601.title" = "Pulsating Static";
+
+/* Class = "NSMenuItem"; title = "* Wobble *"; ObjectID = "2602"; */
+"2602.title" = "* Wobble *";
+
+/* Class = "NSMenuItem"; title = "Invisibility"; ObjectID = "2603"; */
+"2603.title" = "Invisibility";
+
+/* Class = "NSMenuItem"; title = "Subtle Invisibility"; ObjectID = "2604"; */
+"2604.title" = "Subtle Invisibility";
+
+/* Class = "NSMenuItem"; title = "* Landscape *"; ObjectID = "2605"; */
+"2605.title" = "* Landscape *";
+
+/* Class = "NSMenuItem"; title = "Fade Out To Black"; ObjectID = "2607"; */
+"2607.title" = "Fade Out To Black";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2608"; */
+"2608.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "50 Percent Static"; ObjectID = "2609"; */
+"2609.title" = "50 Percent Static";
+
+/* Class = "NSMenuItem"; title = "* Fast Vertical Slide *"; ObjectID = "2610"; */
+"2610.title" = "* Fast Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "* Fast Horizontal Slide *"; ObjectID = "2611"; */
+"2611.title" = "* Fast Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "Fade Out Static"; ObjectID = "2612"; */
+"2612.title" = "Fade Out Static";
+
+/* Class = "NSMenuItem"; title = "* Vertical Slide *"; ObjectID = "2613"; */
+"2613.title" = "* Vertical Slide *";
+
+/* Class = "NSMenuItem"; title = "Static"; ObjectID = "2614"; */
+"2614.title" = "Static";
+
+/* Class = "NSMenuItem"; title = "* Normal *"; ObjectID = "2615"; */
+"2615.title" = "* Normal *";
+
+/* Class = "NSMenuItem"; title = "* Pulsate *"; ObjectID = "2616"; */
+"2616.title" = "* Pulsate *";
+
+/* Class = "NSMenuItem"; title = "* Fast Wander *"; ObjectID = "2617"; */
+"2617.title" = "* Fast Wander *";
+
+/* Class = "NSMenuItem"; title = "* Horizontal Slide *"; ObjectID = "2618"; */
+"2618.title" = "* Horizontal Slide *";
+
+/* Class = "NSMenuItem"; title = "* Wander *"; ObjectID = "2619"; */
+"2619.title" = "* Wander *";
+
+/* Class = "NSButtonCell"; title = "Clockwise"; ObjectID = "2640"; */
+"2640.title" = "Clockwise";
+
+/* Class = "NSButtonCell"; title = "C-Clockwise"; ObjectID = "2641"; */
+"2641.title" = "C-Clockwise";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2642"; */
+"2642.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2643"; */
+"2643.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2645"; */
+"2645.title" = "Item2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2646"; */
+"2646.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2647"; */
+"2647.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2648"; */
+"2648.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2650"; */
+"2650.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2651"; */
+"2651.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2652"; */
+"2652.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2653"; */
+"2653.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2654"; */
+"2654.title" = "Item3";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2656"; */
+"2656.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2658"; */
+"2658.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2659"; */
+"2659.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2660"; */
+"2660.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2661"; */
+"2661.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2662"; */
+"2662.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2663"; */
+"2663.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2665"; */
+"2665.title" = "Item2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2666"; */
+"2666.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2667"; */
+"2667.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2668"; */
+"2668.title" = "Item3";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2669"; */
+"2669.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2671"; */
+"2671.title" = "Item1";
+
+/* Class = "NSButtonCell"; title = "Clockwise"; ObjectID = "2689"; */
+"2689.title" = "Clockwise";
+
+/* Class = "NSButtonCell"; title = "C-Clockwise"; ObjectID = "2690"; */
+"2690.title" = "C-Clockwise";
+
+/* Class = "NSMenuItem"; title = "M1: Minor Ouch/Damage"; ObjectID = "2694"; */
+"2694.title" = "M1: Minor Ouch/Damage";
+
+/* Class = "NSMenuItem"; title = "M1: Major Ouch/Damage"; ObjectID = "2695"; */
+"2695.title" = "M1: Major Ouch/Damage";
+
+/* Class = "NSMenuItem"; title = "M1: Glue"; ObjectID = "2696"; */
+"2696.title" = "M1: Glue";
+
+/* Class = "NSMenuItem"; title = "M1: Glue Trigger"; ObjectID = "2697"; */
+"2697.title" = "M1: Glue Trigger";
+
+/* Class = "NSMenuItem"; title = "M1: Super Glue"; ObjectID = "2698"; */
+"2698.title" = "M1: Super Glue";
+
+/* Class = "NSButtonCell"; title = "Solid"; ObjectID = "2709"; */
+"2709.title" = "Solid";
+
+/* Class = "NSButtonCell"; title = "Transparent"; ObjectID = "2710"; */
+"2710.title" = "Transparent";
+
+/* Class = "NSButtonCell"; title = "Landscape"; ObjectID = "2711"; */
+"2711.title" = "Landscape";
+
+/* Class = "NSButtonCell"; title = "Auto-set Above Flags"; ObjectID = "2712"; */
+"2712.title" = "Auto-set Above Flags";
+
+/* Class = "NSMenuItem"; title = "Walls 2 (Lava)"; ObjectID = "2716"; */
+"2716.title" = "Walls 2 (Lava)";
+
+/* Class = "NSMenuItem"; title = "Walls 3 (Sewage)"; ObjectID = "2717"; */
+"2717.title" = "Walls 3 (Sewage)";
+
+/* Class = "NSMenuItem"; title = "Walls 4 (Jjaro, M∞)"; ObjectID = "2718"; */
+"2718.title" = "Walls 4 (Jjaro, M∞)";
+
+/* Class = "NSMenuItem"; title = "Landscape 1 (Daytime L'howon)"; ObjectID = "2719"; */
+"2719.title" = "Landscape 1 (Daytime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 2 (Nighttime L'howon)"; ObjectID = "2729"; */
+"2729.title" = "Landscape 2 (Nighttime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 3 (Moon)"; ObjectID = "2730"; */
+"2730.title" = "Landscape 3 (Moon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 4 (Space)"; ObjectID = "2731"; */
+"2731.title" = "Landscape 4 (Space)";
+
+/* Class = "NSMenuItem"; title = "Walls 5 (Pfhor)"; ObjectID = "2748"; */
+"2748.title" = "Walls 5 (Pfhor)";
+
+/* Class = "NSMenuItem"; title = "Landscape 3 (Moon)"; ObjectID = "2758"; */
+"2758.title" = "Landscape 3 (Moon)";
+
+/* Class = "NSMenuItem"; title = "Walls 2 (Lava)"; ObjectID = "2759"; */
+"2759.title" = "Walls 2 (Lava)";
+
+/* Class = "NSMenuItem"; title = "Walls 1 (Water)"; ObjectID = "2760"; */
+"2760.title" = "Walls 1 (Water)";
+
+/* Class = "NSMenuItem"; title = "Walls 3 (Sewage)"; ObjectID = "2761"; */
+"2761.title" = "Walls 3 (Sewage)";
+
+/* Class = "NSMenuItem"; title = "Walls 4 (Jjaro, M∞)"; ObjectID = "2762"; */
+"2762.title" = "Walls 4 (Jjaro, M∞)";
+
+/* Class = "NSMenuItem"; title = "Landscape 4 (Space)"; ObjectID = "2763"; */
+"2763.title" = "Landscape 4 (Space)";
+
+/* Class = "NSMenuItem"; title = "Landscape 1 (Daytime L'howon)"; ObjectID = "2764"; */
+"2764.title" = "Landscape 1 (Daytime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 2 (Nighttime L'howon)"; ObjectID = "2765"; */
+"2765.title" = "Landscape 2 (Nighttime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Walls 5 (Pfhor)"; ObjectID = "2766"; */
+"2766.title" = "Walls 5 (Pfhor)";
+
+/* Class = "NSMenuItem"; title = "Walls 1 (Water)"; ObjectID = "2767"; */
+"2767.title" = "Walls 1 (Water)";
+
+/* Class = "NSMenuItem"; title = "Walls 4 (Jjaro, M∞)"; ObjectID = "2768"; */
+"2768.title" = "Walls 4 (Jjaro, M∞)";
+
+/* Class = "NSMenuItem"; title = "Landscape 3 (Moon)"; ObjectID = "2769"; */
+"2769.title" = "Landscape 3 (Moon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 2 (Nighttime L'howon)"; ObjectID = "2770"; */
+"2770.title" = "Landscape 2 (Nighttime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 4 (Space)"; ObjectID = "2771"; */
+"2771.title" = "Landscape 4 (Space)";
+
+/* Class = "NSMenuItem"; title = "Walls 3 (Sewage)"; ObjectID = "2772"; */
+"2772.title" = "Walls 3 (Sewage)";
+
+/* Class = "NSMenuItem"; title = "Landscape 1 (Daytime L'howon)"; ObjectID = "2773"; */
+"2773.title" = "Landscape 1 (Daytime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Walls 5 (Pfhor)"; ObjectID = "2774"; */
+"2774.title" = "Walls 5 (Pfhor)";
+
+/* Class = "NSMenuItem"; title = "Walls 2 (Lava)"; ObjectID = "2775"; */
+"2775.title" = "Walls 2 (Lava)";
+
+/* Class = "NSMenuItem"; title = "Walls 2 (Lava)"; ObjectID = "2776"; */
+"2776.title" = "Walls 2 (Lava)";
+
+/* Class = "NSMenuItem"; title = "Landscape 3 (Moon)"; ObjectID = "2777"; */
+"2777.title" = "Landscape 3 (Moon)";
+
+/* Class = "NSMenuItem"; title = "Walls 4 (Jjaro, M∞)"; ObjectID = "2778"; */
+"2778.title" = "Walls 4 (Jjaro, M∞)";
+
+/* Class = "NSMenuItem"; title = "Walls 1 (Water)"; ObjectID = "2779"; */
+"2779.title" = "Walls 1 (Water)";
+
+/* Class = "NSMenuItem"; title = "Walls 5 (Pfhor)"; ObjectID = "2780"; */
+"2780.title" = "Walls 5 (Pfhor)";
+
+/* Class = "NSMenuItem"; title = "Walls 3 (Sewage)"; ObjectID = "2781"; */
+"2781.title" = "Walls 3 (Sewage)";
+
+/* Class = "NSMenuItem"; title = "Landscape 1 (Daytime L'howon)"; ObjectID = "2782"; */
+"2782.title" = "Landscape 1 (Daytime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 2 (Nighttime L'howon)"; ObjectID = "2783"; */
+"2783.title" = "Landscape 2 (Nighttime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 4 (Space)"; ObjectID = "2784"; */
+"2784.title" = "Landscape 4 (Space)";
+
+/* Class = "NSMenuItem"; title = "Walls 2 (Lava)"; ObjectID = "2785"; */
+"2785.title" = "Walls 2 (Lava)";
+
+/* Class = "NSMenuItem"; title = "Landscape 3 (Moon)"; ObjectID = "2786"; */
+"2786.title" = "Landscape 3 (Moon)";
+
+/* Class = "NSMenuItem"; title = "Walls 4 (Jjaro, M∞)"; ObjectID = "2787"; */
+"2787.title" = "Walls 4 (Jjaro, M∞)";
+
+/* Class = "NSMenuItem"; title = "Landscape 4 (Space)"; ObjectID = "2788"; */
+"2788.title" = "Landscape 4 (Space)";
+
+/* Class = "NSMenuItem"; title = "Walls 1 (Water)"; ObjectID = "2789"; */
+"2789.title" = "Walls 1 (Water)";
+
+/* Class = "NSMenuItem"; title = "Walls 3 (Sewage)"; ObjectID = "2790"; */
+"2790.title" = "Walls 3 (Sewage)";
+
+/* Class = "NSMenuItem"; title = "Walls 5 (Pfhor)"; ObjectID = "2791"; */
+"2791.title" = "Walls 5 (Pfhor)";
+
+/* Class = "NSMenuItem"; title = "Landscape 1 (Daytime L'howon)"; ObjectID = "2792"; */
+"2792.title" = "Landscape 1 (Daytime L'howon)";
+
+/* Class = "NSMenuItem"; title = "Landscape 2 (Nighttime L'howon)"; ObjectID = "2793"; */
+"2793.title" = "Landscape 2 (Nighttime L'howon)";
+
+/* Class = "NSTabViewItem"; label = "Annotation"; ObjectID = "2798"; */
+"2798.label" = "Annotation";
+
+/* Class = "NSTabViewItem"; label = "Annotation"; ObjectID = "2801"; */
+"2801.label" = "Annotation";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "2806"; */
+"2806.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "2807"; */
+"2807.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "2808"; */
+"2808.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "2809"; */
+"2809.title" = "OtherViews";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2813"; */
+"2813.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2814"; */
+"2814.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "2815"; */
+"2815.title" = "Primary:";
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "2816"; */
+"2816.title" = "Secondary:";
+
+/* Class = "NSTextFieldCell"; title = "Transparent:"; ObjectID = "2817"; */
+"2817.title" = "Transparent:";
+
+/* Class = "NSTextFieldCell"; title = "Floor Light:"; ObjectID = "2821"; */
+"2821.title" = "Floor Light:";
+
+/* Class = "NSTextFieldCell"; title = "Ceiling Light:"; ObjectID = "2822"; */
+"2822.title" = "Ceiling Light:";
+
+/* Class = "NSTextFieldCell"; title = "Liquid Light:"; ObjectID = "2823"; */
+"2823.title" = "Liquid Light:";
+
+/* Class = "NSTextFieldCell"; title = "Poly#/Name"; ObjectID = "2827"; */
+"2827.title" = "Poly#/Name";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2828"; */
+"2828.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Not Avaliable"; ObjectID = "2829"; */
+"2829.title" = "Not Avaliable";
+
+/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "2830"; */
+"2830.title" = "Type:";
+
+/* Class = "NSTextFieldCell"; title = "Permutation "; ObjectID = "2831"; */
+"2831.title" = "Permutation ";
+
+/* Class = "NSButtonCell"; title = "Side Is Control Panel"; ObjectID = "2832"; */
+"2832.title" = "Side Is Control Panel";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "2835"; */
+"2835.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2836"; */
+"2836.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Not Avaliable"; ObjectID = "2837"; */
+"2837.title" = "Not Avaliable";
+
+/* Class = "NSTextFieldCell"; title = "Not Avaliable"; ObjectID = "2838"; */
+"2838.title" = "Not Avaliable";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2839"; */
+"2839.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "2840"; */
+"2840.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Ceiling:"; ObjectID = "2841"; */
+"2841.title" = "Ceiling:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "2842"; */
+"2842.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Floor:\n:"; ObjectID = "2843"; */
+"2843.title" = "Floor:\n:";
+
+/* Class = "NSTextFieldCell"; title = "Polygon Type:"; ObjectID = "2845"; */
+"2845.title" = "Polygon Type:";
+
+/* Class = "NSTextFieldCell"; title = "Light/Polygon/Level#/Etc:"; ObjectID = "2846"; */
+"2846.title" = "Light/Polygon/Level#/Etc:";
+
+/* Class = "NSTextFieldCell"; title = "Random Sound:"; ObjectID = "2847"; */
+"2847.title" = "Random Sound:";
+
+/* Class = "NSComboBoxCell"; title = "1"; ObjectID = "2848"; */
+"2848.title" = "1";
+
+/* Class = "NSTextFieldCell"; title = "Ambient Sound:"; ObjectID = "2849"; */
+"2849.title" = "Ambient Sound:";
+
+/* Class = "NSComboBoxCell"; title = "1"; ObjectID = "2850"; */
+"2850.title" = "1";
+
+/* Class = "NSButtonCell"; title = "Platform Parameters"; ObjectID = "2851"; */
+"2851.title" = "Platform Parameters";
+
+/* Class = "NSComboBoxCell"; title = "1"; ObjectID = "2852"; */
+"2852.title" = "1";
+
+/* Class = "NSTextFieldCell"; title = "Liquid:"; ObjectID = "2853"; */
+"2853.title" = "Liquid:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "2855"; */
+"2855.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Object Type:"; ObjectID = "2857"; */
+"2857.title" = "Object Type:";
+
+/* Class = "NSTextFieldCell"; title = "Object Kind:"; ObjectID = "2858"; */
+"2858.title" = "Object Kind:";
+
+/* Class = "NSTextFieldCell"; title = "Height (z coordinate):"; ObjectID = "2860"; */
+"2860.title" = "Height (z coordinate):";
+
+/* Class = "NSTextFieldCell"; title = "Angle (0 - 512)/Volume:"; ObjectID = "2861"; */
+"2861.title" = "Angle (0 - 512)/Volume:";
+
+/* Class = "NSTextFieldCell"; title = "Text To Display:"; ObjectID = "2865"; */
+"2865.title" = "Text To Display:";
+
+/* Class = "NSTextFieldCell"; title = "Group To Belong To:"; ObjectID = "2867"; */
+"2867.title" = "Group To Belong To:";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2868"; */
+"2868.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Primary"; ObjectID = "2872"; */
+"2872.title" = "Primary";
+
+/* Class = "NSTextFieldCell"; title = "Secondary"; ObjectID = "2873"; */
+"2873.title" = "Secondary";
+
+/* Class = "NSTextFieldCell"; title = "Transparent "; ObjectID = "2874"; */
+"2874.title" = "Transparent ";
+
+/* Class = "NSTextFieldCell"; title = "Floor"; ObjectID = "2877"; */
+"2877.title" = "Floor";
+
+/* Class = "NSTextFieldCell"; title = "Ceiling"; ObjectID = "2878"; */
+"2878.title" = "Ceiling";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2879"; */
+"2879.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Not Available"; ObjectID = "2880"; */
+"2880.title" = "Not Available";
+
+/* Class = "NSTextFieldCell"; title = "Ceiling:"; ObjectID = "2881"; */
+"2881.title" = "Ceiling:";
+
+/* Class = "NSTextFieldCell"; title = "Floor:"; ObjectID = "2884"; */
+"2884.title" = "Floor:";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "2889"; */
+"2889.title" = "Primary:";
+
+/* Class = "NSTextFieldCell"; title = "Transparent:"; ObjectID = "2892"; */
+"2892.title" = "Transparent:";
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "2894"; */
+"2894.title" = "Secondary:";
+
+/* Class = "NSButtonCell"; title = "Use Transparent Texture"; ObjectID = "2898"; */
+"2898.title" = "Use Transparent Texture";
+
+/* Class = "NSButtonCell"; title = "Empty, No Sides"; ObjectID = "2902"; */
+"2902.title" = "Empty, No Sides";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "2903"; */
+"2903.title" = "Radio";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "2904"; */
+"2904.title" = "Radio";
+
+/* Class = "NSButtonCell"; title = "Initially On"; ObjectID = "2905"; */
+"2905.title" = "Initially On";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "2906"; */
+"2906.title" = "Radio";
+
+/* Class = "NSButtonCell"; title = "Landscape"; ObjectID = "2907"; */
+"2907.title" = "Landscape";
+
+/* Class = "NSButtonCell"; title = "Initially Invisible"; ObjectID = "2908"; */
+"2908.title" = "Initially Invisible";

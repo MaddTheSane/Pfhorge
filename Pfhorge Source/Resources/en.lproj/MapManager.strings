@@ -1,0 +1,96 @@
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "5"; */
+"5.title" = "Window";
+
+/* Class = "NSTabViewItem"; label = "Levels"; ObjectID = "8"; */
+"8.label" = "Levels";
+
+/* Class = "NSTableColumn"; headerCell.title = "#"; ObjectID = "13"; */
+"13.headerCell.title" = "#";
+
+/* Class = "NSTableColumn"; headerCell.title = "File Name"; ObjectID = "16"; */
+"16.headerCell.title" = "File Name";
+
+/* Class = "NSMenu"; title = "Menu"; ObjectID = "29"; */
+"29.title" = "Menu";
+
+/* Class = "NSMenuItem"; title = "Edit Level"; ObjectID = "31"; */
+"31.title" = "Edit Level";
+
+/* Class = "NSMenuItem"; title = "Delete Level"; ObjectID = "34"; */
+"34.title" = "Delete Level";
+
+/* Class = "NSMenuItem"; title = "Export To Marathon Data"; ObjectID = "36"; */
+"36.title" = "Export To Marathon Data";
+
+/* Class = "NSMenuItem"; title = "Note: Double Click"; ObjectID = "43"; */
+"43.title" = "Note: Double Click";
+
+/* Class = "NSMenuItem"; title = "Merge"; ObjectID = "44"; */
+"44.title" = "Merge";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "45"; */
+"45.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Merge Map"; ObjectID = "47"; */
+"47.title" = "Merge Map";
+
+/* Class = "NSMenuItem"; title = "Any Below Maps To Edit"; ObjectID = "48"; */
+"48.title" = "Any Below Maps To Edit";
+
+/* Class = "NSMenuItem"; title = "Merge To marathon Map"; ObjectID = "52"; */
+"52.title" = "Merge To marathon Map";
+
+/* Class = "NSMenuItem"; title = "Import Marathon Map"; ObjectID = "54"; */
+"54.title" = "Import Marathon Map";
+
+/* Class = "NSMenuItem"; title = "Export Selected To Marathon Map"; ObjectID = "55"; */
+"55.title" = "Export Selected To Marathon Map";
+
+/* Class = "NSMenuItem"; title = "Delete Selected"; ObjectID = "56"; */
+"56.title" = "Delete Selected";
+
+/* Class = "NSMenuItem"; title = "Edit Selected"; ObjectID = "57"; */
+"57.title" = "Edit Selected";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "60"; */
+"60.title" = "Copy";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "61"; */
+"61.title" = "Cut";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "62"; */
+"62.title" = "Paste";
+
+/* Class = "NSMenuItem"; title = "Scenario Options"; ObjectID = "70"; */
+"70.title" = "Scenario Options";
+
+/* Class = "NSMenuItem"; title = "Import Pathways Map"; ObjectID = "71"; */
+"71.title" = "Import Pathways Map";
+
+/* Class = "NSMenuItem"; title = "Import Physics Models"; ObjectID = "72"; */
+"72.title" = "Import Physics Models";
+
+/* Class = "NSMenuItem"; title = "Import Terminal Files"; ObjectID = "73"; */
+"73.title" = "Import Terminal Files";
+
+/* Class = "NSMenuItem"; title = "Edit Selected Level"; ObjectID = "75"; */
+"75.title" = "Edit Selected Level";
+
+/* Class = "NSMenuItem"; title = "Export Selected To Marathon Map"; ObjectID = "76"; */
+"76.title" = "Export Selected To Marathon Map";
+
+/* Class = "NSMenuItem"; title = "Delete Selected Level"; ObjectID = "77"; */
+"77.title" = "Delete Selected Level";
+
+/* Class = "NSMenuItem"; title = "Rescan Level Folder"; ObjectID = "95"; */
+"95.title" = "Rescan Level Folder";
+
+/* Class = "NSMenuItem"; title = "Import Marathon Map"; ObjectID = "114"; */
+"114.title" = "Import Marathon Map";
+
+/* Class = "NSTextFieldCell"; title = "9"; ObjectID = "119"; */
+"119.title" = "9";
+
+/* Class = "NSTextFieldCell"; title = "Redwood City"; ObjectID = "120"; */
+"120.title" = "Redwood City";

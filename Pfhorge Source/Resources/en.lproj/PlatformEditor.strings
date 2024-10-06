@@ -1,0 +1,270 @@
+
+/* Class = "NSBox"; title = "Controllable By:"; ObjectID = "6"; */
+"6.title" = "Controllable By:";
+
+/* Class = "NSBox"; title = "Initially:"; ObjectID = "9"; */
+"9.title" = "Initially:";
+
+/* Class = "NSButtonCell"; title = "Only Once"; ObjectID = "10"; */
+"10.title" = "Only Once";
+
+/* Class = "NSButtonCell"; title = "Causes Damage"; ObjectID = "13"; */
+"13.title" = "Causes Damage";
+
+/* Class = "NSButtonCell"; title = "Players"; ObjectID = "15"; */
+"15.title" = "Players";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Silent"; ObjectID = "16"; */
+"16.title" = "S'pht Platform Silent";
+
+/* Class = "NSButtonCell"; title = "Can't Deactivate Ext."; ObjectID = "19"; */
+"19.title" = "Can't Deactivate Ext.";
+
+/* Class = "NSButtonCell"; title = "Secret"; ObjectID = "21"; */
+"21.title" = "Secret";
+
+/* Class = "NSMenuItem"; title = "S'pht Door"; ObjectID = "22"; */
+"22.title" = "S'pht Door";
+
+/* Class = "NSBox"; title = "Other Options:"; ObjectID = "23"; */
+"23.title" = "Other Options:";
+
+/* Class = "NSMenuItem"; title = "S'pht Door Split"; ObjectID = "24"; */
+"24.title" = "S'pht Door Split";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "25"; */
+"25.title" = "OtherViews";
+
+/* Class = "NSButtonCell"; title = "Activates Adj. Platform"; ObjectID = "28"; */
+"28.title" = "Activates Adj. Platform";
+
+/* Class = "NSButtonCell"; title = "From Ceiling"; ObjectID = "29"; */
+"29.title" = "From Ceiling";
+
+/* Class = "NSButtonCell"; title = "Can't Activate Parent"; ObjectID = "30"; */
+"30.title" = "Can't Activate Parent";
+
+/* Class = "NSButtonCell"; title = "Locked Door"; ObjectID = "31"; */
+"31.title" = "Locked Door";
+
+/* Class = "NSButtonCell"; title = "From Both"; ObjectID = "35"; */
+"35.title" = "From Both";
+
+/* Class = "NSMenuItem"; title = "S'pht Door Heavy"; ObjectID = "36"; */
+"36.title" = "S'pht Door Heavy";
+
+/* Class = "NSButtonCell"; title = "At Each Level"; ObjectID = "37"; */
+"37.title" = "At Each Level";
+
+/* Class = "NSMenuItem"; title = "Pfhor Platform"; ObjectID = "38"; */
+"38.title" = "Pfhor Platform";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Heavy"; ObjectID = "40"; */
+"40.title" = "S'pht Platform Heavy";
+
+/* Class = "NSBox"; title = "When It Hits An Obstruction:"; ObjectID = "41"; */
+"41.title" = "When It Hits An Obstruction:";
+
+/* Class = "NSButtonCell"; title = "Activates Lights"; ObjectID = "42"; */
+"42.title" = "Activates Lights";
+
+/* Class = "NSButtonCell"; title = "Adjacent at Each Level"; ObjectID = "43"; */
+"43.title" = "Adjacent at Each Level";
+
+/* Class = "NSButtonCell"; title = "Reverses Direction"; ObjectID = "44"; */
+"44.title" = "Reverses Direction";
+
+/* Class = "NSButtonCell"; title = "Active"; ObjectID = "48"; */
+"48.title" = "Active";
+
+/* Class = "NSButtonCell"; title = "Aliens"; ObjectID = "49"; */
+"49.title" = "Aliens";
+
+/* Class = "NSButtonCell"; title = "At Initial Level"; ObjectID = "50"; */
+"50.title" = "At Initial Level";
+
+/* Class = "NSBox"; title = "Deactivates:"; ObjectID = "56"; */
+"56.title" = "Deactivates:";
+
+/* Class = "NSMenuItem"; title = "Pfhor Door"; ObjectID = "57"; */
+"57.title" = "Pfhor Door";
+
+/* Class = "NSButtonCell"; title = "Deactivates Lights"; ObjectID = "58"; */
+"58.title" = "Deactivates Lights";
+
+/* Class = "NSButtonCell"; title = "Deactivates Adj. Platform"; ObjectID = "61"; */
+"61.title" = "Deactivates Adj. Platform";
+
+/* Class = "NSButtonCell"; title = "From Floor"; ObjectID = "63"; */
+"63.title" = "From Floor";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Heavy"; ObjectID = "64"; */
+"64.title" = "S'pht Platform Heavy";
+
+/* Class = "NSWindow"; title = "Platform Parameters"; ObjectID = "66"; */
+"66.title" = "Platform Parameters";
+
+/* Class = "NSButtonCell"; title = "Uses Polygon Heights"; ObjectID = "67"; */
+"67.title" = "Uses Polygon Heights";
+
+/* Class = "NSButtonCell"; title = "Contracts Slower"; ObjectID = "69"; */
+"69.title" = "Contracts Slower";
+
+/* Class = "NSButtonCell"; title = "Activates Adj. Platform"; ObjectID = "73"; */
+"73.title" = "Activates Adj. Platform";
+
+/* Class = "NSButtonCell"; title = "Extended"; ObjectID = "78"; */
+"78.title" = "Extended";
+
+/* Class = "NSButtonCell"; title = "Never"; ObjectID = "79"; */
+"79.title" = "Never";
+
+/* Class = "NSBox"; title = "Activates:"; ObjectID = "82"; */
+"82.title" = "Activates:";
+
+/* Class = "NSButtonCell"; title = "Deactivates Adj. Platform"; ObjectID = "83"; */
+"83.title" = "Deactivates Adj. Platform";
+
+/* Class = "NSBox"; title = "Extends From:"; ObjectID = "84"; */
+"84.title" = "Extends From:";
+
+/* Class = "NSButtonCell"; title = "Activation Delay"; ObjectID = "85"; */
+"85.title" = "Activation Delay";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "116"; */
+"116.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "117"; */
+"117.title" = "Item2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "118"; */
+"118.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "119"; */
+"119.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "S'pht Door Split"; ObjectID = "121"; */
+"121.title" = "S'pht Door Split";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "122"; */
+"122.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Silent"; ObjectID = "123"; */
+"123.title" = "S'pht Platform Silent";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Heavy"; ObjectID = "124"; */
+"124.title" = "S'pht Platform Heavy";
+
+/* Class = "NSMenuItem"; title = "Pfhor Door"; ObjectID = "126"; */
+"126.title" = "Pfhor Door";
+
+/* Class = "NSMenuItem"; title = "S'pht Door Heavy"; ObjectID = "127"; */
+"127.title" = "S'pht Door Heavy";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform Heavy"; ObjectID = "128"; */
+"128.title" = "S'pht Platform Heavy";
+
+/* Class = "NSMenuItem"; title = "Not Avaliable Yet…"; ObjectID = "129"; */
+"129.title" = "Not Avaliable Yet…";
+
+/* Class = "NSMenuItem"; title = "Pfhor Platform"; ObjectID = "130"; */
+"130.title" = "Pfhor Platform";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "137"; */
+"137.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Not Available Yet…"; ObjectID = "138"; */
+"138.title" = "Not Available Yet…";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "158"; */
+"158.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "S'pht Door Locked"; ObjectID = "168"; */
+"168.title" = "S'pht Door Locked";
+
+/* Class = "NSTextFieldCell"; title = "Tag:"; ObjectID = "175"; */
+"175.title" = "Tag:";
+
+/* Class = "NSTextFieldCell"; title = "Max Height:"; ObjectID = "176"; */
+"176.title" = "Max Height:";
+
+/* Class = "NSButtonCell"; title = "Platform is a Door"; ObjectID = "177"; */
+"177.title" = "Platform is a Door";
+
+/* Class = "NSButtonCell"; title = "Apply and Close"; ObjectID = "179"; */
+"179.title" = "Apply and Close";
+
+/* Class = "NSTextFieldCell"; title = "Min Height:"; ObjectID = "180"; */
+"180.title" = "Min Height:";
+
+/* Class = "NSButtonCell"; title = "AutoCalc Max Height"; ObjectID = "181"; */
+"181.title" = "AutoCalc Max Height";
+
+/* Class = "NSTextFieldCell"; title = "Copy:"; ObjectID = "182"; */
+"182.title" = "Copy:";
+
+/* Class = "NSButtonCell"; title = "AutoCalc Min Height"; ObjectID = "183"; */
+"183.title" = "AutoCalc Min Height";
+
+/* Class = "NSButtonCell"; title = "Floor To Ceiling"; ObjectID = "184"; */
+"184.title" = "Floor To Ceiling";
+
+/* Class = "NSTextFieldCell"; title = "WU/Sec"; ObjectID = "186"; */
+"186.title" = "WU/Sec";
+
+/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "188"; */
+"188.title" = "Type:";
+
+/* Class = "NSTextFieldCell"; title = "Seconds"; ObjectID = "189"; */
+"189.title" = "Seconds";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "190"; */
+"190.title" = "Revert";
+
+/* Class = "NSTextFieldCell"; title = "Map - North West Door - Poly#684"; ObjectID = "191"; */
+"191.title" = "Map - North West Door - Poly#684";
+
+/* Class = "NSButtonCell"; title = "Rename Platform"; ObjectID = "194"; */
+"194.title" = "Rename Platform";
+
+/* Class = "NSTextFieldCell"; title = "Template:"; ObjectID = "195"; */
+"195.title" = "Template:";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "197"; */
+"197.title" = "Apply";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "199"; */
+"199.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Please Enter A Name For This Object:"; ObjectID = "200"; */
+"200.title" = "Please Enter A Name For This Object:";
+
+/* Class = "NSButtonCell"; title = "Active"; ObjectID = "202"; */
+"202.title" = "Active";
+
+/* Class = "NSButtonCell"; title = "Switch"; ObjectID = "203"; */
+"203.title" = "Switch";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "204"; */
+"204.title" = "Radio";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "205"; */
+"205.title" = "Radio";
+
+/* Class = "NSButtonCell"; title = "Active"; ObjectID = "206"; */
+"206.title" = "Active";
+
+/* Class = "NSButtonCell"; title = "Switch"; ObjectID = "207"; */
+"207.title" = "Switch";
+
+/* Class = "NSButtonCell"; title = "Active"; ObjectID = "208"; */
+"208.title" = "Active";
+
+/* Class = "NSButtonCell"; title = "Active"; ObjectID = "209"; */
+"209.title" = "Active";
+
+/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "je0-Bv-M1G"; */
+"je0-Bv-M1G.title" = "Delay:";
+
+/* Class = "NSTextFieldCell"; title = "Speed:"; ObjectID = "ynZ-eL-HaG"; */
+"ynZ-eL-HaG.title" = "Speed:";

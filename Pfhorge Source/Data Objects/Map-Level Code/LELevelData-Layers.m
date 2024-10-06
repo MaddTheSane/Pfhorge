@@ -155,8 +155,8 @@
         [self setLayerModeTo:nil];
     else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Pfhorge atempted to set the layer index mode lower then zero, ERROR! Layer will not be changed, sorry, please try reloading the level then changing it after that.";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Pfhorge atempted to set the layer index mode lower then zero, ERROR! Layer will not be changed, sorry, please try reloading the level then changing it after that.", nil);
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -175,8 +175,8 @@
     if (![layersInLevel containsObject:theLayer] && theLayer != nil)
     {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Sorry, but requested layer was not found in level data object!";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Sorry, but requested layer was not found in level data object!", @"Layer not found");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;

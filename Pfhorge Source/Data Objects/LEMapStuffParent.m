@@ -34,7 +34,7 @@
 
 - (void)displayInfo
 {
-    SEND_INFO_MSG_TITLE(@"This object does not yet support this query…", @"Detailed Information About Selected");
+    SEND_INFO_MSG_TITLE(NSLocalizedString(@"This object does not yet support this query…", @"This object does not yet support this query…"), NSLocalizedString(@"Detailed Information About Selected", @"Detailed Information About Selected"));
 }
 
 

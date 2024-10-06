@@ -1,0 +1,218 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "A nil polygon was attempted to being added to the level polygons array, ERROR" : {
+      "comment" : "A nil polygon was attempted to being added to the level polygons array, ERROR"
+    },
+    "AppleScript Error" : {
+      "comment" : "AppleScript Error"
+    },
+    "AppleSingle/MacBinary-encoded maps are not supported yet." : {
+      "comment" : "AppleSingle/MacBinary-encoded maps are not supported yet."
+    },
+    "Archiving Level Into Binary Data…" : {
+      "comment" : "Archiving Level Into Binary Data…"
+    },
+    "Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array…" : {
+      "comment" : "Bad Map Data"
+    },
+    "Bad Polygon/Lines/Points" : {
+      "comment" : "Bad Polygon/Lines/Points"
+    },
+    "Can't Load File: Unknown Format." : {
+      "comment" : "Can't Load File: Unknown Format."
+    },
+    "Can't Load This Version Of Pfhorge Map Data, Export It In Previous Version Then Open It Here." : {
+      "comment" : "Can't open old Pfhorge Map Data."
+    },
+    "Compiling And Caching List Of Custom Names In Level…" : {
+      "comment" : "Compiling And Caching List Of Custom Names In Level…"
+    },
+    "Converting “%@”…" : {
+      "comment" : "Converting \"%@\"..."
+    },
+    "Converting Error" : {
+      "comment" : "Converting Error"
+    },
+    "Could not convert one of the levels…" : {
+      "comment" : "Could not convert one of the levels…"
+    },
+    "Detailed Information About Selected" : {
+      "comment" : "Detailed Information About Selected"
+    },
+    "Done Converting Level!" : {
+      "comment" : "Done Converting Level!"
+    },
+    "Generic Error" : {
+      "comment" : "Generic Error"
+    },
+    "Geting Level Information…" : {
+      "comment" : "Geting Level Information…"
+    },
+    "gt" : {
+      "comment" : "Grummets abbreviation string"
+    },
+    "I tried to add a unknown object class to level?" : {
+      "comment" : "I tried to add a unknown object class to level?"
+    },
+    "Import" : {
+      "comment" : "Import"
+    },
+    "Import Marathon Wad" : {
+      "comment" : "Import Marathon Wad"
+    },
+    "Import Pathways Map" : {
+      "comment" : "Import Pathways Map"
+    },
+    "Importing Pathways Into Darkness Map…" : {
+      "comment" : "Importing Pathways Into Darkness Map…"
+    },
+    "In the level->addPolygon: method, an unknown result code was returned..." : {
+      "comment" : "In the level->addPolygon: method, an unknown result code was returned..."
+    },
+    "Loading Ambient Sounds…" : {
+      "comment" : "Loading Ambient Sounds…"
+    },
+    "Loading Annotations…" : {
+      "comment" : "Loading Annotations…"
+    },
+    "Loading Item Placement Entries…" : {
+      "comment" : "Loading Item Placement Entries…"
+    },
+    "Loading Level, Please Wait…" : {
+      "comment" : "Loading Level, Please Wait…"
+    },
+    "Loading Lights…" : {
+      "comment" : "Loading Lights…"
+    },
+    "Loading Lines…" : {
+      "comment" : "Loading Lines…"
+    },
+    "Loading Liquids…" : {
+      "comment" : "Loading Liquids…"
+    },
+    "Loading Objects…" : {
+      "comment" : "Loading Objects…"
+    },
+    "Loading PID Level, Please Wait…" : {
+      "comment" : "Loading PID Level, Please Wait…"
+    },
+    "Loading Platforms…" : {
+      "comment" : "Loading Platforms…"
+    },
+    "Loading Points…" : {
+      "comment" : "Loading Points…"
+    },
+    "Loading Polygons…" : {
+      "comment" : "Loading Polygons…"
+    },
+    "Loading Random Sounds…" : {
+      "comment" : "Loading Random Sounds…"
+    },
+    "Loading Sides…" : {
+      "comment" : "Loading Sides…"
+    },
+    "Loading Terminals…" : {
+      "comment" : "Loading Terminals…"
+    },
+    "MAJOR Polygon Adding Error" : {
+      "comment" : "MAJOR Polygon Adding Error"
+    },
+    "Major Program Logic Error" : {
+      "comment" : "Major Program Logic Error"
+    },
+    "Minor Polygon Adding Error" : {
+      "comment" : "Minor Polygon Adding Error"
+    },
+    "No Shapes Selected" : {
+      "comment" : "No Shapes Selected"
+    },
+    "Not Implemented Yet, Sorry!" : {
+      "comment" : "Not Implemented Yet, Sorry!"
+    },
+    "Pfhorge atempted to set the layer index mode lower then zero, ERROR! Layer will not be changed, sorry, please try reloading the level then changing it after that." : {
+
+    },
+    "Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev" : {
+      "comment" : "Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev"
+    },
+    "Polygon In Unknown State" : {
+      "comment" : "Polygon In Unknown State"
+    },
+    "Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method." : {
+      "comment" : "Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method."
+    },
+    "Polygon Lines Not All The Way Connected: level->whatIsDirectional method" : {
+      "comment" : "Polygon Lines Not All The Way Connected: level->whatIsDirectional method"
+    },
+    "Polygon that was just added and/or lines/points making it up are/is in a unknown state!" : {
+      "comment" : "Polygon that was just added and/or lines/points making it up are/is in a unknown state!"
+    },
+    "Polygon that was just added and/or lines/points making it up could be corupted!" : {
+      "comment" : "Polygon that was just added and/or lines/points making it up could be corupted!"
+    },
+    "Problem Importing" : {
+      "comment" : "Problem Importing"
+    },
+    "Problem importing a level, the level to import was nil?" : {
+      "comment" : "Problem importing a level, the level to import was nil?"
+    },
+    "Returning Level To Map Document Controller…" : {
+      "comment" : "Returning Level To Map Document Controller…"
+    },
+    "Saving Level…" : {
+      "comment" : "Saving Level…"
+    },
+    "scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?" : {
+      "comment" : "scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?"
+    },
+    "Seting up default layers…" : {
+      "comment" : "Seting up default layers…"
+    },
+    "Setting Level Pointers..." : {
+      "comment" : "Setting Level Pointers...",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setting Level Pointers…"
+          }
+        }
+      }
+    },
+    "Setting Object Pointers From Array Using Index Numbers…" : {
+      "comment" : "Setting Object Pointers From Array Using Index Numbers…"
+    },
+    "Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)" : {
+      "comment" : "Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)"
+    },
+    "Sorry, but requested layer was not found in level data object!" : {
+      "comment" : "Layer not found"
+    },
+    "Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however." : {
+      "comment" : "Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however."
+    },
+    "Testing Every Polygon For Concavness…" : {
+      "comment" : "Testing Every Polygon For Concavness…"
+    },
+    "This object does not yet support this query…" : {
+      "comment" : "This object does not yet support this query…"
+    },
+    "When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!" : {
+      "comment" : "When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!"
+    },
+    "X There is one point directly over another: in level->whatIsDirectional method" : {
+      "comment" : "X There is one point directly over another: in level->whatIsDirectional method"
+    },
+    "Y There is one point directly over another: in level->whatIsDirectional method" : {
+      "comment" : "Y There is one point directly over another: in level->whatIsDirectional method"
+    },
+    "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!" : {
+      "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!"
+    },
+    "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768." : {
+      "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768."
+    }
+  },
+  "version" : "1.0"
+}

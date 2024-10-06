@@ -1,0 +1,12 @@
+
+/* Class = "NSWindow"; title = "An Error Ocurred :("; ObjectID = "10"; */
+"10.title" = "An Error Ocurred :(";
+
+/* Class = "NSButtonCell"; title = "Darn!"; ObjectID = "59"; */
+"59.title" = "Darn!";
+
+/* Class = "NSTextFieldCell"; title = "Generic Error"; ObjectID = "61"; */
+"61.title" = "Generic Error";
+
+/* Class = "NSTextFieldCell"; title = "Dang, the error message did not make it this far :(, I have no idea what kind of error occurred!"; ObjectID = "62"; */
+"62.title" = "Dang, the error message did not make it this far :(, I have no idea what kind of error occurred!";

@@ -1,0 +1,510 @@
+
+/* Class = "NSWindow"; title = "Pfhorge Prefs"; ObjectID = "5"; */
+"5.title" = "Pfhorge Prefs";
+
+/* Class = "NSTabViewItem"; label = "Colors"; ObjectID = "80"; */
+"80.label" = "Colors";
+
+/* Class = "NSTabViewItem"; label = "Grid"; ObjectID = "81"; */
+"81.label" = "Grid";
+
+/* Class = "NSBox"; title = "Point Colors"; ObjectID = "174"; */
+"174.title" = "Point Colors";
+
+/* Class = "NSBox"; title = "Line Colors"; ObjectID = "189"; */
+"189.title" = "Line Colors";
+
+/* Class = "NSBox"; title = "Polygon Colors"; ObjectID = "200"; */
+"200.title" = "Polygon Colors";
+
+/* Class = "NSMenuItem"; title = "1/8 World Unit"; ObjectID = "282"; */
+"282.title" = "1/8 World Unit";
+
+/* Class = "NSMenuItem"; title = "1/4 World Unit"; ObjectID = "283"; */
+"283.title" = "1/4 World Unit";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "285"; */
+"285.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "1/2 World Unit"; ObjectID = "286"; */
+"286.title" = "1/2 World Unit";
+
+/* Class = "NSMenuItem"; title = "1 World Unit"; ObjectID = "287"; */
+"287.title" = "1 World Unit";
+
+/* Class = "NSMenuItem"; title = "2 World Units"; ObjectID = "288"; */
+"288.title" = "2 World Units";
+
+/* Class = "NSMenuItem"; title = "4 World Units"; ObjectID = "289"; */
+"289.title" = "4 World Units";
+
+/* Class = "NSMenuItem"; title = "8 World Units"; ObjectID = "290"; */
+"290.title" = "8 World Units";
+
+/* Class = "NSBox"; title = "Grid Colors"; ObjectID = "302"; */
+"302.title" = "Grid Colors";
+
+/* Class = "NSBox"; title = "Other Colors"; ObjectID = "307"; */
+"307.title" = "Other Colors";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "312"; */
+"312.label" = "General";
+
+/* Class = "NSMenuItem"; title = "Regular 32 Divide Mode (Same As Forge)"; ObjectID = "317"; */
+"317.title" = "Regular 32 Divide Mode (Same As Forge)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "318"; */
+"318.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Precise  16 Divide Mode (Slower, More Mem)"; ObjectID = "319"; */
+"319.title" = "Precise  16 Divide Mode (Slower, More Mem)";
+
+/* Class = "NSMenuItem"; title = "Custom"; ObjectID = "340"; */
+"340.title" = "Custom";
+
+/* Class = "NSTabViewItem"; label = "Object Prefs"; ObjectID = "357"; */
+"357.label" = "Object Prefs";
+
+/* Class = "NSBox"; title = "Individual Object Settings"; ObjectID = "371"; */
+"371.title" = "Individual Object Settings";
+
+/* Class = "NSTabViewItem"; label = "Visual Mode"; ObjectID = "505"; */
+"505.label" = "Visual Mode";
+
+/* Class = "NSTabViewItem"; label = "Environment"; ObjectID = "595"; */
+"595.label" = "Environment";
+
+/* Class = "NSTabViewItem"; label = "Visibility"; ObjectID = "598"; */
+"598.label" = "Visibility";
+
+/* Class = "NSBox"; title = "Other Colors:"; ObjectID = "601"; */
+"601.title" = "Other Colors:";
+
+/* Class = "NSBox"; title = "Plain Colors:"; ObjectID = "618"; */
+"618.title" = "Plain Colors:";
+
+/* Class = "NSBox"; title = "Creation And Drawing Options"; ObjectID = "640"; */
+"640.title" = "Creation And Drawing Options";
+
+/* Class = "NSTabViewItem"; label = "Keys"; ObjectID = "742"; */
+"742.label" = "Keys";
+
+/* Class = "NSMenuItem"; title = "Point 8"; ObjectID = "780"; */
+"780.title" = "Point 8";
+
+/* Class = "NSMenuItem"; title = "Point 2"; ObjectID = "781"; */
+"781.title" = "Point 2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "782"; */
+"782.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Point 1"; ObjectID = "784"; */
+"784.title" = "Point 1";
+
+/* Class = "NSMenuItem"; title = "Flat Color"; ObjectID = "787"; */
+"787.title" = "Flat Color";
+
+/* Class = "NSMenuItem"; title = "Wireframe"; ObjectID = "788"; */
+"788.title" = "Wireframe";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "791"; */
+"791.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Avg Color"; ObjectID = "798"; */
+"798.title" = "Avg Color";
+
+/* Class = "NSMenuItem"; title = "Point 7"; ObjectID = "799"; */
+"799.title" = "Point 7";
+
+/* Class = "NSMenuItem"; title = "Point 3"; ObjectID = "800"; */
+"800.title" = "Point 3";
+
+/* Class = "NSMenuItem"; title = "Point 4"; ObjectID = "801"; */
+"801.title" = "Point 4";
+
+/* Class = "NSMenuItem"; title = "Point 5"; ObjectID = "802"; */
+"802.title" = "Point 5";
+
+/* Class = "NSMenuItem"; title = "Point 6"; ObjectID = "803"; */
+"803.title" = "Point 6";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "806"; */
+"806.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Off Avg"; ObjectID = "807"; */
+"807.title" = "Off Avg";
+
+/* Class = "NSMenuItem"; title = "Initial"; ObjectID = "808"; */
+"808.title" = "Initial";
+
+/* Class = "NSMenuItem"; title = "Off 1"; ObjectID = "809"; */
+"809.title" = "Off 1";
+
+/* Class = "NSMenuItem"; title = "On 2"; ObjectID = "810"; */
+"810.title" = "On 2";
+
+/* Class = "NSMenuItem"; title = "Off 2"; ObjectID = "811"; */
+"811.title" = "Off 2";
+
+/* Class = "NSMenuItem"; title = "On Avg"; ObjectID = "812"; */
+"812.title" = "On Avg";
+
+/* Class = "NSMenuItem"; title = "On 1"; ObjectID = "813"; */
+"813.title" = "On 1";
+
+/* Class = "NSMenuItem"; title = "Both"; ObjectID = "817"; */
+"817.title" = "Both";
+
+/* Class = "NSMenuItem"; title = "Inward"; ObjectID = "818"; */
+"818.title" = "Inward";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "819"; */
+"819.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Show 5D"; ObjectID = "820"; */
+"820.title" = "Show 5D";
+
+/* Class = "NSMenuItem"; title = "Outward"; ObjectID = "821"; */
+"821.title" = "Outward";
+
+/* Class = "NSMenuItem"; title = "Tunnel Vision"; ObjectID = "833"; */
+"833.title" = "Tunnel Vision";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "834"; */
+"834.title" = "Normal";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "835"; */
+"835.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Extravision"; ObjectID = "836"; */
+"836.title" = "Extravision";
+
+/* Class = "NSMenuItem"; title = "Marathon"; ObjectID = "837"; */
+"837.title" = "Marathon";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "840"; */
+"840.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "3rd Generation"; ObjectID = "841"; */
+"841.title" = "3rd Generation";
+
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "853"; */
+"853.title" = "All";
+
+/* Class = "NSMenuItem"; title = "Portals"; ObjectID = "855"; */
+"855.title" = "Portals";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "856"; */
+"856.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "One"; ObjectID = "857"; */
+"857.title" = "One";
+
+/* Class = "NSMenuItem"; title = "Map Center"; ObjectID = "876"; */
+"876.title" = "Map Center";
+
+/* Class = "NSMenuItem"; title = "Textured"; ObjectID = "943"; */
+"943.title" = "Textured";
+
+/* Class = "NSMenuItem"; title = "Contracted"; ObjectID = "946"; */
+"946.title" = "Contracted";
+
+/* Class = "NSMenuItem"; title = "1/4"; ObjectID = "948"; */
+"948.title" = "1/4";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "950"; */
+"950.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "1/2"; ObjectID = "960"; */
+"960.title" = "1/2";
+
+/* Class = "NSMenuItem"; title = "3/4"; ObjectID = "961"; */
+"961.title" = "3/4";
+
+/* Class = "NSMenuItem"; title = "Extended"; ObjectID = "962"; */
+"962.title" = "Extended";
+
+/* Class = "NSButtonCell"; title = "Snap To Points"; ObjectID = "988"; */
+"988.title" = "Snap To Points";
+
+/* Class = "NSButtonCell"; title = "Snap Objects To Grid"; ObjectID = "989"; */
+"989.title" = "Snap Objects To Grid";
+
+/* Class = "NSButtonCell"; title = "Snap From Points (When Starting A New Line)"; ObjectID = "990"; */
+"990.title" = "Snap From Points (When Starting A New Line)";
+
+/* Class = "NSButtonCell"; title = "Select Object When Created"; ObjectID = "991"; */
+"991.title" = "Select Object When Created";
+
+/* Class = "NSButtonCell"; title = "Draw Only Layer Points"; ObjectID = "992"; */
+"992.title" = "Draw Only Layer Points";
+
+/* Class = "NSButtonCell"; title = "Right Angle Line Guiding"; ObjectID = "1001"; */
+"1001.title" = "Right Angle Line Guiding";
+
+/* Class = "NSButtonCell"; title = "Isometric Line Guiding"; ObjectID = "1002"; */
+"1002.title" = "Isometric Line Guiding";
+
+/* Class = "NSTextFieldCell"; title = "Selected"; ObjectID = "1008"; */
+"1008.title" = "Selected";
+
+/* Class = "NSTextFieldCell"; title = "Regular"; ObjectID = "1009"; */
+"1009.title" = "Regular";
+
+/* Class = "NSTextFieldCell"; title = "Regular"; ObjectID = "1010"; */
+"1010.title" = "Regular";
+
+/* Class = "NSTextFieldCell"; title = "Selected"; ObjectID = "1011"; */
+"1011.title" = "Selected";
+
+/* Class = "NSTextFieldCell"; title = "Connects Polys"; ObjectID = "1012"; */
+"1012.title" = "Connects Polys";
+
+/* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "1013"; */
+"1013.title" = "Background";
+
+/* Class = "NSButtonCell"; title = "Apply Colors"; ObjectID = "1014"; */
+"1014.title" = "Apply Colors";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "1015"; */
+"1015.title" = "Revert";
+
+/* Class = "NSButtonCell"; title = "Default Colors"; ObjectID = "1016"; */
+"1016.title" = "Default Colors";
+
+/* Class = "NSTextFieldCell"; title = "Grid Size:"; ObjectID = "1018"; */
+"1018.title" = "Grid Size:";
+
+/* Class = "NSTextFieldCell"; title = "World Units"; ObjectID = "1019"; */
+"1019.title" = "World Units";
+
+/* Class = "NSTextFieldCell"; title = "Center Lines"; ObjectID = "1020"; */
+"1020.title" = "Center Lines";
+
+/* Class = "NSTextFieldCell"; title = "Subworld Units"; ObjectID = "1021"; */
+"1021.title" = "Subworld Units";
+
+/* Class = "NSButtonCell"; title = "Enable Grid"; ObjectID = "1022"; */
+"1022.title" = "Enable Grid";
+
+/* Class = "NSTextFieldCell"; title = "Grid Factor:"; ObjectID = "1024"; */
+"1024.title" = "Grid Factor:";
+
+/* Class = "NSButtonCell"; title = "Apply Colors"; ObjectID = "1025"; */
+"1025.title" = "Apply Colors";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "1026"; */
+"1026.title" = "Revert";
+
+/* Class = "NSButtonCell"; title = "Default Colors"; ObjectID = "1027"; */
+"1027.title" = "Default Colors";
+
+/* Class = "NSButtonCell"; title = "Enable Anti-Aliased Drawing"; ObjectID = "1029"; */
+"1029.title" = "Enable Anti-Aliased Drawing";
+
+/* Class = "NSButtonCell"; title = "Enable Object Borders"; ObjectID = "1030"; */
+"1030.title" = "Enable Object Borders";
+
+/* Class = "NSButtonCell"; title = "Apply Colors"; ObjectID = "1031"; */
+"1031.title" = "Apply Colors";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "1032"; */
+"1032.title" = "Revert";
+
+/* Class = "NSButtonCell"; title = "Default Colors"; ObjectID = "1033"; */
+"1033.title" = "Default Colors";
+
+/* Class = "NSTextFieldCell"; title = "No Shapes Selected"; ObjectID = "1034"; */
+"1034.title" = "No Shapes Selected";
+
+/* Class = "NSButtonCell"; title = "Select Shapes…"; ObjectID = "1035"; */
+"1035.title" = "Select Shapes…";
+
+/* Class = "NSButtonCell"; title = "Save Visual Mode Colors"; ObjectID = "1036"; */
+"1036.title" = "Save Visual Mode Colors";
+
+/* Class = "NSTextFieldCell"; title = "If visual mode is already open, you will need to restart it to see any changes made here, sorry, I will fix this soon. You only need to click \"Save Visual Mode Colors\" if you changed the colors, the above settings are automticaly saved."; ObjectID = "1037"; */
+"1037.title" = "If visual mode is already open, you will need to restart it to see any changes made here, sorry, I will fix this soon. You only need to click \"Save Visual Mode Colors\" if you changed the colors, the above settings are automticaly saved.";
+
+/* Class = "NSTextFieldCell"; title = "Render Mode:"; ObjectID = "1039"; */
+"1039.title" = "Render Mode:";
+
+/* Class = "NSTextFieldCell"; title = "Starting Position:"; ObjectID = "1040"; */
+"1040.title" = "Starting Position:";
+
+/* Class = "NSButtonCell"; title = "Show Transparent"; ObjectID = "1042"; */
+"1042.title" = "Show Transparent";
+
+/* Class = "NSButtonCell"; title = "Show Landscapes"; ObjectID = "1043"; */
+"1043.title" = "Show Landscapes";
+
+/* Class = "NSButtonCell"; title = "Show Invalid"; ObjectID = "1044"; */
+"1044.title" = "Show Invalid";
+
+/* Class = "NSButtonCell"; title = "Use Lighting:"; ObjectID = "1045"; */
+"1045.title" = "Use Lighting:";
+
+/* Class = "NSButtonCell"; title = "Show Liquids"; ObjectID = "1047"; */
+"1047.title" = "Show Liquids";
+
+/* Class = "NSTextFieldCell"; title = "Visible Sides:"; ObjectID = "1048"; */
+"1048.title" = "Visible Sides:";
+
+/* Class = "NSTextFieldCell"; title = "Field of View:"; ObjectID = "1050"; */
+"1050.title" = "Field of View:";
+
+/* Class = "NSTextFieldCell"; title = "Vertical Look:"; ObjectID = "1053"; */
+"1053.title" = "Vertical Look:";
+
+/* Class = "NSTextFieldCell"; title = "Visibility Mode:"; ObjectID = "1054"; */
+"1054.title" = "Visibility Mode:";
+
+/* Class = "NSButtonCell"; title = "Smooth Rendering"; ObjectID = "1056"; */
+"1056.title" = "Smooth Rendering";
+
+/* Class = "NSButtonCell"; title = "Use Fog; Depth:"; ObjectID = "1057"; */
+"1057.title" = "Use Fog; Depth:";
+
+/* Class = "NSButtonCell"; title = "Liquids Semitransparent"; ObjectID = "1059"; */
+"1059.title" = "Liquids Semitransparent";
+
+/* Class = "NSTextFieldCell"; title = "Platform State:"; ObjectID = "1060"; */
+"1060.title" = "Platform State:";
+
+/* Class = "NSButtonCell"; title = "Show Objects"; ObjectID = "1062"; */
+"1062.title" = "Show Objects";
+
+/* Class = "NSButtonCell"; title = "Set Turn Right"; ObjectID = "1063"; */
+"1063.title" = "Set Turn Right";
+
+/* Class = "NSButtonCell"; title = "Set Slide Left"; ObjectID = "1066"; */
+"1066.title" = "Set Slide Left";
+
+/* Class = "NSButtonCell"; title = "Set Slide Down"; ObjectID = "1067"; */
+"1067.title" = "Set Slide Down";
+
+/* Class = "NSTextFieldCell"; title = "Key Speed:"; ObjectID = "1068"; */
+"1068.title" = "Key Speed:";
+
+/* Class = "NSButtonCell"; title = "Invert Mouse"; ObjectID = "1069"; */
+"1069.title" = "Invert Mouse";
+
+/* Class = "NSButtonCell"; title = "Set Slide Right"; ObjectID = "1070"; */
+"1070.title" = "Set Slide Right";
+
+/* Class = "NSButtonCell"; title = "Set Turn Left"; ObjectID = "1071"; */
+"1071.title" = "Set Turn Left";
+
+/* Class = "NSTextFieldCell"; title = "Mouse Speed:"; ObjectID = "1072"; */
+"1072.title" = "Mouse Speed:";
+
+/* Class = "NSButtonCell"; title = "Set Slide Up"; ObjectID = "1073"; */
+"1073.title" = "Set Slide Up";
+
+/* Class = "NSButtonCell"; title = "Set Backward"; ObjectID = "1074"; */
+"1074.title" = "Set Backward";
+
+/* Class = "NSButtonCell"; title = "Set Forward"; ObjectID = "1075"; */
+"1075.title" = "Set Forward";
+
+/* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "1076"; */
+"1076.title" = "Color";
+
+/* Class = "NSTextFieldCell"; title = "Platform:"; ObjectID = "1077"; */
+"1077.title" = "Platform:";
+
+/* Class = "NSTextFieldCell"; title = "Teleporter/Exit:"; ObjectID = "1078"; */
+"1078.title" = "Teleporter/Exit:";
+
+/* Class = "NSTextFieldCell"; title = "Convex Poly:"; ObjectID = "1079"; */
+"1079.title" = "Convex Poly:";
+
+/* Class = "NSTextFieldCell"; title = "Hill:"; ObjectID = "1080"; */
+"1080.title" = "Hill:";
+
+/* Class = "NSTextFieldCell"; title = "Selected:"; ObjectID = "1081"; */
+"1081.title" = "Selected:";
+
+/* Class = "NSTextFieldCell"; title = "Zone Border:"; ObjectID = "1082"; */
+"1082.title" = "Zone Border:";
+
+/* Class = "NSTextFieldCell"; title = "Regular:"; ObjectID = "1083"; */
+"1083.title" = "Regular:";
+
+/* Class = "NSTextFieldCell"; title = "Show"; ObjectID = "1084"; */
+"1084.title" = "Show";
+
+/* Class = "NSButtonCell"; title = "Snap Points To Grid"; ObjectID = "1086"; */
+"1086.title" = "Snap Points To Grid";
+
+/* Class = "NSTextFieldCell"; title = "Snap To Length:"; ObjectID = "1087"; */
+"1087.title" = "Snap To Length:";
+
+/* Class = "NSTextFieldCell"; title = "Snap From Length:"; ObjectID = "1089"; */
+"1089.title" = "Snap From Length:";
+
+/* Class = "NSTextFieldCell"; title = "Monsters:"; ObjectID = "1090"; */
+"1090.title" = "Monsters:";
+
+/* Class = "NSTextFieldCell"; title = "Border"; ObjectID = "1091"; */
+"1091.title" = "Border";
+
+/* Class = "NSTextFieldCell"; title = "Item:"; ObjectID = "1092"; */
+"1092.title" = "Item:";
+
+/* Class = "NSTextFieldCell"; title = "Goal:"; ObjectID = "1093"; */
+"1093.title" = "Goal:";
+
+/* Class = "NSTextFieldCell"; title = "Scenery:"; ObjectID = "1094"; */
+"1094.title" = "Scenery:";
+
+/* Class = "NSTextFieldCell"; title = "Selected:"; ObjectID = "1095"; */
+"1095.title" = "Selected:";
+
+/* Class = "NSTextFieldCell"; title = "Fill"; ObjectID = "1096"; */
+"1096.title" = "Fill";
+
+/* Class = "NSTextFieldCell"; title = "Sound:"; ObjectID = "1097"; */
+"1097.title" = "Sound:";
+
+/* Class = "NSTextFieldCell"; title = "Player:"; ObjectID = "1098"; */
+"1098.title" = "Player:";
+
+/* Class = "NSTextFieldCell"; title = "Visible"; ObjectID = "1099"; */
+"1099.title" = "Visible";
+
+/* Class = "NSTextFieldCell"; title = "Wireframe Lines:"; ObjectID = "1100"; */
+"1100.title" = "Wireframe Lines:";
+
+/* Class = "NSTextFieldCell"; title = "Landscapes:"; ObjectID = "1101"; */
+"1101.title" = "Landscapes:";
+
+/* Class = "NSTextFieldCell"; title = "Invalid Polygons:"; ObjectID = "1102"; */
+"1102.title" = "Invalid Polygons:";
+
+/* Class = "NSTextFieldCell"; title = "Render Background:"; ObjectID = "1103"; */
+"1103.title" = "Render Background:";
+
+/* Class = "NSTextFieldCell"; title = "Walls:"; ObjectID = "1104"; */
+"1104.title" = "Walls:";
+
+/* Class = "NSTextFieldCell"; title = "Floors:"; ObjectID = "1105"; */
+"1105.title" = "Floors:";
+
+/* Class = "NSTextFieldCell"; title = "Ceilings:"; ObjectID = "1106"; */
+"1106.title" = "Ceilings:";
+
+/* Class = "NSTextFieldCell"; title = "Liquids:"; ObjectID = "1107"; */
+"1107.title" = "Liquids:";
+
+/* Class = "NSTextFieldCell"; title = "Transparent:"; ObjectID = "1108"; */
+"1108.title" = "Transparent:";
+
+/* Class = "NSTextFieldCell"; title = "System Font Text"; ObjectID = "1109"; */
+"1109.title" = "System Font Text";
+
+/* Class = "NSButtonCell"; title = "Snap To Point While Drawing Line"; ObjectID = "1111"; */
+"1111.title" = "Snap To Point While Drawing Line";
+
+/* Class = "NSButtonCell"; title = "Snap Points To Grid"; ObjectID = "1112"; */
+"1112.title" = "Snap Points To Grid";

@@ -1,0 +1,51 @@
+
+/* Class = "NSWindow"; title = "Loading Status"; ObjectID = "5"; */
+"5.title" = "Loading Status";
+
+/* Class = "NSTextFieldCell"; title = "Water"; ObjectID = "55"; */
+"55.title" = "Water";
+
+/* Class = "NSTextFieldCell"; title = "Lava"; ObjectID = "56"; */
+"56.title" = "Lava";
+
+/* Class = "NSTextFieldCell"; title = "Sewage"; ObjectID = "57"; */
+"57.title" = "Sewage";
+
+/* Class = "NSTextFieldCell"; title = "Jjaro"; ObjectID = "58"; */
+"58.title" = "Jjaro";
+
+/* Class = "NSTextFieldCell"; title = "Pfhor"; ObjectID = "59"; */
+"59.title" = "Pfhor";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "78"; */
+"78.title" = "OtherViews";
+
+/* Class = "NSWindow"; title = "Loading Status"; ObjectID = "95"; */
+"95.title" = "Loading Status";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "110"; */
+"110.title" = "Box";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "127"; */
+"127.title" = "Box";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "137"; */
+"137.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "Loading Textures…"; ObjectID = "146"; */
+"146.title" = "Loading Textures…";
+
+/* Class = "NSTextFieldCell"; title = "Menu"; ObjectID = "153"; */
+"153.title" = "Menu";
+
+/* Class = "NSTextFieldCell"; title = "Texture 19:"; ObjectID = "154"; */
+"154.title" = "Texture 19:";
+
+/* Class = "NSTextFieldCell"; title = "Small System Font Text"; ObjectID = "158"; */
+"158.title" = "Small System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "Small System Font Text"; ObjectID = "159"; */
+"159.title" = "Small System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "Small System Font Text"; ObjectID = "160"; */
+"160.title" = "Small System Font Text";

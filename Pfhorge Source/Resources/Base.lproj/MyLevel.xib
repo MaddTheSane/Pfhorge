@@ -231,8 +231,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="105" y="154" width="428" height="263"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
-            <view key="contentView" id="191">
-                <rect key="frame" x="0.0" y="0.0" width="430" height="263"/>
+            <view key="contentView" misplaced="YES" id="191">
+                <rect key="frame" x="0.0" y="0.0" width="428" height="263"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="257">
@@ -563,7 +563,7 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="322" height="297"/>
                         <clipView key="contentView" id="1Ds-nc-x4n">
                             <rect key="frame" x="1" y="1" width="320" height="295"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="1213" floatsGroupRows="NO" id="535">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
@@ -913,7 +913,7 @@ Gw
                     <rect key="frame" x="0.0" y="14" width="83" height="200"/>
                     <clipView key="contentView" id="5sj-xK-W2T">
                         <rect key="frame" x="1" y="1" width="81" height="198"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="19" floatsGroupRows="NO" id="714">
                                 <rect key="frame" x="0.0" y="0.0" width="81" height="198"/>
@@ -973,8 +973,8 @@ Gw
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="43" y="58" width="225" height="102"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1512" height="944"/>
-            <view key="contentView" id="723">
-                <rect key="frame" x="0.0" y="0.0" width="225" height="89"/>
+            <view key="contentView" misplaced="YES" id="723">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField focusRingType="none" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="721">
@@ -1344,7 +1344,7 @@ DQ
                         <rect key="frame" x="-1" y="60" width="423" height="190"/>
                         <clipView key="contentView" id="rir-hE-OT8">
                             <rect key="frame" x="1" y="1" width="421" height="188"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="1218" floatsGroupRows="NO" id="1074">
                                     <rect key="frame" x="0.0" y="0.0" width="421" height="163"/>

@@ -1,0 +1,105 @@
+
+/* Class = "NSWindow"; title = "Random Sound"; ObjectID = "5"; */
+"5.title" = "Random Sound";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "22"; */
+"22.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Underground Explosions"; ObjectID = "23"; */
+"23.title" = "Underground Explosions";
+
+/* Class = "NSMenuItem"; title = "Thunder"; ObjectID = "24"; */
+"24.title" = "Thunder";
+
+/* Class = "NSMenuItem"; title = "Dripping Water"; ObjectID = "26"; */
+"26.title" = "Dripping Water";
+
+/* Class = "NSMenuItem"; title = "Lh'owon Loon"; ObjectID = "32"; */
+"32.title" = "Lh'owon Loon";
+
+/* Class = "NSMenuItem"; title = "Jjaro Ship Creek"; ObjectID = "33"; */
+"33.title" = "Jjaro Ship Creek";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "55"; */
+"55.title" = "Window";
+
+/* Class = "NSTextFieldCell"; title = "Sound:"; ObjectID = "77"; */
+"77.title" = "Sound:";
+
+/* Class = "NSButtonCell"; title = "Non-Directional"; ObjectID = "78"; */
+"78.title" = "Non-Directional";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "79"; */
+"79.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "80"; */
+"80.title" = "Revert";
+
+/* Class = "NSTextFieldCell"; title = "Informational Text"; ObjectID = "81"; */
+"81.title" = "Informational Text";
+
+/* Class = "NSButtonCell"; title = "Rename"; ObjectID = "82"; */
+"82.title" = "Rename";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "83"; */
+"83.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Please Enter A Name For This Object:"; ObjectID = "84"; */
+"84.title" = "Please Enter A Name For This Object:";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "86"; */
+"86.title" = "Apply";
+
+/* Class = "NSTextFieldCell"; title = "∆ Pitch:"; ObjectID = "10M-el-rld"; */
+"10M-el-rld.title" = "∆ Pitch:";
+
+/* Class = "NSTextFieldCell"; title = "30"; ObjectID = "1kg-R7-3AY"; */
+"1kg-R7-3AY.title" = "30";
+
+/* Class = "NSTextFieldCell"; title = "Volume:"; ObjectID = "Glt-0d-i3H"; */
+"Glt-0d-i3H.title" = "Volume:";
+
+/* Class = "NSTextFieldCell"; title = "∆ Volume:"; ObjectID = "Ke1-LE-21D"; */
+"Ke1-LE-21D.title" = "∆ Volume:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "MeP-Qv-ofo"; */
+"MeP-Qv-ofo.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "∆ Period:"; ObjectID = "Qfp-Fb-awb"; */
+"Qfp-Fb-awb.title" = "∆ Period:";
+
+/* Class = "NSTextFieldCell"; title = "Pitch:"; ObjectID = "R94-BP-CsR"; */
+"R94-BP-CsR.title" = "Pitch:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "Z09-Bp-Jeg"; */
+"Z09-Bp-Jeg.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "30"; ObjectID = "axt-LZ-m56"; */
+"axt-LZ-m56.title" = "30";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "coc-hw-bDK"; */
+"coc-hw-bDK.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "30"; ObjectID = "fZe-zQ-5lU"; */
+"fZe-zQ-5lU.title" = "30";
+
+/* Class = "NSTextFieldCell"; title = "Phase:"; ObjectID = "iHo-Ni-ym2"; */
+"iHo-Ni-ym2.title" = "Phase:";
+
+/* Class = "NSTextFieldCell"; title = "30"; ObjectID = "ipI-BV-KVq"; */
+"ipI-BV-KVq.title" = "30";
+
+/* Class = "NSTextFieldCell"; title = "Direction:"; ObjectID = "jpe-6A-onn"; */
+"jpe-6A-onn.title" = "Direction:";
+
+/* Class = "NSTextFieldCell"; title = "Period:"; ObjectID = "mUp-C3-33f"; */
+"mUp-C3-33f.title" = "Period:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "nq3-Wi-dXO"; */
+"nq3-Wi-dXO.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "∆ Direction:"; ObjectID = "uOl-Zl-zAn"; */
+"uOl-Zl-zAn.title" = "∆ Direction:";
+
+/* Class = "NSTextFieldCell"; title = "30"; ObjectID = "yff-Cq-3z3"; */
+"yff-Cq-3z3.title" = "30";

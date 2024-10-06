@@ -134,8 +134,8 @@
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];
-    [op setTitle:@"Import Marathon Wad"];
-    [op setPrompt:@"Import"];
+    [op setTitle:NSLocalizedString(@"Import Marathon Wad", @"Import Marathon Wad")];
+    [op setPrompt:NSLocalizedString(@"Import", @"Import")];
     op.allowedFileTypes = fileTypes;
 
     [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
@@ -252,7 +252,7 @@
             }];
             
             [progress increaseProgressBy:1.0];
-            [progress setStatusText:@"Done Converting Level!"];
+            [progress setStatusText:NSLocalizedString(@"Done Converting Level!", @"Done Converting Level!")];
             [progress orderOutWin:self];
         }
         
@@ -267,8 +267,8 @@
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];
-    [op setTitle:@"Import Pathways Map"];
-    [op setPrompt:@"Import"];
+    [op setTitle:NSLocalizedString(@"Import Pathways Map", @"Import Pathways Map")];
+    [op setPrompt:NSLocalizedString(@"Import", @"Import")];
     op.allowedFileTypes = fileTypes;
     
     [op beginSheetModalForWindow:[self windowForSheet] completionHandler:^(NSModalResponse result) {
@@ -286,8 +286,8 @@
             [progress setMinProgress:0.0];
             [progress setMaxProgress:100.0];
             [progress setProgressPostion:0.0];
-            [progress setStatusText:@"Importing Pathways Into Darkness Map…"];
-            [progress setInformationalText:@"Importing Pathways Into Darkness Map…"];
+            [progress setStatusText:NSLocalizedString(@"Importing Pathways Into Darkness Map…", @"Importing Pathways Into Darkness Map…")];
+            [progress setInformationalText:NSLocalizedString(@"Importing Pathways Into Darkness Map…", @"Importing Pathways Into Darkness Map…")];
             [progress showWindow:self];
             
             
@@ -399,8 +399,8 @@
     }
     else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?", @"scenarioData == nil, but why am I in the \"document:didSave:contextInfo:\"?");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }

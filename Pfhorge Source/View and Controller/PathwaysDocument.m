@@ -115,10 +115,10 @@
     NSData *tempData = [self dataOfType:@"org.bungie.source.map" error:NULL];
 
     BOOL success = [[NSFileManager defaultManager] createFileAtPath:fullPath
-                                            contents:tempData
-                                          attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-                                                       NSFileHFSTypeCode: @((OSType)'sce2')
-                                          }];
+                                                           contents:tempData
+                                                         attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+                                                                      NSFileHFSTypeCode: @((OSType)'sce2')
+                                                                    }];
     
     return success;
 }
@@ -134,17 +134,14 @@
     // Add any code here that need to be executed once the windowController has loaded the document's window.
     NSLog(@"initallyLoadInTheDataNow");
     
-    if (theLevel != nil)
-    {
+    if (theLevel != nil) {
         return;
-    }
-    else if (theRawMapData != nil && theLevel == nil)
-    {
+    } else if (theRawMapData != nil && theLevel == nil) {
         [progress setMinProgress:0.0];
         [progress setMaxProgress:10.0];
         [progress setProgressPostion:0.0];
         NSLog(@"Attempting To Load PID Level");
-        [progress setStatusText:@"Loading PID Level, Please Wait…"];
+        [progress setStatusText:NSLocalizedString(@"Loading PID Level, Please Wait…", @"Loading PID Level, Please Wait…")];
         [progress setInformationalText:@"Loading PID Level, Please Wait…"];
         [progress showWindow:self];
         
@@ -186,9 +183,7 @@
         [theLevel setMyUndoManager:[self undoManager]];
         [theLevel setUpArrayPointersForEveryObject];
         [theLevel setupDefaultObjects];
-    }
-    else
-    {
+    } else {
     }
     
     //[self tellDocWinControllerToUpdateLevelInfoString];
@@ -202,8 +197,7 @@
     // Add any code here that need to be executed once the windowController has loaded the document's window.
     NSLog(@"windowControllerDidLoadNib");
     
-    if (theLevel != nil)
-    {
+    if (theLevel != nil) {
         //currentLevelNames = [[theMap levelNames] copy];
         [theLevel setLevelDocument:self];
         //currentLevelNames = [[NSMutableArray alloc] initWithCapacity:1];
@@ -221,8 +215,7 @@
         return;
     }
     
-    if (theRawMapData != nil && theLevel == nil)
-    {
+    if (theRawMapData != nil && theLevel == nil) {
         [progress setMinProgress:0.0];
         [progress setMaxProgress:10.0];
         [progress setProgressPostion:0.0];
@@ -268,9 +261,7 @@
         [theLevel setMyUndoManager:[self undoManager]];
         [theLevel setUpArrayPointersForEveryObject];
         [theLevel setupDefaultObjects];
-    }
-    else
-    {
+    } else {
         theMap = [[LEMapData alloc] init];
         theLevel = [[LELevelData alloc] initAndGenerateNewLevelObjects];
         [theLevel setLevelDocument:self];

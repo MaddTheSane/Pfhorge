@@ -1,0 +1,78 @@
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "5"; */
+"5.title" = "Window";
+
+/* Class = "NSTableColumn"; headerCell.title = "Inital"; ObjectID = "59"; */
+"59.headerCell.title" = "Inital";
+
+/* Class = "NSTableColumn"; headerCell.title = "#"; ObjectID = "61"; */
+"61.headerCell.title" = "#";
+
+/* Class = "NSTableColumn"; headerCell.title = "Min"; ObjectID = "92"; */
+"92.headerCell.title" = "Min";
+
+/* Class = "NSTableColumn"; headerCell.title = "Max"; ObjectID = "93"; */
+"93.headerCell.title" = "Max";
+
+/* Class = "NSTableColumn"; headerCell.title = "Total"; ObjectID = "94"; */
+"94.headerCell.title" = "Total";
+
+/* Class = "NSTableColumn"; headerCell.title = "%"; ObjectID = "95"; */
+"95.headerCell.title" = "%";
+
+/* Class = "NSTableColumn"; headerCell.title = "Random"; ObjectID = "96"; */
+"96.headerCell.title" = "Random";
+
+/* Class = "NSButtonCell"; title = "Random Location"; ObjectID = "101"; */
+"101.title" = "Random Location";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "105"; */
+"105.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "7"; ObjectID = "106"; */
+"106.title" = "7";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "107"; */
+"107.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "108"; */
+"108.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "109"; */
+"109.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "110"; */
+"110.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "Sunnyvale"; ObjectID = "111"; */
+"111.title" = "Sunnyvale";
+
+/* Class = "NSTextFieldCell"; title = "Min Count:"; ObjectID = "2tn-5a-eg3"; */
+"2tn-5a-eg3.title" = "Min Count:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "6Fw-fg-J1N"; */
+"6Fw-fg-J1N.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Total Available:"; ObjectID = "FHX-NI-22E"; */
+"FHX-NI-22E.title" = "Total Available:";
+
+/* Class = "NSTextFieldCell"; title = "Appearance (%):"; ObjectID = "Jri-R3-9tY"; */
+"Jri-R3-9tY.title" = "Appearance (%):";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "L0c-vd-NFy"; */
+"L0c-vd-NFy.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "LVx-IB-hwY"; */
+"LVx-IB-hwY.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "0%"; ObjectID = "alj-iM-yPs"; */
+"alj-iM-yPs.title" = "0%";
+
+/* Class = "NSTextFieldCell"; title = "Max Count:"; ObjectID = "kJP-ua-ZuL"; */
+"kJP-ua-ZuL.title" = "Max Count:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "kmq-tl-2R2"; */
+"kmq-tl-2R2.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Initial Count:"; ObjectID = "xYa-DG-l12"; */
+"xYa-DG-l12.title" = "Initial Count:";

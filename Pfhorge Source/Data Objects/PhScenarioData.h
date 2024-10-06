@@ -38,7 +38,9 @@
     
     NSString *draggedLevel;
 }
-- (id)initWithProjectDirectory:(NSString *)theProjectDir;
+- (id)init;
+- (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+- (id)initWithProjectDirectory:(NSString *)theProjectDir NS_DESIGNATED_INITIALIZER;
 
 - (void)setTableView:(NSTableView *)theTableView;
 

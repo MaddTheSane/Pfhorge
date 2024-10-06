@@ -1,0 +1,423 @@
+
+/* Class = "NSWindow"; title = "Level"; ObjectID = "34"; */
+"34.title" = "Level";
+
+/* Class = "NSWindow"; title = "Level Settings"; ObjectID = "190"; */
+"190.title" = "Level Settings";
+
+/* Class = "NSBox"; title = "Level Settings"; ObjectID = "193"; */
+"193.title" = "Level Settings";
+
+/* Class = "NSMenuItem"; title = "Lava"; ObjectID = "195"; */
+"195.title" = "Lava";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "196"; */
+"196.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Sewage"; ObjectID = "197"; */
+"197.title" = "Sewage";
+
+/* Class = "NSMenuItem"; title = "Water"; ObjectID = "199"; */
+"199.title" = "Water";
+
+/* Class = "NSMenuItem"; title = "Jjaro"; ObjectID = "200"; */
+"200.title" = "Jjaro";
+
+/* Class = "NSMenuItem"; title = "Pfhor"; ObjectID = "201"; */
+"201.title" = "Pfhor";
+
+/* Class = "NSMenuItem"; title = "Nighttime Lh'owon"; ObjectID = "203"; */
+"203.title" = "Nighttime Lh'owon";
+
+/* Class = "NSMenuItem"; title = "Daytime Lh'owon"; ObjectID = "204"; */
+"204.title" = "Daytime Lh'owon";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "205"; */
+"205.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Space"; ObjectID = "207"; */
+"207.title" = "Space";
+
+/* Class = "NSMenuItem"; title = "Moon"; ObjectID = "209"; */
+"209.title" = "Moon";
+
+/* Class = "NSBox"; title = "Environment"; ObjectID = "211"; */
+"211.title" = "Environment";
+
+/* Class = "NSButtonCell"; title = "Vacuum"; ObjectID = "220"; */
+"220.title" = "Vacuum";
+
+/* Class = "NSButtonCell"; title = "Rebellion"; ObjectID = "221"; */
+"221.title" = "Rebellion";
+
+/* Class = "NSButtonCell"; title = "Low Gravity"; ObjectID = "222"; */
+"222.title" = "Low Gravity";
+
+/* Class = "NSButtonCell"; title = "Magnetic"; ObjectID = "223"; */
+"223.title" = "Magnetic";
+
+/* Class = "NSBox"; title = "Game Type"; ObjectID = "238"; */
+"238.title" = "Game Type";
+
+/* Class = "NSButtonCell"; title = "Rescue"; ObjectID = "246"; */
+"246.title" = "Rescue";
+
+/* Class = "NSButtonCell"; title = "Exploration"; ObjectID = "247"; */
+"247.title" = "Exploration";
+
+/* Class = "NSButtonCell"; title = "Retrieval"; ObjectID = "248"; */
+"248.title" = "Retrieval";
+
+/* Class = "NSBox"; title = "Mission"; ObjectID = "249"; */
+"249.title" = "Mission";
+
+/* Class = "NSButtonCell"; title = "Repair"; ObjectID = "251"; */
+"251.title" = "Repair";
+
+/* Class = "NSButtonCell"; title = "Extermination"; ObjectID = "252"; */
+"252.title" = "Extermination";
+
+/* Class = "NSWindow"; title = "Names"; ObjectID = "514"; */
+"514.title" = "Names";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "536"; */
+"536.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "#"; ObjectID = "537"; */
+"537.headerCell.title" = "#";
+
+/* Class = "NSMenuItem"; title = "Lights"; ObjectID = "538"; */
+"538.title" = "Lights";
+
+/* Class = "NSMenuItem"; title = "Tags"; ObjectID = "540"; */
+"540.title" = "Tags";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "541"; */
+"541.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Platforms"; ObjectID = "542"; */
+"542.title" = "Platforms";
+
+/* Class = "NSMenuItem"; title = "Ambient Sounds"; ObjectID = "545"; */
+"545.title" = "Ambient Sounds";
+
+/* Class = "NSMenuItem"; title = "Random Sounds"; ObjectID = "546"; */
+"546.title" = "Random Sounds";
+
+/* Class = "NSMenuItem"; title = "Liquids"; ObjectID = "581"; */
+"581.title" = "Liquids";
+
+/* Class = "NSMenuItem"; title = "Add"; ObjectID = "591"; */
+"591.title" = "Add";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "592"; */
+"592.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Commands"; ObjectID = "593"; */
+"593.title" = "Commands";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "594"; */
+"594.title" = "Delete";
+
+/* Class = "NSMenuItem"; title = "Import From File"; ObjectID = "595"; */
+"595.title" = "Import From File";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "604"; */
+"604.title" = "Edit";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "621"; */
+"621.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "622"; */
+"622.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Level Names"; ObjectID = "624"; */
+"624.title" = "Level Names";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "625"; */
+"625.title" = "Item2";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "627"; */
+"627.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "629"; */
+"629.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Layer Names"; ObjectID = "630"; */
+"630.title" = "Layer Names";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "631"; */
+"631.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Export To File"; ObjectID = "657"; */
+"657.title" = "Export To File";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "661"; */
+"661.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Named Polygons"; ObjectID = "677"; */
+"677.title" = "Named Polygons";
+
+/* Class = "NSMenuItem"; title = "Layers"; ObjectID = "678"; */
+"678.title" = "Layers";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "680"; */
+"680.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Polygon"; ObjectID = "688"; */
+"688.title" = "Polygon";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "689"; */
+"689.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Point"; ObjectID = "690"; */
+"690.title" = "Point";
+
+/* Class = "NSMenuItem"; title = "Line"; ObjectID = "691"; */
+"691.title" = "Line";
+
+/* Class = "NSMenuItem"; title = "Platform"; ObjectID = "692"; */
+"692.title" = "Platform";
+
+/* Class = "NSMenuItem"; title = "Object"; ObjectID = "693"; */
+"693.title" = "Object";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "705"; */
+"705.title" = "OtherViews";
+
+/* Class = "NSTableColumn"; headerCell.title = "NONE"; ObjectID = "716"; */
+"716.headerCell.title" = "NONE";
+
+/* Class = "NSWindow"; title = "New Height"; ObjectID = "719"; */
+"719.title" = "New Height";
+
+/* Class = "NSMenuItem"; title = "Export To Aleph One"; ObjectID = "865"; */
+"865.title" = "Export To Aleph One";
+
+/* Class = "NSTabViewItem"; label = "Selection"; ObjectID = "953"; */
+"953.label" = "Selection";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "956"; */
+"956.label" = "General";
+
+/* Class = "NSMenuItem"; title = "1"; ObjectID = "982"; */
+"982.title" = "1";
+
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "984"; */
+"984.title" = "4";
+
+/* Class = "NSMenuItem"; title = "1/8"; ObjectID = "986"; */
+"986.title" = "1/8";
+
+/* Class = "NSMenuItem"; title = "1/2"; ObjectID = "987"; */
+"987.title" = "1/2";
+
+/* Class = "NSButtonCell"; title = "Player"; ObjectID = "988"; */
+"988.title" = "Player";
+
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "989"; */
+"989.title" = "8";
+
+/* Class = "NSButtonCell"; title = "Points To Points"; ObjectID = "990"; */
+"990.title" = "Points To Points";
+
+/* Class = "NSButtonCell"; title = "Monster"; ObjectID = "991"; */
+"991.title" = "Monster";
+
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "992"; */
+"992.title" = "2";
+
+/* Class = "NSBox"; title = "Visibility"; ObjectID = "995"; */
+"995.title" = "Visibility";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "996"; */
+"996.title" = "OtherViews";
+
+/* Class = "NSButtonCell"; title = "Draw Grid"; ObjectID = "997"; */
+"997.title" = "Draw Grid";
+
+/* Class = "NSButtonCell"; title = "Item"; ObjectID = "999"; */
+"999.title" = "Item";
+
+/* Class = "NSButtonCell"; title = "Points To Grid"; ObjectID = "1001"; */
+"1001.title" = "Points To Grid";
+
+/* Class = "NSButtonCell"; title = "Objects To Grid"; ObjectID = "1002"; */
+"1002.title" = "Objects To Grid";
+
+/* Class = "NSButtonCell"; title = "Sound"; ObjectID = "1003"; */
+"1003.title" = "Sound";
+
+/* Class = "NSButtonCell"; title = "Scenery"; ObjectID = "1004"; */
+"1004.title" = "Scenery";
+
+/* Class = "NSButtonCell"; title = "Goal"; ObjectID = "1005"; */
+"1005.title" = "Goal";
+
+/* Class = "NSMenuItem"; title = "1/4"; ObjectID = "1006"; */
+"1006.title" = "1/4";
+
+/* Class = "NSBox"; title = "Select Only"; ObjectID = "1016"; */
+"1016.title" = "Select Only";
+
+/* Class = "NSButtonCell"; title = "Polygons"; ObjectID = "1019"; */
+"1019.title" = "Polygons";
+
+/* Class = "NSButtonCell"; title = "Points"; ObjectID = "1020"; */
+"1020.title" = "Points";
+
+/* Class = "NSButtonCell"; title = "Objects"; ObjectID = "1021"; */
+"1021.title" = "Objects";
+
+/* Class = "NSButtonCell"; title = "Lines"; ObjectID = "1022"; */
+"1022.title" = "Lines";
+
+/* Class = "NSMenuItem"; title = "Options"; ObjectID = "1033"; */
+"1033.title" = "Options";
+
+/* Class = "NSMenuItem"; title = "Map Manager Drawer"; ObjectID = "1035"; */
+"1035.title" = "Map Manager Drawer";
+
+/* Class = "NSButtonCell"; title = "Single Player"; ObjectID = "1038"; */
+"1038.title" = "Single Player";
+
+/* Class = "NSButtonCell"; title = "Co-Operative"; ObjectID = "1039"; */
+"1039.title" = "Co-Operative";
+
+/* Class = "NSButtonCell"; title = "Multiplayer Carnage"; ObjectID = "1040"; */
+"1040.title" = "Multiplayer Carnage";
+
+/* Class = "NSButtonCell"; title = "Capture The Flag"; ObjectID = "1041"; */
+"1041.title" = "Capture The Flag";
+
+/* Class = "NSButtonCell"; title = "King of the Hill"; ObjectID = "1042"; */
+"1042.title" = "King of the Hill";
+
+/* Class = "NSButtonCell"; title = "Defense"; ObjectID = "1043"; */
+"1043.title" = "Defense";
+
+/* Class = "NSButtonCell"; title = "Rugby"; ObjectID = "1044"; */
+"1044.title" = "Rugby";
+
+/* Class = "NSMenuItem"; title = "Calculate Sides On Selected Lines"; ObjectID = "1049"; */
+"1049.title" = "Calculate Sides On Selected Lines";
+
+/* Class = "NSMenuItem"; title = "Run Level 1 Diagnostic"; ObjectID = "1051"; */
+"1051.title" = "Run Level 1 Diagnostic";
+
+/* Class = "NSMenuItem"; title = "Note Group Manager"; ObjectID = "1056"; */
+"1056.title" = "Note Group Manager";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "1063"; */
+"1063.title" = "Window";
+
+/* Class = "NSTableColumn"; headerCell.title = "Visible"; ObjectID = "1075"; */
+"1075.headerCell.title" = "Visible";
+
+/* Class = "NSTableColumn"; headerCell.title = "Note Group"; ObjectID = "1076"; */
+"1076.headerCell.title" = "Note Group";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "1086"; */
+"1086.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "1114"; */
+"1114.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1115"; */
+"1115.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "1116"; */
+"1116.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "1117"; */
+"1117.title" = "Item2";
+
+/* Class = "NSTextFieldCell"; title = "Status Bar…"; ObjectID = "1158"; */
+"1158.title" = "Status Bar…";
+
+/* Class = "NSTextFieldCell"; title = "Level:"; ObjectID = "1160"; */
+"1160.title" = "Level:";
+
+/* Class = "NSTextFieldCell"; title = "Layer:"; ObjectID = "1162"; */
+"1162.title" = "Layer:";
+
+/* Class = "NSTextFieldCell"; title = "Environment:"; ObjectID = "1165"; */
+"1165.title" = "Environment:";
+
+/* Class = "NSTextFieldCell"; title = "Landscape:"; ObjectID = "1167"; */
+"1167.title" = "Landscape:";
+
+/* Class = "NSTextFieldCell"; title = "Level Name:"; ObjectID = "1169"; */
+"1169.title" = "Level Name:";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1170"; */
+"1170.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "1171"; */
+"1171.title" = "Apply";
+
+/* Class = "NSTextFieldCell"; title = "Editing:"; ObjectID = "1173"; */
+"1173.title" = "Editing:";
+
+/* Class = "NSTextFieldCell"; title = "Please Enter A Name For Polygon#[PolyNumber]:"; ObjectID = "1175"; */
+"1175.title" = "Please Enter A Name For Polygon#[PolyNumber]:";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "1177"; */
+"1177.title" = "Apply";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1178"; */
+"1178.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Remove Name"; ObjectID = "1179"; */
+"1179.title" = "Remove Name";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1180"; */
+"1180.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Go To Above"; ObjectID = "1181"; */
+"1181.title" = "Go To Above";
+
+/* Class = "NSTextFieldCell"; title = "Please Enter Index Number For Above:"; ObjectID = "1182"; */
+"1182.title" = "Please Enter Index Number For Above:";
+
+/* Class = "NSTextFieldCell"; title = "Go To:"; ObjectID = "1185"; */
+"1185.title" = "Go To:";
+
+/* Class = "NSTextFieldCell"; title = "??? Listed"; ObjectID = "1186"; */
+"1186.title" = "??? Listed";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1187"; */
+"1187.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "New Height:"; ObjectID = "1189"; */
+"1189.title" = "New Height:";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "1190"; */
+"1190.title" = "Create";
+
+/* Class = "NSButtonCell"; title = "Override Prefs…"; ObjectID = "1192"; */
+"1192.title" = "Override Prefs…";
+
+/* Class = "NSTextFieldCell"; title = "Grid:"; ObjectID = "1193"; */
+"1193.title" = "Grid:";
+
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "1194"; */
+"1194.title" = "Close";
+
+/* Class = "NSButtonCell"; title = "Done"; ObjectID = "1195"; */
+"1195.title" = "Done";
+
+/* Class = "NSTextFieldCell"; title = "Group To Belong To:"; ObjectID = "1196"; */
+"1196.title" = "Group To Belong To:";
+
+/* Class = "NSButtonCell"; title = "Vacuum"; ObjectID = "1199"; */
+"1199.title" = "Vacuum";
+
+/* Class = "NSButtonCell"; title = "Vacuum"; ObjectID = "1200"; */
+"1200.title" = "Vacuum";
+
+/* Class = "NSButtonCell"; title = "Vacuum"; ObjectID = "1201"; */
+"1201.title" = "Vacuum";
+
+/* Class = "NSButtonCell"; title = "Monster"; ObjectID = "1204"; */
+"1204.title" = "Monster";

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,13 +13,13 @@
 		557A9B3F245A617B00527063 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B3E245A617B00527063 /* Media.xcassets */; };
 		557A9B41245A922B00527063 /* Example Script.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 557A9B40245A922A00527063 /* Example Script.applescript */; };
 		557A9B43245A924700527063 /* Pfhorge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 557A9B42245A924700527063 /* Pfhorge.sdef */; };
-		55D7334224640306008B33F6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D7334424640306008B33F6 /* Localizable.strings */; };
+		559A56132CB3395400B35598 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 559A56122CB3395400B35598 /* Localizable.xcstrings */; };
+		559A56152CB3395400B35598 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 559A56142CB3395400B35598 /* InfoPlist.xcstrings */; };
 		55E91491248996C70005D451 /* PICTConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91490248996C70005D451 /* PICTConverter.swift */; };
 		55E914942489F9010005D451 /* EasyBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E914932489F9010005D451 /* EasyBMP.swift */; };
 		55E91496248A012B0005D451 /* PhDataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91495248A012B0005D451 /* PhDataAdditions.swift */; };
 		AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */; };
-		AE3C150F0A04512100FBFFCD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		AE3C15100A04512100FBFFCD /* MyLevel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011A1BE700D3C42E7F000001 /* MyLevel.xib */; };
 		AE3C15110A04512100FBFFCD /* ToolPallette.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FBF3A000EABCCA7F000001 /* ToolPallette.xib */; };
 		AE3C15120A04512100FBFFCD /* Inspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE647F012FA35E7F000001 /* Inspector.xib */; };
@@ -198,33 +198,52 @@
 		551278ED2960E23F00D40309 /* SNDConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55166FA329EB67DB00B1E5CA /* TextureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureRepository.swift; sourceTree = "<group>"; };
 		553A981824705758003B6AEC /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		557A9B29245A519100527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AmbientSoundEditor.xib; sourceTree = "<group>"; };
-		557A9B2A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorList.xib; sourceTree = "<group>"; };
 		557A9B2B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		557A9B2C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DefaultLayerEditor.xib; sourceTree = "<group>"; };
-		557A9B2D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/Errors, Inc..xib"; sourceTree = "<group>"; };
-		557A9B2E245A519200527063 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		557A9B2F245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Inspector.xib; sourceTree = "<group>"; };
-		557A9B30245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ItemPlacementEditor.xib; sourceTree = "<group>"; };
-		557A9B31245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LightEditor.xib; sourceTree = "<group>"; };
-		557A9B32245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LiquidInterface.xib; sourceTree = "<group>"; };
-		557A9B33245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		557A9B34245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapManager.xib; sourceTree = "<group>"; };
-		557A9B35245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyLevel.xib; sourceTree = "<group>"; };
-		557A9B36245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpenGLVisualMode.xib; sourceTree = "<group>"; };
-		557A9B37245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PlatformEditor.xib; sourceTree = "<group>"; };
-		557A9B38245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Prefs.xib; sourceTree = "<group>"; };
-		557A9B39245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RandomSoundInterface.xib; sourceTree = "<group>"; };
-		557A9B3A245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Startup.xib; sourceTree = "<group>"; };
-		557A9B3B245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/StatusWin.xib; sourceTree = "<group>"; };
-		557A9B3C245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TerminalInterface.xib; sourceTree = "<group>"; };
-		557A9B3D245A519200527063 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ToolPallette.xib; sourceTree = "<group>"; };
 		557A9B3E245A617B00527063 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557A9B40245A922A00527063 /* Example Script.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Script.applescript"; sourceTree = "<group>"; };
 		557A9B42245A924700527063 /* Pfhorge.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Pfhorge.sdef; sourceTree = "<group>"; };
+		559A56122CB3395400B35598 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		559A56142CB3395400B35598 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		559A56162CB34F9800B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		559A56172CB34FAC00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Startup.xib; sourceTree = "<group>"; };
+		559A56192CB34FC900B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Startup.strings; sourceTree = "<group>"; };
+		559A561B2CB34FCD00B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		559A561C2CB34FD400B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Inspector.xib; sourceTree = "<group>"; };
+		559A561D2CB34FDD00B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Inspector.strings; sourceTree = "<group>"; };
+		559A561E2CB34FE600B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyLevel.xib; sourceTree = "<group>"; };
+		559A561F2CB34FF200B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyLevel.strings; sourceTree = "<group>"; };
+		559A56202CB34FFC00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ToolPallette.xib; sourceTree = "<group>"; };
+		559A56212CB3500200B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ToolPallette.strings; sourceTree = "<group>"; };
+		559A56222CB3500500B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ColorList.xib; sourceTree = "<group>"; };
+		559A56232CB3500B00B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ColorList.strings; sourceTree = "<group>"; };
+		559A56242CB3501600B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Prefs.xib; sourceTree = "<group>"; };
+		559A56252CB3501D00B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Prefs.strings; sourceTree = "<group>"; };
+		559A56262CB3502300B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AmbientSoundEditor.xib; sourceTree = "<group>"; };
+		559A56272CB3502900B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AmbientSoundEditor.strings; sourceTree = "<group>"; };
+		559A56282CB3503000B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Base.lproj/Errors, Inc..xib"; sourceTree = "<group>"; };
+		559A56292CB3503500B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/Errors, Inc..strings"; sourceTree = "<group>"; };
+		559A562A2CB3503B00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LightEditor.xib; sourceTree = "<group>"; };
+		559A562B2CB3504200B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LightEditor.strings; sourceTree = "<group>"; };
+		559A562C2CB3504A00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LiquidInterface.xib; sourceTree = "<group>"; };
+		559A562D2CB3505100B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LiquidInterface.strings; sourceTree = "<group>"; };
+		559A562E2CB3507B00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PlatformEditor.xib; sourceTree = "<group>"; };
+		559A562F2CB3508100B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PlatformEditor.strings; sourceTree = "<group>"; };
+		559A56302CB3509E00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RandomSoundInterface.xib; sourceTree = "<group>"; };
+		559A56312CB350A500B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RandomSoundInterface.strings; sourceTree = "<group>"; };
+		559A56322CB350AA00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatusWin.xib; sourceTree = "<group>"; };
+		559A56332CB350B000B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/StatusWin.strings; sourceTree = "<group>"; };
+		559A56342CB350CA00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DefaultLayerEditor.xib; sourceTree = "<group>"; };
+		559A56352CB350D000B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DefaultLayerEditor.strings; sourceTree = "<group>"; };
+		559A56362CB350DE00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenGLVisualMode.xib; sourceTree = "<group>"; };
+		559A56372CB350E300B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OpenGLVisualMode.strings; sourceTree = "<group>"; };
+		559A56382CB350E800B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TerminalInterface.xib; sourceTree = "<group>"; };
+		559A56392CB350EE00B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TerminalInterface.strings; sourceTree = "<group>"; };
+		559A563A2CB3510D00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MapManager.xib; sourceTree = "<group>"; };
+		559A563B2CB3511200B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MapManager.strings; sourceTree = "<group>"; };
+		559A563C2CB3511C00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ItemPlacementEditor.xib; sourceTree = "<group>"; };
+		559A563D2CB3512100B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ItemPlacementEditor.strings; sourceTree = "<group>"; };
 		55B3DC5C24747EBE00499B7F /* LELevelData-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LELevelData-private.h"; sourceTree = "<group>"; };
 		55C4EF5C247C8FAB00424767 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = ../TODO; sourceTree = "<group>"; };
-		55D7334324640306008B33F6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55E9148F2489969B0005D451 /* Pfhorge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pfhorge-Bridging-Header.h"; sourceTree = "<group>"; usesTabs = 1; };
 		55E91490248996C70005D451 /* PICTConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PICTConverter.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55E914922489B4C20005D451 /* PfhorgeSwiftHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PfhorgeSwiftHelpers.h; sourceTree = "<group>"; usesTabs = 1; };
@@ -520,8 +539,8 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				55D7334424640306008B33F6 /* Localizable.strings */,
-				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				559A56122CB3395400B35598 /* Localizable.xcstrings */,
+				559A56142CB3395400B35598 /* InfoPlist.xcstrings */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
 				557A9B3E245A617B00527063 /* Media.xcassets */,
 				557A9B42245A924700527063 /* Pfhorge.sdef */,
@@ -790,8 +809,9 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = Ph;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					AE3C149B0A04512100FBFFCD = {
 						LastSwiftMigration = 1130;
@@ -799,7 +819,7 @@
 				};
 			};
 			buildConfigurationList = AE3C144E0A041B8900FBFFCD /* Build configuration list for PBXProject "Pfhorge" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -820,9 +840,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559A56152CB3395400B35598 /* InfoPlist.xcstrings in Resources */,
 				AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */,
 				AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */,
-				AE3C150F0A04512100FBFFCD /* InfoPlist.strings in Resources */,
 				AE3C15100A04512100FBFFCD /* MyLevel.xib in Resources */,
 				AE3C15110A04512100FBFFCD /* ToolPallette.xib in Resources */,
 				AE3C15120A04512100FBFFCD /* Inspector.xib in Resources */,
@@ -831,9 +851,9 @@
 				AE3C15170A04512100FBFFCD /* AmbientSoundEditor.xib in Resources */,
 				AE3C15180A04512100FBFFCD /* Errors, Inc..xib in Resources */,
 				557A9B43245A924700527063 /* Pfhorge.sdef in Resources */,
+				559A56132CB3395400B35598 /* Localizable.xcstrings in Resources */,
 				AE3C15190A04512100FBFFCD /* LightEditor.xib in Resources */,
 				AE3C151A0A04512100FBFFCD /* LiquidInterface.xib in Resources */,
-				55D7334224640306008B33F6 /* Localizable.strings in Resources */,
 				AE3C151B0A04512100FBFFCD /* PlatformEditor.xib in Resources */,
 				AE3C151C0A04512100FBFFCD /* RandomSoundInterface.xib in Resources */,
 				AE3C151D0A04512100FBFFCD /* StatusWin.xib in Resources */,
@@ -951,7 +971,8 @@
 		00FBF3A000EABCCA7F000001 /* ToolPallette.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B3D245A519200527063 /* en */,
+				559A56202CB34FFC00B35598 /* Base */,
+				559A56212CB3500200B35598 /* en */,
 			);
 			name = ToolPallette.xib;
 			sourceTree = "<group>";
@@ -959,7 +980,8 @@
 		011A1BE700D3C42E7F000001 /* MyLevel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B35245A519200527063 /* en */,
+				559A561E2CB34FE600B35598 /* Base */,
+				559A561F2CB34FF200B35598 /* en */,
 			);
 			name = MyLevel.xib;
 			sourceTree = "<group>";
@@ -967,7 +989,8 @@
 		03FE647F012FA35E7F000001 /* Inspector.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B2F245A519200527063 /* en */,
+				559A561C2CB34FD400B35598 /* Base */,
+				559A561D2CB34FDD00B35598 /* en */,
 			);
 			name = Inspector.xib;
 			sourceTree = "<group>";
@@ -975,7 +998,8 @@
 		03FE6482012FA3667F000001 /* ColorList.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B2A245A519200527063 /* en */,
+				559A56222CB3500500B35598 /* Base */,
+				559A56232CB3500B00B35598 /* en */,
 			);
 			name = ColorList.xib;
 			sourceTree = "<group>";
@@ -983,23 +1007,17 @@
 		03FE6485012FA3757F000001 /* Prefs.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B38245A519200527063 /* en */,
+				559A56242CB3501600B35598 /* Base */,
+				559A56252CB3501D00B35598 /* en */,
 			);
 			name = Prefs.xib;
-			sourceTree = "<group>";
-		};
-		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				557A9B2E245A519200527063 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		2A37F4B6FDCFA73011CA2CEA /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B33245A519200527063 /* en */,
+				559A56162CB34F9800B35598 /* Base */,
+				559A561B2CB34FCD00B35598 /* en */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -1012,18 +1030,11 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		55D7334424640306008B33F6 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55D7334324640306008B33F6 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		A5EE9AB7040439D60046BBD2 /* MapManager.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B34245A519200527063 /* en */,
+				559A563A2CB3510D00B35598 /* Base */,
+				559A563B2CB3511200B35598 /* en */,
 			);
 			name = MapManager.xib;
 			sourceTree = "<group>";
@@ -1031,7 +1042,8 @@
 		A5EE9AB9040439DC0046BBD2 /* Startup.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B3A245A519200527063 /* en */,
+				559A56172CB34FAC00B35598 /* Base */,
+				559A56192CB34FC900B35598 /* en */,
 			);
 			name = Startup.xib;
 			sourceTree = "<group>";
@@ -1039,7 +1051,8 @@
 		F520388902414AD90146BBD2 /* TerminalInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B3C245A519200527063 /* en */,
+				559A56382CB350E800B35598 /* Base */,
+				559A56392CB350EE00B35598 /* en */,
 			);
 			name = TerminalInterface.xib;
 			sourceTree = "<group>";
@@ -1047,7 +1060,8 @@
 		F528403D02C13AD80146BBD2 /* ItemPlacementEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B30245A519200527063 /* en */,
+				559A563C2CB3511C00B35598 /* Base */,
+				559A563D2CB3512100B35598 /* en */,
 			);
 			name = ItemPlacementEditor.xib;
 			sourceTree = "<group>";
@@ -1055,7 +1069,8 @@
 		F52E215F01D049A20146BBD2 /* DefaultLayerEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B2C245A519200527063 /* en */,
+				559A56342CB350CA00B35598 /* Base */,
+				559A56352CB350D000B35598 /* en */,
 			);
 			name = DefaultLayerEditor.xib;
 			sourceTree = "<group>";
@@ -1063,7 +1078,8 @@
 		F53CCE7C0228BF4B0146BBD2 /* OpenGLVisualMode.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B36245A519200527063 /* en */,
+				559A56362CB350DE00B35598 /* Base */,
+				559A56372CB350E300B35598 /* en */,
 			);
 			name = OpenGLVisualMode.xib;
 			sourceTree = "<group>";
@@ -1071,7 +1087,8 @@
 		F54D4C4B01CBF8C701A8A806 /* AmbientSoundEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B29245A519100527063 /* en */,
+				559A56262CB3502300B35598 /* Base */,
+				559A56272CB3502900B35598 /* en */,
 			);
 			name = AmbientSoundEditor.xib;
 			sourceTree = "<group>";
@@ -1079,7 +1096,8 @@
 		F54D4C4D01CBF8C701A8A806 /* Errors, Inc..xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B2D245A519200527063 /* en */,
+				559A56282CB3503000B35598 /* Base */,
+				559A56292CB3503500B35598 /* en */,
 			);
 			name = "Errors, Inc..xib";
 			sourceTree = "<group>";
@@ -1087,7 +1105,8 @@
 		F54D4C4F01CBF8C701A8A806 /* LightEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B31245A519200527063 /* en */,
+				559A562A2CB3503B00B35598 /* Base */,
+				559A562B2CB3504200B35598 /* en */,
 			);
 			name = LightEditor.xib;
 			sourceTree = "<group>";
@@ -1095,7 +1114,8 @@
 		F54D4C5101CBF8C701A8A806 /* LiquidInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B32245A519200527063 /* en */,
+				559A562C2CB3504A00B35598 /* Base */,
+				559A562D2CB3505100B35598 /* en */,
 			);
 			name = LiquidInterface.xib;
 			sourceTree = "<group>";
@@ -1103,7 +1123,8 @@
 		F54D4C5301CBF8C701A8A806 /* PlatformEditor.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B37245A519200527063 /* en */,
+				559A562E2CB3507B00B35598 /* Base */,
+				559A562F2CB3508100B35598 /* en */,
 			);
 			name = PlatformEditor.xib;
 			sourceTree = "<group>";
@@ -1111,7 +1132,8 @@
 		F54D4C5501CBF8C701A8A806 /* RandomSoundInterface.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B39245A519200527063 /* en */,
+				559A56302CB3509E00B35598 /* Base */,
+				559A56312CB350A500B35598 /* en */,
 			);
 			name = RandomSoundInterface.xib;
 			sourceTree = "<group>";
@@ -1119,7 +1141,8 @@
 		F54D4C5701CBF8C701A8A806 /* StatusWin.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				557A9B3B245A519200527063 /* en */,
+				559A56322CB350AA00B35598 /* Base */,
+				559A56332CB350B000B35598 /* en */,
 			);
 			name = StatusWin.xib;
 			sourceTree = "<group>";
@@ -1162,11 +1185,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1204,11 +1229,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1217,6 +1244,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1253,6 +1281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PhorgeAppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;

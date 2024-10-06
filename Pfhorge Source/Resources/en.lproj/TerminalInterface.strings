@@ -1,0 +1,204 @@
+
+/* Class = "NSWindow"; title = "Terminal Viewer"; ObjectID = "7"; */
+"7.title" = "Terminal Viewer";
+
+/* Class = "NSTabViewItem"; label = "SignonAndSignoff"; ObjectID = "13"; */
+"13.label" = "SignonAndSignoff";
+
+/* Class = "NSTabViewItem"; label = "InformationView"; ObjectID = "15"; */
+"15.label" = "InformationView";
+
+/* Class = "NSTabViewItem"; label = "PictureView"; ObjectID = "29"; */
+"29.label" = "PictureView";
+
+/* Class = "NSTabViewItem"; label = "No Stuff To Dsiplay"; ObjectID = "31"; */
+"31.label" = "No Stuff To Dsiplay";
+
+/* Class = "NSTableColumn"; headerCell.title = "Terminal Sections"; ObjectID = "45"; */
+"45.headerCell.title" = "Terminal Sections";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "122"; */
+"122.title" = "Box";
+
+/* Class = "NSMenuItem"; title = "New Level - Level Index, 256 will end game"; ObjectID = "129"; */
+"129.title" = "New Level - Level Index, 256 will end game";
+
+/* Class = "NSMenuItem"; title = "Tag - Index is Tag to activate"; ObjectID = "131"; */
+"131.title" = "Tag - Index is Tag to activate";
+
+/* Class = "NSMenuItem"; title = "Logoff - Picture id#"; ObjectID = "132"; */
+"132.title" = "Logoff - Picture id#";
+
+/* Class = "NSMenuItem"; title = "Logon - Picture id#"; ObjectID = "133"; */
+"133.title" = "Logon - Picture id#";
+
+/* Class = "NSMenuItem"; title = "Success"; ObjectID = "134"; */
+"134.title" = "Success";
+
+/* Class = "NSMenuItem"; title = "Track - Index is Track to play"; ObjectID = "135"; */
+"135.title" = "Track - Index is Track to play";
+
+/* Class = "NSMenuItem"; title = "Static - Index is Duration of Static"; ObjectID = "136"; */
+"136.title" = "Static - Index is Duration of Static";
+
+/* Class = "NSMenuItem"; title = "Movie - Movie id# to play"; ObjectID = "137"; */
+"137.title" = "Movie - Movie id# to play";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "138"; */
+"138.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Teleport - Polygon index"; ObjectID = "140"; */
+"140.title" = "Teleport - Polygon index";
+
+/* Class = "NSMenuItem"; title = "Checkpoint - Goal id#"; ObjectID = "143"; */
+"143.title" = "Checkpoint - Goal id#";
+
+/* Class = "NSMenuItem"; title = "Sound - Sound id# to play"; ObjectID = "144"; */
+"144.title" = "Sound - Sound id# to play";
+
+/* Class = "NSMenuItem"; title = "Camera - Object Index"; ObjectID = "145"; */
+"145.title" = "Camera - Object Index";
+
+/* Class = "NSMenuItem"; title = "Unfinished"; ObjectID = "146"; */
+"146.title" = "Unfinished";
+
+/* Class = "NSMenuItem"; title = "Delimiter"; ObjectID = "147"; */
+"147.title" = "Delimiter";
+
+/* Class = "NSMenuItem"; title = "Picture - Picture id#"; ObjectID = "148"; */
+"148.title" = "Picture - Picture id#";
+
+/* Class = "NSMenuItem"; title = "Information"; ObjectID = "152"; */
+"152.title" = "Information";
+
+/* Class = "NSMenuItem"; title = "Failure"; ObjectID = "153"; */
+"153.title" = "Failure";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "176"; */
+"176.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Plain"; ObjectID = "178"; */
+"178.title" = "Plain";
+
+/* Class = "NSMenuItem"; title = "Underline"; ObjectID = "179"; */
+"179.title" = "Underline";
+
+/* Class = "NSMenuItem"; title = "Apply Style:"; ObjectID = "180"; */
+"180.title" = "Apply Style:";
+
+/* Class = "NSMenuItem"; title = "Italic"; ObjectID = "181"; */
+"181.title" = "Italic";
+
+/* Class = "NSMenuItem"; title = "Bold"; ObjectID = "184"; */
+"184.title" = "Bold";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "201"; */
+"201.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "202"; */
+"202.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "203"; */
+"203.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "204"; */
+"204.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "205"; */
+"205.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "206"; */
+"206.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "207"; */
+"207.title" = "Button";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "208"; */
+"208.title" = "Button";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "227"; */
+"227.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Add Terminal Section"; ObjectID = "228"; */
+"228.title" = "Add Terminal Section";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "236"; */
+"236.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Add, Delete, Etc."; ObjectID = "260"; */
+"260.title" = "Add, Delete, Etc.";
+
+/* Class = "NSMenuItem"; title = "Add Terminal"; ObjectID = "261"; */
+"261.title" = "Add Terminal";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "263"; */
+"263.title" = "Delete";
+
+/* Class = "NSMenuItem"; title = "16 bit"; ObjectID = "280"; */
+"280.title" = "16 bit";
+
+/* Class = "NSMenuItem"; title = "8 bit"; ObjectID = "281"; */
+"281.title" = "8 bit";
+
+/* Class = "NSMenuItem"; title = "32 bit"; ObjectID = "282"; */
+"282.title" = "32 bit";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "283"; */
+"283.title" = "OtherViews";
+
+/* Class = "NSTabViewItem"; label = "View"; ObjectID = "288"; */
+"288.label" = "View";
+
+/* Class = "NSTabViewItem"; label = "Tab"; ObjectID = "290"; */
+"290.label" = "Tab";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "293"; */
+"293.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "295"; */
+"295.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "296"; */
+"296.title" = "Item1";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "297"; */
+"297.title" = "Item3";
+
+/* Class = "NSButtonCell"; title = "Open Drawer"; ObjectID = "307"; */
+"307.title" = "Open Drawer";
+
+/* Class = "NSTextFieldCell"; title = "Section Type:"; ObjectID = "309"; */
+"309.title" = "Section Type:";
+
+/* Class = "NSTextFieldCell"; title = "Apply Color:"; ObjectID = "310"; */
+"310.title" = "Apply Color:";
+
+/* Class = "NSTextFieldCell"; title = "Index #:"; ObjectID = "311"; */
+"311.title" = "Index #:";
+
+/* Class = "NSTextFieldCell"; title = "Preferred Pic Sample:"; ObjectID = "314"; */
+"314.title" = "Preferred Pic Sample:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "316"; */
+"316.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Delete Entire Terminal?"; ObjectID = "317"; */
+"317.title" = "Delete Entire Terminal?";
+
+/* Class = "NSTextFieldCell"; title = "Are your sure you want to delete the entire terminal, including any sections it may have?"; ObjectID = "319"; */
+"319.title" = "Are your sure you want to delete the entire terminal, including any sections it may have?";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "320"; */
+"320.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "321"; */
+"321.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Button"; ObjectID = "322"; */
+"322.title" = "Button";
+
+/* Class = "NSTextFieldCell"; title = "g"; ObjectID = "323"; */
+"323.title" = "g";
+
+/* Class = "NSTextFieldCell"; title = "Field"; ObjectID = "324"; */
+"324.title" = "Field";

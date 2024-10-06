@@ -1,0 +1,180 @@
+
+/* Class = "NSWindow"; title = "Media"; ObjectID = "5"; */
+"5.title" = "Media";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "10"; */
+"10.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Water"; ObjectID = "12"; */
+"12.title" = "Water";
+
+/* Class = "NSMenuItem"; title = "Lava"; ObjectID = "13"; */
+"13.title" = "Lava";
+
+/* Class = "NSMenuItem"; title = "Alien Liquid"; ObjectID = "14"; */
+"14.title" = "Alien Liquid";
+
+/* Class = "NSMenuItem"; title = "Green Sewage"; ObjectID = "15"; */
+"15.title" = "Green Sewage";
+
+/* Class = "NSMenuItem"; title = "Jjaro Goo"; ObjectID = "16"; */
+"16.title" = "Jjaro Goo";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "48"; */
+"48.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Media Avaliable To Copy:"; ObjectID = "49"; */
+"49.title" = "Media Avaliable To Copy:";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "50"; */
+"50.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "51"; */
+"51.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "53"; */
+"53.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "54"; */
+"54.title" = "Item1";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "56"; */
+"56.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "57"; */
+"57.title" = "Item2";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "118"; */
+"118.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Origin X:"; ObjectID = "118"; */
+"118.title" = "Origin X:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "119"; */
+"119.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Origin Y:"; ObjectID = "119"; */
+"119.title" = "Origin Y:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "120"; */
+"120.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Height:"; ObjectID = "120"; */
+"120.title" = "Height:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "121"; */
+"121.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Min Light:"; ObjectID = "121"; */
+"121.title" = "Min Light:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "122"; */
+"122.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Texture:"; ObjectID = "122"; */
+"122.title" = "Texture:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "123"; */
+"123.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Flow:"; ObjectID = "123"; */
+"123.title" = "Flow:";
+
+/* Class = "NSFormCell"; stringValue = "0º"; ObjectID = "124"; */
+"124.stringValue" = "0º";
+
+/* Class = "NSFormCell"; title = "Angle:"; ObjectID = "124"; */
+"124.title" = "Angle:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "125"; */
+"125.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "High Tide:"; ObjectID = "125"; */
+"125.title" = "High Tide:";
+
+/* Class = "NSFormCell"; stringValue = "0"; ObjectID = "126"; */
+"126.stringValue" = "0";
+
+/* Class = "NSFormCell"; title = "Low Tide:"; ObjectID = "126"; */
+"126.title" = "Low Tide:";
+
+/* Class = "NSMenuItem"; title = "Pulsate"; ObjectID = "127"; */
+"127.title" = "Pulsate";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "128"; */
+"128.title" = "Normal";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "131"; */
+"131.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Wobble"; ObjectID = "132"; */
+"132.title" = "Wobble";
+
+/* Class = "NSMenuItem"; title = "Fast Wobble"; ObjectID = "133"; */
+"133.title" = "Fast Wobble";
+
+/* Class = "NSMenuItem"; title = "Landscape"; ObjectID = "134"; */
+"134.title" = "Landscape";
+
+/* Class = "NSMenuItem"; title = "Horizontal Slide"; ObjectID = "135"; */
+"135.title" = "Horizontal Slide";
+
+/* Class = "NSMenuItem"; title = "Fast Horizontal Slide"; ObjectID = "136"; */
+"136.title" = "Fast Horizontal Slide";
+
+/* Class = "NSMenuItem"; title = "Vertical Slide"; ObjectID = "137"; */
+"137.title" = "Vertical Slide";
+
+/* Class = "NSMenuItem"; title = "Fast Vertical Slide"; ObjectID = "138"; */
+"138.title" = "Fast Vertical Slide";
+
+/* Class = "NSMenuItem"; title = "Wander"; ObjectID = "139"; */
+"139.title" = "Wander";
+
+/* Class = "NSMenuItem"; title = "Fast Wander"; ObjectID = "140"; */
+"140.title" = "Fast Wander";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "164"; */
+"164.title" = "Window";
+
+/* Class = "NSButtonCell"; title = "Revert"; ObjectID = "185"; */
+"185.title" = "Revert";
+
+/* Class = "NSButtonCell"; title = "Sound Obstructed By Floor"; ObjectID = "186"; */
+"186.title" = "Sound Obstructed By Floor";
+
+/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "188"; */
+"188.title" = "Type:";
+
+/* Class = "NSTextFieldCell"; title = "Copy:"; ObjectID = "189"; */
+"189.title" = "Copy:";
+
+/* Class = "NSTextFieldCell"; title = "Tide:"; ObjectID = "190"; */
+"190.title" = "Tide:";
+
+/* Class = "NSTextFieldCell"; title = "Name: (Insert Media Name Here)"; ObjectID = "193"; */
+"193.title" = "Name: (Insert Media Name Here)";
+
+/* Class = "NSButtonCell"; title = "Apply And Close"; ObjectID = "194"; */
+"194.title" = "Apply And Close";
+
+/* Class = "NSTextFieldCell"; title = "Transfer Mode:"; ObjectID = "195"; */
+"195.title" = "Transfer Mode:";
+
+/* Class = "NSButtonCell"; title = "Rename"; ObjectID = "197"; */
+"197.title" = "Rename";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "198"; */
+"198.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Please enter a name for this object:"; ObjectID = "199"; */
+"199.title" = "Please enter a name for this object:";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "200"; */
+"200.title" = "Apply";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "202"; */
+"202.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "203"; */
+"203.title" = "Field:";

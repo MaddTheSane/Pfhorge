@@ -1,0 +1,279 @@
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "Bring All to Front";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "Minimize";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "Window";
+
+/* Class = "NSMenu"; title = "MainMenu"; ObjectID = "29"; */
+"29.title" = "MainMenu";
+
+/* Class = "NSMenuItem"; title = "Pfhorge"; ObjectID = "56"; */
+"56.title" = "Pfhorge";
+
+/* Class = "NSMenu"; title = "Pfhorge"; ObjectID = "57"; */
+"57.title" = "Pfhorge";
+
+/* Class = "NSMenuItem"; title = "About Pfhorge…"; ObjectID = "58"; */
+"58.title" = "About Pfhorge…";
+
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
+"72.title" = "Open…";
+
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
+"73.title" = "Close";
+
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
+"75.title" = "Save";
+
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "80"; */
+"80.title" = "Save As…";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "81"; */
+"81.title" = "File";
+
+/* Class = "NSMenuItem"; title = "New Pfhorge Level"; ObjectID = "82"; */
+"82.title" = "New Pfhorge Level";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
+"83.title" = "File";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
+"103.title" = "Help";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "106"; */
+"106.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "Pfhorge Help"; ObjectID = "111"; */
+"111.title" = "Pfhorge Help";
+
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
+"124.title" = "Open Recent";
+
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
+"125.title" = "Open Recent";
+
+/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "126"; */
+"126.title" = "Clear Menu";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "Hide Pfhorge"; ObjectID = "134"; */
+"134.title" = "Hide Pfhorge";
+
+/* Class = "NSMenuItem"; title = "Quit Pfhorge"; ObjectID = "136"; */
+"136.title" = "Quit Pfhorge";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "Hide Others";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
+"157.title" = "Copy";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
+"158.title" = "Undo";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "160"; */
+"160.title" = "Cut";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
+"163.title" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Clear"; ObjectID = "164"; */
+"164.title" = "Clear";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
+"169.title" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
+"171.title" = "Paste";
+
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
+"172.title" = "Select All";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
+"173.title" = "Redo";
+
+/* Class = "NSMenuItem"; title = "Tools"; ObjectID = "199"; */
+"199.title" = "Tools";
+
+/* Class = "NSMenu"; title = "Tools"; ObjectID = "201"; */
+"201.title" = "Tools";
+
+/* Class = "NSMenuItem"; title = "View"; ObjectID = "222"; */
+"222.title" = "View";
+
+/* Class = "NSMenuItem"; title = "View Mode Normal"; ObjectID = "223"; */
+"223.title" = "View Mode Normal";
+
+/* Class = "NSMenu"; title = "View"; ObjectID = "224"; */
+"224.title" = "View";
+
+/* Class = "NSMenuItem"; title = "View Liquids"; ObjectID = "231"; */
+"231.title" = "View Liquids";
+
+/* Class = "NSMenuItem"; title = "View Heights"; ObjectID = "235"; */
+"235.title" = "View Heights";
+
+/* Class = "NSMenu"; title = "View Heights"; ObjectID = "236"; */
+"236.title" = "View Heights";
+
+/* Class = "NSMenuItem"; title = "Ceiling"; ObjectID = "237"; */
+"237.title" = "Ceiling";
+
+/* Class = "NSMenuItem"; title = "View Lights"; ObjectID = "238"; */
+"238.title" = "View Lights";
+
+/* Class = "NSMenu"; title = "View Lights"; ObjectID = "239"; */
+"239.title" = "View Lights";
+
+/* Class = "NSMenuItem"; title = "View Sounds"; ObjectID = "241"; */
+"241.title" = "View Sounds";
+
+/* Class = "NSMenu"; title = "View Sounds"; ObjectID = "242"; */
+"242.title" = "View Sounds";
+
+/* Class = "NSMenuItem"; title = "Ambient"; ObjectID = "243"; */
+"243.title" = "Ambient";
+
+/* Class = "NSMenuItem"; title = "Floor"; ObjectID = "245"; */
+"245.title" = "Floor";
+
+/* Class = "NSMenuItem"; title = "Liquid"; ObjectID = "246"; */
+"246.title" = "Liquid";
+
+/* Class = "NSMenuItem"; title = "Ceiling"; ObjectID = "247"; */
+"247.title" = "Ceiling";
+
+/* Class = "NSMenuItem"; title = "Liquid"; ObjectID = "248"; */
+"248.title" = "Liquid";
+
+/* Class = "NSMenuItem"; title = "Floor"; ObjectID = "249"; */
+"249.title" = "Floor";
+
+/* Class = "NSMenuItem"; title = "Random"; ObjectID = "250"; */
+"250.title" = "Random";
+
+/* Class = "NSMenuItem"; title = "Show Colors Palette"; ObjectID = "262"; */
+"262.title" = "Show Colors Palette";
+
+/* Class = "NSMenuItem"; title = "Tool Palette"; ObjectID = "355"; */
+"355.title" = "Tool Palette";
+
+/* Class = "NSMenuItem"; title = "View Layers"; ObjectID = "365"; */
+"365.title" = "View Layers";
+
+/* Class = "NSMenuItem"; title = "Configuration Editor"; ObjectID = "369"; */
+"369.title" = "Configuration Editor";
+
+/* Class = "NSMenuItem"; title = "Scripts"; ObjectID = "473"; */
+"473.title" = "Scripts";
+
+/* Class = "NSMenu"; title = "Scripts"; ObjectID = "474"; */
+"474.title" = "Scripts";
+
+/* Class = "NSMenuItem"; title = "Choose Script Manually…"; ObjectID = "478"; */
+"478.title" = "Choose Script Manually…";
+
+/* Class = "NSMenuItem"; title = "Visual Mode"; ObjectID = "482"; */
+"482.title" = "Visual Mode";
+
+/* Class = "NSMenuItem"; title = "General Preferences…"; ObjectID = "485"; */
+"485.title" = "General Preferences…";
+
+/* Class = "NSMenuItem"; title = "Layer Defaults…"; ObjectID = "486"; */
+"486.title" = "Layer Defaults…";
+
+/* Class = "NSMenuItem"; title = "Terminal Editor"; ObjectID = "490"; */
+"490.title" = "Terminal Editor";
+
+/* Class = "NSMenuItem"; title = "New Pfhorge Scenario"; ObjectID = "496"; */
+"496.title" = "New Pfhorge Scenario";
+
+/* Class = "NSMenuItem"; title = "Import Marathon Map…"; ObjectID = "507"; */
+"507.title" = "Import Marathon Map…";
+
+/* Class = "NSMenuItem"; title = "Basic Inspector"; ObjectID = "515"; */
+"515.title" = "Basic Inspector";
+
+/* Class = "NSMenuItem"; title = "Texture Inspectors"; ObjectID = "516"; */
+"516.title" = "Texture Inspectors";
+
+/* Class = "NSMenuItem"; title = "Light Inspector"; ObjectID = "517"; */
+"517.title" = "Light Inspector";
+
+/* Class = "NSMenuItem"; title = "Control Panel Inspector"; ObjectID = "519"; */
+"519.title" = "Control Panel Inspector";
+
+/* Class = "NSMenuItem"; title = "Item/Object Placement Editor"; ObjectID = "525"; */
+"525.title" = "Item/Object Placement Editor";
+
+/* Class = "NSMenuItem"; title = "Plugins"; ObjectID = "530"; */
+"530.title" = "Plugins";
+
+/* Class = "NSMenu"; title = "Plugins"; ObjectID = "531"; */
+"531.title" = "Plugins";
+
+/* Class = "NSMenuItem"; title = "Level"; ObjectID = "535"; */
+"535.title" = "Level";
+
+/* Class = "NSMenu"; title = "Level"; ObjectID = "536"; */
+"536.title" = "Level";
+
+/* Class = "NSMenuItem"; title = "Go To via Index"; ObjectID = "538"; */
+"538.title" = "Go To via Index";
+
+/* Class = "NSMenuItem"; title = "Edit Polygon Name"; ObjectID = "540"; */
+"540.title" = "Edit Polygon Name";
+
+/* Class = "NSMenuItem"; title = "Zoom In"; ObjectID = "543"; */
+"543.title" = "Zoom In";
+
+/* Class = "NSMenuItem"; title = "Zoom Out"; ObjectID = "545"; */
+"545.title" = "Zoom Out";
+
+/* Class = "NSMenuItem"; title = "Marathon Settings Sheet"; ObjectID = "549"; */
+"549.title" = "Marathon Settings Sheet";
+
+/* Class = "NSMenuItem"; title = "Redraw Level"; ObjectID = "551"; */
+"551.title" = "Redraw Level";
+
+/* Class = "NSMenuItem"; title = "Toggle Map Manager Drawer"; ObjectID = "556"; */
+"556.title" = "Toggle Map Manager Drawer";
+
+/* Class = "NSMenuItem"; title = "Get Info On Selected"; ObjectID = "559"; */
+"559.title" = "Get Info On Selected";
+
+/* Class = "NSMenuItem"; title = "Import Marathon Map…"; ObjectID = "562"; */
+"562.title" = "Import Marathon Map…";
+
+/* Class = "NSMenuItem"; title = "Export To Aleph One"; ObjectID = "564"; */
+"564.title" = "Export To Aleph One";
+
+/* Class = "NSMenuItem"; title = "Calculate Sides On Selected Lines"; ObjectID = "569"; */
+"569.title" = "Calculate Sides On Selected Lines";
+
+/* Class = "NSMenuItem"; title = "Import Pathways Map…"; ObjectID = "571"; */
+"571.title" = "Import Pathways Map…";
+
+/* Class = "NSMenuItem"; title = "Test Checksum…"; ObjectID = "579"; */
+"579.title" = "Test Checksum…";
+
+/* Class = "NSMenuItem"; title = "Zoom To 100%"; ObjectID = "582"; */
+"582.title" = "Zoom To 100%";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "K5O-EM-ZE8"; */
+"K5O-EM-ZE8.title" = "Zoom";

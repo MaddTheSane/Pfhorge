@@ -60,21 +60,18 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *theRecords = [[NSMutableArray alloc] init];
         NSMutableDictionary *ARecord = [NSMutableDictionary dictionary];
         NSDictionary *appDefaults;
         
         NSLog(@"Registering the Layer Defaults");
         
-        [ARecord setObject:@"Default Layer"                forKey:PhDefaultLayer_Name];
-        [ARecord setObject:@-9216    forKey:PhDefaultLayer_FloorMin];
-        [ARecord setObject:@9216     forKey:PhDefaultLayer_FloorMax];
-        [ARecord setObject:@-9216    forKey:PhDefaultLayer_CeilingMin];
-        [ARecord setObject:@9216     forKey:PhDefaultLayer_CeilingMax];
+        ARecord[PhDefaultLayer_Name] = @"Default Layer";
+        ARecord[PhDefaultLayer_FloorMin] = @-9216;
+        ARecord[PhDefaultLayer_FloorMax] = @9216;
+        ARecord[PhDefaultLayer_CeilingMin] = @-9216;
+        ARecord[PhDefaultLayer_CeilingMax] = @9216;
         
-        [theRecords addObject:ARecord];
-        
-        appDefaults = [NSDictionary dictionaryWithObject:theRecords forKey:PhDefaultLayers];
+        appDefaults = @{PhDefaultLayers: @[ARecord]};
         
         [defaults registerDefaults:appDefaults];
     });
@@ -125,8 +122,8 @@
             [tempArray addObject:tempObject]; // keep track of the record to delete in tempArray
         } else {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.", @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
@@ -202,8 +199,8 @@
         else
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.", @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
@@ -234,8 +231,8 @@
             [tempObject setObject:theName forKey:PhDefaultLayer_Name];
         } else {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.", @"Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }

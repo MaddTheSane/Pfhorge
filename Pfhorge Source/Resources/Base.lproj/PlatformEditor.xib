@@ -811,8 +811,8 @@ DQ
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="157">
-                        <rect key="frame" x="18" y="77" width="231" height="16"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter A Name For This Object:" id="200">
+                        <rect key="frame" x="18" y="77" width="230" height="16"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please Enter a Name For This Object:" id="200">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -565,16 +565,11 @@
         dict[NSFileHFSCreatorCode] = @((OSType)0x32362EB0); // '26.∞'
         dict[NSFileHFSTypeCode] = @((OSType)'sce2');
     } else {
-        [dict setObject:@((OSType)'PfhL') forKey:NSFileHFSTypeCode];
-        [dict setObject:@((OSType)'PFrg') forKey:NSFileHFSCreatorCode];
+        dict[NSFileHFSTypeCode] = @((OSType)'PfhL');
+        dict[NSFileHFSCreatorCode] = @((OSType)'PFrg');
     }
     
     return dict;
-}
-
-- (BOOL)writeToURL:(NSURL *)url ofType:(NSString *)typeName error:(NSError *__autoreleasing  _Nullable *)outError
-{
-    return [super writeToURL:url ofType:typeName error:outError];
 }
 
 -(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError * _Nullable *)outError
@@ -705,7 +700,7 @@
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3)
     {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load This Version Of Pfhorge Map Data, Export It In Previous Version Then Open It Here."}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't Load This Version Of Pfhorge Map Data, Export It In Previous Version Then Open It Here.", @"Can't open old Pfhorge Map Data.")}];
         }
 
         loadedOk = NO;
@@ -721,7 +716,7 @@
         theRawMapData = nil;
             
             if (outError) {
-                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev"}];
+                *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev", @"Pfhorge formated map file loaded in wrong place! Change the file's extention to: .pfhlev")}];
             }
 
         /*
@@ -737,7 +732,7 @@
         }*/
     } else {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load File: Unknown Format."}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't Load File: Unknown Format.", @"Can't Load File: Unknown Format.")}];
         }
         loadedOk = NO;
     }
@@ -765,8 +760,8 @@
     
     if (theNewPoly == nil) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)", @"Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)");
         alert.alertStyle = NSAlertStyleInformational;
         [alert beginSheetModalForWindow:self.windowForSheet completionHandler:^(NSModalResponse returnCode) {
             
@@ -825,16 +820,16 @@
         } else if ([theKeyNumber unsignedIntValue] == 'Ppgy') {
             yLoc = [[pointDef objectForKey:theKeyNumber] intValue];
         } else if ([theKeyNumber unsignedIntValue] == 'usrf') {
-            SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768.",
-                                 @"AppleScript Error");
+            SEND_ERROR_MSG_TITLE(NSLocalizedString(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768.", @"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768."),
+                                 NSLocalizedString(@"AppleScript Error", @"AppleScript Error"));
             return nil;
         } else {
             OSType theKeyAsLong = [theKeyNumber unsignedIntValue];
             NSString *theTagAsString = CFBridgingRelease(UTCreateStringForOSType(theKeyAsLong));
             NSLog(@"Peculiar key in arguments: %@", theTagAsString);
             NSLog(@"Here is the record description sent via AppleScript: %@", [args description]);
-            SEND_ERROR_MSG_TITLE(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
-                        @"AppleScript Error");
+            SEND_ERROR_MSG_TITLE(NSLocalizedString(@"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!", @"You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!"),
+                                 NSLocalizedString(@"AppleScript Error", @"AppleScript Error"));
             return nil;
         }
     }

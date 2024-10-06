@@ -1,0 +1,117 @@
+
+/* Class = "NSWindow"; title = "Ambient"; ObjectID = "5"; */
+"5.title" = "Ambient";
+
+/* Class = "NSMenuItem"; title = "Lava"; ObjectID = "7"; */
+"7.title" = "Lava";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "9"; */
+"9.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Sewage"; ObjectID = "10"; */
+"10.title" = "Sewage";
+
+/* Class = "NSMenuItem"; title = "Water"; ObjectID = "11"; */
+"11.title" = "Water";
+
+/* Class = "NSMenuItem"; title = "Goo"; ObjectID = "15"; */
+"15.title" = "Goo";
+
+/* Class = "NSMenuItem"; title = "Under Media"; ObjectID = "16"; */
+"16.title" = "Under Media";
+
+/* Class = "NSMenuItem"; title = "Wind"; ObjectID = "17"; */
+"17.title" = "Wind";
+
+/* Class = "NSMenuItem"; title = "Waterfall"; ObjectID = "18"; */
+"18.title" = "Waterfall";
+
+/* Class = "NSMenuItem"; title = "Siren"; ObjectID = "19"; */
+"19.title" = "Siren";
+
+/* Class = "NSMenuItem"; title = "Fan"; ObjectID = "20"; */
+"20.title" = "Fan";
+
+/* Class = "NSMenuItem"; title = "S'pht Door"; ObjectID = "21"; */
+"21.title" = "S'pht Door";
+
+/* Class = "NSMenuItem"; title = "S'pht Platform"; ObjectID = "22"; */
+"22.title" = "S'pht Platform";
+
+/* Class = "NSMenuItem"; title = "Heavy S'pht Door"; ObjectID = "23"; */
+"23.title" = "Heavy S'pht Door";
+
+/* Class = "NSMenuItem"; title = "Heavy S'pht Platform"; ObjectID = "24"; */
+"24.title" = "Heavy S'pht Platform";
+
+/* Class = "NSMenuItem"; title = "Light Machinery"; ObjectID = "25"; */
+"25.title" = "Light Machinery";
+
+/* Class = "NSMenuItem"; title = "Heavy Machinery"; ObjectID = "26"; */
+"26.title" = "Heavy Machinery";
+
+/* Class = "NSMenuItem"; title = "Transformer"; ObjectID = "27"; */
+"27.title" = "Transformer";
+
+/* Class = "NSMenuItem"; title = "Sparking Transformer"; ObjectID = "28"; */
+"28.title" = "Sparking Transformer";
+
+/* Class = "NSMenuItem"; title = "Machine Binder"; ObjectID = "29"; */
+"29.title" = "Machine Binder";
+
+/* Class = "NSMenuItem"; title = "Machine Bookpress"; ObjectID = "30"; */
+"30.title" = "Machine Bookpress";
+
+/* Class = "NSMenuItem"; title = "Machine Puncher"; ObjectID = "31"; */
+"31.title" = "Machine Puncher";
+
+/* Class = "NSMenuItem"; title = "Electric Hum"; ObjectID = "32"; */
+"32.title" = "Electric Hum";
+
+/* Class = "NSMenuItem"; title = "Siren"; ObjectID = "33"; */
+"33.title" = "Siren";
+
+/* Class = "NSMenuItem"; title = "Night Wind"; ObjectID = "34"; */
+"34.title" = "Night Wind";
+
+/* Class = "NSMenuItem"; title = "Pfhor Door"; ObjectID = "35"; */
+"35.title" = "Pfhor Door";
+
+/* Class = "NSMenuItem"; title = "Pfhor Platform"; ObjectID = "36"; */
+"36.title" = "Pfhor Platform";
+
+/* Class = "NSMenuItem"; title = "Phfor Ship #1"; ObjectID = "37"; */
+"37.title" = "Phfor Ship #1";
+
+/* Class = "NSMenuItem"; title = "Pfhor Ship #2"; ObjectID = "38"; */
+"38.title" = "Pfhor Ship #2";
+
+/* Class = "NSMenuItem"; title = "Jjaro Ship"; ObjectID = "39"; */
+"39.title" = "Jjaro Ship";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "52"; */
+"52.title" = "Window";
+
+/* Class = "NSTextFieldCell"; title = "Type:"; ObjectID = "66"; */
+"66.title" = "Type:";
+
+/* Class = "NSTextFieldCell"; title = "Volume:"; ObjectID = "67"; */
+"67.title" = "Volume:";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "68"; */
+"68.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Informational Text"; ObjectID = "69"; */
+"69.title" = "Informational Text";
+
+/* Class = "NSButtonCell"; title = "Rename"; ObjectID = "70"; */
+"70.title" = "Rename";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "72"; */
+"72.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Please enter a name for this object:"; ObjectID = "73"; */
+"73.title" = "Please enter a name for this object:";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "74"; */
+"74.title" = "Apply";

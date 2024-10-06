@@ -1,0 +1,138 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Aleph One Map File" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aleph One Map File"
+          }
+        }
+      }
+    },
+    "Aleph One Physics File" : {
+
+    },
+    "Aleph One Shapes File" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aleph One Shapes File"
+          }
+        }
+      }
+    },
+    "CFBundleGetInfoString" : {
+      "comment" : "Get Info string",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Version 0.96, Copyright 2005 Joshua D. Orr, All Rights Reserved"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Localized versions of Info.plist keys",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pfhorge"
+          }
+        }
+      }
+    },
+    "CFBundleShortVersionString" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Version 0.96"
+          }
+        }
+      }
+    },
+    "com.xmission.dragons.pfhorge.level" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Level"
+          }
+        }
+      }
+    },
+    "com.xmission.dragons.pfhorge.scenario" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Scenario"
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Copyright 2005 Joshua D. Orr, All Rights Reserved."
+          }
+        }
+      }
+    },
+    "org.bungie.source.map" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aleph One Map File"
+          }
+        }
+      }
+    },
+    "org.bungie.source.shapes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aleph One Shapes File"
+          }
+        }
+      }
+    },
+    "Pfhorge Level" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Level"
+          }
+        }
+      }
+    },
+    "Pfhorge Scenario" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pfhorge Scenario"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

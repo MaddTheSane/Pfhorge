@@ -33,7 +33,7 @@
 
 - (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs
 {
-    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:assignedNumber];
+    NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:assignedNumber requiringSecureCoding:NO error:NULL];
     long length = [theData length];
     ExportLong((int)length);
     [myData appendData:theData];

@@ -229,7 +229,7 @@
         
         return theNewLayer;
     } else {
-        SEND_ERROR_MSG(@"I tried to add a unknown object class to level?");
+        SEND_ERROR_MSG(NSLocalizedString(@"I tried to add a unknown object class to level?", @"I tried to add a unknown object class to level?"));
     }
     
     return nil;
@@ -496,7 +496,7 @@
                 [thePolyToAdd setAdjacentPolygonObject:otherPoly toIndex:i];
             } else if (poly1 != nil && poly2 != nil) {
                 // This line could already have two polygons???
-                SEND_ERROR_MSG(@"When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!");
+                SEND_ERROR_MSG(NSLocalizedString(@"When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!", @"When setting Clockwise, Etc. Ownership, while adding poly to level poly array, both where not nil??? Major Error With Level File!"));
                 return; // Delete from poly array?
             } else {
                 otherPoly = nil; 
@@ -538,18 +538,18 @@
                     [thisObj setConterclockwisePolygonObject:thePolyToAdd];
                     break;
                 case _poly_could_be_bad:
-                    SEND_ERROR_MSG_TITLE(@"Polygon that was just added and/or lines/points making it up could be corupted!",
-                                         @"Bad Polygon/Lines/Points");
+                    SEND_ERROR_MSG_TITLE(NSLocalizedString(@"Polygon that was just added and/or lines/points making it up could be corupted!", @"Polygon that was just added and/or lines/points making it up could be corupted!"),
+                                         NSLocalizedString(@"Bad Polygon/Lines/Points", @"Bad Polygon/Lines/Points"));
                     NSLog(@"Bad data detected, in future releases I will attempt to fix this problem...");
                     break;
                 case _unknown:
-                    SEND_ERROR_MSG_TITLE(@"Polygon that was just added and/or lines/points making it up are/is in a unknown state!",
-                                         @"Polygon In Unknown State");
+                    SEND_ERROR_MSG_TITLE(NSLocalizedString(@"Polygon that was just added and/or lines/points making it up are/is in a unknown state!", @"Polygon that was just added and/or lines/points making it up are/is in a unknown state!"),
+                                         NSLocalizedString(@"Polygon In Unknown State", @"Polygon In Unknown State"));
                     NSLog(@"Somthing strange and unknown happned, please send me a bug report about this!...");
                     break;
                 default:
-                    SEND_ERROR_MSG_TITLE(@"In the level->addPolygon: method, an unknown result code was returned...",
-                                         @"Major Program Logic Error");
+                    SEND_ERROR_MSG_TITLE(NSLocalizedString(@"In the level->addPolygon: method, an unknown result code was returned...", @"In the level->addPolygon: method, an unknown result code was returned..."),
+                                         NSLocalizedString(@"Major Program Logic Error", @"Major Program Logic Error"));
                     NSLog(@"Major Program Logic Error: In the level->addPolygon: method, an unknown result code was returned... Bug Report!!!");
                     break;
             }
@@ -565,7 +565,7 @@
         //[polyLines release];
     }
     else {
-        SEND_ERROR_MSG(@"A nil polygon was attempted to being added to the level polygons array, ERROR");
+        SEND_ERROR_MSG(NSLocalizedString(@"A nil polygon was attempted to being added to the level polygons array, ERROR", @"A nil polygon was attempted to being added to the level polygons array, ERROR"));
     }
 }
 
@@ -631,8 +631,8 @@
             }
             else
             {
-                SEND_ERROR_MSG_TITLE(@"Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method.",
-                                     @"MAJOR Polygon Adding Error");
+                SEND_ERROR_MSG_TITLE(NSLocalizedString(@"Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method.", @"Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method."),
+                                     NSLocalizedString(@"MAJOR Polygon Adding Error", @"MAJOR Polygon Adding Error"));
                 NSLog(@"Polygon Lines Not All The Way Connected: ghost point in level->whatIsDirectional method.");
                 return _poly_could_be_bad;
             }
@@ -666,8 +666,8 @@
         if (thisMapLine == nil || theCurPoint == nil)
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"MAJOR Polygon Adding Error";
-            alert.informativeText = @"Polygon Lines Not All The Way Connected: level->whatIsDirectional method";
+            alert.messageText = NSLocalizedString(@"MAJOR Polygon Adding Error", @"MAJOR Polygon Adding Error");
+            alert.informativeText = NSLocalizedString(@"Polygon Lines Not All The Way Connected: level->whatIsDirectional method", @"Polygon Lines Not All The Way Connected: level->whatIsDirectional method");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
             NSLog(@"Polygon Lines Not All The Way Connected: level->whatIsDirectional method.");
@@ -702,8 +702,8 @@
             else
             {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Minor Polygon Adding Error";
-                alert.informativeText = @"X There is one point directly over another: in level->whatIsDirectional method";
+                alert.messageText = NSLocalizedString(@"Minor Polygon Adding Error", @"Minor Polygon Adding Error");
+                alert.informativeText = NSLocalizedString(@"X There is one point directly over another: in level->whatIsDirectional method", @"X There is one point directly over another: in level->whatIsDirectional method");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 NSLog(@"X Two points with same cordianates with line apart of poly: in level->whatIsDirectional method... px: %g  py: %g", previousX, previousY);
@@ -722,8 +722,8 @@
                 return _line_is_counter_clockwise;
             else
             {
-                SEND_ERROR_MSG_TITLE(@"Y There is one point directly over another: in level->whatIsDirectional method",
-                            @"Minor Polygon Adding Error");
+                SEND_ERROR_MSG_TITLE(NSLocalizedString(@"Y There is one point directly over another: in level->whatIsDirectional method", @"Y There is one point directly over another: in level->whatIsDirectional method"),
+                                     NSLocalizedString(@"Minor Polygon Adding Error", @"Minor Polygon Adding Error"));
                 NSLog(@"Y Two points with same cordianates with line apart of poly: in level->whatIsDirectional method... px: %g  py: %g", previousX, previousY);
                 return _poly_could_be_bad;
             }
@@ -792,7 +792,7 @@
     else if ([objectToDelete isKindOfClass:[PhAnnotationNote class]])
         [self deleteNote:objectToDelete];
     else
-        SEND_ERROR_MSG(@"Not Implemented Yet, Sorry!");
+        SEND_ERROR_MSG(NSLocalizedString(@"Not Implemented Yet, Sorry!", @"Not Implemented Yet, Sorry!"));
     
     /*
     else if ([objectToDelete isKindOfClass:[PhLayer class]])

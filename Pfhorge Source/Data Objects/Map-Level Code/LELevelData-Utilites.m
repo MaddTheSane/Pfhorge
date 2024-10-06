@@ -43,6 +43,7 @@
 #import "PhRandomSound.h"
 #import "PhItemPlacement.h"
 #import "PhPlatform.h"
+#import "PhNoteGroup.h"
 
 #import "Terminal.h"
 #import "TerminalSection.h"
@@ -59,9 +60,7 @@
 
 - (void)havePointsScanForLines
 {
-    NSEnumerator *numer = [points objectEnumerator];
-    LEMapPoint *thisObj;
-    while (thisObj = [numer nextObject])
+    for (LEMapPoint *thisObj in points)
     {
         [thisObj scanAndUpdateLines];
     }
@@ -69,14 +68,11 @@
 
 - (void)recompileTerminalNamesCache
 {
-    NSEnumerator *numer;
-    id theObj;
-    
     [terminalNames removeAllObjects];
     
-    numer = [terimals objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (Terminal *theObj in terimals) {
         [terminalNames addObject:[theObj phName]];
+    }
     
     [self refreshMenusOfMenuType:PhLevelNameMenuTerminal];
 }
@@ -106,8 +102,8 @@
     {
         NSLog(@"In Union Level, theLevelToImport == nil");
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Problem Importing";
-        alert.informativeText = @"Problem importing a level, the level to import was nil?";
+        alert.messageText = NSLocalizedString(@"Problem Importing", @"Problem Importing");
+        alert.informativeText = NSLocalizedString(@"Problem importing a level, the level to import was nil?", @"Problem importing a level, the level to import was nil?");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;
@@ -196,13 +192,11 @@
 
 -(Terminal *)getTerminalThatContains:(TerminalSection *)theTermSection
 {
-    NSEnumerator *numer = [terimals objectEnumerator];
-    id thisObj = nil;
-    
-    if (theTermSection == nil)
+    if (theTermSection == nil) {
         return nil;
+    }
     
-    while (thisObj = [numer nextObject])
+    for (Terminal *thisObj in terimals)
     {
         if ([thisObj doYouHaveThisSection:theTermSection])
             return thisObj;
@@ -796,68 +790,65 @@
 
 -(void)setUpArrayPointersForEveryObject
 {
-    NSEnumerator *numer;
-    id theObj;
-    
-    numer = [noteTypes objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhNoteGroup *theObj in noteTypes) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [lines objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LELine *theObj in lines) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [mapObjects objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LEMapObject *theObj in mapObjects) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [points objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LEMapPoint *theObj in points) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [polys objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LEPolygon *theObj in polys) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [lights objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhLight *theObj in lights) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [sides objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (LESide* theObj in sides) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [notes objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhAnnotationNote *theObj in notes) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [media objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhMedia *theObj in media) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [ambientSounds objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhAmbientSound *theObj in ambientSounds) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [randomSounds objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhRandomSound *theObj in randomSounds) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [itemPlacement objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhItemPlacement *theObj in itemPlacement) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [platforms objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhPlatform *theObj in platforms) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [layersInLevel objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhLayer *theObj in layersInLevel) {
         [self setUpArrayPointersFor:theObj];
+    }
     
-    numer = [tags objectEnumerator];
-    while (theObj = [numer nextObject])
+    for (PhTag *theObj in tags) {
         [self setUpArrayPointersFor:theObj];
+    }
 }
 
 

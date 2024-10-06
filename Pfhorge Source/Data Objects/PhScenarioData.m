@@ -31,7 +31,8 @@
 {
     self = [super init];
     if (coder.allowsKeyedCoding) {
-        levelFileNames = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"];
+        levelFileNames = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"] mutableCopy];
+        pictFileNames = [[NSMutableArray alloc] initWithCapacity:0];
     } else {
         /*int versionNum = */decodeNumInt(coder);
         
@@ -64,14 +65,8 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    levelFileNames = [[NSMutableArray alloc] initWithCapacity:0];
-    pictFileNames = [[NSMutableArray alloc] initWithCapacity:0];
-    projectDir = nil;
+    if (self = [self initWithProjectDirectory:nil]) {
+    }
     
     return self;
 }
@@ -247,7 +242,7 @@ shouldEditTableColumn:(NSTableColumn *)col
 }
 
 - (void)tableView:(NSTableView *)aTableView
-   setObjectValue:anObject
+   setObjectValue:(id)anObject
    forTableColumn:(NSTableColumn *)col
               row:(NSInteger)rowIndex
 {
