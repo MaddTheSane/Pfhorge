@@ -581,6 +581,12 @@
 {
     NSString *fileName = url.path;
     BOOL value = YES;
+    if ([ScenarioResources isAppleSingleAtURL:url findResourceFork:YES offset:NULL length:NULL] || [ScenarioResources isAppleSingleAtURL:url findResourceFork:NO offset:NULL length:NULL] || [ScenarioResources isMacBinaryAtURL:url dataLength:NULL resourceLength:NULL]) {
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSURLErrorKey: url, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"AppleSingle/MacBinary-encoded maps are not supported yet.", @"AppleSingle/MacBinary-encoded maps are not supported yet.")}];
+        }
+        return NO;
+    }
 	NSData *theData = [NSData dataWithContentsOfURL:url options:0 error:outError];
 	if (!theData) {
 		return NO;

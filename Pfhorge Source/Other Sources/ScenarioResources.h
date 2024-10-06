@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSString		*filename;
 }
++ (BOOL)isAppleSingleAtURL:(NSURL*)url findResourceFork:(BOOL)rsrc_fork offset:(nullable int*)offset length:(nullable int*)length;
++ (BOOL)isMacBinaryAtURL:(NSURL*)url dataLength:(nullable int*)data_length resourceLength:(nullable int*)rsrc_length;
+
+
 - (instancetype)initWithContentsOfFile:(NSString *)fileName;
 - (nullable instancetype)initWithContentsOfURL:(NSURL *)fileName error:(NSError**)outError;
 - (BOOL)loadContentsOfFile:(NSString *)fileName;

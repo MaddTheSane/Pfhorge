@@ -8,6 +8,7 @@
 
 #import "ScenarioResources.h"
 #import "Resource.h"
+#import "PhData.h"
 
 #import "PhProgress.h"
 
@@ -19,6 +20,97 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 @implementation ScenarioResources
 
++ (BOOL)isAppleSingleAtURL:(NSURL*)url findResourceFork:(BOOL)rsrc_fork offset:(int*)offset length:(int*)length
+{
+    NSData *aData = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:NULL];
+    if (!aData) {
+        return NO;
+    }
+    PhData *dat = [[PhData alloc] initWithData:aData];
+    uint32 ident;
+    uint32 version;
+    if (!([dat getUnsignedInt:&ident] &&
+          [dat getUnsignedInt:&version])) {
+        return NO;
+    }
+    
+    if (ident != 0x00051600 || version != 0x00020000) {
+        return false;
+    }
+
+    // Find fork
+    const uint32_t req_id = rsrc_fork ? 2 : 1;
+    if (![dat setPosition:0x18]) {
+        return NO;
+    }
+    short num_entries;
+    if (![dat getShort:&num_entries]) {
+        return NO;
+    }
+    
+    while (num_entries--) {
+        uint32_t id2;
+        int32_t ofs;
+        int32_t len;
+        if (!([dat getUnsignedInt:&id2] && [dat getInt:&ofs] && [dat getInt:&len])) {
+            return NO;
+        }
+        if (id2 == req_id) {
+            if (offset) {
+                *offset = ofs;
+            }
+            if (length) {
+                *length = len;
+            }
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
++ (BOOL)isMacBinaryAtURL:(NSURL*)url dataLength:(int*)data_length resourceLength:(int*)rsrc_length
+{
+    // This recognizes up to macbinary III (0x81)
+    NSData *aData = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:NULL];
+    if (!aData || aData.length < 128) {
+        return NO;
+    }
+    
+    uint8_t header[128];
+    [aData getBytes:header length:sizeof(header)];
+    
+    if (header[0] || header[1] > 63 || header[74] || header[123] > 0x81) {
+        return NO;
+    }
+    
+    // Check CRC
+    uint16_t crc = 0;
+    for (int i=0; i<124; i++) {
+        uint16_t data = header[i] << 8;
+        for (int j=0; j<8; j++) {
+            if ((data ^ crc) & 0x8000) {
+                crc = (crc << 1) ^ 0x1021;
+            } else {
+                crc <<= 1;
+            }
+            data <<= 1;
+        }
+    }
+    //printf("crc %02x\n", crc);
+    if (crc != ((header[124] << 8) | header[125])) {
+        return NO;
+    }
+    
+    // CRC valid, extract fork sizes
+    if (data_length) {
+        *data_length = (header[83] << 24) | (header[84] << 16) | (header[85] << 8) | header[86];
+    }
+    if (rsrc_length) {
+        *rsrc_length = (header[87] << 24) | (header[88] << 16) | (header[89] << 8) | header[90];
+    }
+    return YES;
+}
 
 - (id)initWithContentsOfFile:(NSString *)fileName
 {
@@ -129,7 +221,6 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     NSArray<Resource*>		*array;
     Resource		*resource;
     Handle			handle;
-    int				j;
     
     url = [NSURL fileURLWithPath:fileName];
     //CFURLGetFSRef(url, &fsref);
@@ -148,14 +239,14 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     for (array in typeDict.objectEnumerator) {
         
-        for (j = 0; j < [array count]; j++) {
-            resource = [self resourceOfType:[[array objectAtIndex:j] type]
-                                      index:[[[array objectAtIndex:j] resID] shortValue]
+        for (Resource *res in array) {
+            resource = [self resourceOfType:[res type]
+                                      index:[[res resID] shortValue]
                                        load:NO];
             
             if (![resource loaded]) {
-                handle = ASGetResource([[array objectAtIndex:j] type],
-                                       [[array objectAtIndex:j] resID],
+                handle = ASGetResource([res type],
+                                       [res resID],
                                        oldFileName);
             } else {
                 handle = NewHandle([[resource data] length]);
@@ -166,9 +257,9 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
             
             UseResFile(refNum);
             
-            AddResource(handle, [[array objectAtIndex:j] typeAsResType],
-                        [[[array objectAtIndex:j] resID] shortValue],
-                        [[array objectAtIndex:j] nameAsStr255]);
+            AddResource(handle, [res typeAsResType],
+                        [[res resID] shortValue],
+                        [res nameAsStr255]);
             
             WriteResource(handle);
             
