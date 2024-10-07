@@ -5,7 +5,15 @@
       "comment" : "[No Group]"
     },
     "A File Is Already At Script Folder Location, see console for location." : {
-      "comment" : "A File Is Already At Script Folder Location, see console for location."
+      "comment" : "A File Is Already At Script Folder Location, see console for location.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A file is already at the Script Folder location, see console for location."
+          }
+        }
+      }
     },
     "A Height With That Number Already Exsists" : {
       "comment" : "A Height With That Number Already Exists",
@@ -39,7 +47,15 @@
       }
     },
     "An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!" : {
-      "comment" : "An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!"
+      "comment" : "An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An obsolete method -setPermutation: was called in a polygon object; this is a possible error!"
+          }
+        }
+      }
     },
     "AppleScript Error" : {
       "comment" : "AppleScript Error"
@@ -51,7 +67,15 @@
       "comment" : "Archiving Level Into Binary Data…"
     },
     "Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array…" : {
-      "comment" : "Bad Map Data"
+      "comment" : "Bad Map Data",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bad map data, bounding error: map trying to reference beyond the bounds of an array! Setting it to the last item in array…"
+          }
+        }
+      }
     },
     "Bad Polygon/Lines/Points" : {
       "comment" : "Bad Polygon/Lines/Points"
@@ -74,17 +98,30 @@
     "Can't Edit Polygons Here (Use General Inspector)" : {
       "comment" : "Can't Edit Polygons Here (Use General Inspector)"
     },
-    "Can't Load File, Unknown Format." : {
-      "comment" : "Can't Load File, Unknown Format."
-    },
     "Can't Load File: Unknown Format." : {
-      "comment" : "Can't Load File: Unknown Format."
+      "comment" : "Can't Load File: Unknown Format.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Load File: Unknown Format."
+          }
+        }
+      }
     },
     "Can't Load Map" : {
       "comment" : "Can't Load Map"
     },
     "Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here." : {
-      "comment" : "Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here."
+      "comment" : "Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't load this version of Pfhorge map data: Export it in latter version of Pfhorge, then open it here."
+          }
+        }
+      }
     },
     "Can't Load This Version Of Pfhorge Map Data, Export It In Previous Version Then Open It Here." : {
       "comment" : "Can't open old Pfhorge Map Data.",
@@ -110,7 +147,15 @@
       "comment" : "Color List Table Attempted To Set Object."
     },
     "Combine Pfhorge/Aleph/Marathon Map" : {
-      "comment" : "Combine Pfhorge/Aleph/Marathon Map"
+      "comment" : "Combine Pfhorge/Aleph/Marathon Map",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Combine Pfhorge/Aleph One/Marathon Map"
+          }
+        }
+      }
     },
     "Combine/Import" : {
       "comment" : "Combine/Import"
@@ -122,7 +167,15 @@
       "comment" : "Compiling And Caching List Of Custom Names In Level…"
     },
     "Converting “%@”…" : {
-      "comment" : "Converting \"%@\"..."
+      "comment" : "Converting \"%@\"...",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converting “%@”…"
+          }
+        }
+      }
     },
     "Converting Error" : {
       "comment" : "Converting Error"
@@ -202,7 +255,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "File named 'Image' already exists in scenario folder, can get images."
+            "value" : "File named ‘Image’ already exists in scenario folder, can get images."
           }
         }
       }
@@ -444,7 +497,15 @@
       }
     },
     "One of the lines was not concave reltive to the rest of the lines…" : {
-      "comment" : "One of the lines was not concave reltive to the rest of the lines…"
+      "comment" : "One of the lines was not concave reltive to the rest of the lines…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One of the lines was not concave relative to the rest of the lines…"
+          }
+        }
+      }
     },
     "One of the lines was not concave." : {
       "comment" : "One of the lines was not concave."
@@ -532,7 +593,15 @@
       "comment" : "Selected annotation note is not in a polygon: if you do not fix this, the object it is in danger of being deleted!"
     },
     "Selected item is not a Terminal or TerminalSection class???" : {
-      "comment" : "Selected item is not a Terminal or TerminalSection class???"
+      "comment" : "Selected item is not a Terminal or TerminalSection class???",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected item is not a Terminal or TerminalSection class?"
+          }
+        }
+      }
     },
     "Selected map object is not in a polygon: if you do not fix this, the object it is in danger of being deleted!" : {
       "comment" : "Selected map object is not in a polygon: if you do not fix this, the object it is in danger of being deleted!"
@@ -696,7 +765,15 @@
       "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 3"
     },
     "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!" : {
-      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!"
+      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!"
+          }
+        }
+      }
     },
     "When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!" : {
       "comment" : "When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!"
@@ -729,7 +806,15 @@
       "comment" : "Y There is one point directly over another: in level->whatIsDirectional method"
     },
     "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!" : {
-      "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!"
+      "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent peculiar arguments. Please open a issue with the console messages from Pfhorge!"
+          }
+        }
+      }
     },
     "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768." : {
       "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768."

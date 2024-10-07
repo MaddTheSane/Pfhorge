@@ -339,7 +339,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         }
     } else {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can't Load Map", @"Can't Load Map"), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't Load File, Unknown Format.", @"Can't Load File, Unknown Format.")}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can't Load Map", @"Can't Load Map"), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't Load File: Unknown Format.", @"Can't Load File: Unknown Format.")}];
         }
         loadedOk = NO;
     }

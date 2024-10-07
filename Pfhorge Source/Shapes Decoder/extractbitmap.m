@@ -114,6 +114,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 			UnloadCollection(theCollection);
 			fclose(f);
 			free(ctable);
+			return nil;
 		}
 		[theImage addRepresentation:rep];
 		[theTextures addObject:theImage];
