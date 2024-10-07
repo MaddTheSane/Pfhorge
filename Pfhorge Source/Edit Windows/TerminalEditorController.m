@@ -411,11 +411,9 @@
         poposedTerminalToDelete = theSelectedObj;
         
         // Open the sheet...
-        [NSApp beginSheet:sheetWarningWindow
-           modalForWindow:[self window]
-            modalDelegate:self
-           didEndSelector:NULL
-              contextInfo:nil];
+        [self.window beginSheet:sheetWarningWindow completionHandler:^(NSModalResponse returnCode) {
+            
+        }];
     } else if ([theSelectedObj isKindOfClass:[TerminalSection class]]) {
         Terminal *theTerm = [theLevel getTerminalThatContains:theSelectedObj];
         NSMutableArray *sections = [theTerm theSections];
@@ -444,7 +442,7 @@
         
         // Hide the sheet...
         [sheetWarningWindow orderOut:nil];
-        [NSApp endSheet:sheetWarningWindow];
+        [self.window endSheet:sheetWarningWindow];
         return;
     }
     
@@ -458,7 +456,7 @@
     poposedTerminalToDelete = nil;
     theLastObjectEdited = nil;
     [sheetWarningWindow orderOut:nil];
-    [NSApp endSheet:sheetWarningWindow];
+    [self.window endSheet:sheetWarningWindow];
     
     [theTeriminalTableView reloadData];
     

@@ -32,6 +32,7 @@
 
 #import "PhAbstractName.h"
 #import "PhAmbientSound.h"
+#import "PhRandomSound.h"
 
 #import "PhLayer.h"
 

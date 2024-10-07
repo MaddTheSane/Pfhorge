@@ -425,7 +425,9 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     [landscape selectItemAtIndex:[theLevel songIndex]];
     
     // Open the sheet...
-    [NSApp beginSheet:levelSettingsSheet modalForWindow:mainWindow modalDelegate:self didEndSelector:NULL contextInfo:nil];
+    [mainWindow beginSheet:levelSettingsSheet completionHandler:^(NSModalResponse returnCode) {
+        
+    }];
     sheetOpen = YES;
 }
 
@@ -467,7 +469,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     }
     
     [levelSettingsSheet orderOut:nil];
-    [NSApp endSheet:levelSettingsSheet];
+    [mainWindow endSheet:levelSettingsSheet];
     
     sheetOpen = NO;
     
@@ -514,7 +516,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 - (IBAction)cancelLevelSettings:(id)sender
 {
     [levelSettingsSheet orderOut:nil];
-    [NSApp endSheet:levelSettingsSheet];
+    [mainWindow endSheet:levelSettingsSheet];
     
     sheetOpen = NO;
     

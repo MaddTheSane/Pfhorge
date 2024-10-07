@@ -81,7 +81,7 @@ extern NSNotificationName const PhLevelDidChangeNameNotification;
     
     BOOL closeIfLevelSettingsCancled;
     
-    int currentLevelLoaded;
+    NSInteger currentLevelLoaded;
     
     PhAnnotationNote *tmpNote;
 }

@@ -146,7 +146,7 @@
     newHeightSheetOpen = NO;
     [currentLevelDrawView setNewHeightSheetOpen:NO];
     [newHeightWindowSheet orderOut:nil];
-    [NSApp endSheet:newHeightWindowSheet];
+    [self.window endSheet:newHeightWindowSheet];
     [colorListTable reloadData];
 }
 
@@ -155,7 +155,7 @@
     newHeightSheetOpen = NO;
     [currentLevelDrawView setNewHeightSheetOpen:NO];
     [newHeightWindowSheet orderOut:nil];
-    [NSApp endSheet:newHeightWindowSheet];
+    [self.window endSheet:newHeightWindowSheet];
 }
 
 // *********************** Other Methods ***********************
@@ -259,11 +259,9 @@
     } else {
         if ([currentLevelDrawView newHeightSheetOpen]) {
             if (!newHeightSheetOpen) {
-                [NSApp beginSheet:newHeightWindowSheet
-                   modalForWindow:[self window]
-                    modalDelegate:self
-                   didEndSelector:NULL
-                      contextInfo:nil];
+                [[self window] beginSheet:newHeightWindowSheet completionHandler:^(NSModalResponse returnCode) {
+                    
+                }];
                 
                 newHeightSheetOpen = YES;
             }
@@ -346,11 +344,9 @@ shouldEditTableColumn:(NSTableColumn *)col
             case LEMapDrawingModeCeilingHeight:
             case LEMapDrawingModeFloorHeight:
                 // Open the sheet...
-                [NSApp beginSheet:newHeightWindowSheet
-                   modalForWindow:[self window]
-                    modalDelegate:self
-                   didEndSelector:NULL
-                      contextInfo:nil];
+                [self.window beginSheet:newHeightWindowSheet completionHandler:^(NSModalResponse returnCode) {
+                    
+                }];
                 
                 newHeightSheetOpen = YES;
                 [currentLevelDrawView setNewHeightSheetOpen:YES];

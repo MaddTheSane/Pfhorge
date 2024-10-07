@@ -202,8 +202,9 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSData *theFileData = [NSData dataWithContentsOfFile:fileName];
         NSMutableData *tempData = [[NSMutableData alloc] initWithCapacity:200000];
         
-        theLevel =	[NSKeyedUnarchiver unarchiveObjectWithData:
-                     [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]];
+        theLevel =	[NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:
+                     [theFileData subdataWithRange:NSMakeRange(10 ,([theFileData length] - 10))]
+                                                        error:NULL];
         
         mapDataToSave = tempData;
         [self exportLevelDataToMarathonFormat:theLevel];

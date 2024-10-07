@@ -598,13 +598,12 @@
     [resources loadContentsOfFile:fileName];
     
     } @catch (NSException *localException) {
-    if (NSRunCriticalAlertPanel(@"Error opening file",
-                                @"\"%@\" has the following problems:\n\n%@",
-                                @"Close", nil, nil, fileName, localException)
-                                == NSAlertDefaultReturn) {
+        if (outError) {
+            NSMutableDictionary *errorDict = [NSMutableDictionary dictionaryWithDictionary:localException.userInfo ?: @{}];
+            errorDict[NSLocalizedFailureReasonErrorKey] = localException.reason;
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadUnknownError userInfo:errorDict];
+        }
         value = NO;
-        [localException raise];
-    }
     }
     
     //[[self undoManager] removeAllActions];

@@ -135,6 +135,11 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     return [self loadContentsOfURL:[NSURL fileURLWithPath:fileName] error:NULL];
 }
 
+- (BOOL)loadContentsOfFile:(NSString *)fileName error:(NSError**)outError;
+{
+    return [self loadContentsOfURL:[NSURL fileURLWithPath:fileName] error:outError];
+}
+
 - (BOOL)loadContentsOfURL:(NSURL *)fileURL error:(NSError**)outError
 {
     FSRef			fsref;

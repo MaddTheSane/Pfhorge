@@ -175,7 +175,7 @@ final class SNDConverter: NSObject {
 	}
 	
 	private func unpackExtendedSystem7Header(_ stream: PhData) throws(Errors) {
-		signed8Bit = false;
+		signed8Bit = false
 		// sample pointer
 		guard stream.add(toPosition: 4) else {
 			throw Errors.unexpectedEOF
@@ -258,11 +258,13 @@ final class SNDConverter: NSObject {
 
 	@objc(importFromURL:error:)
 	func importFrom(_ url: URL) throws {
-		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr)
+		let data = try Data(contentsOf: url)
+		try load(from: data)
 	}
 	
 	@objc(exportToURL:error:)
 	func export(to url: URL) throws {
-		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr)
+		let data = saveToData()
+		try data.write(to: url)
 	}
 }

@@ -17,7 +17,7 @@
 @interface PhPluginManager (ForPlugins)
 
 //! Use this to get the plugin manager...
-+ (PhPluginManager *)getThePluginManager;
++ (nonnull PhPluginManager *)getThePluginManager;
 
 // Currently Loaded Plugin Types...
 //- (NSArray *)pluginClasses;
@@ -27,10 +27,10 @@
 
 //! Lists the LEMap documents open,
 //! in order of front to back...
-- (NSArray<LEMap *> *)levelDocumentsOpen;
+- (nullable NSArray<LEMap *> *)levelDocumentsOpen;
 
 //! Gives the frontmost LEMap level document...
--(LEMap *)currentDocument;
+-(nullable LEMap *)currentDocument;
 
 @end
 

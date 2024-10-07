@@ -10,7 +10,7 @@
 #import <Carbon/Carbon.h>
 
 @interface NSURL (NDCarbonUtilities)
-+ (NSURL *)URLWithFSRef:(const FSRef *)aFsRef;
-- (BOOL)getFSRef:(FSRef *)aFsRef;
-@property (readonly, copy) NSString *fileSystemPathHFSStyle;
++ (NSURL *)URLWithFSRef:(const FSRef *)aFsRef API_DEPRECATED("FSRefs are deprecated", macos(10.0,10.9));
+- (BOOL)getFSRef:(FSRef *)aFsRef API_DEPRECATED("FSRefs are deprecated", macos(10.0,10.9));
+@property (readonly, copy) NSString *fileSystemPathHFSStyle API_DEPRECATED("FSRefs are deprecated", macos(10.0,10.9));
 @end

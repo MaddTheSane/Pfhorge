@@ -316,6 +316,7 @@ DQ
                     <constraint firstItem="11" firstAttribute="firstBaseline" secondItem="17" secondAttribute="firstBaseline" id="tH6-a8-0Hc"/>
                     <constraint firstItem="52" firstAttribute="leading" secondItem="25" secondAttribute="trailing" constant="8" symbolic="YES" id="ua6-Ts-zCQ"/>
                     <constraint firstItem="8" firstAttribute="firstBaseline" secondItem="176" secondAttribute="firstBaseline" id="z0i-WW-spu"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9" secondAttribute="trailing" constant="20" symbolic="YES" id="ziA-4L-c1s"/>
                     <constraint firstItem="60" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="12" symbolic="YES" id="zun-o2-iV1"/>
                 </constraints>
             </view>
