@@ -144,7 +144,7 @@ static NSBundle* pluginBundle = nil;
 	        
         self = [super initWithWindowNibName:@"TextView"];
         
-	theViewName = [name retain];
+	theViewName = [name copy];
 	//theObject = [anObject retain];
         theObject = nil;
         
