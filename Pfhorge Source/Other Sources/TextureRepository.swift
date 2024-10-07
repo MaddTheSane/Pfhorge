@@ -162,7 +162,7 @@ private func getAllTextures(collection theCollection: LELevelEnvironmentCode, co
     var err: NSError? = nil
     guard let imgArr = __getAllTexturesOfWithError(Int32(theCollection.rawValue), theColorTable, shapesPath, &err) else {
         guard let err else {
-            throw NSError(domain: NSCocoaErrorDomain, code: -1)
+            throw CocoaError(.fileReadUnknown, userInfo: [NSURLErrorKey: shapesPath])
         }
         throw err
     }

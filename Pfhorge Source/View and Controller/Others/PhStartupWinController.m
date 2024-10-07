@@ -95,9 +95,10 @@
     [self setStatusText:@"Loading Water Textures…"];
     [textures loadTextureSet:_water error:NULL];
     
+    //TODO: Don't open the shapes file over and over...
     if ([textures textureCollection:_water] == nil)
     {
-        [self setStatusText:@"Can't load, choose shapes location in prefs…"];
+        [self setStatusText:NSLocalizedString(@"Can't load, choose shapes location in prefs…", @"Can't load, choose shapes location in prefs…")];
         [self closeWindow];
         NSAlert *alert = [[NSAlert alloc] init];
         alert.messageText = NSLocalizedString(@"Shapes Not Found", @"Shapes Not Found");

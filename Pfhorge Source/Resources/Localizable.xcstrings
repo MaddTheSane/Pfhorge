@@ -137,6 +137,9 @@
     "Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here." : {
       "comment" : "Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here."
     },
+    "Can't load, choose shapes location in prefs…" : {
+      "comment" : "Can't load, choose shapes location in prefs…"
+    },
     "Check" : {
       "comment" : "Check"
     },
@@ -183,6 +186,9 @@
     "Could not convert one of the levels…" : {
       "comment" : "Could not convert one of the levels…"
     },
+    "Could not create image for bitmap (possible end-of-file?)" : {
+      "comment" : "Could not create image for bitmap (possible end-of-file?)"
+    },
     "Could not create images folder" : {
       "comment" : "Could not create images folder"
     },
@@ -200,6 +206,15 @@
     },
     "Could not load textures, please set shapes location in the prefs." : {
       "comment" : "Could not load textures, please set shapes location in the prefs."
+    },
+    "Could not read bitmap info in shapes file" : {
+      "comment" : "Could not read bitmap info in shapes file"
+    },
+    "Could not read collection headers in shapes file" : {
+      "comment" : "Could not read collection headers in shapes file"
+    },
+    "Could not read color tables in shapes file" : {
+      "comment" : "Could not read color tables in shapes file"
     },
     "Creating Script Folder" : {
       "comment" : "Creating Script Folder"
@@ -227,6 +242,9 @@
     },
     "Error Creating Script Folder" : {
       "comment" : "Error Creating Script Folder"
+    },
+    "Error Reading Shapes" : {
+      "comment" : "Error Reading Shapes"
     },
     "ERROR: An unknown contol panel type Attempted to be selected..." : {
       "comment" : "ERROR: An unknown contol panel type Attempted to be selected..."

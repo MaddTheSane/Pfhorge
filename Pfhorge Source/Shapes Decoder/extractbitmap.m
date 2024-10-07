@@ -62,7 +62,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	/// fprintf(stderr, "Reading collection headers... ");
 	if (LoadShapes(f, 8)) {
 		if (outError) {
-			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadCollectionHeader userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not read collection headers in shapes file", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:EIO userInfo:nil]}];
+			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadCollectionHeader userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Could not read collection headers in shapes file", @"Could not read collection headers in shapes file"), NSLocalizedDescriptionKey: NSLocalizedString(@"Error Reading Shapes", @"Error Reading Shapes"), NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:EIO userInfo:nil]}];
 		}
 		
 		fclose(f);
@@ -75,7 +75,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	/// fprintf(stderr, "Loading color table %d... ", theColorTable);
 	if ((err = DecodeShapesClut(theCollection, theColorTable, &color_count, &ctable))) {
 		if (outError) {
-			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadColorTable userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not read color tables in shapes file", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSLocalizedDescriptionKey: @(strerror(err))}]}];
+			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadColorTable userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Could not read color tables in shapes file", @"Could not read color tables in shapes file"), NSLocalizedDescriptionKey: NSLocalizedString(@"Error Reading Shapes", @"Error Reading Shapes"), NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSLocalizedDescriptionKey: @(strerror(err))}]}];
 		}
 		
 		fclose(f);
@@ -86,7 +86,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	// get number of bitmaps in the collection...
 	if ((err = GetNumberOfBitmapsInCollection(theCollection, &theBitmapCount))) {
 		if (outError) {
-			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadBitmapInfo userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not read bitmap info in shapes file", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSLocalizedDescriptionKey: @(strerror(err))}]}];
+			*outError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportCouldNotReadBitmapInfo userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Could not read bitmap info in shapes file", @"Could not read bitmap info in shapes file"), NSLocalizedDescriptionKey: NSLocalizedString(@"Error Reading Shapes", @"Error Reading Shapes"), NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:@{NSLocalizedDescriptionKey: @(strerror(err))}]}];
 		}
 		
 		fclose(f);
@@ -107,7 +107,7 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 		}
 		if (!rep) {
 			if (outError) {
-				tmpError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportReturnedNilImageRep userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: @"Could not create image for bitmap (possible end-of-file?)", NSLocalizedDescriptionKey: @"Error Reading Shapes", NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:[NSDictionary dictionaryWithObjectsAndKeys:tmpErr, NSUnderlyingErrorKey, nil]]}];
+				tmpError = [NSError errorWithDomain:LEShapesImportErrorDomain code:LEShapesImportReturnedNilImageRep userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Could not create image for bitmap (possible end-of-file?)", @"Could not create image for bitmap (possible end-of-file?)"), NSLocalizedDescriptionKey: NSLocalizedString(@"Error Reading Shapes", @"Error Reading Shapes"), NSUnderlyingErrorKey: [NSError errorWithDomain:NSPOSIXErrorDomain code:err userInfo:[NSDictionary dictionaryWithObjectsAndKeys:tmpErr, NSUnderlyingErrorKey, nil]]}];
 				*outError = tmpError;
 			}
 			

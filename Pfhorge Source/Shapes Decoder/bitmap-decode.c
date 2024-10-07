@@ -116,7 +116,7 @@ int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **o
 		return errno;
 	p = colls[coll] + clutOffset + (SIZEOF_rgb_color_value * colorsPerClut * clutID);
 	for (i = 0; i < colorsPerClut; i++) {
-		GET_BYTE(p);
+		(*outColors)[i].flags = GET_BYTE(p);
 		(*outColors)[i].value = GET_BYTE(p);
 		(*outColors)[i].red = GET_WORD(p);
 		(*outColors)[i].green = GET_WORD(p);
