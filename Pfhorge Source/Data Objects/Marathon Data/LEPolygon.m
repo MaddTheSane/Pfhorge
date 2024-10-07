@@ -314,8 +314,8 @@
         [permutationObject displayInfo];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Detailed Polygon Info";
-        alert.informativeText = @"Only platform polygons support this for right now…";
+        alert.messageText = NSLocalizedString(@"Detailed Polygon Info", @"Detailed Polygon Info");
+        alert.informativeText = NSLocalizedString(@"Only platform polygons support this for right now…", @"Only platform polygons support this for right now…");
         alert.alertStyle = NSAlertStyleInformational;
         [alert runModal];
     }
@@ -1549,8 +1549,8 @@
 				}
             } else {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Generic Error";
-                alert.informativeText = @"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!";
+                alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                alert.informativeText = NSLocalizedString(@"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!", @"When copying settings to a new platform, the orginal platfrom was nil, Default Polygon Subroutine Error!!!");
                 alert.alertStyle = NSAlertStyleInformational;
                 [alert runModal];
                 tempPermutationObj = nil;
@@ -1796,8 +1796,8 @@
     }
     else*/
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!", @"An obsolete method setPermutation:(short)v was called in a polygon object, this is a possible error!");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
     //permutation = v;

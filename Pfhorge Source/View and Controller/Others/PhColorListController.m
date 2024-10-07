@@ -290,8 +290,8 @@
         if ([numbers count] != [colors count]) {
             NSLog(@"ERROR: Numbers array count and colors array count are not equal: (Numbers: %lu Colors: %lu)", (unsigned long)[numbers count], (unsigned long)[colors count]);
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Numbers array count and colors array count are not equal (check console for more details), ERROR!";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Numbers array count and colors array count are not equal (check console for more details), ERROR!", @"Numbers array count and colors array count are not equal (check console for more details), ERROR!");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
@@ -409,8 +409,8 @@ shouldEditTableColumn:(NSTableColumn *)col
 {
     // Should never get here for right now, acutally...
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Color List Table Attempted To Set Object.";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Color List Table Attempted To Set Object.", @"Color List Table Attempted To Set Object.");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
     return;

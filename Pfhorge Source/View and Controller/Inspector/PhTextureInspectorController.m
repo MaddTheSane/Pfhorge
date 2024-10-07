@@ -429,8 +429,8 @@
             baseSideRef = cSide;
         } else {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Please Report This Error";
-            alert.informativeText = @"Don't know which side to have inspector inspect";
+            alert.messageText = NSLocalizedString(@"Please Report This Error", @"Please Report This Error");
+            alert.informativeText = NSLocalizedString(@"Don't know which side to have inspector inspect", @"Don't know which side to have inspector inspect");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
             [self reset];

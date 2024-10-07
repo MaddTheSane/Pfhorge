@@ -330,7 +330,7 @@ void createAndExecuteScriptObject( NSString * aPath )
 		 * This shows creating a script object from a compiled AppleScript file,
 		 */
 		NSLog(@"Geting Script...");
-		theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfFile:aPath];
+        theScriptObject = [[[NDAppleScriptObject alloc] initWithContentsOfFile:aPath] autorelease];
 	}
 	
 	if (theScriptObject) {

@@ -154,8 +154,8 @@
         return [[item theSections] count];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Unknown Object";
-        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.messageText = NSLocalizedString(@"Unknown Object", @"Unknown Object");
+        alert.informativeText = NSLocalizedString(@"Unknown Class Object Encountered In Terimal Controller Data.", @"Unknown Class Object Encountered In Terimal Controller Data.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return 0;
@@ -172,8 +172,8 @@
         return YES;
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Unknown Object";
-        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.messageText = NSLocalizedString(@"Unknown Object", @"Unknown Object");
+        alert.informativeText = NSLocalizedString(@"Unknown Class Object Encountered In Terimal Controller Data.", @"Unknown Class Object Encountered In Terimal Controller Data.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return NO;
@@ -190,8 +190,8 @@
         return @"";
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Unknown Object";
-        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data.";
+        alert.messageText = NSLocalizedString(@"Unknown Object", @"Unknown Object");
+        alert.informativeText = NSLocalizedString(@"Unknown Class Object Encountered In Terimal Controller Data.", @"Unknown Class Object Encountered In Terimal Controller Data.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return @"";
@@ -316,8 +316,8 @@
             NSArray *terminals = [theLevel terminals];
             if ([terminals count] <= 0) {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Generic Error";
-                alert.informativeText = @"Must have a terminal to add sections to first. 103";
+                alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                alert.informativeText = NSLocalizedString(@"Must have a terminal to add sections to first. 103", @"Must have a terminal to add sections to first. 103");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 NSLog(@"past release...");
@@ -428,8 +428,8 @@
         [theLevel recompileTerminalNamesCache];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Selected item is not a Terminal or TerminalSection class???";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Selected item is not a Terminal or TerminalSection class???", @"Selected item is not a Terminal or TerminalSection class???");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -498,8 +498,8 @@
         [indexPopM setIntValue:0];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Unknown Object";
-        alert.informativeText = @"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection";
+        alert.messageText = NSLocalizedString(@"Unknown Object", @"Unknown Object");
+        alert.informativeText = NSLocalizedString(@"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection", @"Unknown Class Object Encountered In Terimal Controller Data… updateViewToTerminalSection");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         theType = PhTerminalSectionTypeNone;

@@ -550,8 +550,8 @@ extern NSString *VMBackwardKey;
         default:
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Could not determine which button was pressed.";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Could not determine which button was pressed.", @"Could not determine which button was pressed.");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }

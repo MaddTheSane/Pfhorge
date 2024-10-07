@@ -488,8 +488,8 @@
         default:
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"ERROR: An unknown contol panel type Attempted to be selected...";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"ERROR: An unknown contol panel type Attempted to be selected...", @"ERROR: An unknown contol panel type Attempted to be selected...");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }

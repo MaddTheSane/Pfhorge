@@ -161,8 +161,8 @@
             static BOOL alreadyHadLecture2 = NO;
             if (!alreadyHadLecture2) {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Unknown Files(s)";
-                alert.informativeText = @"Unknown File(s) in Scenario Directory.";
+                alert.messageText = NSLocalizedString(@"Unknown Files(s)", @"Unknown Files(s)");
+                alert.informativeText = NSLocalizedString(@"Unknown File(s) in Scenario Directory.", @"Unknown File(s) in Scenario Directory.");
                 alert.alertStyle = NSAlertStyleInformational;
                 [alert runModal];
             }
@@ -248,8 +248,8 @@ shouldEditTableColumn:(NSTableColumn *)col
 {
     // Should never get here for right now, acutally...
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Level List Table (Senerio) Attempted To Set Object.";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Level List Table (Senerio) Attempted To Set Object.", @"Level List Table (Senerio) Attempted To Set Object.");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
     return;

@@ -435,7 +435,7 @@
     [tis appendString:@"\n"];
     
 	NSAlert *alert = [[NSAlert alloc] init];
-	alert.messageText = @"Detailed Platform Info…";
+	alert.messageText = NSLocalizedString(@"Detailed Platform Info…", @"Detailed Platform Info…");
 	alert.informativeText = tis;
 	alert.alertStyle = NSAlertStyleInformational;
 	[alert runModal];

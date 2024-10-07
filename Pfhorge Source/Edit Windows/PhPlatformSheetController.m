@@ -239,8 +239,8 @@
     
     if (platform == nil) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Platform Was Nil";
-        alert.informativeText = @"When I tried to save the changes to the platform, the platform was nil?";
+        alert.messageText = NSLocalizedString(@"Platform Was Nil", @"Platform Was Nil");
+        alert.informativeText = NSLocalizedString(@"When I tried to save the changes to the platform, the platform was nil?", @"When I tried to save the changes to the platform, the platform was nil?");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;

@@ -70,15 +70,15 @@ static NSString *const PhNameOfObject = @"Name";
     
     if (currentDisplayMode == _display_polys) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Can't Edit Polygons Here (Use General Inspector)";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Can't Edit Polygons Here (Use General Inspector)", @"Can't Edit Polygons Here (Use General Inspector)");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;
     } else if (currentDisplayMode == _display_layers) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Ability to edit the color of the layer comming soon!";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Ability to edit the color of the layer comming soon!", @"Ability to edit the color of the layer comming soon!");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;
@@ -88,8 +88,8 @@ static NSString *const PhNameOfObject = @"Name";
         [[theLevelWindowControllerOutlet document] openEditWindowForObject:[self getSelectedObject]];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Sorry, but you need to select something first…";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Sorry, but you need to select something first…", @"Sorry, but you need to select something first…");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -98,8 +98,8 @@ static NSString *const PhNameOfObject = @"Name";
 - (IBAction)defaultBtnAction:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Command Not Implemented Yet…", @"Command Not Implemented Yet…");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
 }
@@ -116,8 +116,8 @@ static NSString *const PhNameOfObject = @"Name";
         [[(LEMap *)[theLevelWindowControllerOutlet document] level] deleteObject:[self getSelectedObject]];
     else {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Sorry, but you need to select something first…";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Sorry, but you need to select something first…", @"Sorry, but you need to select something first…");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -127,8 +127,8 @@ static NSString *const PhNameOfObject = @"Name";
 - (IBAction)deleteAllBtnAction:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"The Delete All Command Not Implemented Yet…";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"The Delete All Command Not Implemented Yet…", @"The Delete All Command Not Implemented Yet…");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
     //[self reloadDataFromLevel];
@@ -159,8 +159,8 @@ static NSString *const PhNameOfObject = @"Name";
         case _display_polys:
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.", @"Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
@@ -171,8 +171,8 @@ static NSString *const PhNameOfObject = @"Name";
         default:
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Can't Add More Of These Yet…";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Can't Add More Of These Yet…", @"Can't Add More Of These Yet…");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
@@ -185,16 +185,16 @@ static NSString *const PhNameOfObject = @"Name";
 - (IBAction)duplicateBtnAction:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Command Not Implemented Yet…", @"Command Not Implemented Yet…");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
 }
 - (IBAction)okBtnAction:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Command Not Implemented Yet…";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Command Not Implemented Yet…", @"Command Not Implemented Yet…");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
 }

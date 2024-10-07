@@ -337,8 +337,8 @@
             if ([[theLevelData lights] count] < 1)
             {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Can't Change Type";
-                alert.informativeText = @"Sorry, but there are no lights to choose for this level.";
+                alert.messageText = NSLocalizedString(@"Can't Change Type", @"Can't Change Type");
+                alert.informativeText = NSLocalizedString(@"Sorry, but there are no lights to choose for this level.", @"Sorry, but there are no lights to choose for this level.");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 [self updateInterface];
@@ -353,8 +353,8 @@
             if ([[theLevelData namedPolyObjects] count] < 1)
             {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Can't Change Type";
-                alert.informativeText = @"Sorry, but there are no named polygons to choose for this level.";
+                alert.messageText = NSLocalizedString(@"Can't Change Type", @"Can't Change Type");
+                alert.informativeText = NSLocalizedString(@"Sorry, but there are no named polygons to choose for this level.", @"Sorry, but there are no named polygons to choose for this level.");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 [self updateInterface];

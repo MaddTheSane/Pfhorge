@@ -102,8 +102,8 @@
     } else {
         [objItem selectItemAtIndex:-1];
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Selected Object Kind Beyond Range";
-        alert.informativeText = [NSString stringWithFormat:@"Object Index [#%d] is beyond the range of object kinds, %ld", [theObj getObjTypeIndex], (long)[objItem numberOfItems]];
+        alert.messageText = NSLocalizedString(@"Selected Object Kind Beyond Range", @"Selected Object Kind Beyond Range");
+        alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Object Index [#%d] is beyond the range of object kinds, %ld", @"Object Index [#%d] is beyond the range of object kinds, %ld"), [theObj getObjTypeIndex], (long)[objItem numberOfItems]];
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -217,8 +217,8 @@
             //Perhaps though mainInspectorController and from there
             //the document controller?
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Generic Error";
-            alert.informativeText = @"Some unkown object type was found?";
+            alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+            alert.informativeText = NSLocalizedString(@"Some unkown object type was found?", @"Some unkown object type was found?");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
             [objFlags setEnabledOfMatrixCellsTo:NO];

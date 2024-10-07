@@ -128,7 +128,7 @@
     [tis appendString:@"\n"];
     
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Detailed Line Information…";
+    alert.messageText = NSLocalizedString(@"Detailed Line Information…", @"Detailed Line Information…");
     alert.informativeText = tis;
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
@@ -1504,8 +1504,8 @@
             if (smallestLineIndex < 0 || smallestLine == nil) // Proably -1, means it did not find a line that passed all the tests...
             {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Generic Error";
-                alert.informativeText = @"One of the lines was not concave reltive to the rest of the lines…";
+                alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                alert.informativeText = NSLocalizedString(@"One of the lines was not concave reltive to the rest of the lines…", @"One of the lines was not concave reltive to the rest of the lines…");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 return nil;
@@ -1518,8 +1518,8 @@
                 if (smallestLine != [theNewPolyLines objectAtIndex:0])
                 {
                     NSAlert *alert = [[NSAlert alloc] init];
-                    alert.messageText = @"Generic Error";
-                    alert.informativeText = @"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!";
+                    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                    alert.informativeText = NSLocalizedString(@"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!", @"When I reached the finnal line (going clockwise), the line with the smallest angle was not the orginal line!");
                     alert.alertStyle = NSAlertStyleCritical;
                     [alert runModal];
                     return nil;
@@ -1538,7 +1538,7 @@
                     // Will there be more then 8 vectors/lines in this poly?
                     if ([theNewPolyVectors count] > 8)
                     {
-                        SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
+                        SEND_ERROR_MSG(NSLocalizedString(@"More then 8 vertices when trying to fill polygon!", @"More then 8 vertices when trying to fill polygon!"));
                         return nil;
                     }
                     
@@ -1559,7 +1559,7 @@
                     // Will there be more then 8 vectors/lines in this poly?
                     if ([theNewPolyVectors count] > 7)
                     {
-                        SEND_ERROR_MSG(@"More then 8 vertices when trying to fill polygon!");
+                        SEND_ERROR_MSG(NSLocalizedString(@"More then 8 vertices when trying to fill polygon!", @"More then 8 vertices when trying to fill polygon!"));
                         return nil;
                     }
                     
@@ -1620,7 +1620,7 @@
         default:
             NSLog(@"Should of never gotten here, something is/went HORABLY wrong while polygon filling, map data in memory could be mangled badly!!!");
             // ??? should of never gotten here, something is HORABLY wrong!!! :(
-            SEND_ERROR_MSG(@"Somting is very wrong with the polygon line following, in LELine getPolyFromMe");
+            SEND_ERROR_MSG(NSLocalizedString(@"Somting is very wrong with the polygon line following, in LELine getPolyFromMe", @"Somting is very wrong with the polygon line following, in LELine getPolyFromMe"));
             return nil;
     }
     

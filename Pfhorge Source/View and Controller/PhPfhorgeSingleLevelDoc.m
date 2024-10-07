@@ -237,21 +237,24 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         thePfhorgeDataSig3FromData != thePfhorgeDataSig3) {
         NSLog(@"--------- ERROR: Tried To Load Marathon Map In PhPfhorgeSingleLevelDoc... ---------");
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Loading Error";
-        alert.informativeText = @"Tried To load with wrong doc class!";
+        alert.messageText = NSLocalizedString(@"Loading Error", @"Loading Error");
+        alert.informativeText = NSLocalizedString(@"Tried To load with wrong doc class!", @"Tried To load with wrong doc class!");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
+        if (outError) {
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Tried To load with wrong doc class!", @"Tried To load with wrong doc class!")}];
+        }
         loadedOk = NO;
     } else if (theVersionNumberFromData < 2 &&
         thePfhorgeDataSig1FromData == thePfhorgeDataSig1 &&
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the earlier version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too Old"}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Export it from the earlier version of Pfhorge, then open it here.", @"Export it from the earlier version of Pfhorge, then open it here."), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Level Is Too Old", @"Level Is Too Old")}];
         }
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Level Is Too Old";
-        alert.informativeText = @"Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here.";
+        alert.messageText = NSLocalizedString(@"Level Is Too Old", @"Level Is Too Old");
+        alert.informativeText = NSLocalizedString(@"Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here.", @"Can't load this version of pfhorge map data: export it in earlier, release candidate 1 release of Pfhorge, then open it here.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         loadedOk = NO;
@@ -260,11 +263,11 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         thePfhorgeDataSig2FromData == thePfhorgeDataSig2 &&
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: @"Export it from the newer version of Pfhorge, then open it here.", NSLocalizedFailureReasonErrorKey: @"Level Is Too New"}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Export it from the newer version of Pfhorge, then open it here.", @"Export it from the newer version of Pfhorge, then open it here."), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Level Is Too New", @"Level Is Too New")}];
         }
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Level Is Too New";
-        alert.informativeText = @"Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here.";
+        alert.messageText = NSLocalizedString(@"Level Is Too New", @"Level Is Too New");
+        alert.informativeText = NSLocalizedString(@"Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here.", @"Can't load this version of pfhorge map data, export it in latter version of Pfhorge, then open it here.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         loadedOk = NO;
@@ -316,8 +319,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         NSLog(@"Loading Pfhorge Formated Map...");
         
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Update Needed";
-        alert.informativeText = @"This is an eariler version of the Pfhorge level format, I will convert it for you…";
+        alert.messageText = NSLocalizedString(@"Update Needed", @"Update Needed");
+        alert.informativeText = NSLocalizedString(@"This is an eariler version of the Pfhorge level format, I will convert it for you…", @"This is an eariler version of the Pfhorge level format, I will convert it for you…");
         alert.alertStyle = NSAlertStyleInformational;
         [alert runModal];
         
@@ -336,13 +339,8 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         }
     } else {
         if (outError) {
-            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: @"Can't Load Map", NSLocalizedFailureReasonErrorKey: @"Can't Load File, Unknown Format."}];
+            *outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Can't Load Map", @"Can't Load Map"), NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"Can't Load File, Unknown Format.", @"Can't Load File, Unknown Format.")}];
         }
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Can't Load Map";
-        alert.informativeText = @"Can't Load File, Unknown Format.";
-        alert.alertStyle = NSAlertStyleCritical;
-        [alert runModal];
         loadedOk = NO;
     }
     

@@ -279,8 +279,8 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
         return;
     
     [op	setAllowsMultipleSelection:NO];
-    [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
-    [op setPrompt:@"Combine/Import"];
+    [op setTitle:NSLocalizedString(@"Combine Pfhorge/Aleph/Marathon Map", @"Combine Pfhorge/Aleph/Marathon Map")];
+    [op setPrompt:NSLocalizedString(@"Combine/Import", @"Combine/Import")];
     
     [op beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         [self savePanelDidEndForMapImport:op returnCode:result contextInfo:NULL];
@@ -298,8 +298,8 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
         return;
     
     [op	setAllowsMultipleSelection:NO];
-    [op setTitle:@"Combine Pfhorge/Aleph/Marathon Map"];
-    [op setPrompt:@"Combine/Import"];
+    [op setTitle:NSLocalizedString(@"Combine Pfhorge/Aleph/Marathon Map", @"Combine Pfhorge/Aleph/Marathon Map")];
+    [op setPrompt:NSLocalizedString(@"Combine/Import", @"Combine/Import")];
     op.allowedFileTypes = fileTypes;
     
     [op beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
@@ -1030,7 +1030,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     
     [noteGroupPM removeAllItems];
     
-    [noteGroupPM addItemWithTitle:@"[No Group]"];
+    [noteGroupPM addItemWithTitle:NSLocalizedString(@"[No Group]", @"[No Group]")];
     
     for (obj in types) {
         [noteGroupPM addItemWithTitle:[obj phName]];
@@ -1325,11 +1325,11 @@ objectValueForTableColumn:(NSTableColumn *)aTableColumn
     if ([self isSheetAlreadyOpen])
         return;
     
-    [theSavePanel setPrompt:@"Export"];
+    [theSavePanel setPrompt:NSLocalizedString(@"Export", @"Export")];
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
-        sheetOpen = NO;
+        self->sheetOpen = NO;
         
         if (result != NSModalResponseOK)
             return;

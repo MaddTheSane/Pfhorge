@@ -238,8 +238,8 @@
 	 && [theLightPhases[PhLightStateSecondaryActive][0] intValue]  == 0)
 	{
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Problem";
-        alert.informativeText = @"The primary and secondary active periods are both zero, the light was not saved.";
+        alert.messageText = NSLocalizedString(@"Problem", @"Problem");
+        alert.informativeText = NSLocalizedString(@"The primary and secondary active periods are both zero, the light was not saved.", @"The primary and secondary active periods are both zero, the light was not saved.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
 		return NO;
@@ -249,8 +249,8 @@
 	 && [theLightPhases[PhLightStateSecondaryInactive][0] intValue]  == 0)
 	{
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Problem";
-        alert.informativeText = @"The primary and secondary inactive periods are both zero, the light was not saved.";
+        alert.messageText = NSLocalizedString(@"Problem", @"Problem");
+        alert.informativeText = NSLocalizedString(@"The primary and secondary inactive periods are both zero, the light was not saved.", @"The primary and secondary inactive periods are both zero, the light was not saved.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
 		return NO;

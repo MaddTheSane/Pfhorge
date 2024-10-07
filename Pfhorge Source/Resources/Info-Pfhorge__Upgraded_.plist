@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeIconFile</key>
-			<string>MapNewIcon.icns</string>
+			<string>MapNewIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Marathon Map</string>
 			<key>CFBundleTypeOSTypes</key>

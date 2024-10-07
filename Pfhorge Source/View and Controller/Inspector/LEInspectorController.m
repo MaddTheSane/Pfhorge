@@ -251,8 +251,8 @@
             {
                 NSLog(@"The Notification Did Not Have A NSSet!");
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Generic Error";
-                alert.informativeText = @"The - (void)selectionChanged:(NSNotification *)notification Did Not Have A NSSet!";
+                alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                alert.informativeText = NSLocalizedString(@"The - (void)selectionChanged:(NSNotification *)notification Did Not Have A NSSet!", @"The - (void)selectionChanged:(NSNotification *)notification Did Not Have A NSSet!");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 [self setTabMenusTo:3];

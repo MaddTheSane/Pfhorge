@@ -184,8 +184,8 @@
             
             if (exsists && !isDir) {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Can Create Images Folder";
-                alert.informativeText = @"File named 'Image' already exsists in scenario folder, can get images.";
+                alert.messageText = NSLocalizedString(@"Can Create Images Folder", @"Can Create Images Folder");
+                alert.informativeText = NSLocalizedString(@"File named 'Image' already exsists in scenario folder, can get images.", @"File named 'Image' already exists in scenario folder, can get images.");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
                 [progress orderOutWin:self];
@@ -197,8 +197,8 @@
                 succsessfull = [fileManager createDirectoryAtPath:[imageDir stringByDeletingPathExtension] withIntermediateDirectories:YES attributes:nil error:NULL];
                 if (!succsessfull) {
                     NSAlert *alert = [[NSAlert alloc] init];
-                    alert.messageText = @"Generic Error";
-                    alert.informativeText = @"Could not create images folder";
+                    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                    alert.informativeText = NSLocalizedString(@"Could not create images folder", @"Could not create images folder");
                     alert.alertStyle = NSAlertStyleCritical;
                     [alert runModal];
                     [progress orderOutWin:self];

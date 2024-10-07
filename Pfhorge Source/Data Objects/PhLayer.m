@@ -84,7 +84,7 @@
 
 -(id)init
 {
-    return self = [self initWithName:@"No Name"];
+    return [self initWithName:@"No Name"];
 }
 
 -(id)initWithName:(NSString *)theString

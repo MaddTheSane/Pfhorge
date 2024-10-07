@@ -121,9 +121,8 @@
 - (void)setupTitlesAndNames
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Sorry, but the name will not be updated on the window\n"
-    "[it was applied though, I think ]:=) ]…";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Sorry, but the name will not be updated on the window\n[it was applied though, I think ]:=) ]…", @"Sorry, but the name will not be updated on the window\n[it was applied though, I think ]:=) ]…");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
     return;

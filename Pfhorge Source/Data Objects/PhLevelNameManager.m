@@ -292,7 +292,7 @@
     [theMenuUIO removeAllItems];
     
     if (menuKind == PhLevelNameMenuLayer) {
-        [theMenuUIO addItemWithTitle:@"No Layer On"];
+        [theMenuUIO addItemWithTitle:NSLocalizedString(@"No Layer On", @"No Layer On")];
         //[theMenuUIO addItemWithTitle:@"No Layer On2"];
         totalNumberOfMenuItems = [theNameArray count] + 1;
         //NSLog(@"Updating Layer Menu With: %@", [theNameArray description]);

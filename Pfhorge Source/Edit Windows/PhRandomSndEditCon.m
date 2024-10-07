@@ -135,7 +135,7 @@
     [nonDirectionalCB setState:NO];
     [nonDirectionalCB setEnabled:NO];
     
-    [infoIT setStringValue:@"Name Not Here Yet… :)"];
+    [infoIT setStringValue:NSLocalizedString(@"Name Not Here Yet… :)", @"Name Not Here Yet… :)")];
 }
 
 -(void)saveChanges

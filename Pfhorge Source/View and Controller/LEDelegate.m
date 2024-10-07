@@ -230,8 +230,8 @@
     {
         NSLog(@"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.");
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Script Folder Error";
-        alert.informativeText = @"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.";
+        alert.messageText = NSLocalizedString(@"Script Folder Error", @"Script Folder Error");
+        alert.informativeText = NSLocalizedString(@"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.", @"thePath for recursiveBuildMenuAtFolder: in delagate was not a folder.");
         alert.alertStyle = NSAlertStyleInformational;
         [alert runModal];
         return;
@@ -277,8 +277,8 @@
             static BOOL alreadyHadLecture = NO;
             if (!alreadyHadLecture) {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Unknown Script File(s)";
-                alert.informativeText = @"Unknown file(s) in scripts folder, see console for details.";
+                alert.messageText = NSLocalizedString(@"Unknown Script File(s)", @"Unknown Script File(s)");
+                alert.informativeText = NSLocalizedString(@"Unknown file(s) in scripts folder, see console for details.", @"Unknown file(s) in scripts folder, see console for details.");
                 alert.alertStyle = NSAlertStyleInformational;
                 [alert runModal];
             }
@@ -306,8 +306,8 @@
         BOOL isNewDir = NO;
         
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Creating Script Folder";
-        alert.informativeText = @"Script folder does not exist. Please see read me for details about using this. Creating it…";
+        alert.messageText = NSLocalizedString(@"Creating Script Folder", @"Creating Script Folder");
+        alert.informativeText = NSLocalizedString(@"Script folder does not exist. Please see read me for details about using this. Creating it…", @"Creating Script folder");
         alert.alertStyle = NSAlertStyleInformational;
         [alert runModal];
         
@@ -320,8 +320,8 @@
         if (![manager fileExistsAtPath:scriptFolder isDirectory:&isNewDir])
         {
             NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"Can't Create Script Folder";
-            alert.informativeText = @"Could not create script folder, there will be no scripts in script menu. (See Console)";
+            alert.messageText = NSLocalizedString(@"Can't Create Script Folder", @"Can't Create Script Folder");
+            alert.informativeText = NSLocalizedString(@"Could not create script folder, there will be no scripts in script menu. (See Console)", @"Could not create script folder, there will be no scripts in script menu. (See Console)");
             alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
             return;
@@ -338,8 +338,8 @@
     {
         NSLog(@"Sorry, could not use or create script folder, a file is already at: %@", scriptFolder);
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Error Creating Script Folder";
-        alert.informativeText = @"A File Is Already At Script Folder Location, see console for location.";
+        alert.messageText = NSLocalizedString(@"Error Creating Script Folder", @"Error Creating Script Folder");
+        alert.informativeText = NSLocalizedString(@"A File Is Already At Script Folder Location, see console for location.", @"A File Is Already At Script Folder Location, see console for location.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return;
@@ -352,56 +352,56 @@
         NSMenuItem *newItem;
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"There Are No Scripts In The Scripts Folder"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 1", @"There Are No Scripts In The Scripts Folder")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"See Read Me For Details On How To Use Scripts"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 2", @"See Read Me For Details On How To Use Scripts")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"   ********* Notes *********"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 3", @"   ********* Notes *********")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"Use Compiled Scripts Here Only"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 4", @"Use Compiled Scripts Here Only")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"Files In Scripts Folder Need A '.scpt' Extension"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 5", @"Files In Scripts Folder Need A '.scpt' Extension")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"You can use folders in the script folder ]:=>"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 6", @"You can use folders in the script folder ]:=>")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"The example script creates a new map and creates"
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 7", @"The example script creates a new map and creates")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
         [theAppleScriptMenu addItem:newItem];
         
         newItem = [[NSMenuItem alloc]
-                    initWithTitle:@"   five polygons in the center of the map."
+                    initWithTitle:NSLocalizedString(@"No Scripts in Scripts folder 8", @"   five polygons in the center of the map.")
                     action:NULL keyEquivalent:@""];
         [newItem setTarget:nil];
         [newItem setAction:nil];
@@ -512,8 +512,8 @@
 	
 	if (view == nil) {
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.informativeText = @"No Current Map";
-        alert.messageText = @"Could not find an open map.";
+        alert.informativeText = NSLocalizedString(@"No Current Map", @"No Current Map");
+        alert.messageText = NSLocalizedString(@"Could not find an open map.", @"Could not find an open map.");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
     }
@@ -560,8 +560,8 @@
     NSOpenPanel	*op		= [NSOpenPanel openPanel];
     
     [op	setAllowsMultipleSelection:NO];
-    [op setTitle:@"Checksum Test"];
-    [op setPrompt:@"Check"];
+    [op setTitle:NSLocalizedString(@"Checksum Test", @"Checksum Test")];
+    [op setPrompt:NSLocalizedString(@"Check", @"Check")];
     
     NSModalResponse returnCode = [op runModal];
     NSString		*fileName = nil;

@@ -1118,23 +1118,23 @@
         return control_panel_type - jjaroOffset;
     } else if (control_panel_type >= 54) { // too great
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 2";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Water control panel type not found in LESide->adjustedControlPanelType 2", @"Water control panel type not found in LESide->adjustedControlPanelType 2");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return -1;
     } else if (control_panel_type < 0) { // too low
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Generic Error";
-        alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 3";
+        alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+        alert.informativeText = NSLocalizedString(@"Water control panel type not found in LESide->adjustedControlPanelType 3", @"Water control panel type not found in LESide->adjustedControlPanelType 3");
         alert.alertStyle = NSAlertStyleCritical;
         [alert runModal];
         return -1;
     }
     
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Generic Error";
-    alert.informativeText = @"Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!";
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = NSLocalizedString(@"Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!", @"Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!");
     alert.alertStyle = NSAlertStyleCritical;
     [alert runModal];
     return -1;

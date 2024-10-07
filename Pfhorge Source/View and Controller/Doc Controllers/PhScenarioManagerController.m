@@ -80,8 +80,8 @@
 - (IBAction)notDoneYet:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Please Be Aware";
-    alert.informativeText = @"This does not work yet…";
+    alert.messageText = NSLocalizedString(@"Please Be Aware", @"Please Be Aware");
+    alert.informativeText = NSLocalizedString(@"This does not work yet…", @"This does not work yet…");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
 }
@@ -97,12 +97,12 @@
     NSSavePanel *theSavePanel = [NSSavePanel savePanel];
     
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Warning";
-    alert.informativeText = @"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…";
+    alert.messageText = NSLocalizedString(@"Warning", @"Warning");
+    alert.informativeText = NSLocalizedString(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…", @"Merging is incomplete and may fail warning");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
     
-    [theSavePanel setPrompt:@"Export"];
+    [theSavePanel setPrompt:NSLocalizedString(@"Export", @"Export")];
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
@@ -127,7 +127,7 @@
 {
     NSSavePanel *theSavePanel = [NSSavePanel savePanel];
     
-    [theSavePanel setPrompt:@"Export Single Level"];
+    [theSavePanel setPrompt:NSLocalizedString(@"Export Single Level", @"Export Single Level")];
     theSavePanel.allowedFileTypes = @[@"org.bungie.source.map"];
     
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
@@ -141,8 +141,8 @@
 - (IBAction)deleteSelectedLevel:(id)sender
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    alert.messageText = @"Not Directly Supported Yet";
-    alert.informativeText = @"For now, delete level in Finder then rescan the folder.";
+    alert.messageText = NSLocalizedString(@"Not Directly Supported Yet", @"Not Directly Supported Yet");
+    alert.informativeText = NSLocalizedString(@"For now, delete level in Finder then rescan the folder.", @"For now, delete level in Finder then rescan the folder.");
     alert.alertStyle = NSAlertStyleInformational;
     [alert runModal];
 }

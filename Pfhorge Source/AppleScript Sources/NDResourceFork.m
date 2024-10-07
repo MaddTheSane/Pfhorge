@@ -79,7 +79,7 @@ static OSErr createResourceFork(NSURL * aURL);
  */
 - (id)initForPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL
 {
-	return self = [self initWithPermission:aPermission AtURL:aURL error:NULL];
+	return [self initWithPermission:aPermission AtURL:aURL error:NULL];
 }
 
 - (id)initWithPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
