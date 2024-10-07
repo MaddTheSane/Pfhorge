@@ -8,7 +8,7 @@
       "comment" : "A File Is Already At Script Folder Location, see console for location."
     },
     "A Height With That Number Already Exsists" : {
-      "comment" : "A Height With That Number Already Exsists",
+      "comment" : "A Height With That Number Already Exists",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -28,7 +28,7 @@
       "comment" : "Already a polygon there (if this is wrong, sorry, will be more acurate in future)..."
     },
     "Already Exsists" : {
-      "comment" : "Already Exsists",
+      "comment" : "Already Exists",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -197,7 +197,7 @@
       "comment" : "Export Single Level"
     },
     "File named 'Image' already exsists in scenario folder, can get images." : {
-      "comment" : "File named 'Image' already exsists in scenario folder, can get images.",
+      "comment" : "File named 'Image' already exists in scenario folder, can get images.",
       "localizations" : {
         "en" : {
           "stringUnit" : {

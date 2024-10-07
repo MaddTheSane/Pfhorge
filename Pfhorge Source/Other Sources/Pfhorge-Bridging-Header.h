@@ -21,5 +21,6 @@
 #import "TerminalSection.h"
 #import "LELevelData.h"
 #import "extractbitmap.h"
+#import "PluginProtocol.h"
 
 #endif /* Pfhorge_Bridging_Header_h */

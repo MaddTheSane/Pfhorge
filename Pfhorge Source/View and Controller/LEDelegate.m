@@ -109,14 +109,11 @@
 + (id)sharedAppDelegateController:(LEDelegate *)del {
     static LEDelegate *sharedAppDelegateController = nil;
     
-    if (del == nil)
-    {
+    if (del == nil) {
         if (!sharedAppDelegateController) {
             sharedAppDelegateController = [[LEDelegate alloc] init];
         }
-    }
-    else
-    {
+    } else {
         sharedAppDelegateController = del;
     }
     
@@ -127,8 +124,9 @@
 {
     self = [super init];
     
-    if (self == nil)
+    if (self == nil) {
         return nil;
+    }
     
     [LEDelegate sharedAppDelegateController:self];
         

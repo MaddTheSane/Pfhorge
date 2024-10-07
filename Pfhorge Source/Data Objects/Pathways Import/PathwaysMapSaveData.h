@@ -193,16 +193,16 @@ struct PID_Sector {
 	
 	//! Extra info for the type
 	//! Meaning:
-	//! Type 0 (Void) -- probably ignored
-	//! Type 1 (Normal) -- probably ignored
-	//! Type 2 (Door) -- index in list of doors
-	//! Type 3 (ChangeLevel) -- index in list of level-change dispatches
-	//! Type 4 (DoorTrigger) -- trigger type
-	//! Type 5 (SecretDoor) -- direction of opening? (would be the same as for the plain doors)
-	//! Type 6 (Corpse) -- corpse ID (contiguous from 0)
-	//! Type 7 (Pillar) -- probably ignored
-	//! Type 8 (OtherTrigger) -- always zero
-	//! Type 9 (Save) -- always zero
+	//! - Type 0 (Void) -- probably ignored
+	//! - Type 1 (Normal) -- probably ignored
+	//! - Type 2 (Door) -- index in list of doors
+	//! - Type 3 (ChangeLevel) -- index in list of level-change dispatches
+	//! - Type 4 (DoorTrigger) -- trigger type
+	//! - Type 5 (SecretDoor) -- direction of opening? (would be the same as for the plain doors)
+	//! - Type 6 (Corpse) -- corpse ID (contiguous from 0)
+	//! - Type 7 (Pillar) -- probably ignored
+	//! - Type 8 (OtherTrigger) -- always zero
+	//! - Type 9 (Save) -- always zero
 	byte TypeAddl;
 };
 
@@ -323,7 +323,7 @@ struct PID_PlayerItem {
 //! - M-79 Grenade Launcher
 //!
 //! The proficiency levels are, in order:
-//! (weapon not listed)
+//! - (weapon not listed)
 //! - Beginner
 //! - Novice
 //! - Expert

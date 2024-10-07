@@ -13,7 +13,7 @@
 
 @interface PhPluginManager : NSObject {
 @private
-	NSMutableArray<Class> *pluginClasses;
+	NSMutableArray<Class<PhLevelPluginProtocol>> *pluginClasses;
 	NSMutableArray<id<PhLevelPluginProtocol>> *pluginInstances;
 	NSMutableArray<NSString*> *pluginInstanceNames;
 }
@@ -22,7 +22,7 @@
 - (void)findPlugins;
 
 @property (readonly, copy) NSArray<NSString*> *pluginInstanceNames;
-@property (readonly, copy) NSArray<Class> *pluginClasses;
+@property (readonly, copy) NSArray<Class<PhLevelPluginProtocol>> *pluginClasses;
 @property (readonly, copy) NSArray<id<PhLevelPluginProtocol>> *pluginInstances;
 
 - (void)activatePluginIndex:(int)index;
