@@ -1,0 +1,32 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Data has a non-positive width or height." : {
+      "comment" : "Data has a non-positive width or height."
+    },
+    "Data has unrecognized bit depth (%d)." : {
+      "comment" : "Data has unrecognized bit depth (The unknown bit depth)."
+    },
+    "Data is (RLE) compressed. EasyBMP does not support compression." : {
+      "comment" : "Data is (RLE) compressed. EasyBMP does not support compression."
+    },
+    "Data is in an unsupported format. (bmih.biCompression = %d) The file is probably an old OS/2 bitmap or corrupted." : {
+      "comment" : "Data is in an unsupported format. (bmih.biCompression = the unknown compression) The file is probably an old OS/2 bitmap or corrupted."
+    },
+    "Data uses bit fields and is not a 16-bit file. This is not supported." : {
+      "comment" : "Data uses bit fields and is not a 16-bit file. This is not supported."
+    },
+    "Unexpected end of file" : {
+      "comment" : "Unexpected end of file",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unexpected end of file."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

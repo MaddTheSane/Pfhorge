@@ -16,6 +16,7 @@
 		559A56132CB3395400B35598 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 559A56122CB3395400B35598 /* Localizable.xcstrings */; };
 		559A56152CB3395400B35598 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 559A56142CB3395400B35598 /* InfoPlist.xcstrings */; };
 		559A56412CB3AD3F00B35598 /* PluginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559A56402CB3AD3F00B35598 /* PluginManager.swift */; };
+		559A56432CB47ECB00B35598 /* EasyBMPErrors.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 559A56422CB47ECB00B35598 /* EasyBMPErrors.xcstrings */; };
 		55E91491248996C70005D451 /* PICTConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91490248996C70005D451 /* PICTConverter.swift */; };
 		55E914942489F9010005D451 /* EasyBMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E914932489F9010005D451 /* EasyBMP.swift */; };
 		55E91496248A012B0005D451 /* PhDataAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E91495248A012B0005D451 /* PhDataAdditions.swift */; };
@@ -244,6 +245,7 @@
 		559A563C2CB3511C00B35598 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ItemPlacementEditor.xib; sourceTree = "<group>"; };
 		559A563D2CB3512100B35598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ItemPlacementEditor.strings; sourceTree = "<group>"; };
 		559A56402CB3AD3F00B35598 /* PluginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginManager.swift; sourceTree = "<group>"; usesTabs = 1; };
+		559A56422CB47ECB00B35598 /* EasyBMPErrors.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = EasyBMPErrors.xcstrings; sourceTree = "<group>"; };
 		55B3DC5C24747EBE00499B7F /* LELevelData-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LELevelData-private.h"; sourceTree = "<group>"; };
 		55C4EF5C247C8FAB00424767 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TODO; path = ../TODO; sourceTree = "<group>"; };
 		55E9148F2489969B0005D451 /* Pfhorge-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pfhorge-Bridging-Header.h"; sourceTree = "<group>"; usesTabs = 1; };
@@ -543,6 +545,7 @@
 			children = (
 				559A56122CB3395400B35598 /* Localizable.xcstrings */,
 				559A56142CB3395400B35598 /* InfoPlist.xcstrings */,
+				559A56422CB47ECB00B35598 /* EasyBMPErrors.xcstrings */,
 				F52EDB8D022D86A00146BBD2 /* PhorgeAppIcon.icns */,
 				557A9B3E245A617B00527063 /* Media.xcassets */,
 				557A9B42245A924700527063 /* Pfhorge.sdef */,
@@ -843,6 +846,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559A56432CB47ECB00B35598 /* EasyBMPErrors.xcstrings in Resources */,
 				559A56152CB3395400B35598 /* InfoPlist.xcstrings in Resources */,
 				AE3C150D0A04512100FBFFCD /* Credits.rtf in Resources */,
 				AE3C150E0A04512100FBFFCD /* MainMenu.xib in Resources */,

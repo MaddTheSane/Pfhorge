@@ -10,15 +10,18 @@ import Foundation
 @objcMembers
 class PluginManager: NSObject {
 	// MARK: - • Class Methods •
+	
     @objc(sharedPluginManager)
     static let shared = PluginManager()
     
 	// MARK: - • Accsessor Methods •
+	
     private(set) var pluginClasses: [any PhLevelPluginProtocol.Type] = []
     private(set) var pluginInstances: [any PhLevelPluginProtocol] = []
     private(set) var pluginInstanceNames: [String] = []
     
 	// MARK: - • Utilties •
+	
     func findPlugins() {
 		var isDir: ObjCBool = false
 		var exists: Bool = false
@@ -41,7 +44,6 @@ class PluginManager: NSObject {
 			NSLog("Creating Support Folder...")
 			try? FileManager.default.createDirectory(atPath: folderPath!, withIntermediateDirectories: true, attributes: nil)
 		} else if let folderPath {
-			//[NSBundle pathsForResourcesOfType:@"plugin" inDirectory:folderPath]
 			Bundle.main.paths(forResourcesOfType: "plugin", inDirectory: folderPath).forEach { self.activatePlugin($0) }
 		}
 		
@@ -49,6 +51,7 @@ class PluginManager: NSObject {
 	}
     
 	// MARK: - • Convience Methods •
+	
 	/// This is called to activate each plug-in, meaning that each candidate bundle is checked,
 	/// loaded if it seems to contain a valid plug-in, and the plug-in's class' `+initiateClass:`
 	/// method is called. If this returns `YES`, it means that the plug-in agrees to run and the
@@ -67,12 +70,9 @@ class PluginManager: NSObject {
 	
 	private func activatePlugin(_ path: String) {
 		NSLog("   Activating Plugin: %@", path);
-		guard let pluginBundle = Bundle(path: path) else {
-			return
-		}
-		
-		let pluginDict = pluginBundle.infoDictionary
-		guard let pluginName = pluginDict?["NSPrincipalClass"] as? String else {
+		guard let pluginBundle = Bundle(path: path),
+			  let pluginDict = pluginBundle.infoDictionary,
+			  let pluginName = pluginDict["NSPrincipalClass"] as? String else {
 			return
 		}
 		
@@ -81,7 +81,6 @@ class PluginManager: NSObject {
 			pluginClass = pluginBundle.principalClass
 			
 			guard let pluginClass,
-				  pluginClass.conforms(to: PhLevelPluginProtocol.self),
 				  let a = pluginClass as? PhLevelPluginProtocol.Type,
 				  a.initializeClass(pluginBundle) else {
 				return
@@ -93,7 +92,7 @@ class PluginManager: NSObject {
 	}
 	
 	private func initializePlugins() {
-		for  pluginClass in pluginClasses {
+		for pluginClass in pluginClasses {
 			instantiatePlugins(pluginClass)
 		}
 	}

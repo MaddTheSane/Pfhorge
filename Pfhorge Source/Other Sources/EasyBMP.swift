@@ -306,7 +306,7 @@ final class EasyBMP {
 			}
 			return true
 			
-		case 8 :
+		case 8:
 			var i = 0
 			
 			// do an easy loop, which works for all but colors
@@ -451,7 +451,7 @@ final class EasyBMP {
 		var dPaletteSize: Double = 0
 
 		if bitDepth == 1 || bitDepth == 4 || bitDepth == 8 {
-			dPaletteSize = Double(IntPow(2,bitDepth)) * 4.0
+			dPaletteSize = Double(IntPow(2, bitDepth)) * 4.0
 		}
 
 		// leave some room for 16-bit masks
@@ -723,13 +723,13 @@ final class EasyBMP {
 		output.blue  = 255
 		output.alpha = 0
 		
-		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
+		guard bitDepth == 1 || bitDepth == 4 || bitDepth == 8 else {
 			if EasyBMP.easyBMPwarnings {
 				print("EasyBMP Warning: Attempted to access color table for a BMP object that lacks a color table. Ignoring request.")
 			}
 			return nil
 		}
-		if colors.count == 0  {
+		if colors.isEmpty {
 			if EasyBMP.easyBMPwarnings {
 				print("EasyBMP Warning: Requested a color, but the color table is not defined. Ignoring request.")
 			}
@@ -915,14 +915,14 @@ final class EasyBMP {
 		let data = PhLEData(data: from)
 		
 		guard let bmfh = BMFH(data: data) else {
-			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 		}
 		guard bmfh.bfType == 19778 else {
-			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+			throw CocoaError(.fileReadCorruptFile)
 		}
 		
 		guard let bmih = BMIH(data: data) else {
-			throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: nil)
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 		}
 		
 		XPelsPerMeter = bmih.biXPelsPerMeter
@@ -932,32 +932,32 @@ final class EasyBMP {
 		if bmih.biCompression == 1 || bmih.biCompression == 2 {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
-			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is (RLE) compressed. EasyBMP does not support compression."])
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Data is (RLE) compressed. EasyBMP does not support compression.", tableName: "EasyBMPErrors", comment: "Data is (RLE) compressed. EasyBMP does not support compression.")])
 		}
 
-		// if bmih.biCompression > 3, then something strange is going on
+		// if bmih.biCompression > 3, then something strange is going on.
 		// it's probably an OS2 bitmap file.
 		
 		guard bmih.biCompression <= 3 else {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
-			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data is in an unsupported format. (bmih.biCompression = \(bmih.biCompression)) The file is probably an old OS/2 bitmap or corrupted."])
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: String.localizedStringWithFormat(NSLocalizedString("Data is in an unsupported format. (bmih.biCompression = %d) The file is probably an old OS/2 bitmap or corrupted.", tableName: "EasyBMPErrors", comment: "Data is in an unsupported format. (bmih.biCompression = the unknown compression) The file is probably an old OS/2 bitmap or corrupted."), bmih.biCompression)])
 		}
 		if bmih.biCompression == 3 && bmih.biBitCount != 16 {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
-			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data uses bit fields and is not a 16-bit file. This is not supported."])
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Data uses bit fields and is not a 16-bit file. This is not supported.", tableName: "EasyBMPErrors", comment: "Data uses bit fields and is not a 16-bit file. This is not supported.")])
 		}
 
 		// set the bit depth
 		
-		let TempBitDepth =  bmih.biBitCount
-		if(    TempBitDepth != 1  && TempBitDepth != 4
-			&& TempBitDepth != 8  && TempBitDepth != 16
-			&& TempBitDepth != 24 && TempBitDepth != 32 ) {
+		let TempBitDepth = bmih.biBitCount
+		guard TempBitDepth == 1  || TempBitDepth == 4
+				|| TempBitDepth == 8  || TempBitDepth == 16
+				|| TempBitDepth == 24 || TempBitDepth == 32 else {
 		 _=setSize(width: 1,height: 1)
 		 _=setBitDepth(1)
-		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has unrecognized bit depth (\(TempBitDepth))."])
+		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: String.localizedStringWithFormat(NSLocalizedString("Data has unrecognized bit depth (%d).", tableName: "EasyBMPErrors", comment: "Data has unrecognized bit depth (The unknown bit depth)."), TempBitDepth)])
 		}
 		_=setBitDepth(Int32(bmih.biBitCount))
 
@@ -966,7 +966,7 @@ final class EasyBMP {
 		guard bmih.biWidth > 0, bmih.biHeight > 0 else {
 		 _=setSize(width: 1,height: 1)
 		 _=setBitDepth(1)
-		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Data has a non-positive width or height."])
+		 throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Data has a non-positive width or height.", tableName: "EasyBMPErrors", comment: "Data has a non-positive width or height.")])
 		}
 		_=setSize(width: bmih.biWidth, height: bmih.biHeight)
 
@@ -988,8 +988,8 @@ final class EasyBMP {
 			// color table
 			
 			var NumberOfColorsToRead = (bmfh.bfOffBits - 54 )/4
-			if NumberOfColorsToRead > IntPow(2,bitDepth) {
-				NumberOfColorsToRead = IntPow(2,bitDepth)
+			if NumberOfColorsToRead > IntPow(2, bitDepth) {
+				NumberOfColorsToRead = IntPow(2, bitDepth)
 			}
 			
 			if NumberOfColorsToRead < numberOfColors {
@@ -1001,7 +1001,7 @@ final class EasyBMP {
 			var n = 0
 			while n < NumberOfColorsToRead {
 				guard let pixel = RGBAPixel(data: data) else {
-					throw NSError(domain: NSCocoaErrorDomain, code: -1, userInfo: nil)
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 				colors[n] = pixel
 				n += 1
@@ -1096,28 +1096,28 @@ final class EasyBMP {
 				guard let aRedMask = data.readUInt16() else {
 					//_=setSize(width: 1,height: 1)
 					//_=setBitDepth(1)
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 
 				}
 				RedMask = aRedMask
 				if data.readUInt16() == nil {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 				
 				guard let aGreenMask = data.readUInt16() else {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 				GreenMask = aGreenMask
 				if data.readUInt16() == nil {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 
 				guard let aBlueMask = data.readUInt16() else {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 				BlueMask = aBlueMask
 				if data.readUInt16() == nil {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 			}
 			
@@ -1128,7 +1128,7 @@ final class EasyBMP {
 					print("Extra metadata detected in data. Data will be skipped.")
 				}
 				guard data.add(toPosition: BytesToSkip) else {
-					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedDescriptionKey: "Unexpected end of file"])
+					throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unexpected end of file", tableName: "EasyBMPErrors", comment: "Unexpected end of file")])
 				}
 			}
 			
