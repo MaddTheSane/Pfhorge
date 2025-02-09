@@ -11,7 +11,7 @@ static byte					*colls[MAX_COLLECTIONS];
 static FILE					*shapes;
 static int					bit_depth = 8;
 
-// load headers of a shapes file
+//! load headers of a shapes file
 int LoadShapes(FILE *f, int depth)
 {
 	int	i;
@@ -41,7 +41,7 @@ int LoadShapes(FILE *f, int depth)
 	return 0;
 }
 
-// load a collection from file and store it internally
+//! load a collection from file and store it internally
 int LoadCollection(int coll, FILE *f)
 {
 	long	offs, len;
@@ -86,7 +86,7 @@ bool CollIsLoaded(int coll)
 	return (colls[coll] != NULL);
 }
 
-// decode the cluts for the given collection
+//! decode the cluts for the given collection
 int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **outColors)
 {
 	byte	*p;
@@ -125,7 +125,7 @@ int DecodeShapesClut(int coll, int clutID, int *outColorNum, rgb_color_value **o
 	return 0;
 }
 
-// get a plain bitmap from a Marathon-encoded bitmap
+//! get a plain bitmap from a Marathon-encoded bitmap
 int DecodeShapesBitmap(int coll, int bitmapID, int *outW, int *outH, bitmap_definition_flags *outFlags, unsigned char **outPixData)
 {
 	byte	*bd, *outPixBase, *p;

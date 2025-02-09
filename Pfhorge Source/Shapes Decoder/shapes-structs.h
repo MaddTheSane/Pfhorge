@@ -35,7 +35,7 @@ typedef unsigned char	pixel8;
 /* 3 added size to collection_definition structure */
 #define COLLECTION_VERSION 3
 
-/* at the beginning of the clut, used by the extractor for various opaque reasons */
+/*! at the beginning of the clut, used by the extractor for various opaque reasons */
 #define NUMBER_OF_PRIVATE_COLORS 3
 
 /*! collection types */
@@ -54,19 +54,19 @@ typedef CF_ENUM(short, collection_definition_types) {
 
 struct collection_definition {
 	short	version;
-	collection_definition_types	type;/* used for get_shape_descriptors() */
+	collection_definition_types	type;/*!< used for `get_shape_descriptors()` */
 	word	flags;					/* [unused.16] */
 	short	color_count,
 			clut_count;
-	int 	color_table_offset;		/* an array of clut_count arrays of color_count ColorSpec structures */
+	int 	color_table_offset;		/*!< an array of `clut_count` arrays of `color_count` ColorSpec structures */
 	short	high_level_shape_count;
 	int 	high_level_shape_offset_table_offset;
 	short	low_level_shape_count;
 	int 	low_level_shape_offset_table_offset;
 	short	bitmap_count;
 	int 	bitmap_offset_table_offset;
-	short	pixels_to_world;		/* used to shift pixel values into world coordinates */
-	int 	size;					/* used to assert offsets */
+	short	pixels_to_world;		/*!< used to shift pixel values into world coordinates */
+	int 	size;					/*!< used to assert offsets */
 //	short	unused[253];
 };
 typedef struct collection_definition collection_definition;

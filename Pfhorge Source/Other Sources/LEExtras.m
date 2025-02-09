@@ -312,7 +312,7 @@ NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
 /*
  * createAndExecuteScriptObject()
  */
-void createAndExecuteScriptObject( NSString * aPath )
+void createAndExecuteScriptObject( NSURL * aPath )
 {
 	NSString			* theScriptText;
 	NDAppleScriptObject		* theScriptObject;
@@ -323,14 +323,14 @@ void createAndExecuteScriptObject( NSString * aPath )
 		/*
 		 * This shows creating a script object from a string
 		 */		
-		theScriptText = [NSString stringWithContentsOfFile:aPath usedEncoding:NULL error:NULL];
+		theScriptText = [NSString stringWithContentsOfURL:aPath usedEncoding:NULL error:NULL];
 		theScriptObject = [NDAppleScriptObject appleScriptObjectWithString:theScriptText];
 	} else {
 		/*
 		 * This shows creating a script object from a compiled AppleScript file,
 		 */
 		NSLog(@"Geting Script...");
-        theScriptObject = [[[NDAppleScriptObject alloc] initWithContentsOfFile:aPath] autorelease];
+        theScriptObject = [[[NDAppleScriptObject alloc] initWithContentsOfURL:aPath] autorelease];
 	}
 	
 	if (theScriptObject) {
@@ -367,7 +367,7 @@ void createAndExecuteScriptObject( NSString * aPath )
 		[NDAppleScriptObject compileExecuteString:@"say \"Done\"\n"];
 		[NDAppleScriptObject compileExecuteString:@"display dialog \"Done\"\n"];
 		if ([[aPath pathExtension] caseInsensitiveCompare:@"scpt"] == NSOrderedSame) {
-			[theScriptObject writeToFile:aPath];
+            [theScriptObject writeToURL:aPath resourceFork:NO error:NULL];
 		}
 	} else {
 		printf("Could not create the AppleScript object... \n");

@@ -9,6 +9,7 @@
 #import "ScenarioResources.h"
 #import "Resource.h"
 #import "PhData.h"
+#import "NSURL+NDCarbonUtilities.h"
 
 #import "PhProgress.h"
 
@@ -157,7 +158,7 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
     typeDict = [[NSMutableDictionary alloc] init];
         
-    if (!CFURLGetFSRef((CFURLRef)fileURL, &fsref)) {
+    if (![fileURL getFSRef:&fsref]) {
         if (outError) {
             *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: fileURL}];
         }

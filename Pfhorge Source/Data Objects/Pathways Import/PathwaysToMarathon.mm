@@ -1058,10 +1058,10 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
     short Env = (PL.TextureList[0] & 0x0fff) - 64;
     if (Env < 0 || Env > NumTextureSets) Env = 0;	// Idiot-Proofing
     
-    [level setLevelName:GetLevelName(PL)];
+    level.levelName = GetLevelName(PL);
     [level setEnvironmentCode:Txtrs[Env][Tx_Collection]];
-    [level setEnvironmentSinglePlayer:YES];
-    [level setGameTypeSinglePlayer:YES];
+    level.environmentSinglePlayer = YES;
+    level.gameTypeSinglePlayer = YES;
     
     // To indicate where the boundaries of the PID level had been
     AddFrame(level);

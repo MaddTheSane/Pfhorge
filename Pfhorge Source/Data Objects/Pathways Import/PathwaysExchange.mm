@@ -125,10 +125,10 @@
     static_assert(sizeof(PID_ItemState) == 16, "sizeof(PID_ItemState) != 16");
     static_assert(sizeof(PID_LevelState) == 9112, "sizeof(PID_LevelState) != 9112");
     
-    int length = [data length];
-    int rem = length % sizeof(PID_Level);
+    NSUInteger length = [data length];
+    NSUInteger rem = length % sizeof(PID_Level);
     if (rem != 0) {
-        NSLog(@"Bad PID map-data file: remainder of %d bytes", rem);
+        NSLog(@"Bad PID map-data file: remainder of %lu bytes", static_cast<unsigned long>(rem));
         
         // No reason to stay allocated, release self and return nil...
         return nil;

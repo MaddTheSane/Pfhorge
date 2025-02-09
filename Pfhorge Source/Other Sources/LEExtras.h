@@ -350,7 +350,7 @@ static inline int loadIntFromNSData(NSData *dat, NSInteger offset)
 
 NSRect LERectFromPoints(NSPoint point1, NSPoint point2);
 NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum);
-void createAndExecuteScriptObject(NSString * aPath);
+void createAndExecuteScriptObject(NSURL * aPath);
 
 //int LECompareLines(id line1, id line2, NSPoint thePoint);
 //int LEDistanceOfLine(NSRect theBoundsOfLine);

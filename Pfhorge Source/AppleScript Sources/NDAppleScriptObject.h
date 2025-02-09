@@ -13,8 +13,8 @@
 @interface NDAppleScriptObject : NSObject <NDAppleScriptObjectSendEvent, NDAppleScriptObjectActive>
 {
 @private
-	OSAID										compiledScriptID,
-												resultingValueID;
+	OSAID								compiledScriptID,
+										resultingValueID;
 	NDAppleScriptObject					* contextAppleScriptObject;
 	id<NDAppleScriptObjectSendEvent>	sendAppleEventTarget;
 	id<NDAppleScriptObjectActive>		activeTarget;
@@ -83,7 +83,7 @@
 - (BOOL)writeToFile:(NSString *)aPath NS_SWIFT_UNAVAILABLE("");
 - (BOOL)writeToFile:(NSString *)aPath Id:(ResID)anID NS_SWIFT_UNAVAILABLE("");
 
-//! If \c anID is INT16_MIN, writes to data fork instead.
+//! If `anID` is `INT16_MIN`, writes to data fork instead.
 - (BOOL)writeToURL:(NSURL *)aURL ID:(ResID)anID error:(NSError**)outError;
 
 - (BOOL)writeToURL:(NSURL *)aURL resourceFork:(BOOL)useRes error:(NSError**)outError;

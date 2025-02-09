@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(SInt16, NDAESendPriority) {
 	/// Post message at the end of the event queue
 	NDAESendPriorityNormal = kAENormalPriority,
-	/// Post message at the front of the event queue (same as \c nAttnMsg  )
+	/// Post message at the front of the event queue (same as `nAttnMsg`)
 	NDAESendPriorityHigh = kAEHighPriority,
 };
 
@@ -26,7 +26,7 @@ typedef NS_OPTIONS(SInt32, NDAESendMode) {
 	NDAEReplyQueue = kAEQueueReply,
 	/// sender wants a reply and will wait
 	NDAEReplyWait = kAEWaitReply,
-	/// don't reconnect if there is a sessClosedErr from PPCToolbox
+	/// don't reconnect if there is a `sessClosedErr` from PPCToolbox
 	NDAEDontReconnect = kAEDontReconnect,
 	/// (nReturnReceipt) sender wants a receipt of message
 	NDAEWantReceipt = kAEWantReceipt,
