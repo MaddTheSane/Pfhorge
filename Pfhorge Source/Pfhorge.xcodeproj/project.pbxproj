@@ -267,7 +267,7 @@
 		A59B9261054F9DED00E2A9DF /* PhNoteGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhNoteGroup.m; sourceTree = "<group>"; };
 		A5CBB2CC04D630590046BBD2 /* trigTables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trigTables.c; sourceTree = "<group>"; };
 		A5CBB2CD04D630590046BBD2 /* trigTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trigTables.h; sourceTree = "<group>"; };
-		A5CE3C7304B265440046BBD2 /* crc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = crc.m; sourceTree = "<group>"; };
+		A5CE3C7304B265440046BBD2 /* crc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = crc.m; sourceTree = "<group>"; usesTabs = 1; };
 		A5CE3C7404B265440046BBD2 /* crc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc.h; sourceTree = "<group>"; };
 		A5DE35570550E7DC00363F01 /* PhNoteGroupsCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhNoteGroupsCon.h; sourceTree = "<group>"; };
 		A5DE35580550E7DC00363F01 /* PhNoteGroupsCon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhNoteGroupsCon.m; sourceTree = "<group>"; };

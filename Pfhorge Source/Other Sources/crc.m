@@ -15,15 +15,7 @@
 #include <Carbon/Carbon.h>
 #import <Foundation/Foundation.h>
 #include <stdlib.h>
-
-typedef unsigned int uint32;
-typedef int int32;
-typedef unsigned short uint16;
-typedef short int16;
-
-//#ifdef mpwc
-//	#pragma segment file_io
-//#endif
+#include <stdint.h>
 
 // •••••••••••••••••••••• Below Is For Caculating the crc (checksum) •••••••••••••••••••••••••••
 #pragma mark ••••••••• Below Is For Caculating the crc (checksum) •••••••••
@@ -35,13 +27,13 @@ typedef short int16;
 #define BUFFER_SIZE 1024
 
 /* ---------- local data */
-static uint32 *crc_table= NULL;
+static uint32_t *crc_table= NULL;
 
 /* ---------- local prototypes ------- */
 //static uint32 calculate_file_crc(unsigned char *buffer, 
 //	int16 buffer_size, int16 refnum);
-static uint32 calculate_file_crc(unsigned char *buffer, int16 buffer_size, NSData *fileData);
-static uint32 calculate_buffer_crc(int32 count, uint32 crc, void *buffer);
+static uint32_t calculate_file_crc(unsigned char *buffer, int16_t buffer_size, NSData *fileData);
+static uint32_t calculate_buffer_crc(int32_t count, uint32_t crc, void *buffer);
 static bool build_crc_table(void);
 static void free_crc_table(void);
 
@@ -64,7 +56,7 @@ static void free_crc_table(void);
 
 unsigned int calculate_crc_for_nsdata(NSData *fileData) 
 {
-	uint32 crc=0;
+	uint32_t crc=0;
 	unsigned char *buffer;
 
 	// Build the crc table
@@ -90,7 +82,7 @@ unsigned int calculate_data_crc(
 	unsigned char *buffer,
 	long length)
 {
-	uint32 crc= 0l;
+	uint32_t crc= 0l;
 
 	assert(buffer);
 	
@@ -115,12 +107,12 @@ static bool build_crc_table(void)
 	bool success= FALSE;
 
 	assert(!crc_table);
-	crc_table= (uint32 *) malloc(TABLE_SIZE*sizeof(uint32));
+	crc_table= (uint32_t *) malloc(TABLE_SIZE*sizeof(uint32_t));
 	if(crc_table)
 	{
 		/* Build the table */
-		int16 index, j;
-		uint32 crc;
+		int16_t index, j;
+		uint32_t crc;
 
 		for(index= 0; index<TABLE_SIZE; ++index)
 		{
@@ -147,10 +139,9 @@ static void free_crc_table(void)
 }
 
 /* Calculate for a block of data incrementally */
-static uint32 calculate_buffer_crc(
-	int32 count, 
-	uint32 crc, 
-	void *buffer)
+static uint32_t calculate_buffer_crc(int32_t count,
+									 uint32_t crc,
+									 void *buffer)
 {
 	unsigned char *p;
 	uint32 a;
@@ -167,13 +158,12 @@ static uint32 calculate_buffer_crc(
 }
 
 /* Calculate the crc for a file using the given buffer.. */
-static uint32 calculate_file_crc(
-	unsigned char *buffer, 
-	int16 buffer_size,
-	NSData *fileData)
+static uint32 calculate_file_crc(unsigned char *buffer,
+								 int16_t buffer_size,
+								 NSData *fileData)
 {
-	uint32 crc;
-	int32 count;
+	uint32_t crc;
+	int32_t count;
 	//FileError err;
 	NSInteger file_length;
     NSInteger place = 0;
