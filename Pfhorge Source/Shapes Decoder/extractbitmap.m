@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "extractbitmap.h"
+#import "ScenarioResources.h"
 
 static rgb_color_value	*ctable;
 static int				color_count = 0;
@@ -27,6 +28,12 @@ NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL 
 	NSMutableArray *theTextures;
 	int i = 0;
 	int theBitmapCount = 0;
+	if ([ScenarioResources isAppleSingleAtURL:theShapesPath findResourceFork:YES offset:NULL length:NULL] || [ScenarioResources isAppleSingleAtURL:theShapesPath findResourceFork:NO offset:NULL length:NULL] || [ScenarioResources isMacBinaryAtURL:theShapesPath dataLength:NULL resourceLength:NULL]) {
+		if (outError) {
+			*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSURLErrorKey: theShapesPath, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"AppleSingle/MacBinary-encoded Shapes are not supported yet.", @"AppleSingle/MacBinary-encoded Shapes are not supported yet.")}];
+		}
+		return nil;
+	}
 	
 	int        err = 0;
 	FILE    *f/*, *bmp*/;

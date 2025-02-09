@@ -63,6 +63,9 @@
     "AppleSingle/MacBinary-encoded maps are not supported yet." : {
       "comment" : "AppleSingle/MacBinary-encoded maps are not supported yet."
     },
+    "AppleSingle/MacBinary-encoded Shapes are not supported yet." : {
+      "comment" : "AppleSingle/MacBinary-encoded Shapes are not supported yet."
+    },
     "Archiving Level Into Binary Data…" : {
       "comment" : "Archiving Level Into Binary Data…"
     },
