@@ -434,26 +434,12 @@
 // ****************** Utilites ******************
 #pragma mark -
 #pragma mark ••••••••• Utilites •••••••••
-- (void)exportLevelToMarathonMap:(NSString *)fullPath
+- (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError **)outError
 {
-    NSString *fileName = [scenarioData getLevelPathForSelected];
-    NSData *theFileData = [[NSFileManager defaultManager] contentsAtPath:fileName];
-    NSMutableData *tempData; //= [[NSMutableData alloc] initWithCapacity:200000];
-    
-    LELevelData *theLevel =  [NSKeyedUnarchiver unarchivedObjectOfClass:
-                              [LELevelData class] fromData:
-                              [theFileData subdataWithRange:NSMakeRange(10, ([theFileData length] - 10))] error:NULL];
-    
-    tempData = [LEMapData convertLevelToDataObject:theLevel error:NULL];
-        
-    [[NSFileManager defaultManager] createFileAtPath:fullPath
-	  contents:tempData
-	attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-				 NSFileHFSTypeCode: @((OSType)'sce2')
-	}];
+    return [self exportLevelToMarathonMapToURL:[NSURL fileURLWithPath:fullPath] error:outError];
 }
 
-- (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError **)outError
+- (BOOL)exportLevelToMarathonMapToURL:(NSURL *)fullPath error:(NSError**)outError
 {
     NSString *fileName = [scenarioData getLevelPathForSelected];
     NSData *theFileData = [NSData dataWithContentsOfFile:fileName options:0 error:outError];
@@ -474,16 +460,16 @@
         return NO;
     }
 
-    BOOL success = [tempData writeToFile:fullPath options:0 error:outError];
+    BOOL success = [tempData writeToURL:fullPath options:0 error:outError];
     if (!success) {
         return NO;
     }
     
     NSError *tmpErr;
     success = [[NSFileManager defaultManager] setAttributes:
-     @{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-       NSFileHFSTypeCode: @((OSType)'sce2')
-    } ofItemAtPath:fullPath error:&tmpErr];
+               @{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+                 NSFileHFSTypeCode: @((OSType)'sce2')
+               } ofItemAtPath:fullPath.path error:&tmpErr];
     if (!success) {
         //Just write the error out into the log
         NSLog(@"Unable to set file attributes: %@", tmpErr);
@@ -527,111 +513,14 @@
                                               attributes:@{NSFileHFSTypeCode: @((OSType)'PfhL'),
                                                            NSFileHFSCreatorCode: @((OSType)'PFrg')}];
     }
-    
-}
-
-- (void)saveMergedMapTo:(NSString *)fullPath
-{
-    NSData *mergedMap = [LEMapData mergeScenarioToMarathonMapFile:self error:NULL];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSArray *subpaths;
-    NSEnumerator *numer;
-    NSString *fileName;
-    BOOL isDir = YES;
-    BOOL exsists = NO;
-    NSString *fullImageDirPath = nil;
-    ScenarioResources *maraResources;
-    
-    [manager createFileAtPath:fullPath
-					 contents:mergedMap
-				   attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-								NSFileHFSTypeCode: @((OSType)'sce2')
-				   }];
-    
-    NSLog(@"Scaning Images folder for resources now...");
-    
-    fullImageDirPath  = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
-    
-    exsists = [manager fileExistsAtPath:fullImageDirPath isDirectory:&isDir];
-    
-    if (!exsists || !isDir)
-        return;
-    
-    maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fullPath];
-    
-    subpaths = [manager contentsOfDirectoryAtPath:fullImageDirPath error:NULL];
-    numer = [subpaths objectEnumerator];
-    while (fileName = [numer nextObject])
-    {
-        NSString *fullResourcePath = [fullImageDirPath stringByAppendingPathComponent:fileName];
-        
-        if (IsPathDirectory(manager, fullResourcePath)) {
-            continue;
-        } else if ([[fileName pathExtension] isEqualToString:@"pict"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
-            Resource *theResource;
-            
-            if (thePictResourceNumber < 128)
-                continue;
-            
-            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:[manager contentsAtPath:fullResourcePath]];
-            [maraResources addResource:theResource];
-        } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
-            Resource *theResource;
-            
-            if (thePictResourceNumber < 128)
-                continue;
-            
-            NSError *err;
-            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
-            if (!pictData) {
-                NSLog(@"%@", err);
-                continue;
-            }
-            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
-            [maraResources addResource:theResource];
-        } else if ([[fileName pathExtension] isEqualToString:@"jpeg"] || [[fileName pathExtension] isEqualToString:@"jpg"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
-            Resource *theResource;
-            
-            if (thePictResourceNumber < 128)
-                continue;
-            
-            NSError *err;
-            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
-            if (!pictData) {
-                NSLog(@"%@", err);
-                continue;
-            }
-            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
-            [maraResources addResource:theResource];
-        } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
-            Resource *theResource;
-            
-            if (thePictResourceNumber < 128)
-                continue;
-            
-            NSError *err;
-            NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
-            if (!pictData) {
-                NSLog(@"%@", err);
-                continue;
-            }
-            theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
-            [maraResources addResource:theResource];
-        }
-    }
-    
-    [maraResources saveToFile:fullPath oldFile:nil];
 }
 
 - (BOOL)saveMergedMapToPath:(NSString *)fullPath error:(NSError**)outError
+{
+    return [self saveMergedMapToURL:[NSURL fileURLWithPath:fullPath] error:outError];
+}
+
+- (BOOL)saveMergedMapToURL:(NSURL *)fullPath error:(NSError**)outError
 {
     NSData *mergedMap = [LEMapData mergeScenarioToMarathonMapFile:self error:outError];
     if (!mergedMap) {
@@ -643,14 +532,22 @@
     NSString *fileName;
     BOOL isDir = YES;
     BOOL exsists = NO;
+    BOOL success;
     NSString *fullImageDirPath = nil;
     ScenarioResources *maraResources;
     
-    [manager createFileAtPath:fullPath
-                     contents:mergedMap
-                   attributes:@{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
-                                NSFileHFSTypeCode: @((OSType)'sce2')
-                   }];
+    if (![mergedMap writeToURL:fullPath options:0 error:outError]) {
+        return NO;
+    }
+    NSError *tmpErr;
+    success = [[NSFileManager defaultManager] setAttributes:
+     @{NSFileHFSCreatorCode: @((OSType)0x32362EB0), // '26.∞'
+       NSFileHFSTypeCode: @((OSType)'sce2')
+     } ofItemAtPath:fullPath.path error:&tmpErr];
+    if (!success) {
+        //Just write the error out into the log
+        NSLog(@"Unable to set file attributes: %@", tmpErr);
+    }
     
     NSLog(@"Scaning Images folder for resources now...");
     
@@ -665,7 +562,10 @@
         return NO;
     }
     
-    maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fullPath];
+    maraResources = [[ScenarioResources alloc] initWithContentsOfURL:fullPath error:outError];
+    if (!maraResources) {
+        return nil;
+    }
     
     subpaths = [manager contentsOfDirectoryAtPath:fullImageDirPath error:NULL];
     numer = [subpaths objectEnumerator];
@@ -675,18 +575,25 @@
         if (IsPathDirectory(manager, fullResourcePath)) {
             continue;
         } else if ([[fileName pathExtension] isEqualToString:@"pict"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            ResID thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
             
             if (thePictResourceNumber < 128) {
                 continue;
             }
             
+            NSError *err;
+            NSData *pictData = [NSData dataWithContentsOfFile:fullResourcePath options:0 error:&err];
+            if (!pictData) {
+                NSLog(@"PICT read failed: %@", err);
+                continue;
+            }
+
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:[manager contentsAtPath:fullResourcePath]];
+            theResource.data = pictData;
             [maraResources addResource:theResource];
         } else if ([[fileName pathExtension] isEqualToString:@"png"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            ResID thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
             
             if (thePictResourceNumber < 128) {
@@ -699,14 +606,14 @@
             NSError *err;
             NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
             if (!pictData) {
-                NSLog(@"%@", err);
+                NSLog(@"PNG to PICT conversion failed: %@", err);
                 continue;
             }
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
+            theResource.data = pictData;
             [maraResources addResource:theResource];
         } else if ([[fileName pathExtension] isEqualToString:@"jpg"] || [[fileName pathExtension] isEqualToString:@"jpeg"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            ResID thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
             
             if (thePictResourceNumber < 128) {
@@ -719,14 +626,14 @@
             NSError *err;
             NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
             if (!pictData) {
-                NSLog(@"%@", err);
+                NSLog(@"Jpeg to PICT conversion failed: %@", err);
                 continue;
             }
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
+            theResource.data = pictData;
             [maraResources addResource:theResource];
         } else if ([[fileName pathExtension] isEqualToString:@"bmp"]) {
-            int thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
+            ResID thePictResourceNumber = [[fileName stringByDeletingPathExtension] intValue];
             Resource *theResource;
             
             if (thePictResourceNumber < 128) {
@@ -739,16 +646,16 @@
             NSError *err;
             NSData *pictData = [PhPictConversion convertFileAtURLToPICT:[NSURL fileURLWithPath:fullResourcePath] error:&err];
             if (!pictData) {
-                NSLog(@"%@", err);
+                NSLog(@"Bitmap to PICT conversion failed: %@", err);
                 continue;
             }
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
-            [theResource setData:pictData];
+            theResource.data = pictData;
             [maraResources addResource:theResource];
         }
     }
     
-    [maraResources saveToFile:fullPath oldFile:nil];
+    [maraResources saveToURL:fullPath oldFileURL:nil];
 
     return YES;
 }

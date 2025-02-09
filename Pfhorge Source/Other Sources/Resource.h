@@ -26,7 +26,7 @@
 @property (nonatomic, readonly) ResType typeAsResType;
 @property (readonly, copy) NSString *name;
 - (ConstStr255Param)nameAsStr255 NS_RETURNS_INNER_POINTER;
-@property (nonatomic, readonly) ConstStr255Param nameAsStr255;
+@property (nonatomic, readonly) ConstStr255Param nameAsStr255 NS_RETURNS_INNER_POINTER;
 @property BOOL loaded;
 @property (nonatomic, copy) NSData *data;
 @end

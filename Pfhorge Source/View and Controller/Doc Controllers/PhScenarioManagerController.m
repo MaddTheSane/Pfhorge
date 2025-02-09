@@ -100,6 +100,7 @@
     alert.messageText = NSLocalizedString(@"Warning", @"Warning");
     alert.informativeText = NSLocalizedString(@"Please be aware that merging is not done yet, it may or may not work. Exporting a single level works much better right now…", @"Merging is incomplete and may fail warning");
     alert.alertStyle = NSAlertStyleInformational;
+    alert.showsSuppressionButton = YES;
     [alert runModal];
     
     [theSavePanel setPrompt:NSLocalizedString(@"Export", @"Export")];
@@ -108,8 +109,10 @@
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         if (result != NSModalResponseOK)
             return;
-        
-        [[self document] saveMergedMapTo:[theSavePanel URL].path];
+        NSError *err;
+        if (![[self document] saveMergedMapToURL:[theSavePanel URL] error:&err]) {
+            [self presentError:err];
+        }
     }];
 }
 
@@ -133,8 +136,10 @@
     [theSavePanel beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse result) {
         if (result != NSModalResponseOK)
             return;
-        
-        [[self document] exportLevelToMarathonMap:[theSavePanel URL].path];
+        NSError *err;
+        if (![[self document] exportLevelToMarathonMapToURL:[theSavePanel URL] error:&err]) {
+            [self presentError:err];
+        }
     }];
 }
 

@@ -84,19 +84,59 @@
       "comment" : "Can Create Images Folder"
     },
     "Can't Add More Of These Yet…" : {
-      "comment" : "Can't Add More Of These Yet…"
+      "comment" : "Can't Add More Of These Yet…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Add More Of These Yet…"
+          }
+        }
+      }
     },
     "Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item." : {
-      "comment" : "Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item."
+      "comment" : "Can't Add Polys Here, select a polygon and use the 'Tools->Set Poly Name' menu item.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Add Polys Here, select a polygon and use the ‘Tools→Set Poly Name’ menu item."
+          }
+        }
+      }
     },
     "Can't Change Type" : {
-      "comment" : "Can't Change Type"
+      "comment" : "Can't Change Type",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Change Type"
+          }
+        }
+      }
     },
     "Can't Create Script Folder" : {
-      "comment" : "Can't Create Script Folder"
+      "comment" : "Can't Create Script Folder",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Create Script Folder"
+          }
+        }
+      }
     },
     "Can't Edit Polygons Here (Use General Inspector)" : {
-      "comment" : "Can't Edit Polygons Here (Use General Inspector)"
+      "comment" : "Can't Edit Polygons Here (Use General Inspector)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can’t Edit Polygons Here (Use General Inspector)"
+          }
+        }
+      }
     },
     "Can't Load File: Unknown Format." : {
       "comment" : "Can't Load File: Unknown Format.",
@@ -235,7 +275,15 @@
       "comment" : "Did not find a leftmost line."
     },
     "Don't know which side to have inspector inspect" : {
-      "comment" : "Don't know which side to have inspector inspect"
+      "comment" : "Don't know which side to have inspector inspect",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't know which side to have the inspector inspect."
+          }
+        }
+      }
     },
     "Done Converting Level!" : {
       "comment" : "Done Converting Level!"
@@ -387,7 +435,15 @@
       "comment" : "Must have a terminal to add sections to first. 103"
     },
     "Name Not Here Yet… :)" : {
-      "comment" : "Name Not Here Yet… :)"
+      "comment" : "Name Not Here Yet… :)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name Not Here Yet…"
+          }
+        }
+      }
     },
     "No Current Map" : {
       "comment" : "No Current Map"
@@ -484,10 +540,26 @@
       }
     },
     "No Shapes Selected" : {
-      "comment" : "No Shapes Selected"
+      "comment" : "No Shapes Selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No shapes selected"
+          }
+        }
+      }
     },
     "Not Directly Supported Yet" : {
-      "comment" : "Not Directly Supported Yet"
+      "comment" : "Not Directly Supported Yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not directly supported yet"
+          }
+        }
+      }
     },
     "Not Implemented Yet, Sorry!" : {
       "comment" : "Not Implemented Yet, Sorry!",
@@ -558,7 +630,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Polygon in unknown state"
+            "value" : "Polygon in an unknown state"
           }
         }
       }
@@ -596,7 +668,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "scenarioData == nil, but why am I in the “document:didSave:contextInfo:”?"
+            "value" : "scenarioData == nil, but why am I in the “-document:didSave:contextInfo:”?"
           }
         }
       }
@@ -676,7 +748,15 @@
       "comment" : "Layer not found"
     },
     "Sorry, but the name will not be updated on the window\n[it was applied though, I think ]:=) ]…" : {
-      "comment" : "Sorry, but the name will not be updated on the window\n[it was applied though, I think ]:=) ]…"
+      "comment" : "Sorry, but the name will not be updated on the window\n[it was applied though, I think ]:=) ]…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorry, but the name will not be updated on the window\n[it was applied though, I think]…"
+          }
+        }
+      }
     },
     "Sorry, but there are no lights to choose for this level." : {
       "comment" : "Sorry, but there are no lights to choose for this level."
@@ -694,7 +774,15 @@
       "comment" : "Sorry, but you need to select something first…"
     },
     "Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however." : {
-      "comment" : "Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however."
+      "comment" : "Sorry, you can't edit or delete the default layer! :(  Any other selected layers will be deleted however.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorry, you can't edit or delete the default layer!  Any other selected layers will be deleted however."
+          }
+        }
+      }
     },
     "Testing Every Polygon For Concavness…" : {
       "comment" : "Testing Every Polygon For Concavness…",
@@ -777,10 +865,26 @@
       "comment" : "Warning"
     },
     "Water control panel type not found in LESide->adjustedControlPanelType 2" : {
-      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 2"
+      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 2",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Water control panel type not found in LESide→adjustedControlPanelType 2"
+          }
+        }
+      }
     },
     "Water control panel type not found in LESide->adjustedControlPanelType 3" : {
-      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 3"
+      "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 3",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Water control panel type not found in LESide→adjustedControlPanelType 3"
+          }
+        }
+      }
     },
     "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!" : {
       "comment" : "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!!!",
@@ -788,7 +892,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Water control panel type not found in LESide->adjustedControlPanelType 4, This could be a logic error!"
+            "value" : "Water control panel type not found in LESide→adjustedControlPanelType 4, This could be a logic error!"
           }
         }
       }
@@ -818,10 +922,26 @@
       "comment" : "While importing, the new document was nil?"
     },
     "X There is one point directly over another: in level->whatIsDirectional method" : {
-      "comment" : "X There is one point directly over another: in level->whatIsDirectional method"
+      "comment" : "X There is one point directly over another: in level->whatIsDirectional method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "X There is one point directly over another: in level→whatIsDirectional method"
+          }
+        }
+      }
     },
     "Y There is one point directly over another: in level->whatIsDirectional method" : {
-      "comment" : "Y There is one point directly over another: in level->whatIsDirectional method"
+      "comment" : "Y There is one point directly over another: in level->whatIsDirectional method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Y There is one point directly over another: in level→whatIsDirectional method"
+          }
+        }
+      }
     },
     "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!" : {
       "comment" : "You use {x:(num), y:(num)} when using lineToPoint where num can be from -32768 to 32768, but it sent perculer arguments, please e-mail the author your console messages from Pfhorge!",

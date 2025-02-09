@@ -58,11 +58,11 @@
 - (void)saveArrayOfNSDatas:(NSArray<NSData*> *)theDataObjs withFileNames:(NSArray<NSString*> *)theFileNames baseDir:(NSString *)basePath;
 
 - (void)rescanProjectDirectoryNow;
-- (void)exportLevelToMarathonMap:(NSString *)fullPath;
-- (void)saveMergedMapTo:(NSString *)fullPath;
 
 - (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError**)outError;
+- (BOOL)exportLevelToMarathonMapToURL:(NSURL *)fullPath error:(NSError**)outError;
 - (BOOL)saveMergedMapToPath:(NSString *)fullPath error:(NSError**)outError;
+- (BOOL)saveMergedMapToURL:(NSURL *)fullPath error:(NSError**)outError;
 
 // *** Information ***
 - (id)dataObjectForLevelNameTable;

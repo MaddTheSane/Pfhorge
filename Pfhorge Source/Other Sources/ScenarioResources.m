@@ -14,6 +14,7 @@
 #import "PhProgress.h"
 
 static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
+static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
 
 @interface ScenarioResources ()
 - (BOOL)loadContentsOfURL:(NSURL *)fileURL error:(NSError**)outError;
@@ -219,20 +220,26 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 - (void)saveToFile:(NSString *)fileName oldFile:(NSString *)oldFileName
 {
-    FSRef			fsref, parentfsref;
-    NSString		*string;
-    NSURL			*url, *parenturl;
-    unichar			*uniBuffer;
-    ResFileRefNum	refNum;
-    NSArray<Resource*>		*array;
-    Resource		*resource;
-    Handle			handle;
-    
-    url = [NSURL fileURLWithPath:fileName];
-    //CFURLGetFSRef(url, &fsref);
+    NSURL *oldURL = nil;
+    if (oldFileName) {
+        oldURL = [NSURL fileURLWithPath:oldFileName];
+    }
+    [self saveToURL:[NSURL fileURLWithPath:fileName] oldFileURL:oldURL];
+}
+
+- (void)saveToURL:(NSURL *)url oldFileURL:(nullable NSURL *)oldFileName
+{
+    FSRef			    fsref, parentfsref;
+    NSString		    *string;
+    NSURL			    *parenturl;
+    unichar			    *uniBuffer;
+    ResFileRefNum	    refNum;
+    NSArray<Resource*>	*array;
+    Resource		    *resource;
+    Handle			    handle;
     
     parenturl = [url URLByDeletingLastPathComponent];
-    CFURLGetFSRef((CFURLRef)parenturl, &parentfsref);
+    [parenturl getFSRef:&parentfsref];
     string = [url lastPathComponent];
     uniBuffer = malloc(sizeof(UniChar) * string.length);
     [string getCharacters:uniBuffer range:NSMakeRange(0, string.length)];
@@ -251,13 +258,13 @@ static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
                                        load:NO];
             
             if (![resource loaded]) {
-                handle = ASGetResource([res type],
-                                       [res resID],
-                                       oldFileName);
+                handle = ASGetResourceURL([res type],
+                                          [res resID],
+                                          oldFileName);
             } else {
                 handle = NewHandle([[resource data] length]);
                 HLock(handle);
-                [[resource data] getBytes:*handle];
+                [[resource data] getBytes:*handle length:[[resource data] length]];
                 HUnlock(handle);
             }
             
@@ -289,6 +296,38 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 		NSURL *url = [NSURL fileURLWithPath:fileName];
 		CFURLGetFSRef((CFURLRef)url, &fsref);
 	}
+    
+    saveNum = CurResFile();
+    
+    refNum = FSOpenResFile(&fsref, fsRdPerm);
+    
+    UseResFile(refNum);
+    
+    resType = UTGetOSTypeFromString((__bridge CFStringRef)type);
+    SetResLoad(YES);
+    
+    data = Get1Resource(resType, [resID shortValue]);
+    
+    MacLoadResource(data);
+    DetachResource(data);
+    //HNoPurge(data);
+    HLockHi(data);
+    
+    CloseResFile(refNum);
+    
+    UseResFile(saveNum);
+    
+    return data;
+}
+
+Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url)
+{
+    Handle            data;
+    FSRef            fsref;
+    ResFileRefNum    refNum, saveNum;
+    ResType            resType;
+    
+    [url getFSRef:&fsref];
     
     saveNum = CurResFile();
     
