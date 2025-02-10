@@ -595,7 +595,7 @@
     @try {
     
     //[wad initWithContentsOfFile:fileName];
-    [resources loadContentsOfFile:fileName];
+    [resources loadContentsOfURL:url error:NULL];
     
     } @catch (NSException *localException) {
         if (outError) {

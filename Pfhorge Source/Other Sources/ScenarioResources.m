@@ -37,7 +37,7 @@ static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
     }
     
     if (ident != 0x00051600 || version != 0x00020000) {
-        return false;
+        return NO;
     }
 
     // Find fork

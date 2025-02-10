@@ -112,28 +112,52 @@ class PICT {
 
 	
 	enum OpCode: UInt16 {
+		/// No operation
 		case noOp = 0
+		/// Clipping region
 		case clippingRegion = 0x0001
+		/// Background pattern
 		case bkPat = 0x0002
+		/// Font number for text (Integer)
 		case txFont = 0x0003
+		/// Text's font style (0..255)
 		case txFace = 0x0004
+		/// Source mode (Integer)
 		case txMode = 0x0005
+		/// Extra space (Fixed)
 		case spExtra = 0x0006
+		/// Pen size (Point)
 		case pnSize = 0x0007
+		/// Pen mode (Integer)
 		case pnMode = 0x0008
+		/// Pen pattern
 		case pnPat = 0x0009
+		/// Fill pattern
 		case fillPat = 0x000a
+		/// Oval size (Point)
 		case ovSize = 0x000b
+		/// `dh`, `dv` (Integer)
 		case origin = 0x000c
+		/// Text size (Integer)
 		case txSize = 0x000d
+		/// Foreground color (Long)
 		case fgColor = 0x000e
+		/// Background color (Long)
 		case bgColor = 0x000f
+		/// Numerator (Point), denominator (Point)
 		case txRatio = 0x0010
+		/// Version (0..255)
 		case versionOp = 0x0011
+		/// Background pixel pattern
 		case bkPixPat = 0x0012
+		/// Pen pixel pattern
 		case PnPixPat = 0x0013
+		/// Fill pixel pattern
 		case fillPixPat = 0x0014
+		/// Fractional pen position (Integer--low word of Fixed); if value is not 0.5, pen
+		/// position is always set to the picture before each text-drawing operation.
 		case pnLocHFrac = 0x0015
+		/// Added width for nonspace characters
 		case chExtra = 0x0016
 		
 		/* 0x17 to 0x19 are reserved for Apple */
@@ -287,23 +311,23 @@ class PICT {
 		
 		@available(*,deprecated, renamed: "packBitsRect")
 		static var packedCopyBits: OpCode {
-			return OpCode(rawValue: 0x0098)!
+			return .packBitsRect
 		}
 		@available(*,deprecated, renamed: "packBitsRgn")
 		static var packedCopyBitsClipping: OpCode {
-			return OpCode(rawValue: 0x0099)!
+			return .packBitsRgn
 		}
 		@available(*,deprecated, renamed: "directBitsRect")
 		static var directCopyBits: OpCode {
-			return OpCode(rawValue: 0x009a)!
+			return .directBitsRect
 		}
 		@available(*,deprecated, renamed: "directBitsRgn")
 		static var directCopyBitsClipping: OpCode {
-			return OpCode(rawValue: 0x009b)!
+			return .directBitsRgn
 		}
 		@available(*,deprecated, renamed: "compressedQuickTime")
 		static var qtCompressed: OpCode {
-			return OpCode(rawValue: 0x8200)!
+			return .compressedQuickTime
 		}
 	}
 	

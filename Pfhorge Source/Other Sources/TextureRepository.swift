@@ -9,7 +9,8 @@ import Cocoa
 
 @objcMembers
 final class TextureRepository: NSObject {
-    @objc(sharedTextureRepository) static let shared = TextureRepository()
+    @objc(sharedTextureRepository)
+    static let shared = TextureRepository()
     
     private var waterTextures: [NSImage]? = nil
     private var lavaTextures: [NSImage]? = nil

@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)initWithContentsOfURL:(NSURL *)fileName error:(NSError**)outError;
 - (BOOL)loadContentsOfFile:(NSString *)fileName;
 - (BOOL)loadContentsOfFile:(NSString *)fileName error:(NSError**)outError;
+- (BOOL)loadContentsOfURL:(NSURL *)fileURL error:(NSError**)outError;
 - (void)saveToFile:(NSString *)fileName oldFile:(nullable NSString *)oldFileName;
 - (void)saveToURL:(NSURL *)fileName oldFileURL:(nullable NSURL *)oldFileName;
 
