@@ -212,6 +212,12 @@
     "Compiling And Caching List Of Custom Names In Level…" : {
       "comment" : "Compiling And Caching List Of Custom Names In Level…"
     },
+    "Contains banded JPEG" : {
+      "comment" : "Contains banded JPEG"
+    },
+    "Contains unknown or unsupported codec" : {
+      "comment" : "Contains unknown or unsupported codec"
+    },
     "Converting “%@”…" : {
       "comment" : "Converting \"%@\"...",
       "localizations" : {
@@ -225,6 +231,9 @@
     },
     "Converting Error" : {
       "comment" : "Converting Error"
+    },
+    "Converting to anonther bitmap format failed" : {
+      "comment" : "Converting to anonther bitmap format failed"
     },
     "Could not convert one of the levels…" : {
       "comment" : "Could not convert one of the levels…"
@@ -677,7 +686,15 @@
       }
     },
     "Script folder does not exist. Please see read me for details about using this. Creating it…" : {
-      "comment" : "Creating Script folder"
+      "comment" : "Creating Script folder",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Script folder does not exist. Please read the documentation for details about using this. Creating it…"
+          }
+        }
+      }
     },
     "Script Folder Error" : {
       "comment" : "Script Folder Error"
@@ -744,6 +761,9 @@
     "Somting is very wrong with the polygon line following, in LELine getPolyFromMe" : {
       "comment" : "Somting is very wrong with the polygon line following, in LELine getPolyFromMe"
     },
+    "Sorry, but an error occured puting together the list, #101." : {
+      "comment" : "Sorry, but an error occured puting together the list, #101."
+    },
     "Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)" : {
       "comment" : "Sorry, but I could not fill a polygon with the line the AppleScript indicated (check the console)"
     },
@@ -756,7 +776,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sorry, but the name will not be updated on the window\n[it was applied though, I think]…"
+            "value" : "Sorry, but the name will not be updated on the window\n(it was applied though, I think)…"
           }
         }
       }
@@ -831,6 +851,20 @@
     "Tried To Select An Object Of Unknown Class…" : {
       "comment" : "Tried To Select An Object Of Unknown Class…"
     },
+    "Unexpected end of file" : {
+      "comment" : "Unexpected end of file"
+    },
+    "Unimplemented OpCode %d (0x%02x)" : {
+      "comment" : "Unimplemented OpCode %d (0x%02x)",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unimplemented QuickDraw OpCode %1$d (0x%2$02x)"
+          }
+        }
+      }
+    },
     "Unknown Class Object Encountered In Terimal Controller Data." : {
       "comment" : "Unknown Class Object Encountered In Terimal Controller Data."
     },
@@ -855,6 +889,9 @@
     "Unkown list query mode, #102." : {
       "comment" : "Unkown list query mode, #102."
     },
+    "Unkown list query mode, #103." : {
+      "comment" : "Unkown list query mode, #103."
+    },
     "Unkown list query mode, #104." : {
       "comment" : "Unkown list query mode, #104."
     },
@@ -863,6 +900,9 @@
     },
     "Update Needed" : {
       "comment" : "Update Needed"
+    },
+    "Uses CinemaScope hack" : {
+      "comment" : "Uses CinemaScope hack"
     },
     "Warning" : {
       "comment" : "Warning"

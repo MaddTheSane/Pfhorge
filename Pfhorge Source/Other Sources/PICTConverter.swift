@@ -471,7 +471,7 @@ class PICT {
 	private var bitmap = EasyBMP()
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) -> Bool {
-		if (!packed) {
+		if !packed {
 			stream.add(toPosition: 4) // pmBaseAddr
 		}
 
@@ -1057,7 +1057,7 @@ class PICT {
 		}
 	}
 
-	enum PICTConversionError: Error, RawRepresentable, LocalizedError {
+	enum PICTConversionError: Error, RawRepresentable, LocalizedError, CustomStringConvertible {
 		init?(rawValue: Int) {
 			switch rawValue {
 			case 1:
@@ -1112,29 +1112,29 @@ class PICT {
 			}
 		}
 		
-		var localizedDescription: String {
+		var errorDescription: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String(format: "Unimplemented OpCode %d (0x%02x)", oc, oc)
+				return String.localizedStringWithFormat(NSLocalizedString("Unimplemented OpCode %d (0x%02x)", comment: "Unimplemented OpCode %d (0x%02x)"), oc, oc)
 
 			case .containsBandedJPEG:
-				return "Contains banded JPEG"
+				return NSLocalizedString("Contains banded JPEG", comment: "Contains banded JPEG")
 				
 			case .usesCinemascopeHack:
-				return "Uses CinemaScope hack"
+				return NSLocalizedString("Uses CinemaScope hack", comment: "Uses CinemaScope hack")
 				
 			case .unsupportedQuickTimeCodec:
-				return "Contains unknown or unsupported codec"
+				return NSLocalizedString("Contains unknown or unsupported codec", comment: "Contains unknown or unsupported codec")
 				
 			case .unexpectedEndOfStream:
-				return "Unexpected end of file"
+				return NSLocalizedString("Unexpected end of file", comment: "Unexpected end of file")
 				
 			case .conversionFailed:
-				return "Converting to anonther bitmap format failed"
+				return NSLocalizedString("Converting to anonther bitmap format failed", comment: "Converting to anonther bitmap format failed")
 			}
 		}
 		
-		var errorDescription: String? {
+		var description: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
 				return String(format: "Unimplemented OpCode %d (0x%02x)", oc, oc)

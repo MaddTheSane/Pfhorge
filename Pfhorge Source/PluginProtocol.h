@@ -24,26 +24,25 @@
 //! calling program need not concern itself with subclass details.
 @protocol PhLevelPluginProtocol <NSObject>
 
-//! \c initializeClass: is called once when the plug-in is loaded. The plug-in's bundle is passed
+//! `initializeClass:` is called once when the plug-in is loaded. The plug-in's bundle is passed
 //! as argument; the plug-in could discover its own bundle again, but since we have it available
 //! anyway when this is called, this saves some time and space.
-//! In a real implementation, we might also pass a NSDictionary with the appropriate preferences.
+//! In a real implementation, we might also pass a `NSDictionary` with the appropriate preferences.
 //! This method should do all global plug-in initialization, such as loading preferences; if
-//! initialization fails, it should return NO, and the plug-in won't be called again.
-
+//! initialization fails, it should return `NO`, and the plug-in won't be called again.
 + (BOOL)initializeClass:(NSBundle*)theBundle;
 
-//! \c +terminateClass is called once when the plug-in won't be used again. NSBundle-based plug-ins
+//! `+terminateClass` is called once when the plug-in won't be used again. NSBundle-based plug-ins
 //! can't be unloaded at present, this capability may be added to Cocoa in the future.
 + (void)terminateClass;
 
-//! \c +pluginsFor: is called whenever the calling application wants to instantiate a plug-in class.
+//! `+pluginsFor:` is called whenever the calling application wants to instantiate a plug-in class.
 //! An object is passed in as argument; this object might be validated by the plug-in class to
 //! decide which sort of instances, or how many instances to return. The object reference may also
 //! be stored by the instances and thereafter be used as a bridge to the calling application.
 //! This method returns an enumerator of an array of plug-in instances. This enumerator, the array
 //! itself, and the plug-in instances are all autoreleased, so the calling application needs to retain
-//! whatever it wants to keep. If no instances were generated, this returns \c nil .
+//! whatever it wants to keep. If no instances were generated, this returns `nil`.
 + (NSEnumerator<id<PhLevelPluginProtocol>>*)pluginsFor:(id)anObject;
 
 @optional

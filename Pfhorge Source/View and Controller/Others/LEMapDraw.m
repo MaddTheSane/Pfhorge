@@ -82,8 +82,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 
 // *************************** Getting Information ***************************
-#pragma mark -
-#pragma mark ********* Getting Information *********
+#pragma mark - Getting Information
+
 - (NSSet *)getSelectionsOfType:(LEMapDrawSelectionType)theSelectionsWanted
 {
     ///NSMutableSet *selectedLines, *selectedPolys, *selectedPoints, *selectedMapObjects;
@@ -106,8 +106,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 
 // *************************** View Methods ***************************
-#pragma mark -
-#pragma mark ********* View Methods *********
+#pragma mark - View Methods
 
 /*+ (void)initialize
 {
@@ -658,17 +657,14 @@ typedef NS_ENUM(short, LEEDrawMode) {
             curColor = [numer3 nextObject];*/
             
         [numberTable addEntriesFromDictionary:
-            [NSDictionary dictionaryWithObject:
-                @[curMap, curColor, curName]
-            forKey:curNumber] ];
+         @{curNumber: @[curMap, curColor, curName]}];
     }
     
     NSLog(@"numberTable: %lu colorList: %lu numberList:%lu nameList:%lu", (unsigned long)[numberTable count], (unsigned long)[colorList count], (unsigned long)[numberList count], (unsigned long)[nameList count]);
 }
 
 // *************************** Methods that draw the graphics ***************************
-#pragma mark -
-#pragma mark ********* Methods that draw the graphics *********
+#pragma mark - Methods that draw the graphics
 
 - (void)drawCeilingHeight:(NSRect)aRect
 {
@@ -1234,8 +1230,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 
 // *************************** Methods for creating the drawing maps :) ***************************
-#pragma mark -
-#pragma mark ********* Methods for creating the drawing maps :) *********
+#pragma mark - Methods for creating the drawing maps
 
 -(void)createObjectMaps
 {
@@ -1523,7 +1518,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     numer = [thePolys objectEnumerator];
     
-    while (thisPolygon = [numer nextObject])
+    for (thisPolygon in numer)
     {
         NSBezierPath *polyDrawingMapPntr;
         short theCurrentVertexCount;
@@ -1637,8 +1632,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** List Methods ***************************
-#pragma mark -
-#pragma mark ********* List Methods *********
+#pragma mark - List Methods
 
 -(BOOL)createSpecialDrawingList
 {
@@ -1709,8 +1703,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
                 default:
                 {
                     NSAlert *alert = [[NSAlert alloc] init];
-                    alert.messageText = @"Generic Error";
-                    alert.informativeText = @"Unkown list query mode, #103.";
+                    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                    alert.informativeText = NSLocalizedString(@"Unkown list query mode, #103.", @"Unkown list query mode, #103.");
                     alert.alertStyle = NSAlertStyleCritical;
                     [alert runModal];
                 }
@@ -1740,8 +1734,8 @@ typedef NS_ENUM(short, LEEDrawMode) {
             case LEMapDrawingModeFloorHeight:
             {
                 NSAlert *alert = [[NSAlert alloc] init];
-                alert.messageText = @"Generic Error";
-                alert.informativeText = @"Sorry, but an error occured puting together the list, #101.";
+                alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+                alert.informativeText = NSLocalizedString(@"Sorry, but an error occured puting together the list, #101.", @"Sorry, but an error occured puting together the list, #101.");
                 alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
             }
@@ -3299,8 +3293,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** Tool Methods ***************************
-#pragma mark -
-#pragma mark ********* Tool Methods *********
+#pragma mark - Tool Methods
 
 - (BOOL)useSamplerTool:(NSPoint)mouseLoc
 {
@@ -4313,8 +4306,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** Matence And Utility Methods ***************************
-#pragma mark -
-#pragma mark ********* Matence And Utility Methods *********
+#pragma mark - Matence And Utility Methods
 
 
 - (void)checkSelectedObjects
@@ -4602,8 +4594,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** Keyboard Commands, Etc. ***************************
-#pragma mark -
-#pragma mark ********* Keyboard Commands, Etc. *********
+#pragma mark - Keyboard Commands, Etc.
 
 // Keyboard commands
 - (void)keyDown:(NSEvent *)event
@@ -5550,8 +5541,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 
 // *************************** Notification Methods/Functions ***************************
-#pragma mark -
-#pragma mark ********* Notification Methods/Functions *********
+#pragma mark - Notification Methods/Functions
 
 - (void)undoHappened
 {
@@ -5616,8 +5606,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** For Changing/Getting Settings ***************************
-#pragma mark -
-#pragma mark For Changing/Getting Settings
+#pragma mark - For Changing/Getting Settings
 //COUNT_OF_BOOL_ARRAY_OPTIONS
 
 - (BOOL)setBoolOptionsFor:(LEMapDrawOption)theSetting to:(BOOL)value
@@ -5639,8 +5628,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** First Responder Actions ***************************
-#pragma mark -
-#pragma mark ********* First Responder Actions *********
+#pragma mark - First Responder Actions
 
 - (IBAction)getInfoAction:(id)sender
 {

@@ -32,16 +32,14 @@
 }
 
 // ************************* Accsessor Methods *************************
-#pragma mark -
-#pragma mark •••••••••• Accsessor Methods •••••••••
+#pragma mark - Accsessor Methods
 
 - (NSArray<NSString*> *)pluginInstanceNames { return [pluginInstanceNames copy]; }
 - (NSArray<Class> *)pluginClasses { return [pluginClasses copy]; }
 - (NSArray<id<PhLevelPluginProtocol>> *)pluginInstances { return [pluginInstances copy]; }
  
 // ************************* Convience Methods *************************
-#pragma mark -
-#pragma mark •••••••••• Convience Methods •••••••••
+#pragma mark - Convience Methods
 
 - (void)activatePluginIndex:(int)index
 {
@@ -50,8 +48,7 @@
 
 
 // ************************* Utilties *************************
-#pragma mark -
-#pragma mark •••••••••• Utilties •••••••••
+#pragma mark - Utilties
 
 - (void)findPlugins
 {
@@ -95,15 +92,13 @@
 
 
 // ************************* Private Methods *************************
-#pragma mark -
-#pragma mark •••••••••• Private Methods •••••••••
+#pragma mark - Private Methods
 
-//	This is called to activate each plug-in, meaning that each candidate bundle is checked,
-//	loaded if it seems to contain a valid plug-in, and the plug-in's class' initiateClass
-//	method is called. If this returns YES, it means that the plug-in agrees to run and the
-//	class is added to the pluginClass array. Some plug-ins might refuse to be activated
-//	depending on some external condition.
-
+/// This is called to activate each plug-in, meaning that each candidate bundle is checked,
+/// loaded if it seems to contain a valid plug-in, and the plug-in's class' initiateClass
+/// method is called. If this returns `YES`, it means that the plug-in agrees to run and the
+/// class is added to the `pluginClass` array. Some plug-ins might refuse to be activated
+/// depending on some external condition.
 - (void)activatePlugin:(NSString*)path {
 	NSBundle* pluginBundle = [NSBundle bundleWithPath:path];
 	
@@ -139,12 +134,11 @@
 }
 
 
-//	A plug-in class can return multiple plug-in objects, so we ask each one to return an enumerator of
-//	plug-in instances. We pass the window as argument for this call; some plug-ins might refuse to
-//	instantiate themselves depending on the argument. Each plug-in instance is asked to return a view
-//	which is resized and added to the main window's tab view, and the plug-in is then added to the
-//	instances array.
-
+/// A plug-in class can return multiple plug-in objects, so we ask each one to return an enumerator of
+/// plug-in instances. We pass the window as argument for this call; some plug-ins might refuse to
+/// instantiate themselves depending on the argument. Each plug-in instance is asked to return a view
+/// which is resized and added to the main window's tab view, and the plug-in is then added to the
+/// instances array.
 - (void)instantiatePlugins:(Class)pluginClass {
 	NSEnumerator<id<PhLevelPluginProtocol>>* plugs = [pluginClass pluginsFor:self];
 	for (NSObject<PhLevelPluginProtocol> *plugin in plugs) {
@@ -166,8 +160,7 @@
 
 
 // *********************** Class Methods ***********************
-#pragma mark -
-#pragma mark •••••••••• Class Methods ••••••••••
+#pragma mark - Class Methods
 + (PhPluginManager *)sharedPhPluginManager {
 	static PhPluginManager *sharedPuginManagerController = nil;
 	

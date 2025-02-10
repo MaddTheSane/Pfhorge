@@ -85,7 +85,7 @@ extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible, CustomStringCon
 }
 
 final class EasyBMP {
-	static var easyBMPwarnings = false
+	static var showEasyBMPWarnings = false
 	struct RGBAPixel: Comparable, Hashable {
 		var blue: UInt8 = 0
 		var green: UInt8 = 0
@@ -232,7 +232,7 @@ final class EasyBMP {
 	
 	func setSize(width NewWidth: Int32, height NewHeight: Int32) -> Bool {
 		if NewWidth <= 0 || NewHeight <= 0  {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: User attempted to set a non-positive width or height.\nSize remains unchanged at \(width) ✕ \(height).")
 			}
 			return false
@@ -251,7 +251,7 @@ final class EasyBMP {
 	
 	func createStandardColorTable() -> Bool {
 		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Attempted to create color table at a bit depth that does not require a color table. Ignoring request.")
 			}
 
@@ -406,7 +406,7 @@ final class EasyBMP {
 		if NewDepth != 1 && NewDepth != 4 &&
 			NewDepth != 8 && NewDepth != 16 &&
 			NewDepth != 24 && NewDepth != 32  {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: User attempted to set unsupported bit depth \(NewDepth).\nBit depth remains unchanged at \(bitDepth).")
 			}
 			return false
@@ -683,7 +683,7 @@ final class EasyBMP {
 			warn = true
 		}
 		
-		if warn && EasyBMP.easyBMPwarnings {
+		if warn && EasyBMP.showEasyBMPWarnings {
 			print("EasyBMP Warning: Attempted to access non-existent pixel;\nTruncating request to fit in the range [0,\(width-1)] ✕ [0,\(height-1)].")
 		}
 		
@@ -692,21 +692,21 @@ final class EasyBMP {
 	
 	func setColor(at colorNumber: Int, to newColor: RGBAPixel) -> Bool {
 		if bitDepth != 1 && bitDepth != 4 && bitDepth != 8 {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Attempted to change color table for a BMP object that lacks a color table. Ignoring request.")
 			}
 			return false
 		}
 		
 		if colors.count == 0 {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Attempted to set a color, but the color table is not defined. Ignoring request.")
 			}
 			return false
 		}
 		
 		if colorNumber >= numberOfColors {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Requested color number \(colorNumber) is outside the allowed range [0,\(numberOfColors - 1)]. Ignoring request to set this color.")
 			}
 			return false
@@ -724,19 +724,19 @@ final class EasyBMP {
 		output.alpha = 0
 		
 		guard bitDepth == 1 || bitDepth == 4 || bitDepth == 8 else {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Attempted to access color table for a BMP object that lacks a color table. Ignoring request.")
 			}
 			return nil
 		}
 		if colors.isEmpty {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Requested a color, but the color table is not defined. Ignoring request.")
 			}
 			return nil
 		}
 		if colorNumber >= numberOfColors {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("EasyBMP Warning: Requested color number \(colorNumber) is outside the allowed range [0,\(numberOfColors - 1)]. Ignoring request to get this color.")
 			}
 			return output
@@ -993,7 +993,7 @@ final class EasyBMP {
 			}
 			
 			if NumberOfColorsToRead < numberOfColors {
-				if EasyBMP.easyBMPwarnings {
+				if EasyBMP.showEasyBMPWarnings {
 					print("Data has an underspecified color table. The table will be padded with extra white (255,255,255,0) entries.")
 				}
 			}
@@ -1025,7 +1025,7 @@ final class EasyBMP {
 			BytesToSkip = 0
 		}
 		if BytesToSkip > 0 && bitDepth != 16 {
-			if EasyBMP.easyBMPwarnings {
+			if EasyBMP.showEasyBMPWarnings {
 				print("Extra metadata detected in data. Data will be skipped.")
 			}
 			data.add(toPosition: BytesToSkip)
@@ -1044,7 +1044,7 @@ final class EasyBMP {
 			}
 			for j in (0 ..< Int(height)).reversed() {
 				guard let buffer = data.getSubData(withLength: Int(BufferSize)) else {
-					if EasyBMP.easyBMPwarnings {
+					if EasyBMP.showEasyBMPWarnings {
 						print("Could not read proper amount of data.")
 					}
 					break
@@ -1071,7 +1071,7 @@ final class EasyBMP {
 					Success = false
 				}
 				if !Success {
-					if EasyBMP.easyBMPwarnings {
+					if EasyBMP.showEasyBMPWarnings {
 						print("EasyBMP Error: Could not read enough pixel data!")
 					}
 					break
@@ -1124,7 +1124,7 @@ final class EasyBMP {
 			// read and skip any metadata
 			
 			if BytesToSkip > 0 {
-				if EasyBMP.easyBMPwarnings {
+				if EasyBMP.showEasyBMPWarnings {
 					print("Extra metadata detected in data. Data will be skipped.")
 				}
 				guard data.add(toPosition: BytesToSkip) else {
@@ -1160,7 +1160,7 @@ final class EasyBMP {
 				var ReadNumber = 0
 				while ReadNumber < DataBytes  {
 					guard let TempWORD = data.readUInt16() else {
-						if EasyBMP.easyBMPwarnings {
+						if EasyBMP.showEasyBMPWarnings {
 							print("Unexpected end of file reached.")
 						}
 						break outerLoop
@@ -1184,7 +1184,7 @@ final class EasyBMP {
 				ReadNumber = 0
 				while ReadNumber < PaddingBytes {
 					guard data.add(toPosition: 1) else {
-						if EasyBMP.easyBMPwarnings {
+						if EasyBMP.showEasyBMPWarnings {
 							print("Unexpected end of file reached.")
 						}
 						break outerLoop
