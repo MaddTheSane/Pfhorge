@@ -1154,7 +1154,7 @@ class PICT {
 				return NSLocalizedString("Unexpected end of file", comment: "Unexpected end of file")
 				
 			case .conversionFailed:
-				return NSLocalizedString("Converting to anonther bitmap format failed", comment: "Converting to anonther bitmap format failed")
+				return NSLocalizedString("Converting to anonther bitmap format failed", comment: "Converting to another bitmap format failed")
 			}
 		}
 		
@@ -1176,15 +1176,21 @@ class PICT {
 				return "Unexpected end of file"
 				
 			case .conversionFailed:
-				return "Converting to anonther bitmap format failed"
+				return "Converting to another bitmap format failed"
 			}
 		}
 
-		var failureReason: String? { return nil }
-
-		var recoverySuggestion: String? { return nil }
-
-		var helpAnchor: String? { return nil }
+		var recoverySuggestion: String? {
+			switch self {
+			case .unsupportedQuickTimeCodec,
+					.containsBandedJPEG,
+					.unimplementedOpCode(_):
+				return NSLocalizedString("Try opening the image in Mac OS 9 or earlier and convert the image to a different format.", comment: "unsupportedQuickTimeCodec suggestion (Open in Mac Classic)")
+				
+			default:
+				return nil
+			}
+		}
 		
 		case unimplementedOpCode(_ opCode: UInt16)
 		case containsBandedJPEG

@@ -233,7 +233,15 @@
       "comment" : "Converting Error"
     },
     "Converting to anonther bitmap format failed" : {
-      "comment" : "Converting to anonther bitmap format failed"
+      "comment" : "Converting to another bitmap format failed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converting to another bitmap format failed"
+          }
+        }
+      }
     },
     "Could not convert one of the levels…" : {
       "comment" : "Could not convert one of the levels…"
@@ -850,6 +858,9 @@
     },
     "Tried To Select An Object Of Unknown Class…" : {
       "comment" : "Tried To Select An Object Of Unknown Class…"
+    },
+    "Try opening the image in Mac OS 9 or earlier and convert the image to a different format." : {
+      "comment" : "unsupportedQuickTimeCodec suggestion (Open in Mac Classic)"
     },
     "Unexpected end of file" : {
       "comment" : "Unexpected end of file"
