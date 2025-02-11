@@ -12,7 +12,7 @@
 #import "NDResourceFork.h"
 #import "NSURL+NDCarbonUtilities.h"
 
-static OSErr createResourceFork(NSURL * aURL);
+static OSStatus createResourceFork(NSURL * aURL);
 
 @implementation NDResourceFork
 
@@ -84,13 +84,13 @@ static OSErr createResourceFork(NSURL * aURL);
 
 - (id)initWithPermission:(NDResourceForkPermission)aPermission AtURL:(NSURL *)aURL error:(NSError**)outError
 {
-	OSErr			theError = !noErr;
+	OSStatus		theError = !noErr;
 	FSRef			theFsRef;
 
 	if ((self = [super init])) {
 		if (![aURL getFSRef:&theFsRef]) {
 			if (outError) {
-				*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: aURL}];
+				*outError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFileNoSuchFileError userInfo:@{NSURLErrorKey: aURL}];
 			}
 			return nil;
 		}
@@ -102,7 +102,7 @@ static OSErr createResourceFork(NSURL * aURL);
 			theError = createResourceFork(aURL);
 			if (theError != noErr) {
 				if (outError) {
-					*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:fnfErr userInfo:@{NSURLErrorKey: aURL}];
+					*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:theError userInfo:@{NSURLErrorKey: aURL}];
 				}
 				return nil;
 			}
@@ -277,7 +277,7 @@ static OSErr createResourceFork(NSURL * aURL);
 
 @end
 
-OSErr createResourceFork(NSURL * aURL)
+OSStatus createResourceFork(NSURL * aURL)
 {
 	FSRef					theParentFsRef,
 							theFsRef;

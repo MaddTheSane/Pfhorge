@@ -155,6 +155,14 @@
             NSURL *fileURL = op.URL;
             fileName = fileURL.path;
             
+            if ([ScenarioResources isAppleSingleAtURL:fileURL findResourceFork:YES offset:NULL length:NULL] ||
+                [ScenarioResources isAppleSingleAtURL:fileURL findResourceFork:NO offset:NULL length:NULL] ||
+                [ScenarioResources isMacBinaryAtURL:fileURL dataLength:NULL resourceLength:NULL]) {
+                // TODO: better error reported.
+                [self presentError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSURLErrorKey: fileURL, NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"AppleSingle/MacBinary-encoded maps are not supported yet.", @"AppleSingle/MacBinary-encoded maps are not supported yet.")}]];
+                return;
+            }
+            
             [progress setMinProgress:0.0];
             [progress setMaxProgress:100.0];
             [progress setProgressPostion:0.0];
@@ -162,7 +170,7 @@
             [progress setInformationalText:@"Loading Marathon Data Into Memory…"];
             [progress showWindow:self];
             
-            maraResources = [[ScenarioResources alloc] initWithContentsOfFile:fileName];
+            maraResources = [[ScenarioResources alloc] initWithContentsOfURL:fileURL error:NULL];
             
             archivedLevels = [LEMapData
                 convertMarathonDataToArchived:[NSData dataWithContentsOfURL:fileURL]

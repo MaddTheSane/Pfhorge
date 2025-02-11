@@ -574,7 +574,6 @@
 
 -(BOOL)readFromURL:(NSURL *)url ofType:(NSString *)type error:(NSError * _Nullable *)outError
 {
-    NSString *fileName = url.path;
     BOOL value = YES;
     if ([ScenarioResources isAppleSingleAtURL:url findResourceFork:YES offset:NULL length:NULL] || [ScenarioResources isAppleSingleAtURL:url findResourceFork:NO offset:NULL length:NULL] || [ScenarioResources isMacBinaryAtURL:url dataLength:NULL resourceLength:NULL]) {
         if (outError) {

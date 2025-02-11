@@ -294,7 +294,7 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
     
 	@autoreleasepool {
 		NSURL *url = [NSURL fileURLWithPath:fileName];
-		CFURLGetFSRef((CFURLRef)url, &fsref);
+		[url getFSRef:&fsref];
 	}
     
     saveNum = CurResFile();
