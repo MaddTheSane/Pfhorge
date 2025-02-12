@@ -121,42 +121,42 @@
 
 #pragma mark -
 
-#define LELevelDataEnvironmentCodeCoderKey @"environment_code"
-#define LELevelDataphysics_modelCoderKey @"physics_model"
-#define LELevelDatasong_indexCoderKey @"song_index"
-#define LELevelDatamission_flagsCoderKey @"mission_flags"
-#define LELevelDataenvironment_flagsCoderKey @"environment_flags"
-#define LELevelDataentry_point_flagsCoderKey @"entry_point_flags"
+static NSString * const LELevelDataEnvironmentCodeCoderKey = @"environment_code";
+static NSString * const LELevelDataphysics_modelCoderKey = @"physics_model";
+static NSString * const LELevelDatasong_indexCoderKey = @"song_index";
+static NSString * const LELevelDatamission_flagsCoderKey = @"mission_flags";
+static NSString * const LELevelDataenvironment_flagsCoderKey = @"environment_flags";
+static NSString * const LELevelDataentry_point_flagsCoderKey = @"entry_point_flags";
 
-	
-#define LELevelDataPointsCoderKey @"points"
-#define LELevelDataLinesCoderKey @"lines"
-#define LELevelDataPolysCoderKey @"polys"
-#define LELevelDatamapObjectsCoderKey @"mapObjects"
-#define LELevelDatasidesCoderKey @"sides"
-#define LELevelDatalightsCoderKey @"lights"
-#define LELevelDatanotesCoderKey @"notes"
-#define LELevelDatamediaCoderKey @"media"
-#define LELevelDataambientSoundsCoderKey @"ambientSounds"
-#define LELevelDatarandomSoundsCoderKey @"randomSounds"
-#define LELevelDataitemPlacementCoderKey @"itemPlacement"
-#define LELevelDataplatformsCoderKey @"platforms"
+    
+static NSString * const LELevelDataPointsCoderKey = @"points";
+static NSString * const LELevelDataLinesCoderKey = @"lines";
+static NSString * const LELevelDataPolysCoderKey = @"polys";
+static NSString * const LELevelDatamapObjectsCoderKey = @"mapObjects";
+static NSString * const LELevelDatasidesCoderKey = @"sides";
+static NSString * const LELevelDatalightsCoderKey = @"lights";
+static NSString * const LELevelDatanotesCoderKey = @"notes";
+static NSString * const LELevelDatamediaCoderKey = @"media";
+static NSString * const LELevelDataambientSoundsCoderKey = @"ambientSounds";
+static NSString * const LELevelDatarandomSoundsCoderKey = @"randomSounds";
+static NSString * const LELevelDataitemPlacementCoderKey = @"itemPlacement";
+static NSString * const LELevelDataplatformsCoderKey = @"platforms";
 
-#define LELevelDataterimalsCoderKey @"terimals"
+static NSString * const LELevelDataterimalsCoderKey = @"terimals";
 
-#define LELevelDatalayersInLevelCoderKey @"layersInLevel"
-#define LELevelDatacurrentLayerCoderKey @"currentLayer"
-#define LELevelDatalayerPointsCoderKey @"layerPoints"
-#define LELevelDatalayerLinesCoderKey @"layerLines"
-#define LELevelDatalayerPolysCoderKey @"layerPolys"
-#define LELevelDatalayerMapObjectsCoderKey @"layerMapObjects"
-	
-#define LELevelDatatagsCoderKey @"tags"
+static NSString * const LELevelDatalayersInLevelCoderKey = @"layersInLevel";
+static NSString * const LELevelDatacurrentLayerCoderKey = @"currentLayer";
+static NSString * const LELevelDatalayerPointsCoderKey = @"layerPoints";
+static NSString * const LELevelDatalayerLinesCoderKey = @"layerLines";
+static NSString * const LELevelDatalayerPolysCoderKey = @"layerPolys";
+static NSString * const LELevelDatalayerMapObjectsCoderKey = @"layerMapObjects";
+    
+static NSString * const LELevelDatatagsCoderKey = @"tags";
 
-#define LELevelDatalevel_nameCoderKey @"level_name"
+static NSString * const LELevelDatalevel_nameCoderKey = @"level_name";
 
-#define LELevelDatanoteTypesCoderKey @"noteTypes"
-#define LELevelDatalayerNotesCoderKey @"layerNotes"
+static NSString * const LELevelDatanoteTypesCoderKey = @"noteTypes";
+static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 
 
 // **************************  Coding/Copy Protocal Methods  *************************
@@ -505,9 +505,9 @@
         id theObj;
         for (LEPolygon *thePolyToCheck in polys) {
             switch ([thePolyToCheck type]) {
-                case _polygon_is_platform_on_trigger:
-                case _polygon_is_platform_off_trigger:
-                case _polygon_is_teleporter:
+                case LEPolygonPlatformOnTrigger:
+                case LEPolygonPlatformOffTrigger:
+                case LEPolygonTeleporter:
                     thePolyPointedTo = [thePolyToCheck permutationObject];
                     // This Might Be able To Insert Nil Objects Into An Array...
                     [self namePolygon:thePolyPointedTo to:stringFromInt([thePolyPointedTo index])];
@@ -678,7 +678,7 @@
             [namedPolyObjects addObject:theObj];
         }
         
-        if ([theObj type] == _polygon_is_platform) {
+        if ([theObj type] == LEPolygonPlatform) {
             if ([[theObj permutationObject] polygonObject] != theObj) {
                 // The polygon points to a platform which does not point back
                 // to the polygon...  This will fix that, hopefully...

@@ -34,45 +34,45 @@
 
 //! polygon types
 typedef NS_ENUM(short, LEPolygonType) {
-    _polygon_is_normal,
-    _polygon_is_item_impassable,
-    _polygon_is_monster_impassable,
+    LEPolygonNormal,
+    LEPolygonItemImpassable,
+    LEPolygonMonsterImpassable,
     //! for King of The Hill
-    _polygon_is_hill,
+    LEPolygonHill,
     //! for ctf, rugby, etc (team number in permutation)
-    _polygon_is_base,
+    LEPolygonBase,
     //! Needs an object pointer? plaftform index
-    _polygon_is_platform,
+    LEPolygonPlatform,
     //! Needs an object pointer? light index
-    _polygon_is_light_on_trigger,
+    LEPolygonLightOnTrigger,
     //! Needs an object pointer? poly index
-    _polygon_is_platform_on_trigger,
+    LEPolygonPlatformOnTrigger,
     //! Needs an object pointer? light index
-    _polygon_is_light_off_trigger,
+    LEPolygonLightOffTrigger,
     //! Needs an object pointer? poly index
-    _polygon_is_platform_off_trigger,
+    LEPolygonPlatformOffTrigger,
     //! Needs an object pointer? poly index
-    _polygon_is_teleporter,
-    _polygon_is_zone_border,
+    LEPolygonTeleporter,
+    LEPolygonZoneBorder,
     //! Needs an object pointer?
-    _polygon_is_goal,
-    _polygon_is_visible_monster_trigger,
-    _polygon_is_invisible_monster_trigger,
-    _polygon_is_dual_monster_trigger,
+    LEPolygonGoal,
+    LEPolygonVisibleMonsterTrigger,
+    LEPolygonInvisibleMonsterTrigger,
+    LEPolygonDualMonsterTrigger,
     //! activates all items in this zone
-    _polygon_is_item_trigger,
-    _polygon_must_be_explored,
+    LEPolygonItemTrigger,
+    LEPolygonMustBeExplored,
                                 // Needs an object pointer?
     //! if success conditions are met, causes automatic transport to next level
-    _polygon_is_automatic_exit,
+    LEPolygonAutomaticExit,
     
     //! NOTE: New Marathon 1 types!!!
     //!   Add Support For These!
-    _polygon_is_minor_ouch,
-    _polygon_is_major_ouch,
-    _polygon_is_glue,
-    _polygon_is_glue_trigger,
-    _polygon_is_superglue
+    LEPolygonMinorOuch,
+    LEPolygonMajorOuch,
+    LEPolygonGlue,
+    LEPolygonGlueTrigger,
+    LEPolygonSuperglue
 };
 
 typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {

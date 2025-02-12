@@ -32,9 +32,9 @@
 #pragma mark ********* Coding/Copy Protocal Methods *********
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
- {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+{
+    NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
+    int tmpLong = 0;
     //int i = 0;
     
     if (theNumber != NSNotFound)
@@ -61,8 +61,8 @@
     [super superClassExportWithIndex:index selfData:myData futureData:futureData mainObjects:mainObjs];
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
-    [theData appendBytes:&tmpLong length:4];
+    tmpLong = (int)[myData length];
+    saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     

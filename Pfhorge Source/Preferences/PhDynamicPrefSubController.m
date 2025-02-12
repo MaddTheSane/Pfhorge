@@ -299,8 +299,8 @@ extern NSString *VMBackwardKey;
     NSInteger returnCode = [panel runModal];
     
     if (returnCode == NSModalResponseOK) {
-        NSString *path = [panel URL].path;
-        NSLog(@"The Path: %@", path);
+        NSURL *path = [panel URL];
+        NSLog(@"The Path: %@", path.path);
         //NSString *thePath = @"Test Script.scpt";
         createAndExecuteScriptObject(path);
     }

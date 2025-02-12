@@ -164,14 +164,14 @@
 {
 }
 
-#define LEMapObjectCoderPolygonObjectKey @"polygonObject"
-#define LEMapObjectCoderTypeKey @"type"
-#define LEMapObjectCoderIndexKey @"index"
-#define LEMapObjectCoderFacingKey @"facing"
-#define LEMapObjectCoderXKey @"x"
-#define LEMapObjectCoderYKey @"y"
-#define LEMapObjectCoderZKey @"z"
-#define LEMapObjectCoderFlagsKey @"flags"
+static NSString * const LEMapObjectCoderPolygonObjectKey = @"polygonObject";
+static NSString * const LEMapObjectCoderTypeKey = @"type";
+static NSString * const LEMapObjectCoderIndexKey = @"index";
+static NSString * const LEMapObjectCoderFacingKey = @"facing";
+static NSString * const LEMapObjectCoderXKey = @"x";
+static NSString * const LEMapObjectCoderYKey = @"y";
+static NSString * const LEMapObjectCoderZKey = @"z";
+static NSString * const LEMapObjectCoderFlagsKey = @"flags";
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {

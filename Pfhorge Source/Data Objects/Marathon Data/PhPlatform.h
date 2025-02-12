@@ -22,6 +22,7 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //  or you can read it by running the program and selecting Phorge->About Phorge
 
+#include <stdint.h>
 #import <Foundation/Foundation.h>
 #import "LEMapStuffParent.h"
 #import "PhAbstractName.h"
@@ -35,28 +36,28 @@
 
 
 
-// ••• ••• ••• Platform Types and Constents ••• ••• •••
+#pragma mark Platform Types and Constents
 
 
 //! Platform types
 typedef NS_ENUM(int16_t, PhPlatformType)
 {
-	_platform_is_spht_door,
-	_platform_is_spht_split_door,
-	_platform_is_locked_spht_door,
-	_platform_is_spht_platform,
-	_platform_is_noisy_spht_platform,
-	_platform_is_heavy_spht_door,
-	_platform_is_pfhor_door,
-	_platform_is_heavy_spht_platform,
-	_platform_is_pfhor_platform,
+	PhPlatformSphtDoor,
+	PhPlatformSphtSplitDoor,
+	PhPlatformLockedSphtDoor,
+	PhPlatformSphtPlatform,
+	PhPlatformNoisySphtPlatform,
+	PhPlatformHeavySphtDoor,
+	PhPlatformPfhorDoor,
+	PhPlatformHeavySphtPlatform,
+	PhPlatformPfhorPlatform,
 
-	NUMBER_OF_PLATFORM_TYPES
+//	NUMBER_OF_PLATFORM_TYPES
 };
 
 
-
-NS_ENUM(short)	// platform speeds
+// platform speeds
+NS_ENUM(short)
 {
 	_very_slow_platform = WORLD_ONE / (4*TICKS_PER_SECOND),
 	_slow_platform = WORLD_ONE / (2*TICKS_PER_SECOND),
@@ -65,7 +66,8 @@ NS_ENUM(short)	// platform speeds
 	_blindingly_fast_platform = 4 * _slow_platform
 };
 
-NS_ENUM(short)	// platform delays
+// platform delays
+NS_ENUM(short)
 {
 	_no_delay_platform = 0,
 	_short_delay_platform = TICKS_PER_SECOND,
@@ -75,63 +77,63 @@ NS_ENUM(short)	// platform delays
 
 
 
-// ••• ••• ••• Platform Flags ••• ••• •••
+#pragma mark - Platform Flags
 
 
 //! static platform flags
 typedef NS_OPTIONS(unsigned int, PhPlatformStaticFlags) {
 	//! otherwise inactive
-	_platform_is_initially_active = 0x00000001,
-	//! high for floor platforms, low for ceiling platforms, closed for two_way platforms
-	_platform_is_initially_extended = 0x00000002,
+	PhPlatformIsInitiallyActive = 0x00000001,
+	//! high for floor platforms, low for ceiling platforms, closed for `two_way` platforms
+	PhPlatformIsInitiallyExtended = 0x00000002,
         
 	// These both can not be set to true a the same time...
 	//! this platform will deactivate each time it reaches a discrete level
-	_platform_deactivates_at_each_level = 0x00000004,
+	PhPlatformDeactivatesAtEachLevel = 0x00000004,
 	//! this platform will deactivate upon returning to its original position
-	_platform_deactivates_at_initial_level = 0x00000008,
+	PhPlatformDeactivatesAtInitialLevel = 0x00000008,
         
-	_platform_activates_adjacent_platforms_when_deactivating = 0x00000010,
+	PhPlatformActivatesAdjacentPlatformsWhenDeactivating = 0x00000010,
 	//! i.e. there is no empty space when the platform is fully extended
-	_platform_extends_floor_to_ceiling = 0x00000020,
+	PhPlatformExtendsFloorToCeiling = 0x00000020,
 	//! platform rises from floor
-	_platform_comes_from_floor = 0x00000040,
+	PhPlatformComesFromFloor = 0x00000040,
 	//! platform lowers from ceiling
-	_platform_comes_from_ceiling = 0x00000080,
+	PhPlatformComesFromCeiling = 0x00000080,
 	//! when obstructed by monsters, this platform causes damage
-	_platform_causes_damage = 0x00000100,
+	PhPlatformCausesDamage = 0x00000100,
 	//! does not reactive its parent (i.e. that platform which activated it)
-	_platform_does_not_activate_parent = 0x00000200,
+	PhPlatformDoesNotActivateParent = 0x00000200,
     //! only activates once
-	_platform_activates_only_once = 0x00000400,
+	PhPlatformActivatesOnlyOnce = 0x00000400,
 	//! activates floor and ceiling light sources while activating
-	_platform_activates_light = 0x00000800,
+	PhPlatformActivatesLight = 0x00000800,
 	//! deactivates floor and ceiling lightsources while deactivating
-	_platform_deactivates_light = 0x00001000,
+	PhPlatformDeactivatesLight = 0x00001000,
 	//! i.e. door: players can use action key to change the state and/or direction of this platform
-	_platform_is_player_controllable = 0x00002000,
+	PhPlatformIsPlayerControllable = 0x00002000,
 	//! i.e. door: monsters can expect to be able to move this platofrm even if inactive
-	_platform_is_monster_controllable = 0x00004000,
+	PhPlatformIsMonsterControllable = 0x00004000,
     //! platform reverses direction when it hits an obstruction
-	_platform_reverses_direction_when_obstructed = 0x00008000,
+	PhPlatformReversesDirectionWhenObstructed = 0x00008000,
 	//! when active, can only be deactivated by itself
-	_platform_cannot_be_externally_deactivated = 0x00010000,
+	PhPlatformCannotBeExternallyDeactivated = 0x00010000,
 	//! complicated interpretation; uses native polygon heights during automatic min,max calculation
-	_platform_uses_native_polygon_heights = 0x00020000,
+	PhPlatformUsesNativePolygonHeights = 0x00020000,
 	//! whether or not the platform begins with the maximum delay before moving
-	_platform_delays_before_activation = 0x00040000,
+	PhPlatformDelaysBeforeActivation = 0x00040000,
     
-	_platform_activates_adjacent_platforms_when_activating = 0x00080000,
-	_platform_deactivates_adjacent_platforms_when_activating = 0x00100000,
-	_platforms_deactivates_adjacent_platforms_when_deactivating = 0x00200000,
-	_platform_contracts_slower = 0x00400000,
-	_platform_activates_adjacent_platforms_at_each_level = 0x00800000,
+	PhPlatformActivatesAdjacentPlatformsWhenActivating = 0x00080000,
+	PhPlatformDeactivatesAdjacentPlatformsWhenActivating = 0x00100000,
+	PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating = 0x00200000,
+	PhPlatformContractsSlower = 0x00400000,
+	PhPlatformActivatesAdjacentPlatformsAtEachLevel = 0x00800000,
     //! platform cannot be open/used
-	_platform_is_locked = 0x01000000,
+	PhPlatformIsLocked = 0x01000000,
     //! platform does not show up as a platform in the mini-map
-	_platform_is_secret = 0x02000000,
+	PhPlatformIsSecret = 0x02000000,
     //! platform is a door.
-	_platform_is_door = 0x04000000,
+	PhPlatformIsDoor = 0x04000000,
 };
 
 enum /* dynamic platform flags */
@@ -151,7 +153,7 @@ enum /* dynamic platform flags */
 
 
 
-// ••• ••• ••• Platform Structres ••• ••• •••
+#pragma mark - Platform Structres
 
 
 
@@ -165,7 +167,7 @@ struct static_platform_data_platform /* size platform-dependant */
 {
 	PhPlatformType type;
 	int16_t speed, delay;
-	world_distance maximum_height, minimum_height; /* if NONE then calculated in some reasonable way */
+	world_distance maximum_height, minimum_height; /*!< if `NONE` then calculated in some reasonable way */
 
 	PhPlatformStaticFlags static_flags;
 	
@@ -176,6 +178,7 @@ struct static_platform_data_platform /* size platform-dependant */
 	int16_t unused[7];
 };
 /// const int SIZEOF_static_platform_data = 32;
+//static_assert(sizeof(struct static_platform_data_platform) == 32, "Size of static_platform_data_platform is incorrect");
 
 struct platform_data2 /* 140 bytes */
 {
@@ -201,6 +204,7 @@ struct platform_data2 /* 140 bytes */
 	short unused[22];
 };
 /// const int SIZEOF_platform_data = 140;
+//static_assert(sizeof(struct platform_data2) == 140, "Size of platform_data2 is incorrect");
 
 
 

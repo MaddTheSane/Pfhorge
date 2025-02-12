@@ -427,7 +427,7 @@
     NSString *fullPathToScript = [sender representedObject];
     
     NSLog(@"Running Script At: %@", fullPathToScript);
-    createAndExecuteScriptObject(fullPathToScript);
+    createAndExecuteScriptObject([NSURL fileURLWithPath: fullPathToScript]);
 }
 
 - (IBAction)exectuteScriptExample:(id)sender
@@ -437,8 +437,8 @@
     NSModalResponse returnCode = [panel runModal];
     
     if (returnCode == NSModalResponseOK) {
-        NSString *path = [panel URL].path;
-        NSLog(@"The Path: %@", path);
+        NSURL *path = [panel URL];
+        NSLog(@"The Path: %@", path.path);
         //NSString *thePath = @"Test Script.scpt";
         createAndExecuteScriptObject(path);
     }

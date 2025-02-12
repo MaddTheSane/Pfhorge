@@ -52,8 +52,7 @@
 
 @implementation LELevelData (LevelDataObjectManipulation)
 // *************************** Adding Objects To Level Array Methods ***************************
-#pragma mark -
-#pragma mark *********  Adding Objects To Level Array Methods *********
+#pragma mark -  Adding Objects To Level Array Methods
 
 //#define showDebugDeletionsAndAddtions
 
@@ -773,8 +772,7 @@
 }
 
 // *************************** Deleteing Objects From Level Array Methods ***************************
-#pragma mark -
-#pragma mark ********* Deleteing Objects From Level Array Methods *********
+#pragma mark - Deleteing Objects From Level Array Methods
 
 -(void)deleteObject:(id)objectToDelete
 {
@@ -983,7 +981,7 @@
     #endif
     // *** *** ***
     
-    if ([thePolyToRemove type] == _polygon_is_platform)
+    if ([thePolyToRemove type] == LEPolygonPlatform)
     {
         PhPlatform *thePlatform = [thePolyToRemove permutationObject];
         
@@ -1130,14 +1128,14 @@
     
     LEPolygon *poly = [thePlatformToRemove polygonObject];
     
-    if ([poly type] == _polygon_is_platform)
+    if ([poly type] == LEPolygonPlatform)
     {
         PhPlatform *thePlatform = [poly permutationObject];
         
         if (thePlatformToRemove == thePlatform)
         {
             [poly setPermutationObject:nil];
-            [poly setType:_polygon_is_normal];
+            [poly setType:LEPolygonNormal];
         }
         else
         { // Platform to remove not the same as whats attached to the polygon...
@@ -1152,7 +1150,7 @@
                 {
                     // Same Object!!!
                     [thisPoly setPermutationObject:nil];
-                    [thisPoly setType:_polygon_is_normal];
+                    [thisPoly setType:LEPolygonNormal];
                 }
             }
         }

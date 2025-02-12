@@ -222,7 +222,7 @@
                 if (!convDat) {
                     // TODO: store errors for later review by the user
                     NSLog(@"%@", err);
-                    [progress setInformationalText:[NSString stringWithFormat:@"Saving ‘%@’ Resource# %@…", @"PICT", [resource resID], nil]];
+                    [progress setInformationalText:[NSString localizedStringWithFormat:NSLocalizedString(@"Saving ‘%@’ Resource# %@…", @"Saving ‘%@’ Resource# %@…"), @"PICT", [resource resID], nil]];
                     NSString * pictPath = [imageDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"pict"]];
                     
                     [fileManager createFileAtPath:pictPath
@@ -251,7 +251,7 @@
                         break;
                 }
                 
-                [progress setInformationalText:[NSString stringWithFormat:@"Saving converted ‘%@’ Resource# %@…", @"PICT", [resource resID]]];
+                [progress setInformationalText:[NSString localizedStringWithFormat:NSLocalizedString(@"Saving converted ‘%@’ Resource# %@…", @"Saving converted ‘%@’ Resource# %@…"), @"PICT", [resource resID]]];
                 BOOL success = [convDat writeToFile:savePath options:NSDataWritingAtomic error:&err];
                 if (!success) {
                     // TODO: store errors for later review by the user

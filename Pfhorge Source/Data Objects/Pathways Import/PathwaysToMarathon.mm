@@ -845,32 +845,32 @@ static void AddGeometry(PID_Level& PL, SectorArray SO, LELevelData *level)
 // For adding all the doors -- they are Marathon-engine platforms
 
 static const PhPlatformStaticFlags PlainDoorFlags =
-    _platform_uses_native_polygon_heights |
-    _platform_comes_from_ceiling |
-    _platform_is_player_controllable |
-    _platform_is_door |
+    PhPlatformUsesNativePolygonHeights |
+    PhPlatformComesFromCeiling |
+    PhPlatformIsPlayerControllable |
+    PhPlatformIsDoor |
     // Below Three Added By JDO
-    _platform_deactivates_at_each_level |
-    _platform_activates_only_once |
-    _platform_is_initially_extended;
+    PhPlatformDeactivatesAtEachLevel |
+    PhPlatformActivatesOnlyOnce |
+    PhPlatformIsInitiallyExtended;
 
 static const PhPlatformStaticFlags SecretDoorFlags =
-    _platform_uses_native_polygon_heights |
-    _platform_comes_from_ceiling |
-    _platform_is_player_controllable |
-    _platform_is_door |
-    _platform_is_secret |
+    PhPlatformUsesNativePolygonHeights |
+    PhPlatformComesFromCeiling |
+    PhPlatformIsPlayerControllable |
+    PhPlatformIsDoor |
+    PhPlatformIsSecret |
     // Below Three Added By JDO
-    _platform_deactivates_at_each_level |
-    _platform_activates_only_once |
-    _platform_is_initially_extended;
+    PhPlatformDeactivatesAtEachLevel |
+    PhPlatformActivatesOnlyOnce |
+    PhPlatformIsInitiallyExtended;
 
 // A single one of them
 static void AddDoor(PhPlatformStaticFlags DoorFlags, LEPolygon *Pg, LELevelData *level)
 {
     PhPlatform *Platform =[level addObjectWithDefaults:[PhPlatform class]];
     [Platform setStaticFlags:DoorFlags];
-    [Pg setType:_polygon_is_platform];
+    [Pg setType:LEPolygonPlatform];
     [Pg setPermutationObject:Platform];
 }
 
@@ -1108,7 +1108,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                                 PID_LevelChange& LvCh = PL.LevelChangeList[Sector.TypeAddl];
                                 if (LvCh.Level == PL.LevelNumber)
                                 {
-                                    [Pg setType:_polygon_is_teleporter];
+                                    [Pg setType:LEPolygonTeleporter];
                                     [Pg setPermutationObject:SO[LvCh.x][LvCh.y].GetPolygon(Pg_Plain)];
                                     WhichFloor = Tx_Teleport;
                                     WhichFloorLight = Lt_Teleport;
@@ -1268,7 +1268,7 @@ LELevelData *PathwaysToMarathon(PID_Level& PL, PID_LevelState& PLS)
                             
                             LEPolygon *Pg = (LEPolygon *)[Sd polygonObject];
                             if (Pg) {
-                                if ([Pg type] == _polygon_is_teleporter)
+                                if ([Pg type] == LEPolygonTeleporter)
                                 {
                                     Which = Tx_Teleport;
                                     WhichLight = Lt_Teleport;

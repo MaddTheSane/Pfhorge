@@ -51,8 +51,7 @@
 
 @implementation LELevelData (LevelLayers)
 // ************************* Layer Data Agirithms *************************
-#pragma mark -
-#pragma mark ********* Layer Data Agirithms *********
+#pragma mark - Layer Data Algorithms
 
 -(void)setupLayersForNewPIDLevel
 {

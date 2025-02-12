@@ -40,8 +40,8 @@
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
-    long theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+	NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
+    int tmpLong = 0;
     //int i = 0;
     
     if (theNumber != NSNotFound)
@@ -81,8 +81,8 @@
     [super superClassExportWithIndex:index selfData:myData futureData:futureData mainObjects:mainObjs];
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
-    [theData appendBytes:&tmpLong length:4];
+    tmpLong = (int)[myData length];
+	saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     
@@ -149,10 +149,10 @@
 	speed = loadShortFromNSData(theData, locationOfBytes+6);
 	delay = loadShortFromNSData(theData, locationOfBytes+8);
     
-    if (static_flags & _platform_comes_from_floor)
+    if (static_flags & PhPlatformComesFromFloor)
         fromFloor = YES;
         
-    if (static_flags & _platform_comes_from_ceiling)
+    if (static_flags & PhPlatformComesFromCeiling)
         fromCeiling = YES;
     
     if (fromFloor && !fromCeiling)
@@ -317,36 +317,36 @@
 #pragma mark ********* Overridden Standard Methods *********
 /*enum // static platform flags
 {
-	_platform_is_initially_active = 0x00000001,	// otherwise inactive
-	_platform_is_initially_extended = 0x00000002, // high for floor platforms, low for ceiling platforms, closed for two_way platforms
+	PhPlatformIsInitiallyActive = 0x00000001,	// otherwise inactive
+	PhPlatformIsInitiallyExtended = 0x00000002, // high for floor platforms, low for ceiling platforms, closed for two_way platforms
         
         // These both can not be set to true a the same time...
-	_platform_deactivates_at_each_level = 0x00000004, // this platform will deactivate each time it reaches a discrete level
-	_platform_deactivates_at_initial_level = 0x00000008, // this platform will deactivate upon returning to its original position
+	PhPlatformDeactivatesAtEachLevel = 0x00000004, // this platform will deactivate each time it reaches a discrete level
+	PhPlatformDeactivatesAtInitialLevel = 0x00000008, // this platform will deactivate upon returning to its original position
         
-	_platform_activates_adjacent_platforms_when_deactivating = 0x00000010,
-	_platform_extends_floor_to_ceiling = 0x00000020, // i.e. there is no empty space when the platform is fully extended
-	_platform_comes_from_floor = 0x00000040, // platform rises from floor
-	_platform_comes_from_ceiling = 0x00000080, // platform lowers from ceiling
-	_platform_causes_damage = 0x00000100, // when obstructed by monsters, this platform causes damage
-	_platform_does_not_activate_parent = 0x00000200, // does not reactive its parent (i.e. that platform which activated it)
-	_platform_activates_only_once = 0x00000400,
-	_platform_activates_light = 0x00000800, // activates floor and ceiling light sources while activating
-	_platform_deactivates_light = 0x00001000, // deactivates floor and ceiling lightsources while deactivating
-	_platform_is_player_controllable = 0x00002000, // i.e. door: players can use action key to change the state and/or direction of this platform
-	_platform_is_monster_controllable = 0x00004000, // i.e. door: monsters can expect to be able to move this platofrm even if inactive
-	_platform_reverses_direction_when_obstructed = 0x00008000,
-	_platform_cannot_be_externally_deactivated = 0x00010000, // when acctive, can only be deactivated by itself
-	_platform_uses_native_polygon_heights = 0x00020000, // complicated interpretation; uses native polygon heights during automatic min,max calculation
-	_platform_delays_before_activation = 0x00040000, // whether or not the platform begins with the maximum delay before moving
-	_platform_activates_adjacent_platforms_when_activating = 0x00080000,
-	_platform_deactivates_adjacent_platforms_when_activating = 0x00100000,
-	_platforms_deactivates_adjacent_platforms_when_deactivating = 0x00200000,
-	_platform_contracts_slower = 0x00400000,
-	_platform_activates_adjacent_platforms_at_each_level = 0x00800000,
-	_platform_is_locked = 0x01000000,
-	_platform_is_secret = 0x02000000,
-	_platform_is_door = 0x04000000,
+	PhPlatformActivatesAdjacentPlatformsWhenDeactivating = 0x00000010,
+	PhPlatformExtendsFloorToCeiling = 0x00000020, // i.e. there is no empty space when the platform is fully extended
+	PhPlatformComesFromFloor = 0x00000040, // platform rises from floor
+	PhPlatformComesFromCeiling = 0x00000080, // platform lowers from ceiling
+	PhPlatformCausesDamage = 0x00000100, // when obstructed by monsters, this platform causes damage
+	PhPlatformDoesNotActivateParent = 0x00000200, // does not reactive its parent (i.e. that platform which activated it)
+	PhPlatformActivatesOnlyOnce = 0x00000400,
+	PhPlatformActivatesLight = 0x00000800, // activates floor and ceiling light sources while activating
+	PhPlatformDeactivatesLight = 0x00001000, // deactivates floor and ceiling lightsources while deactivating
+	PhPlatformIsPlayerControllable = 0x00002000, // i.e. door: players can use action key to change the state and/or direction of this platform
+	PhPlatformIsMonsterControllable = 0x00004000, // i.e. door: monsters can expect to be able to move this platofrm even if inactive
+	PhPlatformReversesDirectionWhenObstructed = 0x00008000,
+	PhPlatformCannotBeExternallyDeactivated = 0x00010000, // when acctive, can only be deactivated by itself
+	PhPlatformUsesNativePolygonHeights = 0x00020000, // complicated interpretation; uses native polygon heights during automatic min,max calculation
+	PhPlatformDelaysBeforeActivation = 0x00040000, // whether or not the platform begins with the maximum delay before moving
+	PhPlatformActivatesAdjacentPlatformsWhenActivating = 0x00080000,
+	PhPlatformDeactivatesAdjacentPlatformsWhenActivating = 0x00100000,
+	PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating = 0x00200000,
+	PhPlatformContractsSlower = 0x00400000,
+	PhPlatformActivatesAdjacentPlatformsAtEachLevel = 0x00800000,
+	PhPlatformIsLocked = 0x01000000,
+	PhPlatformIsSecret = 0x02000000,
+	PhPlatformIsDoor = 0x04000000,
 	NUMBER_OF_STATIC_PLATFORM_FLAGS // <= 32
 };*/
 - (void)displayInfo
@@ -362,32 +362,32 @@
     
     switch (type)
     {
-        case _platform_is_spht_door:
-            [tis appendString:@"_platform_is_spht_door"];
+        case PhPlatformSphtDoor:
+            [tis appendString:@"PhPlatformSphtDoor"];
             break;
-        case _platform_is_spht_split_door:
-            [tis appendString:@"_platform_is_spht_split_door"];
+        case PhPlatformSphtSplitDoor:
+            [tis appendString:@"PhPlatformSphtSplitDoor"];
             break;
-        case _platform_is_locked_spht_door:
-            [tis appendString:@"_platform_is_locked_spht_door"];
+        case PhPlatformLockedSphtDoor:
+            [tis appendString:@"PhPlatformLockedSphtDoor"];
             break;
-        case _platform_is_spht_platform:
-            [tis appendString:@"_platform_is_spht_platform"];
+        case PhPlatformSphtPlatform:
+            [tis appendString:@"PhPlatformSphtPlatform"];
             break;
-        case _platform_is_noisy_spht_platform:
-            [tis appendString:@"_platform_is_noisy_spht_platform"];
+        case PhPlatformNoisySphtPlatform:
+            [tis appendString:@"PhPlatformNoisySphtPlatform"];
             break;
-        case _platform_is_heavy_spht_door:
-            [tis appendString:@"_platform_is_heavy_spht_door"];
+        case PhPlatformHeavySphtDoor:
+            [tis appendString:@"PhPlatformHeavySphtDoor"];
             break;
-        case _platform_is_pfhor_door:
-            [tis appendString:@"_platform_is_pfhor_door"];
+        case PhPlatformPfhorDoor:
+            [tis appendString:@"PhPlatformPfhorDoor"];
             break;
-        case _platform_is_heavy_spht_platform:
-            [tis appendString:@"_platform_is_heavy_spht_platform"];
+        case PhPlatformHeavySphtPlatform:
+            [tis appendString:@"PhPlatformHeavySphtPlatform"];
             break;
-        case _platform_is_pfhor_platform:
-            [tis appendString:@"_platform_is_pfhor_platform"];
+        case PhPlatformPfhorPlatform:
+            [tis appendString:@"PhPlatformPfhorPlatform"];
             break;
         default:
             [tis appendString:@"unknown"];
@@ -403,32 +403,32 @@
     [tis appendFormat:@"Ceiling Height : %d\n", [self maximumHeight], nil];
     
     [tis appendString:@"Platform Flags : \n"];
-    [tis appendString:PFs(_platform_is_initially_active, @"_platform_is_initially_active")];
-    [tis appendString:PFs(_platform_is_initially_extended, @"_platform_is_initially_extended")];
-    [tis appendString:PFs(_platform_deactivates_at_each_level, @"_platform_deactivates_at_each_level")];
-    [tis appendString:PFs(_platform_deactivates_at_initial_level, @"_platform_deactivates_at_initial_level")];
-    [tis appendString:PFs(_platform_activates_adjacent_platforms_when_deactivating, @"_platform_activates_adjacent_platforms_when_deactivating")];
-    [tis appendString:PFs(_platform_extends_floor_to_ceiling, @"_platform_extends_floor_to_ceiling")];
-    [tis appendString:PFs(_platform_comes_from_floor, @"_platform_comes_from_floor")];
-    [tis appendString:PFs(_platform_comes_from_ceiling, @"_platform_comes_from_ceiling")];
-    [tis appendString:PFs(_platform_causes_damage, @"_platform_causes_damage")];
-    [tis appendString:PFs(_platform_does_not_activate_parent, @"_platform_does_not_activate_parent")];
-    [tis appendString:PFs(_platform_activates_only_once, @"_platform_activates_only_once")];
+    [tis appendString:PFs(PhPlatformIsInitiallyActive, @"PhPlatformIsInitiallyActive")];
+    [tis appendString:PFs(PhPlatformIsInitiallyExtended, @"PhPlatformIsInitiallyExtended")];
+    [tis appendString:PFs(PhPlatformDeactivatesAtEachLevel, @"PhPlatformDeactivatesAtEachLevel")];
+    [tis appendString:PFs(PhPlatformDeactivatesAtInitialLevel, @"PhPlatformDeactivatesAtInitialLevel")];
+    [tis appendString:PFs(PhPlatformActivatesAdjacentPlatformsWhenDeactivating, @"PhPlatformActivatesAdjacentPlatformsWhenDeactivating")];
+    [tis appendString:PFs(PhPlatformExtendsFloorToCeiling, @"PhPlatformExtendsFloorToCeiling")];
+    [tis appendString:PFs(PhPlatformComesFromFloor, @"PhPlatformComesFromFloor")];
+    [tis appendString:PFs(PhPlatformComesFromCeiling, @"PhPlatformComesFromCeiling")];
+    [tis appendString:PFs(PhPlatformCausesDamage, @"PhPlatformCausesDamage")];
+    [tis appendString:PFs(PhPlatformDoesNotActivateParent, @"PhPlatformDoesNotActivateParent")];
+    [tis appendString:PFs(PhPlatformActivatesOnlyOnce, @"PhPlatformActivatesOnlyOnce")];
 
-    [tis appendString:PFs(_platform_is_player_controllable, @"_platform_is_player_controllable")];
-    [tis appendString:PFs(_platform_is_monster_controllable, @"_platform_is_monster_controllable")];
-    [tis appendString:PFs(_platform_reverses_direction_when_obstructed, @"_platform_reverses_direction_when_obstructed")];
-    [tis appendString:PFs(_platform_cannot_be_externally_deactivated, @"_platform_cannot_be_externally_deactivated")];
-    [tis appendString:PFs(_platform_uses_native_polygon_heights, @"_platform_uses_native_polygon_heights")];
-    [tis appendString:PFs(_platform_delays_before_activation, @"_platform_delays_before_activation")];
-    [tis appendString:PFs(_platform_activates_adjacent_platforms_when_activating, @"_platform_activates_adjacent_platforms_when_activating")];
-    [tis appendString:PFs(_platform_deactivates_adjacent_platforms_when_activating, @"_platform_deactivates_adjacent_platforms_when_activating")];
-    [tis appendString:PFs(_platforms_deactivates_adjacent_platforms_when_deactivating, @"_platforms_deactivates_adjacent_platforms_when_deactivating")];
-    [tis appendString:PFs(_platform_contracts_slower, @"_platform_contracts_slower")];
-    [tis appendString:PFs(_platform_activates_adjacent_platforms_at_each_level, @"_platform_activates_adjacent_platforms_at_each_level")];
-    [tis appendString:PFs(_platform_is_locked, @"_platform_is_locked")];
-    [tis appendString:PFs(_platform_is_secret, @"_platform_is_secret")];
-    [tis appendString:PFs(_platform_is_door, @"_platform_is_door")];
+    [tis appendString:PFs(PhPlatformIsPlayerControllable, @"PhPlatformIsPlayerControllable")];
+    [tis appendString:PFs(PhPlatformIsMonsterControllable, @"PhPlatformIsMonsterControllable")];
+    [tis appendString:PFs(PhPlatformReversesDirectionWhenObstructed, @"PhPlatformReversesDirectionWhenObstructed")];
+    [tis appendString:PFs(PhPlatformCannotBeExternallyDeactivated, @"PhPlatformCannotBeExternallyDeactivated")];
+    [tis appendString:PFs(PhPlatformUsesNativePolygonHeights, @"PhPlatformUsesNativePolygonHeights")];
+    [tis appendString:PFs(PhPlatformDelaysBeforeActivation, @"PhPlatformDelaysBeforeActivation")];
+    [tis appendString:PFs(PhPlatformActivatesAdjacentPlatformsWhenActivating, @"PhPlatformActivatesAdjacentPlatformsWhenActivating")];
+    [tis appendString:PFs(PhPlatformDeactivatesAdjacentPlatformsWhenActivating, @"PhPlatformDeactivatesAdjacentPlatformsWhenActivating")];
+    [tis appendString:PFs(PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating, @"PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating")];
+    [tis appendString:PFs(PhPlatformContractsSlower, @"PhPlatformContractsSlower")];
+    [tis appendString:PFs(PhPlatformActivatesAdjacentPlatformsAtEachLevel, @"PhPlatformActivatesAdjacentPlatformsAtEachLevel")];
+    [tis appendString:PFs(PhPlatformIsLocked, @"PhPlatformIsLocked")];
+    [tis appendString:PFs(PhPlatformIsSecret, @"PhPlatformIsSecret")];
+    [tis appendString:PFs(PhPlatformIsDoor, @"PhPlatformIsDoor")];
   
   //[tis appendString:PFs(, @"")];
     

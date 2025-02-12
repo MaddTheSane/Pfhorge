@@ -75,27 +75,27 @@
             break;
         
         switch (theType) {
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
-            case _polygon_is_base:
-            case _polygon_is_light_on_trigger:
-            case _polygon_is_platform_on_trigger:
-            case _polygon_is_light_off_trigger:
-            case _polygon_is_platform_off_trigger:
-            case _polygon_is_teleporter:
-            case _polygon_is_zone_border:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_automatic_exit:
+            case LEPolygonNormal:
+            case LEPolygonItemImpassable:
+            case LEPolygonMonsterImpassable:
+            case LEPolygonHill:
+            case LEPolygonBase:
+            case LEPolygonLightOnTrigger:
+            case LEPolygonPlatformOnTrigger:
+            case LEPolygonLightOffTrigger:
+            case LEPolygonPlatformOffTrigger:
+            case LEPolygonTeleporter:
+            case LEPolygonZoneBorder:
+            case LEPolygonGoal:
+            case LEPolygonVisibleMonsterTrigger:
+            case LEPolygonInvisibleMonsterTrigger:
+            case LEPolygonDualMonsterTrigger:
+            case LEPolygonItemTrigger:
+            case LEPolygonMustBeExplored:
+            case LEPolygonAutomaticExit:
                 break;
                 
-            case _polygon_is_platform: // Do Platfrom Side Calculations...
+            case LEPolygonPlatform: // Do Platfrom Side Calculations...
                 
                 // Only if the floor is moving, CHANGE THIS!!!
                 //if (alreadySetPlatformFlag == NO)
@@ -237,10 +237,10 @@
     PhPlatformStaticFlags ccPlatFlags = [ccPlat staticFlags];
     PhPlatformStaticFlags cPlatFlags = [cPlat staticFlags];
     
-    BOOL cPlatFloor = ((cPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
-    BOOL cPlatCeiling = ((cPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
-    BOOL ccPlatFloor = ((ccPlatFlags & (_platform_comes_from_floor)) ? (YES) : (NO));
-    BOOL ccPlatCeiling = ((ccPlatFlags & (_platform_comes_from_ceiling)) ? (YES) : (NO));
+    BOOL cPlatFloor = ((cPlatFlags & (PhPlatformComesFromFloor)) ? (YES) : (NO));
+    BOOL cPlatCeiling = ((cPlatFlags & (PhPlatformComesFromCeiling)) ? (YES) : (NO));
+    BOOL ccPlatFloor = ((ccPlatFlags & (PhPlatformComesFromFloor)) ? (YES) : (NO));
+    BOOL ccPlatCeiling = ((ccPlatFlags & (PhPlatformComesFromCeiling)) ? (YES) : (NO));
     
     int cCMax = 0, cCMin = 0, cFMax = 0, cFMin = 0;
     int ccCMax = 0, ccCMin = 0, ccFMax = 0, ccFMin = 0;

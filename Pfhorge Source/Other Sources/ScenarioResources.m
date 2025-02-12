@@ -13,7 +13,7 @@
 
 #import "PhProgress.h"
 
-static Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
+static inline Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName);
 static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
 
 @interface ScenarioResources ()
@@ -183,6 +183,7 @@ static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
         
         for (i = 1; i <= Count1Types(); i++) {
             Get1IndType(&restype, i);
+            NSString *nsResType = CFBridgingRelease(UTCreateStringForOSType(restype));
             
             NSMutableArray *array = [NSMutableArray array];
             
@@ -196,7 +197,7 @@ static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
                 
                 
                 res = [[Resource alloc] initWithID:resID
-                                              type:CFBridgingRelease(UTCreateStringForOSType(restype))
+                                              type:nsResType
                                               name:resName[0] != 0 ? CFBridgingRelease(CFStringCreateWithPascalString(kCFAllocatorDefault, resName, kCFStringEncodingMacRoman)) : nil];
                 
                 [array addObject:res];
@@ -207,7 +208,7 @@ static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
             }
             
             [typeDict setObject:array
-                forKey:CFBridgingRelease(UTCreateStringForOSType(restype))];
+                forKey:nsResType];
             
             [array sortUsingSelector:@selector(compare:)];
         }
@@ -287,37 +288,10 @@ static Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url);
 
 Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 {
-    Handle			data;
-    FSRef			fsref;
-    ResFileRefNum	refNum, saveNum;
-    ResType			resType;
-    
-	@autoreleasepool {
-		NSURL *url = [NSURL fileURLWithPath:fileName];
-		[url getFSRef:&fsref];
-	}
-    
-    saveNum = CurResFile();
-    
-    refNum = FSOpenResFile(&fsref, fsRdPerm);
-    
-    UseResFile(refNum);
-    
-    resType = UTGetOSTypeFromString((__bridge CFStringRef)type);
-    SetResLoad(YES);
-    
-    data = Get1Resource(resType, [resID shortValue]);
-    
-    MacLoadResource(data);
-    DetachResource(data);
-    //HNoPurge(data);
-    HLockHi(data);
-    
-    CloseResFile(refNum);
-    
-    UseResFile(saveNum);
-    
-    return data;
+    @autoreleasepool {
+        NSURL *url = [NSURL fileURLWithPath:fileName];
+        return ASGetResourceURL(type, resID, url);
+    }
 }
 
 Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url)

@@ -59,14 +59,12 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 
 // •••••••••••••••••••••• LEMapData implementation •••••••••••••••••••••••••••
-#pragma mark -
-#pragma mark ••••••••• LEMapData implementation •••••••••
+#pragma mark - LEMapData implementation
 
 @implementation LEMapData
 
 // ***************************** Class Convience Functions *****************************
-#pragma mark -
-#pragma mark ********* Class Convience Functions *********
+#pragma mark - Class Convience Functions
 + (NSMutableData *)convertLevelToDataObject:(LELevelData *)theLevel error:(NSError**)outError
 {
     LEMapData *theTmpMarathonMap = [[LEMapData alloc] init];
@@ -90,9 +88,9 @@ BOOL setupPointerArraysDurringLoading = YES;
     int i = 0;
     
     const short theVersionNumber = CFSwapInt16HostToBig(currentVersionOfPfhorgeLevelData);
-    const short thePfhorgeDataSig1 = OSSwapHostToBigConstInt16(26743);
-    const unsigned short thePfhorgeDataSig2 = OSSwapHostToBigConstInt16(34521);
-    const int thePfhorgeDataSig3 = OSSwapHostToBigConstInt32(42296737);
+    static const short thePfhorgeDataSig1 = OSSwapHostToBigConstInt16(26743);
+    static const unsigned short thePfhorgeDataSig2 = OSSwapHostToBigConstInt16(34521);
+    static const int thePfhorgeDataSig3 = OSSwapHostToBigConstInt32(42296737);
     
     NSMutableArray *theArchivedLevels = [[NSMutableArray alloc] initWithCapacity:numberOfLevels];
     
@@ -147,8 +145,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** init/dealloc methods *****************************
-#pragma mark -
-#pragma mark ********* init/dealloc methods *********
+#pragma mark - init/dealloc methods
 - (id)init
 {
     self = [super init];
@@ -181,8 +178,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Advanced Data Processing Functions *****************************
-#pragma mark -
-#pragma mark ********* Advanced Data Processing Functions *********
+#pragma mark - Advanced Data Processing Functions
 - (NSMutableData *)mergeScenario:(PhPfhorgeScenarioLevelDoc *)scenarioDocument error:(NSError**)outError
 {
     PhScenarioData *scenarioData = [scenarioDocument dataObjectForLevelNameTable];
@@ -1863,10 +1859,10 @@ BOOL setupPointerArraysDurringLoading = YES;
             thePerObj = nil;
         } else {
             switch (theType) {
-                case _polygon_is_base:
+                case LEPolygonBase:
                     thePerObj = nil; // For Now, I am not sure about this yet???
                     break;
-                case _polygon_is_platform:
+                case LEPolygonPlatform:
                     if (countOfPlatformArray > thePermutation)
                         thePerObj = [thePlatformArray objectAtIndex:thePermutation];
                     else
@@ -1875,22 +1871,22 @@ BOOL setupPointerArraysDurringLoading = YES;
                     NSLog(@"poly platfrom tag number: %d, poly index: %d, thePermutation: %d", [thePerObj getTag], [theObj getIndex], thePermutation);
 #endif
                     break;
-                case _polygon_is_light_on_trigger:
+                case LEPolygonLightOnTrigger:
                     thePerObj = [theLightArray objectAtIndex:thePermutation];
                     break;
-                case _polygon_is_platform_on_trigger:
+                case LEPolygonPlatformOnTrigger:
                     thePerObj = [thePolyArray objectAtIndex:thePermutation];
                     break;
-                case _polygon_is_light_off_trigger:
+                case LEPolygonLightOffTrigger:
                     thePerObj = [theLightArray objectAtIndex:thePermutation];
                     break;
-                case _polygon_is_platform_off_trigger:
+                case LEPolygonPlatformOffTrigger:
                     thePerObj = [thePolyArray objectAtIndex:thePermutation];
                     break;
-                case _polygon_is_teleporter:
+                case LEPolygonTeleporter:
                     thePerObj = [thePolyArray objectAtIndex:thePermutation];
                     break;
-                case _polygon_is_automatic_exit:
+                case LEPolygonAutomaticExit:
                     //NSLog(@"AUTOMATIC EXIT: %d", thePermutation);
                     thePerObj = [NSNumber numberWithInt:thePermutation];
                     break;
@@ -2694,8 +2690,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Save Data Functions **********************************
-#pragma mark -
-#pragma mark ********* Save Data Functions *********
+#pragma mark - Save Data Functions
 
 - (void)saveEntryHeader:(OSType)tag next_offset:(long)nextOffset length:(long)length offset:(long)offset
 {
@@ -3288,8 +3283,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 */
 
 // ************************ Data Loging Functions *****************************
-#pragma mark -
-#pragma mark ********* Data Loging Functions *********
+#pragma mark - Data Loging Functions
 
 -(void)NSLogShortFromData:(NSString *)theMessage
 {

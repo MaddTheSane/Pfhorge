@@ -91,8 +91,7 @@
 
 
 // ************************* Other Methods *************************
-#pragma mark -
-#pragma mark ********* Other Methods *********
+#pragma mark - Other Methods
 
 - (void)unionLevel:(LELevelData *)theLevelToImport
 {
@@ -531,9 +530,8 @@
 
 
 
- // **************************  Useful Public Utilites  *************************
- #pragma mark -
-#pragma mark ********* Useful Public Utilites *********
+// **************************  Useful Public Utilites  *************************
+#pragma mark - Useful Public Utilites
 
 
 -(void)removeObjectsNotInMainArrays
@@ -581,21 +579,21 @@
         //short *theVertexes = [theObj getTheVertexes];
         
         
-        if ([thisPoly type] == _polygon_is_platform)
+        if ([thisPoly type] == LEPolygonPlatform)
         {
             if ([thisPoly permutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of reg platform with a nil permuation object...");
             }
         }
-        else if ([thisPoly type] == _polygon_is_platform_on_trigger)
+        else if ([thisPoly type] == LEPolygonPlatformOnTrigger)
         {
             if ([thisPoly permutationObject] == nil)
             {
                 NSLog(@"There is a polygon type of on platform with a nil permuation object...");
             }
         }
-        else if ([thisPoly type] == _polygon_is_platform_off_trigger)
+        else if ([thisPoly type] == LEPolygonPlatformOffTrigger)
         {
             if ([thisPoly permutationObject] == nil)
             {

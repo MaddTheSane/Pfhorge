@@ -145,8 +145,7 @@
 
 
 // ************************* Level Data Accsessors *************************
-#pragma mark -
-#pragma mark ********* Level Data Accsessors *********
+#pragma mark - Level Data Accsessors
 
 -(void)setLevelDocument:(LEMap *)theDocument { theLevelDocument = theDocument; }
 

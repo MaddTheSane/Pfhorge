@@ -52,8 +52,7 @@
 @implementation LELevelData (LevelSettings)
 
 // ************************** Level Specific Settings *************************
-#pragma mark -
-#pragma mark ********* Level Specific Settings *********
+#pragma mark - Level Specific Settings
 
 
 
@@ -139,8 +138,7 @@
 }
 
 // ************************** Level Information Flag Accsessors *************************
-#pragma mark -
-#pragma mark ********* Level Info Flags *********
+#pragma mark - Level Info Flags
 
 -(BOOL)isEnvironmentNormal { return (environment_flags == LELevelEnvironmentNormal)?(YES):(NO); }
 -(BOOL)isEnvironmentVacuum { return GET_ENVIRONMENT_FLAG(LELevelEnvironmentVacuum); }

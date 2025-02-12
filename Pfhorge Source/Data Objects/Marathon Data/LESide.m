@@ -115,7 +115,7 @@
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
     NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+    int tmpLong = 0;
     //int i = 0;
     
     if (theNumber != NSNotFound) {
@@ -209,8 +209,8 @@
     
     
     // *** *** **** Splice Data Together *** *** ***
-    tmpLong = [myData length];
-    [theData appendBytes:&tmpLong length:4];
+    tmpLong = (int)[myData length];
+    saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     

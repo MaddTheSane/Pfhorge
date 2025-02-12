@@ -679,6 +679,28 @@
     "Returning Level To Map Document Controller…" : {
       "comment" : "Returning Level To Map Document Controller…"
     },
+    "Saving ‘%@’ Resource# %@…" : {
+      "comment" : "Saving ‘%@’ Resource# %@…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saving ‘%1$@’ Resource# %2$@…"
+          }
+        }
+      }
+    },
+    "Saving converted ‘%@’ Resource# %@…" : {
+      "comment" : "Saving converted ‘%@’ Resource# %@…",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saving converted ‘%1$@’ Resource# %2$@…"
+          }
+        }
+      }
+    },
     "Saving Level…" : {
       "comment" : "Saving Level…"
     },

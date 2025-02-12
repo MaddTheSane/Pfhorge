@@ -1540,21 +1540,21 @@ typedef NS_ENUM(short, LEEDrawMode) {
             if ((![thisPolygon polygonConcaveFlag]) && shouldDrawConvexPolyObjects)
                 polyDrawingMapPntr = invalidPolyDrawingMap;
             
-            else if (curPolyType == _polygon_is_normal)
+            else if (curPolyType == LEPolygonNormal)
                 polyDrawingMapPntr = polyDrawingMap;
             
-            else if (curPolyType == _polygon_is_platform && shouldDrawPlatfromPolyObjects)
+            else if (curPolyType == LEPolygonPlatform && shouldDrawPlatfromPolyObjects)
                 polyDrawingMapPntr = platformPolyMap;
             
-            else if ((curPolyType == _polygon_is_teleporter ||
-                     curPolyType == _polygon_is_automatic_exit)
+            else if ((curPolyType == LEPolygonTeleporter ||
+                      curPolyType == LEPolygonAutomaticExit)
                      && shouldDrawTeleporterExitPolyObjects)
                 polyDrawingMapPntr = teleporterPolyMap;
             
-            else if (curPolyType == _polygon_is_zone_border && shouldDrawZonePolyObjects)
+            else if (curPolyType == LEPolygonZoneBorder && shouldDrawZonePolyObjects)
                 polyDrawingMapPntr = zonePolyMap;
             
-            else if ((curPolyType == _polygon_is_hill || curPolyType == _polygon_is_base)
+            else if ((curPolyType == LEPolygonHill || curPolyType == LEPolygonBase)
                             && shouldDrawHillPolyObjects)
                 polyDrawingMapPntr = hillPolyMap;
             

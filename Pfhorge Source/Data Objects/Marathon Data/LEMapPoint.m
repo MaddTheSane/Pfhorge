@@ -40,8 +40,7 @@
 
 
 // **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+#pragma mark - Coding/Copy Protocal Methods
 
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
@@ -70,8 +69,7 @@
     
     // *** *** **** Splice Data Together *** *** ***
     tmpLong = (int)[myData length];
-    tmpLong = CFSwapInt32HostToBig(tmpLong);
-    [theData appendBytes:&tmpLong length:4];
+    saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
     
@@ -172,8 +170,7 @@
 }
 
 // **************************  delloc/init Methods  *************************
-#pragma mark -
-#pragma mark ********* dealloc/init Methods *********
+#pragma mark - dealloc/init Methods
 
 -(id)init
 {
@@ -227,8 +224,7 @@
 }
 
 // **************************  Regular Methods  *************************
-#pragma mark -
-#pragma mark ********* Regular Methods  *********
+#pragma mark - Regular Methods
 -(short) index { return [theMapPointsST indexOfObjectIdenticalTo:self]; }
 
 -(NSRect)drawingBounds { return [self as32Rect]; }
@@ -448,13 +444,13 @@
 }
 
 
-// The point returned here IS NOT PART OF THE LEVEL!
-// Before using it you should:
-// -Check if there's already a point at this grid coord you can use (see also nearestMapPoint...)
-// -Add it to the level object:
-//     [currentLevel addObjects: (the point I return) ];
-//     [rectPoints addObject: (the point I return) ];
-// -Possibly other stuff?
+/// The point returned here IS NOT PART OF THE LEVEL!
+/// Before using it you should:
+/// - Check if there's already a point at this grid coord you can use (see also nearestMapPoint...)
+/// - Add it to the level object:
+///     [currentLevel addObjects: (the point I return) ];
+///     [rectPoints addObject: (the point I return) ];
+/// - Possibly other stuff?
 -(LEMapPoint *)nearestGridPointInRange:(int)maxDist
 {
     int pci = 0;

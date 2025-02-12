@@ -311,7 +311,7 @@
 
 - (void)displayInfo
 {
-    if (type == _polygon_is_platform) {
+    if (type == LEPolygonPlatform) {
         [permutationObject displayInfo];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -337,7 +337,7 @@
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
     NSInteger theNumber = [index indexOfObjectIdenticalTo:self];
-    long tmpLong = 0;
+    int tmpLong = 0;
     int i = 0;
     short tmpShort;
     
@@ -359,23 +359,23 @@
     //ExportObj(permutationObject);
     
     switch (type) {
-        case _polygon_is_base:
-        case _polygon_is_minor_ouch:
-        case _polygon_is_major_ouch:
-        case _polygon_is_glue:
-        case _polygon_is_glue_trigger:
-        case _polygon_is_superglue:
-        case _polygon_is_goal:
-        case _polygon_is_visible_monster_trigger:
-        case _polygon_is_invisible_monster_trigger:
-        case _polygon_is_dual_monster_trigger:
-        case _polygon_is_item_trigger:
-        case _polygon_must_be_explored:
-        case _polygon_is_zone_border:
-        case _polygon_is_normal:
-        case _polygon_is_item_impassable:
-        case _polygon_is_monster_impassable:
-        case _polygon_is_hill:
+        case LEPolygonBase:
+        case LEPolygonMinorOuch:
+        case LEPolygonMajorOuch:
+        case LEPolygonGlue:
+        case LEPolygonGlueTrigger:
+        case LEPolygonSuperglue:
+        case LEPolygonGoal:
+        case LEPolygonVisibleMonsterTrigger:
+        case LEPolygonInvisibleMonsterTrigger:
+        case LEPolygonDualMonsterTrigger:
+        case LEPolygonItemTrigger:
+        case LEPolygonMustBeExplored:
+        case LEPolygonZoneBorder:
+        case LEPolygonNormal:
+        case LEPolygonItemImpassable:
+        case LEPolygonMonsterImpassable:
+        case LEPolygonHill:
             permutationObject = nil;
             break;
 		default:
@@ -383,22 +383,22 @@
     }
     
     switch (type) {
-        /*case _polygon_is_base:
+        /*case LEPolygonBase:
             tmpShort = 0;
             encodeShort(coder, tmpShort);
             break;*/
-        case _polygon_is_light_on_trigger:
-        case _polygon_is_platform_on_trigger:
-        case _polygon_is_light_off_trigger:
-        case _polygon_is_platform_off_trigger:
-        case _polygon_is_teleporter:
+        case LEPolygonLightOnTrigger:
+        case LEPolygonPlatformOnTrigger:
+        case LEPolygonLightOffTrigger:
+        case LEPolygonPlatformOffTrigger:
+        case LEPolygonTeleporter:
             ExportObjPos(((LEMapStuffParent*)permutationObject));
             break;
-        case _polygon_is_automatic_exit:
+        case LEPolygonAutomaticExit:
             tmpShort = [permutationObject shortValue];
             ExportShort(tmpShort);
             break;
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             //ExportObjPos(permutationObject);
             ExportObj(permutationObject);
             break;
@@ -471,8 +471,8 @@
     [super superClassExportWithIndex:index selfData:myData futureData:futureData mainObjects:mainObjs];
     
     // *** *** **** Add Self... *** *** ***
-    tmpLong = [myData length];
-    [theData appendBytes:&tmpLong length:4];
+    tmpLong = (int)[myData length];
+    saveIntToNSData(tmpLong, theData);
     [theData appendData:myData];
     [theData appendData:futureData];
 
@@ -520,24 +520,24 @@
     
 
     switch (type) {
-        /*case _polygon_is_base:
+        /*case LEPolygonBase:
             tmpShort = 0;
             encodeShort(coder, tmpShort);
             break;*/
-        case _polygon_is_light_on_trigger:
-        case _polygon_is_light_off_trigger:
+        case LEPolygonLightOnTrigger:
+        case LEPolygonLightOffTrigger:
             ImportObjIndexPos(permutationObject, theMapLightsST);
             break;
-        case _polygon_is_platform_on_trigger:
-        case _polygon_is_platform_off_trigger:
-        case _polygon_is_teleporter:
+        case LEPolygonPlatformOnTrigger:
+        case LEPolygonPlatformOffTrigger:
+        case LEPolygonTeleporter:
             ImportObjIndexPos(permutationObject, theMapPolysST);
             break;
-        case _polygon_is_automatic_exit:
+        case LEPolygonAutomaticExit:
             ImportShort(tmpShort);
             permutationObject = numShort(tmpShort);
             break;
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             ImportObj(permutationObject);
             break;
 		default:
@@ -649,23 +649,23 @@
         [coder encodeInt:flags forKey:@"flags"];
         
         switch (type) {
-            case _polygon_is_base:
-            case _polygon_is_minor_ouch:
-            case _polygon_is_major_ouch:
-            case _polygon_is_glue:
-            case _polygon_is_glue_trigger:
-            case _polygon_is_superglue:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_zone_border:
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
+            case LEPolygonBase:
+            case LEPolygonMinorOuch:
+            case LEPolygonMajorOuch:
+            case LEPolygonGlue:
+            case LEPolygonGlueTrigger:
+            case LEPolygonSuperglue:
+            case LEPolygonGoal:
+            case LEPolygonVisibleMonsterTrigger:
+            case LEPolygonInvisibleMonsterTrigger:
+            case LEPolygonDualMonsterTrigger:
+            case LEPolygonItemTrigger:
+            case LEPolygonMustBeExplored:
+            case LEPolygonZoneBorder:
+            case LEPolygonNormal:
+            case LEPolygonItemImpassable:
+            case LEPolygonMonsterImpassable:
+            case LEPolygonHill:
                 permutationObject = nil;
                 break;
             default:
@@ -674,23 +674,23 @@
         
         if (useIndexNumbersInstead) {
             switch (type) {
-                case _polygon_is_base:
+                case LEPolygonBase:
                     //tmpShort = 0;
                     [coder encodeInt:0 forKey:@"permutationObject index"];
                     break;
-                case _polygon_is_light_on_trigger:
-                case _polygon_is_platform_on_trigger:
-                case _polygon_is_light_off_trigger:
-                case _polygon_is_platform_off_trigger:
-                case _polygon_is_teleporter:
+                case LEPolygonLightOnTrigger:
+                case LEPolygonPlatformOnTrigger:
+                case LEPolygonLightOffTrigger:
+                case LEPolygonPlatformOffTrigger:
+                case LEPolygonTeleporter:
                     tmpShort = GetIndexAdv(permutationObject);
                     [coder encodeInt:tmpShort forKey:@"permutationObject index"];
                     break;
-                case _polygon_is_automatic_exit:
+                case LEPolygonAutomaticExit:
                     //tmpShort = 0;
                     [coder encodeInt:0 forKey:@"permutationObject index"];
                     break;
-                case _polygon_is_platform:
+                case LEPolygonPlatform:
                     [permutationObject setEncodeIndexNumbersInstead:YES];
                     [coder encodeObject:permutationObject forKey:@"permutationObject"];
                     [permutationObject setEncodeIndexNumbersInstead:NO];
@@ -805,23 +805,23 @@
         encodeUnsignedShort(coder, flags);
         
         switch (type) {
-            case _polygon_is_base:
-            case _polygon_is_minor_ouch:
-            case _polygon_is_major_ouch:
-            case _polygon_is_glue:
-            case _polygon_is_glue_trigger:
-            case _polygon_is_superglue:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_zone_border:
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
+            case LEPolygonBase:
+            case LEPolygonMinorOuch:
+            case LEPolygonMajorOuch:
+            case LEPolygonGlue:
+            case LEPolygonGlueTrigger:
+            case LEPolygonSuperglue:
+            case LEPolygonGoal:
+            case LEPolygonVisibleMonsterTrigger:
+            case LEPolygonInvisibleMonsterTrigger:
+            case LEPolygonDualMonsterTrigger:
+            case LEPolygonItemTrigger:
+            case LEPolygonMustBeExplored:
+            case LEPolygonZoneBorder:
+            case LEPolygonNormal:
+            case LEPolygonItemImpassable:
+            case LEPolygonMonsterImpassable:
+            case LEPolygonHill:
                 permutationObject = nil;
                 break;
             default:
@@ -830,23 +830,23 @@
         
         if (useIndexNumbersInstead) {
             switch (type) {
-                case _polygon_is_base:
+                case LEPolygonBase:
                     tmpShort = 0;
                     encodeShort(coder, tmpShort);
                     break;
-                case _polygon_is_light_on_trigger:
-                case _polygon_is_platform_on_trigger:
-                case _polygon_is_light_off_trigger:
-                case _polygon_is_platform_off_trigger:
-                case _polygon_is_teleporter:
+                case LEPolygonLightOnTrigger:
+                case LEPolygonPlatformOnTrigger:
+                case LEPolygonLightOffTrigger:
+                case LEPolygonPlatformOffTrigger:
+                case LEPolygonTeleporter:
                     tmpShort = GetIndexAdv(permutationObject);
                     encodeShort(coder, tmpShort);
                     break;
-                case _polygon_is_automatic_exit:
+                case LEPolygonAutomaticExit:
                     tmpShort = 0;
                     encodeShort(coder, tmpShort);
                     break;
-                case _polygon_is_platform:
+                case LEPolygonPlatform:
                     [permutationObject setEncodeIndexNumbersInstead:YES];
                     encodeObj(coder, permutationObject);
                     [permutationObject setEncodeIndexNumbersInstead:NO];
@@ -855,7 +855,7 @@
                     break;
             }
         } else {
-            if (type != _polygon_is_automatic_exit/* || type != _polygon_is_base*/) {
+            if (type != LEPolygonAutomaticExit/* || type != LEPolygonBase*/) {
                 encodeObj(coder, permutationObject);
             } else {
                 short tmpn = [permutationObject shortValue];
@@ -989,26 +989,26 @@
         if (useIndexNumbersInstead) {
             short tmpShort;
             switch (type) {
-                case _polygon_is_base:
+                case LEPolygonBase:
                     ///tmpShort = 0;
                     //decodeShort(coder);
                     break;
-                case _polygon_is_light_on_trigger:
-                case _polygon_is_light_off_trigger:
+                case LEPolygonLightOnTrigger:
+                case LEPolygonLightOffTrigger:
                     tmpShort = [coder decodeIntForKey:@"permutationObject index"];
                     permutationObject = [self getLightFromIndex:tmpShort];
                     break;
-                case _polygon_is_platform_on_trigger:
-                case _polygon_is_platform_off_trigger:
-                case _polygon_is_teleporter:
+                case LEPolygonPlatformOnTrigger:
+                case LEPolygonPlatformOffTrigger:
+                case LEPolygonTeleporter:
                     tmpShort = [coder decodeIntForKey:@"permutationObject index"];
                     permutationObject = [self getPolygonFromIndex:tmpShort];
                     break;
-                case _polygon_is_automatic_exit:
+                case LEPolygonAutomaticExit:
                     ///tmpShort = 0;
                     //decodeShort(coder);
                     break;
-                case _polygon_is_platform:
+                case LEPolygonPlatform:
                     permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
                     break;
                 default:
@@ -1107,23 +1107,23 @@
         
         
         switch (type) {
-            case _polygon_is_base:
-            case _polygon_is_minor_ouch:
-            case _polygon_is_major_ouch:
-            case _polygon_is_glue:
-            case _polygon_is_glue_trigger:
-            case _polygon_is_superglue:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_zone_border:
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
+            case LEPolygonBase:
+            case LEPolygonMinorOuch:
+            case LEPolygonMajorOuch:
+            case LEPolygonGlue:
+            case LEPolygonGlueTrigger:
+            case LEPolygonSuperglue:
+            case LEPolygonGoal:
+            case LEPolygonVisibleMonsterTrigger:
+            case LEPolygonInvisibleMonsterTrigger:
+            case LEPolygonDualMonsterTrigger:
+            case LEPolygonItemTrigger:
+            case LEPolygonMustBeExplored:
+            case LEPolygonZoneBorder:
+            case LEPolygonNormal:
+            case LEPolygonItemImpassable:
+            case LEPolygonMonsterImpassable:
+            case LEPolygonHill:
                 permutationObject = nil;
                 break;
             default:
@@ -1151,32 +1151,32 @@
 
         if (useIndexNumbersInstead) {
             switch (type) {
-                case _polygon_is_base:
+                case LEPolygonBase:
                     ///tmpShort = 0;
                     decodeShort(coder);
                     break;
-                case _polygon_is_light_on_trigger:
-                case _polygon_is_light_off_trigger:
+                case LEPolygonLightOnTrigger:
+                case LEPolygonLightOffTrigger:
                     permutationObject = [self getLightFromIndex:decodeShort(coder)];
                     break;
-                case _polygon_is_platform_on_trigger:
-                case _polygon_is_platform_off_trigger:
-                case _polygon_is_teleporter:
+                case LEPolygonPlatformOnTrigger:
+                case LEPolygonPlatformOffTrigger:
+                case LEPolygonTeleporter:
                     ///tmpShort = [permutationObject getIndex];
                     permutationObject = [self getPolygonFromIndex:decodeShort(coder)];
                     break;
-                case _polygon_is_automatic_exit:
+                case LEPolygonAutomaticExit:
                     ///tmpShort = 0;
                     decodeShort(coder);
                     break;
-                case _polygon_is_platform:
+                case LEPolygonPlatform:
                     permutationObject = decodeObj(coder);
                     break;
                 default:
                     break;
             }
         } else {
-            if (_polygon_is_automatic_exit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
+            if (LEPolygonAutomaticExit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
                 if (versionNum < 1) {
                     decodeObj(coder);
                     permutationObject = [numShort(256) copy];
@@ -1264,23 +1264,23 @@
         
         
         switch (type) {
-            case _polygon_is_base:
-            case _polygon_is_minor_ouch:
-            case _polygon_is_major_ouch:
-            case _polygon_is_glue:
-            case _polygon_is_glue_trigger:
-            case _polygon_is_superglue:
-            case _polygon_is_goal:
-            case _polygon_is_visible_monster_trigger:
-            case _polygon_is_invisible_monster_trigger:
-            case _polygon_is_dual_monster_trigger:
-            case _polygon_is_item_trigger:
-            case _polygon_must_be_explored:
-            case _polygon_is_zone_border:
-            case _polygon_is_normal:
-            case _polygon_is_item_impassable:
-            case _polygon_is_monster_impassable:
-            case _polygon_is_hill:
+            case LEPolygonBase:
+            case LEPolygonMinorOuch:
+            case LEPolygonMajorOuch:
+            case LEPolygonGlue:
+            case LEPolygonGlueTrigger:
+            case LEPolygonSuperglue:
+            case LEPolygonGoal:
+            case LEPolygonVisibleMonsterTrigger:
+            case LEPolygonInvisibleMonsterTrigger:
+            case LEPolygonDualMonsterTrigger:
+            case LEPolygonItemTrigger:
+            case LEPolygonMustBeExplored:
+            case LEPolygonZoneBorder:
+            case LEPolygonNormal:
+            case LEPolygonItemImpassable:
+            case LEPolygonMonsterImpassable:
+            case LEPolygonHill:
                 permutationObject = nil;
                 break;
             default:
@@ -1525,12 +1525,12 @@
 	// NEED: to add and rememove the platform from the level also...
 	
 	
-    if (thePreviousType == _polygon_is_platform && type != _polygon_is_platform) {
+    if (thePreviousType == LEPolygonPlatform && type != LEPolygonPlatform) {
         [theTarget releasePlatform];
     }
     
     switch (type) {
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             if ([permutationObject class] == [PhPlatform class]) {
 				if ([theTarget permutationObject] != nil) {
 					if ([[theTarget permutationObject] class] == [PhPlatform class]) {
@@ -1557,23 +1557,23 @@
                 tempPermutationObj = nil;
             }
             break;
-        case _polygon_is_light_on_trigger:
+        case LEPolygonLightOnTrigger:
             tempPermutationObj = permutationObject;
             break;
-        case _polygon_is_platform_on_trigger:
+        case LEPolygonPlatformOnTrigger:
             tempPermutationObj = permutationObject;
             break;
-        case _polygon_is_light_off_trigger:
+        case LEPolygonLightOffTrigger:
             tempPermutationObj = permutationObject;
             break;
-        case _polygon_is_platform_off_trigger:
+        case LEPolygonPlatformOffTrigger:
             tempPermutationObj = permutationObject;
             break;
-        case _polygon_is_teleporter:
+        case LEPolygonTeleporter:
             tempPermutationObj = permutationObject;
             break;
-        case _polygon_is_base: // For Now, I am not sure about this yet??? 
-        case _polygon_is_automatic_exit:
+        case LEPolygonBase: // For Now, I am not sure about this yet??? 
+        case LEPolygonAutomaticExit:
             //NSLog(@"AUTOMATIC EXIT: %d", thePermutation);
         default:
             tempPermutationObj = nil;
@@ -1791,7 +1791,7 @@
 
 -(void)setPermutation:(short)v
 {
-    /*if (type == _polygon_is_platform)
+    /*if (type == LEPolygonPlatform)
     {
         
     }
@@ -1845,12 +1845,12 @@
         if (permutationObject == nil)
         {
             permutation = -1;
-            type = _polygon_is_normal;
+            type = LEPolygonNormal;
         }
         else
         {
             permutation = [theMapPlatformsST indexOfObjectIdenticalTo:permutationObject];
-            type = _polygon_is_platform;
+            type = LEPolygonPlatform;
         }
     }*/
     /*

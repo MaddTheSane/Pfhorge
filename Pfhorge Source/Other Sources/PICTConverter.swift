@@ -536,7 +536,7 @@ class PICT {
 		}
 		
 		_=bitmap.setSize(width: Int32(width), height: Int32(height))
-		if (pixel_size <= 8) {
+		if pixel_size <= 8 {
 			_=bitmap.setBitDepth(8)
 		} else {
 			_=bitmap.setBitDepth(Int32(pixel_size))
@@ -597,7 +597,7 @@ class PICT {
 						scanLine = slTmp
 					}
 					
-					if (pixel_size == 8) {
+					if pixel_size == 8 {
 						for x in 0 ..< Int(width) {
 							_=bitmap.setPixel(atX: x, y: y, bitmap.getColor(at: Int(scanLine[x]))!)
 						}
@@ -750,7 +750,7 @@ class PICT {
 					guard loadCopyBits(data, packed: packed, clipped: clipped) else {
 						throw PICTConversionError.unexpectedEndOfStream
 					}
-					if jpegData.count != 0 {
+					if !jpegData.isEmpty {
 						_=bitmap.setSize(width: 1, height: 1)
 					} else if (bitmap.width != rect.width && bitmap.width == 614) {
 						throw PICTConversionError.usesCinemascopeHack

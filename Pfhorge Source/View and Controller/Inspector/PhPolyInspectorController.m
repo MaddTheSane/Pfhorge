@@ -153,8 +153,8 @@
     
     
     switch (curPolyType) {
-        case _polygon_is_light_on_trigger:
-        case _polygon_is_light_off_trigger:
+        case LEPolygonLightOnTrigger:
+        case LEPolygonLightOffTrigger:
             [permutationTab selectTabViewItemAtIndex:0];
             
             [platformParametersBtn setEnabled:NO];
@@ -164,9 +164,9 @@
             lastMenuTypeCache = PhLevelNameMenuLight;
             break;
             
-        case _polygon_is_platform_on_trigger:
-        case _polygon_is_platform_off_trigger:
-        case _polygon_is_teleporter:
+        case LEPolygonPlatformOnTrigger:
+        case LEPolygonPlatformOffTrigger:
+        case LEPolygonTeleporter:
             [permutationTab selectTabViewItemAtIndex:0];
             
             tmpObj = [thePoly permutationObject];
@@ -186,7 +186,7 @@
             
             break;
             
-        case _polygon_is_base:
+        case LEPolygonBase:
             [permutationTab selectTabViewItemAtIndex:1];
             
             tmpObj = [thePoly permutationObject];
@@ -203,7 +203,7 @@
             lastMenuTypeCache = -1;
             break;
             
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             /*[permutation setEnabled:YES];
             [theLevelData addMenu:permutation asA:PhLevelNameMenuPlatform];
             lastMenuTypeCache = PhLevelNameMenuPlatform;
@@ -218,7 +218,7 @@
             lastMenuTypeCache = -1;
             break;
             
-        case _polygon_is_automatic_exit:
+        case LEPolygonAutomaticExit:
             [permutationTab selectTabViewItemAtIndex:1];
             
             tmpObj = [thePoly permutationObject];
@@ -325,15 +325,15 @@
     int theOldPolyType = [thePolyInQuestion type];
     
     switch (thePolyType) {
-        case _polygon_is_base:
+        case LEPolygonBase:
             //SEND_ERROR_MSG_TITLE(@"Sorry, this version of Pfhorge does not support this... I will soon though...",
             //                     @"Can't Change Type");
             [self updateInterface];
             return;
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             break;
-        case _polygon_is_light_off_trigger:
-        case _polygon_is_light_on_trigger:
+        case LEPolygonLightOffTrigger:
+        case LEPolygonLightOnTrigger:
             if ([[theLevelData lights] count] < 1)
             {
                 NSAlert *alert = [[NSAlert alloc] init];
@@ -347,9 +347,9 @@
             
             [thePolyInQuestion setPermutationObject:[[theLevelData lights] objectAtIndex:0]];
             break;
-        case _polygon_is_platform_on_trigger:
-        case _polygon_is_platform_off_trigger:
-        case _polygon_is_teleporter:
+        case LEPolygonPlatformOnTrigger:
+        case LEPolygonPlatformOffTrigger:
+        case LEPolygonTeleporter:
             if ([[theLevelData namedPolyObjects] count] < 1)
             {
                 NSAlert *alert = [[NSAlert alloc] init];
@@ -363,7 +363,7 @@
             
             [thePolyInQuestion setPermutationObject:[[theLevelData namedPolyObjects] objectAtIndex:0]];
             break;
-        case _polygon_is_automatic_exit: // For right now set permutation to nothing (nil)...
+        case LEPolygonAutomaticExit: // For right now set permutation to nothing (nil)...
        ///     SEND_ERROR_MSG_TITLE(@"Sorry, this version of Pfhorge does not support this... I will soon though...",
        ///                          @"Can't Change Type");
        ///     [self updateInterface];
@@ -376,14 +376,14 @@
             break;
     }
     
-    if (theOldPolyType == _polygon_is_platform && !(thePolyType == _polygon_is_platform))
+    if (theOldPolyType == LEPolygonPlatform && !(thePolyType == LEPolygonPlatform))
     {
         [theLevelData deletePlatform:[thePolyInQuestion permutationObject]];
     }
     
     [thePolyInQuestion  setType:thePolyType];
     
-    if (thePolyType == _polygon_is_platform && !(theOldPolyType == _polygon_is_platform))
+    if (thePolyType == LEPolygonPlatform && !(theOldPolyType == LEPolygonPlatform))
     {
         [thePolyInQuestion setPermutationObject:[theLevelData addObjectWithDefaults:[PhPlatform class]]];
     }
@@ -415,28 +415,28 @@
     
     switch (thePolyType)
     {
-        case _polygon_is_base:
+        case LEPolygonBase:
             thePerObj = nil; // For Now, I am not sure about this yet??? 
                 // For right now I moved this to use a NSNumber and
                 //  the Text Box in the function right after this one
                 //  called - (IBAction)permutationNumberTBAction:(id)sender
             break;
-        case _polygon_is_platform:
+        case LEPolygonPlatform:
             thePerObj = [[theLevelData platforms] objectAtIndex:thePermutation];
             break;
-        case _polygon_is_light_on_trigger:
+        case LEPolygonLightOnTrigger:
             thePerObj = [[theLevelData lights] objectAtIndex:thePermutation];
             break;
-        case _polygon_is_platform_on_trigger:
+        case LEPolygonPlatformOnTrigger:
             thePerObj = [[theLevelData namedPolyObjects] objectAtIndex:thePermutation];
             break;
-        case _polygon_is_light_off_trigger:
+        case LEPolygonLightOffTrigger:
             thePerObj = [[theLevelData lights] objectAtIndex:thePermutation];
             break;
-        case _polygon_is_platform_off_trigger:
+        case LEPolygonPlatformOffTrigger:
             thePerObj = [[theLevelData namedPolyObjects] objectAtIndex:thePermutation];
             break;
-        case _polygon_is_teleporter:
+        case LEPolygonTeleporter:
             thePerObj = [[theLevelData namedPolyObjects] objectAtIndex:thePermutation];
             break;
         default:
@@ -459,8 +459,8 @@
     
     switch (thePolyType)
     {
-        case _polygon_is_base:
-        case _polygon_is_automatic_exit:
+        case LEPolygonBase:
+        case LEPolygonAutomaticExit:
             thePerObj = numInt([permutationNumberTB intValue]);
             break;
         default:

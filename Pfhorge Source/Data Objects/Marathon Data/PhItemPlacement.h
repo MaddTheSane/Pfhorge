@@ -62,7 +62,7 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 // ************************** Accsessors *************************
 @property PhItemPlacementFlags flags;
 	
-//! number that initially appear. can be greater than \c maximumCount
+//! number that initially appear. can be greater than `maximumCount`
 @property short initialCount;
 //! this number of objects will be maintained.
 @property short minimumCount;

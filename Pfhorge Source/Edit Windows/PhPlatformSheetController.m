@@ -165,71 +165,71 @@
         [autoCalcMaxCB setState:NSControlStateValueOff];
     }
     
-    if (platformFlags & _platform_is_initially_active)
+    if (platformFlags & PhPlatformIsInitiallyActive)
         SelectS(initiallyCBMatrix, 0);
-    if (platformFlags & _platform_is_initially_extended)
+    if (platformFlags & PhPlatformIsInitiallyExtended)
         SelectS(initiallyCBMatrix, 1);
         
-    if (platformFlags & _platform_deactivates_at_each_level)
+    if (platformFlags & PhPlatformDeactivatesAtEachLevel)
         SelectS(deactivatesRBMatrix, 1);
-    if (platformFlags & _platform_deactivates_at_initial_level)
+    if (platformFlags & PhPlatformDeactivatesAtInitialLevel)
         SelectS(deactivatesRBMatrix, 2);
     
-    if (platformFlags & _platform_activates_adjacent_platforms_when_deactivating)
+    if (platformFlags & PhPlatformActivatesAdjacentPlatformsWhenDeactivating)
         SelectS(deactivatesCBMatrix, 2);
-    if (platformFlags & _platform_extends_floor_to_ceiling)
+    if (platformFlags & PhPlatformExtendsFloorToCeiling)
         [floorToCeilingCB setState:NSControlStateValueOn];
     else
         [floorToCeilingCB setState:NSControlStateValueOff];
     
-    if ((platformFlags & _platform_comes_from_floor) &&
-        (platformFlags & _platform_comes_from_ceiling)) {
+    if ((platformFlags & PhPlatformComesFromFloor) &&
+        (platformFlags & PhPlatformComesFromCeiling)) {
         SelectS(extendsFromRBMatrix, 2);
     } else {
-        if (platformFlags & _platform_comes_from_floor)
+        if (platformFlags & PhPlatformComesFromFloor)
             SelectS(extendsFromRBMatrix, 0);
-        if (platformFlags & _platform_comes_from_ceiling)
+        if (platformFlags & PhPlatformComesFromCeiling)
             SelectS(extendsFromRBMatrix, 1);
     }
         
-    if (platformFlags & _platform_causes_damage)
+    if (platformFlags & PhPlatformCausesDamage)
         SelectS(hitsObstructionCBMatrix, 0);
-    if (platformFlags & _platform_does_not_activate_parent)
+    if (platformFlags & PhPlatformDoesNotActivateParent)
         SelectS(otherOptionsCBMatrix, 3);
     
-    if (platformFlags & _platform_activates_only_once)
+    if (platformFlags & PhPlatformActivatesOnlyOnce)
         SelectS(activatesCBMatrix, 0);
-    if (platformFlags & _platform_activates_light)
+    if (platformFlags & PhPlatformActivatesLight)
         SelectS(activatesCBMatrix, 1);
-    if (platformFlags & _platform_deactivates_light)
+    if (platformFlags & PhPlatformDeactivatesLight)
         SelectS(deactivatesCBMatrix, 0);
-    if (platformFlags & _platform_is_player_controllable)
+    if (platformFlags & PhPlatformIsPlayerControllable)
         SelectS(controllableByCBMatrix, 0);
-    if (platformFlags & _platform_is_monster_controllable)
+    if (platformFlags & PhPlatformIsMonsterControllable)
         SelectS(controllableByCBMatrix, 1);
-    if (platformFlags & _platform_reverses_direction_when_obstructed)
+    if (platformFlags & PhPlatformReversesDirectionWhenObstructed)
         SelectS(hitsObstructionCBMatrix, 1);
-    if (platformFlags & _platform_cannot_be_externally_deactivated)
+    if (platformFlags & PhPlatformCannotBeExternallyDeactivated)
         SelectS(otherOptionsCBMatrix, 0);
-    if (platformFlags & _platform_uses_native_polygon_heights)
+    if (platformFlags & PhPlatformUsesNativePolygonHeights)
         SelectS(otherOptionsCBMatrix, 1);
-    if (platformFlags & _platform_delays_before_activation)
+    if (platformFlags & PhPlatformDelaysBeforeActivation)
         SelectS(otherOptionsCBMatrix, 2);
-    if (platformFlags & _platform_activates_adjacent_platforms_when_activating)
+    if (platformFlags & PhPlatformActivatesAdjacentPlatformsWhenActivating)
         SelectS(activatesCBMatrix, 2);
-    if (platformFlags & _platform_deactivates_adjacent_platforms_when_activating)
+    if (platformFlags & PhPlatformDeactivatesAdjacentPlatformsWhenActivating)
         SelectS(activatesCBMatrix, 3);
-    if (platformFlags & _platforms_deactivates_adjacent_platforms_when_deactivating)
+    if (platformFlags & PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating)
         SelectS(deactivatesCBMatrix, 1);
-    if (platformFlags & _platform_contracts_slower)
+    if (platformFlags & PhPlatformContractsSlower)
         SelectS(otherOptionsCBMatrix, 4);
-    if (platformFlags & _platform_activates_adjacent_platforms_at_each_level)
+    if (platformFlags & PhPlatformActivatesAdjacentPlatformsAtEachLevel)
         SelectS(activatesCBMatrix, 4);
-    if (platformFlags & _platform_is_locked)
+    if (platformFlags & PhPlatformIsLocked)
         SelectS(otherOptionsCBMatrix, 5);
-    if (platformFlags & _platform_is_secret)
+    if (platformFlags & PhPlatformIsSecret)
         SelectS(otherOptionsCBMatrix, 6);
-    if (platformFlags & _platform_is_door) // 27 ???
+    if (platformFlags & PhPlatformIsDoor) // 27 ???
         [platformIsADoorCB setState:NSControlStateValueOn];
 }
 
@@ -254,47 +254,47 @@
     [platform setMinimumHeight:[minHeightTB intValue]];
     [platform setMaximumHeight:[maxHeightTB intValue]];
     
-    if (SState(initiallyCBMatrix, 0)){ 		(theFlags |= _platform_is_initially_active); NSLog(@"Plat: _platform_is_initially_active");}
-    if (SState(initiallyCBMatrix, 1)){ 		(theFlags |= _platform_is_initially_extended); NSLog(@"Plat: _platform_is_initially_extended");}
+    if (SState(initiallyCBMatrix, 0)){ 		(theFlags |= PhPlatformIsInitiallyActive); NSLog(@"Plat: PhPlatformIsInitiallyActive");}
+    if (SState(initiallyCBMatrix, 1)){ 		(theFlags |= PhPlatformIsInitiallyExtended); NSLog(@"Plat: PhPlatformIsInitiallyExtended");}
     
-    if (SState(deactivatesRBMatrix, 1)){ 	(theFlags |= _platform_deactivates_at_each_level); NSLog(@"Plat: I_platform_deactivates_at_each_level");}
-    if SState(deactivatesRBMatrix, 2) 		(theFlags |= _platform_deactivates_at_initial_level);
+    if (SState(deactivatesRBMatrix, 1)){ 	(theFlags |= PhPlatformDeactivatesAtEachLevel); NSLog(@"Plat: IPhPlatformDeactivatesAtEachLevel");}
+    if SState(deactivatesRBMatrix, 2) 		(theFlags |= PhPlatformDeactivatesAtInitialLevel);
     
-    if SState(deactivatesCBMatrix, 2) 		(theFlags |= _platform_activates_adjacent_platforms_when_deactivating);
-    if ([floorToCeilingCB state] == NSControlStateValueOn) 	(theFlags |= _platform_extends_floor_to_ceiling);
+    if SState(deactivatesCBMatrix, 2) 		(theFlags |= PhPlatformActivatesAdjacentPlatformsWhenDeactivating);
+    if ([floorToCeilingCB state] == NSControlStateValueOn) 	(theFlags |= PhPlatformExtendsFloorToCeiling);
     
     if (SState(extendsFromRBMatrix, 2))
     {
-        theFlags |= _platform_comes_from_floor;
-        theFlags |= _platform_comes_from_ceiling;
+        theFlags |= PhPlatformComesFromFloor;
+        theFlags |= PhPlatformComesFromCeiling;
     }
     else
     {
-        if SState(extendsFromRBMatrix, 0) 	(theFlags |= _platform_comes_from_floor);
-        if SState(extendsFromRBMatrix, 1) 	(theFlags |= _platform_comes_from_ceiling);
+        if SState(extendsFromRBMatrix, 0) 	(theFlags |= PhPlatformComesFromFloor);
+        if SState(extendsFromRBMatrix, 1) 	(theFlags |= PhPlatformComesFromCeiling);
     }
     
-    if SState(hitsObstructionCBMatrix, 0) (theFlags |= _platform_causes_damage);
-    if SState(otherOptionsCBMatrix, 3) (theFlags |= _platform_does_not_activate_parent);
+    if SState(hitsObstructionCBMatrix, 0) (theFlags |= PhPlatformCausesDamage);
+    if SState(otherOptionsCBMatrix, 3) (theFlags |= PhPlatformDoesNotActivateParent);
     
-    if SState(activatesCBMatrix, 0) (theFlags |= _platform_activates_only_once);
-    if SState(activatesCBMatrix, 1) (theFlags |= _platform_activates_light);
-    if SState(deactivatesCBMatrix, 0) (theFlags |= _platform_deactivates_light);
-    if SState(controllableByCBMatrix, 0) (theFlags |= _platform_is_player_controllable);
-    if SState(controllableByCBMatrix, 1) (theFlags |= _platform_is_monster_controllable);
-    if SState(hitsObstructionCBMatrix, 1) (theFlags |= _platform_reverses_direction_when_obstructed);
-    if SState(otherOptionsCBMatrix, 0) (theFlags |= _platform_cannot_be_externally_deactivated);
-    if SState(otherOptionsCBMatrix, 1) (theFlags |= _platform_uses_native_polygon_heights);
-    if SState(otherOptionsCBMatrix, 2) (theFlags |= _platform_delays_before_activation);
-    if SState(activatesCBMatrix, 2) (theFlags |= _platform_activates_adjacent_platforms_when_activating);
+    if SState(activatesCBMatrix, 0) (theFlags |= PhPlatformActivatesOnlyOnce);
+    if SState(activatesCBMatrix, 1) (theFlags |= PhPlatformActivatesLight);
+    if SState(deactivatesCBMatrix, 0) (theFlags |= PhPlatformDeactivatesLight);
+    if SState(controllableByCBMatrix, 0) (theFlags |= PhPlatformIsPlayerControllable);
+    if SState(controllableByCBMatrix, 1) (theFlags |= PhPlatformIsMonsterControllable);
+    if SState(hitsObstructionCBMatrix, 1) (theFlags |= PhPlatformReversesDirectionWhenObstructed);
+    if SState(otherOptionsCBMatrix, 0) (theFlags |= PhPlatformCannotBeExternallyDeactivated);
+    if SState(otherOptionsCBMatrix, 1) (theFlags |= PhPlatformUsesNativePolygonHeights);
+    if SState(otherOptionsCBMatrix, 2) (theFlags |= PhPlatformDelaysBeforeActivation);
+    if SState(activatesCBMatrix, 2) (theFlags |= PhPlatformActivatesAdjacentPlatformsWhenActivating);
     
-    if SState(activatesCBMatrix, 3) (theFlags |= _platform_deactivates_adjacent_platforms_when_activating);
-    if SState(deactivatesCBMatrix, 1) (theFlags |= _platforms_deactivates_adjacent_platforms_when_deactivating);
-    if SState(otherOptionsCBMatrix, 4) (theFlags |= _platform_contracts_slower);
-    if SState(activatesCBMatrix, 4) (theFlags |= _platform_activates_adjacent_platforms_at_each_level);
-    if SState(otherOptionsCBMatrix, 5) (theFlags |= _platform_is_locked);
-    if SState(otherOptionsCBMatrix, 6) (theFlags |= _platform_is_secret);
-    if ([platformIsADoorCB state] == NSControlStateValueOn) (theFlags |= _platform_is_door);
+    if SState(activatesCBMatrix, 3) (theFlags |= PhPlatformDeactivatesAdjacentPlatformsWhenActivating);
+    if SState(deactivatesCBMatrix, 1) (theFlags |= PhPlatformDeactivatesAdjacentPlatformsWhenDeactivating);
+    if SState(otherOptionsCBMatrix, 4) (theFlags |= PhPlatformContractsSlower);
+    if SState(activatesCBMatrix, 4) (theFlags |= PhPlatformActivatesAdjacentPlatformsAtEachLevel);
+    if SState(otherOptionsCBMatrix, 5) (theFlags |= PhPlatformIsLocked);
+    if SState(otherOptionsCBMatrix, 6) (theFlags |= PhPlatformIsSecret);
+    if ([platformIsADoorCB state] == NSControlStateValueOn) (theFlags |= PhPlatformIsDoor);
     
     [platform setStaticFlags:theFlags];
     
