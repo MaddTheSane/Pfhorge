@@ -12,9 +12,8 @@
 
 @implementation PhScenarioData
 
-// **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+// **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
@@ -60,8 +59,7 @@
 }
 
 // **************************  Intlization and Deallocation  *************************
-#pragma mark -
-#pragma mark ********* Intlization and Deallocation *********
+#pragma mark - Intlization and Deallocation
 
 -(id)init
 {
@@ -95,8 +93,7 @@
     projectDir = nil;
 }
 
-#pragma mark -
-#pragma mark ********* Accsessors *********
+#pragma mark - Accsessors
 
 
 - (void)setTableView:(NSTableView *)theTableView { theTable = theTableView; }
@@ -195,8 +192,7 @@
 }
 
 // ••••••••• Table Data Source Updater Methods •••••••••
-#pragma mark -
-#pragma mark Table Data Source Updater Methods
+#pragma mark - Table Data Source Updater Methods
 
 // *** Data Source Messages ***
 

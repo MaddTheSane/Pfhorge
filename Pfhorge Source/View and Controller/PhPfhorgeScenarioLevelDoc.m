@@ -370,8 +370,7 @@
 
 
 // ****************** Document Overidden Methods ******************
-#pragma mark -
-#pragma mark ••••••••• Document Overidden Methods •••••••••
+#pragma mark - Document Overidden Methods
 
 - (void)makeWindowControllers
 {
@@ -440,8 +439,8 @@
 }
 */
 // ****************** Utilites ******************
-#pragma mark -
-#pragma mark ••••••••• Utilites •••••••••
+#pragma mark - Utilites
+
 - (BOOL)exportLevelToMarathonMap:(NSString *)fullPath error:(NSError **)outError
 {
     return [self exportLevelToMarathonMapToURL:[NSURL fileURLWithPath:fullPath] error:outError];
@@ -669,8 +668,7 @@
 }
 
 // ****************** Information ******************
-#pragma mark -
-#pragma mark ••••••••• Information ••••••••
+#pragma mark - Information
 
 - (id)dataObjectForLevelNameTable
 {

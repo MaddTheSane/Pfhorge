@@ -242,7 +242,7 @@ enum {
 //! and to put those names in the name manager cache.
 -(void)setUpArrayNamesForEveryObject;
 
-#pragma mark Coding/Copy Protocal Methods
+#pragma mark Coding/Copy Protocol Methods
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 

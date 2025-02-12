@@ -114,8 +114,7 @@
     return YES;
 }
 
-#pragma mark -
-#pragma mark ********* Outline View Data and Delgate Methods *********
+#pragma mark - Outline View Data and Delgate Methods 
 
 - (void)selectionChanged:(NSNotification *)aNotification
 {
@@ -291,8 +290,7 @@
     return YES;
 }
 
-#pragma mark -
-#pragma mark Outline View Updater And Action Methods
+#pragma mark - Outline View Updater And Action Methods
 
 - (IBAction)addANewSectionAction:(id)sender
 {

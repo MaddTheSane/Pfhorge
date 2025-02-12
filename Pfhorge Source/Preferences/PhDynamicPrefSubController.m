@@ -368,8 +368,8 @@ extern NSString *VMBackwardKey;
     [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangePreferencesNotification object:nil];
 }
 
-#pragma mark -
-#pragma mark ********* VM (Visual Mode) Enviroment Pref Actions *********
+#pragma mark - VM (Visual Mode) Enviroment Pref Actions
+
 -(IBAction)selectShapesBtnAction:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
@@ -407,8 +407,7 @@ extern NSString *VMBackwardKey;
     [preferences setInteger:[sender indexOfSelectedItem] forKey:VMStartPosition];
 }
 
-#pragma mark -
-#pragma mark ********* VM (Visual Mode) Visability Pref Actions *********
+#pragma mark - VM (Visual Mode) Visability Pref Actions
 
 -(IBAction)showObjectsChanged:(id)sender
 {
@@ -492,8 +491,7 @@ extern NSString *VMBackwardKey;
     [preferences setInteger:[sender indexOfSelectedItem] forKey:VMVisibilityMode];
 }
 
-#pragma mark -
-#pragma mark ********* VM (Visual Mode) Key Pref Actions *********
+#pragma mark - VM (Visual Mode) Key Pref Actions
 
 -(IBAction)setInvertMouseAction:(id)sender
 {

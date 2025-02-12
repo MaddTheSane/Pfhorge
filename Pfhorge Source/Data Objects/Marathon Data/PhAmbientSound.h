@@ -45,7 +45,7 @@
 	short volume;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 

@@ -146,8 +146,7 @@
 
 
 // ************************* Plugin Methods *************************
-#pragma mark -
-#pragma mark Plugin Methods
+#pragma mark - Plugin Methods
 
 // + (PhPluginManager *)sharedPhPluginManager {pluginInstanceNames
 
@@ -412,8 +411,7 @@
 }
 
 // ************************* Actions *************************
-#pragma mark -
-#pragma mark Actions
+#pragma mark - Actions
 
 - (IBAction)pluginMenuItemAction:(id)sender
 {

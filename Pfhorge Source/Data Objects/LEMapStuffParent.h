@@ -77,7 +77,7 @@
 - (void)displayInfo;
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet<__kindof LEMapStuffParent*> *)mainObjs;
 - (void)superClassImportWithIndex:(NSArray *)index withData:(PhData *)myData useOrginals:(BOOL)useOrg;
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet<__kindof LEMapStuffParent*> *)mainObjs;

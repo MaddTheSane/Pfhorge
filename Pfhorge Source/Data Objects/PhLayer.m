@@ -27,9 +27,9 @@
 #import "LEExtras.h"
 
 @implementation PhLayer
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
+
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [super encodeWithCoder:coder];
@@ -79,8 +79,7 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
-#pragma mark -
-#pragma mark Init and Dealloc Methods
+#pragma mark - Init and Dealloc Methods
 
 -(id)init
 {

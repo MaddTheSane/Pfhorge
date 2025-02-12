@@ -159,9 +159,8 @@ static NSString * const LELevelDatanoteTypesCoderKey = @"noteTypes";
 static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 
 
-// **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark Coding/Copy Protocal Methods
+// **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     [self resetAdjacentPolygonAssociations];
@@ -1022,8 +1021,7 @@ enum // export data types
 
 
 // ***************************  Intial Setup And Deallocation ***************************
-#pragma mark -
-#pragma mark Intial Setup And Deallocation
+#pragma mark - Intial Setup And Deallocation
 
 
 -(LELevelData *)initForNewPathwaysPIDLevel

@@ -41,8 +41,7 @@
 }*/
 
 // *********************** Overridden/Regular Methods ***********************
-#pragma mark -
-#pragma mark ********* Overridden Methods *********
+#pragma mark - Overridden Methods
 
 - (id)initWithLevelData:(LELevelData *)theLevel
 {

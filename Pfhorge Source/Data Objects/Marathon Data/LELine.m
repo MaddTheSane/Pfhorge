@@ -134,9 +134,8 @@
     [alert runModal];
 }
 
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
@@ -454,8 +453,7 @@
 
 
 // **************************  Flag Methods  *************************
-#pragma mark -
-#pragma mark ********* Flag Methods *********
+#pragma mark - Flag Methods
  
 -(BOOL)getFlagSS:(short)v;
 {
@@ -543,8 +541,7 @@
  }
 
 // **************************  Utility Methods  *************************
-#pragma mark -
-#pragma mark ********* Utility Methods *********
+#pragma mark - Utility Methods
 
 -(NSBezierPath *)clockwiseShadowPath
 {
@@ -697,8 +694,7 @@
 
 
 // **************************  Overriden Standard Methods  *************************
-#pragma mark -
-#pragma mark ********* Overriden Standard Methods *********
+#pragma mark - Overriden Standard Methods
 -(BOOL)uses:(id)theObj
 {
     if ([theObj isKindOfClass:[LEMapPoint class]])
@@ -867,8 +863,7 @@
 
 // ************************** Accsessor Methods *************************
 // *********  Get Accsessor Methods ********* 
- #pragma mark -
-#pragma mark ********* Get Accsessor Methods *********
+#pragma mark - Get Accsessor Methods
 
 //LEPolygon *clockwisePolygon, *conterclockwisePolygon
 
@@ -963,8 +958,7 @@
 @synthesize conterclockwisePolygonObject=conterclockwisePolygon;
 
 // ********* Set Accsessor Methods ********* 
- #pragma mark -
-#pragma mark ********* Set Accsessor Methods *********
+#pragma mark - Set Accsessor Methods
 -(void) setP1:(short)s { [self setPointIndex1:s]; }
 -(void) setP2:(short)s { [self setPointIndex2:s]; }
 
@@ -1153,9 +1147,8 @@
 
 //	--- --- ---
 
-// ************************** Inzlizations And Class Methods *************************
-#pragma mark -
-#pragma mark ********* dealloc, class, and init methods *********
+// ************************** Initialization And Class Methods *************************
+#pragma mark - dealloc, class, and init methods
 
 -(id)init
 {
@@ -1200,8 +1193,7 @@
 }
 
 // ************************** Poly Routine *************************
-#pragma mark -
-#pragma mark ********* Poly Routine *********
+#pragma mark - Poly Routine
 
 -(LEPolygon *)getPolyFromMe
 {

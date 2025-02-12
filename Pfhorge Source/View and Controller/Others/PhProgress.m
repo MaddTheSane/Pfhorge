@@ -102,8 +102,7 @@
 }
 
 // *********************** Updater Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• First Bar •••••••••
+#pragma mark - First Bar 
 
 -(void)setInformationalText:(NSString *)theInfo
 {
@@ -158,8 +157,7 @@
     [statusBarToUse displayIfNeeded];
 }
 
-#pragma mark -
-#pragma mark ••••••••• Second Bar •••••••••
+#pragma mark - Second Bar
 
 -(void)setSecondStatusText:(NSString *)theStatus
 {

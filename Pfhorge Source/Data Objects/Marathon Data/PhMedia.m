@@ -31,9 +31,8 @@
 
 @implementation PhMedia
 
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
@@ -241,8 +240,7 @@
 }
 
 // ****************** Utilites ********************
-#pragma mark -
-#pragma mark ********* Utilites *********
+#pragma mark - Utilites
 
 -(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight
 {
@@ -252,8 +250,7 @@
 
 
 // **************************  Flag Methods  *************************
-#pragma mark -
-#pragma mark ********* Flag Methods *********
+#pragma mark - Flag Methods
 
 -(BOOL)getFlag:(unsigned short)theFlag;
 {
@@ -275,8 +272,7 @@
 }
  
  // **************************  Overriden Standard Methods  *************************
-#pragma mark -
-#pragma mark ********* Overriden Standard Methods *********
+#pragma mark - Overriden Standard Methods
 
 -(short) index { return [theMediaST indexOfObjectIdenticalTo:self]; }
 
@@ -291,8 +287,7 @@
 }
 
 // *****************   Accsessors   *****************
-#pragma mark -
-#pragma mark ********* Accsessors *********
+#pragma mark - Accsessors
 
 @synthesize type;
 @synthesize flags;
@@ -333,15 +328,13 @@
 @synthesize transferMode=transfer_mode;
 
 // *****************   Get Accsessors   *****************
-#pragma mark -
-#pragma mark ********* Get Accsessors *********
+#pragma mark - Get Accsessors
 
 
 -(short)lightIndex { return (light_object == nil) ? -1 : [light_object index]; }
 
 // ************************** Inzlizations And Class Methods *************************
-#pragma mark -
-#pragma mark ********* Inzlizations And Class Methods *********
+#pragma mark - Inzlizations And Class Methods
 
 //+(void)setEverythingLoadedST:(BOOL)theChoice { everythingLoadedST = theChoice; }
 //+(void)setTheMapLightsST:(NSArray *)theNSArray { theMapLightsST = theNSArray; }

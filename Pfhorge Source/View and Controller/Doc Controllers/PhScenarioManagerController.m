@@ -13,8 +13,7 @@
 @implementation PhScenarioManagerController
 
 // *********************** init and dealloc ***********************
-#pragma mark -
-#pragma mark ********* init and dealloc *********
+#pragma mark - init and dealloc
 
 - (id)init
 {
@@ -64,8 +63,7 @@
 }
 
 // *********************** Table Delegate Notifications ***********************
-#pragma mark -
-#pragma mark Table Delegate Notifications
+#pragma mark - Table Delegate Notifications
 
 // *** Delegate Messages ***
 

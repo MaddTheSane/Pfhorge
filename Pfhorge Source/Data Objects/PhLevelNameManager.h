@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, PhLevelNameMenuType) {
     
 }
 
-#pragma mark Coding/Copy Protocal Methods
+#pragma mark Coding/Copy Protocol Methods
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (instancetype)init NS_DESIGNATED_INITIALIZER;

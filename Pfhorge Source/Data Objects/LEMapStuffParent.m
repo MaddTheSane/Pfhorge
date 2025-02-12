@@ -38,9 +38,8 @@
 }
 
 
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 - (void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs
 {
@@ -119,14 +118,12 @@
 }
 
  // **************************  Object Settings  *************************
- #pragma mark -
-#pragma mark ********* Object Settings *********
+#pragma mark - Object Settings
 
 @synthesize encodeIndexNumbersInstead=useIndexNumbersInstead;
 
  // **************************  Advanced Accsess To Level Objects  *************************
- #pragma mark -
-#pragma mark ********* Advanced Accsess To Level Objects *********
+#pragma mark - Advanced Accsess To Level Objects
  
 -(id)getLightFromIndex:(short)theIndex
 {
@@ -179,8 +176,7 @@
 }
 
  // **************************  Basic Accsess To Level Objects  *************************
- #pragma mark -
-#pragma mark ********* Basic Accsess To Level Objects *********
+#pragma mark - Basic Accsess To Level Objects
 
 @synthesize myUndoManager;
 
@@ -247,8 +243,7 @@
 //-(void)setTheTestVar:(int)theInt { TheTestVar = theInt; }
 
 // **************************  Init and Dealloc Methods  *************************
-#pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark - Init and Dealloc Methods
 
 -(id)init
 {
@@ -271,8 +266,7 @@
 }
 
 // **************************  Abstract Methods  *************************
-#pragma mark -
-#pragma mark ********* Abstract Methods *********
+#pragma mark - Abstract Methods
 
 - (PhTag *)getTagForNumber:(int)theTagNumber
 {
@@ -369,10 +363,8 @@
 }
 
 
-// *** *** *** Convient Level Specific Utilites/Accessors *** *** ***
-// *******************  Convient Level Specific Utilites/Accessors  *******************
-#pragma mark -
-#pragma mark ********* Convient Level Specific Utilites/Accessors *********
+// *******************  Convenient Level Specific Utilites/Accessors  *******************
+#pragma mark - Convenient Level Specific Utilites/Accessors
 
 /*
 - (long)exportNumberWithIndex:(NSMutableArray *)theIndex withData:(NSMutableData *)theData objectToExport:(id)obj

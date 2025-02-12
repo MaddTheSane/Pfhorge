@@ -35,8 +35,7 @@
 @implementation PhRandomSndEditCon
 
 // *********************** Overridden Methods ***********************
-#pragma mark -
-#pragma mark ********* Overridden Methods *********
+#pragma mark - Overridden Methods
 
 - (id)initWithSound:(PhRandomSound*)theSound
           withLevel:(LELevelData *)theLevel
@@ -93,8 +92,8 @@
 
 
 // *********************** Updater/Save Methods ***********************
-#pragma mark -
-#pragma mark ********* Updater Methods  *********
+#pragma mark - Updater Methods
+
 - (void)setupTitlesAndNames
 {
     NSString *infoString;
@@ -145,8 +144,8 @@
 
 
 // *********************** Actions ***********************
-#pragma mark -
-#pragma mark ********* Actions  *********
+#pragma mark - Actions
+
 - (IBAction)templateAction:(id)sender
 {
     

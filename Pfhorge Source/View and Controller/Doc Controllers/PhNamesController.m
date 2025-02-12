@@ -55,14 +55,12 @@
 @implementation PhNamesController
 
 // *********************** EXTERN Variables ***********************
-#pragma mark -
-#pragma mark ********* ||| EXTERN Variables ||| *********
+#pragma mark - EXTERN Variables
 static NSString *const PhNumberOfObject = @"#";
 static NSString *const PhNameOfObject = @"Name";
 
 // *********************** Action Methods ***********************
-#pragma mark -
-#pragma mark ********* Action Methods *********
+#pragma mark - Action Methods
 
 - (IBAction)editBtnAction:(id)sender
 {
@@ -204,8 +202,7 @@ static NSString *const PhNameOfObject = @"Name";
 }
 
 // *********************** Overridden Methods ***********************
-#pragma mark -
-#pragma mark ********* Overridden Methods *********
+#pragma mark - Overridden Methods
 
 - (id)init
 {
@@ -244,8 +241,7 @@ static NSString *const PhNameOfObject = @"Name";
 }
 
 // *********************** Updater Methods ***********************
-#pragma mark -
-#pragma mark ********* Updater Methods  *********
+#pragma mark - Updater Methods
 
 -(void)updateInterface { [self setDisplayEditMode:currentDisplayMode]; }
 
@@ -321,8 +317,7 @@ static NSString *const PhNameOfObject = @"Name";
 }
 
 // *********************** Accsessor Methods ***********************
-#pragma mark -
-#pragma mark ********* Accsessor Methods *********
+#pragma mark - Accsessor Methods
 
 - (NSInteger)selectionIndex { return [theTable selectedRow]; }
 
@@ -339,8 +334,7 @@ static NSString *const PhNameOfObject = @"Name";
 }
 
 // *********************** Notifcations ***********************
-#pragma mark -
-#pragma mark ********* Notifcations *********
+#pragma mark - Notifcations
 
 - (void)levelDeallocating:(NSNotification *)notification
 {
@@ -392,8 +386,7 @@ static NSString *const PhNameOfObject = @"Name";
 }
 
 // *********************** Table Updater Methods ***********************
-#pragma mark -
-#pragma mark ********* Table Updater Methods *********
+#pragma mark - Table Updater Methods
 
 // *** Data Source Messages ***
 

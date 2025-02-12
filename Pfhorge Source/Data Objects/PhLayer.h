@@ -30,7 +30,7 @@
     NSMutableArray<__kindof LEMapStuffParent*> *objectsInThisLayer;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 - (instancetype)init;

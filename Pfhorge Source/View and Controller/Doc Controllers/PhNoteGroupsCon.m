@@ -13,8 +13,7 @@
 
 @implementation PhNoteGroupsCon
 // *********************** Table Data Source Updater Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• Table Data Source Updater Methods •••••••••
+#pragma mark - Table Data Source Updater Methods 
 
 // *** Data Source Messages ***
 

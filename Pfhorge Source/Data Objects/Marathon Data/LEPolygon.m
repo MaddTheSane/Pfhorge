@@ -330,9 +330,8 @@
 
 
 
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
@@ -1396,8 +1395,7 @@
 -(short) index { return [theMapPolysST indexOfObjectIdenticalTo:self]; }
 
 // ****************** Texture Methods ********************
-#pragma mark -
-#pragma mark ********* Texture Methods *********
+#pragma mark - Texture Methods
 
 -(void)setCeilingTextureOnly:(char)number
 {
@@ -1491,8 +1489,7 @@
 }
 
 // ****************** Utilites ********************
-#pragma mark -
-#pragma mark ********* Utilites *********
+#pragma mark - Utilites
 
 - (void)releasePlatform
 {
@@ -1681,8 +1678,8 @@
 }
 
 // ****************** Polygon Layer *********************
-#pragma mark -
-#pragma mark ********* Polygon Layer *********
+#pragma mark - Polygon Layer
+
 @synthesize polyLayer;
 -(void)setPolyLayer:(PhLayer *)theLayer
 {
@@ -1697,8 +1694,8 @@
 
 
 // ****************** Moving/Bounds *********************
-#pragma mark -
-#pragma mark ********* Moving/Bounds *********
+#pragma mark - Moving/Bounds
+
 -(NSRect)drawingBounds
 { 
     //NSBezierPath *poly = [NSBezierPath bezierPath];

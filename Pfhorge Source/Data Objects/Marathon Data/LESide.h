@@ -158,7 +158,7 @@ typedef struct side_exclusion_zone
 	int		ambient_delta;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (instancetype)initWithSide:(LESide *)theSideToImitate;

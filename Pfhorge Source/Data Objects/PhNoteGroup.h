@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
     BOOL visible;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 
 @property (getter=isVisible) BOOL visible;
 

@@ -34,9 +34,8 @@
 
 @implementation PhPlatform
 
- // **************************  Coding/Copy/Init Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy/Init Protocal Methods *********
+ // **************************  Coding/Copy/Init Protocol Methods  *************************
+#pragma mark - Coding/Copy/Init Protocol Methods
 
 - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
@@ -313,8 +312,7 @@
 
 
 // *************** Overridden Standard Methods ****************
-#pragma mark -
-#pragma mark ********* Overridden Standard Methods *********
+#pragma mark - Overridden Standard Methods
 /*enum // static platform flags
 {
 	PhPlatformIsInitiallyActive = 0x00000001,	// otherwise inactive
@@ -526,8 +524,7 @@
 }
 
 // ************************** Inzlizations And Class Methods *************************
-#pragma mark -
-#pragma mark ********* Inzlizations And Class Methods *********
+#pragma mark - Inzlizations And Class Methods
 
 //+(void)setEverythingLoadedST:(BOOL)theChoice { everythingLoadedST = theChoice; }
 //+(void)setTheMapPolysST:(NSArray *)theNSArray { theMapPolysST = theNSArray; }

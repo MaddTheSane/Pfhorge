@@ -40,9 +40,8 @@
     return [NSString stringWithFormat:@"Object Index: %d   In Polygon: %@   Facing: %d   X/Y/Z:(%d, %d, %d)   AdjX/AdjY:(%d, %d)", [self index], polyField, facing, x, y, z, x32, y32, nil];
 }
 
- // **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark Coding/Copy Protocal Methods
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 - (long)exportWithIndex:(NSMutableArray *)theIndex withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
 {
@@ -282,8 +281,7 @@ static NSString * const LEMapObjectCoderFlagsKey = @"flags";
 }
 
 // **************************  Other Methods  *************************
-#pragma mark -
-#pragma mark Other Methods
+#pragma mark - Other Methods
 
 
 -(NSRect)drawingBounds
@@ -308,8 +306,7 @@ static NSString * const LEMapObjectCoderFlagsKey = @"flags";
 }
 
  // **************************  Overriden Standard Methods  *************************
-#pragma mark -
-#pragma mark Overriden Standard Methods
+#pragma mark - Overriden Standard Methods
 
 -(short)index { return [theMapObjectsST indexOfObjectIdenticalTo:self]; }
 
@@ -330,13 +327,11 @@ static NSString * const LEMapObjectCoderFlagsKey = @"flags";
 }
 
 // **************************  Flag Methods  *************************
-#pragma mark -
-#pragma mark Flag Methods
+#pragma mark - Flag Methods
 
 
 // *****************   Get Accsessors   *****************
-#pragma mark -
-#pragma mark Get Accsessors
+#pragma mark - Get Accsessors
 
 -(NSRect)as32Rect { return NSMakeRect(x32 - 2, y32 - 2, 4, 4); }
 + (NSSet<NSString *> *)keyPathsForValuesAffectingAs32Rect
@@ -379,8 +374,7 @@ static NSString * const LEMapObjectCoderFlagsKey = @"flags";
 @synthesize mapFlags=flags;
 
 // *****************   Set Accsessors   *****************
-#pragma mark -
-#pragma mark Set Accsessors
+#pragma mark - Set Accsessors
 
 -(void)setX:(short)s
 {

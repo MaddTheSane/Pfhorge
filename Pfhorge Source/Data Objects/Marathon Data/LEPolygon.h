@@ -183,7 +183,7 @@ typedef NS_OPTIONS(unsigned short, LEPolygonFlags) {
 //! that assumtion can not be made anymore...
 @property char textureCollectionOnly;
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 - (id)initWithPolygon:(LEPolygon *)thePolygonToImitate;

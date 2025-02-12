@@ -219,8 +219,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ General Actions ************************
-#pragma mark -
-#pragma mark ********* General Actions *********
+#pragma mark - General Actions
 
 - (IBAction)showTheNameWindow:(id)sender
 {
@@ -325,8 +324,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 // Sheet Actions, etc...
 
 // ************************ Level Settings Sheet Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Level Settings Sheet Actions/Methods *********
+#pragma mark - Level Settings Sheet Actions/Methods
 
 - (IBAction)levelSettingsSheet:(id)sender // rename to levelSettingsSheetOpen (or Activate), etc... ---:=>
 {
@@ -541,8 +539,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 
 // ************************ Utility and Update Methods ************************
-#pragma mark -
-#pragma mark ********* Utility and Update Methods *********
+#pragma mark - Utility and Update Methods
 
 - (void)updateTheLevelNamesMenu
 {
@@ -569,8 +566,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ Map Manager ************************
-#pragma mark -
-#pragma mark ********* Map Mananger *********
+#pragma mark - Map Mananger
 
 - (IBAction)toggleMapManagerDrawer:(id)sender
 {
@@ -834,8 +830,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ Rename Dialog Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Rename Dialog Actions/Methods *********
+#pragma mark - Rename Dialog Actions/Methods
 
 - (void)renamePolyWithSheet:(__kindof LEMapStuffParent*)thePoly
 {
@@ -897,8 +892,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ Go To Sheet Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Go To Sheet Actions/Methods *********
+#pragma mark - Go To Sheet Actions/Methods
 
 - (IBAction)goToPfhorgeObjectViaIndexSheet:(id)sender
 {
@@ -938,8 +932,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ Add New Height Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Add New Height Actions/Methods *********
+#pragma mark - Add New Height Actions/Methods
 
 - (void)openNewHeightSheet
 {
@@ -976,8 +969,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // ************************ Note Group Manager Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Note Group Manager Actions/Methods *********
+#pragma mark - Note Group Manager Actions/Methods
 
 - (IBAction)openNoteGroupManager:(id)sender
 {
@@ -1007,8 +999,8 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 
 // ************************ Annotation Notes Actions/Methods ************************
-#pragma mark -
-#pragma mark ********* Annotation Notes Actions/Methods *********
+#pragma mark - Annotation Notes Actions/Methods
+
 /*
 - (IBAction)openNoteGroupManager:(id)sender
 {
@@ -1087,8 +1079,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 
 
 // ************************ Some Regular Methods ************************
-#pragma mark -
-#pragma mark ********* Some Regular Methods *********
+#pragma mark - Some Regular Methods
 
 - (void)updateLayerSelection
 {
@@ -1158,8 +1149,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 }
 
 // *********************** Notifcations ***********************
-#pragma mark -
-#pragma mark ********* Notifcations *********
+#pragma mark - Notifcations
 
 - (void)aLevelDidChangeName:(NSNotification *)notification
 {
@@ -1299,8 +1289,7 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 @synthesize flagNow=theExpShort;
 
 // *********************** Table Data Source Updater Methods ***********************
-#pragma mark -
-#pragma mark Table Data Source Updater Methods
+#pragma mark - Table Data Source Updater Methods
 
 // *** Data Source Messages ***
 

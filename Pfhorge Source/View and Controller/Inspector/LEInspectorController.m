@@ -54,8 +54,7 @@
 //LESelectionChangedNotification
 
 // *********************** Overridden Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• Overridden Methods •••••••••
+#pragma mark - Overridden Methods
 
 - (id)init
 {
@@ -143,8 +142,7 @@
 }
 
 // *********************** Class Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• Class Methods •••••••••
+#pragma mark - Class Methods
 
 + (id)sharedInspectorController {
     static LEInspectorController *sharedInspectorController = nil;
@@ -157,8 +155,7 @@
 }
 
 // *********************** Other Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• Other Methods •••••••••
+#pragma mark - Other Methods
 
 - (void)setMainWindow:(NSWindow *)mainWindow {
     NSWindowController *controller = [mainWindow windowController];
@@ -185,8 +182,7 @@
 }
 
 // *********************** Notifcations ***********************
-#pragma mark -
-#pragma mark ••••••••• Notifcations •••••••••
+#pragma mark - Notifcations
 
 - (void)levelDeallocating:(NSNotification *)notification
 {
@@ -366,8 +362,7 @@
 }
 
 // *********************** Updater Methods ***********************
-#pragma mark -
-#pragma mark ••••••••• Updater Methods •••••••••
+#pragma mark - Updater Methods
 
 - (void)reset
 {
@@ -422,8 +417,7 @@
 }
 
 // *********************** Utilites ***********************
-#pragma mark -
-#pragma mark ••••••••• Utilites •••••••••
+#pragma mark - Utilites
 
 -(void)setTabMenusTo:(int)tabViewIndex
 {
@@ -436,8 +430,7 @@
 
 
 // *********************** Actions ***********************
-#pragma mark -
-#pragma mark ••••••••• Actions •••••••••
+#pragma mark - Actions
 
 -(IBAction)polySectionChanged:(id)sender
 { // Need to add action and set it up in IB!!!
@@ -481,8 +474,7 @@
 
 
 // *********************** Accsessors ***********************
-#pragma mark -
-#pragma mark ••••••••• Accsessors •••••••••
+#pragma mark - Accsessors
 
 -(id)getTheCurrentSelection { return theCurrentSelection; }
 @synthesize currentLevel;

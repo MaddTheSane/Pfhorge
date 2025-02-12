@@ -107,9 +107,8 @@
 #define SET_SIDE_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
 @implementation LESide
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 
  - (long)exportWithIndex:(NSMutableArray *)index withData:(NSMutableData *)theData mainObjects:(NSSet *)mainObjs
@@ -529,8 +528,7 @@
 }
 
 // ****************** Utilites ********************
-#pragma mark -
-#pragma mark ********* Utilites *********
+#pragma mark - Utilites
 
 -(void)setLightsThatAre:(PhLight*)theLightInQuestion to:(PhLight*)setToLight
 {
@@ -546,8 +544,8 @@
 
 
 // ***************** Copy Methods *****************
-#pragma mark -
-#pragma mark ********* Copy Methods *********
+#pragma mark - Copy Methods
+
 -(void)copySettingsTo:(id)target
 {
     LESide *theTarget = (LESide *)target;
@@ -632,8 +630,7 @@
 }
 
 // **************************  Flag Methods  *************************
-#pragma mark -
-#pragma mark ********* Flag Methods *********
+#pragma mark - Flag Methods
 
 -(BOOL)getFlagS:(short)theFlag;
 {
@@ -701,8 +698,7 @@
  }
  
  // **************************  Overriden Standard Methods  *************************
- #pragma mark -
-#pragma mark ********* Overriden Standard Methods  *********
+#pragma mark - Overriden Standard Methods
  
 -(void)update
 {
@@ -725,8 +721,7 @@
 }
 
 // *****************   Set Accsessors   *****************
- #pragma mark -
-#pragma mark ********* Set Accsessors *********
+#pragma mark - Set Accsessors
 
 -(void)setPrimaryTexture:(char)number
 {
@@ -961,8 +956,7 @@
 @synthesize ambientDelta=ambient_delta;
 
 // *****************   Get Accsessors   *****************
-#pragma mark -
-#pragma mark ********* Get Accsessors *********
+#pragma mark - Get Accessors
 
 -(char)primaryTexture
 {
@@ -1057,8 +1051,7 @@
 @synthesize transparentLightsourceObject=transparent_lightsource_object;
 
 //  ************************** Other Useful Methods *************************
-#pragma mark -
-#pragma mark ********* Other Useful Methods *********
+#pragma mark - Other Useful Methods
 
 -(short)adjustedControlPanelType
 {
@@ -1141,8 +1134,7 @@
 }
 
 // ************************** Inzlizations And Class Methods *************************
-#pragma mark -
-#pragma mark ********* Inzlizations And Class Methods *********
+#pragma mark - Inzlizations And Class Methods
 
 -(id)initWithSide:(LESide *)theSideToImitate
 {

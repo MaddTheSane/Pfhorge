@@ -35,8 +35,7 @@
 @implementation PhLiquidEditCon
 
 // *********************** Overridden Methods ***********************
-#pragma mark -
-#pragma mark ********* Overridden Methods *********
+#pragma mark - Overridden Methods
 
 - (id)initWithMedia:(id)theMedia
           withLevel:(LELevelData *)theLevel
@@ -107,8 +106,8 @@
 
 
 // *********************** Updater/Save Methods ***********************
-#pragma mark -
-#pragma mark ********* Updater Methods  *********
+#pragma mark - Updater Methods
+
 - (void)setupTitlesAndNames
 {
     [infoIT setStringValue:[NSString stringWithFormat:@"Name: %@", curMedia.phName]];
@@ -181,8 +180,8 @@
 
 
 // *********************** Actions ***********************
-#pragma mark -
-#pragma mark ********* Actions  *********
+#pragma mark - Actions
+
 - (IBAction)templateAction:(id)sender
 {
     

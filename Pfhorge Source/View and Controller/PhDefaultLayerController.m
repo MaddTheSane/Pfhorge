@@ -241,8 +241,7 @@
 }
 
 // *********************** Table Delegate Notifications ***********************
-#pragma mark -
-#pragma mark ********* Table Delegate Notifications *********
+#pragma mark - Table Delegate Notifications
 
 // *** Delegate Messages ***
 
@@ -269,8 +268,7 @@
 }
 
 // *********************** Table Data Source Updater Methods ***********************
-#pragma mark -
-#pragma mark ********* Table Data Source Updater Methods *********
+#pragma mark - Table Data Source Updater Methods
 
 // *** Data Source Messages ***
 

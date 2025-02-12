@@ -25,8 +25,7 @@
 // Functions appear below data tables.
 
 /**************** The Data ****************/
-#pragma mark -
-#pragma mark **************** The Data ****************
+#pragma mark The Data
 
 
 /** Sine, integer degrees 0-360 **/
@@ -49,8 +48,7 @@ static const double TANTABLE[361] =
 
 
 /**************** The Functions ****************/
-#pragma mark -
-#pragma mark **************** The Functions ****************
+#pragma mark - The Functions
 
 double PhSin(int a)
 {

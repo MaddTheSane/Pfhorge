@@ -29,8 +29,7 @@
 
 @implementation LELine (SideCalculations)
 // **************************  Side Rotines  *************************
-#pragma mark -
-#pragma mark Side Routines
+#pragma mark - Side Routines
 
 -(void)autoTextureWithLine:(LELine *)theLine
 {

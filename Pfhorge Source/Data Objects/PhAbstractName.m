@@ -29,9 +29,8 @@
 
 @implementation PhAbstractName
 
- // **************************  Coding/Copy Protocal Methods  *************************
- #pragma mark -
-#pragma mark ********* Coding/Copy Protocal Methods *********
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 -(void)superClassExportWithIndex:(NSMutableArray *)index selfData:(NSMutableData *)myData futureData:(NSMutableData *)futureData mainObjects:(NSSet *)mainObjs
 {
@@ -102,8 +101,8 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
- #pragma mark -
-#pragma mark ********* Init and Dealloc Methods *********
+#pragma mark - Init and Dealloc Methods
+
 -(PhAbstractName *)init
 {
     self = [super init];

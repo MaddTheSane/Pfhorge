@@ -48,9 +48,9 @@
 #import "Terminal.h"
 
 @implementation PhLevelNameManager
- // **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark Coding/Copy Protocal Methods
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
+
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     if (coder.allowsKeyedCoding) {
@@ -99,8 +99,8 @@
 }
 
  // **************************  Init and Dealloc Methods  *************************
-#pragma mark -
-#pragma mark Init and Dealloc Methods
+#pragma mark - Init and Dealloc Methods
+
 -(id)init
 {
     self = [super init];
@@ -215,8 +215,7 @@
 
 
 // ************************* Menu Name Managment*************************
-#pragma mark -
-#pragma mark Menu Name Managment
+#pragma mark - Menu Name Managment
 
 -(void)addMenu:(NSPopUpButton*)theMenuUIO asMenuType:(PhLevelNameMenuType)menuKind
 {
@@ -398,8 +397,7 @@
 }
 
 // ************************* Name Array Accsess *************************
-#pragma mark -
-#pragma mark Name Array Accsess
+#pragma mark - Name Array Accsess
 
 -(NSMutableArray *)getLiquidNames { return liquidNames; }
 -(NSMutableArray *)getRandomSoundNames { return randomSoundNames; }

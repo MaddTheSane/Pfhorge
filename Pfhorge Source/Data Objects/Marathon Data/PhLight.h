@@ -106,7 +106,7 @@ typedef NS_OPTIONS(unsigned short, PhLightStaticFlags) {
 }
 
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 - (instancetype)init;

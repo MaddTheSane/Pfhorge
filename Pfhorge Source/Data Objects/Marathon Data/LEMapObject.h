@@ -70,7 +70,7 @@ typedef NS_OPTIONS(unsigned short, LEMapObjectFlags)
     LEMapObjectFlags flags;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 - (id)initWithMapObject:(LEMapObject *)theMapObjectToImitate withLevel:(LELevelData *)theLev;

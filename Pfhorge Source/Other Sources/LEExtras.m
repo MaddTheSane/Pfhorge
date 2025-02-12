@@ -263,8 +263,7 @@ NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
 
 
 // ********************** AppleScript Stuff **********************
-#pragma mark -
-#pragma mark ********* AppleScript Stuff *********
+#pragma mark - AppleScript Stuff
 
 @implementation SendTarget
 

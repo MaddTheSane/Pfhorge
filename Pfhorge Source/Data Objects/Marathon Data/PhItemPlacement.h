@@ -52,7 +52,7 @@ typedef NS_OPTIONS(unsigned short, PhItemPlacementFlags)
 
 + (instancetype)itemPlacementObjWithDefaults;
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_DESIGNATED_INITIALIZER;

@@ -29,9 +29,8 @@
 
 @implementation TerminalSection
 
-// **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark Coding/Copy Protocal Methods
+// **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
 
 - (void) encodeWithCoder:(NSCoder *)coder
 {
@@ -112,8 +111,7 @@
 }
 
 // **************************  Dealloc/Init Methods  *************************
-#pragma mark -
-#pragma mark Dealloc/Init Methods
+#pragma mark - Dealloc/Init Methods
 
 -(id)init
 {
@@ -374,8 +372,7 @@
 }
 
 // **************************  Accsessor Methods  *************************
-#pragma mark -
-#pragma mark Accsessor Methods
+#pragma mark - Accsessor Methods
 
 @synthesize type;
 

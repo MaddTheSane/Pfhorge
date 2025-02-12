@@ -91,8 +91,7 @@
 
 
 // ************************* Actions *************************
-#pragma mark -
-#pragma mark Actions
+#pragma mark - Actions
 
 - (IBAction)saveToPfhorgeFormat:(id)sender
 {
@@ -124,8 +123,7 @@
 }
 
 // *********************** Loading and Saving Levels ***********************
-#pragma mark -
-#pragma mark Loading and Saving Levels
+#pragma mark - Loading and Saving Levels
 
 - (void)initallyLoadInTheDataNow
 {
@@ -328,8 +326,7 @@
     [theLevelDocumentWindowController updateLevelInfoString];
 }
 
-#pragma mark -
-#pragma mark ****************** NEW METHODS ******************
+#pragma mark - NEW METHODS
 
 // ****************** NEW METHODS ******************
 
@@ -448,8 +445,7 @@
     return value;
 }
 
-#pragma mark (END) NEW METHODS
-#pragma mark -
+#pragma mark (END) NEW METHODS -
 
 // ****************** (END) NEW METHODS ******************
 

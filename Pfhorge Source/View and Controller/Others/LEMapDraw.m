@@ -4797,8 +4797,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** Utilities, Etc. ***************************
-#pragma mark -
-#pragma mark Utilities, Etc.
+#pragma mark - Utilities, Etc.
 
 -(BOOL)isThereAPolyAt:(NSPoint)mouseLoc
 {
@@ -5498,8 +5497,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 }
 
 // *************************** This Is To Help Support Undo/Redo ***************************
-#pragma mark -
-#pragma mark This Is To Help Support Undo/Redo
+#pragma mark - This Is To Help Support Undo/Redo
 
 
 -(void)undoSelection:(id)obj ofType:(int)type

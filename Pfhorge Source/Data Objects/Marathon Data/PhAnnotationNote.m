@@ -84,9 +84,9 @@
 - (void)setX32:(int)v { v *= 16; location.x = v; }
 - (void)setY32:(int)v { v *= 16; location.y = v; }
 
- // **************************  Coding/Copy Protocal Methods  *************************
-#pragma mark -
-#pragma mark Coding/Copy Protocal Methods
+ // **************************  Coding/Copy Protocol Methods  *************************
+#pragma mark - Coding/Copy Protocol Methods
+
 - (void) encodeWithCoder:(NSCoder *)coder
 {
     int tempInt;

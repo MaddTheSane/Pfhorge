@@ -163,8 +163,7 @@
 
 
 // ************************* Actions *************************
-#pragma mark -
-#pragma mark ********* Actions *********
+#pragma mark - Actions
 
 - (IBAction)openItemPlacmentEditor:(id)sender
 {
@@ -244,8 +243,7 @@
 }
 
 // *********************** Info Window Managment ***********************
-#pragma mark -
-#pragma mark Info Window Managment
+#pragma mark - Info Window Managment
 
 - (void)addLevelInfoWinCon:(id)winCon
 {
@@ -331,8 +329,7 @@
 }
 
 // *********************** Notifcations ***********************
-#pragma mark -
-#pragma mark ********* Notifcations *********
+#pragma mark - Notifcations
 
 - (void)updateLevelStringIfCorrectLevel:(NSNotification *)notification
 {
@@ -388,8 +385,7 @@
 }
 
 // *********************** Loading and Saving Levels ***********************
-#pragma mark -
-#pragma mark ********* Loading and Saving Levels *********
+#pragma mark - Loading and Saving Levels
 
 - (void)makeWindowControllers
 {
@@ -542,8 +538,7 @@
     [theLevelDocumentWindowController updateLevelInfoString];
 }
 
-#pragma mark -
-#pragma mark NEW METHODS
+#pragma mark - NEW METHODS
 
 // ****************** NEW METHODS ******************
 
@@ -610,8 +605,7 @@
     return value;
 }
 
-#pragma mark ****************** (END) NEW METHODS ******************
-#pragma mark -
+#pragma mark (END) NEW METHODS -
 
 // ****************** (END) NEW METHODS ******************
 
@@ -741,8 +735,7 @@
 }
 
 // ***************************** Scripting Support Methods *****************************
-#pragma mark -
-#pragma mark ********* Scripting Support Methods *******
+#pragma mark - Scripting Support Methods
 -(NSArray *)points { return [theLevel points]; }
 -(NSArray *)lines { return [theLevel lines]; }
 -(NSArray *)objects { return [theLevel theMapObjects]; }

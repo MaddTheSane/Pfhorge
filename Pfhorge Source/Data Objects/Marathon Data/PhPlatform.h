@@ -230,7 +230,7 @@ struct platform_data2 /* 140 bytes */
     __unsafe_unretained PhTag *tagObject;
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (id)initWithCoder:(NSCoder *)coder;
 

@@ -115,8 +115,7 @@
 }
 
 // *********************** Utilites ***********************
-#pragma mark -
-#pragma mark ********* Utilites *********
+#pragma mark - Utilites
 
 - (BOOL)windowShouldClose:(id)sender
 {
@@ -143,8 +142,7 @@
 - (PhItemPlacement *)selectedObject { return [self objectForRow:[theTableView selectedRow]]; }
 
 // *********************** User Interface Methods ***********************
-#pragma mark -
-#pragma mark ********* User Interface Methods *********
+#pragma mark - User Interface Methods
 
 - (void)updateUserInterface
 {
@@ -229,8 +227,7 @@
 }
 
 // *********************** Table Updater Methods ***********************
-#pragma mark -
-#pragma mark ********* Table Updater Methods *********
+#pragma mark - Table Updater Methods
 
 // *** Data Source Messages ***
 

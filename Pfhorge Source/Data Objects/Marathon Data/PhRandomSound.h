@@ -51,7 +51,7 @@ typedef NS_ENUM(unsigned short, PhRandomSoundFlags) {
 	short	phase; // should be NONE ???
 }
 
-// **************************  Coding/Copy Protocal Methods  *************************
+// **************************  Coding/Copy Protocol Methods  *************************
 - (void)encodeWithCoder:(NSCoder *)coder;
 - (instancetype)initWithCoder:(NSCoder *)coder;
 

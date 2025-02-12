@@ -674,8 +674,7 @@
 }
 
 // ************************* Actions - Side *************************
-#pragma mark -
-#pragma mark ••••••••• Actions - Side •••••••••
+#pragma mark - Actions - Side
 
 - (IBAction)primaryTextureMenuAction:(id)sender
 {
@@ -851,9 +850,8 @@
     [self updateLineTextureAndLightMenus];
 }
 
-#pragma mark -
 // ********** Side Lights **********
-#pragma mark ••••••••• Side Lights •••••••••
+#pragma mark - Side Lights
 
 - (IBAction)primaryLightAction:(id)sender
 {
@@ -872,8 +870,7 @@
 
 
 // ************************* Actions - Polygon *************************
-#pragma mark -
-#pragma mark ••••••••• Actions - Polygon •••••••••
+#pragma mark - Actions - Polygon
 
 
 // The Enviroment Codes and Wall Collection Numbers...

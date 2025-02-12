@@ -35,8 +35,7 @@
 @synthesize delayTB;
 
 // *********************** Overridden Methods ***********************
-#pragma mark -
-#pragma mark Overridden Methods
+#pragma mark - Overridden Methods
 
 - (id)initWithPlatform:(PhPlatform *)thePlatform
              withLevel:(LELevelData *)theLevel
@@ -92,8 +91,8 @@
 }
 
 // *********************** Updater/Save Methods ***********************
-#pragma mark -
-#pragma mark Updater Methods
+#pragma mark - Updater Methods
+
 - (void)setupTitlesAndNames
 {
     short platformPolygonIndex = [platform polygonIndex];
@@ -307,8 +306,7 @@
 }
 
 // *********************** Actions ***********************
-#pragma mark -
-#pragma mark ********* Actions  *********
+#pragma mark - Actions
 
 - (IBAction)typeOfPlatformAction:(id)sender
 {

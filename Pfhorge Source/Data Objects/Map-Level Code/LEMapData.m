@@ -1125,8 +1125,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Basic Data Accsessor Functions *****************************
-#pragma mark -
-#pragma mark ********* Basic Data Accsessor Functions *********
+#pragma mark - Basic Data Accsessor Functions
 
 - (long)numberOfLevels
 {
@@ -1139,8 +1138,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Load Data Functions *****************************
-#pragma mark -
-#pragma mark ********* Load Data Functions *********
+#pragma mark - Load Data Functions
 
 - (short)getShort
 {
@@ -1262,8 +1260,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Save Data Functions *****************************
-#pragma mark -
-#pragma mark ********* Save Data Functions *********
+#pragma mark - Save Data Functions
 
 - (void)saveData:(NSData *)theData { [mapDataToSave appendData:theData]; }
 - (void)saveShort:(short)v 
@@ -1323,8 +1320,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Save Header Functions *****************************01
-#pragma mark -
-#pragma mark ********* Save Header Functions *********
+#pragma mark - Save Header Functions
 
 - (BOOL)saveMainMapHeaderForLevels:(int)numberOfLevels usingMapDataSize:(long)size
 {
@@ -1473,8 +1469,7 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Get Header Functions *****************************
-#pragma mark -
-#pragma mark ********* Get Header Functions *********
+#pragma mark - Get Header Functions
 
 - (BOOL)initHeaders
 {
@@ -1686,12 +1681,10 @@ BOOL setupPointerArraysDurringLoading = YES;
 }
 
 // ***************************** Save Level Headers *****************************
-#pragma mark -
-#pragma mark Save Level Headers
+#pragma mark - Save Level Headers
 
 // ***************************** Get Tag Data Functions *****************************
-#pragma mark -
-#pragma mark Get Tag Data Functions
+#pragma mark - Get Tag Data Functions
 
 -(void)getThePointsAtOffset:(int)theDataOffset
                  withLength:(int)theDataLength
