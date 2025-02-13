@@ -294,7 +294,10 @@ static inline id unarchivedOfClass(NSData *Obj, Class cls) {
     if (outObj) {
         return outObj;
     }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
     return [NSUnarchiver unarchiveObjectWithData:Obj];
+#pragma clang diagnostic pop
 }
 #define prefColor(colorKey) 			[preferences objectForKey:(colorKey)]
 #define prefSetColor(colorKey, colorValue) 	[preferences setObject:(colorValue) forKey:(colorKey)]
@@ -363,7 +366,7 @@ enum {
     _vm_texture_render_mode = 2
 };
 
-typedef NS_ENUM(int, LESideDirection) {
+typedef NS_CLOSED_ENUM(int, LESideDirection) {
     LESideClockwise,
     LESideCounterClockwise
 };
@@ -526,14 +529,14 @@ extern NSString *const PhSubWorldUnitGridColor; // = @"PhSubWorldUnitGridColor";
 extern NSString *const PhCenterWorldUnitGridColor;
 
 #pragma mark Terminal Keys
-extern NSAttributedStringKey const PhTerminalBoldAttributeName NS_SWIFT_NAME(PhTerminalBold);
-extern NSAttributedStringKey const PhTerminalColorAttributeName NS_SWIFT_NAME(PhTerminalColor);
-extern NSAttributedStringKey const PhTerminalItalicAttributeName NS_SWIFT_NAME(PhTerminalItalic);
+extern NSAttributedStringKey const PhTerminalBoldAttributeName NS_SWIFT_NAME(phTerminalBold);
+extern NSAttributedStringKey const PhTerminalColorAttributeName NS_SWIFT_NAME(phTerminalColor);
+extern NSAttributedStringKey const PhTerminalItalicAttributeName NS_SWIFT_NAME(phTerminalItalic);
 
 #pragma mark Pasteboard types
-extern NSPasteboardType const PhorgeSelectionDataPasteboardType NS_SWIFT_NAME(PhorgeSelectionData);
-extern NSPasteboardType const PfhorgeTerminalSectionDataPasteboardType NS_SWIFT_NAME(PfhorgeTerminalSectionData);
-extern NSPasteboardType const PfhorgeScenarioLevelsTableDataPasteboardType NS_SWIFT_NAME(PfhorgeScenarioLevelsTableData);
+extern NSPasteboardType const PhorgeSelectionDataPasteboardType NS_SWIFT_NAME(phorgeSelectionData);
+extern NSPasteboardType const PfhorgeTerminalSectionDataPasteboardType NS_SWIFT_NAME(pfhorgeTerminalSectionData);
+extern NSPasteboardType const PfhorgeScenarioLevelsTableDataPasteboardType NS_SWIFT_NAME(pfhorgeScenarioLevelsTableData);
 
 // *********************** End EXTERN Variables ***********************
 

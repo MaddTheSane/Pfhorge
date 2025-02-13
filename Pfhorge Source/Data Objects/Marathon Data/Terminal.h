@@ -35,14 +35,14 @@ typedef NS_ENUM(unsigned short, PhTerminalFlags) {
 };
 
 /*!
- *	The data for a single terminal consists of
- *		a header,
- *		some number of section descriptors,
- *		some number of text style descriptors,
- *		the text itself, possibly disguised.
+ * The data for a single terminal consists of
+ * - a header,
+ * - some number of section descriptors,
+ * - some number of text style descriptors,
+ * - the text itself, possibly disguised.
  *
- *	A 'term' chunk in an M2 level consists of
- *	the data for all the terminals appended.
+ * A 'term' chunk in an M2 level consists of
+ * the data for all the terminals appended.
  */
 typedef struct term_head {
     /*! the size (header included) of this terminal */
@@ -50,7 +50,7 @@ typedef struct term_head {
     /*! flags, see above */
 	PhTerminalFlags flags;
     /*! the number of text lines to show at once (I think).
-    always 22 in Bungie's levels.absent in the preview */
+    always 22 in Bungie's levels. Absent in the preview. */
 	short line_count;
     /*! the number of text sections */
 	short section_count;

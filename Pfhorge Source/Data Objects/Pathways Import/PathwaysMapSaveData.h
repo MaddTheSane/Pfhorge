@@ -208,8 +208,8 @@ struct PID_Sector {
 
 
 //! A PID world unit
-const int PID_WorldUnitBits = 10;
-const int PID_WorldUnit = 1 << PID_WorldUnitBits;
+static const int PID_WorldUnitBits = 10;
+static const int PID_WorldUnit = 1 << PID_WorldUnitBits;
 
 //! Position of something in the map
 struct PID_Position {
@@ -218,8 +218,8 @@ struct PID_Position {
 };
 
 //! Full circle of angle:
-const int PID_FullCircleBits = 9;
-const int PID_FullCircle = 1 << PID_FullCircleBits;
+static const int PID_FullCircleBits = 9;
+static const int PID_FullCircle = 1 << PID_FullCircleBits;
 
 // The angle is 0d for +x, 90d for +y, 180d for -x, and 270d for -y
 // 0x00, 0x80, 0x100, and 0x180 in these units (0, 128, 256, 384).
@@ -299,7 +299,7 @@ struct PID_Level {
 //    follow.
 
 
-const int PID_NumSavegameSlots = 10;
+static const int PID_NumSavegameSlots = 10;
 
 
 //! Item possesed by player: 8 bytes

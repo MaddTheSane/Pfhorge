@@ -103,7 +103,7 @@
 
 @end
 
-#define GET_SIDE_FLAG(b) (flags & (b))
+#define GET_SIDE_FLAG(b) ((flags & (b)) == b)
 #define SET_SIDE_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
 @implementation LESide
@@ -909,14 +909,14 @@
     if (v == -1)
         polygon_object = nil;
     else if (everythingLoadedST)
-        polygon_object = [theMapLightsST objectAtIndex:v];
+        polygon_object = [theMapPolysST objectAtIndex:v];
 }
 -(void)setLineIndex:(short)v {
     //line_index = v; 
     if (v == -1)
         line_object = nil;
     else if (everythingLoadedST)
-        line_object = [theMapLightsST objectAtIndex:v];
+        line_object = [theMapLinesST objectAtIndex:v];
 }
 
 //	*** *** ***
