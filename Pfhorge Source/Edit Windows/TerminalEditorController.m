@@ -214,7 +214,7 @@
     /// NSLog(@"writeItems");
     
     if ([obj isKindOfClass:[TerminalSection class]]) {
-        NSData *theData = [NSArchiver archivedDataWithRootObject:obj];
+        NSData *theData = [NSKeyedArchiver archivedDataWithRootObject:obj requiringSecureCoding:NO error:NULL];
         draggedTerminalSection = obj;
         // Don't retain since this is just holding temporaral drag information,
         // and it is only used during a drag!  We could put this in the pboard actually.
