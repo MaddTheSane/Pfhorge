@@ -42,7 +42,7 @@
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] init];
         
-        [progress setStatusText:[NSString stringWithFormat:NSLocalizedString(@"Converting “%@”…", @"Converting \"%@\"..."),
+        [progress setStatusText:[NSString stringWithFormat:NSLocalizedString(@"Converting \"%@\"...", @"Converting “%@”…"),
                 [theLevelNames objectAtIndex:(i - 1)], nil]];
         
         [progress setSecondMinProgress:0.0];

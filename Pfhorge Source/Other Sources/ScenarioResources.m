@@ -296,10 +296,10 @@ Handle ASGetResource(NSString *type, NSNumber *resID, NSString *fileName)
 
 Handle ASGetResourceURL(NSString *type, NSNumber *resID, NSURL *url)
 {
-    Handle            data;
+    Handle           data;
     FSRef            fsref;
     ResFileRefNum    refNum, saveNum;
-    ResType            resType;
+    ResType          resType;
     
     [url getFSRef:&fsref];
     

@@ -102,11 +102,11 @@ class PICT {
 		}
 		
 		func save(to data: inout Data) {
+			data.reserveCapacity(data.count + MemoryLayout<Rect>.size)
 			let dat = [top.bigEndian, left.bigEndian, bottom.bigEndian, right.bigEndian]
-			let dat2 = dat.withUnsafeBytes { (buf) -> Data in
-				return Data(buf)
+			dat.withUnsafeBytes { (buf) in
+				data.append(contentsOf: buf)
 			}
-			data.append(contentsOf: dat2)
 		}
 	}
 
@@ -368,22 +368,20 @@ class PICT {
 		}
 		
 		func save(to data: inout Data) {
-			var tmpData = Data(capacity: 26)
+			data.reserveCapacity(data.count + MemoryLayout<HeaderOp>.size)
 			let dat1 = [headerOp.bigEndian, Int16(bitPattern: headerVersion).bigEndian, reserved1.bigEndian]
 			dat1.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(contentsOf: buf)
 			}
 			let dat2 = [hRes.bigEndian, vRes.bigEndian]
 			dat2.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(contentsOf: buf)
 			}
-			srcRect.save(to: &tmpData)
+			srcRect.save(to: &data)
 			let dat3 = [reserved2.bigEndian]
 			dat3.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(contentsOf: buf)
 			}
-			
-			data.append(tmpData)
 		}
 	}
 	
@@ -437,29 +435,28 @@ class PICT {
 		}
 		
 		func save(to data: inout Data) {
-			var tmpData = Data(capacity: MemoryLayout<PixMap>.size)
+			data.reserveCapacity(data.count + MemoryLayout<PixMap>.size)
 			let dat1 = [rowBytes.bigEndian]
 			dat1.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(Data(buf))
 			}
-			bounds.save(to: &tmpData)
+			bounds.save(to: &data)
 			let dat2 = [version.bigEndian, packType.bigEndian]
 			dat2.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(Data(buf))
 			}
 			let dat3 = [packSize.bigEndian, hRes.bigEndian, vRes.bigEndian]
 			dat3.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(Data(buf))
 			}
 			let dat4 = [pixelType.bigEndian, pixelSize.bigEndian, cmpCount.bigEndian, cmpSize.bigEndian]
 			dat4.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(Data(buf))
 			}
 			let dat5 = [planeBytes.bigEndian, table.bigEndian, reserved.bigEndian]
 			dat5.withUnsafeBytes { (buf) -> Void in
-				tmpData.append(Data(buf))
+				data.append(Data(buf))
 			}
-			data.append(tmpData)
 		}
 		
 		init(depth: Int16, rowBytes rowBytes_: Int16) {
@@ -496,7 +493,9 @@ class PICT {
 
 	private func loadCopyBits(_ stream: PhData, packed: Bool, clipped: Bool) -> Bool {
 		if !packed {
-			stream.add(toPosition: 4) // pmBaseAddr
+			guard stream.add(toPosition: 4) else {// pmBaseAddr
+				return false
+			}
 		}
 
 		guard var rowBytes = stream.readUInt16() else {
@@ -610,7 +609,7 @@ class PICT {
 					}
 
 				}
-			} else if (pixel_size == 16) {
+			} else if pixel_size == 16 {
 				for y in 0 ..< Int(height) {
 					var scan_line = [UInt16]()
 					if rowBytes < 8 || pack_type == 1 {
@@ -620,7 +619,7 @@ class PICT {
 							}
 							scan_line.append(line)
 						}
-					} else if (pack_type == 0 || pack_type == 3) {
+					} else if pack_type == 0 || pack_type == 3 {
 						guard let tmpSl = unpackRow16(stream, rowBytes: Int(rowBytes)) else {
 							return false
 						}
@@ -640,7 +639,7 @@ class PICT {
 						_=bitmap.setPixel(atX: x, y: y, pixel)
 					}
 				}
-			} else if (pixel_size == 32) {
+			} else if pixel_size == 32 {
 				for y in 0 ..< Int(height) {
 					var scan_line = [UInt8]()
 					if rowBytes < 8 || pack_type == 1 {
@@ -932,7 +931,7 @@ class PICT {
 	static func convertPICT(from: Data, to format: PhPictConversion.BinaryFormat = .best) throws -> (format: PhPictConversion.BinaryFormat, data: Data) {
 		let aPict = PICT()
 		try aPict.load(from: from)
-		if aPict.jpegData.count != 0 && (format == .best || format == .JPEG) {
+		if !aPict.jpegData.isEmpty && (format == .best || format == .JPEG) {
 			return (.JPEG, aPict.jpegData)
 		}
 		if (aPict.bitmap.bitDepth <= 8 && format == .best) || format == .bitmap {
@@ -1081,7 +1080,7 @@ class PICT {
 		}
 	}
 
-	enum PICTConversionError: Error, RawRepresentable, LocalizedError, CustomStringConvertible {
+	enum PICTConversionError: Error, RawRepresentable, LocalizedError/*, CustomStringConvertible*/ {
 		init?(rawValue: Int) {
 			switch rawValue {
 			case 1:
@@ -1139,7 +1138,7 @@ class PICT {
 		var errorDescription: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String.localizedStringWithFormat(NSLocalizedString("Unimplemented OpCode %d (0x%02x)", comment: "Unimplemented OpCode %d (0x%02x)"), oc, oc)
+				return String.localizedStringWithFormat(NSLocalizedString("Unimplemented OpCode %d (0x%04x)", comment: "Unimplemented OpCode %d (0x%04x), where both formatters reference the same number, one to show the decimal value and the other the hexadecimal representation."), oc, oc)
 
 			case .containsBandedJPEG:
 				return NSLocalizedString("Contains banded JPEG", comment: "Contains banded JPEG")
@@ -1154,10 +1153,11 @@ class PICT {
 				return NSLocalizedString("Unexpected end of file", comment: "Unexpected end of file")
 				
 			case .conversionFailed:
-				return NSLocalizedString("Converting to anonther bitmap format failed", comment: "Converting to another bitmap format failed")
+				return NSLocalizedString("Converting to anonther bitmap format failed", value: "Converting to another bitmap format failed", comment: "Converting to another bitmap format failed")
 			}
 		}
 		
+#if false
 		var description: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
@@ -1179,6 +1179,7 @@ class PICT {
 				return "Converting to another bitmap format failed"
 			}
 		}
+#endif
 
 		var recoverySuggestion: String? {
 			switch self {

@@ -11,7 +11,15 @@
       "comment" : "Data is (RLE) compressed. EasyBMP does not support compression."
     },
     "Data is in an unsupported format. (bmih.biCompression = %d) The file is probably an old OS/2 bitmap or corrupted." : {
-      "comment" : "Data is in an unsupported format. (bmih.biCompression = the unknown compression) The file is probably an old OS/2 bitmap or corrupted."
+      "comment" : "Data is in an unsupported format. (bmih.biCompression = the unknown compression). The file is probably an old OS/2 bitmap or corrupted.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data is in an unsupported format. (bmih.biCompression = %d). The file is probably an old OS/2 bitmap or corrupted."
+          }
+        }
+      }
     },
     "Data uses bit fields and is not a 16-bit file. This is not supported." : {
       "comment" : "Data uses bit fields and is not a 16-bit file. This is not supported."

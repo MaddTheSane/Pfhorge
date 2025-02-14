@@ -104,7 +104,7 @@ BOOL setupPointerArraysDurringLoading = YES;
         NSData *theLevelMapData = nil;
         NSMutableData *entireMapData = [[NSMutableData alloc] initWithCapacity:12];
         
-        [progress setStatusText:[NSString stringWithFormat:@"Converting “%@”…", [theLevelNames objectAtIndex:(i - 1)], nil]];
+        [progress setStatusText:[NSString localizedStringWithFormat:NSLocalizedString(@"Converting \"%@\"...", @"Converting “%@”…"), [theLevelNames objectAtIndex:(i - 1)], nil]];
         
         [progress setSecondMinProgress:0.0];
         [progress setSecondMaxProgress:100.0];

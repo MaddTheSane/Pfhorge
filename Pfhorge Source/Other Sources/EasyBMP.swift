@@ -583,7 +583,7 @@ final class EasyBMP {
 			let ZeroWORD: UInt16 = 0
 
 			[RedMask.littleEndian, ZeroWORD, GreenMask.littleEndian, ZeroWORD, BlueMask.littleEndian, ZeroWORD].withUnsafeBytes { (urbp) -> Void in
-				fp.append(Data(urbp))
+				fp.append(contentsOf: urbp)
 			}
 			
 			let DataBytes = width*2
@@ -611,7 +611,6 @@ final class EasyBMP {
 					bmpWrite(tmpByte, &fp)
 					WriteNumber += 1
 				}
-				
 			}
 		}
 		
@@ -941,7 +940,7 @@ final class EasyBMP {
 		guard bmih.biCompression <= 3 else {
 			_=setSize(width: 1,height: 1)
 			_=setBitDepth(1)
-			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: String.localizedStringWithFormat(NSLocalizedString("Data is in an unsupported format. (bmih.biCompression = %d) The file is probably an old OS/2 bitmap or corrupted.", tableName: "EasyBMPErrors", comment: "Data is in an unsupported format. (bmih.biCompression = the unknown compression) The file is probably an old OS/2 bitmap or corrupted."), bmih.biCompression)])
+			throw CocoaError(.fileReadCorruptFile, userInfo: [NSLocalizedFailureReasonErrorKey: String.localizedStringWithFormat(NSLocalizedString("Data is in an unsupported format. (bmih.biCompression = %d) The file is probably an old OS/2 bitmap or corrupted.", tableName: "EasyBMPErrors", comment: "Data is in an unsupported format. (bmih.biCompression = the unknown compression). The file is probably an old OS/2 bitmap or corrupted."), bmih.biCompression)])
 		}
 		if bmih.biCompression == 3 && bmih.biBitCount != 16 {
 			_=setSize(width: 1,height: 1)

@@ -218,8 +218,8 @@
     "Contains unknown or unsupported codec" : {
       "comment" : "Contains unknown or unsupported codec"
     },
-    "Converting “%@”…" : {
-      "comment" : "Converting \"%@\"...",
+    "Converting \"%@\"..." : {
+      "comment" : "Converting “%@”…",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -684,8 +684,8 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Saving ‘%1$@’ Resource# %2$@…"
+            "state" : "translated",
+            "value" : "Saving ‘%1$@’ Resource #%2$@…"
           }
         }
       }
@@ -695,8 +695,8 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Saving converted ‘%1$@’ Resource# %2$@…"
+            "state" : "translated",
+            "value" : "Saving converted ‘%1$@’ Resource #%2$@…"
           }
         }
       }
@@ -887,13 +887,13 @@
     "Unexpected end of file" : {
       "comment" : "Unexpected end of file"
     },
-    "Unimplemented OpCode %d (0x%02x)" : {
-      "comment" : "Unimplemented OpCode %d (0x%02x)",
+    "Unimplemented OpCode %d (0x%04x)" : {
+      "comment" : "Unimplemented OpCode %d (0x%04x), where both formatters reference the same number, one to show the decimal value and the other the hexadecimal representation.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unimplemented QuickDraw OpCode %1$d (0x%2$02x)"
+            "state" : "new",
+            "value" : "Unimplemented OpCode %1$d (0x%2$04x)"
           }
         }
       }

@@ -144,6 +144,7 @@
         NSMutableArray *levelNames = [NSMutableArray arrayWithCapacity:0];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *imageDir = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images"];
+        NSString *soundsDir = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Sounds"];
         BOOL isDir = NO;
         
         BOOL exsists = NO;
@@ -257,6 +258,17 @@
                     // TODO: store errors for later review by the user
                     NSLog(@"%@", err);
                 }
+            }];
+            
+            //TODO: convert sound
+            [maraResources iterateResourcesOfType:@"snd " progress:YES block:^(Resource * resource, NSData *dat, PhProgress *progress) {
+                [progress setInformationalText:[NSString localizedStringWithFormat:NSLocalizedString(@"Saving ‘%@’ Resource# %@…", @"Saving ‘%@’ Resource# %@…"), @"snd ", [resource resID], nil]];
+                NSString *sndPath = [soundsDir stringByAppendingPathComponent:[[[resource resID] stringValue] stringByAppendingPathExtension:@"snd"]];
+                
+                [fileManager createFileAtPath:sndPath
+                                     contents:dat
+                                   attributes:@{NSFileHFSTypeCode: @((OSType)'snd ')
+                                              }];
             }];
             
             [progress increaseProgressBy:1.0];
