@@ -571,6 +571,7 @@
     NSLog(@"Scaning Images folder for resources now...");
     
     fullImageDirPath  = [[self fullPathForDirectory] stringByAppendingPathComponent:@"Images/"];
+    NSURL *fullSoundDirPath  = [[self fullPathURLForDirectory] URLByAppendingPathComponent:@"Sound/"];
     
     exsists = [manager fileExistsAtPath:fullImageDirPath isDirectory:&isDir];
     
@@ -583,7 +584,7 @@
     
     maraResources = [[ScenarioResources alloc] initWithContentsOfURL:fullPath error:outError];
     if (!maraResources) {
-        return nil;
+        return NO;
     }
     
     subpaths = [manager contentsOfDirectoryAtPath:fullImageDirPath error:NULL];
@@ -671,6 +672,41 @@
             theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"PICT" name:@""];
             theResource.data = pictData;
             [maraResources addResource:theResource];
+        }
+    }
+    
+    exsists = [manager fileExistsAtPath:fullSoundDirPath.path isDirectory:&isDir];
+    if (exsists && isDir) {
+        subpaths = [manager contentsOfDirectoryAtURL:fullSoundDirPath includingPropertiesForKeys:nil options:0 error:NULL];
+        for (NSURL *fileName in subpaths) {
+            if (IsPathDirectory(manager, fileName.path)) {
+                continue;
+            } else if ([[fileName pathExtension] isEqualToString:@"snd"]) {
+                ResID thePictResourceNumber = [[[fileName lastPathComponent] stringByDeletingPathExtension] intValue];
+                Resource *theResource;
+                
+                if (thePictResourceNumber < 128) {
+                    continue;
+                }
+                if ([maraResources resourceOfType:@"snd " index:thePictResourceNumber load:NO] != nil) {
+                    continue;
+                }
+                
+                NSError *err;
+                NSData *sndData = [[NSData alloc] initWithContentsOfURL:fileName options:0 error:&err];
+                if (!sndData) {
+                    NSLog(@"Snd read failed: %@", err);
+                    continue;
+                }
+
+                theResource = [[Resource alloc] initWithID:thePictResourceNumber type:@"snd " name:@""];
+                theResource.data = sndData;
+                [maraResources addResource:theResource];
+            } else if ([[fileName pathExtension] isEqualToString:@"aif"] || [[fileName pathExtension] isEqualToString:@"aiff"]) {
+                //TODO: convert from AIFF
+                NSLog(@"Skipping %@: AIFF conversion not implemented!", fileName.lastPathComponent);
+                continue;
+            }
         }
     }
     

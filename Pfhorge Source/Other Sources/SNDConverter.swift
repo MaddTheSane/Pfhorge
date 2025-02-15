@@ -39,11 +39,24 @@ final class SNDConverter: NSObject {
 	}
 	
 	@objc(SNDConverterErrors)
-	enum Errors: Int, Error {
+	enum Errors: Int, Error, LocalizedError {
 		case unexpectedEOF
 		case badFormat
 		case noSamples
 		case unsupportedCompression
+		
+		var errorDescription: String? {
+			switch self {
+			case .unexpectedEOF:
+				return NSLocalizedString("Unexpected end of file", comment: "Unexpected end of file")
+			case .badFormat:
+				return NSLocalizedString("Bad file format", value: "Bad audio format", comment: "Bad audio format")
+			case .noSamples:
+				return NSLocalizedString("No samples found", comment: "No samples found")
+			case .unsupportedCompression:
+				return NSLocalizedString("Unsupported compression", value: "Unsupported codec", comment: "Unsupported codec")
+			}
+		}
 	}
     
 	@objc(loadFromData:error:)
@@ -82,8 +95,10 @@ final class SNDConverter: NSObject {
 				let sample = PhData(data: presample)
 				if dat[Int(param2) + 20] == 0x00 {
 					try unpackStandardSystem7Header(sample)
+					return
 				} else if dat[Int(param2) + 20] == 0xff || dat[Int(param2) + 20] == 0xfe {
 					try unpackExtendedSystem7Header(sample)
+					return
 				}
 			}
 		}
@@ -225,7 +240,7 @@ final class SNDConverter: NSObject {
 				throw Errors.unexpectedEOF
 
 			}
-			if (format != PhTwosEncoderID || comp_id != -1) {
+			if format != PhTwosEncoderID || comp_id != -1 {
 				throw Errors.unsupportedCompression
 			}
 			signed8Bit = true

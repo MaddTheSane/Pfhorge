@@ -69,6 +69,18 @@
     "Archiving Level Into Binary Data…" : {
       "comment" : "Archiving Level Into Binary Data…"
     },
+    "Bad file format" : {
+      "comment" : "Bad audio format",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bad audio format"
+          }
+        }
+      }
+    },
     "Bad Map Data, Bounding Error: Map Trying To Refrence Beyond The Bounds Of An Array! Setting It To Last Item In Array…" : {
       "comment" : "Bad Map Data",
       "localizations" : {
@@ -470,6 +482,9 @@
     },
     "No Layer On" : {
       "comment" : "No Layer On"
+    },
+    "No samples found" : {
+      "comment" : "No samples found"
     },
     "No Scripts in Scripts folder 1" : {
       "comment" : "There Are No Scripts In The Scripts Folder",
@@ -938,6 +953,18 @@
     },
     "Unkown list query mode, #105." : {
       "comment" : "Unkown list query mode, #105."
+    },
+    "Unsupported compression" : {
+      "comment" : "Unsupported codec",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unsupported codec"
+          }
+        }
+      }
     },
     "Update Needed" : {
       "comment" : "Update Needed"

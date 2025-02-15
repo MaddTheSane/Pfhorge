@@ -1017,16 +1017,16 @@ class PICT {
 			//Hackity-hack!
 			let dat = aPict.bitmap.generateData()
 			guard let bmpImgRep = NSBitmapImageRep(data: dat),
-				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
-					// brute force!
-					guard let bir = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(aPict.bitmap.width), pixelsHigh: Int(aPict.bitmap.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bitmapFormat: NSBitmapImageRep.Format.alphaFirst, bytesPerRow: Int(aPict.bitmap.width)*4, bitsPerPixel: 32) else {
+				  let pngDat = bmpImgRep.representation(using: .png, properties: [:]) else {
+				// brute force!
+				guard let bir = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(aPict.bitmap.width), pixelsHigh: Int(aPict.bitmap.height), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bitmapFormat: NSBitmapImageRep.Format.alphaFirst, bytesPerRow: Int(aPict.bitmap.width)*4, bitsPerPixel: 32)?.retagging(with: .sRGB) else {
 						throw PICTConversionError.conversionFailed
 					}
 					for i in 0 ..< Int(aPict.bitmap.width) {
 						autoreleasepool {
 							for j in 0 ..< Int(aPict.bitmap.height) {
 								let pixCol = aPict.bitmap.getPixel(atX: i, y: j)
-								let col = NSColor(calibratedRed: CGFloat(pixCol.red) / CGFloat(UInt8.max), green: CGFloat(pixCol.green) / CGFloat(UInt8.max), blue: CGFloat(pixCol.blue) / CGFloat(UInt8.max), alpha: 1)
+								let col = NSColor(srgbRed: CGFloat(pixCol.red) / CGFloat(UInt8.max), green: CGFloat(pixCol.green) / CGFloat(UInt8.max), blue: CGFloat(pixCol.blue) / CGFloat(UInt8.max), alpha: 1)
 								bir.setColor(col, atX: i, y: j)
 							}
 						}
@@ -1042,7 +1042,7 @@ class PICT {
 		case .bitmap:
 			if !aPict.jpegData.isEmpty {
 				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
-					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.bmp, properties: [:]) {
+					let pngDat = bmpImgRep.representation(using: .bmp, properties: [:]) {
 					return (.bitmap, pngDat)
 				}
 			}
@@ -1054,7 +1054,7 @@ class PICT {
 			}
 			
 			if let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
-				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.jpeg, properties: [:]) {
+				let pngDat = bmpImgRep.representation(using: .jpeg, properties: [:]) {
 				return (.JPEG, pngDat)
 			}
 
@@ -1063,13 +1063,13 @@ class PICT {
 		case .PNG:
 			if !aPict.jpegData.isEmpty {
 				if let bmpImgRep = NSBitmapImageRep(data: aPict.jpegData),
-					let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) {
+					let pngDat = bmpImgRep.representation(using: .png, properties: [:]) {
 					return (.PNG, pngDat)
 				}
 			}
 
 			guard let bmpImgRep = NSBitmapImageRep(data: aPict.bitmap.generateData()),
-				let pngDat = bmpImgRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:]) else {
+				let pngDat = bmpImgRep.representation(using: .png, properties: [:]) else {
 					throw PICTConversionError.conversionFailed
 			}
 			return (.PNG, pngDat)
@@ -1080,7 +1080,7 @@ class PICT {
 		}
 	}
 
-	enum PICTConversionError: Error, RawRepresentable, LocalizedError/*, CustomStringConvertible*/ {
+	enum PICTConversionError: Error, RawRepresentable, LocalizedError, CustomStringConvertible {
 		init?(rawValue: Int) {
 			switch rawValue {
 			case 1:
@@ -1157,11 +1157,10 @@ class PICT {
 			}
 		}
 		
-#if false
 		var description: String {
 			switch self {
 			case .unimplementedOpCode(let oc):
-				return String(format: "Unimplemented OpCode %d (0x%02x)", oc, oc)
+				return String(format: "Unimplemented OpCode %d (0x%04x)", oc, oc)
 				
 			case .containsBandedJPEG:
 				return "Contains banded JPEG"
@@ -1179,12 +1178,12 @@ class PICT {
 				return "Converting to another bitmap format failed"
 			}
 		}
-#endif
 
 		var recoverySuggestion: String? {
 			switch self {
 			case .unsupportedQuickTimeCodec,
 					.containsBandedJPEG,
+					.usesCinemascopeHack,
 					.unimplementedOpCode(_):
 				return NSLocalizedString("Try opening the image in Mac OS 9 or earlier and convert the image to a different format.", comment: "unsupportedQuickTimeCodec suggestion (Open in Mac Classic)")
 				
