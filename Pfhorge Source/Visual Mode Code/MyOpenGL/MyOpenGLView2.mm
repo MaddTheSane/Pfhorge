@@ -274,9 +274,9 @@ void Draw3DSGrid()
 //! This draws a spiral of pyramids to maneuver around
 void DrawSpiralTowers()
 {
-    const float PI = M_PI;                   	        // Create a constant for PI
-    const float kIncrease = PI / 16.0f;                 // This is the angle we increase by in radians
-    const float kMaxRotation = PI * 6;                  // This is 1080 degrees of rotation in radians (3 circles)
+    static const float PI = M_PI;                   	// Create a constant for PI
+    static const float kIncrease = PI / 16.0f;          // This is the angle we increase by in radians
+    static const float kMaxRotation = PI * 6;           // This is 1080 degrees of rotation in radians (3 circles)
     float radius = 40;                                  // We start with a radius of 40 and decrease towards the center
 
     // Keep looping until we go past the max degrees of rotation (which is 3 full rotations)
@@ -748,6 +748,7 @@ static unsigned short SetColor(short ID, int Indx) {
 -(void)dealloc
 {
 	delete g_Camera;
+    [timer invalidate];
 	
 	//[timer release];
     

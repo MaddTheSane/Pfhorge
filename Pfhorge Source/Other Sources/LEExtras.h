@@ -349,6 +349,7 @@ static inline int loadIntFromNSData(NSData *dat, NSInteger offset)
 	unsigned int				OK_Enough;
 }
 + (instancetype)sendTargetWithAppleScriptObject:(NDAppleScriptObject *)anObject;
+@property (readonly, strong) NDAppleScriptObject *appleScriptObject;
 @end
 
 NSRect LERectFromPoints(NSPoint point1, NSPoint point2);

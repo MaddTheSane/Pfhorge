@@ -48,7 +48,7 @@
 		AE3C154D0A04512100FBFFCD /* LEMapData.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEF00D3D8317F000001 /* LEMapData.m */; };
 		AE3C154E0A04512100FBFFCD /* LEMapDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FCE08A00DB2EFD7F000001 /* LEMapDraw.m */; };
 		AE3C154F0A04512100FBFFCD /* LEMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 011A1BEB00D3C7827F000001 /* LEMap.m */; };
-		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		AE3C15500A04512100FBFFCD /* LEExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 035877BF00E7E7C67F000001 /* LEExtras.m */; };
 		AE3C15510A04512100FBFFCD /* LEMapStuffParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FD2B8B00E806097F000001 /* LEMapStuffParent.m */; };
 		AE3C15530A04512100FBFFCD /* LEPaletteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3A800EAC1717F000001 /* LEPaletteController.m */; };
 		AE3C15540A04512100FBFFCD /* LEDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00FBF3AC00EACC4F7F000001 /* LEDelegate.m */; };

@@ -266,22 +266,17 @@ NSPoint LEAddToPoint(NSPoint point1, CGFloat theSum) {
 #pragma mark - AppleScript Stuff
 
 @implementation SendTarget
+@synthesize appleScriptObject;
 
 + (id)sendTargetWithAppleScriptObject:(NDAppleScriptObject *)anObject
 {
 	SendTarget		* theInstance;
 
 	if ((theInstance = [[self alloc] init])) {
-		theInstance->appleScriptObject = [anObject retain];
+		theInstance->appleScriptObject = anObject;
 		theInstance->OK_Enough = 0;
 	}
-	return [theInstance autorelease];
-}
-
--(void)dealloc
-{
-	[appleScriptObject release];
-	[super dealloc];
+	return theInstance;
 }
 
 /*
@@ -329,7 +324,7 @@ void createAndExecuteScriptObject( NSURL * aPath )
 		 * This shows creating a script object from a compiled AppleScript file,
 		 */
 		NSLog(@"Geting Script...");
-        theScriptObject = [[[NDAppleScriptObject alloc] initWithContentsOfURL:aPath] autorelease];
+        theScriptObject = [[NDAppleScriptObject alloc] initWithContentsOfURL:aPath];
 	}
 	
 	if (theScriptObject) {
