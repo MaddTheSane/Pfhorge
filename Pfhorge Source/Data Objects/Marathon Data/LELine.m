@@ -350,6 +350,9 @@
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
+    if (self == nil) {
+        return nil;
+    }
     if (coder.allowsKeyedCoding) {
         mapPoint1 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint1"];
         mapPoint2 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint2"];

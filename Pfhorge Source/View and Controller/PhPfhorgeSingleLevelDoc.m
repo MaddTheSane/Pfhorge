@@ -168,21 +168,12 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         }
         [entireMapData setData:maraMap];
     } else {
-        short theVersionNumber = currentVersionOfPfhorgeLevelData;
-        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
-        short thePfhorgeDataSig1 = 26743;
-        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
-        unsigned short thePfhorgeDataSig2 = 34521;
-        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
-        int thePfhorgeDataSig3 = 42296737;
-        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+        const short theVersionNumber = CFSwapInt16HostToBig(currentVersionOfPfhorgeLevelData);
+        static const short thePfhorgeDataSig1 = OSSwapHostToBigInt16(26743);
+        static const unsigned short thePfhorgeDataSig2 = OSSwapHostToBigInt16(34521);
+        static const int thePfhorgeDataSig3 = OSSwapHostToBigInt32(42296737);
         
-        NSData *theLevelMapData;
-        if (@available(macOS 10.13, *)) {
-            theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:YES error:outError];
-        } else {
-            theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel];
-        }
+        NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:YES error:outError];
         if (!theLevelMapData) {
             return nil;
         }
@@ -209,9 +200,9 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
     
     const short theVersionNumber = currentVersionOfPfhorgeLevelData;
     const short oldVersionNumber = oldVersionOfPfhorgeLevelData;
-    const short thePfhorgeDataSig1 = 26743;
-    const unsigned short thePfhorgeDataSig2 = 34521;
-    const int thePfhorgeDataSig3 = 42296737;
+    static const short thePfhorgeDataSig1 = 26743;
+    static const unsigned short thePfhorgeDataSig2 = 34521;
+    static const int thePfhorgeDataSig3 = 42296737;
     
     short theVersionNumberFromData = 0;
     short thePfhorgeDataSig1FromData = 0;
@@ -295,11 +286,7 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
         thePfhorgeDataSig3FromData == thePfhorgeDataSig3) {
         NSLog(@"Loading Pfhorge Formated Map...");
         theRawMapData = nil;
-        if (@available(macOS 10.13, *)) {
-            theLevel = [NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError];
-        } else {
-            theLevel = [NSKeyedUnarchiver unarchiveTopLevelObjectWithData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError];
-        }
+        theLevel = [NSKeyedUnarchiver unarchivedObjectOfClass:[LELevelData class] fromData:[data subdataWithRange:NSMakeRange(10, ([data length] - 10))] error:outError];
 
         if (theLevel != nil) {
             loadedOk = YES;

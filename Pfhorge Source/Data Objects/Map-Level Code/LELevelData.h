@@ -27,13 +27,13 @@
 #import "PhLevelNameManager.h"
 
 
-#define GET_MISSION_FLAG(b) (mission_flags & (b))
+#define GET_MISSION_FLAG(b) ((mission_flags & (b)) == (b))
 #define SET_MISSION_FLAG(b, v) ((v) ? (mission_flags |= (b)) : (mission_flags &= ~(b)))
 
-#define GET_ENVIRONMENT_FLAG(b) (environment_flags & (b))
+#define GET_ENVIRONMENT_FLAG(b) ((environment_flags & (b)) == (b))
 #define SET_ENVIRONMENT_FLAG(b, v) ((v) ? (environment_flags |= (b)) : (environment_flags &= ~(b)))
 
-#define GET_ENTRY_FLAG(b) (entry_point_flags & (b))
+#define GET_ENTRY_FLAG(b) ((entry_point_flags & (b)) == (b))
 #define SET_ENTRY_FLAG(b, v) ((v) ? (entry_point_flags |= (b)) : (entry_point_flags &= ~(b)))
 
 /*! export name types... */
@@ -235,10 +235,10 @@ enum {
 
 #pragma mark Inital Setup Methods
 
-//! Called after loading a marathon formated map, to set thePhName of lights, etc.
+//! Called after loading a marathon formated map, to set the `phName` of lights, etc.
 //! and to put those names in the name manager cache.
 -(void)compileAndSetNameArraysFromLevel;
-//! Called after loading a Pfhorge formated map, to get thePhName of lights, etc.
+//! Called after loading a Pfhorge formated map, to get the `phName` of lights, etc.
 //! and to put those names in the name manager cache.
 -(void)setUpArrayNamesForEveryObject;
 

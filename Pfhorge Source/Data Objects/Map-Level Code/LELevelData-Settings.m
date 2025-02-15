@@ -271,16 +271,15 @@
 
 - (NSScriptObjectSpecifier *)objectSpecifier
 {
-    if (theLevelDocument != nil)
-    {
+    if (theLevelDocument != nil) {
         NSScriptObjectSpecifier *containerRef = [theLevelDocument objectSpecifier];
         
         return [[NSPropertySpecifier alloc]
                         initWithContainerClassDescription:[containerRef keyClassDescription]
                         /*initWith*/containerSpecifier:containerRef key:@"level"];
-    }
-    else
+    } else {
         return nil;
+    }
 }
 
 @end

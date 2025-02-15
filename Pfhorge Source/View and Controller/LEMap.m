@@ -616,14 +616,10 @@
     if (shouldExportToMarathonFormat == YES || [aType isEqualToString:@"org.bungie.source.map"]) {
         entireMapData = [LEMapData convertLevelToDataObject:theLevel error:outError];
     } else {
-        short theVersionNumber = currentVersionOfPfhorgeLevelData;
-        theVersionNumber = CFSwapInt16HostToBig(theVersionNumber);
-        short thePfhorgeDataSig1 = 26743;
-        thePfhorgeDataSig1 = CFSwapInt16HostToBig(thePfhorgeDataSig1);
-        unsigned short thePfhorgeDataSig2 = 34521;
-        thePfhorgeDataSig2 = CFSwapInt16HostToBig(thePfhorgeDataSig2);
-        int thePfhorgeDataSig3 = 42296737;
-        thePfhorgeDataSig3 = CFSwapInt32HostToBig(thePfhorgeDataSig3);
+        const short theVersionNumber = CFSwapInt16HostToBig(currentVersionOfPfhorgeLevelData);
+        static const short thePfhorgeDataSig1 = OSSwapHostToBigInt16(26743);
+        static const unsigned short thePfhorgeDataSig2 = OSSwapHostToBigInt16(34521);
+        static const int thePfhorgeDataSig3 = OSSwapHostToBigInt32(42296737);
 
         NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:NO error:outError];
         

@@ -252,6 +252,9 @@ static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 {
     int versionNum = 0;
     self = [super initWithCoder:coder];
+    if (self == nil) {
+        return nil;
+    }
     
     if (coder.allowsKeyedCoding) {
         environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
@@ -1130,72 +1133,68 @@ enum // export data types
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
+    if (self = [super init]) {
+        defaultRoundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:3 raiseOnExactness:NO raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES];
         
-    defaultRoundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:3 raiseOnExactness:NO raiseOnOverflow:YES raiseOnUnderflow:YES raiseOnDivideByZero:YES];
-
-    layerPolys = [[NSMutableArray alloc] init];
-    layerLines = [[NSMutableArray alloc] init];
-    layerPoints = [[NSMutableArray alloc] init];
-    layerMapObjects = [[NSMutableArray alloc] init];
-    layerNotes = [[NSMutableArray alloc] init];
+        layerPolys = [[NSMutableArray alloc] init];
+        layerLines = [[NSMutableArray alloc] init];
+        layerPoints = [[NSMutableArray alloc] init];
+        layerMapObjects = [[NSMutableArray alloc] init];
+        layerNotes = [[NSMutableArray alloc] init];
+        
+        // There will be at least one layer...
+        layersInLevel = [[NSMutableArray alloc] initWithCapacity:1];
+        currentLayer = nil;
+        
+        points = [[NSMutableArray alloc] init];
+        lines = [[NSMutableArray alloc] init];
+        polys = [[NSMutableArray alloc] init];
+        mapObjects = [[NSMutableArray alloc] init];
+        sides = [[NSMutableArray alloc] init];
+        lights = [[NSMutableArray alloc] init];
+        notes = [[NSMutableArray alloc] init];
+        media = [[NSMutableArray alloc] init];
+        ambientSounds = [[NSMutableArray alloc] init];
+        randomSounds = [[NSMutableArray alloc] init];
+        itemPlacement = [[NSMutableArray alloc] init];
+        platforms = [[NSMutableArray alloc] init];
+        
+        level_name = @"Untitled";
+        
+        noteTypes = [[NSMutableArray alloc] init];
+        
+        //defaultSide = [[LESide alloc] init];
+        
+        // ambientSoundNames randomSoundNames lightNames platformNames tagNames liquidNames
+        // ambientSounds randomSounds lights platforms tags media
+        
+        // There will be at least sixteen tags to start out with...
+        tags = [[NSMutableArray alloc] initWithCapacity:16];
+        
+        terimals = [[NSMutableArray alloc] init];
+        
+        namedPolyObjects = [[NSMutableArray alloc] init];
+        
+        levelOptions = [[NSMutableDictionary alloc] init];
+        
+        environment_code = 0;
+        physics_model = 0;
+        song_index = 0;
+        mission_flags = 0;
+        environment_flags = 0;
+        
+        [self refreshEveryMenu];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
     
-    // There will be at least one layer...
-    layersInLevel = [[NSMutableArray alloc] initWithCapacity:1];
-    currentLayer = nil;
-    
-    points = [[NSMutableArray alloc] init];
-    lines = [[NSMutableArray alloc] init];
-    polys = [[NSMutableArray alloc] init];
-    mapObjects = [[NSMutableArray alloc] init];
-    sides = [[NSMutableArray alloc] init];
-    lights = [[NSMutableArray alloc] init];
-    notes = [[NSMutableArray alloc] init];
-    media = [[NSMutableArray alloc] init];
-    ambientSounds = [[NSMutableArray alloc] init];
-    randomSounds = [[NSMutableArray alloc] init];
-    itemPlacement = [[NSMutableArray alloc] init];
-    platforms = [[NSMutableArray alloc] init];
-    
-    level_name = @"Untitled";
-    
-    noteTypes = [[NSMutableArray alloc] init];
-    
-    //defaultSide = [[LESide alloc] init];
-    
-    // ambientSoundNames randomSoundNames lightNames platformNames tagNames liquidNames
-    // ambientSounds randomSounds lights platforms tags media
-    
-    // There will be at least sixteen tags to start out with...
-    tags = [[NSMutableArray alloc] initWithCapacity:16];
-    
-    terimals = [[NSMutableArray alloc] init]; 
-    
-    namedPolyObjects = [[NSMutableArray alloc] init];
-    
-    levelOptions = [[NSMutableDictionary alloc] init];
-    
-    environment_code = 0;
-    physics_model = 0;
-    song_index = 0;
-    mission_flags = 0;
-    environment_flags = 0;
-    
-    [self refreshEveryMenu];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PhUserDidChangeNamesNotification object:nil];
-    
-    /*
-    NSLog(@"**************************** TESTING FOR NILL ****************************");
-    
-    if (notContain(namedPolyObjects, nil))
-        NSLog(@"OK!");
-    else
-        NSLog(@"PROBLEM!");
-    */
-    
+        /*
+        NSLog(@"**************************** TESTING FOR NILL ****************************");
+        
+        if (notContain(namedPolyObjects, nil))
+            NSLog(@"OK!");
+        else
+            NSLog(@"PROBLEM!");
+        */
+    }
     return self;
 }
 

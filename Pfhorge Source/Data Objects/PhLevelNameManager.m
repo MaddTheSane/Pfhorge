@@ -62,21 +62,20 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    //self = [super init];
-    
     int versionNum = 0;
     
-    self = [self init];
-    
-    if (coder.allowsKeyedCoding) {
+    if (self = [self init]) {
         
-    } else {
-        versionNum = decodeNumInt(coder);
+        if (coder.allowsKeyedCoding) {
+            
+        } else {
+            versionNum = decodeNumInt(coder);
+        }
+        
+        twoBytesCount = 2;
+        fourBytesCount = 4;
+        eightBytesCount = 8;
     }
-    
-    twoBytesCount = 2;
-    fourBytesCount = 4;
-    eightBytesCount = 8;
     
     return self;
 }
@@ -103,44 +102,41 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    tagNameMenus		    = [[NSMutableSet alloc] initWithCapacity:6];
-    platformNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    lightNameMenus		    = [[NSMutableSet alloc] initWithCapacity:20];
-    ambientSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    randomSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    liquidNameMenus		    = [[NSMutableSet alloc] initWithCapacity:0];
-    
-    layerNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    polyNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-
-    levelNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
-    
-    terminalNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
-    
-    
-    liquidNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
-    tagNames 		    = [[NSMutableArray alloc] initWithCapacity:6];
-    platformNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
-    lightNames 		    = [[NSMutableArray alloc] initWithCapacity:0];
-    randomSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
-    ambientSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
-    
-    layerNames 		= [[NSMutableArray alloc] initWithCapacity:0];
-    polyNames 		= [[NSMutableArray alloc] initWithCapacity:0];
-    
-    levelNames 		= [[NSMutableArray alloc] initWithCapacity:0];
-    
-    terminalNames	= [[NSMutableArray alloc] initWithCapacity:0];
-    
-    
-    twoBytesCount = 2;
-    fourBytesCount = 4;
-    eightBytesCount = 8;
+    if (self = [super init]) {
+        tagNameMenus		    = [[NSMutableSet alloc] initWithCapacity:6];
+        platformNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+        lightNameMenus		    = [[NSMutableSet alloc] initWithCapacity:20];
+        ambientSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
+        randomSoundNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
+        liquidNameMenus		    = [[NSMutableSet alloc] initWithCapacity:0];
+        
+        layerNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+        polyNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+        
+        levelNameMenus		= [[NSMutableSet alloc] initWithCapacity:0];
+        
+        terminalNameMenus	= [[NSMutableSet alloc] initWithCapacity:0];
+        
+        
+        liquidNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
+        tagNames 		    = [[NSMutableArray alloc] initWithCapacity:6];
+        platformNames 	    = [[NSMutableArray alloc] initWithCapacity:0];
+        lightNames 		    = [[NSMutableArray alloc] initWithCapacity:0];
+        randomSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
+        ambientSoundNames 	= [[NSMutableArray alloc] initWithCapacity:0];
+        
+        layerNames 		= [[NSMutableArray alloc] initWithCapacity:0];
+        polyNames 		= [[NSMutableArray alloc] initWithCapacity:0];
+        
+        levelNames 		= [[NSMutableArray alloc] initWithCapacity:0];
+        
+        terminalNames	= [[NSMutableArray alloc] initWithCapacity:0];
+        
+        
+        twoBytesCount = 2;
+        fourBytesCount = 4;
+        eightBytesCount = 8;
+    }
     
     return self;
 }

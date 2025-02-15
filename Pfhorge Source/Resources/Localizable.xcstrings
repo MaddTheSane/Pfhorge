@@ -876,7 +876,15 @@
       "comment" : "This object does not yet support this query…"
     },
     "Tried To load with wrong doc class!" : {
-      "comment" : "Tried To load with wrong doc class!"
+      "comment" : "Tried To load with wrong doc class!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tried to load with the wrong document class!"
+          }
+        }
+      }
     },
     "Tried To Select An Object Of Unknown Class…" : {
       "comment" : "Tried To Select An Object Of Unknown Class…"
