@@ -103,7 +103,7 @@
 
 @end
 
-#define GET_SIDE_FLAG(b) ((flags & (b)) == b)
+#define GET_SIDE_FLAG(b) ((flags & (b)) == (b))
 #define SET_SIDE_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
 @implementation LESide
@@ -405,116 +405,116 @@
     
     //NSLog(@"Side");
     
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        type = [coder decodeIntForKey:@"type"];
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        primary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"primary_texture"] cStructSideTextureDefinition];
-        secondary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"secondary_texture"] cStructSideTextureDefinition];
-        transparent_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"transparent_texture"] cStructSideTextureDefinition];
-        
-        exclusion_zone.e0 = [coder decodePointForKey:@"exclusion_zone.e0"];
-        exclusion_zone.e1 = [coder decodePointForKey:@"exclusion_zone.e1"];
-        exclusion_zone.e2 = [coder decodePointForKey:@"exclusion_zone.e2"];
-        exclusion_zone.e3 = [coder decodePointForKey:@"exclusion_zone.e3"];
-        
-        control_panel_type = [coder decodeIntForKey:@"control_panel_type"];
-        control_panel_permutation = [coder decodeIntForKey:@"control_panel_permutation"];
-        
-        primary_transfer_mode = [coder decodeIntForKey:@"primary_transfer_mode"];
-        secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
-        transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
-        
-        polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
-        line_object = [coder decodeObjectOfClass:[LELine class] forKey:@"line_object"];
-        
-        if (useIndexNumbersInstead) {
-            short tmpShort;
-            tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
-            primary_lightsource_object = [self getLightFromIndex:tmpShort];
-            tmpShort = [coder decodeIntForKey:@"secondary_lightsource_object index"];
-            secondary_lightsource_object = [self getLightFromIndex:tmpShort];
-            tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
-            transparent_lightsource_object = [self getLightFromIndex:tmpShort];
-        } else {
-            primary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"primary_lightsource_object"];
-            secondary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"secondary_lightsource_object"];
-            transparent_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"transparent_lightsource_object"];
-            control_panel_permutation_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"control_panel_permutation_object"];
-        }
-        
-        ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
-        
-    } else {
-        if (self == nil)
-            NSLog(@"************************************ Side - nil - 1...");
-        
-        versionNum = decodeNumInt(coder);
-        
-        type = decodeShort(coder);
-        flags = decodeUnsignedShort(coder);
-        
-        primary_texture.x0 = decodeShort(coder);
-        primary_texture.y0 = decodeShort(coder);
-        primary_texture.texture = decodeShort(coder);
-        primary_texture.textureCollection = decodeShort(coder);
-        primary_texture.textureNumber = decodeShort(coder);
-        
-        secondary_texture.x0 = decodeShort(coder);
-        secondary_texture.y0 = decodeShort(coder);
-        secondary_texture.texture = decodeShort(coder);
-        secondary_texture.textureCollection = decodeShort(coder);
-        secondary_texture.textureNumber = decodeShort(coder);
-        
-        transparent_texture.x0 = decodeShort(coder);
-        transparent_texture.y0 = decodeShort(coder);
-        transparent_texture.texture = decodeShort(coder);
-        transparent_texture.textureCollection = decodeShort(coder);
-        transparent_texture.textureNumber = decodeShort(coder);
-        
-        
-        exclusion_zone.e0 = [coder decodePoint];
-        exclusion_zone.e1 = [coder decodePoint];
-        exclusion_zone.e2 = [coder decodePoint];
-        exclusion_zone.e3 = [coder decodePoint];
-        
-        control_panel_type = decodeShort(coder);
-        control_panel_permutation = decodeShort(coder);
-        
-        primary_transfer_mode = decodeShort(coder);
-        secondary_transfer_mode = decodeShort(coder);
-        transparent_transfer_mode = decodeShort(coder);
-        
-        polygon_object = decodeObj(coder);
-        line_object = decodeObj(coder);
-        
-        if (useIndexNumbersInstead) {
-            primary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-            secondary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-            transparent_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        } else {
-            primary_lightsource_object = decodeObj(coder);
-            secondary_lightsource_object = decodeObj(coder);
-            transparent_lightsource_object = decodeObj(coder);
-            control_panel_permutation_object = decodeObj(coder);
-        }
-        
-        ambient_delta = decodeLong(coder);
-        
-        if (polygon_object == nil || line_object == nil) {
-            if (self == nil) {
-                NSLog(@"************************************ Side - nil - 2...");
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            type = [coder decodeIntForKey:@"type"];
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            primary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"primary_texture"] cStructSideTextureDefinition];
+            secondary_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"secondary_texture"] cStructSideTextureDefinition];
+            transparent_texture = [[coder decodeObjectOfClass:[LESideTextureDefinition class] forKey:@"transparent_texture"] cStructSideTextureDefinition];
+            
+            exclusion_zone.e0 = [coder decodePointForKey:@"exclusion_zone.e0"];
+            exclusion_zone.e1 = [coder decodePointForKey:@"exclusion_zone.e1"];
+            exclusion_zone.e2 = [coder decodePointForKey:@"exclusion_zone.e2"];
+            exclusion_zone.e3 = [coder decodePointForKey:@"exclusion_zone.e3"];
+            
+            control_panel_type = [coder decodeIntForKey:@"control_panel_type"];
+            control_panel_permutation = [coder decodeIntForKey:@"control_panel_permutation"];
+            
+            primary_transfer_mode = [coder decodeIntForKey:@"primary_transfer_mode"];
+            secondary_transfer_mode = [coder decodeIntForKey:@"secondary_transfer_mode"];
+            transparent_transfer_mode = [coder decodeIntForKey:@"transparent_transfer_mode"];
+            
+            polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
+            line_object = [coder decodeObjectOfClass:[LELine class] forKey:@"line_object"];
+            
+            if (useIndexNumbersInstead) {
+                short tmpShort;
+                tmpShort = [coder decodeIntForKey:@"primary_lightsource_object index"];
+                primary_lightsource_object = [self getLightFromIndex:tmpShort];
+                tmpShort = [coder decodeIntForKey:@"secondary_lightsource_object index"];
+                secondary_lightsource_object = [self getLightFromIndex:tmpShort];
+                tmpShort = [coder decodeIntForKey:@"transparent_lightsource_object index"];
+                transparent_lightsource_object = [self getLightFromIndex:tmpShort];
+            } else {
+                primary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"primary_lightsource_object"];
+                secondary_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"secondary_lightsource_object"];
+                transparent_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"transparent_lightsource_object"];
+                control_panel_permutation_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"control_panel_permutation_object"];
             }
-            //return nil;
+            
+            ambient_delta = [coder decodeIntForKey:@"ambient_delta"];
+            
+        } else {
+            if (self == nil)
+                NSLog(@"************************************ Side - nil - 1...");
+            
+            versionNum = decodeNumInt(coder);
+            
+            type = decodeShort(coder);
+            flags = decodeUnsignedShort(coder);
+            
+            primary_texture.x0 = decodeShort(coder);
+            primary_texture.y0 = decodeShort(coder);
+            primary_texture.texture = decodeShort(coder);
+            primary_texture.textureCollection = decodeShort(coder);
+            primary_texture.textureNumber = decodeShort(coder);
+            
+            secondary_texture.x0 = decodeShort(coder);
+            secondary_texture.y0 = decodeShort(coder);
+            secondary_texture.texture = decodeShort(coder);
+            secondary_texture.textureCollection = decodeShort(coder);
+            secondary_texture.textureNumber = decodeShort(coder);
+            
+            transparent_texture.x0 = decodeShort(coder);
+            transparent_texture.y0 = decodeShort(coder);
+            transparent_texture.texture = decodeShort(coder);
+            transparent_texture.textureCollection = decodeShort(coder);
+            transparent_texture.textureNumber = decodeShort(coder);
+            
+            
+            exclusion_zone.e0 = [coder decodePoint];
+            exclusion_zone.e1 = [coder decodePoint];
+            exclusion_zone.e2 = [coder decodePoint];
+            exclusion_zone.e3 = [coder decodePoint];
+            
+            control_panel_type = decodeShort(coder);
+            control_panel_permutation = decodeShort(coder);
+            
+            primary_transfer_mode = decodeShort(coder);
+            secondary_transfer_mode = decodeShort(coder);
+            transparent_transfer_mode = decodeShort(coder);
+            
+            polygon_object = decodeObj(coder);
+            line_object = decodeObj(coder);
+            
+            if (useIndexNumbersInstead) {
+                primary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+                secondary_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+                transparent_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            } else {
+                primary_lightsource_object = decodeObj(coder);
+                secondary_lightsource_object = decodeObj(coder);
+                transparent_lightsource_object = decodeObj(coder);
+                control_panel_permutation_object = decodeObj(coder);
+            }
+            
+            ambient_delta = decodeLong(coder);
+            
+            if (polygon_object == nil || line_object == nil) {
+                if (self == nil) {
+                    NSLog(@"************************************ Side - nil - 2...");
+                }
+                //return nil;
+            }
         }
+        
+        if (useIndexNumbersInstead)
+            [theLELevelDataST addObjects:self];
+        
+        useIndexNumbersInstead = NO;
     }
-    
-    if (useIndexNumbersInstead)
-        [theLELevelDataST addObjects:self];
-    
-    useIndexNumbersInstead = NO;
-    
     return self;
 }
 
@@ -1138,68 +1138,65 @@
 
 -(id)initWithSide:(LESide *)theSideToImitate
 {
-    self = [self init];
-    [theSideToImitate copySettingsTo:self];
-    
+    if (self = [self init]) {
+        [theSideToImitate copySettingsTo:self];
+    }
     return self;
 }
 
 -(id)init
 {
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    type = 0;
-    flags = 0;
-    primary_texture.x0 = 0;
-    primary_texture.y0 = 0;
-    primary_texture.texture = 4357;
-    primary_texture.textureCollection = 17; // Set to to the texture the level is using!
-    primary_texture.textureNumber = 5;
-    secondary_texture.x0 = 0;
-    secondary_texture.y0 = 0;
-    secondary_texture.texture = -1;
-    secondary_texture.textureCollection = -1; // Set to to the texture the level is using!
-    secondary_texture.textureNumber = -1;
-    transparent_texture.x0 = 0;
-    transparent_texture.y0 = 0;
-    
-    // I don't think having two parts of it negitve will result in a negitive number?
-    // Check this out!!!
-    transparent_texture.texture = -1; // NONE
-    transparent_texture.textureCollection = -1; // Set to to the texture the level is using!
-    transparent_texture.textureNumber = -1;
-    
-    exclusion_zone.e0 = NSMakePoint(0,0);
-    exclusion_zone.e1 = NSMakePoint(0,0);
-    exclusion_zone.e2 = NSMakePoint(0,0);
-    exclusion_zone.e3 = NSMakePoint(0,0);
-    
-    control_panel_type = 0; // only valid if side->flags & LESideIsControlPanel
-    control_panel_permutation = 0; // platform index, light source index, etc...
-    control_panel_permutation_object = nil; // platform object, light source object, etc...
-    permutationEffects = 0;
-    
-    primary_transfer_mode = 0;
-    secondary_transfer_mode = 0;
-    transparent_transfer_mode = 0;
-    
-    polygon_index = -1;
-    line_index = -1;
-    polygon_object = nil;
-    line_object = nil;
-    
-    primary_lightsource_index = 0;
-    secondary_lightsource_index = 0;
-    transparent_lightsource_index = 0;
-    
-    primary_lightsource_object = nil;
-    secondary_lightsource_object = nil;
-    transparent_lightsource_object = nil;
-    
-    ambient_delta = 0;
-    
+    if (self = [super init]) {
+        type = 0;
+        flags = 0;
+        primary_texture.x0 = 0;
+        primary_texture.y0 = 0;
+        primary_texture.texture = 4357;
+        primary_texture.textureCollection = 17; // Set to to the texture the level is using!
+        primary_texture.textureNumber = 5;
+        secondary_texture.x0 = 0;
+        secondary_texture.y0 = 0;
+        secondary_texture.texture = -1;
+        secondary_texture.textureCollection = -1; // Set to to the texture the level is using!
+        secondary_texture.textureNumber = -1;
+        transparent_texture.x0 = 0;
+        transparent_texture.y0 = 0;
+        
+        // I don't think having two parts of it negitve will result in a negitive number?
+        // Check this out!!!
+        transparent_texture.texture = -1; // NONE
+        transparent_texture.textureCollection = -1; // Set to to the texture the level is using!
+        transparent_texture.textureNumber = -1;
+        
+        exclusion_zone.e0 = NSMakePoint(0,0);
+        exclusion_zone.e1 = NSMakePoint(0,0);
+        exclusion_zone.e2 = NSMakePoint(0,0);
+        exclusion_zone.e3 = NSMakePoint(0,0);
+        
+        control_panel_type = 0; // only valid if side->flags & LESideIsControlPanel
+        control_panel_permutation = 0; // platform index, light source index, etc...
+        control_panel_permutation_object = nil; // platform object, light source object, etc...
+        permutationEffects = 0;
+        
+        primary_transfer_mode = 0;
+        secondary_transfer_mode = 0;
+        transparent_transfer_mode = 0;
+        
+        polygon_index = -1;
+        line_index = -1;
+        polygon_object = nil;
+        line_object = nil;
+        
+        primary_lightsource_index = 0;
+        secondary_lightsource_index = 0;
+        transparent_lightsource_index = 0;
+        
+        primary_lightsource_object = nil;
+        secondary_lightsource_object = nil;
+        transparent_lightsource_object = nil;
+        
+        ambient_delta = 0;
+    }
     return self;
 }
 

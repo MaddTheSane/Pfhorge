@@ -81,7 +81,7 @@
 {
 	if (self = [super init]) {
 		if (!coder.allowsKeyedCoding) {
-			[coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:nil]];
+            [coder failWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSFileReadCorruptFileError userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"Attempting to load a PhLight object without keyed coding!", @"Attempting to load PhLight without keyed coding! PhLight should not be localized.")}]];
 			return nil;
 		}
 		function = [coder decodeIntForKey:@"function"];
@@ -388,16 +388,13 @@
 -(id)init
 {
     if (self = [super init]) {
-        int i;
-        
         type = 0;
         flags = 0;
         phase = 0;
         tag = 0;
         tagObject = nil;
         
-        for (i = 0; i < 6; i++)
-        {
+        for (int i = 0; i < 6; i++) {
             NSParameterAssert(i >= 0 && i < 6);
             
             light_states[i].function = 0;

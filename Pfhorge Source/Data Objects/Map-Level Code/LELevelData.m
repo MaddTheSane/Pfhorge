@@ -251,140 +251,136 @@ static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 - (id)initWithCoder:(NSCoder *)coder
 {
     int versionNum = 0;
-    self = [super initWithCoder:coder];
-    if (self == nil) {
-        return nil;
-    }
-    
-    if (coder.allowsKeyedCoding) {
-        environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
-        physics_model = [coder decodeIntForKey:LELevelDataphysics_modelCoderKey];
-        song_index = [coder decodeIntForKey:LELevelDatasong_indexCoderKey];
-        mission_flags = [coder decodeIntForKey:LELevelDatamission_flagsCoderKey];
-        environment_flags = [coder decodeIntForKey:LELevelDataenvironment_flagsCoderKey];
-        entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
-        
-        // Objects are already inited due to -init being called by the super's -initWithCoder:
-        [points setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDataPointsCoderKey]];
-        [lines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDataLinesCoderKey]];
-        [polys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDataPolysCoderKey]];
-        [mapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatamapObjectsCoderKey]];
-        [sides setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LESide class], nil] forKey:LELevelDatasidesCoderKey]];
-        [lights setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLight class], nil] forKey:LELevelDatalightsCoderKey]];
-        [notes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatanotesCoderKey]];
-        [media setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhMedia class], nil] forKey:LELevelDatamediaCoderKey]];
-        [ambientSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAmbientSound class], nil] forKey:LELevelDataambientSoundsCoderKey]];
-        [randomSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhRandomSound class], nil] forKey:LELevelDatarandomSoundsCoderKey]];
-        [itemPlacement setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhItemPlacement class], nil] forKey:LELevelDataitemPlacementCoderKey]];
-        [platforms setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhPlatform class], nil] forKey:LELevelDataplatformsCoderKey]];
-        
-        [terimals setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [Terminal class], nil] forKey:LELevelDataterimalsCoderKey]];
-        
-        [layersInLevel setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLayer class], nil] forKey:LELevelDatalayersInLevelCoderKey]];
-        currentLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:LELevelDatacurrentLayerCoderKey];
-        [layerPoints setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDatalayerPointsCoderKey]];
-        [layerLines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDatalayerLinesCoderKey]];
-        [layerPolys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDatalayerPolysCoderKey]];
-        [layerMapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatalayerMapObjectsCoderKey]];
-        
-        [tags setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhTag class], nil] forKey:LELevelDatatagsCoderKey]];
-        
-        self.levelName = [coder decodeObjectOfClass:[NSString class] forKey:LELevelDatalevel_nameCoderKey];
-        
-        [noteTypes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhNoteGroup class], nil] forKey:LELevelDatanoteTypesCoderKey]];
-        [layerNotes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatalayerNotesCoderKey]];
-        
-        [self havePointsScanForLines];
-    } else {
-        versionNum = decodeNumInt(coder);
-        
-        //NSLog(@"1");
-        
-        environment_code = decodeShort(coder);
-        physics_model = decodeShort(coder);
-        song_index = decodeShort(coder);
-        mission_flags = decodeShort(coder);
-        environment_flags = decodeShort(coder);
-        entry_point_flags = decodeInt(coder);
-        
-        //linesThatIBelongTo = decodeObj(coder);
-        //NSLog(@"1");
-        
-        // Objects are already inited due to -init being called by the super's -initWithCoder:
-        [points setArray:decodeObj(coder)];
-        //NSLog(@"2");
-        [lines setArray:decodeObj(coder)];
-        //NSLog(@"3");
-        [polys setArray:decodeObj(coder)];
-        //NSLog(@"4");
-        [mapObjects setArray:decodeObj(coder)];
-        //NSLog(@"5");
-        [sides setArray:decodeObj(coder)];
-        //NSLog(@"6");
-        [lights setArray:decodeObj(coder)];
-        //NSLog(@"7");
-        [notes setArray:decodeObj(coder)];
-        //NSLog(@"8");
-        [media setArray:decodeObj(coder)];
-        //NSLog(@"9");
-        [ambientSounds setArray:decodeObj(coder)];
-        //NSLog(@"10");
-        [randomSounds setArray:decodeObj(coder)];
-        //NSLog(@"11");
-        [itemPlacement setArray:decodeObj(coder)];
-        //NSLog(@"12");
-        [platforms setArray:decodeObj(coder)];
-        //NSLog(@"13");
-        
-        [terimals setArray:decodeObj(coder)];
-        //NSLog(@"14");
-        
-        [layersInLevel setArray:decodeObj(coder)];
-        //NSLog(@"15");
-        currentLayer = decodeObjRetain(coder);
-        //NSLog(@"16");
-        [layerPoints setArray:decodeObj(coder)];
-        //NSLog(@"17");
-        [layerLines setArray:decodeObj(coder)];
-        //NSLog(@"18");
-        [layerPolys setArray:decodeObj(coder)];
-        //NSLog(@"19");
-        [layerMapObjects setArray:decodeObj(coder)];
-        //NSLog(@"20");
-        
-        //namedPolyObjects = decodeObj(coder);
-        
-        /*layerPolys = [[NSMutableArray alloc] initWithCapacity:0];
-         layerLines = [[NSMutableArray alloc] initWithCapacity:0];
-         layerPoints = [[NSMutableArray alloc] initWithCapacity:0];
-         layerMapObjects = [[NSMutableArray alloc] initWithCapacity:0];
-         namedPolyObjects = [[NSMutableArray alloc] initWithCapacity:0];*/
-        
-        [tags setArray:decodeObj(coder)];
-        
-        self.levelName = decodeObj(coder);
-        
-        [self setUpArrayPointersForEveryObject];
-        
-        if (versionNum > 0) { // this is if versionNum == 1...
-            [noteTypes setArray:decodeObj(coder)];
-        }
-        
-        if (versionNum > 1) {
-            [layerNotes setArray:decodeObj(coder)];
-        }
-        
-        if (versionNum > 2) {
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            environment_code = [coder decodeIntForKey:LELevelDataEnvironmentCodeCoderKey];
+            physics_model = [coder decodeIntForKey:LELevelDataphysics_modelCoderKey];
+            song_index = [coder decodeIntForKey:LELevelDatasong_indexCoderKey];
+            mission_flags = [coder decodeIntForKey:LELevelDatamission_flagsCoderKey];
+            environment_flags = [coder decodeIntForKey:LELevelDataenvironment_flagsCoderKey];
+            entry_point_flags = [coder decodeIntForKey:LELevelDataentry_point_flagsCoderKey];
             
-        } else {
+            // Objects are already inited due to -init being called by the super's -initWithCoder:
+            [points setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDataPointsCoderKey]];
+            [lines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDataLinesCoderKey]];
+            [polys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDataPolysCoderKey]];
+            [mapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatamapObjectsCoderKey]];
+            [sides setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LESide class], nil] forKey:LELevelDatasidesCoderKey]];
+            [lights setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLight class], nil] forKey:LELevelDatalightsCoderKey]];
+            [notes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatanotesCoderKey]];
+            [media setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhMedia class], nil] forKey:LELevelDatamediaCoderKey]];
+            [ambientSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAmbientSound class], nil] forKey:LELevelDataambientSoundsCoderKey]];
+            [randomSounds setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhRandomSound class], nil] forKey:LELevelDatarandomSoundsCoderKey]];
+            [itemPlacement setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhItemPlacement class], nil] forKey:LELevelDataitemPlacementCoderKey]];
+            [platforms setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhPlatform class], nil] forKey:LELevelDataplatformsCoderKey]];
+            
+            [terimals setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [Terminal class], nil] forKey:LELevelDataterimalsCoderKey]];
+            
+            [layersInLevel setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhLayer class], nil] forKey:LELevelDatalayersInLevelCoderKey]];
+            currentLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:LELevelDatacurrentLayerCoderKey];
+            [layerPoints setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapPoint class], nil] forKey:LELevelDatalayerPointsCoderKey]];
+            [layerLines setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LELine class], nil] forKey:LELevelDatalayerLinesCoderKey]];
+            [layerPolys setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEPolygon class], nil] forKey:LELevelDatalayerPolysCoderKey]];
+            [layerMapObjects setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [LEMapObject class], nil] forKey:LELevelDatalayerMapObjectsCoderKey]];
+            
+            [tags setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhTag class], nil] forKey:LELevelDatatagsCoderKey]];
+            
+            self.levelName = [coder decodeObjectOfClass:[NSString class] forKey:LELevelDatalevel_nameCoderKey];
+            
+            [noteTypes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhNoteGroup class], nil] forKey:LELevelDatanoteTypesCoderKey]];
+            [layerNotes setArray:[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [PhAnnotationNote class], nil] forKey:LELevelDatalayerNotesCoderKey]];
+            
             [self havePointsScanForLines];
+        } else {
+            versionNum = decodeNumInt(coder);
+            
+            //NSLog(@"1");
+            
+            environment_code = decodeShort(coder);
+            physics_model = decodeShort(coder);
+            song_index = decodeShort(coder);
+            mission_flags = decodeShort(coder);
+            environment_flags = decodeShort(coder);
+            entry_point_flags = decodeInt(coder);
+            
+            //linesThatIBelongTo = decodeObj(coder);
+            //NSLog(@"1");
+            
+            // Objects are already inited due to -init being called by the super's -initWithCoder:
+            [points setArray:decodeObj(coder)];
+            //NSLog(@"2");
+            [lines setArray:decodeObj(coder)];
+            //NSLog(@"3");
+            [polys setArray:decodeObj(coder)];
+            //NSLog(@"4");
+            [mapObjects setArray:decodeObj(coder)];
+            //NSLog(@"5");
+            [sides setArray:decodeObj(coder)];
+            //NSLog(@"6");
+            [lights setArray:decodeObj(coder)];
+            //NSLog(@"7");
+            [notes setArray:decodeObj(coder)];
+            //NSLog(@"8");
+            [media setArray:decodeObj(coder)];
+            //NSLog(@"9");
+            [ambientSounds setArray:decodeObj(coder)];
+            //NSLog(@"10");
+            [randomSounds setArray:decodeObj(coder)];
+            //NSLog(@"11");
+            [itemPlacement setArray:decodeObj(coder)];
+            //NSLog(@"12");
+            [platforms setArray:decodeObj(coder)];
+            //NSLog(@"13");
+            
+            [terimals setArray:decodeObj(coder)];
+            //NSLog(@"14");
+            
+            [layersInLevel setArray:decodeObj(coder)];
+            //NSLog(@"15");
+            currentLayer = decodeObjRetain(coder);
+            //NSLog(@"16");
+            [layerPoints setArray:decodeObj(coder)];
+            //NSLog(@"17");
+            [layerLines setArray:decodeObj(coder)];
+            //NSLog(@"18");
+            [layerPolys setArray:decodeObj(coder)];
+            //NSLog(@"19");
+            [layerMapObjects setArray:decodeObj(coder)];
+            //NSLog(@"20");
+            
+            //namedPolyObjects = decodeObj(coder);
+            
+            /*layerPolys = [[NSMutableArray alloc] initWithCapacity:0];
+             layerLines = [[NSMutableArray alloc] initWithCapacity:0];
+             layerPoints = [[NSMutableArray alloc] initWithCapacity:0];
+             layerMapObjects = [[NSMutableArray alloc] initWithCapacity:0];
+             namedPolyObjects = [[NSMutableArray alloc] initWithCapacity:0];*/
+            
+            [tags setArray:decodeObj(coder)];
+            
+            self.levelName = decodeObj(coder);
+            
+            [self setUpArrayPointersForEveryObject];
+            
+            if (versionNum > 0) { // this is if versionNum == 1...
+                [noteTypes setArray:decodeObj(coder)];
+            }
+            
+            if (versionNum > 1) {
+                [layerNotes setArray:decodeObj(coder)];
+            }
+            
+            if (versionNum > 2) {
+                
+            } else {
+                [self havePointsScanForLines];
+            }
         }
+        [self setUpArrayNamesForEveryObject];
+        //[self recaculateTheCurrentLayer];
+        [self setupDefaultObjects];
+        [self resetAdjacentPolygonAssociations];
     }
-    [self setUpArrayNamesForEveryObject];
-    //[self recaculateTheCurrentLayer];
-    [self setupDefaultObjects];
-    [self resetAdjacentPolygonAssociations];
-    
     return self;
 }
 

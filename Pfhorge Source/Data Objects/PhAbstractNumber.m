@@ -68,13 +68,14 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        assignedNumber = [coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        assignedNumber = decodeObjRetain(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            assignedNumber = [coder decodeObjectOfClass:[NSNumber class] forKey:@"assignedNumber"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            assignedNumber = decodeObjRetain(coder);
+        }
     }
     return self;
 }

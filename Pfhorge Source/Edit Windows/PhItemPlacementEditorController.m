@@ -40,46 +40,40 @@
 
 - (id)initWithMapDocument:(LEMap *)theDocument
 {
-    self = [super initWithWindowNibName:@"ItemPlacementEditor"];
-    
-    if (self == nil)
-        return nil;
-    
-    ///[self window];
-    
-    [theDocument addLevelInfoWinCon:self];
-    
-    theMap = theDocument;
-    theLevel = [theDocument getCurrentLevelLoaded];
-    
-    theItemPlacmentObjects = [theLevel getItemPlacement];
-    
-    [self setupTheObjectNames];
-    monstersStartAt = [theItemNames count];
-    numberOfTableRows = [theMonsterNames count] + monstersStartAt;
+    if (self = [super initWithWindowNibName:@"ItemPlacementEditor"]) {
+        ///[self window];
+        
+        [theDocument addLevelInfoWinCon:self];
+        
+        theMap = theDocument;
+        theLevel = [theDocument getCurrentLevelLoaded];
+        
+        theItemPlacmentObjects = [theLevel getItemPlacement];
+        
+        [self setupTheObjectNames];
+        monstersStartAt = [theItemNames count];
+        numberOfTableRows = [theMonsterNames count] + monstersStartAt;
+    }
     
     return self;
 }
 
 - (id)init
 {
-    self = [super initWithWindowNibName:@"ItemPlacementEditor"];
-    
-    if (self == nil)
-        return nil;
-    
-    ///[self window];
-    
-    //[theDocument addLevelInfoWinCon:self];
-    
-    theMap = nil;
-    theLevel = nil;
-    
-    theItemPlacmentObjects = nil;
-    
-    [self setupTheObjectNames];
-    monstersStartAt = [theItemNames count];
-    numberOfTableRows = [theMonsterNames count] + monstersStartAt;
+    if (self = [super initWithWindowNibName:@"ItemPlacementEditor"]) {
+        ///[self window];
+        
+        //[theDocument addLevelInfoWinCon:self];
+        
+        theMap = nil;
+        theLevel = nil;
+        
+        theItemPlacmentObjects = nil;
+        
+        [self setupTheObjectNames];
+        monstersStartAt = [theItemNames count];
+        numberOfTableRows = [theMonsterNames count] + monstersStartAt;
+    }
     
     return self;
 }

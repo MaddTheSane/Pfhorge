@@ -974,316 +974,317 @@
     int i;
     
     int versionNum = 0;
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        if (!useIndexNumbersInstead) {
-            polyLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:@"polyLayer"];
-        }
-        
-        polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
-        
-        type = [coder decodeIntForKey:@"type"];
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        if (useIndexNumbersInstead) {
-            short tmpShort;
-            switch (type) {
-                case LEPolygonBase:
-                    ///tmpShort = 0;
-                    //decodeShort(coder);
-                    break;
-                case LEPolygonLightOnTrigger:
-                case LEPolygonLightOffTrigger:
-                    tmpShort = [coder decodeIntForKey:@"permutationObject index"];
-                    permutationObject = [self getLightFromIndex:tmpShort];
-                    break;
-                case LEPolygonPlatformOnTrigger:
-                case LEPolygonPlatformOffTrigger:
-                case LEPolygonTeleporter:
-                    tmpShort = [coder decodeIntForKey:@"permutationObject index"];
-                    permutationObject = [self getPolygonFromIndex:tmpShort];
-                    break;
-                case LEPolygonAutomaticExit:
-                    ///tmpShort = 0;
-                    //decodeShort(coder);
-                    break;
-                case LEPolygonPlatform:
-                    permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
-        }
-        
-        @autoreleasepool {
-            NSArray *tmpVertex = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LEMapPoint class], [NSArray class], nil] forKey:@"vertexObjects"];
-            NSArray *tmpLine = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LELine class], [NSArray class], nil] forKey:@"lineObjects"];
-            vertexCountForPoly = tmpVertex.count;
-            
-            for (int i = 0; i<vertexCountForPoly; i++) {
-                vertexObjects[i]=tmpVertex[i];
-                lineObjects[i]=tmpLine[i];
-            }
-            
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
             if (!useIndexNumbersInstead) {
-                NSDictionary *tmpAdj = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"adjacent_polygon_objects"];
-                NSDictionary *tmpSide = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LESide class], nil] forKey:@"side_objects"];
+                polyLayer = [coder decodeObjectOfClass:[PhLayer class] forKey:@"polyLayer"];
+            }
+            
+            polygonConcave = [coder decodeBoolForKey:@"polygonConcave"];
+            
+            type = [coder decodeIntForKey:@"type"];
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            if (useIndexNumbersInstead) {
+                short tmpShort;
+                switch (type) {
+                    case LEPolygonBase:
+                        ///tmpShort = 0;
+                        //decodeShort(coder);
+                        break;
+                    case LEPolygonLightOnTrigger:
+                    case LEPolygonLightOffTrigger:
+                        tmpShort = [coder decodeIntForKey:@"permutationObject index"];
+                        permutationObject = [self getLightFromIndex:tmpShort];
+                        break;
+                    case LEPolygonPlatformOnTrigger:
+                    case LEPolygonPlatformOffTrigger:
+                    case LEPolygonTeleporter:
+                        tmpShort = [coder decodeIntForKey:@"permutationObject index"];
+                        permutationObject = [self getPolygonFromIndex:tmpShort];
+                        break;
+                    case LEPolygonAutomaticExit:
+                        ///tmpShort = 0;
+                        //decodeShort(coder);
+                        break;
+                    case LEPolygonPlatform:
+                        permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                permutationObject = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [LEMapStuffParent class], nil] forKey:@"permutationObject"];
+            }
+            
+            @autoreleasepool {
+                NSArray *tmpVertex = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LEMapPoint class], [NSArray class], nil] forKey:@"vertexObjects"];
+                NSArray *tmpLine = [coder decodeObjectOfClasses:[NSSet setWithObjects:[LELine class], [NSArray class], nil] forKey:@"lineObjects"];
+                vertexCountForPoly = tmpVertex.count;
+                
                 for (int i = 0; i<vertexCountForPoly; i++) {
-                    adjacent_polygon_objects[i]=tmpAdj[@(i)];
-                    side_objects[i]=tmpSide[@(i)];
+                    vertexObjects[i]=tmpVertex[i];
+                    lineObjects[i]=tmpLine[i];
+                }
+                
+                if (!useIndexNumbersInstead) {
+                    NSDictionary *tmpAdj = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LEMapStuffParent class], nil] forKey:@"adjacent_polygon_objects"];
+                    NSDictionary *tmpSide = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSDictionary class], [LESide class], nil] forKey:@"side_objects"];
+                    for (int i = 0; i<vertexCountForPoly; i++) {
+                        adjacent_polygon_objects[i]=tmpAdj[@(i)];
+                        side_objects[i]=tmpSide[@(i)];
+                    }
                 }
             }
-        }
-        
-        floor_texture = [coder decodeIntForKey:@"floor_texture"];
-        ceiling_texture = [coder decodeIntForKey:@"ceiling_texture"];
-        floor_height = [coder decodeIntForKey:@"floor_height"];
-        ceiling_height = [coder decodeIntForKey:@"ceiling_height"];
-        
-        if (useIndexNumbersInstead) {
-            short tmpShort;
-            tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
-            floor_lightsource_object = [self getLightFromIndex:tmpShort];
-            tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
-            ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
-        } else {
-            floor_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"floor_lightsource_object"];
-            ceiling_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"ceiling_lightsource_object"];
-        }
-        
-        area = [coder decodeIntForKey:@"area"];
-        
-        if (!useIndexNumbersInstead) {
-            first_object_pointer = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_object_pointer"];
             
-            first_exclusion_zone_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_exclusion_zone_object"];
-            line_exclusion_zone_count = [coder decodeIntForKey:@"line_exclusion_zone_count"];
-            point_exclusion_zone_count = [coder decodeIntForKey:@"point_exclusion_zone_count"];
-        }
-        
-        floor_transfer_mode = [coder decodeIntForKey:@"floor_transfer_mode"];
-        ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
-        
-        if (!useIndexNumbersInstead) {
-            first_neighbor_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_neighbor_object"];
-            neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
-        }
-        
-        center = [coder decodePointForKey:@"center"];
-        floor_origin = [coder decodePointForKey:@"floor_origin"];
-        ceiling_origin = [coder decodePointForKey:@"ceiling_origin"];
-        
-        if (useIndexNumbersInstead) {
-            short tmpShort;
-            tmpShort = [coder decodeIntForKey:@"media_object index"];
-            media_object = [self getMediaFromIndex:tmpShort];
-            tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
-            media_lightsource_object = [self getLightFromIndex:tmpShort];
-        } else {
-            media_object = [coder decodeObjectOfClass:[PhMedia class] forKey:@"media_object"];
-            media_lightsource_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"media_lightsource_object"];
+            floor_texture = [coder decodeIntForKey:@"floor_texture"];
+            ceiling_texture = [coder decodeIntForKey:@"ceiling_texture"];
+            floor_height = [coder decodeIntForKey:@"floor_height"];
+            ceiling_height = [coder decodeIntForKey:@"ceiling_height"];
             
-            sound_source_objects = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"sound_source_objects"];
-        }
-        
-        if (useIndexNumbersInstead) {
-            short tmpShort;
-            tmpShort = [coder decodeIntForKey:@"ambient_sound_image_object index"];
-            ambient_sound_image_object = [self getAmbientSoundFromIndex:tmpShort];
-            tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
-            random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
-        } else {
-            ambient_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"ambient_sound_image_object"];
-            random_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"random_sound_image_object"];
-        }
-        
-        //if (useIndexNumbersInstead)
-        //    [theLELevelDataST addPolygonDirectly:self];
-        
-        //useIndexNumbersInstead = NO;
-        
-        
-        switch (type) {
-            case LEPolygonBase:
-            case LEPolygonMinorOuch:
-            case LEPolygonMajorOuch:
-            case LEPolygonGlue:
-            case LEPolygonGlueTrigger:
-            case LEPolygonSuperglue:
-            case LEPolygonGoal:
-            case LEPolygonVisibleMonsterTrigger:
-            case LEPolygonInvisibleMonsterTrigger:
-            case LEPolygonDualMonsterTrigger:
-            case LEPolygonItemTrigger:
-            case LEPolygonMustBeExplored:
-            case LEPolygonZoneBorder:
-            case LEPolygonNormal:
-            case LEPolygonItemImpassable:
-            case LEPolygonMonsterImpassable:
-            case LEPolygonHill:
-                permutationObject = nil;
-                break;
-            default:
-                break;
-        }
-    } else {
-        versionNum = decodeNumInt(coder);
-        
-        if (!useIndexNumbersInstead)
-            polyLayer = decodeObj(coder);
-        
-        polygonConcave = decodeBOOL(coder);
-        
-        type = decodeShort(coder);
-        flags = decodeUnsignedShort(coder);
-/*
--(id)getLightFromIndex:(short)theIndex;
--(id)getMediaFromIndex:(short)theIndex;
--(id)getAmbientSoundFromIndex:(short)theIndex;
--(id)getRandomSoundFromIndex:(short)theIndex;
--(id)getPolygonFromIndex:(short)theIndex;
-*/
-
-
-
-        if (useIndexNumbersInstead) {
+            if (useIndexNumbersInstead) {
+                short tmpShort;
+                tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
+                floor_lightsource_object = [self getLightFromIndex:tmpShort];
+                tmpShort = [coder decodeIntForKey:@"floor_lightsource_object index"];
+                ceiling_lightsource_object = [self getLightFromIndex:tmpShort];
+            } else {
+                floor_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"floor_lightsource_object"];
+                ceiling_lightsource_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"ceiling_lightsource_object"];
+            }
+            
+            area = [coder decodeIntForKey:@"area"];
+            
+            if (!useIndexNumbersInstead) {
+                first_object_pointer = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_object_pointer"];
+                
+                first_exclusion_zone_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_exclusion_zone_object"];
+                line_exclusion_zone_count = [coder decodeIntForKey:@"line_exclusion_zone_count"];
+                point_exclusion_zone_count = [coder decodeIntForKey:@"point_exclusion_zone_count"];
+            }
+            
+            floor_transfer_mode = [coder decodeIntForKey:@"floor_transfer_mode"];
+            ceiling_transfer_mode = [coder decodeIntForKey:@"ceiling_transfer_mode"];
+            
+            if (!useIndexNumbersInstead) {
+                first_neighbor_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"first_neighbor_object"];
+                neighbor_count = [coder decodeIntForKey:@"neighbor_count"];
+            }
+            
+            center = [coder decodePointForKey:@"center"];
+            floor_origin = [coder decodePointForKey:@"floor_origin"];
+            ceiling_origin = [coder decodePointForKey:@"ceiling_origin"];
+            
+            if (useIndexNumbersInstead) {
+                short tmpShort;
+                tmpShort = [coder decodeIntForKey:@"media_object index"];
+                media_object = [self getMediaFromIndex:tmpShort];
+                tmpShort = [coder decodeIntForKey:@"media_lightsource_object index"];
+                media_lightsource_object = [self getLightFromIndex:tmpShort];
+            } else {
+                media_object = [coder decodeObjectOfClass:[PhMedia class] forKey:@"media_object"];
+                media_lightsource_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"media_lightsource_object"];
+                
+                sound_source_objects = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"sound_source_objects"];
+            }
+            
+            if (useIndexNumbersInstead) {
+                short tmpShort;
+                tmpShort = [coder decodeIntForKey:@"ambient_sound_image_object index"];
+                ambient_sound_image_object = [self getAmbientSoundFromIndex:tmpShort];
+                tmpShort = [coder decodeIntForKey:@"random_sound_image_object index"];
+                random_sound_image_object = [self getRandomSoundFromIndex:tmpShort];
+            } else {
+                ambient_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"ambient_sound_image_object"];
+                random_sound_image_object = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"random_sound_image_object"];
+            }
+            
+            //if (useIndexNumbersInstead)
+            //    [theLELevelDataST addPolygonDirectly:self];
+            
+            //useIndexNumbersInstead = NO;
+            
+            
             switch (type) {
                 case LEPolygonBase:
-                    ///tmpShort = 0;
-                    decodeShort(coder);
-                    break;
-                case LEPolygonLightOnTrigger:
-                case LEPolygonLightOffTrigger:
-                    permutationObject = [self getLightFromIndex:decodeShort(coder)];
-                    break;
-                case LEPolygonPlatformOnTrigger:
-                case LEPolygonPlatformOffTrigger:
-                case LEPolygonTeleporter:
-                    ///tmpShort = [permutationObject getIndex];
-                    permutationObject = [self getPolygonFromIndex:decodeShort(coder)];
-                    break;
-                case LEPolygonAutomaticExit:
-                    ///tmpShort = 0;
-                    decodeShort(coder);
-                    break;
-                case LEPolygonPlatform:
-                    permutationObject = decodeObj(coder);
+                case LEPolygonMinorOuch:
+                case LEPolygonMajorOuch:
+                case LEPolygonGlue:
+                case LEPolygonGlueTrigger:
+                case LEPolygonSuperglue:
+                case LEPolygonGoal:
+                case LEPolygonVisibleMonsterTrigger:
+                case LEPolygonInvisibleMonsterTrigger:
+                case LEPolygonDualMonsterTrigger:
+                case LEPolygonItemTrigger:
+                case LEPolygonMustBeExplored:
+                case LEPolygonZoneBorder:
+                case LEPolygonNormal:
+                case LEPolygonItemImpassable:
+                case LEPolygonMonsterImpassable:
+                case LEPolygonHill:
+                    permutationObject = nil;
                     break;
                 default:
                     break;
             }
         } else {
-            if (LEPolygonAutomaticExit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
-                if (versionNum < 1) {
-                    decodeObj(coder);
-                    permutationObject = [numShort(256) copy];
-                } else
-                    permutationObject = [numShort(decodeShort(coder)) copy];
+            versionNum = decodeNumInt(coder);
+            
+            if (!useIndexNumbersInstead)
+                polyLayer = decodeObj(coder);
+            
+            polygonConcave = decodeBOOL(coder);
+            
+            type = decodeShort(coder);
+            flags = decodeUnsignedShort(coder);
+            /*
+             -(id)getLightFromIndex:(short)theIndex;
+             -(id)getMediaFromIndex:(short)theIndex;
+             -(id)getAmbientSoundFromIndex:(short)theIndex;
+             -(id)getRandomSoundFromIndex:(short)theIndex;
+             -(id)getPolygonFromIndex:(short)theIndex;
+             */
+            
+            
+            
+            if (useIndexNumbersInstead) {
+                switch (type) {
+                    case LEPolygonBase:
+                        ///tmpShort = 0;
+                        decodeShort(coder);
+                        break;
+                    case LEPolygonLightOnTrigger:
+                    case LEPolygonLightOffTrigger:
+                        permutationObject = [self getLightFromIndex:decodeShort(coder)];
+                        break;
+                    case LEPolygonPlatformOnTrigger:
+                    case LEPolygonPlatformOffTrigger:
+                    case LEPolygonTeleporter:
+                        ///tmpShort = [permutationObject getIndex];
+                        permutationObject = [self getPolygonFromIndex:decodeShort(coder)];
+                        break;
+                    case LEPolygonAutomaticExit:
+                        ///tmpShort = 0;
+                        decodeShort(coder);
+                        break;
+                    case LEPolygonPlatform:
+                        permutationObject = decodeObj(coder);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                if (LEPolygonAutomaticExit == type /*[permutationObject isKindOfClass:[NSNumber class]]*/) {
+                    if (versionNum < 1) {
+                        decodeObj(coder);
+                        permutationObject = [numShort(256) copy];
+                    } else
+                        permutationObject = [numShort(decodeShort(coder)) copy];
+                }
+                else
+                    permutationObject = decodeObj(coder);
             }
-            else
-                permutationObject = decodeObj(coder);
-        }
-        vertexCountForPoly = decodeShort(coder);
-        //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
-        for (i = 0; i < vertexCountForPoly; i++) {
-            vertexObjects[i] = decodeObj(coder);
-            lineObjects[i] = decodeObj(coder);
+            vertexCountForPoly = decodeShort(coder);
+            //NSLog(@"decode vertexCountForPoly: %d", vertexCountForPoly);
+            for (i = 0; i < vertexCountForPoly; i++) {
+                vertexObjects[i] = decodeObj(coder);
+                lineObjects[i] = decodeObj(coder);
+                
+                if (!useIndexNumbersInstead)
+                    adjacent_polygon_objects[i] = decodeObj(coder);
+                
+                if (!useIndexNumbersInstead)
+                    side_objects[i] = decodeObj(coder);
+            }
             
-            if (!useIndexNumbersInstead)
-                adjacent_polygon_objects[i] = decodeObj(coder);
+            floor_texture = decodeShort(coder);
+            ceiling_texture = decodeShort(coder);
+            floor_height = decodeShort(coder);
+            ceiling_height = decodeShort(coder);
             
-            if (!useIndexNumbersInstead)
-                side_objects[i] = decodeObj(coder);
-        }
-        
-        floor_texture = decodeShort(coder);
-        ceiling_texture = decodeShort(coder);
-        floor_height = decodeShort(coder);
-        ceiling_height = decodeShort(coder);
-        
-        if (useIndexNumbersInstead) {
-            floor_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-            ceiling_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        } else {
-            floor_lightsource_object = decodeObj(coder);
-            ceiling_lightsource_object = decodeObj(coder);
-        }
-        
-        area = decodeLong(coder);
-        
-        if (!useIndexNumbersInstead) {
-            first_object_pointer = decodeObj(coder);
+            if (useIndexNumbersInstead) {
+                floor_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+                ceiling_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            } else {
+                floor_lightsource_object = decodeObj(coder);
+                ceiling_lightsource_object = decodeObj(coder);
+            }
             
-            first_exclusion_zone_object = decodeObj(coder);
-            line_exclusion_zone_count = decodeShort(coder);
-            point_exclusion_zone_count = decodeShort(coder);
-        }
-        
-        floor_transfer_mode = decodeShort(coder);
-        ceiling_transfer_mode = decodeShort(coder);
-        
-        if (!useIndexNumbersInstead) {
-            first_neighbor_object = decodeObj(coder);
-            neighbor_count = decodeShort(coder);
-        }
-        
-        center.x = decodeInt(coder);
-        center.y = decodeInt(coder);
-        
-        floor_origin.x = decodeInt(coder);
-        floor_origin.y = decodeInt(coder);
-        
-        ceiling_origin.x = decodeInt(coder);
-        ceiling_origin.y = decodeInt(coder);
-        
-        if (useIndexNumbersInstead) {
-            media_object = [self getMediaFromIndex:decodeShort(coder)];
-            media_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
-        } else {
-            media_object = decodeObj(coder);
-            media_lightsource_object = decodeObj(coder);
+            area = decodeLong(coder);
             
-            sound_source_objects = decodeObj(coder);
-        }
-        
-        if (useIndexNumbersInstead) {
-            ambient_sound_image_object = [self getAmbientSoundFromIndex:decodeShort(coder)];
-            random_sound_image_object = [self getRandomSoundFromIndex:decodeShort(coder)];
-        } else {
-            ambient_sound_image_object = decodeObj(coder);
-            random_sound_image_object = decodeObj(coder);
-        }
-        
-        //if (useIndexNumbersInstead)
-        //    [theLELevelDataST addPolygonDirectly:self];
-        
-        //useIndexNumbersInstead = NO;
-        
-        
-        switch (type) {
-            case LEPolygonBase:
-            case LEPolygonMinorOuch:
-            case LEPolygonMajorOuch:
-            case LEPolygonGlue:
-            case LEPolygonGlueTrigger:
-            case LEPolygonSuperglue:
-            case LEPolygonGoal:
-            case LEPolygonVisibleMonsterTrigger:
-            case LEPolygonInvisibleMonsterTrigger:
-            case LEPolygonDualMonsterTrigger:
-            case LEPolygonItemTrigger:
-            case LEPolygonMustBeExplored:
-            case LEPolygonZoneBorder:
-            case LEPolygonNormal:
-            case LEPolygonItemImpassable:
-            case LEPolygonMonsterImpassable:
-            case LEPolygonHill:
-                permutationObject = nil;
-                break;
-            default:
-                break;
+            if (!useIndexNumbersInstead) {
+                first_object_pointer = decodeObj(coder);
+                
+                first_exclusion_zone_object = decodeObj(coder);
+                line_exclusion_zone_count = decodeShort(coder);
+                point_exclusion_zone_count = decodeShort(coder);
+            }
+            
+            floor_transfer_mode = decodeShort(coder);
+            ceiling_transfer_mode = decodeShort(coder);
+            
+            if (!useIndexNumbersInstead) {
+                first_neighbor_object = decodeObj(coder);
+                neighbor_count = decodeShort(coder);
+            }
+            
+            center.x = decodeInt(coder);
+            center.y = decodeInt(coder);
+            
+            floor_origin.x = decodeInt(coder);
+            floor_origin.y = decodeInt(coder);
+            
+            ceiling_origin.x = decodeInt(coder);
+            ceiling_origin.y = decodeInt(coder);
+            
+            if (useIndexNumbersInstead) {
+                media_object = [self getMediaFromIndex:decodeShort(coder)];
+                media_lightsource_object = [self getLightFromIndex:decodeShort(coder)];
+            } else {
+                media_object = decodeObj(coder);
+                media_lightsource_object = decodeObj(coder);
+                
+                sound_source_objects = decodeObj(coder);
+            }
+            
+            if (useIndexNumbersInstead) {
+                ambient_sound_image_object = [self getAmbientSoundFromIndex:decodeShort(coder)];
+                random_sound_image_object = [self getRandomSoundFromIndex:decodeShort(coder)];
+            } else {
+                ambient_sound_image_object = decodeObj(coder);
+                random_sound_image_object = decodeObj(coder);
+            }
+            
+            //if (useIndexNumbersInstead)
+            //    [theLELevelDataST addPolygonDirectly:self];
+            
+            //useIndexNumbersInstead = NO;
+            
+            
+            switch (type) {
+                case LEPolygonBase:
+                case LEPolygonMinorOuch:
+                case LEPolygonMajorOuch:
+                case LEPolygonGlue:
+                case LEPolygonGlueTrigger:
+                case LEPolygonSuperglue:
+                case LEPolygonGoal:
+                case LEPolygonVisibleMonsterTrigger:
+                case LEPolygonInvisibleMonsterTrigger:
+                case LEPolygonDualMonsterTrigger:
+                case LEPolygonItemTrigger:
+                case LEPolygonMustBeExplored:
+                case LEPolygonZoneBorder:
+                case LEPolygonNormal:
+                case LEPolygonItemImpassable:
+                case LEPolygonMonsterImpassable:
+                case LEPolygonHill:
+                    permutationObject = nil;
+                    break;
+                default:
+                    break;
+            }
         }
     }
     return self;
@@ -1308,16 +1309,15 @@
 
 -(id)initWithPolygon:(LEPolygon *)thePolygonToImitate
 {
-    self = [self init];
-    [thePolygonToImitate copySettingsTo:self];
-    
+    if (self = [self init]) {
+        [thePolygonToImitate copySettingsTo:self];
+    }
     return self;
 }
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil) {
+    if (self = [super init]) {
         useIndexNumbersInstead = NO;
         
         [self setVertextCount:0];

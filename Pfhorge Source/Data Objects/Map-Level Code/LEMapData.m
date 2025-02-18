@@ -148,11 +148,9 @@ BOOL setupPointerArraysDurringLoading = YES;
 #pragma mark - init/dealloc methods
 - (id)init
 {
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    //[self initHeaders];
+    if (self = [super init]) {
+        //[self initHeaders];
+    }
     return self;
 }
 
@@ -164,16 +162,17 @@ BOOL setupPointerArraysDurringLoading = YES;
 
 - (id)initWithMapNSData:(NSData *)theMapp
 {
-    self = [super init];
-    
-    if ( theMapp != nil ) {
-        mapData = theMapp;
-    } else {
-        //numberOfLevels = 909;
-        return nil;
+    if (self = [super init]) {
+        
+        if ( theMapp != nil ) {
+            mapData = theMapp;
+        } else {
+            //numberOfLevels = 909;
+            return nil;
+        }
+        
+        [self initHeaders];
     }
-    
-    [self initHeaders];
     return self;
 }
 

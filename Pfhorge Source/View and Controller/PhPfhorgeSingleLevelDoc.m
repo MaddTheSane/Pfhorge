@@ -47,29 +47,23 @@ NSString *const PhScenarioLevelNamesChangedNotification = @"PhScenarioLevelNames
 
 - (id)initWithScenarioDocument:(PhPfhorgeScenarioLevelDoc *)theScenarioDoc
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    scenario = theScenarioDoc;
-    
-    [self registerLevelRelatedNotifications];
-    [self registerScenarioRelatedNotifications];
+    if (self = [super init]) {
+        scenario = theScenarioDoc;
+        
+        [self registerLevelRelatedNotifications];
+        [self registerScenarioRelatedNotifications];
+    }
     
     return self;
 }
 
 - (id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    scenario = nil;
-    
-    [self registerLevelRelatedNotifications];
+    if (self = [super init]) {
+        scenario = nil;
+        
+        [self registerLevelRelatedNotifications];
+    }
     
     return self;
 }

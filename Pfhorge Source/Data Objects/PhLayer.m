@@ -115,7 +115,7 @@
 -(BOOL)doIHaveColor { return (layerColor != nil); }
 @synthesize layerColor;
 
--(NSArray *)objectsInThisLayer { return objectsInThisLayer; }
+-(NSArray *)objectsInThisLayer { return [objectsInThisLayer copy]; }
 
 -(void)addObjectToLayer:(id)theObj { [objectsInThisLayer addObject:theObj]; }
 -(void)removeObjectFromLayer:(id)theObj { [objectsInThisLayer removeObject:theObj]; }

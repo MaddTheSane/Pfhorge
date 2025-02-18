@@ -34,10 +34,9 @@
 
 - (PhDefaultLayerController *)init
 {
-    self = [super initWithWindowNibName:@"DefaultLayerEditor"];
-    
-    if (self == nil)
-        return nil;
+    if (self = [super initWithWindowNibName:@"DefaultLayerEditor"]) {
+        
+    }
     
     return self;
 

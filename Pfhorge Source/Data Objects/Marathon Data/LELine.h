@@ -49,7 +49,7 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @interface LELine : LEMapStuffParent <NSSecureCoding>
 {
     short p1, p2;
-    __unsafe_unretained LEMapPoint *mapPoint1, __unsafe_unretained *mapPoint2;
+    __weak LEMapPoint *mapPoint1, __weak *mapPoint2;
     LELineFlags flags; /*!< no permutation field */
     short _Length;
     short _Angle;
@@ -61,12 +61,12 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
     //short clockwisePolygonSideIndex, counterclockwisePolygonSideIndex;
     /*! the side definition facing the clockwise polygon which references this side,
         and the side definition facing the counterclockwise polygon (can be NONE (-1)) */
-    __unsafe_unretained LESide *clockwisePolygonSideObject, __unsafe_unretained *counterclockwisePolygonSideObject;
+    __weak LESide *clockwisePolygonSideObject, __weak *counterclockwisePolygonSideObject;
     
     /*! a line can be owned by a clockwise polygon, a counterclockwise polygon,
         or both (but never two of the same) (can be NONE) */
     short clockwisePolygonIndex, conterclockwisePolygonIndex;
-    __unsafe_unretained LEPolygon *clockwisePolygon, __unsafe_unretained *conterclockwisePolygon;
+    __weak LEPolygon *clockwisePolygon, __weak *conterclockwisePolygon;
     
     BOOL permanentSolidLine;
     BOOL permanentLandscapeLine;
@@ -100,8 +100,8 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @property (nonatomic) short pointIndex2;
 - (short)p1 API_DEPRECATED_WITH_REPLACEMENT("-pointIndex1", macos(10.0, 10.7));
 - (short)p2 API_DEPRECATED_WITH_REPLACEMENT("-pointIndex2", macos(10.0, 10.7));
-@property (nonatomic, assign) LEMapPoint *mapPoint1;
-@property (nonatomic, assign) LEMapPoint *mapPoint2;
+@property (nonatomic, weak) LEMapPoint *mapPoint1;
+@property (nonatomic, weak) LEMapPoint *mapPoint2;
 
 @property (nonatomic) LELineFlags flags;
 
@@ -122,16 +122,16 @@ typedef NS_OPTIONS(unsigned short, LELineFlags) {
 @property (nonatomic) short clockwisePolygonSideIndex;
 @property (nonatomic) short counterclockwisePolygonSideIndex;
 
-@property (assign) id clockwisePolygonSideObject;
-@property (assign) id counterclockwisePolygonSideObject;
+@property (weak) LESide *clockwisePolygonSideObject;
+@property (weak) LESide *counterclockwisePolygonSideObject;
 
 @property (nonatomic) short clockwisePolygonOwner;
 @property (nonatomic) short conterclockwisePolygonOwner;
 @property (nonatomic) short clockwisePolygonIndex;
 @property (nonatomic) short conterclockwisePolygonIndex;
 
-@property (assign) LEPolygon *clockwisePolygonObject;
-@property (assign) LEPolygon *conterclockwisePolygonObject;
+@property (weak) LEPolygon *clockwisePolygonObject;
+@property (weak) LEPolygon *conterclockwisePolygonObject;
 
 - (void)setP1:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setPointIndex1:", macos(10.0, 10.7));
 - (void)setP2:(short)s API_DEPRECATED_WITH_REPLACEMENT("-setPointIndex2:", macos(10.0, 10.7));

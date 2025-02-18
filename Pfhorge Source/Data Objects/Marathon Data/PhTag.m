@@ -41,11 +41,11 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    
-	if (!coder.allowsKeyedCoding) {
-		/*int loadingVersionNumber = */decodeInt(coder);
-	}
+    if (self = [super initWithCoder:coder]) {
+        if (!coder.allowsKeyedCoding) {
+            /*int loadingVersionNumber = */decodeInt(coder);
+        }
+    }
     
     return self;
 }
@@ -80,9 +80,9 @@
 
 -(PhTag *)initWithTagNumber:(NSNumber *)thePhNumber
 {
-    self = [super initWithNumber:thePhNumber];
-    if (self == nil)
-        return nil;
+    if (self = [super initWithNumber:thePhNumber]) {
+        
+    }
     return self;
 }
 

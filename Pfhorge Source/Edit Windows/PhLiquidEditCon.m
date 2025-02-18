@@ -41,31 +41,29 @@
           withLevel:(LELevelData *)theLevel
     withMapDocument:(LEMap *)theMapDoc
 {
-    if (theMedia == nil || theLevel == nil || theMapDoc == nil)
+    if (theMedia == nil || theLevel == nil || theMapDoc == nil) {
         return nil;
+    }
     
-    self = [super initWithLevel:theLevel
-                withMapDocument:theMapDoc
-                    withNibFile:@"LiquidInterface"
-                 withEditingObj:theMedia];
-    
-    if (self == nil)
-        return nil;
-    
-    curMedia = theMedia;
-    
-    [self window];
-    
-    [mapLevel addMenu:tideLightMenu asMenuType:PhLevelNameMenuLight];
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self
+    if (self = [super initWithLevel:theLevel
+                    withMapDocument:theMapDoc
+                        withNibFile:@"LiquidInterface"
+                     withEditingObj:theMedia]) {
+        curMedia = theMedia;
+        
+        [self window];
+        
+        [mapLevel addMenu:tideLightMenu asMenuType:PhLevelNameMenuLight];
+        
+        //[[NSNotificationCenter defaultCenter] addObserver:self
         //selector:@selector(reloadDataFromLevel)
         //name:LELevelChangedNotification
         //object:[self document]];
-    
+        
         // Active
-    
-    [self refreshInterfaceFromData];
+        
+        [self refreshInterfaceFromData];
+    }
     
     return self;
 }

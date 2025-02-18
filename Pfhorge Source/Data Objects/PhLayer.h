@@ -41,7 +41,7 @@
 
 @property (copy) NSColor *layerColor;
 
--(NSArray<__kindof LEMapStuffParent*> *)objectsInThisLayer;
+@property (readonly, copy) NSArray<__kindof LEMapStuffParent*> *objectsInThisLayer;
 
 -(void)addObjectToLayer:(__kindof LEMapStuffParent*)theObj;
 -(void)removeObjectFromLayer:(__kindof LEMapStuffParent*)theObj;

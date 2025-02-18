@@ -119,31 +119,32 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        type = [coder decodeIntForKey:@"type"];
-        
-        location = [coder decodePointForKey:@"location"];
-        
-        polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
-        text = [coder decodeObjectOfClass:[NSString class] forKey:@"text"];
-        
-        group = [coder decodeObjectOfClass:[PhNoteGroup class] forKey:@"group"];
-    } else {
-        int versionNum = decodeNumInt(coder);
-        
-        type = decodeShort(coder);
-        
-        location.x = decodeInt(coder);
-        location.y = decodeInt(coder);
-        
-        polygon_object = decodeObj(coder);
-        text = decodeObjRetain(coder);
-        
-        if (versionNum > 0) {
-            group = decodeObjRetain(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            type = [coder decodeIntForKey:@"type"];
+            
+            location = [coder decodePointForKey:@"location"];
+            
+            polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
+            text = [coder decodeObjectOfClass:[NSString class] forKey:@"text"];
+            
+            group = [coder decodeObjectOfClass:[PhNoteGroup class] forKey:@"group"];
         } else {
-            group = nil;
+            int versionNum = decodeNumInt(coder);
+            
+            type = decodeShort(coder);
+            
+            location.x = decodeInt(coder);
+            location.y = decodeInt(coder);
+            
+            polygon_object = decodeObj(coder);
+            text = decodeObjRetain(coder);
+            
+            if (versionNum > 0) {
+                group = decodeObjRetain(coder);
+            } else {
+                group = nil;
+            }
         }
     }
     
@@ -281,9 +282,7 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
         //[self setP1:-1];
         //[self setP2:-1];
         polygon_object = nil;
@@ -302,8 +301,7 @@
 
 -(id)initWithAdjPoint:(NSPoint)point
 {
-    self = [super init];
-    if (self != nil) {
+    if (self = [super init]) {
         //[self setP1:-1];
         //[self setP2:-1];
         polygon_object = nil;

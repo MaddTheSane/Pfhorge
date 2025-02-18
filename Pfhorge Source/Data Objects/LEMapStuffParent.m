@@ -76,26 +76,27 @@
 {
     int versionNum = 0;
     
-    self = [super init];
-    if (coder.allowsKeyedCoding) {
-        useIndexNumbersInstead = [coder decodeBoolForKey:@"useIndexNumbersInstead"];
-    } else {
-        versionNum = decodeNumInt(coder);
-        useIndexNumbersInstead = decodeBOOL(coder); // 2
+    if (self = [super init]) {
+        if (coder.allowsKeyedCoding) {
+            useIndexNumbersInstead = [coder decodeBoolForKey:@"useIndexNumbersInstead"];
+        } else {
+            versionNum = decodeNumInt(coder);
+            useIndexNumbersInstead = decodeBOOL(coder); // 2
+        }
+        
+        if (useIndexNumbersInstead) {
+            // Get the ST's from the front map...
+            [[[[NSDocumentController sharedDocumentController]
+               currentDocument]
+              getCurrentLevelLoaded]
+             setUpArrayPointersFor:self];
+            everythingLoadedST = YES;
+        }
+        
+        twoBytesCount = 2;
+        fourBytesCount = 4;
+        eightBytesCount = 8;
     }
-    
-    if (useIndexNumbersInstead) {
-        // Get the ST's from the front map...
-        [[[[NSDocumentController sharedDocumentController]
-           currentDocument]
-          getCurrentLevelLoaded]
-         setUpArrayPointersFor:self];
-        everythingLoadedST = YES;
-    }
-    
-    twoBytesCount = 2;
-    fourBytesCount = 4;
-    eightBytesCount = 8;
     
     return self;
 }
@@ -247,10 +248,7 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self != nil)
-    {
+    if (self = [super init]) {
         everythingLoadedST = NO;
         twoBytesCount = 2;
         fourBytesCount = 4;

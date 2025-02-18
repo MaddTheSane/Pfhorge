@@ -65,7 +65,6 @@
     int versionNum = 0;
     
     if (self = [self init]) {
-        
         if (coder.allowsKeyedCoding) {
             
         } else {

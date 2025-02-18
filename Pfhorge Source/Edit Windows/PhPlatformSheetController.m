@@ -44,24 +44,20 @@
     //if (thePlatform == nil || theLevel == nil || theMapDoc == nil)
     //    return nil;
     
-    self = [super initWithLevel:theLevel
-                withMapDocument:theMapDoc
-                    withNibFile:@"PlatformEditor"
-                 withEditingObj:thePlatform];
-    
-    if (self == nil)
-        return nil;
-    
-    //[self window];
-    
-    platform = thePlatform;
-    
-    /*[[NSNotificationCenter defaultCenter]
-            addObserver:self
-            selector:@selector(setupTagMenu)
-            name:PhUserDidChangeNamesNotification
-            object:nil];*/
-    
+    if (self = [super initWithLevel:theLevel
+                    withMapDocument:theMapDoc
+                        withNibFile:@"PlatformEditor"
+                     withEditingObj:thePlatform]) {
+        //[self window];
+        
+        platform = thePlatform;
+        
+        /*[[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(setupTagMenu)
+         name:PhUserDidChangeNamesNotification
+         object:nil];*/
+    }
     return self;
 }
 

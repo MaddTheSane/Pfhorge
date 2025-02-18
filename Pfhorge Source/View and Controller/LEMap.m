@@ -93,9 +93,7 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
         theRawMapData = nil;
         theMap = nil;
         theLevel = nil;

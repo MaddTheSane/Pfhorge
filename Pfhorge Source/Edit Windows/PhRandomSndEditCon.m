@@ -44,26 +44,23 @@
     if (theSound == nil || theLevel == nil || theMapDoc == nil)
         return nil;
     
-    self = [super initWithLevel:theLevel
-                withMapDocument:theMapDoc
-                    withNibFile:@"RandomSoundInterface"
-                 withEditingObj:theSound];
-    
-    if (self == nil)
-        return nil;
-    
-    curRandomSound = theSound;
-    
-    [self window];
-    
-    //[mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self
+    if (self = [super initWithLevel:theLevel
+                    withMapDocument:theMapDoc
+                        withNibFile:@"RandomSoundInterface"
+                     withEditingObj:theSound]) {
+        curRandomSound = theSound;
+        
+        [self window];
+        
+        //[mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
+        
+        //[[NSNotificationCenter defaultCenter] addObserver:self
         //selector:@selector(reloadDataFromLevel)
         //name:LELevelChangedNotification
         //object:[self document]];
-    
-    [self refreshInterfaceFromData];
+        
+        [self refreshInterfaceFromData];
+    }
     
     return self;
 }

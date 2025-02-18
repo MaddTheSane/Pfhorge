@@ -43,8 +43,7 @@
     int tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -251,42 +250,43 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-	self = [super initWithCoder:coder];
-	if (coder.allowsKeyedCoding) {
-		type = [coder decodeIntForKey:@"type"];
-		speed = [coder decodeIntForKey:@"speed"];
-		delay = [coder decodeIntForKey:@"delay"];
+	if (self = [super initWithCoder:coder]) {
+		if (coder.allowsKeyedCoding) {
+			type = [coder decodeIntForKey:@"type"];
+			speed = [coder decodeIntForKey:@"speed"];
+			delay = [coder decodeIntForKey:@"delay"];
+			
+			maximum_height = [coder decodeIntForKey:@"maximum_height"];
+			minimum_height = [coder decodeIntForKey:@"minimum_height"];
+			
+			static_flags = [coder decodeIntForKey:@"static_flags"];
+			
+			polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
+			
+			tag = [coder decodeIntForKey:@"tag"];
+			tagObject = [coder decodeObjectOfClass:[PhTag class] forKey:@"tagObject"];
+		} else {
+			/*int versionNum = */decodeNumInt(coder);
+			
+			type = decodeShort(coder);
+			speed = decodeShort(coder);
+			delay = decodeShort(coder);
+			
+			maximum_height = decodeShort(coder);
+			minimum_height = decodeShort(coder);
+			
+			static_flags = decodeUnsignedInt(coder);
+			
+			polygon_object = decodeObj(coder);
+			
+			tag = decodeShort(coder);
+			tagObject = decodeObj(coder);
+		}
+		if (useIndexNumbersInstead)
+			[theLELevelDataST addPlatform:self];
 		
-		maximum_height = [coder decodeIntForKey:@"maximum_height"];
-		minimum_height = [coder decodeIntForKey:@"minimum_height"];
-		
-		static_flags = [coder decodeIntForKey:@"static_flags"];
-		
-		polygon_object = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"polygon_object"];
-		
-		tag = [coder decodeIntForKey:@"tag"];
-		tagObject = [coder decodeObjectOfClass:[PhTag class] forKey:@"tagObject"];
-	} else {
-		/*int versionNum = */decodeNumInt(coder);
-		
-		type = decodeShort(coder);
-		speed = decodeShort(coder);
-		delay = decodeShort(coder);
-		
-		maximum_height = decodeShort(coder);
-		minimum_height = decodeShort(coder);
-		
-		static_flags = decodeUnsignedInt(coder);
-		
-		polygon_object = decodeObj(coder);
-		
-		tag = decodeShort(coder);
-		tagObject = decodeObj(coder);
+		useIndexNumbersInstead = NO;
 	}
-	if (useIndexNumbersInstead)
-		[theLELevelDataST addPlatform:self];
-	
-	useIndexNumbersInstead = NO;
 	
 	return self;
 }
@@ -532,8 +532,7 @@
 
 -(id)init
 {
-    if (self = [super init])
-	{
+    if (self = [super init]) {
 		type = 0;
 		speed = 60;
 		delay = 30;

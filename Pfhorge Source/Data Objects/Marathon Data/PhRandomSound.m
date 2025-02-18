@@ -150,37 +150,38 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        sound_index = [coder decodeIntForKey:@"soundIndex"];
-        volume = [coder decodeIntForKey:@"volume"];
-        delta_volume = [coder decodeIntForKey:@"deltaVolume"];
-        period = [coder decodeIntForKey:@"period"];
-        delta_period = [coder decodeIntForKey:@"deltaPeriod"];
-        direction = [coder decodeIntForKey:@"direction"];
-        delta_direction = [coder decodeIntForKey:@"deltaDirection"];
-        pitch = [coder decodeIntForKey:@"pitch"];
-        delta_pitch = [coder decodeIntForKey:@"deltaPitch"];
-        
-        phase = [coder decodeIntForKey:@"phase"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        flags = decodeUnsignedShort(coder);
-        
-        sound_index = decodeShort(coder);
-        volume = decodeShort(coder);
-        delta_volume = decodeShort(coder);
-        period = decodeShort(coder);
-        delta_period = decodeShort(coder);
-        direction  = decodeShort(coder);
-        delta_direction = decodeShort(coder);
-        pitch = decodeInt(coder);
-        delta_pitch = decodeInt(coder);
-        
-        phase = decodeShort(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            sound_index = [coder decodeIntForKey:@"soundIndex"];
+            volume = [coder decodeIntForKey:@"volume"];
+            delta_volume = [coder decodeIntForKey:@"deltaVolume"];
+            period = [coder decodeIntForKey:@"period"];
+            delta_period = [coder decodeIntForKey:@"deltaPeriod"];
+            direction = [coder decodeIntForKey:@"direction"];
+            delta_direction = [coder decodeIntForKey:@"deltaDirection"];
+            pitch = [coder decodeIntForKey:@"pitch"];
+            delta_pitch = [coder decodeIntForKey:@"deltaPitch"];
+            
+            phase = [coder decodeIntForKey:@"phase"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            flags = decodeUnsignedShort(coder);
+            
+            sound_index = decodeShort(coder);
+            volume = decodeShort(coder);
+            delta_volume = decodeShort(coder);
+            period = decodeShort(coder);
+            delta_period = decodeShort(coder);
+            direction  = decodeShort(coder);
+            delta_direction = decodeShort(coder);
+            pitch = decodeInt(coder);
+            delta_pitch = decodeInt(coder);
+            
+            phase = decodeShort(coder);
+        }
     }
     
     return self;

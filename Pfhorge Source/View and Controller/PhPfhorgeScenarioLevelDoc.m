@@ -78,21 +78,18 @@
 
 -(id)init
 {
-    NSString *myFullFilePath;
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent].path;
-    
-    if (![myFullFilePath isEqualToString:@"/"])
-        myFullFilePath  = [myFullFilePath stringByAppendingString:@"/"];
-    
-    // May want the scenario data boject to get the path dynamicaly from me...
-    
-    //scenarioData = [[PhScenarioData alloc] initWithProjectDirectory:myFullFilePath];
-    scenarioData = nil;
+    if (self = [super init]) {
+        NSString *myFullFilePath = [[self fileURL] URLByDeletingLastPathComponent].path;
+        
+        if (![myFullFilePath isEqualToString:@"/"]) {
+            myFullFilePath  = [myFullFilePath stringByAppendingString:@"/"];
+        }
+        
+        // May want the scenario data boject to get the path dynamicaly from me...
+        
+        //scenarioData = [[PhScenarioData alloc] initWithProjectDirectory:myFullFilePath];
+        scenarioData = nil;
+    }
     
     return self;
 }

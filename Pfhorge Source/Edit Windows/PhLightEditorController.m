@@ -42,20 +42,18 @@
 {
     NSString *theNibFileName = @"LightEditor";
     
-    if (theLight == nil || theLevel == nil || theMapDoc == nil)
+    if (theLight == nil || theLevel == nil || theMapDoc == nil) {
         return nil;
+    }
     
-    self = [super initWithLevel:theLevel
-                withMapDocument:theMapDoc
-                withNibFile:theNibFileName
-                withEditingObj:theLight];
-    
-    if (self == nil)
-        return nil;
-    
-    curLight = theLight;
-    
-    //[self window];
+    if (self = [super initWithLevel:theLevel
+                    withMapDocument:theMapDoc
+                        withNibFile:theNibFileName
+                     withEditingObj:theLight]) {
+        curLight = theLight;
+        
+        //[self window];
+    }
     
     return self;
 }

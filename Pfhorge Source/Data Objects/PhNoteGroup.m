@@ -35,13 +35,13 @@
 {
     [super encodeWithCoder:coder];
     if (coder.allowsKeyedCoding) {
-        [coder encodeConditionalObject:noteColor forKey:@"noteColor"];
+        [coder encodeObject:noteColor forKey:@"noteColor"];
         [coder encodeObject:notes forKey:@"notes"];
         [coder encodeBool:visible forKey:@"visible"];
     } else {
         encodeNumInt(coder, 0);
         
-        encodeConditionalObject(coder, noteColor);
+        encodeObj(coder, noteColor);
         encodeObj(coder, notes);
         encodeBOOL(coder, visible);
     }
@@ -49,17 +49,18 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        noteColor = [coder decodeObjectOfClass:[NSColor class] forKey:@"noteColor"];
-        notes = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"];
-        visible = [coder decodeBoolForKey:@"visible"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        noteColor = decodeObjRetain(coder);
-        notes = decodeObjRetain(coder);
-        visible = decodeBOOL(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            noteColor = [coder decodeObjectOfClass:[NSColor class] forKey:@"noteColor"];
+            notes = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [PhAnnotationNote class], nil] forKey:@"notes"];
+            visible = [coder decodeBoolForKey:@"visible"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            noteColor = decodeObjRetain(coder);
+            notes = decodeObjRetain(coder);
+            visible = decodeBOOL(coder);
+        }
     }
     
     return self;
@@ -80,16 +81,14 @@
 
 -(id)initWithName:(NSString *)theString;
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    [self setPhName:theString];
-    notes = [[NSMutableArray alloc] init];
-    noteColor = nil;
-    
-    visible = YES;
+    if (self = [super init]) {
+        
+        [self setPhName:theString];
+        notes = [[NSMutableArray alloc] init];
+        noteColor = nil;
+        
+        visible = YES;
+    }
     
     return self;
 }
@@ -113,8 +112,9 @@
 }
 -(BOOL)doIHaveColor { return (noteColor != nil); }
 @synthesize color=noteColor;
+@dynamic objectsInThisLayer;
 
--(NSArray *)objectsInThisLayer { return notes; }
+-(NSArray *)objectsInThisLayer { return [notes copy]; }
 
 -(void)addObject:(id)theObj
 {

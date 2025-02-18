@@ -98,40 +98,37 @@
 
 - (id)initWithData:(NSData *)theData
 {    
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    data = [theData copy];
-    
-    dpinData = nil;
-    
-    // Sanity checks
-    
-    // Was all the data alignment set OK?
-    static_assert(sizeof(PID_Door) == 8, "sizeof(PID_Door) != 8");
-    static_assert(sizeof(PID_LevelChange) == 8, "sizeof(PID_LevelChange) != 8");
-    static_assert(sizeof(PID_Monster) == 4, "sizeof(PID_Monster) != 4");
-    static_assert(sizeof(PID_Wall) == 2, "sizeof(PID_Wall) != 2");
-    static_assert(sizeof(PID_Sector) == 16, "sizeof(PID_Sector) != 16");
-    static_assert(sizeof(PID_Position) == 8, "sizeof(PID_Position) != 8");
-    static_assert(sizeof(PID_Level) == 16834, "sizeof(PID_Level) != 16834");
-    static_assert(sizeof(PID_PlayerItem) == 8, "sizeof(PID_PlayerItem) != 8");
-    static_assert(sizeof(PID_WeaponPerform) == 6, "sizeof(PID_WeaponPerform) != 6");
-    static_assert(sizeof(PID_PlayerState) == 2876, "sizeof(PID_PlayerState) != 2876");
-    static_assert(sizeof(PID_MonsterState) == 8, "sizeof(PID_MonsterState) != 8");
-    static_assert(sizeof(PID_PickupAssign) == 4, "sizeof(PID_PickupAssign) != 4");
-    static_assert(sizeof(PID_ItemState) == 16, "sizeof(PID_ItemState) != 16");
-    static_assert(sizeof(PID_LevelState) == 9112, "sizeof(PID_LevelState) != 9112");
-    
-    NSUInteger length = [data length];
-    NSUInteger rem = length % sizeof(PID_Level);
-    if (rem != 0) {
-        NSLog(@"Bad PID map-data file: remainder of %lu bytes", static_cast<unsigned long>(rem));
+    if (self = [super init]) {
+        data = [theData copy];
         
-        // No reason to stay allocated, release self and return nil...
-        return nil;
+        dpinData = nil;
+        
+        // Sanity checks
+        
+        // Was all the data alignment set OK?
+        static_assert(sizeof(PID_Door) == 8, "sizeof(PID_Door) != 8");
+        static_assert(sizeof(PID_LevelChange) == 8, "sizeof(PID_LevelChange) != 8");
+        static_assert(sizeof(PID_Monster) == 4, "sizeof(PID_Monster) != 4");
+        static_assert(sizeof(PID_Wall) == 2, "sizeof(PID_Wall) != 2");
+        static_assert(sizeof(PID_Sector) == 16, "sizeof(PID_Sector) != 16");
+        static_assert(sizeof(PID_Position) == 8, "sizeof(PID_Position) != 8");
+        static_assert(sizeof(PID_Level) == 16834, "sizeof(PID_Level) != 16834");
+        static_assert(sizeof(PID_PlayerItem) == 8, "sizeof(PID_PlayerItem) != 8");
+        static_assert(sizeof(PID_WeaponPerform) == 6, "sizeof(PID_WeaponPerform) != 6");
+        static_assert(sizeof(PID_PlayerState) == 2876, "sizeof(PID_PlayerState) != 2876");
+        static_assert(sizeof(PID_MonsterState) == 8, "sizeof(PID_MonsterState) != 8");
+        static_assert(sizeof(PID_PickupAssign) == 4, "sizeof(PID_PickupAssign) != 4");
+        static_assert(sizeof(PID_ItemState) == 16, "sizeof(PID_ItemState) != 16");
+        static_assert(sizeof(PID_LevelState) == 9112, "sizeof(PID_LevelState) != 9112");
+        
+        NSUInteger length = [data length];
+        NSUInteger rem = length % sizeof(PID_Level);
+        if (rem != 0) {
+            NSLog(@"Bad PID map-data file: remainder of %lu bytes", static_cast<unsigned long>(rem));
+            
+            // No reason to stay allocated, release self and return nil...
+            return nil;
+        }
     }
     
     return self;

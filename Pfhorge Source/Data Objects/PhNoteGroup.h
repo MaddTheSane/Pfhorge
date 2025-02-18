@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nullable) NSColor *color;
 
--(NSArray<PhAnnotationNote*> *)objectsInThisLayer;
+@property (readonly, copy) NSArray<PhAnnotationNote*> *objectsInThisLayer;
 
 -(void)addObject:(id)theObj;
 -(void)removeObject:(id)theObj;

@@ -40,31 +40,29 @@
 
 - (id)initWithMapDocument:(LEMap *)theDocument
 {
-    self = [super initWithWindowNibName:@"TerminalInterface"];
-    
-    NSLog(@"Init'd Nib File for Terminal Controller...");
-    
-    if (self == nil)
-        return nil;
-    
-    ///[self window];
-    
-    [theDocument addLevelInfoWinCon:self];
-    
-    theMap = theDocument;
-    theLevel = [theDocument getCurrentLevelLoaded];
-    theTerminals = [theLevel getTerminals];
-    NSLog(@"Done Init'd Nib File for Terminal Controller...");
-    
-    theLastObjectEdited = nil;
-    lastTextViewUsed = nil;
-    draggedTerminalSection = nil;
-    poposedTerminalToDelete = nil;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(levelDeallocating:)
-                                                 name:PhLevelDeallocatingNotification
-                                               object:nil];
+    if (self = [super initWithWindowNibName:@"TerminalInterface"]) {
+        
+        NSLog(@"Init'd Nib File for Terminal Controller...");
+        
+        ///[self window];
+        
+        [theDocument addLevelInfoWinCon:self];
+        
+        theMap = theDocument;
+        theLevel = [theDocument getCurrentLevelLoaded];
+        theTerminals = [theLevel getTerminals];
+        NSLog(@"Done Init'd Nib File for Terminal Controller...");
+        
+        theLastObjectEdited = nil;
+        lastTextViewUsed = nil;
+        draggedTerminalSection = nil;
+        poposedTerminalToDelete = nil;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(levelDeallocating:)
+                                                     name:PhLevelDeallocatingNotification
+                                                   object:nil];
+    }
     return self;
 }
 

@@ -168,27 +168,28 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        theSections = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [TerminalSection class], nil] forKey:@"theSections"];
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            theSections = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableArray class], [TerminalSection class], nil] forKey:@"theSections"];
+            
+            flags = [coder decodeIntForKey:@"flags"];
+            lineCount = [coder decodeIntForKey:@"lineCount"];
+            textEncoded = [coder decodeBoolForKey:@"textEncoded"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            theSections = decodeObjRetain(coder);
+            
+            flags = decodeUnsignedShort(coder);
+            lineCount = decodeShort(coder);
+            textEncoded = decodeBOOL(coder);
+        }
         
-        flags = [coder decodeIntForKey:@"flags"];
-        lineCount = [coder decodeIntForKey:@"lineCount"];
-        textEncoded = [coder decodeBoolForKey:@"textEncoded"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
+        /*if (useIndexNumbersInstead)
+         [theLELevelDataST addPlatform:self];*/
         
-        theSections = decodeObjRetain(coder);
-        
-        flags = decodeUnsignedShort(coder);
-        lineCount = decodeShort(coder);
-        textEncoded = decodeBOOL(coder);
+        useIndexNumbersInstead = NO;
     }
-    
-    /*if (useIndexNumbersInstead)
-        [theLELevelDataST addPlatform:self];*/
-    
-    useIndexNumbersInstead = NO;
     
     return self;
 }
@@ -200,15 +201,12 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    theSections = [[NSMutableArray alloc] initWithCapacity:0];
-    flags = 0;
-    lineCount = -1;
-    textEncoded = NO;
+    if (self = [super init]) {
+        theSections = [[NSMutableArray alloc] initWithCapacity:0];
+        flags = 0;
+        lineCount = -1;
+        textEncoded = NO;
+    }
     
     return self;
 }
@@ -228,65 +226,65 @@ static void convertLFtoCR(NSMutableData *theRawTextData)
     NSData	  *textData;
     NSData	  *fontData;
     
-    if (!(self = [super init]))
-        return nil;
-    
-    [levelDataObj setUpArrayPointersFor:self];
-    
-    [self setPhName:[NSString stringWithFormat:@"Terminal %d", theTerminalNumber]];
-    
-    // *** Load The Terminal Data ***
-    
-    length = loadShortFromNSData(data, 0);
-    // / NSLog(@"term %d  length: %d", theTerminalNumber, length);
-    flags = loadShortFromNSData(data, 2);
-    // / NSLog(@"term %d  flags: %d", theTerminalNumber, flags);
-    lines_per_page = loadShortFromNSData(data, 4);
-    // / NSLog(@"term %d  lines_per_page: %d", theTerminalNumber, lines_per_page);
-    grouping_count = loadShortFromNSData(data, 6);
-    font_changes_count = loadShortFromNSData(data, 8);
-    
-    lineCount = lines_per_page;
-    
-    textStartsAt = ((6 * font_changes_count) + (12 * grouping_count)) + 10;
-    fontStartsAt = (12 * grouping_count) + 10;
-    
-    textData = [data subdataWithRange:NSMakeRange(textStartsAt, length - textStartsAt)];
-    fontData = [data subdataWithRange:NSMakeRange(fontStartsAt, (6 * font_changes_count))];
-    
-    // *** Process The Raw Terminal Data ***
-    
-    theSections = [[NSMutableArray alloc] initWithCapacity:grouping_count];
-    
-    if (flags & term_disguised)
-        textEncoded = YES;
-    else
-        textEncoded = NO;
-    
-    // Set position to start of
-    // terminal sections...
-    position = 10;
-    
-    if (textEncoded)
-    { // If Nessary, Decode Encrypted Terminal...
-        NSMutableData *theNewData = [[NSMutableData alloc] initWithData:textData];
-        //[textData release]; // Autoreleased already...
-        textData = nil;
-        encode_text(theNewData);
-        textData = theNewData;
-    }
-    
-    for (i = 0; i < grouping_count; i++)
-    {
-        [theSections addObject:[[TerminalSection alloc]
-                                 initWithData:[data subdataWithRange:NSMakeRange(position, 12)]
+    if (self = [super init]) {
+        
+        [levelDataObj setUpArrayPointersFor:self];
+        
+        [self setPhName:[NSString stringWithFormat:@"Terminal %d", theTerminalNumber]];
+        
+        // *** Load The Terminal Data ***
+        
+        length = loadShortFromNSData(data, 0);
+        // / NSLog(@"term %d  length: %d", theTerminalNumber, length);
+        flags = loadShortFromNSData(data, 2);
+        // / NSLog(@"term %d  flags: %d", theTerminalNumber, flags);
+        lines_per_page = loadShortFromNSData(data, 4);
+        // / NSLog(@"term %d  lines_per_page: %d", theTerminalNumber, lines_per_page);
+        grouping_count = loadShortFromNSData(data, 6);
+        font_changes_count = loadShortFromNSData(data, 8);
+        
+        lineCount = lines_per_page;
+        
+        textStartsAt = ((6 * font_changes_count) + (12 * grouping_count)) + 10;
+        fontStartsAt = (12 * grouping_count) + 10;
+        
+        textData = [data subdataWithRange:NSMakeRange(textStartsAt, length - textStartsAt)];
+        fontData = [data subdataWithRange:NSMakeRange(fontStartsAt, (6 * font_changes_count))];
+        
+        // *** Process The Raw Terminal Data ***
+        
+        theSections = [[NSMutableArray alloc] initWithCapacity:grouping_count];
+        
+        if (flags & term_disguised)
+            textEncoded = YES;
+        else
+            textEncoded = NO;
+        
+        // Set position to start of
+        // terminal sections...
+        position = 10;
+        
+        if (textEncoded)
+        { // If Nessary, Decode Encrypted Terminal...
+            NSMutableData *theNewData = [[NSMutableData alloc] initWithData:textData];
+            //[textData release]; // Autoreleased already...
+            textData = nil;
+            encode_text(theNewData);
+            textData = theNewData;
+        }
+        
+        for (i = 0; i < grouping_count; i++)
+        {
+            [theSections addObject:[[TerminalSection alloc]
+                                    initWithData:[data subdataWithRange:NSMakeRange(position, 12)]
                                     withFonts:fontData
-                                     withText:textData
+                                    withText:textData
                                     withLevel:theLELevelDataST]];
-        position += 12;
+            position += 12;
+        }
+        
+        NSLog(@"%@ grouping_count: %d  section objects: %lu", [self phName], grouping_count, (unsigned long)[theSections count]);
     }
-    
-    NSLog(@"%@ grouping_count: %d  section objects: %lu", [self phName], grouping_count, (unsigned long)[theSections count]);
     
     return self;
 }

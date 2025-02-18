@@ -19,14 +19,11 @@
 
 - (id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    pluginClasses = [[NSMutableArray alloc] init];
-    pluginInstances = [[NSMutableArray alloc] init];
-    pluginInstanceNames = [[NSMutableArray alloc] init];
+    if (self = [super init]) {
+        pluginClasses = [[NSMutableArray alloc] init];
+        pluginInstances = [[NSMutableArray alloc] init];
+        pluginInstanceNames = [[NSMutableArray alloc] init];
+    }
     
     return self;
 }

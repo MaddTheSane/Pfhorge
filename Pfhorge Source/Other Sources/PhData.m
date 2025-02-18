@@ -8,7 +8,6 @@
 
 #import "PhData.h"
 #import "LELevelData.h"
-#import "PathwaysExchange.h"
 
 @implementation PhData
 
@@ -45,7 +44,7 @@
     return [self checkPosition];
 }
 
-- (BOOL)skipObject { [self addToPosition:4]; return [self checkPosition]; }
+- (BOOL)skipObject { return [self addToPosition:4]; }
 
 - (BOOL)skipLengthLong
 {

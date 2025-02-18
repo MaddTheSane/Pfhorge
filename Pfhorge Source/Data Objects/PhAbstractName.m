@@ -71,13 +71,14 @@
 
 -(id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        self.phName = decodeObj(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            self.phName = [coder decodeObjectOfClass:[NSString class] forKey:@"PhAbstractName"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            self.phName = decodeObj(coder);
+        }
     }
     
     return self;
@@ -105,11 +106,9 @@
 
 -(PhAbstractName *)init
 {
-    self = [super init];
-    if (self == nil)
-        return nil;
-    
-    myName = nil;
+    if (self = [super init]) {
+        myName = nil;
+    }
     
     return self;
 }

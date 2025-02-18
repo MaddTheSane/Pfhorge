@@ -37,21 +37,18 @@
         withNibFile:(NSString *)nibFileName
      withEditingObj:(id)theObj;
 {
-    self = [super initWithWindowNibName:nibFileName];
-    
-    if (self == nil)
-        return nil;
+    if (self = [super initWithWindowNibName:nibFileName]) {
+        mapDocument		= theDocument;
+        mapLevel		= theLevel;
+        theObjBeingEdited 	= theObj;
         
-    mapDocument		= theDocument;
-    mapLevel		= theLevel;
-    theObjBeingEdited 	= theObj;
-    
-    [mapDocument addLevelInfoWinCon:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(levelDeallocating:)
-                                                 name:PhLevelDeallocatingNotification
-                                               object:nil];
+        [mapDocument addLevelInfoWinCon:self];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(levelDeallocating:)
+                                                     name:PhLevelDeallocatingNotification
+                                                   object:nil];
+    }
     
     return self;
 }

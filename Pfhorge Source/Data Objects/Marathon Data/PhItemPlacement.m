@@ -34,19 +34,16 @@
 
 - (id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    flags = 0;
-    
-    initial_count = 0;
-    minimum_count = 0;
-    maximum_count = 0;
-    
-    random_count = 0;
-    random_chance = 0;
+    if (self = [super init]) {
+        flags = 0;
+        
+        initial_count = 0;
+        minimum_count = 0;
+        maximum_count = 0;
+        
+        random_count = 0;
+        random_chance = 0;
+    }
     
     return self;
 }
@@ -147,27 +144,28 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        initial_count = [coder decodeIntForKey:@"initial_count"];
-        minimum_count = [coder decodeIntForKey:@"minimum_count"];
-        maximum_count = [coder decodeIntForKey:@"maximum_count"];
-        
-        random_count = [coder decodeIntForKey:@"random_count"];
-        random_chance = [coder decodeIntForKey:@"random_chance"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        flags = decodeUnsignedShort(coder);
-        
-        initial_count = decodeShort(coder);
-        minimum_count = decodeShort(coder);
-        maximum_count = decodeShort(coder);
-        
-        random_count = decodeShort(coder);
-        random_chance = decodeUnsignedShort(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            initial_count = [coder decodeIntForKey:@"initial_count"];
+            minimum_count = [coder decodeIntForKey:@"minimum_count"];
+            maximum_count = [coder decodeIntForKey:@"maximum_count"];
+            
+            random_count = [coder decodeIntForKey:@"random_count"];
+            random_chance = [coder decodeIntForKey:@"random_chance"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            flags = decodeUnsignedShort(coder);
+            
+            initial_count = decodeShort(coder);
+            minimum_count = decodeShort(coder);
+            maximum_count = decodeShort(coder);
+            
+            random_count = decodeShort(coder);
+            random_chance = decodeUnsignedShort(coder);
+        }
     }
     
     return self;

@@ -28,14 +28,15 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super init];
-    if (coder.allowsKeyedCoding) {
-        levelFileNames = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"] mutableCopy];
-        pictFileNames = [[NSMutableArray alloc] initWithCapacity:0];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        levelFileNames = decodeObjRetain(coder);
+    if (self = [super init]) {
+        if (coder.allowsKeyedCoding) {
+            levelFileNames = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSArray class], [NSString class], nil] forKey:@"levelFileNames"] mutableCopy];
+            pictFileNames = [[NSMutableArray alloc] initWithCapacity:0];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            levelFileNames = decodeObjRetain(coder);
+        }
     }
     
     return self;

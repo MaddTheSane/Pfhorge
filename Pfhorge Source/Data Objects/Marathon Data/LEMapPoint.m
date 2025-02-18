@@ -120,33 +120,34 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        x = [coder decodeIntForKey:@"x"];
-        y = [coder decodeIntForKey:@"y"];
-        
-        x32 = x / 16;
-        y32 = y / 16;
-        
-        lines = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableSet class], [LELine class], nil] forKey:@"lines"] retain];
-    } else {
-        int versionNum = decodeNumInt(coder);
-        
-        x = decodeShort(coder);
-        y = decodeShort(coder);
-        x32 = x / 16;
-        y32 = y / 16;
-        
-        if (versionNum > 0) {
-            lines = decodeObjRetain(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            x = [coder decodeIntForKey:@"x"];
+            y = [coder decodeIntForKey:@"y"];
+            
+            x32 = x / 16;
+            y32 = y / 16;
+            
+            lines = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSMutableSet class], [LELine class], nil] forKey:@"lines"] retain];
         } else {
-            lines = [[NSMutableSet alloc] init];
+            int versionNum = decodeNumInt(coder);
+            
+            x = decodeShort(coder);
+            y = decodeShort(coder);
+            x32 = x / 16;
+            y32 = y / 16;
+            
+            if (versionNum > 0) {
+                lines = decodeObjRetain(coder);
+            } else {
+                lines = [[NSMutableSet alloc] init];
+            }
+            
+            //if (useIndexNumbersInstead)
+            //    [theLELevelDataST addPoint:self];
+            
+            //useIndexNumbersInstead = NO;
         }
-        
-        //if (useIndexNumbersInstead)
-        //    [theLELevelDataST addPoint:self];
-        
-        //useIndexNumbersInstead = NO;
     }
     
     return self;
@@ -174,24 +175,20 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    
-    x = 0;
-    y = 0;
-    x32 = 0;
-    y32 = 0;
-    lines = [[NSMutableSet alloc] init];
+    if (self = [super init]) {
+        x = 0;
+        y = 0;
+        x32 = 0;
+        y32 = 0;
+        lines = [[NSMutableSet alloc] init];
+    }
     
     return self;
 }
 
 -(id)initX32:(short)theX32 Y32:(short)theY32
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         x = theX32 * 16;
         y = theY32 * 16;
         x32 = theX32;
@@ -204,9 +201,7 @@
 
 -(id)initX:(short)theX Y:(short)theY
 {
-    self = [super init];
-    if (self)
-    {
+    if (self = [super init]) {
         x = theX;
         y = theY;
         x32 = theX / 16;

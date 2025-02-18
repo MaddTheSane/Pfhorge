@@ -349,91 +349,89 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (self == nil) {
-        return nil;
-    }
-    if (coder.allowsKeyedCoding) {
-        mapPoint1 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint1"];
-        mapPoint2 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint2"];
-        flags = [coder decodeIntForKey:@"LineFlags"];
-        
-        _Length = [coder decodeIntForKey:@"length"];
-        highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
-        lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
-        
-        clockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"clockwisePolygonSideObject"];
-        counterclockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"counterclockwisePolygonSideObject"];
-        
-        
-        clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
-        conterclockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"conterclockwisePolygon"];
-        
-        permanentNoSides = [coder decodeBoolForKey:@"permanentNoSides"];
-        
-        permanentSolidLine = [coder decodeBoolForKey:@"permanentSolidLine"];
-        permanentLandscapeLine = [coder decodeBoolForKey:@"permanentLandscapeLine"];
-        permanentTransparentLine = [coder decodeBoolForKey:@"permanentTransparentLine"];
-        usePermanentSettings = [coder decodeBoolForKey:@"usePermanentSettings"];
-    } else {
-        int versionNum = decodeNumInt(coder);
-        
-        mapPoint1 = decodeObj(coder);
-        mapPoint2 = decodeObj(coder);
-        flags = decodeUnsignedShort(coder);
-        
-        _Length = decodeShort(coder);
-        highestAdjacentFloor = decodeShort(coder);
-        lowestAdjacentCeiling = decodeShort(coder);
-        
-        clockwisePolygonSideObject = decodeObj(coder);
-        counterclockwisePolygonSideObject = decodeObj(coder);
-        
-        
-        clockwisePolygon = decodeObj(coder);
-        conterclockwisePolygon = decodeObj(coder);
-        
-        // *** *** *** Additions *** *** ***
-        
-        permanentNoSides = NO;
-        
-        permanentSolidLine = NO;
-        permanentLandscapeLine = NO;
-        permanentTransparentLine = NO;
-        usePermanentSettings = NO;
-        
-        switch (versionNum) {
-            case 2:
-                permanentNoSides = decodeBOOL(coder);
-            case 1:
-                permanentSolidLine = decodeBOOL(coder);
-                permanentLandscapeLine = decodeBOOL(coder);
-                permanentTransparentLine = decodeBOOL(coder);
-                usePermanentSettings = decodeBOOL(coder);
-            default:
-                break;
-        }
-
-        // *** *** *** END Additions *** *** ***
-        /*
-        if (useIndexNumbersInstead)
-            [theLELevelDataST addLine:self];*/
-        /*
-        if (useIndexNumbersInstead)
-        {
-            if (clockwisePolygon == nil)
-                NSLog(@"clockwisePolygon was nil #%d", [self index]);
-            else
-                NSLog(@"clockwisePolygon was not nil #%d", [self index]);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            mapPoint1 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint1"];
+            mapPoint2 = [coder decodeObjectOfClass:[LEMapPoint class] forKey:@"mapPoint2"];
+            flags = [coder decodeIntForKey:@"LineFlags"];
             
-            if (conterclockwisePolygon == nil)
-                NSLog(@"conterclockwisePolygon was nil #%d", [self index]);
-            else
-                NSLog(@"conterclockwisePolygon was not nil #%d", [self index]);
-        }*/
-        
-        //useIndexNumbersInstead = NO;
-	}
+            _Length = [coder decodeIntForKey:@"length"];
+            highestAdjacentFloor = [coder decodeIntForKey:@"highestAdjacentFloor"];
+            lowestAdjacentCeiling = [coder decodeIntForKey:@"lowestAdjacentCeiling"];
+            
+            clockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"clockwisePolygonSideObject"];
+            counterclockwisePolygonSideObject = [coder decodeObjectOfClass:[LESide class] forKey:@"counterclockwisePolygonSideObject"];
+            
+            
+            clockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"clockwisePolygon"];
+            conterclockwisePolygon = [coder decodeObjectOfClass:[LEPolygon class] forKey:@"conterclockwisePolygon"];
+            
+            permanentNoSides = [coder decodeBoolForKey:@"permanentNoSides"];
+            
+            permanentSolidLine = [coder decodeBoolForKey:@"permanentSolidLine"];
+            permanentLandscapeLine = [coder decodeBoolForKey:@"permanentLandscapeLine"];
+            permanentTransparentLine = [coder decodeBoolForKey:@"permanentTransparentLine"];
+            usePermanentSettings = [coder decodeBoolForKey:@"usePermanentSettings"];
+        } else {
+            int versionNum = decodeNumInt(coder);
+            
+            mapPoint1 = decodeObj(coder);
+            mapPoint2 = decodeObj(coder);
+            flags = decodeUnsignedShort(coder);
+            
+            _Length = decodeShort(coder);
+            highestAdjacentFloor = decodeShort(coder);
+            lowestAdjacentCeiling = decodeShort(coder);
+            
+            clockwisePolygonSideObject = decodeObj(coder);
+            counterclockwisePolygonSideObject = decodeObj(coder);
+            
+            
+            clockwisePolygon = decodeObj(coder);
+            conterclockwisePolygon = decodeObj(coder);
+            
+            // *** *** *** Additions *** *** ***
+            
+            permanentNoSides = NO;
+            
+            permanentSolidLine = NO;
+            permanentLandscapeLine = NO;
+            permanentTransparentLine = NO;
+            usePermanentSettings = NO;
+            
+            switch (versionNum) {
+                case 2:
+                    permanentNoSides = decodeBOOL(coder);
+                case 1:
+                    permanentSolidLine = decodeBOOL(coder);
+                    permanentLandscapeLine = decodeBOOL(coder);
+                    permanentTransparentLine = decodeBOOL(coder);
+                    usePermanentSettings = decodeBOOL(coder);
+                default:
+                    break;
+            }
+            
+            // *** *** *** END Additions *** *** ***
+            /*
+             if (useIndexNumbersInstead)
+             [theLELevelDataST addLine:self];*/
+            /*
+             if (useIndexNumbersInstead)
+             {
+             if (clockwisePolygon == nil)
+             NSLog(@"clockwisePolygon was nil #%d", [self index]);
+             else
+             NSLog(@"clockwisePolygon was not nil #%d", [self index]);
+             
+             if (conterclockwisePolygon == nil)
+             NSLog(@"conterclockwisePolygon was nil #%d", [self index]);
+             else
+             NSLog(@"conterclockwisePolygon was not nil #%d", [self index]);
+             }*/
+            
+            //useIndexNumbersInstead = NO;
+        }
+    }
     return self;
 }
 
@@ -1155,9 +1153,7 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
         //[self setP1:-1];
         //[self setP2:-1];
         //[self setFlags:0];

@@ -68,39 +68,40 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        theText = [coder decodeObjectOfClass:[NSMutableAttributedString class] forKey:@"theText"];
-        permutationObject = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"permutationObject"];
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            theText = [coder decodeObjectOfClass:[NSMutableAttributedString class] forKey:@"theText"];
+            permutationObject = [coder decodeObjectOfClass:[LEMapStuffParent class] forKey:@"permutationObject"];
+            
+            flags = [coder decodeIntForKey:@"flags"];
+            type = [coder decodeIntForKey:@"type"];
+            permutation = [coder decodeIntForKey:@"permutation"];
+            
+            text_offset = [coder decodeIntForKey:@"textOffset"];
+            text_length = [coder decodeIntForKey:@"textLength"];
+            
+            lines = [coder decodeIntForKey:@"lines"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            theText = decodeObjRetain(coder);
+            
+            // May Need To Retain...
+            permutationObject = decodeObj(coder);
+            
+            flags = decodeShort(coder);
+            type = decodeShort(coder);
+            permutation = decodeShort(coder);
+            text_offset = decodeShort(coder);
+            text_length = decodeShort(coder);
+            lines = decodeShort(coder);
+        }
         
-        flags = [coder decodeIntForKey:@"flags"];
-        type = [coder decodeIntForKey:@"type"];
-        permutation = [coder decodeIntForKey:@"permutation"];
+        /*if (useIndexNumbersInstead)
+         [theLELevelDataST addPlatform:self];*/
         
-        text_offset = [coder decodeIntForKey:@"textOffset"];
-        text_length = [coder decodeIntForKey:@"textLength"];
-        
-        lines = [coder decodeIntForKey:@"lines"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        theText = decodeObjRetain(coder);
-        
-        // May Need To Retain...
-        permutationObject = decodeObj(coder);
-        
-        flags = decodeShort(coder);
-        type = decodeShort(coder);
-        permutation = decodeShort(coder);
-        text_offset = decodeShort(coder);
-        text_length = decodeShort(coder);
-        lines = decodeShort(coder);
+        useIndexNumbersInstead = NO;
     }
-    
-    /*if (useIndexNumbersInstead)
-        [theLELevelDataST addPlatform:self];*/
-    
-    useIndexNumbersInstead = NO;
     
     return self;
 }
@@ -115,25 +116,23 @@
 
 -(id)init
 {
-    self = [super init];
-    
-    if (self == nil)
-        return nil;
-    theText = [[NSMutableAttributedString alloc]
-               initWithString:@""
-               attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
-                            NSFontAttributeName: [NSFont fontWithName:@"Courier" size:12.0]}];
-    
-    flags = 0;		/* section flags, see above */
-    type = 1;		/* section type, see above */
-    permutation = 0;	/* meaning varies with type */
-    text_offset = -1;	/* offset to the first character in the text */
-    text_length = -1;	/* number of characters in the text */
-    lines = -1;		/* number of lines in the text. Absent in the preview (demo?) */
-    
-    [self setType:1];
-    
-    permutationObject = nil;
+    if (self = [super init]) {
+        theText = [[NSMutableAttributedString alloc]
+                   initWithString:@""
+                   attributes:@{NSForegroundColorAttributeName: [NSColor greenColor],
+                                NSFontAttributeName: [NSFont fontWithName:@"Courier" size:12.0]}];
+        
+        flags = 0;		/* section flags, see above */
+        type = 1;		/* section type, see above */
+        permutation = 0;	/* meaning varies with type */
+        text_offset = -1;	/* offset to the first character in the text */
+        text_length = -1;	/* number of characters in the text */
+        lines = -1;		/* number of lines in the text. Absent in the preview (demo?) */
+        
+        [self setType:1];
+        
+        permutationObject = nil;
+    }
     
     return self;
 }

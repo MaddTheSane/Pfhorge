@@ -40,8 +40,7 @@
     int tmpLong = 0;
     //int i = 0;
     
-    if (theNumber != NSNotFound)
-    {
+    if (theNumber != NSNotFound) {
         return theNumber;
     }
     
@@ -177,46 +176,47 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        type = [coder decodeIntForKey:@"type"];
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        light_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"light_object"];
-        
-        current_direction = [coder decodeIntForKey:@"current_direction"];
-        current_magnitude = [coder decodeIntForKey:@"current_magnitude"];
-        
-        low = [coder decodeIntForKey:@"low"];
-        high = [coder decodeIntForKey:@"high"];
-        
-        origin = [coder decodePointForKey:@"origin"];
-        height = [coder decodeIntForKey:@"height"];
-        
-        minimum_light_intensity = [coder decodeIntForKey:@"minimum_light_intensity"];
-        texture = [coder decodeIntForKey:@"texture"];
-        transfer_mode = [coder decodeIntForKey:@"transfer_mode"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        type = decodeShort(coder);
-        flags = decodeUnsignedShort(coder);
-        
-        light_object = decodeObj(coder);
-        
-        current_direction = decodeShort(coder);
-        current_magnitude = decodeShort(coder);
-        
-        low = decodeShort(coder);
-        high = decodeShort(coder);
-        
-        origin.x = decodeInt(coder);
-        origin.y = decodeInt(coder);
-        height = decodeShort(coder);
-        
-        minimum_light_intensity = decodeInt(coder);
-        texture = decodeShort(coder);
-        transfer_mode = decodeShort(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            type = [coder decodeIntForKey:@"type"];
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            light_object = [coder decodeObjectOfClass:[PhLight class] forKey:@"light_object"];
+            
+            current_direction = [coder decodeIntForKey:@"current_direction"];
+            current_magnitude = [coder decodeIntForKey:@"current_magnitude"];
+            
+            low = [coder decodeIntForKey:@"low"];
+            high = [coder decodeIntForKey:@"high"];
+            
+            origin = [coder decodePointForKey:@"origin"];
+            height = [coder decodeIntForKey:@"height"];
+            
+            minimum_light_intensity = [coder decodeIntForKey:@"minimum_light_intensity"];
+            texture = [coder decodeIntForKey:@"texture"];
+            transfer_mode = [coder decodeIntForKey:@"transfer_mode"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            type = decodeShort(coder);
+            flags = decodeUnsignedShort(coder);
+            
+            light_object = decodeObj(coder);
+            
+            current_direction = decodeShort(coder);
+            current_magnitude = decodeShort(coder);
+            
+            low = decodeShort(coder);
+            high = decodeShort(coder);
+            
+            origin.x = decodeInt(coder);
+            origin.y = decodeInt(coder);
+            height = decodeShort(coder);
+            
+            minimum_light_intensity = decodeInt(coder);
+            texture = decodeShort(coder);
+            transfer_mode = decodeShort(coder);
+        }
     }
     
     return self;
@@ -341,9 +341,7 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
             //[self setP1:-1];
             //[self setP2:-1];
     }

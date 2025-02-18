@@ -110,19 +110,20 @@
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (coder.allowsKeyedCoding) {
-        flags = [coder decodeIntForKey:@"flags"];
-        
-        sound_index = [coder decodeIntForKey:@"sound_index"];
-        volume = [coder decodeIntForKey:@"volume"];
-    } else {
-        /*int versionNum = */decodeNumInt(coder);
-        
-        flags = decodeUnsignedShort(coder);
-        
-        sound_index = decodeShort(coder);
-        volume = decodeShort(coder);
+    if (self = [super initWithCoder:coder]) {
+        if (coder.allowsKeyedCoding) {
+            flags = [coder decodeIntForKey:@"flags"];
+            
+            sound_index = [coder decodeIntForKey:@"sound_index"];
+            volume = [coder decodeIntForKey:@"volume"];
+        } else {
+            /*int versionNum = */decodeNumInt(coder);
+            
+            flags = decodeUnsignedShort(coder);
+            
+            sound_index = decodeShort(coder);
+            volume = decodeShort(coder);
+        }
     }
     
     return self;
@@ -170,9 +171,7 @@
 
 -(id)init
 {
-    self = [super init];
-    if (self != nil)
-    {
+    if (self = [super init]) {
             //[self setP1:-1];
             //[self setP2:-1];
     }

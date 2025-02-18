@@ -41,32 +41,29 @@
           withLevel:(LELevelData *)theLevel
     withMapDocument:(LEMap *)theMapDoc
 {
-    if (theSound == nil || theLevel == nil || theMapDoc == nil)
+    if (theSound == nil || theLevel == nil || theMapDoc == nil) {
         return nil;
+    }
     
-    self = [super initWithLevel:theLevel
-                withMapDocument:theMapDoc
-                withNibFile:@"AmbientSoundEditor"
-                withEditingObj:theSound];
-    
-    if (self == nil)
-        return nil;
-    
-    curSound = theSound;
-    
-    [self window];
-    
-    //[mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self
+    if (self = [super initWithLevel:theLevel
+                    withMapDocument:theMapDoc
+                        withNibFile:@"AmbientSoundEditor"
+                     withEditingObj:theSound]) {
+        curSound = theSound;
+        
+        [self window];
+        
+        //[mapLevel addMenu:tagComboMenu asA:PhLevelNameMenuTag];
+        
+        //[[NSNotificationCenter defaultCenter] addObserver:self
         //selector:@selector(reloadDataFromLevel)
         //name:LELevelChangedNotification
         //object:[self document]];
-    
+        
         // Active
-    
-    [self refreshInterfaceFromData];
-    
+        
+        [self refreshInterfaceFromData];
+    }
     return self;
 }
 
