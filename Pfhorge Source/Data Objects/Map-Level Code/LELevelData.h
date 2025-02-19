@@ -37,37 +37,37 @@
 #define SET_ENTRY_FLAG(b, v) ((v) ? (entry_point_flags |= (b)) : (entry_point_flags &= ~(b)))
 
 /*! export name types... */
-typedef NS_ENUM(short, _data_name_export) {
-    _data_has_no_name,
-    _data_has_regular_name,
-    _data_has_custom_name
+typedef NS_ENUM(short, LEDataNameExport) {
+    LEDataNameNone,
+    LEDataNameRegular,
+    LEDataNameCustom
 };
 
-enum/* export data primary, secondary, etc... */
-{
-    _data_is_primary,
-    _data_is_secondary
+/*! export data primary, secondary, etc... */
+typedef NS_ENUM(short, LEDataInsertion) {
+    LEDataInsertionPrimary,
+    LEDataInsertionSecondary
 };
 
 /*! export data types */
-typedef NS_ENUM(short, _data_type_export) {
-	_data_is_polygon,
-	_data_is_line,
-	_data_is_object,
-	_data_is_side,
-	_data_is_point,
-	_data_is_media,
-	_data_is_light,
-	_data_is_tag,
-	_data_is_annotationNote,
-	_data_is_ambientSound,
-	_data_is_randomSound,
-	_data_is_itemPlacement,
-	_data_is_platform,
-	_data_is_terminal,
-	_data_is_terminalSection,
-	_data_is_layer,
-	_data_is_unknown
+typedef NS_ENUM(short, LEDataTypeExport) {
+	LEDataTypePolygon,
+	LEDataTypeLine,
+	LEDataTypeObject,
+	LEDataTypeSide,
+	LEDataTypePoint,
+	LEDataTypeMedia,
+	LEDataTypeLight,
+	LEDataTypeTag,
+	LEDataTypeAnnotationNote,
+	LEDataTypeAmbientSound,
+	LEDataTypeRandomSound,
+	LEDataTypeItemPlacement,
+	LEDataTypePlatform,
+	LEDataTypeTerminal,
+	LEDataTypeTerminalSection,
+	LEDataTypeLayer,
+	LEDataTypeUnknown
 };
 
 
@@ -207,7 +207,7 @@ enum {
     //LESide *defaultSide;
     LELine *defaultLine;
     
-    __unsafe_unretained LEMap *theLevelDocument;
+    __weak LEMap *theLevelDocument;
     
     // *** Default Object Pointers ***
     LEMapObject *defaultObjects[_NUMBER_OF_OBJECT_TYPES];
@@ -228,6 +228,7 @@ enum {
 }
 
 @property (weak) NSUndoManager *myUndoManager;
+@property (weak) LEMap *levelDocument;
 
 #pragma mark Level Specific Settings
 @property (readonly, strong) NSDecimalNumberHandler *roundingSettings;

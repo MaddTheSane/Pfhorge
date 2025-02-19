@@ -147,8 +147,6 @@
 // ************************* Level Data Accsessors *************************
 #pragma mark - Level Data Accsessors
 
--(void)setLevelDocument:(LEMap *)theDocument { theLevelDocument = theDocument; }
-
 //-(void)setThePoints:(NSMutableArray *)thePoints { return; [points release];  points = thePoints; [points retain]; }
 //-(void)setTheLines:(NSMutableArray *)theLines { return; [lines release]; lines = theLines; [lines retain]; }
 //-(void)setThePolys:(NSMutableArray *)thePolygons { return; [polys release]; polys = thePolygons; [polys retain]; }
@@ -163,8 +161,6 @@
 //-(void)setPlatforms:(NSMutableArray *)v { return; [platforms release]; platforms = v; [platforms retain]; }
 
 //-(void)setTags:(NSMutableArray *)v { return; [tags release]; tags = v; [tags retain]; }
-
--(LEMap *)levelDocument { return theLevelDocument; }
 
 
 

@@ -104,10 +104,10 @@ static inline void PreImportTag(LEMapStuffParent *self, PhData *myData, PhTag **
 
 #define SEND_INFO_MSG_TITLE(m, t) ([[ErrorNotificationWinController sharedErrorController] standardInfoMsg:(m) title:(t)])
 
-#define GETI_FLAG(i, b) ((i) & (b))
+#define GETI_FLAG(i, b) (((i) & (b)) == (b))
 #define SETI_FLAG(i, b, v) ((v) ? ((i) |= (b)) : ((i) &= ~(b))
 
-#define GET_SELF_FLAG(b) (flags & (b))
+#define GET_SELF_FLAG(b) ((flags & (b)) == (b))
 #define SET_SELF_FLAG(b, v) ((v) ? (flags |= (b)) : (flags &= ~(b)))
 
 #define GET_OBJECT_FLAG(o, b) ([(o) getFlags] & (b))

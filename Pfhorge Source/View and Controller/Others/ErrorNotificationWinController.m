@@ -41,50 +41,34 @@
 }
 
 // *********************** Regular Methods ***********************
-- (void)standardGenericError
-{
-    //int NSRunAlertPanel(NSString *title, NSString *msg,
-    //		NSString *defaultButton, NSString *alternateButton,
-    //		NSString *otherButton, ...)
-
-    //[msgTitle setStringValue:@"Oh my, an error has manifested! :)"];
-    //[msgMain setStringValue:@"This is a generic error with no message."];
-    //[self showWindow:self];
-    
-    NSRunAlertPanel(@"Generic Error", @"This is a generic error with no message.", @"Ok", nil, nil);
-
-}
-
 - (void)standardGenericErrorMsg:(NSString *)msg
 {
-    //[msgTitle setStringValue:@"Oh my, an error has manifested! :)"];
-    //[msgMain setStringValue:msg];
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleCritical;
+    alert.messageText = NSLocalizedString(@"Generic Error", @"Generic Error");
+    alert.informativeText = msg;
     
-    //[self showWindow:self];
-    
-    NSRunAlertPanel(@"Generic Error", @"%@", @"Ok", nil, nil, msg);
+    [alert runModal];
 }
 
 - (void)standardGenericErrorMsg:(NSString *)msg title:(NSString *)title
 {
-    //[msgTitle setStringValue:title];
-    //[msgMain setStringValue:msg];
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleCritical;
+    alert.messageText = title;
+    alert.informativeText = msg;
+    [alert addButtonWithTitle:NSLocalizedString(@"Darn!", @"Darn!")];
     
-    //[self showWindow:self];
-    
-    NSRunAlertPanel(title, @"%@", @"Darn!", nil, nil, msg);
-//int NSRunInformationalAlertPanel(title, msg, @"Ok", nil, nil);
+    [alert runModal];
 }
 
 - (void)standardInfoMsg:(NSString *)msg title:(NSString *)title
 {
-    //[msgTitle setStringValue:title];
-    //[msgMain setStringValue:msg];
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleInformational;
+    alert.messageText = title;
+    alert.informativeText = msg;
     
-    //[self showWindow:self];
-    
-    //NSRunAlertPanel(title, msg, @"Darn!", nil, nil);
-    
-    NSRunInformationalAlertPanel(title, @"%@", @"Ok", nil, nil, msg);
+    [alert runModal];
 }
 @end

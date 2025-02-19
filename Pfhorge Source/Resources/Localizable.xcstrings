@@ -69,6 +69,9 @@
     "Archiving Level Into Binary Data…" : {
       "comment" : "Archiving Level Into Binary Data…"
     },
+    "Attempting to load a PhLight object without keyed coding!" : {
+      "comment" : "Attempting to load PhLight without keyed coding! PhLight should not be localized."
+    },
     "Bad file format" : {
       "comment" : "Bad audio format",
       "extractionState" : "extracted_with_value",
@@ -290,6 +293,9 @@
     },
     "Creating Script Folder" : {
       "comment" : "Creating Script Folder"
+    },
+    "Darn!" : {
+      "comment" : "Darn!"
     },
     "Detailed Information About Selected" : {
       "comment" : "Detailed Information About Selected"

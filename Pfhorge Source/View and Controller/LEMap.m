@@ -620,6 +620,9 @@
         static const int thePfhorgeDataSig3 = OSSwapHostToBigInt32(42296737);
 
         NSData *theLevelMapData = [NSKeyedArchiver archivedDataWithRootObject:theLevel requiringSecureCoding:NO error:outError];
+        if (!theLevelMapData) {
+            return nil;
+        }
         
         [entireMapData appendBytes:&theVersionNumber length:2];
         [entireMapData appendBytes:&thePfhorgeDataSig1 length:2];
@@ -643,10 +646,10 @@
 {
     BOOL loadedOk = NO;
     
-    short theVersionNumber = currentVersionOfPfhorgeLevelData;
-    short thePfhorgeDataSig1 = 26743;
-    unsigned short thePfhorgeDataSig2 = 34521;
-    long thePfhorgeDataSig3 = 42296737;
+    const short theVersionNumber = currentVersionOfPfhorgeLevelData;
+    static const short thePfhorgeDataSig1 = 26743;
+    static const unsigned short thePfhorgeDataSig2 = 34521;
+    static const long thePfhorgeDataSig3 = 42296737;
     
     short theVersionNumberFromData = 0;
     short thePfhorgeDataSig1FromData = 0;

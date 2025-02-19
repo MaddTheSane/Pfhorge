@@ -185,7 +185,7 @@
     if (indexNum == -1) {
         return nil;
     } else if (indexNum < [theIndex count] && indexNum >= 0) {
-        objTypesArr[indexNum] = _data_is_primary;
+        objTypesArr[indexNum] = LEDataInsertionPrimary;
         return [theIndex objectAtIndex:indexNum];
     }
     

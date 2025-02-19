@@ -64,6 +64,7 @@
 @synthesize entryPointFlags=entry_point_flags;
 @synthesize myUndoManager;
 @synthesize roundingSettings=defaultRoundingBehavior;
+@synthesize levelDocument=theLevelDocument;
 
 - (NSMutableArray<PhItemPlacement *> *)getItemPlacement
 {
@@ -456,8 +457,9 @@ static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
                 break;
         }
         
-        if (theNamesCacheArray == nil || theAcutalObjectsArray == nil)
+        if (theNamesCacheArray == nil || theAcutalObjectsArray == nil) {
             continue;
+        }
         
         // Just to make sure there are no previous names...
         [theNamesCacheArray removeAllObjects];
@@ -649,7 +651,6 @@ static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 #ifdef useDebugingLogs
     NSLog(@"Tags count from name caching: %d - %d. Both Need To Be The Same!", [tags count], [tagNames count]);
 #endif
-    
 }
 
 
@@ -715,22 +716,22 @@ static NSString * const LELevelDatalayerNotesCoderKey = @"layerNotes";
 /*
 enum // export data types
 {
-	_data_is_polygon,
-        _data_is_line,
-        _data_is_object,
-        _data_is_side,
-        _data_is_point,
-        _data_is_media,
-        _data_is_light,
-        _data_is_tag,
-        _data_is_annotationNote,
-        _data_is_ambientSound,
-        _data_is_randomSound,
-        _data_is_itemPlacement,
-        _data_is_platform,
-        _data_is_terminal,
-        _data_is_terminalSection,
-        _data_is_layer
+        LEDataTypePolygon,
+        LEDataTypeLine,
+        LEDataTypeObject,
+        LEDataTypeSide,
+        LEDataTypePoint,
+        LEDataTypeMedia,
+        LEDataTypeLight,
+        LEDataTypeTag,
+        LEDataTypeAnnotationNote,
+        LEDataTypeAmbientSound,
+        LEDataTypeRandomSound,
+        LEDataTypeItemPlacement,
+        LEDataTypePlatform,
+        LEDataTypeTerminal,
+        LEDataTypeTerminalSection,
+        LEDataTypeLayer
 };
 */
 
@@ -764,49 +765,49 @@ enum // export data types
         Class theClass = [theObj class];
         
         if (theClass == [LEMapPoint class])
-            appendNumber = _data_is_point;
+            appendNumber = LEDataTypePoint;
         else if (theClass == [LELine class])
-            appendNumber = _data_is_line;
+            appendNumber = LEDataTypeLine;
         else if (theClass == [LEPolygon class])
-            appendNumber = _data_is_polygon;
+            appendNumber = LEDataTypePolygon;
         else if (theClass == [LEMapObject class])
-            appendNumber = _data_is_object;
+            appendNumber = LEDataTypeObject;
         else if (theClass == [LESide class])
-            appendNumber = _data_is_side;
+            appendNumber = LEDataTypeSide;
         else if (theClass == [PhMedia class])
-            appendNumber = _data_is_media;
+            appendNumber = LEDataTypeMedia;
         else if (theClass == [PhAmbientSound class])
-            appendNumber = _data_is_ambientSound;
+            appendNumber = LEDataTypeAmbientSound;
         else if (theClass == [PhRandomSound class])
-            appendNumber = _data_is_randomSound;
+            appendNumber = LEDataTypeRandomSound;
         else if (theClass == [PhLight class])
-            appendNumber = _data_is_light;
+            appendNumber = LEDataTypeLight;
         else if (theClass == [PhItemPlacement class])
-            appendNumber = _data_is_itemPlacement;
+            appendNumber = LEDataTypeItemPlacement;
         else if (theClass == [PhPlatform class])
-            appendNumber = _data_is_platform;
+            appendNumber = LEDataTypePlatform;
         else
-            appendNumber = _data_is_unknown;
+            appendNumber = LEDataTypeUnknown;
         
         if ([objects containsObject:theObj])
-            tmpShort = _data_is_primary;
+            tmpShort = LEDataInsertionPrimary;
         else
-            tmpShort = _data_is_secondary;
+            tmpShort = LEDataInsertionSecondary;
         
         
         
-        _data_name_export customNameStatus = _data_has_no_name;
+        LEDataNameExport customNameStatus = LEDataNameNone;
         
         if ([theObj isKindOfClass:[PhAbstractName class]]) {
             if ([theObj doIHaveACustomName]) {
-                customNameStatus = _data_has_no_name;
+                customNameStatus = LEDataNameNone;
             } else if ([theObj doIHaveAName]) {
-                customNameStatus = _data_has_regular_name;
+                customNameStatus = LEDataNameRegular;
             } else {
-                customNameStatus = _data_has_no_name;
+                customNameStatus = LEDataNameNone;
             }
         } else {
-            customNameStatus = _data_has_no_name;
+            customNameStatus = LEDataNameNone;
         }
         
 		saveShortToNSData(tmpShort, finnalData);
@@ -832,10 +833,10 @@ enum // export data types
     [myData getInt:&totalObjects];
     ///long indexBytes = totalObjects*4;
     
-    short objTypesArr[totalObjects];
+    LEDataInsertion objTypesArr[totalObjects];
     BOOL objImported[totalObjects];
-    _data_type_export objKindArr[totalObjects];
-    _data_name_export objNameStatusArr[totalObjects];
+    LEDataTypeExport objKindArr[totalObjects];
+    LEDataNameExport objNameStatusArr[totalObjects];
     
     int i = 0;
     
@@ -848,33 +849,33 @@ enum // export data types
         objImported[i] = NO;
         [myData getShort:&objKindArr[i]]; // Light or Polygon?, etc...
         [myData getShort:&objNameStatusArr[i]]; // Name Status...
-        _data_type_export objKind = objKindArr[i];
+        LEDataTypeExport objKind = objKindArr[i];
         id obj = nil;
         
         //   *points, *lines, *polys, *mapObjects, *sides,
         //   *layerPoints, *layerLines, *layerPolys, *layerMapObjects;
         
-        if (objKind == _data_is_point)
+        if (objKind == LEDataTypePoint)
             obj = [[LEMapPoint alloc] init];
-        else if (objKind == _data_is_line)
+        else if (objKind == LEDataTypeLine)
             obj = [[LELine alloc] init];
-        else if (objKind == _data_is_polygon)
+        else if (objKind == LEDataTypePolygon)
             obj = [[LEPolygon alloc] init];
-        else if (objKind == _data_is_object)
+        else if (objKind == LEDataTypeObject)
             obj = [[LEMapObject alloc] init];
-        else if (objKind == _data_is_side)
+        else if (objKind == LEDataTypeSide)
             obj = [[LESide alloc] init];
-        else if (objKind == _data_is_media)
+        else if (objKind == LEDataTypeMedia)
             obj = [[PhMedia alloc] init];
-        else if (objKind == _data_is_ambientSound)
+        else if (objKind == LEDataTypeAmbientSound)
             obj = [[PhAmbientSound alloc] init];
-        else if (objKind == _data_is_randomSound)
+        else if (objKind == LEDataTypeRandomSound)
             obj = [[PhRandomSound alloc] init];
-        else if (objKind == _data_is_light)
+        else if (objKind == LEDataTypeLight)
             obj = [[PhLight alloc] init];
-        else if (objKind == _data_is_itemPlacement)
+        else if (objKind == LEDataTypeItemPlacement)
             obj = [[PhItemPlacement alloc] init];
-        else if (objKind == _data_is_platform)
+        else if (objKind == LEDataTypePlatform)
             obj = [[PhPlatform alloc] init];
         else
         {
@@ -894,7 +895,7 @@ enum // export data types
         for (i = 0; i < totalObjects; i++) {
             theObj = [index objectAtIndex:i];
             
-            if (objImported[i] == NO && objTypesArr[i] == _data_is_primary) {
+            if (objImported[i] == NO && objTypesArr[i] == LEDataInsertionPrimary) {
                 if ([myData addToPosition:4] == NO)
                     NSLog(@"Went Beyond Import Bounds...");
                 
@@ -908,7 +909,7 @@ enum // export data types
         }
         
         for (i = 0; i < totalObjects; i++) {
-            if (objImported[i] == NO && objTypesArr[i] == _data_is_primary)
+            if (objImported[i] == NO && objTypesArr[i] == LEDataInsertionPrimary)
             {
                 stillImporting = YES;
                 break;
@@ -938,73 +939,73 @@ enum // export data types
             continue;
         
         /*
-            _data_has_no_name,
-            _data_has_regular_name,
-            _data_has_custom_name
+                LEDataNameNone,
+            LEDataNameRegular,
+            LEDataNameCustom
         */
         
 
         //   *points, *lines, *polys, *mapObjects, *sides,
         //   *layerPoints, *layerLines, *layerPolys, *layerMapObjects;
         
-        if (objKind == _data_is_point)
+        if (objKind == LEDataTypePoint)
         {
             [self addPoint:obj];
             [theSet addObject:obj];
         }
-        else if (objKind == _data_is_line)
+        else if (objKind == LEDataTypeLine)
         {
             [self addLine:obj];
             [theSet addObject:obj];
         }
-        else if (objKind == _data_is_polygon)
+        else if (objKind == LEDataTypePolygon)
         {
             [self addPolygonDirectly:obj];
             [theSet addObject:obj];
         }
-        else if (objKind == _data_is_object)
+        else if (objKind == LEDataTypeObject)
         {
             [mapObjects addObject:obj];
             [theSet addObject:obj];
             [layerMapObjects addObject:obj];
         }
-        else if (objKind == _data_is_side)
+        else if (objKind == LEDataTypeSide)
         {
             [sides addObject:obj];
         }
-        else if (objKind == _data_is_media)
+        else if (objKind == LEDataTypeMedia)
         {
             [media addObject:obj];
         }
-        else if (objKind == _data_is_ambientSound)
+        else if (objKind == LEDataTypeAmbientSound)
         {
             [ambientSounds addObject:obj];
         }
-        else if (objKind == _data_is_randomSound)
+        else if (objKind == LEDataTypeRandomSound)
         {
             [randomSounds addObject:obj];
         }
-        else if (objKind == _data_is_light)
+        else if (objKind == LEDataTypeLight)
         {
             [lights addObject:obj];
         }
-        else if (objKind == _data_is_itemPlacement)
+        else if (objKind == LEDataTypeItemPlacement)
         {
             [itemPlacement addObject:obj];
         }
-        else if (objKind == _data_is_platform)
+        else if (objKind == LEDataTypePlatform)
         {
             [platforms addObject:obj];
         }
         else
         {
-            //appendNumber = _data_is_unknown; // ??? ??? ???
+            //appendNumber = LEDataTypeUnknown; // ??? ??? ???
             
             NSLog(@"While importing, I found an unknown object type attempted to be imported...");
             continue;
         }
         
-        if (objNameStatusArr[i] == _data_has_regular_name)
+        if (objNameStatusArr[i] == LEDataNameRegular)
         {
             [obj setPhName:nil];
             [obj resetNameToMyIndex];

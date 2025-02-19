@@ -42,7 +42,6 @@ DEPRECATED_ATTRIBUTE
 
 
 // *********************** Regular Methods ***********************
-- (void)standardGenericError;
 - (void)standardGenericErrorMsg:(NSString *)msg;
 - (void)standardGenericErrorMsg:(NSString *)msg title:(NSString *)title;
 - (void)standardInfoMsg:(NSString *)msg title:(NSString *)title;
