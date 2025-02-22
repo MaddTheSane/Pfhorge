@@ -11,7 +11,7 @@ import Foundation
 class PluginManager: NSObject {
 	// MARK: - • Class Methods •
 	
-    @objc(sharedPluginManager)
+	@MainActor @objc(sharedPluginManager)
     static let shared = PluginManager()
     
 	// MARK: - • Accsessor Methods •
@@ -103,7 +103,9 @@ class PluginManager: NSObject {
 	/// which is resized and added to the main window's tab view, and the plug-in is then added to the
 	/// instances array.
 	private func instantiatePlugins(_ pluginClass: PhLevelPluginProtocol.Type) {
-		let plugs = pluginClass.plugins(for: self)!
+		guard let plugs = pluginClass.plugins(for: self) else {
+			return
+		}
 		for plugin2 in plugs {
 			let plugin = plugin2 as! PhLevelPluginProtocol
 			//NSTabViewItem* tab = [[[NSTabViewItem alloc] initWithIdentifier:nil] autorelease];

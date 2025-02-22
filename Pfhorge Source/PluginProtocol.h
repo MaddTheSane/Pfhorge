@@ -20,6 +20,7 @@
 //! Plug-ins are implemented as class clusters. There are two important phases:
 //! 1) Class initialization, when the plug-in is loaded
 //! 2) Class instantiation, when actual plug-in objects are generated.
+//!
 //! In the second phase, any number of subclasses of the plug-in may be returned. However, the
 //! calling program need not concern itself with subclass details.
 @protocol PhLevelPluginProtocol <NSObject>

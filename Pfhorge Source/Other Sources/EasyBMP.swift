@@ -85,7 +85,7 @@ extension EasyBMP.RGBAPixel: CustomPlaygroundDisplayConvertible, CustomStringCon
 }
 
 final class EasyBMP {
-	static var showEasyBMPWarnings = false
+	nonisolated(unsafe) static var showEasyBMPWarnings = false
 	struct RGBAPixel: Comparable, Hashable {
 		var blue: UInt8 = 0
 		var green: UInt8 = 0

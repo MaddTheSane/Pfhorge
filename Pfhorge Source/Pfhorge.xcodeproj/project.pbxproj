@@ -1281,7 +1281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -1316,7 +1316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Pfhorge;
 				PRODUCT_NAME = Pfhorge;
 				SWIFT_OBJC_BRIDGING_HEADER = "Other Sources/Pfhorge-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};

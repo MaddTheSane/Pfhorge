@@ -1,0 +1,30 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "20.title" : {
+      "comment" : "Class = \"NSWindow\"; title = \"Window\"; ObjectID = \"20\";",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Window"
+          }
+        }
+      }
+    },
+    "30.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Now\"; ObjectID = \"30\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Now"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

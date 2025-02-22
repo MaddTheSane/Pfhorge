@@ -18,9 +18,9 @@ NSErrorDomain const LEShapesImportErrorDomain = @"pfhorge.shapesErrors";
 
 static NSBitmapImageRep * getRawImageBits(int theCollection, int theColorTable, int theBitmap, NSError *__autoreleasing*error);
 static NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned char *pixels);
-static void write_word(unsigned short w, NSMutableData *theData);
-static void write_dword(unsigned int w, NSMutableData *theData);
-static void write_c(unsigned char w, NSMutableData *theData);
+static inline void write_word(unsigned short w, NSMutableData *theData);
+static inline void write_dword(unsigned int w, NSMutableData *theData);
+static inline void write_c(unsigned char w, NSMutableData *theData);
 
 
 NSArray * getAllTexturesOfWithError(int theCollection, int theColorTable, NSURL *theShapesPath, NSError *_Nullable __autoreleasing* _Nullable outError)
@@ -231,7 +231,7 @@ NSData * save_bitmap_to_bmp(int width, int height, rgb_color_value *ct, unsigned
 	file_size = CFSwapInt32HostToLittle((int)[f length]);
 	[f replaceBytesInRange:NSMakeRange(2, 4) withBytes:&file_size];
 	
-	return [f copy];
+	return f;
 }
 
 void write_word(unsigned short w, NSMutableData *theData)
