@@ -692,31 +692,31 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
     
     //  SelectSIf(Matrix, Tag, BOOL);
     
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_points])
+    if ([levelDrawView boolOptionsFor:LEMapDrawPoints])
         [_selectionOptionCheckPoints setState:NSControlStateValueOn];
     else
         [_selectionOptionCheckPoints setState:NSControlStateValueOff];
 
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_lines])
+    if ([levelDrawView boolOptionsFor:LEMapDrawLines])
         [_selectionOptionCheckLines setState:NSControlStateValueOn];
     else
         [_selectionOptionCheckLines setState:NSControlStateValueOff];
     
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_objects])
+    if ([levelDrawView boolOptionsFor:LEMapDrawObjects])
         [_selectionOptionCheckObjects setState:NSControlStateValueOn];
     else
         [_selectionOptionCheckObjects setState:NSControlStateValueOff];
     
-    if ([levelDrawView boolOptionsFor:_mapoptions_select_polygons])
+    if ([levelDrawView boolOptionsFor:LEMapDrawPolygons])
         [_selectionOptionCheckPolygons setState:NSControlStateValueOn];
     else
         [_selectionOptionCheckPolygons setState:NSControlStateValueOff];
     
     /**************************************************
-    SelectSIf(selectionOptionCheckboxes, _mm_select_points, [levelDrawView boolOptionsFor:_mapoptions_select_points]);
-    SelectSIf(selectionOptionCheckboxes, _mm_select_lines, [levelDrawView boolOptionsFor:_mapoptions_select_lines]);
-    SelectSIf(selectionOptionCheckboxes, _mm_select_objects, [levelDrawView boolOptionsFor:_mapoptions_select_objects]);
-    SelectSIf(selectionOptionCheckboxes, _mm_select_polygons, [levelDrawView boolOptionsFor:_mapoptions_select_polygons]);
+    SelectSIf(selectionOptionCheckboxes, _mm_select_points, [levelDrawView boolOptionsFor:LEMapDrawPoints]);
+    SelectSIf(selectionOptionCheckboxes, _mm_select_lines, [levelDrawView boolOptionsFor:LEMapDrawLines]);
+    SelectSIf(selectionOptionCheckboxes, _mm_select_objects, [levelDrawView boolOptionsFor:LEMapDrawObjects]);
+    SelectSIf(selectionOptionCheckboxes, _mm_select_polygons, [levelDrawView boolOptionsFor:LEMapDrawPolygons]);
     **************************************************/
 }
 
@@ -724,10 +724,10 @@ NSString *const PhLevelDidChangeNameNotification = @"PhLevelDidChangeName";
 {
     //LELevelData *theCurrentLevel = [[self document] getCurrentLevelLoaded];
     
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_points to: _selectionOptionCheckPoints.state == NSControlStateValueOn];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_lines to:_selectionOptionCheckLines.state == NSControlStateValueOn];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_objects to:_selectionOptionCheckObjects.state == NSControlStateValueOn];
-    [levelDrawView setBoolOptionsFor:_mapoptions_select_polygons to:_selectionOptionCheckPolygons.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:LEMapDrawPoints to: _selectionOptionCheckPoints.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:LEMapDrawLines to:_selectionOptionCheckLines.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:LEMapDrawObjects to:_selectionOptionCheckObjects.state == NSControlStateValueOn];
+    [levelDrawView setBoolOptionsFor:LEMapDrawPolygons to:_selectionOptionCheckPolygons.state == NSControlStateValueOn];
     
     [self updateMapManagerInterface];
 }

@@ -28,6 +28,7 @@
 //! `initializeClass:` is called once when the plug-in is loaded. The plug-in's bundle is passed
 //! as argument; the plug-in could discover its own bundle again, but since we have it available
 //! anyway when this is called, this saves some time and space.
+//!
 //! In a real implementation, we might also pass a `NSDictionary` with the appropriate preferences.
 //! This method should do all global plug-in initialization, such as loading preferences; if
 //! initialization fails, it should return `NO`, and the plug-in won't be called again.
@@ -38,6 +39,7 @@
 + (void)terminateClass;
 
 //! `+pluginsFor:` is called whenever the calling application wants to instantiate a plug-in class.
+//!
 //! An object is passed in as argument; this object might be validated by the plug-in class to
 //! decide which sort of instances, or how many instances to return. The object reference may also
 //! be stored by the instances and thereafter be used as a bridge to the calling application.
@@ -49,11 +51,11 @@
 @optional
 
 
-//! theView returns a plug-in instance's view. In the example, this is inserted into the main
+//! `theView` returns a plug-in instance's view. In the example, this is inserted into the main
 //! window's tab view.
 - (NSView*)theView;
 
-//! \c theViewName returns the name associated with a plug-in instance's view. In the example, this
+//! `theViewName` returns the name associated with a plug-in instance's view. In the example, this
 //! is the label given to the tab.
 @property (readonly, nonatomic, copy) NSString *theViewName;
 

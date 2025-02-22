@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //! BOOL Options Array Numbers
 typedef NS_ENUM(int, LEMapDrawOption) {
-    _mapoptions_select_points = 0,
-    _mapoptions_select_lines,
-    _mapoptions_select_objects,
-    _mapoptions_select_polygons,
-    _mapoptions_select_notes,
-    COUNT_OF_BOOL_ARRAY_OPTIONS
+    LEMapDrawPoints = 0,
+    LEMapDrawLines,
+    LEMapDrawObjects,
+    LEMapDrawPolygons,
+    LEMapDrawNotes,
+    LEMapDrawCountOfTypes
 };
 
 //! Pfhorge Go To Object Types
@@ -83,7 +83,7 @@ typedef NS_ENUM(int, LEMapDrawingMode) {
 {
 @protected
     
-    BOOL boolArrayOptions[COUNT_OF_BOOL_ARRAY_OPTIONS];
+    BOOL boolArrayOptions[LEMapDrawCountOfTypes];
     
     IBOutlet NSScrollView *scrollView;
     IBOutlet NSTextField *ttt;

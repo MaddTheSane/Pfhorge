@@ -172,7 +172,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     rectNotes = nil;
     
     // Set The Bool Array To Default Values...
-    for (i = 0; i < COUNT_OF_BOOL_ARRAY_OPTIONS; i++) {
+    for (i = 0; i < LEMapDrawCountOfTypes; i++) {
         boolArrayOptions[i] = YES;
     }
     
@@ -305,7 +305,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     rectNotes = nil;
     
     // Set The Bool Array To Default Values...
-    for (i = 0; i < COUNT_OF_BOOL_ARRAY_OPTIONS; i++)
+    for (i = 0; i < LEMapDrawCountOfTypes; i++)
     {
         boolArrayOptions[i] = YES;
     }
@@ -1637,9 +1637,6 @@ typedef NS_ENUM(short, LEEDrawMode) {
 -(BOOL)createSpecialDrawingList
 {
     LEPolygon *thisPolygon;
-    NSArray *thePolys, *theMapPoints, *theAmbientSounds, *theLights, *theLiquids, *theLevelLayerArray;
-    NSMutableArray *tmpNumberList, *tmpNumberDrawingMaps, *tmpColorList, *tmpNameList, *tmpObjsList;
-    NSEnumerator *numer, *numer2, *numer3, *numer4;
     NSNumber *curNumber;
     NSString *curName;
     NSBezierPath *curMap;
@@ -1650,7 +1647,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     int heightMode = [self currentDrawingMode];
     NSInteger tmpNumberListCorrectedCount, tmpNumberListCount;
     int i;
-    float hueMultiplier;
+    CGFloat hueMultiplier;
     BOOL listIncludesNone;
     
     //Remove all previous entrys...
@@ -1673,25 +1670,24 @@ typedef NS_ENUM(short, LEEDrawMode) {
     if (objsList == nil)
         objsList =  [[NSMutableArray alloc] initWithCapacity:1];
       
-    tmpNumberList = [[NSMutableArray alloc] initWithCapacity:1];
-    tmpNameList = [[NSMutableArray alloc] initWithCapacity:1];
-    tmpObjsList = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray<NSNumber*> *tmpNumberList = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray<NSString*> *tmpNameList = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray<LEMapStuffParent*> *tmpObjsList = [[NSMutableArray alloc] initWithCapacity:1];
     
     //numberTable = NSMutableDictionary;
     
     
-    theMapPoints = [currentLevel points];
-    thePolys = [currentLevel polygons];
-    theAmbientSounds = [currentLevel ambientSounds];
-    theLights = [currentLevel lights];
-    theLiquids = [currentLevel media];
-    theLevelLayerArray = [currentLevel layersInLevel];
+    NSArray<LEMapPoint*> *theMapPoints = [currentLevel points];
+    NSArray<LEPolygon*> *thePolys = [currentLevel polygons];
+    NSArray<PhAmbientSound*> *theAmbientSounds = [currentLevel ambientSounds];
+    NSArray<PhLight*> *theLights = [currentLevel lights];
+    NSArray<PhMedia*> *theLiquids = [currentLevel media];
+    NSArray<PhLayer*> *theLevelLayerArray = [currentLevel layersInLevel];
     //getRandomSounds
     //getPlatforms
     
     if (heightMode == LEMapDrawingModeCeilingHeight || heightMode == LEMapDrawingModeFloorHeight) {
-        numer = [thePolys objectEnumerator];
-        for (thisPolygon in numer) {
+        for (thisPolygon in thePolys) {
             // Get the correct height...
             switch (heightMode) {
                 case LEMapDrawingModeCeilingHeight:
@@ -1727,7 +1723,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             [tmpNumberList sortUsingSelector:@selector(compare:)];
         }
     } else {
-        NSArray<PhAbstractName*> *theArray = nil;
+        NSArray *theArray = nil;
         // Get the correct height...
         switch (heightMode) {
             case LEMapDrawingModeCeilingHeight:
@@ -1890,7 +1886,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     tmpNumberListCount = [tmpNumberList count];
     
     //Allocate the array...
-    tmpNumberDrawingMaps = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray<NSBezierPath*> *tmpNumberDrawingMaps = [[NSMutableArray alloc] initWithCapacity:1];
     
     //Create the drawing maps...
     for (i = 0; i < tmpNumberListCount; i++) {
@@ -1898,17 +1894,17 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     //Allocate the array...
-    tmpColorList = [[NSMutableArray alloc] initWithCapacity:1];
+    NSMutableArray<NSColor*> *tmpColorList = [[NSMutableArray alloc] initWithCapacity:1];
     
     //if (heightMode == LEMapDrawingModeAmbientSounds || LEMapDrawingModeLiquidLights:LEMapDrawingModeLiquids
-    if ([tmpNumberList indexOfObject:[NSNumber numberWithShort:((short)(-1))]] == NSNotFound) {
+    if ([tmpNumberList indexOfObject:@-1] == NSNotFound) {
         listIncludesNone = NO;
         tmpNumberListCorrectedCount = [tmpNumberList count];
-        hueMultiplier = (1.0 / ((float)tmpNumberListCorrectedCount));
+        hueMultiplier = (1.0 / ((CGFloat)tmpNumberListCorrectedCount));
     } else {
         listIncludesNone = YES;
         tmpNumberListCorrectedCount = [tmpNumberList count] - 1;
-        hueMultiplier = (1.0 / ((float)tmpNumberListCorrectedCount));
+        hueMultiplier = (1.0 / ((CGFloat)tmpNumberListCorrectedCount));
     }
     
     //Create the colors...
@@ -1921,14 +1917,14 @@ typedef NS_ENUM(short, LEEDrawMode) {
     }
     
     //Create a dictonary from the arrays...
-    numer = [tmpNumberList objectEnumerator];
-    numer2 = [tmpNumberDrawingMaps objectEnumerator];
-    numer3 = [tmpColorList objectEnumerator];
-    numer4 = [tmpNameList objectEnumerator];
+    NSEnumerator<NSNumber*> *numer = [tmpNumberList objectEnumerator];
+    NSEnumerator<NSBezierPath*> *numer2 = [tmpNumberDrawingMaps objectEnumerator];
+    NSEnumerator<NSColor*> *numer3 = [tmpColorList objectEnumerator];
+    NSEnumerator<NSString*> *numer4 = [tmpNameList objectEnumerator];
     while ((curNumber = [numer nextObject]) &&
            (curMap = [numer2 nextObject]) &&
            (curName = [numer4 nextObject])) {
-        if ([curNumber isEqual:[NSNumber numberWithShort:-1]]) {
+        if ([curNumber isEqual:@-1]) {
             curColor = [NSColor
             colorWithCalibratedHue: 0.0
                         saturation: 0.0
@@ -1970,8 +1966,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     numberList = tmpNumberList;
     NSLog(@"numberList count: %lu", (unsigned long)[numberList count]);
     
-    if ([tmpObjsList count] > 0)
-    {
+    if ([tmpObjsList count] > 0) {
         objsList = tmpObjsList;
     } else {
         tmpObjsList = nil;
@@ -3346,7 +3341,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     // selectedNotes LEhitTest
     
-    if (boolArrayOptions[_mapoptions_select_notes] == YES) {
+    if (boolArrayOptions[LEMapDrawNotes] == YES) {
         //NSLog(@"Runing hit detection on notes...");
         for (PhAnnotationNote *curObj in theNotes) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
@@ -3382,7 +3377,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
         }
     }
     
-    if (boolArrayOptions[_mapoptions_select_points] == YES) {
+    if (boolArrayOptions[LEMapDrawPoints] == YES) {
         //NSLog(@"Looking For Points...");
         for (LEMapPoint *curObj in theMapPoints) {
             if ([self mouse:mouseLoc inRect:[curObj as32Rect]]) {
@@ -3410,7 +3405,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
         }
     }
-    if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_objects] == YES) {
+    if (/*!foundSelection && */boolArrayOptions[LEMapDrawObjects] == YES) {
         //NSLog(@"Runing hit detection on level objects...");
         for (LEMapObject *curObj in theMapObjects) {
             if ([self mouse:mouseLoc inRect:[curObj as32Rect]]) {
@@ -3433,7 +3428,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
         }
     }
-    if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_lines] == YES) {
+    if (/*!foundSelection && */boolArrayOptions[LEMapDrawLines] == YES) {
         //NSLog(@"Runing hit detection on lines...");
         for (LELine *curObj in theLines) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
@@ -3460,7 +3455,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             //}
         }
     }
-    if (/*!foundSelection && */boolArrayOptions[_mapoptions_select_polygons] == YES) {
+    if (/*!foundSelection && */boolArrayOptions[LEMapDrawPolygons] == YES) {
         //NSLog(@"Runing hit detection on polys...");
         for (LEPolygon *curObj in thePolys) {
             //if ([self mouse:mouseLoc inRect:[curObj theDrawingBound]])
@@ -5018,7 +5013,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
     
     switch(selectionType) {
         case LEMapDrawSelectionPoints:
-            if (boolArrayOptions[_mapoptions_select_points]) {
+            if (boolArrayOptions[LEMapDrawPoints]) {
                 for (LEMapPoint *theObj in rectPoints)
                 {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect])
@@ -5028,7 +5023,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             break;
             
         case LEMapDrawSelectionLines:
-            if (boolArrayOptions[_mapoptions_select_lines]) {
+            if (boolArrayOptions[LEMapDrawLines]) {
                 for (LELine *theObj in rectLines) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
                         [rectSet addObject:theObj];
@@ -5038,7 +5033,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             break;
             
         case LEMapDrawSelectionPolygons:
-            if (boolArrayOptions[_mapoptions_select_polygons]) {
+            if (boolArrayOptions[LEMapDrawPolygons]) {
                 for (LEPolygon *theObj in rectPolys) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
                         [rectSet addObject:theObj];
@@ -5048,7 +5043,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             break;
             
         case LEMapDrawSelectionObjects:
-            if (boolArrayOptions[_mapoptions_select_objects]) {
+            if (boolArrayOptions[LEMapDrawObjects]) {
                 for (LEMapObject *theObj in rectObjects) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect])
                         [rectSet addObject:theObj];
@@ -5056,7 +5051,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
             }
             break;
         case LEMapDrawSelectionNotes: // rectNotes
-            if (boolArrayOptions[_mapoptions_select_notes]) {
+            if (boolArrayOptions[LEMapDrawNotes]) {
                 for (PhAnnotationNote *theObj in rectNotes) {
                     if (!([excludeSet containsObject:theObj]) && [theObj drawingWithinRect:aRect]) {
                         [rectSet addObject:theObj];
@@ -5605,11 +5600,11 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 // *************************** For Changing/Getting Settings ***************************
 #pragma mark - For Changing/Getting Settings
-//COUNT_OF_BOOL_ARRAY_OPTIONS
+//LEMapDrawCountOfTypes
 
 - (BOOL)setBoolOptionsFor:(LEMapDrawOption)theSetting to:(BOOL)value
 {
-    if (theSetting < 0 || theSetting >= COUNT_OF_BOOL_ARRAY_OPTIONS)
+    if (theSetting < 0 || theSetting >= LEMapDrawCountOfTypes)
         return NO;
     
     boolArrayOptions[theSetting] = value;
@@ -5619,7 +5614,7 @@ typedef NS_ENUM(short, LEEDrawMode) {
 
 - (BOOL)boolOptionsFor:(LEMapDrawOption)theSetting
 {
-    if (theSetting < 0 || theSetting >= COUNT_OF_BOOL_ARRAY_OPTIONS)
+    if (theSetting < 0 || theSetting >= LEMapDrawCountOfTypes)
         return NO;
     
     return ((boolArrayOptions[theSetting]) ? YES : NO);
